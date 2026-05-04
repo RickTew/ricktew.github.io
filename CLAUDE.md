@@ -146,7 +146,7 @@ Format: `ricktew` on every platform (or however each platform renders it).
 
 ## Writing Rules
 
-- No em dashes (`--`). Use a hyphen, colon, or restructure.
+- **No long dashes of any kind.** No em dash (—), no en dash (–), no double hyphen (--). Use a period, comma, colon, or restructure the sentence instead.
 - No corporate-speak or buzzwords.
 - Rick's voice: direct, a little irreverent, confident.
 

@@ -1,6 +1,6 @@
 @layer tokens {
   :root {
-    /* Colors — dark (default) */
+    /* Colors: dark (default) */
     --bg:             #090d15;
     --surface:        #0f1622;
     --surface-raised: #162030;
