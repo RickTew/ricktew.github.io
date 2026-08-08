@@ -1,10 +1,10 @@
 /* ricktew.com — exact copy of the Google Sites design */
 
 :root {
-  --blue-band: #3865b8;
-  --blue-bar: #3e64a9;
-  --blue-button: #3d65ad;
-  --blue-announce: #3c5ccd;
+  --blue-band: #1e73bd;
+  --blue-bar: #1e73bd;
+  --blue-button: #3367d6;
+  --blue-announce: #3367d6;
   --text: #202124;
   --text-muted: #5f6368;
   --gray-card: #f1f3f4;
@@ -25,7 +25,8 @@ body {
 
 img { max-width: 100%; height: auto; display: block; }
 
-a { color: var(--blue-button); }
+a { color: #1e73bd; }
+mark { background: #ffff00; color: #000; }
 
 /* ---------- Announcement bar ---------- */
 .announce {
@@ -278,6 +279,7 @@ figure.fig { margin: 34px auto; text-align: center; }
 figure.fig img { margin: 0 auto; }
 figure.fig.medium img { max-width: 760px; width: 100%; }
 figure.fig.large img { max-width: 880px; width: 100%; }
+figure.fig.full img { width: 100%; max-width: 1122px; }
 figure.fig.small img { max-width: 480px; width: 100%; }
 
 /* ---------- Buttons ---------- */
