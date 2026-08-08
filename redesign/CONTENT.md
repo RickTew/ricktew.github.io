@@ -8,7 +8,7 @@
 - Started teaching martial arts at 16-17
 - Opened first dojo at 19
 - Moved to Europe at 21 to develop RTMS
-- Lived in: Indiana (origin), Holland/Netherlands (6+ years: Amsterdam, Rotterdam, Delft, Naarden Bussum, Naarden Vesting area), Spain, California, Thailand, Latin America, Philippines — lives globally
+- Lived in: USA (origin; never name the birth state in public copy, keep it "American" or "California"), Holland/Netherlands (6+ years: Amsterdam, Rotterdam, Delft, Naarden Bussum, Naarden Vesting area), Spain, California, Thailand, Latin America, Philippines — lives globally
 - Ran away to California at age 8; Boy Scout background inspired goal systems, outdoors, leadership
 - Fell in love with ninjitsu at 14; on TV at 15 for martial arts skills
 - Created martialartsupply.com, grew it into a lucrative business
