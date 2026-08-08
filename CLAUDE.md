@@ -2,6 +2,8 @@
 
 Personal brand and portfolio site for Rick Tew. Everything he makes lives here: apps, games, businesses, and tools.
 
+**CURRENT STATE (2026-08-08):** The repo root is an EXACT COPY of the old Google Sites ricktew.com (11 pages, same URLs, `css/site.css` + `js/site.js`, images in `assets/images/`). It deploys to GitHub Pages. The in-progress redesign described below lives in `/redesign/` and is parked until Rick approves a design. Edit the root copy for anything that must show on the live site.
+
 ---
 
 ## Site Purpose
