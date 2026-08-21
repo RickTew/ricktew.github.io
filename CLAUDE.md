@@ -16,9 +16,11 @@ camps and real training are more history now, thirty years of teaching is the
 record rather than the plan, and the digital work is where the week actually
 goes. Neither door is a demotion.
 
-The older Google Sites copy still lives at the root (11 pages, same URLs,
-`css/site.css` + `js/site.js`). `/redesign/` holds parked exploration. Edit the
-root copy for anything that must show live.
+The old Google Sites pages are all still live at their original URLs, styled by
+`css/site.css` + `js/site.js`. The one that moved is the old front page: it is
+now `/hininja/` word for word, and their nav "Home" and logo point there. Their
+footers carry a link back to the two doors. `/redesign/` holds parked
+exploration and is not live.
 
 ---
 
@@ -102,13 +104,27 @@ ricktew.github.io.)*
 
 ## Tech Stack
 
-- Plain HTML5 / CSS / Vanilla JS — no build system, no framework, no npm
-- CSS Custom Properties for theming (`tokens.css`)
-- CSS Grid + Container Queries for layout
-- Dark/light mode: user toggle (button in nav) + respects `prefers-color-scheme` default
-- Web Components for repeated UI patterns (project cards)
-- No preprocessors, no bundlers — `open index.html` in browser to develop
-- Deployed as static files, zero dependencies
+Plain HTML5 / CSS / Vanilla JS. No build system, no framework, no npm, no
+preprocessor, no bundler. Open a file in a browser and it works.
+
+**What is actually here, verified 2026-08-21.** The list that used to sit in
+this section described a site that was never built: there is no `tokens.css`,
+no `main.css`, no `main.js`, no container queries, no dark/light toggle and no
+web components. Anyone who codes against that list will write against nothing.
+
+- `css/site.css` + `js/site.js` style the old Google Sites pages and
+  `/hininja/`. Light only. Oswald + Open Sans.
+- The front page and `/aininja/` each carry their own `<style>` block inline,
+  no shared stylesheet. Archivo + Nunito, from Google Fonts.
+- Shared palette across the front page and `/aininja/`, matched variable for
+  variable so the doors do not feel like leaving the site:
+  `--bg:#ffffff  --ink:#101418  --muted:#69707a  --blue:#1e73bd
+  --red:#d61f26  --line:#e8e6e2  --panel:#f7f6f4`. The old pages use the same
+  `#1e73bd` blue. Red carries HI, blue carries AI.
+- Every page is light on white. A dark front page was tried on 21 Aug and
+  rejected: it made both doors look like they led off-site, and it killed the
+  logo, whose black outlines need white to read against.
+- Deployed as static files, zero dependencies.
 
 ---
 
