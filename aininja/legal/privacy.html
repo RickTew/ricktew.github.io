@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy : The Digital Dojo</title>
+<style>
+:root{--ink:#101418;--muted:#6b7280;--red:#d61f26;--gold:#ca9a3e;--line:#e5e7eb;--panel:#faf8f5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fff;color:var(--ink);font-family:"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.65}
+.wrap{max-width:760px;margin:0 auto;padding:56px 24px 90px}
+.top a{color:var(--red);font-weight:800;text-decoration:none;font-size:14px}
+h1{font-family:Georgia,serif;font-size:clamp(30px,5vw,42px);font-weight:900;margin-top:18px}
+.updated{color:var(--muted);font-weight:700;font-size:13.5px;margin-top:8px}
+h2{font-family:Georgia,serif;font-size:22px;margin-top:38px}
+p,li{margin-top:12px;color:#374151}
+b{color:var(--ink)}
+ul{padding-left:22px}
+.callout{margin-top:16px;border-left:3px solid var(--gold);background:var(--panel);padding:14px 18px;border-radius:0 10px 10px 0}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:20px;font-size:13.5px;color:var(--muted)}
+footer a{color:var(--ink);font-weight:800;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><a href="../dojo-landing-v2.html">&larr; Back to the Dojo</a></div>
+<h1>Privacy</h1>
+<p class="updated">The Digital Dojo, operated by Tew's Inc &middot; Last updated 13 August 2026</p>
+
+<p>Short, because there is not much to disclose. This site is built to know as little about you as possible.</p>
+
+<h2>The offer page and the quiz</h2>
+<ul>
+  <li><b>No tracking.</b> The page sets no analytics cookies and runs no third-party trackers.</li>
+  <li><b>The quiz computes in your browser.</b> Your answers never leave your device unless you choose to send them. The result shows without asking for an email.</li>
+  <li><b>If you press a contact button,</b> your own mail app opens with your quiz answers pre-filled so you can see exactly what you are sending, edit it, or not send it at all. Nothing is transmitted until you press send in your own mail program.</li>
+</ul>
+
+<h2>What we hold if you write or subscribe</h2>
+<ul>
+  <li><b>Email:</b> if you write in, we have your email and what you sent. It is used to reply and to serve you, never sold, never added to a list you did not ask for.</li>
+  <li><b>Payments:</b> subscriptions are processed by Stripe. Card details go to Stripe, not to us; we see what Stripe shows a merchant (name, email, subscription status).</li>
+  <li><b>Client work:</b> what we learn about your business while building your Dojo is covered by the confidentiality section of the <a href="terms.html">Terms of Service</a>.</li>
+</ul>
+
+<h2>Deletion</h2>
+<p>Ask, and correspondence and records we hold about you are deleted, except what payment law requires Stripe and us to keep.</p>
+
+<div class="callout">Questions about any of this: <a href="#" id="mailLink"><b>write to me</b></a> and a human answers.</div>
+
+<footer>
+  <span>Tew's Inc &middot; The Digital Dojo &middot; <a href="terms.html">Terms of Service</a> &middot; <a href="#" id="mailLink2">Write to me</a></span>
+</footer>
+</div>
+<script>
+(function(){
+  var ADDR="hi"+String.fromCharCode(64)+"ricktew"+String.fromCharCode(46)+"com";
+  function wire(id){ var el=document.getElementById(id); if(el){ el.addEventListener("click",function(e){ e.preventDefault(); location.href="mailto:"+ADDR; }); } }
+  wire("mailLink"); wire("mailLink2");
+})();
+</script>
+</body>
+</html>
