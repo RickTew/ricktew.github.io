@@ -641,7 +641,7 @@ footer a:hover{text-decoration:underline}
     <div class="proof">
       <span>TEWGO on the Apple App Store</span>
       <span>800+ member families in my gym app</span>
-      <span>3,600+ commits in 5 months</span>
+      <span>4,800+ commits since March</span>
     </div>
   </div>
 </section>
@@ -1747,7 +1747,7 @@ footer a:hover{text-decoration:underline}
     var hours=parseInt(A("hours").v,10)||0;
     var rate=parseInt(A("rate").v,10)||30;
     var draftable=Math.round(hours*0.6);
-    var monthly=Math.round((hours*0.6*4.33*rate)/50)*50;
+    var monthly=Math.round((draftable*4.33*rate)/50)*50;
     var money=(who!=="passion");   /* no invoice at the end of a passion project */
 
     /* who runs it once it exists decides the tier, not how big you are.
