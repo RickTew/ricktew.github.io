@@ -4,7 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rick Tew: HI Ninja or AI Ninja</title>
-<meta name="description" content="AI to HI. Use modern tools so you spend more time doing what you love. HI Ninja is the human half: martial arts, camps, coaching, Winjitsu. AI Ninja is the tech half: systems that save you time or money.">
+<meta name="description" content="Two doors. HI Ninja is Rick Tew in person: martial arts, live-in camps in Samui Thailand, ninja mindset coaching and Winjitsu. AI Ninja is the digital half: systems that save you time or money.">
+<link rel="canonical" href="https://ricktew.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rick Tew">
+<meta property="og:url" content="https://ricktew.com/">
+<meta property="og:title" content="Rick Tew: HI Ninja or AI Ninja">
+<meta property="og:description" content="Two doors. HI Ninja is martial arts, camps and coaching in person. AI Ninja is the digital half: systems that save you time or money.">
+<meta property="og:image" content="https://ricktew.com/assets/images/og-ricktew.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ricktew">
 <link rel="icon" href="/assets/images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,8 +121,15 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 .straight b{color:var(--ink);font-weight:800}
 
 /* ---------- foot ---------- */
+.foot-outer{margin-top:auto}
+.sitelinks{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;
+  padding:30px 24px 0;font-size:14px;font-weight:700;
+}
+.sitelinks a{color:var(--body);text-decoration:none;border-bottom:1px solid var(--line)}
+.sitelinks a:hover{color:var(--ink);border-bottom-color:var(--ink)}
 .foot{
-  margin-top:auto;padding:34px 0 30px;border-top:1px solid var(--line);
+  margin-top:26px;padding:22px 0 30px;border-top:1px solid var(--line);
   display:flex;gap:18px;flex-wrap:wrap;align-items:center;justify-content:space-between;
   font-size:13px;letter-spacing:.04em;color:var(--muted);
 }
@@ -128,6 +146,31 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
   .straight p{text-align:left}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Rick Tew",
+  "url": "https://ricktew.com/",
+  "image": "https://ricktew.com/assets/images/rick-tew-logo.png",
+  "jobTitle": "Martial arts instructor and AI builder",
+  "description": "Martial arts instructor of thirty years and builder of AI systems for small businesses. Creator of Winjitsu, the mental martial art, and Rick Tew's Martial Science.",
+  "knowsAbout": ["Martial arts","Ninjitsu","Ninja MMA","Winjitsu","Martial arts therapy","Peak performance coaching","Self-defense","Artificial intelligence","Software development"],
+  "sameAs": [
+    "https://x.com/ricktew",
+    "https://www.facebook.com/ricktew",
+    "https://www.instagram.com/ricktew",
+    "https://www.linkedin.com/in/ricktew",
+    "https://www.youtube.com/@ricktew"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Rick Tew's NinjaGym",
+    "url": "https://ninjagym.com/",
+    "address": { "@type": "PostalAddress", "addressLocality": "Bophut, Ko Samui", "addressCountry": "TH" }
+  }
+}
+</script>
 </head>
 <body>
 
@@ -187,14 +230,24 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
   </section>
 </main>
 
-<footer class="wrap foot">
-  <span>Copyright &copy; 2026 Rick Tew</span>
-  <span class="links">
-    <a href="/hininja/">HI Ninja</a>
-    <a href="/aininja/">AI Ninja</a>
-    <a href="/contact/">Contact</a>
-    <a href="#" id="mailLink">Write to me</a>
-  </span>
+<footer class="foot-outer">
+  <nav class="wrap sitelinks" aria-label="The rest of the site">
+    <a href="/about/">About Rick Tew</a>
+    <a href="/ninjagym/">NinjaGym Samui</a>
+    <a href="/camps/">Martial Art Camps</a>
+    <a href="/tours/">Training Tours</a>
+    <a href="/rtms/">RTMS Ninja MMA</a>
+    <a href="/winjitsu/">Winjitsu</a>
+  </nav>
+  <div class="wrap foot">
+    <span>Copyright &copy; 2026 Rick Tew</span>
+    <span class="links">
+      <a href="/hininja/">HI Ninja</a>
+      <a href="/aininja/">AI Ninja</a>
+      <a href="/contact/">Contact</a>
+      <a href="#" id="mailLink">Write to me</a>
+    </span>
+  </div>
 </footer>
 
 <script>
