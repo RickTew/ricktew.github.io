@@ -3,187 +3,208 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Martial Arts Adventure</title>
+<title>Rick Tew: HI Ninja or AI Ninja</title>
+<meta name="description" content="Two doors. HI Ninja is the human side: martial arts, camps and coaching, in person. AI Ninja is the digital side: building with AI for businesses. Pick the one that is yours.">
 <link rel="icon" href="/assets/images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/site.css">
-<script src="/js/site.js" defer></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b0d10; --ink2:#12161b;
+  --paper:#f4f2ee; --muted:#9aa3ad;
+  --red:#d61f26; --red-l:#ff4b52;
+  --blue:#1e73bd; --blue-l:#4a9fe6;
+  --line:rgba(255,255,255,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} *{transition:none !important} }
+body{
+  background:var(--ink);color:var(--paper);
+  font-family:"Nunito","Helvetica Neue",Arial,sans-serif;
+  font-size:17px;line-height:1.6;
+  min-height:100vh;display:flex;flex-direction:column;
+}
+img{max-width:100%;display:block}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px;width:100%}
+
+/* ---------- the ask ---------- */
+.top{padding:30px 0 24px;text-align:center}
+.wordmark{
+  display:inline-block;font-family:"Archivo",Arial,sans-serif;font-weight:900;
+  font-size:14px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--paper);text-decoration:none;
+}
+.wordmark:hover{color:#fff}
+.ask{
+  margin-top:26px;font-family:"Archivo",Arial,sans-serif;font-weight:900;
+  font-size:clamp(32px,6.2vw,62px);line-height:1.02;letter-spacing:-.02em;
+}
+.ask .hi{color:var(--red-l)}
+.ask .ai{color:var(--blue-l)}
+.ask-sub{
+  margin:16px auto 0;max-width:44ch;color:var(--muted);
+  font-weight:700;font-size:clamp(15px,2.1vw,18px);
+}
+
+/* ---------- the two doors, with Rick astride the seam ---------- */
+.split{
+  position:relative;isolation:isolate;overflow:hidden;
+  margin-top:30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  aspect-ratio:1024/456;max-height:60vh;
+  background:#07090b;
+}
+.photo{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 60%;
+}
+.seam{
+  position:absolute;top:0;bottom:0;left:50%;width:1px;z-index:2;
+  background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,.22),rgba(255,255,255,0));
+}
+/* Text sits high on each side. His legs own the bottom of the frame and the
+   scrims fall away diagonally so nothing shadows the splits. */
+.door{
+  position:absolute;top:0;bottom:0;width:50%;z-index:3;
+  display:flex;flex-direction:column;justify-content:flex-start;
+  padding:clamp(20px,3.2vw,42px);
+  text-decoration:none;color:var(--paper);
+  text-shadow:0 1px 14px rgba(0,0,0,.85), 0 1px 3px rgba(0,0,0,.7);
+  transition:opacity .22s ease, background .22s ease;
+}
+.door.hi{left:0;align-items:flex-start;text-align:left;
+  background:linear-gradient(to bottom right,rgba(7,9,11,.95) 0%,rgba(7,9,11,.74) 30%,rgba(7,9,11,.14) 58%,rgba(7,9,11,0) 74%)}
+.door.ai{right:0;align-items:flex-end;text-align:right;
+  background:linear-gradient(to bottom left,rgba(7,9,11,.95) 0%,rgba(7,9,11,.74) 30%,rgba(7,9,11,.14) 58%,rgba(7,9,11,0) 74%)}
+.door.hi:hover{background:linear-gradient(to bottom right,rgba(96,8,12,.95) 0%,rgba(30,9,11,.74) 32%,rgba(7,9,11,.14) 60%,rgba(7,9,11,0) 76%)}
+.door.ai:hover{background:linear-gradient(to bottom left,rgba(7,48,84,.95) 0%,rgba(9,17,26,.74) 32%,rgba(7,9,11,.14) 60%,rgba(7,9,11,0) 76%)}
+.split:has(.door:hover) .door:not(:hover){opacity:.42}
+.door:focus-visible{outline:3px solid #fff;outline-offset:-6px}
+
+.door .num{
+  font-family:"Archivo",Arial,sans-serif;font-weight:900;
+  font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);
+}
+.door .name{
+  margin-top:8px;font-family:"Archivo",Arial,sans-serif;font-weight:900;
+  font-size:clamp(30px,5vw,58px);line-height:1;letter-spacing:-.02em;
+}
+.door.hi .name{color:var(--red-l)}
+.door.ai .name{color:var(--blue-l)}
+.door .expand{
+  margin-top:10px;font-weight:800;font-size:clamp(13px,1.7vw,16px);
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.door .line{
+  margin-top:10px;max-width:30ch;font-weight:600;
+  font-size:clamp(13px,1.7vw,16.5px);line-height:1.45;color:#d8d5cf;
+}
+.door .go{
+  margin-top:18px;display:inline-flex;align-items:center;gap:9px;
+  font-family:"Archivo",Arial,sans-serif;font-weight:900;
+  font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  border-bottom:2px solid currentColor;padding-bottom:4px;
+}
+.door.hi .go{color:var(--red-l)}
+.door.ai .go{color:var(--blue-l)}
+.door .go svg{width:15px;height:15px;transition:transform .2s ease}
+.door:hover .go svg{transform:translateX(4px)}
+
+/* ---------- the honest bit, deliberately after the choice ---------- */
+.honest{padding:44px 0 10px}
+.honest p{
+  max-width:62ch;margin:0 auto;text-align:center;
+  font-weight:600;font-size:clamp(15px,2vw,18px);color:#c7c3bc;
+}
+.honest b{color:var(--paper);font-weight:800}
+
+/* ---------- foot ---------- */
+.foot{
+  margin-top:auto;padding:38px 0 34px;
+  border-top:1px solid var(--line);
+  display:flex;gap:18px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  font-size:13px;letter-spacing:.04em;color:var(--muted);
+}
+.foot a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.foot a:hover{color:var(--paper);border-bottom-color:var(--paper)}
+.foot .links{display:flex;gap:18px;flex-wrap:wrap}
+
+/* ---------- narrow: photo on top, doors stacked under it ---------- */
+@media (max-width:880px){
+  .split{aspect-ratio:auto;max-height:none;display:flex;flex-direction:column;overflow:visible;
+    border:0;margin-top:24px}
+  .photo{position:static;height:auto;object-fit:contain;border-radius:10px;
+    border:1px solid var(--line)}
+  .seam{display:none}
+  .door{position:static;width:100%;padding:24px 22px;margin-top:14px;
+    border-radius:12px;border:1px solid var(--line);text-shadow:none}
+  .door.hi,.door.ai{align-items:flex-start;text-align:left}
+  .door.hi,.door.hi:hover{background:linear-gradient(150deg,rgba(84,7,10,.55),rgba(18,22,27,.9))}
+  .door.ai,.door.ai:hover{background:linear-gradient(150deg,rgba(6,42,74,.55),rgba(18,22,27,.9))}
+  .split:has(.door:hover) .door:not(:hover){opacity:1}
+  .door .line{max-width:none}
+}
+</style>
 </head>
 <body>
 
-<div class="sticky-top">
-<div class="announce">
-  <span>Samui Thailand KIDS Martial Arts at NinjaGym</span>
-  <a class="announce-btn" href="/ninjagym/">Big C Bophut 10am-8pm</a>
-</div>
+<div class="wrap">
 
-<header class="site-header">
-  <div class="header-inner">
-    <a class="brand" href="/">
-      <img src="/assets/images/logo.png" alt="Rick Tew">
-      <span class="brand-sub">Martial Arts Adventure</span>
+  <header class="top">
+    <a class="wordmark" href="/">Rick Tew</a>
+    <h1 class="ask">Which ninja<br>do you want?</h1>
+    <p class="ask-sub">Two doors, both mine. Pick the one you came for.</p>
+  </header>
+
+  <div class="split">
+    <img class="photo" src="/assets/images/rick-splits.jpg" alt="Rick Tew holding the splits on the mat at his gym, one leg reaching to each side" width="1024" height="456">
+    <span class="seam" aria-hidden="true"></span>
+
+    <a class="door hi" href="/hininja/">
+      <span class="num">Door one</span>
+      <span class="name">HI Ninja</span>
+      <span class="expand">Human Interaction</span>
+      <span class="line">In the room with you. Martial arts, the camps, the coaching, and Winjitsu, the mental martial art.</span>
+      <span class="go">Go through
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </span>
     </a>
-    <button class="nav-toggle" aria-label="Menu">&#9776;</button>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="/" class="active">Home</a></li>
-        <li><a href="/about/">About</a></li>
-        <li class="has-sub">
-          <a href="/ninjagym/">NinjaGym<span class="caret"></span></a>
-          <ul class="sub">
-            <li><a href="/ninjagym/event-schedule/">Event Schedule</a></li>
-            <li><a href="/ninjagym/ninja-day-camp/">Ninja Day Camp</a></li>
-            <li><a href="/ninjagym/rules-agreements/">Rules &amp; Agreements</a></li>
-          </ul>
-        </li>
-        <li><a href="/camps/">Camps</a></li>
-        <li><a href="/tours/">Tours</a></li>
-        <li><a href="/rtms/">RTMS</a></li>
-        <li><a href="/winjitsu/">Winjitsu</a></li>
-        <li><a href="/contact/">Contact</a></li>
-      </ul>
-    </nav>
+
+    <a class="door ai" href="/aininja/">
+      <span class="num">Door two</span>
+      <span class="name">AI Ninja</span>
+      <span class="expand">The digital work</span>
+      <span class="line">What I build now. An AI workforce trained on your business, and the receipts from mine.</span>
+      <span class="go">Go through
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
   </div>
-</header>
+
+  <section class="honest">
+    <p>Thirty years teaching ninjitsu around the world is <b>the record, not the plan</b>. I am settled now, and most of my week goes into building. Both doors are real, and neither one is the consolation prize.</p>
+  </section>
+
+  <footer class="foot">
+    <span>Copyright &copy; 2026 Rick Tew</span>
+    <span class="links">
+      <a href="/hininja/">HI Ninja</a>
+      <a href="/aininja/">AI Ninja</a>
+      <a href="/contact/">Contact</a>
+      <a href="#" id="mailLink">Write to me</a>
+    </span>
+  </footer>
+
 </div>
 
-<main>
-
-
-  <div class="pagehead">
-    <h1>Martial Arts Therapy</h1>
-    <div class="title-bar"></div>
-    <div class="subtitle">Be a Ninja in what you DO with Master Instructor Rick Tew</div>
-  </div>
-
-  <div class="wrap">
-    <figure class="fig"><img src="/assets/images/652387db39.jpg" alt="Rick Tew flying kick over Phi Phi island viewpoint"></figure>
-  </div>
-
-  <div class="band">
-    <h1>Live-in martial art camps, training tours and ninja mindset workshops with Rick Tew</h1>
-  </div>
-
-  <div class="wrap">
-    <div class="prose">
-      <p class="lead-bold">Martial Arts Therapy</p>
-      <p>There is a lot more to the martial arts than wanting to punch someone in the face or roll around in a cage.  The traditional values and tenets that the martial arts offers is still available for those that want to get beyond the ego based competition.</p>
-      <p>When making choices on where you want to invest your time or money, you can consider the real benefits offered by either buying more stuff or joining a group of like-minded individuals focused on improving one's self worth.</p>
-      <p>Social psychologists agree that buying more stuff just doesn&rsquo;t make you happier. Time Magazine stated, <em>&ldquo;Buying more stuff actually makes you miserable.&rdquo;</em> So let&rsquo;s kick-2-start that happiness meter by engaging in worthwhile activities that challenge you.</p>
-      <p>Rick is focused on Tew core areas of focus that every person should work hard to obtain.  They are <strong>fulfillment</strong> in their life and how to take action and <strong>execute</strong> towards their dreams. These are not easy to achieve.  Most people loathe their jobs and few understand the power that lies within being in an industry that you love.</p>
-      <p>There is much more to life than money and just because you have a job or a career, it does not mean that you have a life.</p>
-      <p>The Multi-Martial Art system and training that we offer includes focus on Mind, Body and Spirit equally.  We cover all areas of the martial arts so the participant is never bored and they have many options to choose from the plethora of offerings available through a good martial arts program.</p>
-      <p><a class="btn" href="/contact/">Join Now</a></p>
-    </div>
-
-    <div class="row">
-      <div class="col-img"><img src="/assets/images/f5a1733a58.png" alt="Rick Tew portrait and high kick"></div>
-      <div>
-        <h2>Hi, I'm Rick Tew</h2>
-        <p class="italic">&ldquo;I can coach you on how to maximize your strengths so you can BE the best you possible, and get a Black Belt in what you DO!!</p>
-        <p class="italic">I do this by offering programs that combine the Mind and the Martial Arts.</p>
-        <p class="italic">I offer Edutainment Speaking for those that want to learn my Mental Martial Art of Winjitsu and I conduct Martial Art Camps for those that want to learn to move like a Ninja. I am committed to helping people achieve a feeling of fulfillment while teaching them how to take action on their personal goals.&rdquo;</p>
-        <p><a class="btn wide" href="/contact/">Contact to Sign Up</a></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="band">
-    <h1>Being Happy &amp; Why Martial Arts Helps</h1>
-  </div>
-
-  <div class="wrap">
-    <div class="prose">
-      <p>Research explains that the feeling of HAPPINESS occurs when we are focused intensely on an activity of choice that is challenging and contains clear objectives with immediate feedback. Let&rsquo;s break that down:</p>
-      <ul>
-        <li>Focus intensely on an activity of choice</li>
-        <li>Challenging</li>
-        <li>Clear objectives</li>
-        <li>Immediate feedback</li>
-      </ul>
-      <p>Traditional training in the martial arts requires &ldquo;in the now&rdquo; focus, is challenging and provides clearly defined goals with immediate results (good or bad) based on current progress.</p>
-      <p>Happiness is never about being lazy. It&rsquo;s about making the most of your time and feeling that you&rsquo;ve accomplished something in your day too. Feeling lethargic? Take the challenge and jump-kick into action if you want to feel like a million bucks and register for our 2018 program to kick off the new year. The unique ability of Rick Tew to combine the Mind and the Martial Arts enables him to be an effective Martial Arts Therapist. To a group or an individual, Rick Tew delivers the benefits that Martial Arts Therapy has to offer:</p>
-      <ul>
-        <li>Getting over a traumatic event</li>
-        <li>Increase Self Confidence</li>
-        <li>Pain &amp; Fear management</li>
-        <li>Release post traumatic stress disorder</li>
-        <li>Redirecting aggression</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="band">
-    <h1>Martial Arts Therapy</h1>
-  </div>
-
-  <div class="wrap">
-    <div class="row">
-      <div class="col-img"><img src="/assets/images/281dd403f1.jpg" alt="Rick Tew Martial Arts Therapy logo"></div>
-      <div>
-        <p>Martial Arts practice goes way beyond the obvious physical aspects and include self-defense, health and fitness, character training, mind expansion and spiritual development. Traditional martial arts promote mental as well as physical health and also embody a system of moral values (e.g. respect property, be faithful and sincere, exert oneself in the perfection of character), which together can inculcate physical and mental relaxation, control of mind and body, and increases in self-confidence.</p>
-        <p>Evidence of the effectiveness of martial arts in producing effective, cognitive and behavioral benefits has come from a number of studies. Improvements in self-esteem (Fuller, 1988), a more positive response to physical challenge (Richard and Rehberg, 1986; Trulson, 1986), greater autonomy (Duthie, 1978), emotional stability and assertiveness (Konzak and Boudreau, 1984) and reductions in anxiety and depression (Cai, 2000), have all been associated with martial arts training. Konzak and Boudreau (1984) have also drawn attention to the social benefits of such behavioral change, in particular the relationship between martial arts practice and aggression.</p>
-      </div>
-    </div>
-
-    <h2 class="plain-head">Break Through Barriers with Rick Tew</h2>
-    <div class="prose">
-      <p>As an internationally recognized leader in peak performance strategies, Rick delivers his innovative, unique and powerful principles to enthusiastic audiences around the globe. Organizations like Fortune 500 companies, higher education, charities and many more, have been inspired and empowered by Rick&rsquo;s powerful message.</p>
-      <p>Rick knows how to BLAST off the personal achievement and life fulfillment of individuals and organizations everywhere, and has created the definitive method to help people create breakthrough results in everything they do. Not only will your audience be inspired and motivated to achieve greater success, they will learn to up-level all their efforts. Rick will provide the tools necessary to meet challenges, adapt to change, shape perspectives and solve problems.</p>
-      <ul>
-        <li>Keynote Speaker</li>
-        <li>One &ndash; Multi-day Interactive Seminars</li>
-        <li>Private Group Intensive Workshops</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="band">
-    <h1>Rick Tew offers combined mind and body programs</h1>
-  </div>
-
-  <div class="wrap">
-    <div class="imgrow">
-      <img src="/assets/images/d2ba906768.jpg" alt="Rick Tew stretching between rocks">
-      <img src="/assets/images/812d56ed46.png" alt="Rick Tew speaking with a microphone">
-    </div>
-  </div>
-
-  <div class="band">
-    <h1>Books by Rick Tew</h1>
-  </div>
-
-  <div class="wrap">
-    <div class="row">
-      <div class="col-img"><img src="/assets/images/2b6674532c.jpg" alt="Winjitsu book series by Rick Tew"></div>
-      <div>
-        <p class="lead-bold">BE A BLACK BELT IN WHAT YOU DO BOOKS</p>
-        <p>Through this book series, Winjitsu Books 1-5, I am going to teach you how to maximize the power within yourself, and with practical, proven, success principles, how to reach your full potential and get a Black Belt in what you do.</p>
-        <p class="italic">I call this mental martial art and system for success, &ldquo;Winjitsu.&rdquo; What is Winjitsu?</p>
-        <p class="italic">In the physical martial arts, you learn self-defense to help prepare you for a situation that might be required for survival. It is a basic human need to feel protected. But in today&rsquo;s world, our challenges are more mental than physical, and you are indeed often your own worst enemy. Today, your mental skills will take you a lot further than your physical skills. And this is the philosophy that I am going to share in this books. -Rick Tew</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="gray-card">
-    <div class="wrap">
-      <div class="title">COMPELLINGLY CAPTIVATING!</div>
-      <div class="quote">"Rick Tew&rsquo;s Winjitsu is compellingly captivating from the onset of a young run-a-way child to the exploration investigation of self. Although the Jitsu in Winjitsu would suggest this book to be solely the interest of those involved in the Martial Arts the &ldquo;WIN&rdquo; makes it for absolutely everyone! Winjitsu is empowering. Winjitsu is the type of book that should be included in every school and home library. You read it once but reference to it daily. Winjitsu is a gift from Rick Tew to anyone willing to accept it and to those that do, the journey is forever changed."</div>
-      <div class="name">-Trinity Ann Mcleod</div>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <div class="embed-video">
-      <iframe src="https://player.vimeo.com/video/557852983?badge=0" title="Rick Tew video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-    </div>
-  </div>
-
-
-</main>
-
-<footer class="site-footer">Copyright &copy; 2026 Rick Tew</footer>
+<script>
+(function(){
+  var ADDR="hi"+String.fromCharCode(64)+"ricktew"+String.fromCharCode(46)+"com";
+  var ml=document.getElementById("mailLink");
+  if(ml){ ml.addEventListener("click",function(e){ e.preventDefault(); location.href="mailto:"+ADDR; }); }
+})();
+</script>
 
 </body>
 </html>

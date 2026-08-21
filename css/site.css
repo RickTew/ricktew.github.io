@@ -425,3 +425,14 @@ footer.site-footer {
   h2.plain-head, h1.plain-head { font-size: 28px; }
   .row h2 { font-size: 25px; }
 }
+
+/* ---------- Way back to the two doors ---------- */
+footer.site-footer .doors {
+  display: block;
+  margin-top: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  font-size: 12px;
+}
+footer.site-footer .doors a { text-decoration: none; }
+footer.site-footer .doors a:hover { text-decoration: underline; }
