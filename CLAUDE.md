@@ -2,7 +2,72 @@
 
 Personal brand and portfolio site for Rick Tew. Everything he makes lives here: apps, games, businesses, and tools.
 
-**CURRENT STATE (2026-08-08):** The repo root is an EXACT COPY of the old Google Sites ricktew.com (11 pages, same URLs, `css/site.css` + `js/site.js`, images in `assets/images/`). It deploys to GitHub Pages. The in-progress redesign described below lives in `/redesign/` and is parked until Rick approves a design. Edit the root copy for anything that must show on the live site.
+**CURRENT STATE (2026-08-21): the site is TWO DOORS.** The front page asks one
+question, "Which ninja do you want?", and sends the visitor to one of two
+places:
+
+- **`/hininja/` HI Ninja** — Human Interaction. In-person martial arts,
+  life-coaching, the mental martial arts. This is Rick's thirty years of
+  teaching.
+- **`/aininja/` AI Ninja** — the digital work. Building with AI for businesses.
+
+Both are live. The honest reason for the split, in Rick's words: the hardcore
+camps and real training are more history now, thirty years of teaching is the
+record rather than the plan, and the digital work is where the week actually
+goes. Neither door is a demotion.
+
+The older Google Sites copy still lives at the root (11 pages, same URLs,
+`css/site.css` + `js/site.js`). `/redesign/` holds parked exploration. Edit the
+root copy for anything that must show live.
+
+---
+
+## ⛔ THE ONE THING TO KNOW BEFORE YOU COMMIT
+
+**This repo is PUBLIC.** GitHub Pages requires it. It has repeatedly held a
+dozen or more untracked working files in `/redesign/` (drafts, tests, prompts).
+
+**Never `git add -A` here.** Stage the paths you actually changed, then read
+`git diff --cached --name-only` before committing. A careless stage publishes
+whatever was lying around, permanently and to the open internet.
+
+Related: **no email address is ever written into page source.** Assemble it at
+runtime from parts, the way `/aininja/index.html` does. Crawlers harvest every
+address they can read.
+
+---
+
+## Who owns which part of this site
+
+The site is the shop window. The workshop is a SEPARATE, PRIVATE repo at
+`~/Dev/digitaldojo` (the Digital Dojo), which holds Rick's product inventory,
+his AI workforce, his proof ledger and his rates. **It stays private and it
+never merges into this repo.**
+
+| Part | Owned by | Meaning |
+|---|---|---|
+| `/aininja/` | **The Digital Dojo** | Its content is a product surface: pricing, what Rick sells, the receipts. Those facts live in the Dojo and go stale there. |
+| Everything else | **This repo** | Front page, `/hininja/`, nav, CSS, sitemap, the older pages, deploys. |
+
+**What that means in practice, because there is only ONE copy of every file and
+nothing is "sent" between repos:**
+
+- All editing happens HERE, in this folder, including `/aininja/index.html`.
+  There is no second copy anywhere and no sync step.
+- **But before changing a CLAIM on the AI Ninja page** (a price, a solution
+  offered, a receipt, a number), read the Dojo first rather than guessing. It
+  is on the same machine:
+  - `~/Dev/digitaldojo/packs/` — the twelve things Rick actually sells, and
+    their real names. **Never name a solution that is not in there.**
+  - `~/Dev/digitaldojo/private/proof-ledger.md` — what is genuinely proven,
+    where it runs live, what tests exist.
+  - `~/Dev/digitaldojo/INDEX.md` — one-line map of everything, read this first
+    rather than crawling that repo.
+- Layout, styling, copy polish and anything visual: just do it, no lookup
+  needed.
+
+If a change is about the BUSINESS rather than the page (a new offering, a price
+change), that belongs in the Dojo first and the page follows.
 
 ---
 
@@ -17,18 +82,21 @@ Personal brand and portfolio site for Rick Tew. Everything he makes lives here: 
 
 ## Hosting
 
-**Current:** Google Sites
-**Target:** GitHub Pages
+**LIVE on GitHub Pages.** The migration below is DONE, kept only as a record.
 
-DNS is managed on **Squarespace**. Migration steps:
-1. `git init` in this folder
-2. Create repo `ricktew/ricktew.com` on GitHub (or similar name)
-3. Push, enable GitHub Pages → source: `main` branch, `/ (root)`
-4. Add `CNAME` file to repo root containing `ricktew.com`
-5. In Squarespace DNS:
-   - Add A records for apex domain pointing to GitHub Pages IPs:
-     `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - Add CNAME record: `www` → `ricktew.github.io`
+- Repo: `RickTew/ricktew.github.io`, **public**, branch `main`, root.
+- `CNAME` contains `ricktew.com`. DNS on **Squarespace**.
+- **Nothing is live until it is PUSHED.** Pages serves the remote, not your
+  working copy, and Rick's standing rule is to push every solid change without
+  being asked, because he reviews from the remote while away from the desk.
+  Pages takes roughly a minute; verify with a real request, not by assuming.
+- `robots.txt` says `Allow: /` with a sitemap, so the whole site including both
+  doors is open to search.
+
+*(Historical migration steps: git init, create the repo, push, enable Pages on
+main at root, add CNAME, then Squarespace A records to 185.199.108.153,
+185.199.109.153, 185.199.110.153, 185.199.111.153 and a `www` CNAME to
+ricktew.github.io.)*
 
 ---
 
@@ -46,25 +114,33 @@ DNS is managed on **Squarespace**. Migration steps:
 
 ## Folder Structure
 
+As it actually stands on 2026-08-21, not as once planned:
+
 ```
 RickTew/
-├── index.html              # Home — hero + about + work grid
-├── CNAME                   # GitHub Pages custom domain
-├── css/
-│   ├── tokens.css          # Design tokens (colors, type, spacing)
-│   └── main.css            # Global styles
-├── js/
-│   └── main.js             # Theme toggle + progressive enhancement
-├── assets/
-│   ├── images/             # Photos, screenshots, logos
-│   └── icons/              # SVG icons
-└── work/
-    └── index.html          # (Optional) expanded project detail page
+├── index.html      # The front page: which ninja do you want?
+├── CNAME           # ricktew.com
+├── robots.txt      # Allow: / , plus sitemap
+├── sitemap.xml
+├── hininja/        # DOOR 1: the in-person work
+├── aininja/        # DOOR 2: the digital work. DOJO-OWNED, see above.
+│   ├── index.html  #   the landing page itself
+│   ├── legal/      #   terms + privacy
+│   └── assets/     #   ~195 files, its own images and audio
+├── about/  camps/  contact/  home/  ninjagym/  tours/  winjitsu/  rtms/
+│                   # the older Google Sites pages, still live at their URLs
+├── redesign/       # parked exploration. OFTEN HAS UNTRACKED FILES. Do not
+│                   # sweep these into a commit; the repo is public.
+├── css/  js/  assets/
 ```
 
 ---
 
 ## Content Inventory
+
+**The rest of this inventory was last reviewed 2026-08-08 and several rows had
+drifted by 21 Aug (three were live while still marked "Soon" or "In dev").
+Verify a status with a real request before repeating it on the site.**
 
 ### Status Legend
 - **Live** — publicly available now
@@ -87,16 +163,16 @@ RickTew/
 ### Games
 | Name | Platform | Status | Notes |
 |------|----------|--------|-------|
-| Pixel Dungeon | Web (Phaser 4) | Very Soon | Live at dungeon-king.vercel.app. Repo: `DungeonKing/Phaser/` |
+| Pixel Dungeon | Web (Phaser 4) | **Live** at dungeon-king.vercel.app (verified 2026-08-21) | Repo: `DungeonKing/Phaser/` |
 | Dungeon King | PC/Mac (Godot) | In dev | Godot version of same IP. Repo: `DungeonKing/Godot/` |
-| TEWGO | iOS | In dev | Pente-variant, SwiftUI + SpriteKit |
+| TEWGO | iOS | **Live on the App Store** (verified 2026-08-21) | Pente-variant, SwiftUI + SpriteKit. apps.apple.com/us/app/tewgo/id6763025917 |
 | Ninja Ninja Defense | PC (Unity) | Soon | Tower defense with on-device AI |
 | NinjaCampBuilder | PC (Unity 2D, Steam) | Stalled | Omit for now |
 
 ### Brands / Businesses
 | Name | Status | Notes |
 |------|--------|-------|
-| Winjitsu | Soon | Show as teaser |
+| Winjitsu | **Live** at winjitsu.com (verified 2026-08-21) | No longer a teaser |
 
 ### Open Source / Tools
 | Name | Notes |
@@ -156,7 +232,13 @@ Format: `ricktew` on every platform (or however each platform renders it).
 
 ## What's NOT Here
 
-- No CMS
-- No contact form (use mailto: or social links)
-- No analytics without explicit decision
+- No CMS, no backend, no build system
+- No analytics without an explicit decision
 - No cookies / tracking
+- **A note that used to read "no contact form, use mailto: or social links".
+  That is now wrong and was actively harmful:** a click-to-mail link publishes
+  Rick's address to every crawler that reads the page. If a page here ever
+  needs a contact form, the pattern is on the Dojo shelf
+  (`~/Dev/digitaldojo/packs/letter-slot.md`) and it is running live on two
+  other sites. Its first rule is that the address appears nowhere the browser
+  can read.
