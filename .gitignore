@@ -1,3 +1,6 @@
 .vercel
 .claude/
 .DS_Store
+
+# Supabase CLI scratch (project ref, version cache). Not source.
+supabase/.temp/
