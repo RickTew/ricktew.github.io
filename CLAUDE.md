@@ -16,6 +16,13 @@ camps and real training are more history now, thirty years of teaching is the
 record rather than the plan, and the digital work is where the week actually
 goes. Neither door is a demotion.
 
+**Picking a door is no longer one-way (2026-08-23).** A slim **door bar** sits
+above everything on `/aininja/` and on all eleven HI pages, reading "Which
+ninja? / You are in the X Ninja door / Take the Y Ninja door". Red carries HI,
+blue carries AI. Its CSS is in `css/site.css` for the HI side and inline for
+`/aininja/`. The footer `.doors` link stays as the bottom-of-page answer, and
+`/aininja/` got one too, which it had been missing entirely.
+
 The old Google Sites pages are all still live at their original URLs, styled by
 `css/site.css` + `js/site.js`. The one that moved is the old front page: it is
 now `/hininja/` word for word, and their nav "Home" and logo point there. Their
@@ -33,9 +40,19 @@ dozen or more untracked working files in `/redesign/` (drafts, tests, prompts).
 `git diff --cached --name-only` before committing. A careless stage publishes
 whatever was lying around, permanently and to the open internet.
 
-Related: **no email address is ever written into page source.** Assemble it at
-runtime from parts, the way `/aininja/index.html` does. Crawlers harvest every
-address they can read.
+Related: **no email address is ever written into page source, and as of
+2026-08-23 none is assembled at runtime either.** The instruction that used to
+sit here said to build the address from parts in JavaScript the way
+`/aininja/index.html` did. That is gone, and following it now would be a step
+backwards: runtime assembly still hands the address to any crawler that runs
+scripts, and it still dumps the visitor into their mail client.
+
+Every way of reaching Rick on this site now goes through **The Letter Slot**,
+the form in the closing band of `/aininja/` (`#opt-8c`). The destination lives
+in a server secret and appears nowhere the browser can read. Fetch any live
+page, grep the response for an at-sign address, and you get zero hits. Keep it
+that way: a new page that needs a contact action links to
+`/aininja/#opt-8c`, it does not invent a mailto.
 
 ---
 
@@ -70,6 +87,64 @@ nothing is "sent" between repos:**
 
 If a change is about the BUSINESS rather than the page (a new offering, a price
 change), that belongs in the Dojo first and the page follows.
+
+---
+
+## Contact: The Letter Slot
+
+Live since 2026-08-23, inline in the closing band of `/aininja/` (`#opt-8c`).
+The form is deliberately ON the page rather than on a contact page: the band
+is selling contact forms, so the demo and the product are the same object.
+
+**Two halves, and only one of them is in this repo.**
+
+- **The page half** is the form and its script inside `aininja/index.html`.
+  It posts JSON and swaps to a confirmation in place. It holds NO address.
+- **The server half** is `supabase/functions/ricktew-contact/index.ts`,
+  deployed to the **tews-inc** Supabase project (`qegfhbseccinnxnzfhxw`), the
+  shared hub that exists so small things do not each cost $10/month. Deploy
+  with:
+
+  ```
+  supabase functions deploy ricktew-contact --project-ref qegfhbseccinnxnzfhxw --no-verify-jwt
+  ```
+
+  Three secrets live on the project and NOWHERE in this repo:
+  `RESEND_API_KEY`, `CONTACT_TO`, `CONTACT_FROM`. Naming their values in a
+  comment here would defeat the whole pattern, in a public repo, in a file
+  anyone can fetch.
+
+**Where the mail goes.** To the Ninja Agent's mailbox, which TEWBEDO files as
+a ticket for `support-agent`. It drafts the reply, Rick presses send. Nothing
+auto-sends. The page says exactly that, so **do not "improve" the copy into
+claiming the agent answers instantly.** It does not, and the earlier version
+of that band did claim it.
+
+**Before you touch the endpoint, run its test:**
+
+```
+~/Dev/RickTew/supabase/functions/ricktew-contact/run-escaping-test.sh
+```
+
+It transpiles the real endpoint, stubs only the mailer, drives a hostile
+submission through it and reads every tag in the produced mail. Twelve
+assertions. No secrets, no inbox, runs anywhere. The kata is explicit that
+this is the one check a person reading the code reliably passes and the code
+reliably fails, and two earlier installs shipped that exact bug.
+
+**Read the drop log monthly for the first quarter.** Supabase logs, filter
+`event_message like '%ricktew-contact drop%'`. A rejected submission is
+deliberately indistinguishable from an accepted one, and a mail pipe that is
+down never reaches the visitor, so this log is the ONLY place a lost message
+or a broken sending key shows up. That is not paranoia: a wrong key produced
+a flawless confirmation and sent nothing during the build, and one logged line
+caught it in seconds.
+
+`supabase/` is excluded from the Pages build by `_config.yml`, so the endpoint
+source is not served at ricktew.com. It was, briefly, until 2026-08-23.
+
+**Kata:** `~/Dev/digitaldojo/packs/letter-slot.md`. Receipts and the two
+findings this install sent back: `~/Dev/digitaldojo/private/proof-ledger.md`.
 
 ---
 
@@ -124,7 +199,9 @@ web components. Anyone who codes against that list will write against nothing.
 - Every page is light on white. A dark front page was tried on 21 Aug and
   rejected: it made both doors look like they led off-site, and it killed the
   logo, whose black outlines need white to read against.
-- Deployed as static files, zero dependencies.
+- Deployed as static files, zero dependencies. The single exception is the
+  contact endpoint, which is server code and lives in `supabase/`. It is not
+  part of the site build and is not served. See Contact above.
 
 ---
 
@@ -146,7 +223,11 @@ RickTew/
 ├── about/  camps/  contact/  home/  ninjagym/  tours/  winjitsu/  rtms/
 │                   # the older Google Sites pages, still live at their URLs
 ├── redesign/       # parked exploration. OFTEN HAS UNTRACKED FILES. Do not
-│                   # sweep these into a commit; the repo is public.
+│                   # sweep these into a commit; the repo is public. Its
+│                   # addresses were stripped 2026-08-23; it IS served live.
+├── supabase/       # the contact endpoint's source. NOT a page. Excluded
+│                   # from the Pages build by _config.yml.
+├── _config.yml     # exists only to keep supabase/ off the live site
 ├── css/  js/  assets/
 ```
 
@@ -248,13 +329,17 @@ Format: `ricktew` on every platform (or however each platform renders it).
 
 ## What's NOT Here
 
-- No CMS, no backend, no build system
+- No CMS, no build system, no framework
+- **One small backend, and only one:** the contact endpoint (see Contact
+  below). The pages themselves are still static files with no server logic,
+  and nothing else here talks to a server.
 - No analytics without an explicit decision
 - No cookies / tracking
-- **A note that used to read "no contact form, use mailto: or social links".
-  That is now wrong and was actively harmful:** a click-to-mail link publishes
-  Rick's address to every crawler that reads the page. If a page here ever
-  needs a contact form, the pattern is on the Dojo shelf
-  (`~/Dev/digitaldojo/packs/letter-slot.md`) and it is running live on two
-  other sites. Its first rule is that the address appears nowhere the browser
-  can read.
+- **No mailto: links, anywhere, ever.** This entry has been wrong twice. It
+  first said "no contact form, use mailto: or social links", which was
+  actively harmful. It was then corrected to "the pattern is on the Dojo
+  shelf if a page ever needs one". As of 2026-08-23 the site HAS one, so:
+  **The Letter Slot is live** in the closing band of `/aininja/` (`#opt-8c`),
+  the third install of `~/Dev/digitaldojo/packs/letter-slot.md` after
+  ninjagym.com and playtewgo.com. Anything on this site that needs a contact
+  action links to it. See the Contact section below.
