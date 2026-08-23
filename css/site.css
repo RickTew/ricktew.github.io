@@ -436,3 +436,40 @@ footer.site-footer .doors {
 }
 footer.site-footer .doors a { text-decoration: none; }
 footer.site-footer .doors a:hover { text-decoration: underline; }
+
+/* ---------- The door bar ----------
+   The front page asks which ninja you want, and until now that choice was
+   one-way: nothing at the top of either door led back to the question.
+   This sits above everything on every HI page and says where you are,
+   with both other exits next to it. The footer .doors link stays as the
+   bottom-of-page answer to the same problem. */
+.doorbar {
+  background: #101418;
+  color: #aab2bc;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+.doorbar-in {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 9px 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px 20px;
+  flex-wrap: wrap;
+}
+.doorbar a { color: #fff; text-decoration: none; font-weight: 700; }
+.doorbar a:hover { text-decoration: underline; }
+.doorbar .db-here {
+  margin: 0 auto;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-size: 11.5px;
+}
+.doorbar .db-here b { color: #ff7a7e; font-weight: 700; }
+.doorbar .db-other { color: #6db3f0; }
+@media (max-width: 700px) {
+  .doorbar-in { justify-content: center; text-align: center; gap: 4px 14px; padding: 8px 14px; }
+  .doorbar .db-here { margin: 0; }
+}

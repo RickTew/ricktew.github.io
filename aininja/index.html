@@ -33,6 +33,19 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .btn-blue:hover{background:var(--blue-d)}
 .btn-quiet{background:transparent;color:var(--ink);border-color:var(--line)}
 
+/* the door bar. The front page asks which ninja you want; until now that
+   choice was one-way, with nothing here leading back to the question. */
+.doorbar{background:var(--ink);color:#aab2bc;font-size:12.5px;line-height:1.4}
+.doorbar-in{max-width:1040px;margin:0 auto;padding:9px 24px;display:flex;align-items:center;gap:6px 20px;flex-wrap:wrap}
+.doorbar a{color:#fff;text-decoration:none;font-weight:800}
+.doorbar a:hover{text-decoration:underline}
+.doorbar .db-here{margin:0 auto;text-transform:uppercase;letter-spacing:1.2px;font-size:11.5px;font-weight:700}
+.doorbar .db-here b{color:#6db3f0;font-weight:800}
+.doorbar .db-other{color:#ff7a7e}
+@media (max-width:700px){
+  .doorbar-in{justify-content:center;text-align:center;gap:4px 14px;padding:8px 16px}
+  .doorbar .db-here{margin:0}
+}
 /* nav */
 .nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav-inner{max-width:1040px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:24px}
@@ -551,6 +564,55 @@ footer a:hover{text-decoration:underline}
 .b8c .btn{margin-top:26px;background:#fff;color:var(--blue-d)}
 .b8c .btn:hover{background:#eef5fc}
 
+/* 8C: THE LETTER SLOT. The form is the demo. Kata: the Dojo shelf's
+   letter-slot. No address anywhere the browser can read, here or in the
+   endpoint the form posts to. */
+.b8c .slot{max-width:660px;margin:34px auto 0;text-align:left;background:#fff;color:var(--ink);border-radius:18px;box-shadow:0 24px 64px rgba(0,0,0,.3);overflow:hidden}
+.slot-lid{background:var(--ink);padding:20px 26px 24px}
+.slot-lid .sk{display:block;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#7fb3e2;margin-bottom:13px}
+.slot-slit{height:13px;border-radius:999px;background:#04060a;box-shadow:inset 0 4px 9px rgba(0,0,0,.95),0 1px 0 rgba(255,255,255,.15)}
+.slot-body{position:relative;padding:26px 26px 28px}
+.slot-f{margin-bottom:17px}
+.slot-f label{display:block;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
+.slot-f input,.slot-f select,.slot-f textarea{display:block;width:100%;font:inherit;font-size:16px;padding:12px 14px;border:2px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink)}
+.slot-f textarea{min-height:124px;resize:vertical;line-height:1.5}
+.slot-f input:focus-visible,.slot-f select:focus-visible,.slot-f textarea:focus-visible{outline:3px solid var(--gold);outline-offset:1px}
+.slot-row{display:flex;gap:15px;flex-wrap:wrap}
+.slot-row .slot-f{flex:1;min-width:210px}
+.b8c .slot-send{display:block;width:100%;margin-top:6px;background:var(--blue);color:#fff;border:none;text-align:center}
+.b8c .slot-send:hover{background:var(--blue-d)}
+.b8c .slot-send[disabled]{opacity:.6;cursor:default;background:var(--blue)}
+.slot-err{display:none;margin-top:13px;font-size:14.5px;font-weight:800;color:var(--red-d)}
+/* The trap. Hidden from eyes, from assistive tech AND from tab order, so a
+   keyboard or screen-reader visitor can never fill it in and be dropped. */
+.slot-trap{position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden}
+.b8c .slot-fine{margin:16px 0 0;max-width:none;font-size:12.5px;line-height:1.55;font-weight:600;color:var(--muted)}
+.b8c .slot-fine b{color:var(--ink);font-weight:900}
+/* the envelope going through the slot */
+.slot-env{position:absolute;left:50%;top:38%;width:74px;height:50px;margin-left:-37px;border-radius:4px;background:#fff;border:2px solid var(--ink);box-shadow:0 10px 24px rgba(0,0,0,.22);opacity:0;pointer-events:none}
+.slot-env::after{content:"";position:absolute;left:-2px;top:-2px;width:74px;height:34px;border-left:37px solid transparent;border-right:37px solid transparent;border-top:34px solid var(--blue);box-sizing:border-box}
+.slot.posting .slot-env{animation:slotpost .62s cubic-bezier(.55,.05,.68,.19) forwards}
+@keyframes slotpost{
+  0%{opacity:0;transform:translateY(26px) scale(.9)}
+  22%{opacity:1;transform:translateY(0) scale(1)}
+  100%{opacity:1;transform:translateY(-190px) scaleY(.04) scaleX(.86)}
+}
+.slot.posting .slot-form{opacity:0;transition:opacity .3s ease}
+.slot-done{text-align:center;padding:8px 4px 6px}
+.slot-tick{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:var(--belt-g);color:#fff;font-size:27px;font-weight:900;line-height:1}
+.b8c .slot-done h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:26px;font-weight:900;color:var(--ink);margin:15px 0 0}
+.b8c .slot-done p{color:var(--muted);font-size:15px;font-weight:600;max-width:42ch;margin:10px auto 0}
+.b8c .slot-done p b{color:var(--ink);font-weight:900}
+@media (prefers-reduced-motion:reduce){
+  .slot.posting .slot-env{animation:none;opacity:0}
+  .slot.posting .slot-form{transition:none}
+}
+@media (max-width:560px){
+  .b8c .slot{margin-left:-4px;margin-right:-4px}
+  .slot-body{padding:22px 18px 24px}
+  .slot-lid{padding:18px 18px 21px}
+}
+
 /* M1: sticky mobile CTA bar */
 .mbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:150;display:none;align-items:center;gap:6px;background:var(--ink);border-radius:14px;padding:10px 12px;box-shadow:0 14px 34px rgba(16,20,24,.35)}
 @media (max-width:700px){ .mbar{display:flex} }
@@ -588,6 +650,12 @@ footer a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+
+<div class="doorbar"><div class="doorbar-in">
+  <a class="db-home" href="/">&#8592; Which ninja?</a>
+  <span class="db-here">You are in the <b>AI Ninja</b> door</span>
+  <a class="db-other" href="/hininja/">Take the HI Ninja door &#8594;</a>
+</div></div>
 
 <nav class="nav" aria-label="Main">
   <div class="nav-inner">
@@ -1384,7 +1452,7 @@ footer a:hover{text-decoration:underline}
               <input type="email" id="rEmail" name="email" required placeholder="you@yourcompany.com" autocomplete="email">
               <button class="btn btn-quiet" type="submit">Send me the breakdown</button>
             </div>
-            <p class="small">One page, no sequence, no drip. Your answers travel with the request so the breakdown is about your company, not a template.</p>
+            <p class="small">One page, no sequence, no drip. Your answers travel with the request so the breakdown is about your company, not a template. This drops your results into the slot at the bottom of the page; read them, then press post.</p>
           </form>
           <p class="r-honest">Honest math: your number is the hours you reported for one task, times a 60% draft-and-file share, times the hourly value you gave it. Estimates, clearly labeled as estimates, from your answers and nothing else.</p>
         </div>
@@ -1499,19 +1567,204 @@ footer a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- ============ OPTION 8C: footer CTA band ============ -->
+<!-- ============ OPTION 8C: footer CTA band, now THE LETTER SLOT ============ -->
 <section class="b8c" id="opt-8c">
   <div class="wrap rv">
-    <h2>One email. No pitch deck. No drip sequence.</h2>
-    <p>Tell me where your hours actually go. My Ninja Agent reads it first: it answers the basics on the spot, and anything real gets forwarded straight to me. Yes, that is the product, answering its own front desk.</p>
-    <a class="btn" href="#" data-ninja data-mail="Where my hours go">Ask my Ninja Agent</a>
+    <h2>One message. No pitch deck. No drip sequence.</h2>
+    <p>Tell me where your hours actually go. This will not open your email app, and my address is not written anywhere on this page for the crawlers to eat. Post it through the slot instead.</p>
+
+    <div class="slot" id="slot">
+      <div class="slot-lid">
+        <span class="sk">The Letter Slot &middot; goes to my Ninja Agent</span>
+        <div class="slot-slit"></div>
+      </div>
+      <div class="slot-body">
+        <span class="slot-env" aria-hidden="true"></span>
+        <form class="slot-form" id="slotForm" novalidate>
+          <div class="slot-row">
+            <div class="slot-f">
+              <label for="slotName">Your name</label>
+              <input id="slotName" name="name" type="text" autocomplete="name" maxlength="100" required>
+            </div>
+            <div class="slot-f">
+              <label for="slotEmail">Where I reply</label>
+              <input id="slotEmail" name="email" type="email" autocomplete="email" maxlength="200" required>
+            </div>
+          </div>
+          <div class="slot-f">
+            <label for="slotSubject">What is this about</label>
+            <select id="slotSubject" name="subject">
+              <option value="hours">Hours I want back</option>
+              <option value="build">Something built</option>
+              <option value="dojo">A question about the Dojo</option>
+              <option value="slot">I want a form like this one</option>
+              <option value="hininja">The HI Ninja side: camps, coaching, mat time</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+          <div class="slot-f">
+            <label for="slotMessage">Where your hours actually go</label>
+            <textarea id="slotMessage" name="message" maxlength="5000" required placeholder="The thing you do every week that you wish you did not have to."></textarea>
+          </div>
+          <!-- The trap. A person cannot see it, tab to it or hear it. A bot
+               fills every field it finds, and any value at all means drop. -->
+          <div class="slot-trap" aria-hidden="true">
+            <label for="slotWebsite">Leave this empty</label>
+            <input id="slotWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <button class="btn slot-send" id="slotSend" type="submit">Post it through the slot</button>
+          <p class="slot-err" id="slotErr" role="alert"></p>
+          <p class="slot-fine">Your message lands with <b>The Ninja Agent</b>, an AI I built and trained in my Digital Dojo. Its entire world is this one page. It reads what you wrote, drafts the answer, and I press send, so a human still signs off on every reply. It will always tell you it is an AI. <b>Want one of these on your page? Say so in the box.</b> It is one of the twelve katas on my shelf, and it took an afternoon.</p>
+        </form>
+        <div class="slot-done" id="slotDone" hidden tabindex="-1">
+          <span class="slot-tick" aria-hidden="true">&#10003;</span>
+          <h3>Posted.</h3>
+          <p>It is through the slot and on my Ninja Agent's desk. It reads first, drafts the reply, and <b>I press send</b>, so give it a day rather than a minute.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<script>
+/* THE LETTER SLOT, front half. Kata: ~/Dev/digitaldojo/packs/letter-slot.md
+   The destination address is NOT here and must never be. This posts to an
+   edge function that holds it in a server secret; that is the entire point.
+   Anything that prints an address into this page, a comment, a data
+   attribute or an error string, is a defect and not a choice. */
+(function(){
+  "use strict";
+  var ENDPOINT="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact";
+
+  var slot=document.getElementById("slot");
+  var form=document.getElementById("slotForm");
+  var done=document.getElementById("slotDone");
+  var send=document.getElementById("slotSend");
+  var err=document.getElementById("slotErr");
+  if(!slot||!form) return;
+
+  /* When the form appeared. Sent as an ELAPSED time, never a clock reading,
+     so a visitor whose device has the wrong date cannot fail the check. */
+  var shownAt=Date.now();
+
+  function fail(t){ err.textContent=t; err.style.display="block"; }
+
+  function posted(){
+    slot.classList.add("posting");
+    /* Replaced in place: no redirect to a dead-end thank-you URL, and no
+       page load to make anyone wonder whether the press landed. */
+    setTimeout(function(){
+      form.hidden=true;
+      done.hidden=false;
+      done.focus();
+    }, matchMedia("(prefers-reduced-motion: reduce)").matches?0:560);
+  }
+
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    err.style.display="none";
+
+    /* form.elements.X, never form.X: an HTMLFormElement has its own `name`
+       property, so form.name is the form's name attribute and not the input.
+       The same collision waits on action, method, id, target and length. */
+    var f=form.elements;
+    var data={
+      name:f.namedItem("name").value.trim(),
+      email:f.namedItem("email").value.trim(),
+      subject:f.namedItem("subject").value,
+      message:f.namedItem("message").value.trim(),
+      website:f.namedItem("website").value,
+      elapsedMs:Date.now()-shownAt
+    };
+
+    if(!data.name||!data.email||!data.message){
+      fail("Name, an address to reply to, and a message. That is all of it.");
+      return;
+    }
+
+    send.disabled=true;
+    send.textContent="Posting...";
+    fetch(ENDPOINT,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(data)
+    }).then(function(res){
+      if(!res.ok) throw new Error("endpoint "+res.status);
+      posted();
+    }).catch(function(){
+      send.disabled=false;
+      send.textContent="Post it through the slot";
+      fail("That did not go through. Check your connection and press it again.");
+    });
+  });
+
+  /* Getting the visitor down here. The page is 26,000px tall and the root
+     has scroll-behavior:smooth, and a smooth scrollIntoView over that
+     distance does not arrive: Chrome leaves the page at the top. So for
+     anything far away, turn smooth off for the one jump and put it back.
+     Measured, not guessed: the solutions wall links landed on scrollY 0
+     every time before this. */
+  function goToSlot(){
+    var root=document.documentElement;
+    var far=Math.abs(slot.getBoundingClientRect().top)>2200;
+    var prev=root.style.scrollBehavior;
+    if(far) root.style.scrollBehavior="auto";
+    slot.scrollIntoView({block:"center"});
+    if(far) setTimeout(function(){ root.style.scrollBehavior=prev; },60);
+    return far;
+  }
+
+  /* focus() scrolls its target into view, which would fight the jump above.
+     preventScroll where the browser has it, and land on the first empty
+     field so the visitor is typing rather than hunting. */
+  function focusFirstGap(){
+    var name=form.elements.namedItem("name");
+    var msg=form.elements.namedItem("message");
+    var target=(name&&!name.value)?name:msg;
+    if(!target) return;
+    try{ target.focus({preventScroll:true}); }catch(e){ target.focus(); }
+    if(target===msg){ try{ msg.selectionStart=msg.selectionEnd=msg.value.length; }catch(e){} }
+  }
+
+  /* Every other button on this page that used to open a mail client now
+     brings the visitor here instead, with the topic already written in. */
+  window.rtSlot=function(label){
+    if(form.hidden){ goToSlot(); return; }
+    var subject = /^Build me/i.test(label) ? "build"
+                : /audit|hours/i.test(label) ? "hours"
+                : /form like this|letter slot/i.test(label) ? "slot"
+                : "other";
+    var sel=form.elements.namedItem("subject");
+    var msg=form.elements.namedItem("message");
+    if(sel) sel.value=subject;
+    if(msg && label && msg.value.indexOf(label)===-1){
+      msg.value=(msg.value?msg.value.replace(/\s+$/,"")+"\n\n":"")+"About: "+label+"\n\n";
+    }
+    var far=goToSlot();
+    setTimeout(focusFirstGap, far?80:420);
+  };
+
+  /* Used by the quiz, which has real content to hand over: the answers ride
+     into the message box so the visitor can read and edit them before they
+     go anywhere. Nothing is sent until they press the button themselves. */
+  window.rtSlotFill=function(body,subject,email,lead){
+    if(form.hidden){ goToSlot(); return; }
+    var sel=form.elements.namedItem("subject");
+    var msg=form.elements.namedItem("message");
+    var mail=form.elements.namedItem("email");
+    if(sel&&subject) sel.value=subject;
+    if(mail&&email&&!mail.value) mail.value=email;
+    if(msg) msg.value=(lead?lead+"\n\n":"")+body;
+    var far=goToSlot();
+    setTimeout(focusFirstGap, far?80:420);
+  };
+})();
+</script>
 
 <footer>
   <div class="wrap">
     <span>THE DIGITAL DOJO &middot; by Rick Tew</span>
-    <span><a href="legal/terms.html">Terms of Service</a> &middot; <a href="legal/privacy.html">Privacy</a> &middot; <a href="#" id="mailLink">Write to me</a></span>
+    <span><a href="/">Which ninja?</a> &middot; <a href="/hininja/">HI Ninja</a> &middot; <a href="legal/terms.html">Terms of Service</a> &middot; <a href="legal/privacy.html">Privacy</a> &middot; <a href="#" id="mailLink">Write to me</a></span>
   </div>
 </footer>
 
@@ -1520,12 +1773,13 @@ footer a:hover{text-decoration:underline}
 <script>
 (function(){
   "use strict";
-  /* contact address assembled at runtime so it never sits in the page source for scrapers */
-  var ADDR="hi"+String.fromCharCode(64)+"ricktew"+String.fromCharCode(46)+"com";
+  /* No address is assembled here any more, not even at runtime. Every way
+     of reaching Rick on this page goes through The Letter Slot, whose
+     destination lives in a server secret. See the slot script above. */
   var ml=document.getElementById("mailLink");
-  if(ml){ ml.addEventListener("click",function(e){ e.preventDefault(); location.href="mailto:"+ADDR; }); }
+  if(ml){ ml.addEventListener("click",function(e){ e.preventDefault(); window.rtSlot(""); }); }
   var bm=document.getElementById("buildMail");
-  if(bm){ bm.addEventListener("click",function(e){ e.preventDefault(); location.href="mailto:"+ADDR+"?subject="+encodeURIComponent("Custom build enquiry"); }); }
+  if(bm){ bm.addEventListener("click",function(e){ e.preventDefault(); window.rtSlot("Build me something custom"); }); }
   if(location.search.indexOf("test=1")>-1 || document.referrer.indexOf("/design-tests/")>-1){
     document.getElementById("dtPill").hidden=false;
   }
@@ -1827,18 +2081,17 @@ footer a:hover{text-decoration:underline}
       +(hours>2 ? "\nSuggested tier: "+tier+" ("+price+")" : "")
       +(needsBuild ? "\nAlso needs build work at the builder rate." : "")
       +((hours>2 && money) ? "\nEstimated value: USD "+monthly+"/month" : "");
-    document.getElementById("rBook").href="mailto:"+ADDR+"?"+
-      "subject="+encodeURIComponent("Saw the story, did the quiz")+
-      "&body="+encodeURIComponent(summary+"\n\nMy company:\nWhat I would love off my plate:\n");
+    /* The quiz answers ride down to The Letter Slot instead of into a
+       mail client. Nothing here opens the visitor's email app. */
+    document.getElementById("rBook").onclick=function(e){
+      e.preventDefault();
+      window.rtSlotFill(summary+"\n\nMy company:\nWhat I would love off my plate:\n","hours");
+    };
     document.getElementById("rForm").onsubmit=function(e){
       e.preventDefault();
       var email=document.getElementById("rEmail").value;
-      location.href="mailto:"+ADDR+"?"+
-        "subject="+encodeURIComponent("One-page breakdown request")+
-        "&body="+encodeURIComponent("Send the breakdown to: "+email+"\n\n"+summary);
-      var p=document.createElement("p"); p.className="small"; p.style.fontWeight="800"; p.style.color="var(--belt-g)";
-      p.textContent="Your mail app opened with your results attached. Press send and the one-page breakdown comes back to you.";
-      e.target.appendChild(p);
+      window.rtSlotFill(summary,"hours",email,"One-page breakdown request. "+
+        "Send it to the address above.");
     };
 
     resultStep.classList.add("active");
@@ -1857,15 +2110,14 @@ footer a:hover{text-decoration:underline}
 <script>
 (function(){
   "use strict";
-  /* same runtime assembly as above: no address ever sits in the page source.
-     data-ninja routes to the Ninja Agent inbox instead of Rick directly. */
-  var ADDR="hi"+String.fromCharCode(64)+"ricktew"+String.fromCharCode(46)+"com";
-  var NADDR="aininja"+String.fromCharCode(64)+"ricktew"+String.fromCharCode(46)+"com";
+  /* Every [data-mail] link used to open a mail client with an address the
+     page had assembled. Both halves of that are gone: no address is built
+     here, and nothing leaves the page. They all post through The Letter
+     Slot now, carrying their topic into the message box. */
   document.querySelectorAll("[data-mail]").forEach(function(a){
     a.addEventListener("click",function(e){
       e.preventDefault();
-      var to=("ninja" in a.dataset)?NADDR:ADDR;
-      location.href="mailto:"+to+(a.dataset.mail?"?subject="+encodeURIComponent(a.dataset.mail):"");
+      window.rtSlot(a.dataset.mail||"");
     });
   });
   var mock=document.getElementById("tbMock");
