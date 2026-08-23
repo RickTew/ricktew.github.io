@@ -1,0 +1,12 @@
+# GitHub Pages runs Jekyll over this repo. There is no Jekyll site here: every
+# page is plain HTML with no front matter, so Jekyll copies it through
+# untouched. This file exists for one reason only.
+#
+# The Letter Slot's edge function lives at supabase/functions/. It is source,
+# not a page, and Pages was serving it at ricktew.com/supabase/... as a 200.
+# It holds no secrets (that is a wall of the kata, and it is checked), but the
+# site should not hand out its own backend source to anyone who guesses the
+# path. Excluded here rather than moved, so the Supabase CLI still finds it
+# where it expects to.
+exclude:
+  - supabase
