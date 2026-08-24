@@ -1793,6 +1793,23 @@ footer a:hover{text-decoration:underline}
   var AH=["ah_human_marine","ah_human_warrior","ah_human_medic","ah_hulk","ah_grenadier","ah_sniper","ah_doublegun","ah_bomber","ah_cyborg_nerd","ah_cyborg_stalker","ah_cyborg_gatling","ah_cyborg_sentry","ah_medic","ah_repair","ah_dog","ah_sentry","ah_tower","ah_sphere","ah_cannon","ah_powercore"];
   /* A -50% scroll only looks seamless while each half is wider than the
      screen, so short lists get repeated until they are. */
+  /* The rails draw every icon four times over, so one dropped request
+     leaves a single broken tile scrolling past forever, and the browser
+     never retries an image on its own. This happened live to the TEWBEDO
+     icon on 24 Aug while the file itself was healthy on the server and
+     byte-identical to disk. One retry per image, cache-busted so it is a
+     real second attempt, and never more than one. */
+  document.addEventListener("error", function(e){
+    var img=e.target;
+    if(!img || img.tagName!=="IMG" || img.dataset.rtRetried) return;
+    img.dataset.rtRetried="1";
+    var src=img.getAttribute("src");
+    if(!src) return;
+    setTimeout(function(){
+      img.src=src+(src.indexOf("?")>-1?"&":"?")+"rt="+Date.now();
+    },600);
+  }, true);
+
   function reps(count, itemW){ return Math.max(2, Math.ceil(2800/(count*itemW))); }
   function fill(id, list){
     var el=document.getElementById(id); if(!el) return;
