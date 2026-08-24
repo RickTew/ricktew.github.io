@@ -73,12 +73,12 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 /* the sensei, cut off his studio backdrop so he stands on the page itself */
 .hero-ninja{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px}
 .hero-ninja::before{content:"";position:absolute;left:50%;top:4%;z-index:0;
-  width:340px;height:340px;transform:translateX(-50%);border-radius:50%;
+  width:390px;height:390px;transform:translateX(-50%);border-radius:50%;
   background:radial-gradient(circle,rgba(30,115,189,.13),rgba(30,115,189,0) 68%)}
 .hero-ninja::after{content:"";position:absolute;left:50%;bottom:34px;z-index:0;
-  width:240px;height:26px;transform:translateX(-50%);border-radius:50%;
+  width:275px;height:28px;transform:translateX(-50%);border-radius:50%;
   background:radial-gradient(ellipse,rgba(16,20,24,.20),rgba(16,20,24,0) 70%)}
-.hero-rick{position:relative;z-index:1;height:430px;width:auto;display:block;
+.hero-rick{position:relative;z-index:1;height:492px;width:auto;display:block;
   filter:drop-shadow(0 10px 18px rgba(16,20,24,.14))}
 @media (max-width:900px){ .hero-ninja{display:none} }
 .hero-ninja small{position:relative;z-index:1;font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;max-width:200px;text-align:center}
@@ -88,8 +88,8 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .spr{background-repeat:no-repeat;display:block}
 .spr-ninja{width:104px;height:104px;background-image:url("assets/story/sprites/ninja_attack_south.png");animation:sprNinja 1.1s steps(9) infinite}
 @keyframes sprNinja{to{background-position-x:-936px}}
-.spr-wizard{width:84px;height:84px;background-image:url("assets/story/sprites/wizard_attack_south.png");animation:sprWiz .8s steps(6) infinite}
-@keyframes sprWiz{to{background-position-x:-504px}}
+.spr-wizard{width:116px;height:116px;background-image:url("assets/story/sprites/wizard_v2_magic-bolt_south.png");animation:sprWiz 1.2s steps(9) infinite}
+@keyframes sprWiz{to{background-position-x:-1044px}}
 .spr-shaman{width:116px;height:116px;background-image:url("assets/story/sprites/shaman_attack_south.png");animation:sprSha 1.7s steps(16) infinite}
 @keyframes sprSha{to{background-position-x:-1856px}}
 .spr-paladin{width:108px;height:108px;background-image:url("assets/story/sprites/paladin_holy-smite_south.png");animation:sprPal 1.1s steps(9) infinite}
@@ -349,6 +349,12 @@ html,body{overflow-x:clip}
 .price-card .seats{display:inline-block;margin-left:10px;background:#fff3e8;border:1px solid var(--belt-o);color:#9a4b0f;border-radius:999px;padding:3px 12px;font-size:12px;font-weight:900;vertical-align:middle}
 .price-card .cancel{margin-top:10px;font-size:12.5px;font-weight:700;color:var(--muted);text-align:center}
 .price-card .btn{margin-top:22px;text-align:center}
+/* the punch: what stands where the price cards were, in the top hero's voice */
+.punch{max-width:820px;margin:44px auto 0;background:#fff;border:2px solid var(--blue);border-radius:18px;padding:36px 30px;box-shadow:0 16px 40px rgba(30,115,189,.14);text-align:center}
+.punch h3{font-size:clamp(24px,3.4vw,34px);font-weight:900;line-height:1.08;max-width:22ch;margin:0 auto}
+.punch p{margin-top:16px;font-size:16px;font-weight:600;color:#4b5563;max-width:58ch;margin-left:auto;margin-right:auto}
+.punch .punch-cta{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.punch .punch-fine{margin-top:18px;font-size:13px;font-weight:700;color:var(--muted)}
 
 /* quiz (soft) */
 .quiz-sec{padding:90px 0;background:radial-gradient(900px 420px at 50% -60px,rgba(30,115,189,.09),transparent)}
@@ -864,6 +870,7 @@ footer a:hover{text-decoration:underline}
       <p class="vis-cap" style="max-width:340px;margin-top:12px">TEWGO is on the Apple App Store. Five in a row, two to capture. The other four games are still mine to finish.</p>
       <div class="photos stack" style="margin-top:18px">
         <figure><img src="assets/story/rick/childhood-game.jpg" alt="The arena game Rick built on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles" loading="lazy" style="aspect-ratio:auto"><figcaption>The game I built on paper as a kid: boards, character sheets, a bag of hand-cut tiles. It is quietly becoming a real game now.</figcaption></figure>
+        <figure><img src="assets/story/rick/arena-rpg.jpg" alt="Arena RPG key art: an armoured champion with a lion shield, a dragon, a wizard and a twenty-sided die in a packed arena" loading="lazy" style="aspect-ratio:auto"><figcaption>Arena RPG. The same game the paper one was always trying to be.</figcaption></figure>
       </div>
     </div>
   </div>
@@ -874,12 +881,7 @@ footer a:hover{text-decoration:underline}
   <div class="rv">
     <div class="k">From the games</div>
     <h2>118 characters, every one of them mine</h2>
-    <p class="sub">Heroes, the horde, marines, cyborgs and one very good dog. Every one animated in eight directions. These are not a promo render: they are the exact frames the games draw, at their exact size, which is why the big ones tower over the small ones here the same way they do in a fight.</p>
-
-    <div class="row-label"><b>DungeonHole</b> &middot; 98 heroes and horde, from the class and enemy tables</div>
-    <div class="marquee" id="mq1" aria-hidden="true"></div>
-    <div class="row-label"><b>AstroHold</b> &middot; 20 robots, cyborgs and emplacements</div>
-    <div class="marquee rev" id="mq2" aria-hidden="true"></div>
+    <p class="sub">Heroes, the horde, marines, cyborgs and one very good dog. 98 of them in DungeonHole, out of its own class and enemy tables, and 20 robots, cyborgs and emplacements in AstroHold. Every one animated in eight directions. These are not a promo render: they are the exact frames the games draw, at their exact size, which is why the big ones tower over the small ones the same way they do in a fight.</p>
 
     <div class="row-label">Six of them, mid-move</div>
     <div class="spr-row" aria-hidden="true">
@@ -1018,7 +1020,7 @@ footer a:hover{text-decoration:underline}
 <section class="appwall" id="apps">
   <div class="rv">
     <div class="k">Not a portfolio shot</div>
-    <h2>Fourteen apps, and here is what opens</h2>
+    <h2>Thirteen apps, and here is what opens</h2>
     <p class="sub">Games, businesses, a spa, a hostel, a gym, a console and a method. The row below is not renders or mockups: each one is a live capture pulled off that app's own address, on a phone, exactly as it loads for anyone who taps it. Including the ones that open onto a sign-in wall, and the one I already told you looks dull.</p>
 
     <div class="row-label">What actually opens &middot; <b>live captures</b></div>
@@ -1027,7 +1029,7 @@ footer a:hover{text-decoration:underline}
     <div class="row-label">And the icons they open from</div>
     <div class="shelf-rail" id="shelf2" aria-hidden="true"></div>
 
-    <p class="sub" style="margin-top:34px;font-size:13.5px">Twelve of the fourteen are in the live row. Ninja Village runs landscape only, so it sits up in the game scenes instead, and NEWNEI is not public yet.</p>
+    <p class="sub" style="margin-top:34px;font-size:13.5px">Eleven of the thirteen are in the live row. Ninja Village runs landscape only, so it sits up in the game scenes instead, and NEWNEI is not public yet.</p>
   </div>
 </section>
 
@@ -1227,49 +1229,14 @@ footer a:hover{text-decoration:underline}
 
     <p class="dojo-honest">Honest frame: give every AI hire a 2015 job title and you get a 2015 org chart. I hire the roles a payroll would reject, and every one starts at white belt: propose only, prove it, then earn the next belt. Nothing sends, pays, or posts itself until it has.</p>
 
-    <div class="price-cards">
-      <div class="price-card rv">
-        <span class="tag">Your Dojo <span class="seats">9 seats left</span></span>
-        <h3>I build it. You run it.</h3>
-        <div class="amount">$2,222<small> / month</small></div>
-        <ul>
-          <li>The audit first: where the hours actually go, mapped with you.</li>
-          <li>I build your Dojo: the command center, the trained AI ninjas, the factories behind your repeated work.</li>
-          <li>Your team runs the daily DO; every send, pay, and post stays behind your press.</li>
-          <li>Me on call as your sensei: belts advance, new ninjas join as you grow.</li>
-          <li class="not-head" role="presentation">Not included</li>
-          <li class="no">Running your daily work for you (that is the Sensei tier).</li>
-          <li class="no">Building products you sell (apps, sites, features): separate engagement, quoted hourly.</li>
-          <li class="no">Third-party costs: your AI, software and ad accounts stay yours and in your name.</li>
-        </ul>
-        <a class="btn btn-quiet" href="#quiz">Start with the quiz</a>
-        <p class="cancel">Monthly subscription. Cancel anytime, effective at the end of the paid month.</p>
+    <div class="punch rv">
+      <h3>You run the business. My AI ninjas run the admin.</h3>
+      <p>That is the whole thing in one line. I build your Dojo, I train the ninjas on your own work, and every send, pay and post still waits for your press. What it costs depends on what you actually need, and I would rather work that out with you than put a number on a page before I know your business.</p>
+      <div class="punch-cta">
+        <a class="btn btn-blue" href="#quiz">Take the 3-minute quiz</a>
+        <a class="btn btn-quiet" href="#" id="buildMail">Ask about a build</a>
       </div>
-      <div class="price-card hot rv">
-        <span class="tag">Sensei runs it <span class="seats">4 seats left</span></span>
-        <h3>I build it. I run it too.</h3>
-        <div class="amount">$4,444<small> / month</small></div>
-        <ul>
-          <li>Everything in Your Dojo.</li>
-          <li>I also run the daily DO: the newsletters go out, the inbox gets drafted, the reports land, without your team touching it.</li>
-          <li>You keep the judgment calls and the final press; I keep the machine moving.</li>
-          <li>The 10x review pass on what the Dojo produces, before it reaches you.</li>
-          <li class="not-head" role="presentation">Not included</li>
-          <li class="no">Building products you sell: that is a separate hourly engagement, priced at developer rates.</li>
-          <li class="no">Third-party costs: your AI, software and ad accounts stay yours and in your name.</li>
-          <li class="no">Decisions. Judgment calls are never outsourced; they wait for your press.</li>
-        </ul>
-        <a class="btn btn-blue" href="#quiz">Start with the quiz</a>
-        <p class="cancel">Monthly subscription. Cancel anytime, effective at the end of the paid month.</p>
-      </div>
-    </div>
-    <p class="dojo-honest" style="margin-top:22px">Straight answer to the obvious question: both tiers are me doing the building, because that is the product. The difference is who runs the daily work once the Dojo stands: you, or me. And the line that keeps it honest: <b>you are hiring my service to build and run your AI workforce, not hiring me as your product developer.</b> Seats are capped because a sensei who takes every student teaches none of them.</p>
-
-    <div class="price-card rv" style="max-width:820px;margin:18px auto 0">
-      <span class="tag">Custom build work, when you want a thing built</span>
-      <h3>Builder hours, priced in the open</h3>
-      <p style="margin-top:10px;font-size:14.5px;font-weight:600;color:#4b5563">Want an actual product built: an app, a site, a backend, a custom Dojo beyond the subscription? The going market rate for a developer is around <b>$150 per hour</b>. My rate is <b>$222 per 2-hour block</b>, which works out under market, or <b>$2,222 for a 20-hour package</b>: enough to build you a custom Digital Dojo of your own. Scoped and agreed in writing before the clock starts.</p>
-      <a class="btn btn-quiet" href="#" id="buildMail" style="margin-top:16px">Ask about a build</a>
+      <p class="punch-fine">Twelve questions, three minutes, no email asked for. The result is computed from your answers alone, and it tells you where I would start.</p>
     </div>
   </div>
 </section>
@@ -1468,7 +1435,7 @@ footer a:hover{text-decoration:underline}
   <div class="wrap rv">
     <span class="k">Four of the sixteen</span>
     <h2>The builds that carry the most weight</h2>
-    <p class="sub">Live captures off each app's own address, not renders. The full wall of fourteen is further up the page; these four are the ones a client meeting always ends up on.</p>
+    <p class="sub">Live captures off each app's own address, not renders. The full wall of thirteen is further up the page; these four are the ones a client meeting always ends up on.</p>
     <div class="grid">
       <div class="work"><img src="assets/story/apps/ninjagym.jpg" alt="The NinjaGym app home screen" loading="lazy"><div class="body"><h3>NinjaGym</h3><p>Runs a real gym: check-ins, memberships, belts, birthdays. 800+ member families inside it.</p><small>ninjagym.com</small></div></div>
       <div class="work"><img src="assets/tewgo-shot-space.png" alt="TEWGO mid-game on the space board" loading="lazy" style="object-position:center"><div class="body"><h3>TEWGO</h3><p>Five-in-a-row strategy with its own music per board. On the Apple App Store.</p><small>playtewgo.com</small></div></div>
@@ -1491,12 +1458,10 @@ footer a:hover{text-decoration:underline}
         <p>And the reason it is priced as a subscription, not a project: <b>a Dojo is not a deliverable, it is a practice.</b> Belts advance, new ninjas join as you grow, and I stay on call as your sensei the whole way.</p>
       </div>
       <div class="math">
-        <div class="k" style="margin-bottom:6px">The math, in the open</div>
-        <div class="row"><span>A market-rate developer</span><b>$150 / hour</b></div>
-        <div class="row"><span>My builder rate</span><b>$222 / 2-hour block</b></div>
-        <div class="row"><span>20-hour build package</span><b>$2,222</b></div>
-        <div class="row"><span>Your Dojo, built and coached</span><b>$2,222 / month</b></div>
-        <div class="row"><span>Sensei runs the daily work too</span><b>$4,444 / month</b></div>
+        <div class="k" style="margin-bottom:6px">The order it happens in</div>
+        <div class="row"><span>First</span><b>The audit</b></div>
+        <div class="row"><span>Then</span><b>Your first ninja, white belt</b></div>
+        <div class="row"><span>Then</span><b>It widens, once proven</b></div>
         <a class="btn btn-blue" href="#" data-mail="Book the audit">Book the audit first</a>
         <p class="fine">Monthly subscription. Cancel anytime, effective at the end of the paid month.</p>
       </div>
@@ -1543,7 +1508,7 @@ footer a:hover{text-decoration:underline}
     <div class="list">
       <details><summary>Do I need to understand AI to use this?</summary><p>No, and that is the point. Only a tiny slice of people using AI will ever touch the builder tools. I build and train the Dojo; you run your business. If you ever want to learn what is under the hood, I will show you, but it is never required.</p></details>
       <details><summary>Will an AI talk to my customers without me knowing?</summary><p>Never. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. That rule does not bend at any belt or any price.</p></details>
-      <details><summary>What does it cost?</summary><p>Your Dojo is $2,222 a month: I build it, you run it. Sensei runs it is $4,444 a month: I run the daily work too. Actual product builds, an app, a site, a backend, are separate at $222 per 2-hour block or $2,222 for 20 hours, scoped in writing before the clock starts. Your AI, software and ad accounts stay yours and in your name.</p></details>
+      <details><summary>What does it cost?</summary><p>It depends on what you actually need, and I would rather work that out with you than put a number on a page before I have seen your business. Start with the quiz: it tells you where I would start, and then we talk about what that costs. Two things are true whatever the answer. Building a product you sell, an app, a site, a backend, is separate work, scoped and agreed in writing before the clock starts. And third-party costs are always yours: your AI, software and ad accounts stay in your name.</p></details>
       <details><summary>What happens in the first month?</summary><p>The audit first: we map where your hours actually go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt. It proves itself before anything widens.</p></details>
       <details><summary>Can I cancel?</summary><p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month. The Dojo and everything built in your accounts stays yours; it was always in your name.</p></details>
       <details><summary>Why the belts?</summary><p>Because trust is earned by showing up and proving it, which is exactly how I grade kids at the gym. A ninja that has proven its lane gets a wider one. One that has not, does not. It keeps the honest order: propose, prove, then earn.</p></details>
@@ -1785,12 +1750,6 @@ footer a:hover{text-decoration:underline}
   }
   var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* Character rows. Every name below is an id that exists in DungeonHole's
-     src/data/classes.ts or enemies.ts, or an AstroHold unit sprite folder.
-     Nothing here is a character the games do not actually use, and the frames
-     are the games' own, rendered 1:1 so they stay crisp. */
-  var DH=["dh_fighter","dh_knight_v2","dh_dwarf","dh_samurai","dh_paladin","dh_valkyrie","dh_monk","dh_ninja","dh_barbarian","dh_acrobat","dh_swashbuckler","dh_thief","dh_assassin","dh_spy","dh_seductress","dh_cleric","dh_healer","dh_healer_divine","dh_shaman","dh_mystic","dh_druid","dh_wizard","dh_sorcerer_gold","dh_wild_sorcerer","dh_warlock","dh_illusionist","dh_psionicist","dh_necromancer","dh_witch","dh_bard","dh_elementalist","dh_ranger","dh_hunter","dh_huntress","dh_scout","dh_fairy","dh_alchemist","dh_artificer","dh_zombie","dh_skeleton","dh_skeleton_archer","dh_ghoul","dh_mummy","dh_wraith","dh_wight","dh_spectre","dh_vampire_lord","dh_lich1","dh_death_knight","dh_drow_priestess","dh_dark_elf","dh_duergar","dh_goblin_v2","dh_hobgoblin","dh_bugbear","dh_kobold","dh_gnoll1","dh_dungeon_orc","dh_orc_archer","dh_ogre","dh_troll","dh_minotaur","dh_berserker","dh_barbazu","dh_troglodyte","dh_lizardfolk","dh_medusa","dh_succubus","dh_imp1","dh_demon1","dh_hell_hound","dh_beholder1","dh_mind_flayer","dh_umber_hulk","dh_owlbear","dh_gargoyle","dh_roper","dh_rust_monster","dh_mimic","dh_evil_cat","dh_dire_wolf","dh_worg","dh_bats","dh_giant_rat","dh_giant_spider_v2","dh_phase_spider","dh_gray_ooze_v2","dh_ochre_jelly","dh_black_pudding","dh_gelatinous_cube","dh_stone_golem","dh_iron_golem","dh_ice_golem","dh_fire_elemental","dh_ice_elemental","dh_earth_elemental","dh_wind_elemental","dh_sorcerer_blue"];
-  var AH=["ah_human_marine","ah_human_warrior","ah_human_medic","ah_hulk","ah_grenadier","ah_sniper","ah_doublegun","ah_bomber","ah_cyborg_nerd","ah_cyborg_stalker","ah_cyborg_gatling","ah_cyborg_sentry","ah_medic","ah_repair","ah_dog","ah_sentry","ah_tower","ah_sphere","ah_cannon","ah_powercore"];
   /* A -50% scroll only looks seamless while each half is wider than the
      screen, so short lists get repeated until they are. */
   /* The rails draw every icon four times over, so one dropped request
@@ -1811,21 +1770,12 @@ footer a:hover{text-decoration:underline}
   }, true);
 
   function reps(count, itemW){ return Math.max(2, Math.ceil(2800/(count*itemW))); }
-  function fill(id, list){
-    var el=document.getElementById(id); if(!el) return;
-    var one=list.map(function(n){
-      return '<img class="pixel" src="assets/story/characters/'+n+'.png" alt="" loading="lazy">';
-    }).join("");
-    var half=new Array(reps(list.length,130)+1).join(one);
-    el.innerHTML=half+half;
-  }
-  fill("mq1",DH); fill("mq2",AH);
 
   /* Every app, twice over: the live screen it opens to, then its icon. */
   var APPS=[
     ["ninjagym","NinjaGym"],["tewbedo","TEWBEDO"],["winjitsu","WinJitsu"],
     ["tewgo","TEWGO"],["dungeonhole","DungeonHole"],["astrohold","AstroHold"],
-    ["ninjavillage","Ninja Village"],["ninjadefense","Ninja Defense"],["citywars","City Wars"],
+    ["ninjavillage","Ninja Village"],["ninjadefense","Ninja Defense"],
     ["evercool","EverCool Thailand"],["sabaisen","SabaiSen"],["nerdhostel","NerdHostel"],
     ["samuikids","SamuiKids"],["newnei","NEWNEI"]
   ];
@@ -1837,7 +1787,6 @@ footer a:hover{text-decoration:underline}
     ["astrohold","AstroHold","astrohold.com &middot; private build"],
     ["tewgo","TEWGO","playtewgo.com"],
     ["ninjadefense","Ninja Defense","private build"],
-    ["citywars","City Wars","private build"],
     ["winjitsu","WinJitsu","winjitsu.com"],
     ["tewbedo","TEWBEDO","overseer access only"],
     ["evercool","EverCool Thailand","evercoolthailand.com"],
@@ -2026,7 +1975,6 @@ footer a:hover{text-decoration:underline}
        answers fight each other, and then the page says so rather than picking. */
     var sensei = (driver==="you") || (driver==="nobody");
     var tier = sensei ? "Sensei runs it" : "Your Dojo";
-    var price = sensei ? "$4,444 a month" : "$2,222 a month";
     var conflictUp   = !sensei && (tech==="dislike" || tech==="avoid");
     var conflictDown = sensei && tech==="love";
     var conflict = conflictUp || conflictDown;
@@ -2074,11 +2022,11 @@ footer a:hover{text-decoration:underline}
       ? "You said you would rather it ran without you once it stands, so the daily work is mine too, and you keep the judgment calls and the final press."
       : "You want your hands on it once it stands, so I build it and train it and the daily work stays on your side of the desk, every send behind your press.";
     if(hours>2 && sols.length){
-      para(lead+run+" That reads as <b>"+tier+"</b>, "+price+", starting with <b>"+sols[0]+
+      para(lead+run+" That reads as <b>"+tier+"</b>, starting with <b>"+sols[0]+
         "</b> at white belt: propose only, prove it, then earn the next belt."+
         (sols.length>1 ? " The other "+(sols.length-1)+" join as belts are earned, not on day one." : ""));
     } else if(hours>2){
-      para(lead+run+" That reads as <b>"+tier+"</b>, "+price+".");
+      para(lead+run+" That reads as <b>"+tier+"</b>.");
     }
     if(conflictUp){
       para("Worth saying out loud: you told me you would run it yourself, and also that you would rather not deal with computers. Those two answers fight. If the second one is the truer of the pair, the tier above this one is the honest fit, and I would rather you knew that now than three months in.");
@@ -2087,7 +2035,7 @@ footer a:hover{text-decoration:underline}
       para("Worth saying out loud: you told me you would build this yourself given the hours, and also that you want it run for you. Those two answers fight, and the cheaper tier is the one your first answer points at. Do not pay me to drive if what you actually want is the wheel.");
     }
     if(needsBuild){
-      para("One straight answer before you ask: some of what you described is not a desk sitting on a system you already own, it is the system. Building the thing itself is separate work at the builder rate, <b>$222 per 2-hour block</b> or <b>$2,222 for 20 hours</b>, scoped and agreed in writing before the clock starts.");
+      para("One straight answer before you ask: some of what you described is not a desk sitting on a system you already own, it is the system. Building the thing itself is separate work, scoped and agreed in writing before the clock starts.");
     }
     if(HI[hi]) para("And the hours themselves go "+HI[hi]);
 
@@ -2095,7 +2043,7 @@ footer a:hover{text-decoration:underline}
       +"\n\nNumber they want to move: "+(NUMBER[num]?NUMBER[num].name:"n/a")
       +"\nSolutions matched: "+(sols.length?sols.join(", "):"none")
       +"\nEstimated draftable hours/week: "+draftable
-      +(hours>2 ? "\nSuggested tier: "+tier+" ("+price+")" : "")
+      +(hours>2 ? "\nSuggested tier: "+tier : "")
       +(needsBuild ? "\nAlso needs build work at the builder rate." : "")
       +((hours>2 && money) ? "\nEstimated value: USD "+monthly+"/month" : "");
     /* The quiz answers ride down to The Letter Slot instead of into a
