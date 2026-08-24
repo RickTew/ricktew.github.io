@@ -88,6 +88,37 @@ nothing is "sent" between repos:**
 If a change is about the BUSINESS rather than the page (a new offering, a price
 change), that belongs in the Dojo first and the page follows.
 
+### NO PRICE APPEARS ON THE AI NINJA PAGE, AND THAT IS DELIBERATE
+
+**2026-08-24, Rick's explicit instruction, given after being shown four
+options: take every price off the page.** Removed that day: both subscription
+cards, the paragraph explaining the two tiers, the builder-hours block, the
+priced rows in the service section, the FAQ cost answer, and the two places
+the quiz result quoted a tier price.
+
+The rule above says to read the Dojo before changing a CLAIM. **That is about
+getting a fact right, not about putting a figure on the page.** Do not
+helpfully restore a price because the Dojo has one. If a number belongs back
+on this page, Rick says so.
+
+What stands where the cards were is `.punch`, a block in the top hero's voice
+that ends at the quiz and at the Letter Slot rather than at a number. The
+`.price-card*` CSS is still in the file, dead but intact, so restoring the
+offer later is a paste and not a rebuild.
+
+Four dollar signs survive on the page and none of them is Rick's price: `$5`
+is the POS vendor's per-staff fee inside his own story, and `$20 / $30 / $60`
+are the quiz asking the reader what their own hour is worth. Leave them.
+
+### The live row shows two signed-in apps, so its copy is narrower than it was
+
+Also 24 Aug: the TEWBEDO and WinJitsu tiles are now Rick's own captures from
+*inside* those apps, not the passkey wall and the pale landing page. The
+section used to promise every capture was "exactly as it loads for anyone who
+taps it", which those two are not any more. It now says most are what a
+stranger sees, and the two behind a login are what Rick sees once he is
+inside. **If you swap a tile, check that sentence still tells the truth.**
+
 ---
 
 ## Contact: The Letter Slot
