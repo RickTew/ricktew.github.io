@@ -732,6 +732,31 @@ footer a:hover{text-decoration:underline}
 .opw .sub{text-align:center;color:var(--muted);font-weight:700;margin-top:12px;max-width:64ch;margin-left:auto;margin-right:auto}
 .opw .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:840px;margin:40px auto 0}
 @media (max-width:820px){ .opw .two{grid-template-columns:1fr} }
+
+/* the outcome section: the honest answer to the engine explainer above it.
+   Most people do not want the tool, they want the job done. Two doors, you
+   do it or we do it. Full borders and a hover glow, no accent bars. */
+.outc{padding:84px 0;border-top:1px solid var(--line);background:#fff}
+.outc .k,.outc h2{text-align:center}
+.outc h2{font-size:clamp(26px,4vw,40px);font-weight:900;margin-top:8px}
+.outc .sub{text-align:center;color:var(--muted);font-weight:700;margin-top:12px;max-width:64ch;margin-left:auto;margin-right:auto}
+.outc .story{max-width:720px;margin:34px auto 0}
+.outc .story p{font-size:16.5px;font-weight:600;color:#374151;line-height:1.65}
+.outc .story p+p{margin-top:14px}
+.outc .story b{color:var(--ink)}
+.outc .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:840px;margin:38px auto 0}
+.outc .col{background:#fff;border:2px solid var(--line);border-radius:16px;padding:24px 22px;transition:box-shadow .2s ease,border-color .2s ease}
+.outc .col:hover{box-shadow:0 0 0 4px rgba(30,115,189,.12);border-color:#c4dbf0}
+.outc .col.on{border-color:var(--blue)}
+.outc .col.on:hover{box-shadow:0 0 0 4px rgba(30,115,189,.18)}
+.outc .col h3{font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.outc .col.on h3{color:var(--blue)}
+.outc .tag{font-size:10.5px;letter-spacing:.08em;background:#eef5fc;color:var(--blue-d);border:1px solid #c4dbf0;border-radius:999px;padding:3px 9px}
+.outc .lead{margin-top:10px;font-size:clamp(19px,2.6vw,23px);font-weight:900;line-height:1.25}
+.outc .col.on .lead{color:var(--blue-d)}
+.outc .col p:not(.lead){margin-top:10px;font-size:14.5px;font-weight:600;color:#4b5563}
+.outc .cta{margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+@media (max-width:820px){ .outc .two{grid-template-columns:1fr} }
 .opw .col{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 22px}
 .opw .col.on{border-color:#c4dbf0;background:linear-gradient(180deg,#f2f7fc,#e6f0f9)}
 .opw .col h3{font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
@@ -746,7 +771,7 @@ footer a:hover{text-decoration:underline}
 .opw .col.on li b{color:var(--blue-d)}
 .opw .col li::before{content:"\2715";position:absolute;left:2px;top:9px;font-weight:900;color:#c9ccd1}
 .opw .col.on li::before{content:"\2713";color:var(--blue)}
-.opw .kata{max-width:840px;margin:30px auto 0;background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:14px;padding:22px 24px}
+.opw .kata{max-width:840px;margin:30px auto 0;background:#fff;border:2px solid #c4dbf0;border-radius:14px;padding:22px 24px}
 .opw .kata p{font-weight:600;color:#374151;font-size:15px}
 .opw .kata p b{color:var(--ink)}
 .opw .kata p+p{margin-top:12px}
@@ -1193,6 +1218,32 @@ footer a:hover{text-decoration:underline}
     <p class="dojo-honest">Shortest version I have: the website is the ten percent above the water. Buy only the visible part and you bought a brochure. The engine underneath is where the time comes back, and it works for owners who never touch a computer, because running it is my job, not yours.</p>
 
     <div class="cta"><a class="btn btn-blue" href="#quiz">Find out where your engine is missing &middot; take the quiz</a></div>
+  </div>
+</section>
+
+<!-- ============ THE OUTCOME: nobody wants the tool ============ -->
+<section class="outc" id="outcome">
+  <div class="wrap rv">
+    <span class="k">The part I had to learn twice</span>
+    <h2>Most people do not want an app. <span style="color:var(--blue)">They want the job done.</span></h2>
+    <p class="sub">I just spent a whole section explaining the engine under a website. Here is the problem with that: I can explain it for you, but I cannot understand it for you. And you should not have to.</p>
+    <div class="story">
+      <p>I learned this long before AI. For years I taught a memory program: in universities, to companies in Holland, to my own students. It is on the WinJitsu app today if you want to learn it. And most people, in the end, told me the same thing. They did not want to learn the method. They had a hundred facts to hold for a test on Friday, and they wanted someone who already knew the method to hand them those facts in the shape that sticks.</p>
+      <p>Software is the same. Nobody wants a tool. They want the reply drafted, the invoice filed, the booking recorded, the evening back. <b>Everything on this page exists so I can hand you the end result.</b> Running the machine is my job, not yours.</p>
+    </div>
+    <div class="two">
+      <div class="col">
+        <h3>You do it</h3>
+        <p class="lead">You want to learn to build with AI yourself.</p>
+        <p>I teach it the way I taught the memory program: hands on, on your own business, until you can run it without me. Rare, and I like it when it happens.</p>
+      </div>
+      <div class="col on">
+        <h3>We do it <span class="tag">almost full</span></h3>
+        <p class="lead">You want the job done.</p>
+        <p>I build your Dojo, train the ninjas on your own work, and hand you the outcome. Every send, pay and post still waits for your press.</p>
+      </div>
+    </div>
+    <div class="cta"><a class="btn btn-blue" href="#quiz">Tell me the job &middot; take the quiz</a><a class="btn btn-quiet" href="#" data-mail="I do not want an app, I want the job done. Here is the job:">Or just write to me</a></div>
   </div>
 </section>
 
