@@ -1562,9 +1562,47 @@ footer a:hover{text-decoration:underline}
 
     <p class="dojo-honest">Honest frame: give every AI hire a 2015 job title and you get a 2015 org chart. I hire the roles a payroll would reject, and every one starts at white belt: propose only, prove it, then earn the next belt. Nothing sends, pays, or posts itself until it has.</p>
 
+    <div class="price-cards" id="offers">
+      <div class="price-card hot rv">
+        <span class="tag">Sensei runs it</span>
+        <h3>I build it. I run it too.</h3>
+        <div class="amount">$4,444<small> / month</small></div>
+        <ul>
+          <li>Everything in Your Dojo.</li>
+          <li>I also run the daily DO: the newsletters go out, the inbox gets drafted, the reports land, without your team touching it.</li>
+          <li>You keep the judgment calls and the final press; I keep the machine moving.</li>
+          <li>The 10x review pass on what the Dojo produces, before it reaches you.</li>
+          <li class="not-head" role="presentation">Not included</li>
+          <li class="no">Building products you sell: that is a separate engagement, scoped in writing first.</li>
+          <li class="no">Third-party costs: your AI, software and ad accounts stay yours and in your name.</li>
+          <li class="no">Decisions. Judgment calls are never outsourced; they wait for your press.</li>
+        </ul>
+        <a class="btn btn-blue" href="#quiz">Start with the quiz</a>
+        <p class="cancel">Monthly subscription. Cancel anytime, effective at the end of the paid month.</p>
+      </div>
+      <div class="price-card rv">
+        <span class="tag">Your Dojo</span>
+        <h3>I build it. You run it.</h3>
+        <div class="amount">$2,222<small> / month</small></div>
+        <ul>
+          <li>The audit first: where the hours actually go, mapped with you.</li>
+          <li>I build your Dojo: the command center, the trained AI ninjas, the factories behind your repeated work.</li>
+          <li>Your team runs the daily DO; every send, pay, and post stays behind your press.</li>
+          <li>Me on call as your sensei: belts advance, new ninjas join as you grow.</li>
+          <li class="not-head" role="presentation">Not included</li>
+          <li class="no">Running your daily work for you (that is Sensei runs it).</li>
+          <li class="no">Building products you sell (apps, sites, features): separate engagement, scoped in writing first.</li>
+          <li class="no">Third-party costs: your AI, software and ad accounts stay yours and in your name.</li>
+        </ul>
+        <a class="btn btn-quiet" href="#quiz">Start with the quiz</a>
+        <p class="cancel">Monthly subscription. Cancel anytime, effective at the end of the paid month.</p>
+      </div>
+    </div>
+    <p class="dojo-honest" style="margin-top:22px">Straight answer to the obvious question: both are me doing the building, because that is the product. The difference is who runs the daily work once the Dojo stands: you, or me. And the line that keeps it honest: <b>you are hiring my service to build and run your AI workforce, not hiring me as your product developer.</b> Seats are capped because a sensei who takes every student teaches none of them.</p>
+
     <div class="punch rv">
       <h3>You run the business. My AI ninjas run the admin.</h3>
-      <p>That is the whole thing in one line. I build your Dojo, I train the ninjas on your own work, and every send, pay and post still waits for your press. What it costs depends on what you actually need, and I would rather work that out with you than put a number on a page before I know your business.</p>
+      <p>That is the whole thing in one line. I build your Dojo, I train the ninjas on your own work, and every send, pay and post still waits for your press. The two ways in, and what they cost, are right above. The quiz tells you which one fits.</p>
       <div class="punch-cta">
         <a class="btn btn-blue" href="#quiz">Take the 3-minute quiz</a>
         <a class="btn btn-quiet" href="#" id="buildMail">Ask about a build</a>
@@ -1913,7 +1951,7 @@ footer a:hover{text-decoration:underline}
     <div class="list">
       <details><summary>Do I need to understand AI to use this?</summary><p>No, and that is the point. Only a tiny slice of people using AI will ever touch the builder tools. I build and train the Dojo; you run your business. If you ever want to learn what is under the hood, I will show you, but it is never required.</p></details>
       <details><summary>Will an AI talk to my customers without me knowing?</summary><p>Never. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. That rule does not bend at any belt or any price.</p></details>
-      <details><summary>What does it cost?</summary><p>It depends on what you actually need, and I would rather work that out with you than put a number on a page before I have seen your business. Start with the quiz: it tells you where I would start, and then we talk about what that costs. Two things are true whatever the answer. Building a product you sell, an app, a site, a backend, is separate work, scoped and agreed in writing before the clock starts. And third-party costs are always yours: your AI, software and ad accounts stay in your name.</p></details>
+      <details><summary>What does it cost?</summary><p>Sensei runs it is $4,444 a month: I build it and I run the daily work too. Your Dojo is $2,222 a month: I build it, you run it. Both are monthly, cancel anytime, effective at the end of the paid month. Start with the quiz: it tells you which one fits. Two things are true whichever you pick. Building a product you sell, an app, a site, a backend, is separate work, scoped and agreed in writing before the clock starts. And third-party costs are always yours: your AI, software and ad accounts stay in your name.</p></details>
       <details><summary>What happens in the first month?</summary><p>The audit first: we map where your hours actually go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt. It proves itself before anything widens.</p></details>
       <details><summary>Can I cancel?</summary><p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month. The Dojo and everything built in your accounts stays yours; it was always in your name.</p></details>
       <details><summary>What is an Agentic CMO?</summary><p>The same idea as a fractional CTO, with the work done by trained AI ninjas instead of a person on a day rate. A Master is a seat: a job title a payroll would recognize, one number it is judged on, and the solutions on this page working under it. Six seats exist. Four have run my own businesses and are for sale; two are in training and the page says which. A Master never widens a ninja's lane. Every send, pay and post still waits for your press.</p></details>
@@ -2404,6 +2442,7 @@ footer a:hover{text-decoration:underline}
        answers fight each other, and then the page says so rather than picking. */
     var sensei = (driver==="you") || (driver==="nobody");
     var tier = sensei ? "Sensei runs it" : "Your Dojo";
+    var price = sensei ? "$4,444 a month" : "$2,222 a month";
     var conflictUp   = !sensei && (tech==="dislike" || tech==="avoid");
     var conflictDown = sensei && tech==="love";
     var conflict = conflictUp || conflictDown;
@@ -2455,7 +2494,7 @@ footer a:hover{text-decoration:underline}
       ? "You said you would rather it ran without you once it stands, so the daily work is mine too, and you keep the judgment calls and the final press."
       : "You want your hands on it once it stands, so I build it and train it and the daily work stays on your side of the desk, every send behind your press.";
     if(hours>2 && sols.length){
-      para(lead+run+" That reads as <b>"+tier+"</b>, starting with <b>"+sols[0]+
+      para(lead+run+" That reads as <b>"+tier+"</b>, "+price+", starting with <b>"+sols[0]+
         "</b> at white belt: propose only, prove it, then earn the next belt."+
         (sols.length>1 ? " The other "+(sols.length-1)+" join as belts are earned, not on day one." : ""));
       if(topSeat && !SEAT_TRAINING[topSeat]){
@@ -2464,7 +2503,7 @@ footer a:hover{text-decoration:underline}
         para("The seat that would own that number, the <b>"+topSeat+"</b>, is still in training, and I do not sell a seat that has not run my own business first. The desk itself you can have now; the seat above it comes when it has earned its belt.");
       }
     } else if(hours>2){
-      para(lead+run+" That reads as <b>"+tier+"</b>.");
+      para(lead+run+" That reads as <b>"+tier+"</b>, "+price+".");
     }
     if(conflictUp){
       para("Worth saying out loud: you told me you would run it yourself, and also that you would rather not deal with computers. Those two answers fight. If the second one is the truer of the pair, the tier above this one is the honest fit, and I would rather you knew that now than three months in.");
@@ -2482,7 +2521,7 @@ footer a:hover{text-decoration:underline}
       +"\nSolutions matched: "+(sols.length?sols.join(", "):"none")
       +"\nSeat matched: "+(topSeat ? topSeat+(SEAT_TRAINING[topSeat]?" (in training)":"") : "none")
       +"\nEstimated draftable hours/week: "+draftable
-      +(hours>2 ? "\nSuggested tier: "+tier : "")
+      +(hours>2 ? "\nSuggested tier: "+tier+" ("+price+")" : "")
       +(needsBuild ? "\nAlso needs build work at the builder rate." : "")
       +((hours>2 && money) ? "\nEstimated value: USD "+monthly+"/month" : "");
     /* The quiz answers ride down to The Letter Slot instead of into a

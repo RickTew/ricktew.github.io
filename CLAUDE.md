@@ -88,27 +88,33 @@ nothing is "sent" between repos:**
 If a change is about the BUSINESS rather than the page (a new offering, a price
 change), that belongs in the Dojo first and the page follows.
 
-### NO PRICE APPEARS ON THE AI NINJA PAGE, AND THAT IS DELIBERATE
+### THE TWO PRICES ARE BACK ON THE AI NINJA PAGE (2026-08-26), BY RICK'S RULING
 
-**2026-08-24, Rick's explicit instruction, given after being shown four
-options: take every price off the page.** Removed that day: both subscription
-cards, the paragraph explaining the two tiers, the builder-hours block, the
-priced rows in the service section, the FAQ cost answer, and the two places
-the quiz result quoted a tier price.
+**History, so nobody re-litigates it.** On 2026-08-24 Rick took every price
+off the page. On 2026-08-26 he asked for research on whether prices on a
+done-for-you service page bring better leads, read the sourced brief
+(buyers want visible prices; River Pools: fewer appointments, more sales;
+the decoy effect fails replication; a paid first call is a cliff), and said
+"go". What went back, and what did not:
 
-The rule above says to read the Dojo before changing a CLAIM. **That is about
-getting a fact right, not about putting a figure on the page.** Do not
-helpfully restore a price because the Dojo has one. If a number belongs back
-on this page, Rick says so.
+- **Back:** the two monthly offers as `.price-card`s in `#offers`, listed
+  high to low because that is what the evidence supports: **Sensei runs it,
+  $4,444 / month** (highlighted) then **Your Dojo, $2,222 / month**. The
+  FAQ cost answer and the quiz result line quote the tier price again.
+- **Not back:** the builder-hours block and its $222 / $2,222 figures, the
+  "seats left" counters (the Dojo says they are hand-maintained urgency
+  text; Rick has not given current numbers), and any consultation or paid
+  call price. Rick floated a $2,222 consultation or a $200 call as an
+  anchor; the research said no, and he went with the recommendation.
+  **A first contact on this site is free** (the quiz, the Letter Slot).
 
-What stands where the cards were is `.punch`, a block in the top hero's voice
-that ends at the quiz and at the Letter Slot rather than at a number. The
-`.price-card*` CSS is still in the file, dead but intact, so restoring the
-offer later is a paste and not a rebuild.
+The prices are the Dojo's facts: final and live in Stripe (Tew's Inc, USD).
+Change them there first, then here. The rule that CLAIMS on this page come
+from the Dojo still stands.
 
-Four dollar signs survive on the page and none of them is Rick's price: `$5`
-is the POS vendor's per-staff fee inside his own story, and `$20 / $30 / $60`
-are the quiz asking the reader what their own hour is worth. Leave them.
+The other dollar signs on the page are not Rick's price: `$5` is the POS
+vendor's per-staff fee inside his own story, and `$20 / $30 / $60` are the
+quiz asking the reader what their own hour is worth. Leave them.
 
 ### The live row shows two signed-in apps, so its copy is narrower than it was
 
