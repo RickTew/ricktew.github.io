@@ -260,7 +260,7 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 /* the sprinkle: close ups from the games, filling the space the chapter text
    leaves empty. The wide board shots that used to sit in their own section
    read as mostly empty grey at that size, which sold the games short. */
-.sprinkle{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}
+.sprinkle{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:28px}
 .sprinkle figure{margin:0;transition:transform .3s ease;position:relative;aspect-ratio:1}
 .sprinkle figure:nth-child(3n+1){transform:rotate(-1.6deg)}
 .sprinkle figure:nth-child(3n+2){transform:rotate(.9deg)}
@@ -269,12 +269,11 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .sprinkle img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;
   border:1px solid var(--line);
   box-shadow:0 6px 16px rgba(16,20,24,.10)}
-/* each tile holds a couple of shots from the same game and turns them over
-   on its own clock, so the six never flip together */
+/* one tile per game. Each holds every shot from that game and walks
+   through them on its own clock, so the two never flip together */
 .sprinkle .cycle img{position:absolute;inset:0;height:100%;opacity:0;transition:opacity .9s ease}
 .sprinkle .cycle img.on{opacity:1}
 @media (prefers-reduced-motion:reduce){ .sprinkle figure{transition:none} }
-@media (max-width:520px){ .sprinkle{grid-template-columns:repeat(2,1fr)} }
 .sprinkle-cap{margin-top:15px;font-size:12.5px;font-weight:700;color:var(--muted);line-height:1.55}
 .sprinkle-cap b{color:var(--ink);font-weight:900}
 
@@ -963,29 +962,20 @@ footer a:hover{text-decoration:underline}
         <figure class="cycle" data-game="DungeonHole">
           <img src="assets/story/games/dh-board.jpg" alt="DungeonHole: the dungeon board, chests in the corners, orcs and goblins waiting" class="on">
           <img src="assets/story/games/dh-sneak.jpg" alt="DungeonHole: the ninja lands a sneak attack in the middle of the board" loading="lazy">
-        </figure>
-        <figure class="cycle" data-game="DungeonHole">
-          <img src="assets/story/games/dh-party.jpg" alt="DungeonHole: the party spread across the board with the treasure glowing in the corner" class="on">
+          <img src="assets/story/games/dh-party.jpg" alt="DungeonHole: the party spread across the board with the treasure glowing in the corner" loading="lazy">
           <img src="assets/story/games/dh-ranger.jpg" alt="DungeonHole: the ranger's line of fire across the tiles to a skeleton" loading="lazy">
-        </figure>
-        <figure class="cycle" data-game="DungeonHole">
-          <img src="assets/story/games/dh-mage.jpg" alt="DungeonHole: the wild mage, the seductress and the shadow, close up" class="on">
+          <img src="assets/story/games/dh-mage.jpg" alt="DungeonHole: the wild mage, the seductress and the shadow, close up" loading="lazy">
           <img src="assets/story/games/dh-ninja.jpg" alt="DungeonHole: the ninja squares up to two goblins" loading="lazy">
         </figure>
         <figure class="cycle" data-game="AstroHold">
           <img src="assets/story/games/ah-log.jpg" alt="AstroHold: the turret line, the walkers and the turn log" class="on">
           <img src="assets/story/games/ah-lastword.jpg" alt="AstroHold: a fallen marine and his last word, tell my mom" loading="lazy">
-        </figure>
-        <figure class="cycle" data-game="AstroHold">
-          <img src="assets/story/games/ah-turrets.jpg" alt="AstroHold: two turrets, a sphere and a walker on the grid" class="on">
+          <img src="assets/story/games/ah-turrets.jpg" alt="AstroHold: two turrets, a sphere and a walker on the grid" loading="lazy">
           <img src="assets/story/games/ah-medic.jpg" alt="AstroHold: the medic pad between two marines and a sniper" loading="lazy">
-        </figure>
-        <figure class="cycle" data-game="AstroHold">
-          <img src="assets/story/games/ah-squad.jpg" alt="AstroHold: the dog, the sentry and two marines, close up" class="on">
-          <img src="assets/story/games/ah-log.jpg" alt="AstroHold: the turret line, the walkers and the turn log" loading="lazy">
+          <img src="assets/story/games/ah-squad.jpg" alt="AstroHold: the dog, the sentry and two marines, close up" loading="lazy">
         </figure>
       </div>
-      <p class="sprinkle-cap">Straight off the screen from two of the games, and each tile turns over to a second shot from the same one. <b>DungeonHole:</b> the party on the board, the ranger's line of fire, the ninja's sneak attack. <b>AstroHold:</b> the turret line, the walkers, the medic pad, and a fallen marine's last word.</p>
+      <p class="sprinkle-cap">Straight off the screen from two of the games, one tile each, and each tile walks through its own shots. <b>DungeonHole:</b> the party on the board, the ranger's line of fire, the ninja's sneak attack. <b>AstroHold:</b> the turret line, the walkers, the medic pad, and a fallen marine's last word.</p>
     </div>
     <div class="ch-vis">
       <div class="phone-fan">
@@ -2555,8 +2545,8 @@ footer a:hover{text-decoration:underline}
   video.addEventListener("ended",stopTape);
   go(0); toggle.textContent=playing?"Pause":"Play"; tick();
 })();
-/* The game tiles: every figure.cycle turns over to its next shot every few
-   seconds, each on its own offset. Hover holds a tile. Reduced motion
+/* The game tiles: one figure.cycle per game, and it turns over to its next
+   shot every few seconds, each tile on its own offset. Hover holds a tile. Reduced motion
    leaves the first shot standing. */
 (function(){
   var tiles=document.querySelectorAll("#gameTiles .cycle"); if(!tiles.length) return;

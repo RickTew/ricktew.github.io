@@ -3,7 +3,7 @@
    first, always: a fresh deploy must win over the cache, and Pages deploys
    every push. Only same-origin GETs are touched; the Letter Slot's endpoint
    is cross-origin and never passes through here. */
-var VERSION = "rt-2026-08-26a";
+var VERSION = "rt-2026-08-26b";
 
 self.addEventListener("install", function (e) {
   e.waitUntil(
