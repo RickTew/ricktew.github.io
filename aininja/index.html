@@ -278,7 +278,9 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .sprinkle-cap b{color:var(--ink);font-weight:900}
 
 /* CH 5: the TewBeDo console, rebuilt as the real buttons instead of screenshots */
-.tb-mock{grid-column:1/-1;background:#0f1424;border-radius:16px;border:1px solid #232a45;overflow:hidden;margin-top:6px;position:relative;z-index:1}
+/* the console sits in the chapter's right column, beside the words, and
+   still cycles its tabs on its own clock */
+.tb-mock{background:#0f1424;border-radius:16px;border:1px solid #232a45;overflow:hidden;position:relative;z-index:1}
 .tb-bar{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid #232a45;flex-wrap:wrap}
 .tb-logo{font-weight:900;letter-spacing:.08em;color:#6f8dff}
 .tb-day{font-size:11px;color:#8b93b8;text-transform:uppercase;letter-spacing:.08em}
@@ -1032,10 +1034,11 @@ footer a:hover{text-decoration:underline}
       <div class="ch-date"><b>June 2026</b> &middot; running it all from anywhere</div>
       <h3>TewBeDo: the console nobody sold, so I built it</h3>
       <div class="prose">
-        <p><b>One dark screen runs my whole working life</b>, from my phone, my iPad or the couch. Nobody sold a console like it, so I built my own. And be honest: <b>who does not want a command center where you get to play overseer</b> of everything you own? Tap the buttons below; they are the real ones.</p>
+        <p><b>One dark screen runs my whole working life</b>, from my phone, my iPad or the couch. Nobody sold a console like it, so I built my own. And be honest: <b>who does not want a command center where you get to play overseer</b> of everything you own? Tap the buttons on the console; they are the real ones.</p>
         <p><b>The strange part:</b> my own intel feed kept showing big companies announcing features this console already had. Not genius. <b>Ninja awareness, applied early</b>, and that is exactly what I bring to your table.</p>
       </div>
     </div>
+    <div class="ch-vis">
     <div class="tb-mock rv" id="tbMock">
       <div class="tb-bar">
         <span class="tb-logo">TEWBEDO</span><span class="tb-day">Tuesday, any day</span>
@@ -1063,6 +1066,7 @@ footer a:hover{text-decoration:underline}
         <span>AGENTS GO &middot; one press clears every waiting mission</span>
         <span>runs from the couch, the phone, the beach</span>
       </div>
+    </div>
     </div>
   </div>
 
@@ -1111,6 +1115,8 @@ footer a:hover{text-decoration:underline}
       <div class="stats">
         <div class="stat"><b><span data-count="6">0</span><span class="plus">+</span></b><span>hours of teaching, in person</span></div>
         <div class="stat"><b>1</b><span>human press on every send</span></div>
+        <div class="stat"><b><span data-count="1900">0</span><span class="plus">+</span></b><span>commits, for them</span></div>
+        <div class="stat"><b>3</b><span>businesses, built front to back</span></div>
       </div>
       <p class="vis-cap" style="max-width:100%;text-align:left;margin-top:12px">Their names stay out of it on purpose. The build pages and proof exist for every claim on this page.</p>
     </div>
@@ -1868,7 +1874,7 @@ footer a:hover{text-decoration:underline}
 <section class="t8b" id="opt-8b">
   <div class="wrap rv">
     <span class="k">No testimonials yet, on purpose</span>
-    <h2>Asked for, and shipped</h2>
+    <h2>Asked for, shipped, and now part of the Dojo, waiting for you</h2>
     <p class="sub">Client names stay out of it, and I will not invent a quote to fill a box. What I can show is what was asked for, and what shipped.</p>
     <div class="cards">
       <div class="card"><span class="k">Asked</span><p>"Give me my evenings back."</p><span class="k" style="margin-top:14px">Shipped</span><p><b>The gym app.</b> 800+ member families, bookings, belts, birthdays, running on auto while the sensei teaches. That client was me.</p></div>
