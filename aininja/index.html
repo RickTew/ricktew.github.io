@@ -276,18 +276,6 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 @media (prefers-reduced-motion:reduce){ .sprinkle figure{transition:none} }
 .sprinkle-cap{margin-top:15px;font-size:12.5px;font-weight:700;color:var(--muted);line-height:1.55}
 .sprinkle-cap b{color:var(--ink);font-weight:900}
-/* the game wall: everything around the board that a game also needs. Wide
-   frames, full width under the chapter, each one a real screen off the build. */
-.gamewall{grid-column:1/-1;margin-top:34px}
-.gamewall h4{font-size:clamp(18px,2.4vw,22px);font-weight:900}
-.gamewall .lead{margin-top:8px;font-size:14.5px;font-weight:600;color:#4b5563;max-width:70ch}
-.gamewall .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-.gamewall figure{margin:0}
-.gamewall img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px;border:1px solid var(--line);box-shadow:0 6px 16px rgba(16,20,24,.08);background:#0c0c10}
-.gamewall figcaption{margin-top:7px;font-size:12.5px;font-weight:700;color:var(--muted);line-height:1.4}
-.gamewall figcaption b{color:var(--ink)}
-@media (max-width:820px){ .gamewall .grid{grid-template-columns:repeat(2,1fr)} }
-@media (max-width:480px){ .gamewall .grid{grid-template-columns:1fr} }
 
 /* CH 5: the TewBeDo console, rebuilt as the real buttons instead of screenshots */
 /* the console sits in the chapter's right column, beside the words, and
@@ -1010,6 +998,15 @@ footer a:hover{text-decoration:underline}
           <img src="assets/story/games/dh-stand.jpg" alt="DungeonHole: Stand and fight!, the Wizard's Arcane Blast on the troll, gargoyle closing in" loading="lazy">
           <img src="assets/story/games/dh-lair.jpg" alt="DungeonHole: the Defender's dungeon, skeletons, ogre, goblins and a gargoyle laid out around the treasure" loading="lazy">
           <img src="assets/story/games/dh-march.jpg" alt="DungeonHole: Thief, Fighter, Ranger, Cleric and Wizard on the green squares, ready to march" loading="lazy">
+          <img src="assets/story/games/dh-ui-home.jpg" alt="DungeonHole: the front door, the title and the three ways in" loading="lazy">
+          <img src="assets/story/games/dh-ui-lobby.jpg" alt="DungeonHole: the lobby, pick a difficulty and a depth, or fight" loading="lazy">
+          <img src="assets/story/games/dh-ui-shop.jpg" alt="DungeonHole: hero picks with the Mage shop open" loading="lazy">
+          <img src="assets/story/games/dh-ui-backpack.jpg" alt="DungeonHole: the backpack, gear for the party before the door opens" loading="lazy">
+          <img src="assets/story/games/dh-ui-defender.jpg" alt="DungeonHole: the Defender's build screen, the horde shop bar and the traps" loading="lazy">
+          <img src="assets/story/games/dh-ui-results.jpg" alt="DungeonHole: round results, the score and the breakdown" loading="lazy">
+          <img src="assets/story/games/dh-ui-compendium.jpg" alt="DungeonHole: the compendium index, heroes, gear, horde, traps, legend" loading="lazy">
+          <img src="assets/story/games/dh-ui-heroes.jpg" alt="DungeonHole: the heroes compendium, five roles and their cards" loading="lazy">
+          <img src="assets/story/games/dh-ui-horde.jpg" alt="DungeonHole: the horde compendium, the bestiary group by group" loading="lazy">
         </figure>
         <figure class="cycle" data-game="AstroHold">
           <img src="assets/story/games/ah-log.jpg" alt="AstroHold: the turret line, the walkers and the turn log" class="on">
@@ -1019,7 +1016,7 @@ footer a:hover{text-decoration:underline}
           <img src="assets/story/games/ah-squad.jpg" alt="AstroHold: the dog, the sentry and two marines, close up" loading="lazy">
         </figure>
       </div>
-      <p class="sprinkle-cap">Two of the games, one tile each, walking through their own screens. <b>DungeonHole:</b> the party on the board, the ranger's line of fire, a raid from the door to the treasure, the Defender's dungeon. <b>AstroHold:</b> the turret line, the walkers, the medic pad, a fallen marine's last word. Both playable, both still in beta, and both taught me how many parts a working game actually has.</p>
+      <p class="sprinkle-cap">Two of the games, one tile each, walking through their own screens. <b>DungeonHole:</b> the party on the board, the ranger's line of fire, a raid from the door to the treasure, the Defender's dungeon. <b>AstroHold:</b> the turret line, the walkers, the medic pad, a fallen marine's last word. Both playable, both still in beta. And the DungeonHole tile also walks through everything around the board, because to make a game you make all of it: the front door, the lobby, the shops, the Defender's build screen, the results, the rulebook.</p>
     </div>
     <div class="ch-vis">
       <div class="phone-fan">
@@ -1060,21 +1057,6 @@ footer a:hover{text-decoration:underline}
       <div class="spr-fig"><span class="spr spr-paladin pixel"></span><small>paladin, smiting</small></div>
       <div class="spr-fig"><span class="spr spr-medusa pixel"></span><small>medusa, gazing</small></div>
       <div class="spr-fig"><span class="spr spr-minotaur pixel"></span><small>minotaur, swinging</small></div>
-    </div>
-    <div class="gamewall rv">
-      <h4>To make a game, you make everything around it.</h4>
-      <p class="lead">The board is the part people picture. Before anyone plays a round there is a front door, a lobby, a shop, a results screen and a rulebook, and every one of them raises questions the board never asked. These are DungeonHole's, still in beta.</p>
-      <div class="grid">
-        <figure><img src="assets/story/games/dh-ui-home.jpg" alt="DungeonHole home screen: the title, the tagline, and the three ways in: The Climb, Dungeon Fight, Hero's Hole" loading="lazy"><figcaption><b>The front door.</b> Three ways in: The Climb, Dungeon Fight, Hero's Hole.</figcaption></figure>
-        <figure><img src="assets/story/games/dh-ui-lobby.jpg" alt="DungeonHole lobby: The Climb card with difficulty and depth, and the Dungeon Fight card" loading="lazy"><figcaption><b>The lobby.</b> Pick a difficulty and a depth, or fight.</figcaption></figure>
-        <figure><img src="assets/story/games/dh-ui-shop.jpg" alt="DungeonHole hero picks with the Mage shop open and Fighter, Cleric and Ranger already placed" loading="lazy"><figcaption><b>Hero picks.</b> The Mage shop open, three heroes already on the green squares.</figcaption></figure>
-        <figure><img src="assets/story/games/dh-ui-backpack.jpg" alt="DungeonHole backpack gear shop with the five-hero party placed" loading="lazy"><figcaption><b>The backpack.</b> Gear for the party before the door opens.</figcaption></figure>
-        <figure><img src="assets/story/games/dh-ui-defender.jpg" alt="DungeonHole Defender's build screen: the horde shop bar with lich, ogre, skeletons, goblins, troll, dark elf, wraith, gargoyle and four traps laid out" loading="lazy"><figcaption><b>The Defender's side.</b> Build the dungeon: the horde shop bar, the traps, the lair.</figcaption></figure>
-        <figure><img src="assets/story/games/dh-ui-results.jpg" alt="DungeonHole round results: heroes escaped with the treasure, the score, score breakdown, re-watch and next round" loading="lazy"><figcaption><b>Round results.</b> The score, the breakdown, the re-watch, the next round.</figcaption></figure>
-        <figure><img src="assets/story/games/dh-ui-compendium.jpg" alt="DungeonHole compendium index: Heroes, Gear, Horde, Traps, Legend" loading="lazy"><figcaption><b>The compendium.</b> Heroes, gear, horde, traps, legend.</figcaption></figure>
-        <figure><img src="assets/story/games/dh-ui-heroes.jpg" alt="DungeonHole heroes compendium: the five roles and the first melee cards" loading="lazy"><figcaption><b>Heroes.</b> Five roles, every card with its numbers.</figcaption></figure>
-        <figure><img src="assets/story/games/dh-ui-horde.jpg" alt="DungeonHole horde compendium: the bestiary groups and the first undead cards" loading="lazy"><figcaption><b>The horde.</b> The bestiary, group by group, undead first.</figcaption></figure>
-      </div>
     </div>
   </div>
 </section>
