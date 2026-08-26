@@ -352,6 +352,16 @@ html,body{overflow-x:clip}
 .sol-row .bd{padding:0 18px 16px}
 .sol-row .bd p{font-size:14.5px;color:#4b5563;font-weight:600}
 .sol-mail{display:inline-block;margin-top:10px;font-weight:900;font-size:14px;color:var(--blue);text-decoration:none;border-bottom:2px solid var(--blue)}
+/* the helpings: one wide row under the solutions, grouped by the need */
+.helpings{max-width:840px;margin:14px auto 0;border-color:var(--blue);box-shadow:0 8px 24px rgba(30,115,189,.10)}
+.helpings .bd > p{font-size:14.5px;color:#4b5563;font-weight:600}
+.help-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 28px;margin-top:16px}
+@media (max-width:700px){ .help-grid{grid-template-columns:1fr} }
+.help-grid h4{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.help-grid ul{margin:0;padding-left:18px}
+.help-grid li{font-size:13.5px;color:#4b5563;font-weight:600;margin:5px 0;line-height:1.5}
+.help-fine{margin-top:16px;font-size:14px;color:#4b5563;font-weight:700}
+.help-fine .sol-mail{margin-top:0}
 .sol-mail:hover{color:var(--blue-d)}
 .dojo-card h3{font-size:19px;font-weight:900}
 .dojo-card p{margin-top:10px;font-size:14.5px;color:#4b5563;font-weight:600}
@@ -1297,6 +1307,119 @@ footer a:hover{text-decoration:underline}
         <a class="sol-mail" href="#" data-mail="Build me the Video Room" data-ninja>&#129399; Want this one? Mail my Ninja</a></div>
       </details>
     </div>
+
+    <details class="sol-row helpings rv" id="helpings">
+      <summary><span class="nm">The helpings</span><span class="tg">The smaller things people asked for, and what got built. Tap to open.</span></summary>
+      <div class="bd">
+        <p>Most of what I build is not a whole app. It is the smaller thing somebody asked for on a Tuesday: "could you make it so..." Here are some of them, by the need, from my own gym and studio and from a few clients' builds, none named. Every one runs today.</p>
+        <div class="help-grid">
+          <section>
+            <h4>Answering people</h4>
+            <ul>
+              <li>Replies drafted from your own written answers, and a person presses send. Runs on my gym, my studio and a coaching team's desk.</li>
+              <li>An answer library that grows from the questions it could not answer, in two languages.</li>
+              <li>Years of old mailbox history imported and shown beside the reply box: how we answered this before.</li>
+              <li>After a mass send, out-of-office and bounce mail files itself, and a machine never gets a reply.</li>
+              <li>Forward a whole conversation to an outside party without mailing the customer.</li>
+              <li>The reply goes to the person who actually wrote a forwarded mail, not to the forwarder.</li>
+              <li>A guest who writes at midnight has a draft waiting by morning, in their own language.</li>
+              <li>A low public review is kept open as priority, with the public reply drafted.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Bookings</h4>
+            <ul>
+              <li>Book a treatment or a session without an account; reschedules, reminders and cancels handle themselves.</li>
+              <li>Slots are only offered where the room can hold them: three chairs, two beds, one mat.</li>
+              <li>Each therapist carries their own call-in notice, so the calendar only offers times they can reach.</li>
+              <li>A guest emails "book me Tuesday at two" and it becomes a real booking, labelled so a person can check it.</li>
+              <li>Birthday parties and school groups with a deposit, an approval step and a confirmation mail.</li>
+              <li>A bed picker in traffic-light colours, and a guard so two guests never hold the same bed.</li>
+              <li>Guests cancel their own booking instead of messaging the desk.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Money</h4>
+            <ul>
+              <li>Change a price by typing it: one table drives the website, the booking page and both tills.</li>
+              <li>Bank-transfer slips checked in the app before staff see them, in the layouts of the banks people actually use.</li>
+              <li>A mandatory reason on every rejected payment, a trail nobody can edit, and a red-flag panel for the owner.</li>
+              <li>Overdue instalments marked nightly, course access paused, the reminder drafted.</li>
+              <li>A printable invoice on every sale, and the Thai tax pack behind a role of its own.</li>
+              <li>Cash and PromptPay split on the day's revenue, so the drawer balances.</li>
+              <li>A promotion with a date window that switches itself on and off, everywhere at once.</li>
+              <li>Event tickets with a QR at the door, refunds, and card processing inside the app.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Getting found</h4>
+            <ul>
+              <li>A landing page builder with quizzes and lead magnets, and A/B tests that count honestly.</li>
+              <li>Email journeys triggered by what people actually do, with a test-send-to-yourself before going live.</li>
+              <li>Every booking says which ad it came from, so cost per booking can be read.</li>
+              <li>A dated ad test plan with kill, scale and stop rules written before any money moves.</li>
+              <li>A partner friends page with coupons and a free first session.</li>
+              <li>A self-serve listing form a busy owner can finish in two minutes.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Design and print</h4>
+            <ul>
+              <li>Shopfront signs made to fit measured locations, with vector files the printer can use.</li>
+              <li>Flyers, business cards and a rack card whose price menu reads from the live catalog, so print cannot drift from the till.</li>
+              <li>Social ads built as ads rather than cropped flyers, and covers cut to each platform's real crop.</li>
+              <li>An in-house print lane: no-background files for an office printer that cannot flood a page.</li>
+              <li>A whole book moved to black and white after three grayscale treatments were tested on one page.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Words, sound and language</h4>
+            <ul>
+              <li>A studio soundtrack of its own, rewritten until it sounded Thai and not Japanese.</li>
+              <li>A gym app in every language its families speak, and Thai answers for Thai guests.</li>
+              <li>Printed books from old word-processor files, unlocked into a chapter reader with progress.</li>
+              <li>Old DVD footage turned into per-lesson clips inside the lessons.</li>
+              <li>A staffer's raw FAQ notes rewritten in house voice, staged for approval, then published.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Running the shop</h4>
+            <ul>
+              <li>A request inbox: staff mail the build desk, requests are filed and shown on a live board.</li>
+              <li>Roles the team sets themselves, rebuilt from the team's own note on how they actually work.</li>
+              <li>Managers can hire: create a mailbox-ready account and choose each person's tabs. Leaving actually ends access.</li>
+              <li>A nightly backup of every member, kept for a month.</li>
+              <li>A proof page: every session logged with its edits, hours and commits, so the owner can see what was built.</li>
+              <li>An alarm when the mail stops, because an outage once went unnoticed for days.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>The small fixes that eat a day</h4>
+            <ul>
+              <li>Bold that survives the send.</li>
+              <li>The forward box finds addresses while you type.</li>
+              <li>Change the address someone signs in with, without locking them out.</li>
+              <li>The tablet slept and the music died: the screen lock re-acquired.</li>
+              <li>The knowledge screen showed zero with every answer still in the table: one missing column.</li>
+              <li>A cash drawer driven straight from the browser, no extra rig on the tablet.</li>
+              <li>Reopened phone apps no longer show days-old screens.</li>
+              <li>Contact details behind a tap, so the address stops being scraped.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Keeping it honest</h4>
+            <ul>
+              <li>A test per non-negotiable rule, run with every build.</li>
+              <li>A decision register, so a later session cannot quietly undo what the owner decided.</li>
+              <li>Machine mail files a ticket but never gets an auto-reply.</li>
+              <li>Test accounts kept out of the real numbers.</li>
+              <li>One switch that pauses every metered AI call, and a weekly line on what the agents cost.</li>
+            </ul>
+          </section>
+        </div>
+        <p class="help-fine">If one of these sounds like your Tuesday, the quiz at the end is where I would start, and <a class="sol-mail" href="#" data-mail="One of the helpings sounds like my Tuesday" data-ninja>&#129399; my Ninja</a> takes the rest.</p>
+      </div>
+    </details>
 
     <p class="dojo-honest">Tap a row to see it, tap the ninja to want it: your mail lands with my Ninja Agent first, which is the Front Desk up there answering for itself, and I take it from where he leaves off.</p>
   </div>
