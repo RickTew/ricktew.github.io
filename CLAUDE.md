@@ -300,7 +300,7 @@ Verify a status with a real request before repeating it on the site.**
 ### Brands / Businesses
 | Name | Status | Notes |
 |------|--------|-------|
-| Winjitsu | **Live** at winjitsu.com (verified 2026-08-21) | No longer a teaser |
+| WinJitsu | **Live** at winjitsu.com (verified 2026-08-21) | No longer a teaser |
 
 ### Open Source / Tools
 | Name | Notes |
@@ -327,7 +327,7 @@ Format: `ricktew` on every platform (or however each platform renders it).
 
 - Internationally recognized peak performance strategist and martial arts instructor
 - Self-described "Martial Arts Therapist" — combines mind and martial arts
-- Created **Winjitsu**: a mental martial art and success system
+- Created **WinJitsu**: a mental martial art and success system
 - Authored "Be a Black Belt in What You Do" — 5-book series on practical success principles
 - Runs NinjaGym in Samui, Thailand
 - Offers: live-in martial arts camps, training tours, ninja mindset coaching, corporate speaking
@@ -337,7 +337,7 @@ Format: `ricktew` on every platform (or however each platform renders it).
 
 **Bio structure:** Rick's own "5's" coaching framework — Who, What, When, Where, Why — then How as the action/CTA. The bio should model the system he teaches.
 
-**The "5" thread — use it:** 5 W's, 5 belt levels (HSP), 5 Winjitsu books, 5-book "Be a Black Belt" series. This is a real brand motif, not a coincidence. Consider making it a subtle visual or structural element on the site.
+**The "5" thread — use it:** 5 W's, 5 belt levels (HSP), 5 WinJitsu books, 5-book "Be a Black Belt" series. This is a real brand motif, not a coincidence. Consider making it a subtle visual or structural element on the site.
 
 ---
 
