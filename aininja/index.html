@@ -68,7 +68,8 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .hero-stats{margin-top:56px;display:flex;gap:0;flex-wrap:wrap;border-top:1px solid var(--line)}
 .hstat{padding:20px 34px 4px 0;margin-right:34px}
 .hstat b{display:block;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:32px;font-weight:900;color:var(--ink)}
-.hstat span{font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.hstat > span{font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.hstat b span{font-size:inherit;font-weight:inherit;color:inherit;letter-spacing:0;text-transform:none}
 .hstat .plus{color:var(--blue)}
 .hero-share{margin-top:18px;max-width:64ch;color:var(--muted);font-weight:700;font-size:15px;line-height:1.6}
 .hero-share b{color:var(--ink)}
@@ -103,9 +104,13 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 @media (prefers-reduced-motion:reduce){ .spr{animation:none !important} }
 
 /* noise intro */
-.noise{padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
-.noise p{max-width:74ch;font-weight:700;color:#3a4148}
-.noise b{color:var(--ink)}
+.noise{padding:48px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+.noise-card{max-width:820px;margin:0 auto;background:#fff;border:2px solid var(--blue);border-radius:16px;padding:30px 32px;box-shadow:0 16px 44px rgba(30,115,189,.10);transition:box-shadow .2s ease}
+.noise-card:hover{box-shadow:0 20px 54px rgba(30,115,189,.18)}
+.noise-card h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:clamp(24px,3.4vw,34px);font-weight:900;margin-top:8px;line-height:1.1}
+.noise-card p{margin-top:14px;font-weight:600;color:#3a4148;font-size:16.5px;line-height:1.7}
+.noise-card b{color:var(--ink)}
+@media (max-width:600px){ .noise-card{padding:22px 20px} }
 
 /* timeline */
 .tl-head{padding:84px 0 10px}
@@ -767,11 +772,11 @@ footer a:hover{text-decoration:underline}
     </div>
     <div class="hero-stats">
       <div class="hstat"><b><span data-count="25">0</span><span class="plus">+</span></b><span>years a ninja</span></div>
-      <div class="hstat"><b data-count="16">0</b><span>builds since March</span></div>
-      <div class="hstat"><b><span data-count="3600">0</span><span class="plus">+</span></b><span>commits in 5 months</span></div>
-      <div class="hstat"><b><span data-count="100">0</span><span class="plus">+</span></b><span>game characters designed</span></div>
+      <div class="hstat"><b><span data-count="25">0</span><span class="plus">+</span></b><span>years a nerd</span></div>
+      <div class="hstat"><b><span data-count="4800">0</span><span class="plus">+</span></b><span>commits in 5 months</span></div>
+      <div class="hstat"><b><span data-count="100">0</span><span class="plus">+</span></b><span>solutions built</span></div>
     </div>
-    <p class="hero-share">The numbers are not the pitch. <b>I built a few things, learned some great stuff along the way, and shared it with friends.</b> I think you could get something out of it too. Read the rest as sharing, not selling.</p>
+    <p class="hero-share">None of that is a pitch. I built a few things, learned some great stuff along the way and shared it with friends. I think you could get something out of it too, so read the rest as sharing, not selling.</p>
   </div>
 </header>
 
@@ -779,7 +784,7 @@ footer a:hover{text-decoration:underline}
 <section class="h2b" id="opt-2b">
   <div class="wrap rv">
     <h2>You run the business. <em>My AI ninjas run the admin.</em></h2>
-    <p class="sub">I'm Rick Tew: 25 years a martial arts sensei, 16 real builds since March. I build and train an AI workforce for your business, and a human presses every send.</p>
+    <p class="sub">I'm Rick Tew: 25 years a martial arts sensei, and about as many a nerd. Since March I have been building solutions for my own businesses. I build and train an AI workforce for your business, and a human presses every send.</p>
     <div class="cta-row">
       <a class="btn btn-blue" href="#quiz">Take the 3-minute quiz</a>
       <a class="btn btn-quiet" href="#story">Read the story first</a>
@@ -796,21 +801,26 @@ footer a:hover{text-decoration:underline}
 <section class="h2c" id="opt-2c">
   <div class="wrap rv">
     <div class="k">Rick Tew &middot; The Digital Dojo</div>
-    <h2>No pitch. <b>Sixteen receipts.</b></h2>
-    <p class="sub">Everything on this page is a build you can open: the app that runs my gym, the game on the Apple App Store, the console that runs it all. Five months of work, dated from the project history. If you want the same thing done for your business, the quiz at the end works out where I would start.</p>
+    <h2>No pitch. <b>Just receipts.</b></h2>
+    <p class="sub">Everything on this page is something you can open: the app that runs my gym, the game on the Apple App Store, the console that runs it all. A mix of solutions and goals. Some save time, some were things I simply wanted to exist, and a few are just fun to build. Five months of work, dated from the project history. If you want the same thing done for your business, the quiz at the end works out where I would start.</p>
   </div>
 </section>
 
 <div class="noise">
   <div class="wrap rv">
-    <p>What you see on social right now: people claiming to be multi-millionaires, even billionaires, or super marketing experts. They saw an opportunity, and it is not your problem they want to solve. It reminds me of the old seminar speakers who never built anything, taught you how to make money, and ironically the teaching is what made them the money. <b>I'm not from that playbook. So instead of a pitch, here is what actually happened.</b></p>
+    <div class="noise-card">
+      <div class="k">Before the story, one honest paragraph</div>
+      <h3>I'm not from that playbook.</h3>
+      <p>What you see on social right now: people claiming to be multi-millionaires, even billionaires, or super marketing experts. They saw an opportunity, and it is not your problem they want to solve. It reminds me of the old seminar speakers who never built anything, taught you how to make money, and ironically the teaching is what made them the money.</p>
+      <p><b>So instead of a pitch, here is what actually happened.</b> Not a sales record, not a view count. A builder's log: solutions I needed, goals I had set, and a few things made purely for the fun of it.</p>
+    </div>
   </div>
 </div>
 
 <section class="tl-head" id="story">
   <div class="wrap rv">
     <div class="k">The story, in build order</div>
-    <h2>Five months. <span class="c">Sixteen builds.</span> One reason.</h2>
+    <h2>Five months. <span class="c">Solutions and goals.</span> One reason.</h2>
     <p>Every date below comes straight from the project history. Nothing rearranged to look better than it was.</p>
   </div>
 </section>
@@ -1553,7 +1563,7 @@ footer a:hover{text-decoration:underline}
 <!-- ============ OPTION 4A: the portfolio wall ============ -->
 <section class="pf4" id="opt-4a">
   <div class="wrap rv">
-    <span class="k">Four of the sixteen</span>
+    <span class="k">Four that carry the most weight</span>
     <h2>The builds that carry the most weight</h2>
     <p class="sub">Live captures off each app's own address, not renders. The full wall of thirteen is further up the page; these four are the ones a client meeting always ends up on.</p>
     <div class="grid">
@@ -1598,7 +1608,7 @@ footer a:hover{text-decoration:underline}
       <img src="assets/story/ninjagym/gallery-samui-kick.jpg" alt="Rick Tew mid flying kick" loading="lazy">
       <div class="prose">
         <p>I opened my first martial arts school at 19. Today I run NinjaGym on Koh Samui: martial arts for kids, seven days a week, 800+ families. A sensei's whole job is taking someone from white belt to black belt without skipping the proving part in the middle.</p>
-        <p><b>I am the nerd who enjoys this part, and I wanted my time back too.</b> So I built the app that runs my gym, then the POS the vendor would not sell me fairly, then the console that runs everything, then fourteen more builds, including the game I had wanted to make for twenty years. It is on the Apple App Store.</p>
+        <p><b>I am the nerd who enjoys this part, and I wanted my time back too.</b> So I built the app that runs my gym, then the POS the vendor would not sell me fairly, then the console that runs everything, then more builds than I had planned, including the game I had wanted to make for twenty years. It is on the Apple App Store.</p>
         <p>Now I do for other owners what I did for myself: I build the Dojo, train the AI ninjas, and hold the one rule that never bends: <b>a human presses every send.</b></p>
       </div>
     </div>
