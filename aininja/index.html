@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rick Tew: a ninja who builds with AI</title>
 <meta name="description" content="One real story: a martial arts business that needed its owner's time back, and the five months of building that followed. Read it, then take the simple quiz.">
+<link rel="icon" href="/assets/images/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#1e73bd">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Rick Tew">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -254,14 +261,18 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
    leaves empty. The wide board shots that used to sit in their own section
    read as mostly empty grey at that size, which sold the games short. */
 .sprinkle{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}
-.sprinkle figure{margin:0;transition:transform .3s ease}
+.sprinkle figure{margin:0;transition:transform .3s ease;position:relative;aspect-ratio:1}
 .sprinkle figure:nth-child(3n+1){transform:rotate(-1.6deg)}
 .sprinkle figure:nth-child(3n+2){transform:rotate(.9deg)}
 .sprinkle figure:nth-child(3n+3){transform:rotate(-.7deg)}
 .sprinkle figure:hover{transform:rotate(0deg) scale(1.07);position:relative;z-index:2}
 .sprinkle img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;
-  border:1px solid var(--line);image-rendering:pixelated;
+  border:1px solid var(--line);
   box-shadow:0 6px 16px rgba(16,20,24,.10)}
+/* each tile holds a couple of shots from the same game and turns them over
+   on its own clock, so the six never flip together */
+.sprinkle .cycle img{position:absolute;inset:0;height:100%;opacity:0;transition:opacity .9s ease}
+.sprinkle .cycle img.on{opacity:1}
 @media (prefers-reduced-motion:reduce){ .sprinkle figure{transition:none} }
 @media (max-width:520px){ .sprinkle{grid-template-columns:repeat(2,1fr)} }
 .sprinkle-cap{margin-top:15px;font-size:12.5px;font-weight:700;color:var(--muted);line-height:1.55}
@@ -938,15 +949,33 @@ footer a:hover{text-decoration:underline}
         <p>Every builder has one goal they carry for decades. Mine was a game with my name on it, on the Apple App Store. In one May, DungeonHole, AstroHold, TEWGO, Ninja Village and Ninja Defense all went from nothing to playable.</p>
         <p><b>TEWGO made it onto the Apple App Store.</b> Honest notes from the work: the other games are still fighting me, games are genuinely hard, and apps and business tools are far easier. That honesty matters later in this story.</p>
       </div>
-      <div class="sprinkle">
-        <figure><img src="assets/story/games/close-dh-party.jpg" alt="DungeonHole: the Knight, Monk, Cleric and Wizard standing on the green deploy tiles" loading="lazy"></figure>
-        <figure><img src="assets/story/games/close-dh-treasure.jpg" alt="DungeonHole: a glowing gold chest sitting on the dungeon floor" loading="lazy"></figure>
-        <figure><img src="assets/story/games/close-dh-cauldron.jpg" alt="DungeonHole: a cauldron bubbling over an open fire" loading="lazy"></figure>
-        <figure><img src="assets/story/games/close-ah-core.jpg" alt="AstroHold: the turret line and the glowing power core behind it" loading="lazy"></figure>
-        <figure><img src="assets/story/games/close-ah-mech.jpg" alt="AstroHold: a four legged walker mid advance across the grid" loading="lazy"></figure>
-        <figure><img src="assets/story/games/close-nv-map.jpg" alt="Ninja Village: the Kageyama map with your village marked and a ninja standing beside it" loading="lazy"></figure>
+      <div class="sprinkle" id="gameTiles">
+        <figure class="cycle" data-game="DungeonHole">
+          <img src="assets/story/games/dh-board.jpg" alt="DungeonHole: the dungeon board, chests in the corners, orcs and goblins waiting" class="on">
+          <img src="assets/story/games/dh-sneak.jpg" alt="DungeonHole: the ninja lands a sneak attack in the middle of the board" loading="lazy">
+        </figure>
+        <figure class="cycle" data-game="DungeonHole">
+          <img src="assets/story/games/dh-party.jpg" alt="DungeonHole: the party spread across the board with the treasure glowing in the corner" class="on">
+          <img src="assets/story/games/dh-ranger.jpg" alt="DungeonHole: the ranger's line of fire across the tiles to a skeleton" loading="lazy">
+        </figure>
+        <figure class="cycle" data-game="DungeonHole">
+          <img src="assets/story/games/dh-mage.jpg" alt="DungeonHole: the wild mage, the seductress and the shadow, close up" class="on">
+          <img src="assets/story/games/dh-ninja.jpg" alt="DungeonHole: the ninja squares up to two goblins" loading="lazy">
+        </figure>
+        <figure class="cycle" data-game="AstroHold">
+          <img src="assets/story/games/ah-log.jpg" alt="AstroHold: the turret line, the walkers and the turn log" class="on">
+          <img src="assets/story/games/ah-lastword.jpg" alt="AstroHold: a fallen marine and his last word, tell my mom" loading="lazy">
+        </figure>
+        <figure class="cycle" data-game="AstroHold">
+          <img src="assets/story/games/ah-turrets.jpg" alt="AstroHold: two turrets, a sphere and a walker on the grid" class="on">
+          <img src="assets/story/games/ah-medic.jpg" alt="AstroHold: the medic pad between two marines and a sniper" loading="lazy">
+        </figure>
+        <figure class="cycle" data-game="AstroHold">
+          <img src="assets/story/games/ah-squad.jpg" alt="AstroHold: the dog, the sentry and two marines, close up" class="on">
+          <img src="assets/story/games/ah-log.jpg" alt="AstroHold: the turret line, the walkers and the turn log" loading="lazy">
+        </figure>
       </div>
-      <p class="sprinkle-cap">Close ups from three of the five, at the size the games actually draw them. <b>DungeonHole:</b> the party on the deploy tiles, the chest worth the detour, the cauldron. <b>AstroHold:</b> the power core the turret line is there to defend, and a walker mid advance. <b>Ninja Village:</b> Kageyama, where every screen is a choice and the choices are the whole game.</p>
+      <p class="sprinkle-cap">Straight off the screen from two of the games, and each tile turns over to a second shot from the same one. <b>DungeonHole:</b> the party on the board, the ranger's line of fire, the ninja's sneak attack. <b>AstroHold:</b> the turret line, the walkers, the medic pad, and a fallen marine's last word.</p>
     </div>
     <div class="ch-vis">
       <div class="phone-fan">
@@ -2403,6 +2432,31 @@ footer a:hover{text-decoration:underline}
   video.addEventListener("ended",stopTape);
   go(0); toggle.textContent=playing?"Pause":"Play"; tick();
 })();
+/* The game tiles: every figure.cycle turns over to its next shot every few
+   seconds, each on its own offset. Hover holds a tile. Reduced motion
+   leaves the first shot standing. */
+(function(){
+  var tiles=document.querySelectorAll("#gameTiles .cycle"); if(!tiles.length) return;
+  if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  tiles.forEach(function(fig,n){
+    var imgs=fig.querySelectorAll("img"), i=0, hold=false;
+    if(imgs.length<2) return;
+    fig.addEventListener("mouseenter",function(){ hold=true; });
+    fig.addEventListener("mouseleave",function(){ hold=false; });
+    setTimeout(function(){
+      setInterval(function(){
+        if(hold) return;
+        i=(i+1)%imgs.length;
+        imgs.forEach(function(im,k){ im.classList.toggle("on",k===i); });
+      },5200);
+    },900*n);
+  });
+})();
+</script>
+<script>
+/* Installable: register the site's service worker. Registration is silent
+   and the page works exactly the same without it. */
+if("serviceWorker" in navigator){ window.addEventListener("load",function(){ navigator.serviceWorker.register("/sw.js").catch(function(){}); }); }
 </script>
 </body>
 </html>
