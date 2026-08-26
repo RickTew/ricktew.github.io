@@ -70,6 +70,8 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .hstat b{display:block;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:32px;font-weight:900;color:var(--ink)}
 .hstat span{font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
 .hstat .plus{color:var(--blue)}
+.hero-share{margin-top:18px;max-width:64ch;color:var(--muted);font-weight:700;font-size:15px;line-height:1.6}
+.hero-share b{color:var(--ink)}
 /* the sensei, cut off his studio backdrop so he stands on the page itself */
 .hero-ninja{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px}
 .hero-ninja::before{content:"";position:absolute;left:50%;top:4%;z-index:0;
@@ -519,6 +521,51 @@ footer a:hover{text-decoration:underline}
 .a6a .prose b{color:var(--ink)}
 
 /* 6B: about, the letter */
+/* 30+ years a ninja: the reel (photos and two short tapes) and the build log */
+.ninja{padding:84px 0;border-top:1px solid var(--line);background:var(--panel)}
+.ninja .k,.ninja h2{text-align:center}
+.ninja h2{font-size:clamp(26px,4vw,38px);font-weight:900;margin-top:8px}
+.ninja .sub{text-align:center;color:var(--muted);font-weight:700;margin-top:12px;max-width:62ch;margin-left:auto;margin-right:auto}
+.ninja .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start;margin-top:40px}
+@media (max-width:900px){ .ninja .grid{grid-template-columns:1fr} }
+.reel{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 16px 44px rgba(16,20,24,.08)}
+.reel-stage{position:relative;aspect-ratio:4/3;background:#101418;overflow:hidden}
+.reel-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease;transform:scale(1.04)}
+.reel-stage img.on{opacity:1;animation:reelKen 5s ease-out forwards}
+@keyframes reelKen{from{transform:scale(1.04)}to{transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){ .reel-stage img.on{animation:none;transform:none} }
+.reel-stage video{position:absolute;inset:0;width:100%;height:100%;background:#000;display:none}
+.reel-stage.playing video{display:block}
+.reel-stage.playing img,.reel-stage.playing .reel-cap{display:none}
+.reel-cap{position:absolute;left:0;right:0;bottom:0;padding:44px 18px 16px;background:linear-gradient(180deg,transparent,rgba(16,20,24,.84));color:#fff;font-weight:800;font-size:14.5px;line-height:1.4}
+.reel-cap small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-bottom:4px}
+.reel-bar{display:flex;align-items:center;gap:10px;padding:12px 14px;flex-wrap:wrap}
+.reel-dots{display:flex;gap:5px;flex:1;flex-wrap:wrap}
+.reel-dots button{width:8px;height:8px;border-radius:50%;border:0;background:#d6dae0;padding:0;cursor:pointer}
+.reel-dots button.on{background:var(--blue)}
+.reel-btn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-weight:900;font-size:12.5px;cursor:pointer;color:var(--ink);font-family:inherit}
+.reel-btn:hover{border-color:var(--blue);color:var(--blue-d)}
+.reel-tapes{display:flex;gap:10px;padding:0 14px 14px;flex-wrap:wrap}
+.tape{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:6px 12px 6px 6px;background:#fff;cursor:pointer;font-weight:900;font-size:13px;color:var(--ink);text-align:left;font-family:inherit}
+.tape img{width:56px;height:42px;object-fit:cover;border-radius:8px}
+.tape small{display:block;font-weight:700;color:var(--muted);font-size:11.5px}
+.tape:hover{border-color:var(--blue)}
+.tape.on{border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,115,189,.15)}
+.reel-fine{padding:0 14px 14px;font-size:12.5px;color:var(--muted);font-weight:700}
+.ninja .prose p{margin-top:14px;color:#374151;font-weight:600}
+.ninja .prose p:first-child{margin-top:0}
+.ninja .prose b{color:var(--ink)}
+.buildlog{margin-top:48px;max-width:880px;margin-left:auto;margin-right:auto}
+.buildlog h3{font-size:clamp(20px,3vw,26px);font-weight:900;text-align:center}
+.buildlog .note{text-align:center;color:var(--muted);font-weight:700;font-size:14.5px;margin-top:8px}
+.buildlog ol{list-style:none;margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media (max-width:700px){ .buildlog ol{grid-template-columns:1fr} }
+.buildlog li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:start}
+.buildlog li b{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:15px;color:var(--blue);font-weight:900;line-height:1.3}
+.buildlog li span{font-size:14.5px;color:#374151;font-weight:600}
+.ninja .close{margin-top:36px;text-align:center;max-width:62ch;margin-left:auto;margin-right:auto;font-weight:700;color:#374151}
+.ninja .close b{color:var(--ink)}
+.ninja .cta{margin-top:18px;text-align:center}
 .a6b{padding:84px 0;background:var(--panel);border-top:1px solid var(--line)}
 .a6b .k,.a6b h2{text-align:center}
 .a6b h2{font-size:clamp(26px,4vw,38px);font-weight:900;margin-top:8px}
@@ -695,6 +742,7 @@ footer a:hover{text-decoration:underline}
       <a href="#masters">The Masters</a>
       <a href="#dojo">The Dojo</a>
       <a href="#quiz">The quiz</a>
+      <a href="#ninja">The ninja</a>
       <a class="btn btn-blue" href="#story">Read the story</a>
     </div>
   </div>
@@ -723,6 +771,7 @@ footer a:hover{text-decoration:underline}
       <div class="hstat"><b><span data-count="3600">0</span><span class="plus">+</span></b><span>commits in 5 months</span></div>
       <div class="hstat"><b><span data-count="100">0</span><span class="plus">+</span></b><span>game characters designed</span></div>
     </div>
+    <p class="hero-share">The numbers are not the pitch. <b>I built a few things, learned some great stuff along the way, and shared it with friends.</b> I think you could get something out of it too. Read the rest as sharing, not selling.</p>
   </div>
 </header>
 
@@ -914,6 +963,7 @@ footer a:hover{text-decoration:underline}
     <div class="k">From the games</div>
     <h2>118 characters, every one of them mine</h2>
     <p class="sub">Heroes, the horde, marines, cyborgs and one very good dog. 98 of them in DungeonHole, out of its own class and enemy tables, and 20 robots, cyborgs and emplacements in AstroHold. Every one animated in eight directions. These are not a promo render: they are the exact frames the games draw, at their exact size, which is why the big ones tower over the small ones the same way they do in a fight.</p>
+    <p class="sub">For the record, not for the scoreboard: I did design over a hundred characters for the games, and I am not trying to impress anyone with the count. They are here because they are part of the story, and because I enjoyed making them.</p>
 
     <div class="row-label">Six of them, mid-move</div>
     <div class="spr-row" aria-hidden="true">
@@ -1552,6 +1602,77 @@ footer a:hover{text-decoration:underline}
         <p>Now I do for other owners what I did for myself: I build the Dojo, train the AI ninjas, and hold the one rule that never bends: <b>a human presses every send.</b></p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ 30+ YEARS A NINJA: the reel and the build log ============ -->
+<section class="ninja" id="ninja">
+  <div class="wrap rv">
+    <div class="k">30+ years a ninja</div>
+    <h2>I like to build. That is the whole story.</h2>
+    <p class="sub">The other door of this site, in one section. Not a highlight reel to impress you: a few photos and two old tapes so you can see the building did not start with the apps.</p>
+
+    <div class="grid">
+      <div class="reel rv" id="ninjaReel">
+        <div class="reel-stage">
+        <img src="assets/story/ninja/world/us-early-years.jpg" alt="The early years. It started in my teens and never stopped." data-tag="United States" data-cap="The early years. It started in my teens and never stopped.">
+        <img src="assets/story/ninja/world/us-yosemite-rappel.jpg" alt="Camp life by Yosemite: ropes, granite, real heights." data-tag="United States" data-cap="Camp life by Yosemite: ropes, granite, real heights." loading="lazy">
+        <img src="assets/story/ninja/world/us-camp-crew.jpg" alt="A camp crew in the California mountains." data-tag="United States" data-cap="A camp crew in the California mountains." loading="lazy">
+        <img src="assets/story/ninja/world/us-camp-spar.jpg" alt="Sparring on a mountaintop. The dojo is wherever you stand." data-tag="United States" data-cap="Sparring on a mountaintop. The dojo is wherever you stand." loading="lazy">
+        <img src="assets/story/ninja/world/us-joshua-tree.jpg" alt="Rope work in the desert at Joshua Tree, on a training tour." data-tag="United States" data-cap="Rope work in the desert at Joshua Tree, on a training tour." loading="lazy">
+        <img src="assets/story/ninja/world/us-tour-yosemite.jpg" alt="Training tours: students from around the world, Yosemite included." data-tag="United States" data-cap="Training tours: students from around the world, Yosemite included." loading="lazy">
+        <img src="assets/story/ninja/world/us-press-warrior.jpg" alt="A flying kick over the Grand Canyon, in a magazine spread. Yes, I really did." data-tag="United States" data-cap="A flying kick over the Grand Canyon, in a magazine spread. Yes, I really did." loading="lazy">
+        <img src="assets/story/ninja/world/us-press-blackbelt.jpg" alt="In print, early on." data-tag="United States" data-cap="In print, early on." loading="lazy">
+        <img src="assets/story/ninja/world/eu-holland-banner.jpg" alt="NinjaGym Holland. A second home for six years." data-tag="Europe" data-cap="NinjaGym Holland. A second home for six years." loading="lazy">
+        <img src="assets/story/ninja/world/eu-speaking.jpg" alt="On stage in Holland: talks, demos and the TV years." data-tag="Europe" data-cap="On stage in Holland: talks, demos and the TV years." loading="lazy">
+        <img src="assets/story/ninja/world/eu-lectures.jpg" alt="Seminars, from universities to company events." data-tag="Europe" data-cap="Seminars, from universities to company events." loading="lazy">
+        <img src="assets/story/ninja/world/eu-press.jpg" alt="Magazine features from the European years." data-tag="Europe" data-cap="Magazine features from the European years." loading="lazy">
+        <img src="assets/story/ninja/world/winjitsu-books.jpg" alt="WinJitsu level one was born in Holland. It grew into five books." data-tag="Europe" data-cap="WinJitsu level one was born in Holland. It grew into five books." loading="lazy">
+        <img src="assets/story/ninja/world/asia-founder.jpg" alt="NinjaGym, Koh Samui. Still does the splits, still shows off." data-tag="Asia" data-cap="NinjaGym, Koh Samui. Still does the splits, still shows off." loading="lazy">
+        <img src="assets/story/ninja/world/asia-ninjagym.jpg" alt="Inside NinjaGym: red mats, real training." data-tag="Asia" data-cap="Inside NinjaGym: red mats, real training." loading="lazy">
+        <img src="assets/story/ninja/world/asia-island.jpg" alt="Island mode: beach sparring, rings and jungle ropes." data-tag="Asia" data-cap="Island mode: beach sparring, rings and jungle ropes." loading="lazy">
+        <img src="assets/story/ninja/world/asia-press-thailand.jpg" alt="Training in Thailand, in print." data-tag="Asia" data-cap="Training in Thailand, in print." loading="lazy">
+          <video controls playsinline preload="none"></video>
+          <div class="reel-cap"></div>
+        </div>
+        <div class="reel-bar">
+          <div class="reel-dots" aria-label="Photos"></div>
+          <button type="button" class="reel-btn reel-toggle">Pause</button>
+        </div>
+        <div class="reel-tapes">
+          <button type="button" class="tape" data-src="assets/story/ninja/tapes/nunchaku-full.mp4" data-poster="assets/story/ninja/tapes/nunchaku-poster.jpg"><img src="assets/story/ninja/tapes/nunchaku-poster.jpg" alt="" loading="lazy"><span>Nunchaku<small>An old tape, 68 seconds</small></span></button>
+          <button type="button" class="tape" data-src="assets/story/ninja/tapes/strikes-intro.mp4" data-poster="assets/story/ninja/tapes/strikes-poster.jpg"><img src="assets/story/ninja/tapes/strikes-poster.jpg" alt="" loading="lazy"><span>Strikes and kicks<small>The 2010 tape, 68 seconds</small></span></button>
+        </div>
+        <p class="reel-fine">Real footage, standard definition, from the archive. Tap a tape to play it here; tap it again to go back to the photos.</p>
+      </div>
+
+      <div class="prose rv">
+        <p><b>I like to build.</b> I am a natural builder, and I avoid hype. Builders create: they make new tools and they upgrade the service. I did that with the martial arts and with the mental martial arts, and not as a copycat or a dabble. I mean an entirely new step-by-step martial art system, with exact techniques and tactics. Same with WinJitsu, which I spent half a year in Pai, Thailand writing from scratch, out of my own experience.</p>
+        <p>I have always been a Ninja Nerd, into video games and computers since I was a kid. My first side hustle was called the Write Stuff: I begged my parents for a word processor so I could do work with it. Later I taught companies how to use Microsoft Word, and oddly enough taught the same companies martial arts. As a teen I made my own games, flyers, business cards and mini business strategies. In Europe I was the guy at the copy shop teaching the staff their new Canon printer, so I could print the posters I had painted by hand for my ninja camps.</p>
+        <p>When web design became a thing I taught myself NetObjects Fusion and built the site for every business I ran, and did the videos. NetObjects saw the work and hired me to write tutorials explaining how I did it. Being into this stuff is what helped me create the rest.</p>
+        <p>It is a long story of building and taking on big challenges, and I have lived all over the world doing it. Most recently I finished a goal I set about twenty years ago, NinjaGym, and made that solid too. That brings us to now, where the building is the Digital Dojo, or what I also call <b>the Ninja Office</b>.</p>
+      </div>
+    </div>
+
+    <div class="buildlog rv">
+      <h3>The build log, the long version</h3>
+      <p class="note">A few of many. Each one took a lot of energy, a lot of planning and a lot of work to really build.</p>
+      <ol>
+        <li><b>As a kid</b><span>The Write Stuff, my first side hustle, on a word processor I had to beg my parents to buy.</span></li>
+        <li><b>15</b><span>On TV sharing my martial arts concepts and my backyard dojo.</span></li>
+        <li><b>Teens</b><span>Game parties with friends, and my own board game built from my favorites. I sent the idea to Games Workshop and they sent back a contract. I decided to do it myself, then got too busy being a ninja.</span></li>
+        <li><b>19</b><span>Opened my first dojo.</span></li>
+        <li><b>21</b><span>Moved to Europe to teach my own system.</span></li>
+        <li><b>The camp</b><span>A real ninja camp, and a mountain retreat near Yosemite National Park with rock climbing and everything.</span></li>
+        <li><b>The shop</b><span>I always wanted my own martial arts supply company, so I built that too. Often in Maxim magazine, and we did a lot of business.</span></li>
+        <li><b>The system</b><span>WinJitsu, the mental martial art: half a year in Pai, Thailand, written from scratch. Five books.</span></li>
+        <li><b>The gym</b><span>NinjaGym on Koh Samui, a goal I set about twenty years ago, made solid. Then the app that runs it.</span></li>
+        <li><b>Now</b><span>The Digital Dojo, the Ninja Office. Same builder, new tools.</span></li>
+      </ol>
+    </div>
+
+    <p class="close">That is a lot, and it is a few of the many, but it gives you the idea of my two worlds. <b>I like to build, so you get that.</b> If you like to build too and would like help in your process, I have some time to do that.</p>
+    <div class="cta"><a class="btn btn-blue" href="#" data-mail="I like to build too, and I would like help in my process" data-ninja>Tell me what you are building</a></div>
   </div>
 </section>
 
@@ -2205,6 +2326,59 @@ footer a:hover{text-decoration:underline}
       mb.remove();
     });
   }
+})();
+</script>
+<script>
+/* The reel in the 30+ years section: photos that crossfade with a caption,
+   and two short tapes that play in the same frame. Nothing autoplays with
+   sound; the photos stop advancing under prefers-reduced-motion. */
+(function(){
+  var reel=document.getElementById("ninjaReel"); if(!reel) return;
+  var stage=reel.querySelector(".reel-stage"), imgs=stage.querySelectorAll("img"),
+      cap=reel.querySelector(".reel-cap"), dots=reel.querySelector(".reel-dots"),
+      toggle=reel.querySelector(".reel-toggle"), video=stage.querySelector("video"),
+      tapes=reel.querySelectorAll(".tape");
+  var i=0, timer=null;
+  var reduced=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var playing=!reduced;
+  imgs.forEach(function(im,n){
+    var d=document.createElement("button"); d.type="button"; d.setAttribute("aria-label","Photo "+(n+1)+" of "+imgs.length);
+    d.addEventListener("click",function(){ stopTape(); go(n); tick(); });
+    dots.appendChild(d);
+  });
+  function go(n){
+    i=(n+imgs.length)%imgs.length;
+    imgs.forEach(function(im,k){
+      im.classList.toggle("on",k===i);
+      if(k===i||k===(i+1)%imgs.length) im.loading="eager";
+    });
+    dots.querySelectorAll("button").forEach(function(d,k){ d.classList.toggle("on",k===i); });
+    cap.innerHTML="<small>"+(imgs[i].dataset.tag||"")+"</small>"+(imgs[i].dataset.cap||"");
+  }
+  function tick(){ clearTimeout(timer); if(playing) timer=setTimeout(function(){ go(i+1); tick(); },4200); }
+  toggle.addEventListener("click",function(){ playing=!playing; toggle.textContent=playing?"Pause":"Play"; tick(); });
+  reel.addEventListener("mouseenter",function(){ clearTimeout(timer); });
+  reel.addEventListener("mouseleave",tick);
+  function stopTape(){
+    if(!stage.classList.contains("playing")) return;
+    video.pause(); video.removeAttribute("src"); video.load();
+    stage.classList.remove("playing");
+    tapes.forEach(function(t){ t.classList.remove("on"); });
+    tick();
+  }
+  tapes.forEach(function(t){
+    t.addEventListener("click",function(){
+      if(t.classList.contains("on")){ stopTape(); return; }
+      clearTimeout(timer);
+      tapes.forEach(function(x){ x.classList.remove("on"); });
+      t.classList.add("on");
+      video.poster=t.dataset.poster; video.src=t.dataset.src;
+      stage.classList.add("playing");
+      video.play().catch(function(){});
+    });
+  });
+  video.addEventListener("ended",stopTape);
+  go(0); toggle.textContent=playing?"Pause":"Play"; tick();
 })();
 </script>
 </body>
