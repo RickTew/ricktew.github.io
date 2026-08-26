@@ -1802,6 +1802,14 @@ footer a:hover{text-decoration:underline}
 (function(){
   "use strict";
   var ENDPOINT="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact";
+  /* Where the visitor came from: ?src=<channel> on the link they clicked
+     (a note, a post, the gym floor). It rides on the message and nowhere
+     else: no cookie, no storage, no counter. The endpoint keeps a fixed
+     list and reads anything else as "direct". */
+  var SRC=(function(){
+    try{ var v=(new URLSearchParams(location.search).get("src")||"").toLowerCase();
+         return /^[a-z]{1,20}$/.test(v)?v:""; }catch(e){ return ""; }
+  })();
 
   var slot=document.getElementById("slot");
   var form=document.getElementById("slotForm");
@@ -1841,7 +1849,8 @@ footer a:hover{text-decoration:underline}
       subject:f.namedItem("subject").value,
       message:f.namedItem("message").value.trim(),
       website:f.namedItem("website").value,
-      elapsedMs:Date.now()-shownAt
+      elapsedMs:Date.now()-shownAt,
+      source:SRC
     };
 
     if(!data.name||!data.email||!data.message){

@@ -9,7 +9,7 @@
 // in a function secret and only here.
 //
 // One action, one function:
-//   POST {name, email, subject, message, website, elapsedMs} -> {ok:true}
+//   POST {name, email, subject, message, website, elapsedMs, source} -> {ok:true}
 //
 // It ALWAYS answers {ok:true}. A dropped submission looks exactly like an
 // accepted one, because telling a bot which check tripped is telling its
@@ -63,6 +63,24 @@ const SUBJECTS: Record<string, string> = {
   slot: 'I want a form like this one',
   hininja: 'The HI Ninja side',
   other: 'Something else',
+};
+
+/** Where the visitor came from, carried by ?src=<key> on the link they
+ *  clicked (play zero, item 3: a source on the record a message creates,
+ *  so conversations can be counted by channel from the mails alone). Fixed
+ *  list, same reason as SUBJECTS; anything else is "direct". */
+const SOURCES: Record<string, string> = {
+  client: 'A client note',
+  note: 'A personal note',
+  gym: 'The gym floor',
+  linkedin: 'LinkedIn',
+  group: 'A Koh Samui group',
+  referral: 'A referral',
+  x: 'X',
+  facebook: 'Facebook',
+  instagram: 'Instagram',
+  youtube: 'YouTube',
+  direct: 'Direct, no source on the link',
 };
 
 const MAX = { name: 100, email: 200, message: 5000 };
@@ -153,7 +171,7 @@ function logDrop(reason: string, fields: Record<string, unknown>) {
 }
 
 async function sendMail(f: {
-  name: string; email: string; subjectLabel: string; message: string;
+  name: string; email: string; subjectLabel: string; message: string; sourceLabel: string;
 }) {
   const key = Deno.env.get('RESEND_API_KEY');
   const to = Deno.env.get('CONTACT_TO');
@@ -177,6 +195,7 @@ async function sendMail(f: {
     row('Email', esc(f.email)) +
     row('About', esc(f.subjectLabel)) +
     row('Via', 'The Letter Slot on ricktew.com/aininja/') +
+    row('Source', esc(f.sourceLabel)) +
     `</table>` +
     `<hr style="border:none;border-top:1px solid #ddd;margin:16px 0">` +
     `<div style="font-family:system-ui,sans-serif;font-size:15px;white-space:pre-wrap">` +
@@ -185,7 +204,7 @@ async function sendMail(f: {
 
   const text =
     `From: ${f.name}\nEmail: ${f.email}\nAbout: ${f.subjectLabel}\n` +
-    `Via: The Letter Slot on ricktew.com/aininja/\n\n${f.message}\n`;
+    `Via: The Letter Slot on ricktew.com/aininja/\nSource: ${f.sourceLabel}\n\n${f.message}\n`;
 
   // The subject label comes from a fixed list, so it can never carry
   // attacker-chosen text. The NAME can, and the subject is the one place
@@ -234,11 +253,13 @@ Deno.serve(async (req) => {
   const email = str(p.email).trim();
   const subjectKey = SUBJECTS[str(p.subject)] ? str(p.subject) : 'other';
   const subjectLabel = SUBJECTS[subjectKey];
+  const sourceKey = SOURCES[str(p.source)] ? str(p.source) : 'direct';
+  const sourceLabel = SOURCES[sourceKey];
   const message = str(p.message).trim();
   const trap = str(p.website).trim();
   const elapsedMs = typeof p.elapsedMs === 'number' ? p.elapsedMs : -1;
 
-  const seen = { name, email, subject: subjectKey, message };
+  const seen = { name, email, subject: subjectKey, source: sourceKey, message };
 
   // Browser validation is a courtesy to humans; the endpoint is what is
   // actually exposed, so required is re-checked here.
@@ -275,7 +296,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    await sendMail({ name, email, subjectLabel, message });
+    await sendMail({ name, email, subjectLabel, message, sourceLabel });
   } catch (e) {
     // The mail pipe being down must never reach the visitor. They get the
     // same confirmation and the message survives in the log. Note the SDK

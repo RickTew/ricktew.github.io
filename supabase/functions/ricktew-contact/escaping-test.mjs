@@ -55,6 +55,8 @@ const hostile = {
     'Ordinary sentence so the message is long enough to skip the nonsense check entirely, which needs 120 characters.',
   website: '',
   elapsedMs: 30000,
+  // the source rides in from ?src= on the link, so it is attacker-typed too
+  source: '<b onmouseover=alert(1)>linkedin',
 };
 
 const res = await handler(new Request('https://x/', {
@@ -95,6 +97,8 @@ const checks = [
   ['no newline injected into subject header', !/[\r\n]/.test(sent.subject)],
   ['no newline injected into reply_to header', !/[\r\n]/.test(sent.reply_to)],
   ['destination came from the secret, not the payload', JSON.stringify(sent.to) === '["stub-destination@example.com"]'],
+  ['source label came from the fixed list, not the payload', text.includes('Source: Direct, no source on the link') && !html.includes('onmouseover')],
+  ['source row is present in the html', /<td[^>]*>Source<\/td>/.test(html)],
 ];
 
 let bad = 0;
