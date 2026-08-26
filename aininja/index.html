@@ -333,6 +333,20 @@ html,body{overflow-x:clip}
 .sol-mail:hover{color:var(--blue-d)}
 .dojo-card h3{font-size:19px;font-weight:900}
 .dojo-card p{margin-top:10px;font-size:14.5px;color:#4b5563;font-weight:600}
+
+/* the masters: who runs it once it stands. Four green seats, two yellow. */
+.master-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+@media (max-width:900px){ .master-cards{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:600px){ .master-cards{grid-template-columns:1fr} }
+.master{display:flex;flex-direction:column}
+.master .m-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.master .m-top .belt-chip{margin-bottom:0}
+.master .m-state{font-size:11.5px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--belt-g)}
+.master.training .m-state{color:#9a6b0f}
+.master .m-owns{margin-top:6px;font-size:14px;font-weight:900;color:var(--blue)}
+.master .m-sols{margin-top:auto;padding-top:14px;font-size:13px;font-weight:800;color:var(--muted)}
+.master .m-sols b{color:var(--ink)}
+.master .sol-mail{margin-top:12px;align-self:flex-start}
 .dojo-honest{margin-top:34px;max-width:700px;margin-left:auto;margin-right:auto;font-size:14px}
 .price-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px;max-width:820px;margin-left:auto;margin-right:auto}
 @media (max-width:720px){ .price-cards{grid-template-columns:1fr} }
@@ -678,6 +692,7 @@ footer a:hover{text-decoration:underline}
       <a href="#story">The story</a>
       <a href="#characters">The characters</a>
       <a href="#apps">The apps</a>
+      <a href="#masters">The Masters</a>
       <a href="#dojo">The Dojo</a>
       <a href="#quiz">The quiz</a>
       <a class="btn btn-blue" href="#story">Read the story</a>
@@ -1196,6 +1211,68 @@ footer a:hover{text-decoration:underline}
 
 
 
+<!-- ============ THE MASTERS: who runs it once it is built ============ -->
+<section class="dojo-sec" id="masters">
+  <div class="wrap rv">
+    <div class="k k-hero">Who runs it</div>
+    <h2>Six Masters. <span style="color:var(--blue)">Four on the mat, two in training.</span></h2>
+    <p class="sub">Nobody walks in asking for a reply drafter with an approval press. They walk in asking who runs my marketing now, who keeps the books right, who answers the customers. Bigger companies hire a fractional CTO for that. I give you the agentic one: a seat with a job title a payroll would recognize, one number it is judged on, and the solutions above working under it. <b>Same rule as everything else on this page: a seat is only for sale once it has run my own businesses first.</b></p>
+
+    <div class="master-cards">
+      <article class="dojo-card master rv">
+        <div class="m-top"><span class="belt-chip" style="background:var(--belt-g)"></span><span class="m-state">On the mat</span></div>
+        <h3>Agentic CMO</h3>
+        <p class="m-owns">Owns: more customers.</p>
+        <p>Plans the campaign, drafts three angles in your voice, does the ad math before a cent moves, and reads the numbers back to you every day. You approve, you press, you hold the wallet. It has already run on three of my own businesses: plans on the table, nothing spent.</p>
+        <p class="m-sols"><b>Runs:</b> The Marketing Room, The Ad Room, The Quiz Funnel, The Letter Slot</p>
+        <a class="sol-mail" href="#" data-mail="Tell me about the Agentic CMO seat" data-ninja>&#129399; Want this seat? Mail my Ninja</a>
+      </article>
+      <article class="dojo-card master rv">
+        <div class="m-top"><span class="belt-chip" style="background:var(--belt-g)"></span><span class="m-state">On the mat</span></div>
+        <h3>Agentic Head of Customer Care</h3>
+        <p class="m-owns">Owns: every question answered, every booking kept.</p>
+        <p>Reads every mail, drafts the reply from your own written answers, keeps bookings from turning into ping-pong, and says "I don't know" instead of guessing. You press every send. The Front Desk under this seat runs live in my gym today.</p>
+        <p class="m-sols"><b>Runs:</b> The Front Desk, The Booking Desk, The Answer Engine, The Notebook, Colleagues by Email</p>
+        <a class="sol-mail" href="#" data-mail="Tell me about the Agentic Head of Customer Care seat" data-ninja>&#129399; Want this seat? Mail my Ninja</a>
+      </article>
+      <article class="dojo-card master rv">
+        <div class="m-top"><span class="belt-chip" style="background:var(--belt-g)"></span><span class="m-state">On the mat</span></div>
+        <h3>Agentic Chief of Staff</h3>
+        <p class="m-owns">Owns: is everything running, and who is doing what.</p>
+        <p>One view over every desk you have, and a truthful answer to "is everything running?", including "no". It routes the work and reports to you in one place. It never does a department's job itself, and it never widens anyone's lane. Runs my own shop today.</p>
+        <p class="m-sols"><b>Runs:</b> the view over every other seat, and Colleagues by Email for the handoffs</p>
+        <a class="sol-mail" href="#" data-mail="Tell me about the Agentic Chief of Staff seat" data-ninja>&#129399; Want this seat? Mail my Ninja</a>
+      </article>
+      <article class="dojo-card master rv">
+        <div class="m-top"><span class="belt-chip" style="background:var(--belt-g)"></span><span class="m-state">On the mat</span></div>
+        <h3>Agentic Head of Content</h3>
+        <p class="m-owns">Owns: the long things, written in your voice.</p>
+        <p>The book, the course, the manual, the newsletter that actually goes out. It asks better questions and drafts; the taste pass stays human. Writing is on the mat. Calls inside your own app are built and in human testing, so that half of the seat is still earning its belt.</p>
+        <p class="m-sols"><b>Runs:</b> The Publishing House, The Video Room (in testing)</p>
+        <a class="sol-mail" href="#" data-mail="Tell me about the Agentic Head of Content seat" data-ninja>&#129399; Want this seat? Mail my Ninja</a>
+      </article>
+      <article class="dojo-card master training rv">
+        <div class="m-top"><span class="belt-chip" style="background:var(--belt-y)"></span><span class="m-state">In training</span></div>
+        <h3>Agentic CFO</h3>
+        <p class="m-owns">Owns: the money is right and on time.</p>
+        <p>The Money Desk already files and matches payment mail on one press. What is missing is the seat above it that watches the whole month and says so. I do not sell a seat that has not run my own books yet, so this one is in training. The desk itself you can have today.</p>
+        <p class="m-sols"><b>Runs today:</b> The Money Desk</p>
+        <a class="sol-mail" href="#" data-mail="Build me the Money Desk" data-ninja>&#129399; Want the desk now? Mail my Ninja</a>
+      </article>
+      <article class="dojo-card master training rv">
+        <div class="m-top"><span class="belt-chip" style="background:var(--belt-y)"></span><span class="m-state">In training</span></div>
+        <h3>Agentic CTO</h3>
+        <p class="m-owns">Owns: the apps stay up, the gear stays current.</p>
+        <p>Today that seat is me, with my own Dojo behind me, and that is exactly the service this page is selling. The agentic version, a seat that watches your builds and flags what has drifted before you notice, is in training. The human one you can talk to now.</p>
+        <p class="m-sols"><b>Runs today:</b> the sensei, by hand</p>
+        <a class="sol-mail" href="#" data-mail="I need a CTO for a while" data-ninja>&#129399; Want the human one? Mail my Ninja</a>
+      </article>
+    </div>
+
+    <p class="dojo-honest">The ninjas are the army; they do the grunt work. The Masters are the generals; each one owns a number. The Sensei is still me, and every send, pay and post is still your press. A Master widens nobody's lane. It just means somebody owns the result, and that somebody reports to you.</p>
+  </div>
+</section>
+
 <section class="dojo-sec" id="dojo">
   <div class="wrap rv">
     <div class="k k-hero">AI to HI</div>
@@ -1302,14 +1379,14 @@ footer a:hover{text-decoration:underline}
           <h3>Now the honest one. Where do the hours actually go?</h3>
           <p class="q-note">Tap everything that is true. This is the question that decides what I would actually build you, so do not be shy.</p>
           <div class="q-opts">
-            <button class="q-opt" data-v="front" data-sol="The Front Desk">Answering the same questions, again and again</button>
-            <button class="q-opt" data-v="booking" data-sol="The Booking Desk">Scheduling. Does Tuesday work, can we move it, are you free</button>
-            <button class="q-opt" data-v="money" data-sol="The Money Desk">Money admin. Invoices, receipts, filing, chasing what was paid</button>
-            <button class="q-opt" data-v="marketing" data-sol="The Marketing Room">Making things to say. Posts, newsletters, product copy, images</button>
-            <button class="q-opt" data-v="retrieval" data-sol="The Retrieval Brain">Hunting for my own information. Where is that file, what did we quote</button>
-            <button class="q-opt" data-v="publishing" data-sol="The Publishing House">Writing the long things. A book, a course, the manual</button>
-            <button class="q-opt" data-v="calls" data-sol="The Video Room">Calls. Setting them up, sitting in them, writing them up after</button>
-            <button class="q-opt" data-v="handoff" data-sol="Colleagues by Email">Passing work between people, then chasing where it got to</button>
+            <button class="q-opt" data-v="front" data-seat="Agentic Head of Customer Care" data-sol="The Front Desk">Answering the same questions, again and again</button>
+            <button class="q-opt" data-v="booking" data-seat="Agentic Head of Customer Care" data-sol="The Booking Desk">Scheduling. Does Tuesday work, can we move it, are you free</button>
+            <button class="q-opt" data-v="money" data-seat="Agentic CFO" data-sol="The Money Desk">Money admin. Invoices, receipts, filing, chasing what was paid</button>
+            <button class="q-opt" data-v="marketing" data-seat="Agentic CMO" data-sol="The Marketing Room">Making things to say. Posts, newsletters, product copy, images</button>
+            <button class="q-opt" data-v="retrieval" data-seat="Agentic Head of Customer Care" data-sol="The Retrieval Brain">Hunting for my own information. Where is that file, what did we quote</button>
+            <button class="q-opt" data-v="publishing" data-seat="Agentic Head of Content" data-sol="The Publishing House">Writing the long things. A book, a course, the manual</button>
+            <button class="q-opt" data-v="calls" data-seat="Agentic Head of Content" data-sol="The Video Room">Calls. Setting them up, sitting in them, writing them up after</button>
+            <button class="q-opt" data-v="handoff" data-seat="Agentic Chief of Staff" data-sol="Colleagues by Email">Passing work between people, then chasing where it got to</button>
           </div>
           <button class="q-next" data-next="1">That is all of them &rarr;</button>
         </div>
@@ -1504,6 +1581,7 @@ footer a:hover{text-decoration:underline}
       <details><summary>What does it cost?</summary><p>It depends on what you actually need, and I would rather work that out with you than put a number on a page before I have seen your business. Start with the quiz: it tells you where I would start, and then we talk about what that costs. Two things are true whatever the answer. Building a product you sell, an app, a site, a backend, is separate work, scoped and agreed in writing before the clock starts. And third-party costs are always yours: your AI, software and ad accounts stay in your name.</p></details>
       <details><summary>What happens in the first month?</summary><p>The audit first: we map where your hours actually go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt. It proves itself before anything widens.</p></details>
       <details><summary>Can I cancel?</summary><p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month. The Dojo and everything built in your accounts stays yours; it was always in your name.</p></details>
+      <details><summary>What is an Agentic CMO?</summary><p>The same idea as a fractional CTO, with the work done by trained AI ninjas instead of a person on a day rate. A Master is a seat: a job title a payroll would recognize, one number it is judged on, and the solutions on this page working under it. Six seats exist. Four have run my own businesses and are for sale; two are in training and the page says which. A Master never widens a ninja's lane. Every send, pay and post still waits for your press.</p></details>
       <details><summary>Why the belts?</summary><p>Because trust is earned by showing up and proving it, which is exactly how I grade kids at the gym. A ninja that has proven its lane gets a wider one. One that has not, does not. It keeps the honest order: propose, prove, then earn.</p></details>
     </div>
   </div>
@@ -1903,6 +1981,7 @@ footer a:hover{text-decoration:underline}
         answers[idx]={ key:step.dataset.q, multi:true,
                        v:picked.map(function(b){return b.dataset.v;}),
                        solutions:picked.map(function(b){return b.dataset.sol;}).filter(Boolean),
+                       seats:picked.map(function(b){return b.dataset.seat;}).filter(Boolean),
                        label:picked.map(function(b){return b.textContent.trim();}).join("; "),
                        question:step.querySelector("h3").textContent.trim() };
         if(idx<TOTAL-1){ show(idx+1); } else { finish(); }
@@ -1921,7 +2000,7 @@ footer a:hover{text-decoration:underline}
 
   function A(key){
     for(var i=0;i<answers.length;i++){ if(answers[i] && answers[i].key===key) return answers[i]; }
-    return {v:"",label:"",solutions:[]};
+    return {v:"",label:"",solutions:[],seats:[]};
   }
 
   /* the three numbers any business will pay you to move */
@@ -1957,6 +2036,19 @@ footer a:hover{text-decoration:underline}
     var who=A("who").v, num=A("number").v, tech=A("tech").v, hi=A("hi").v;
     var driver=A("driver").v, stack=A("stack").v, selfserve=A("selfserve").v, dream=A("dream").v;
     var sols=A("where").solutions||[];
+    /* One level up from the solutions: the seat that would own the number.
+       Question 12 already maps each answer to a solution; the same picks roll
+       up to a Master. Two seats are in training and the result says so
+       rather than selling them. */
+    var SEAT_TRAINING={"Agentic CFO":1,"Agentic CTO":1};
+    var seatCount={}, pickedSeats=A("where").seats||[];
+    pickedSeats.forEach(function(x){ seatCount[x]=(seatCount[x]||0)+1; });
+    /* the seat of the first pick leads, because that is the desk the result
+       says it starts with; the rest follow by how many picks they own */
+    var seats=Object.keys(seatCount).sort(function(a,b){
+      if(a===pickedSeats[0]) return -1; if(b===pickedSeats[0]) return 1;
+      return seatCount[b]-seatCount[a]; });
+    var topSeat=seats[0]||"";
     var hours=parseInt(A("hours").v,10)||0;
     var rate=parseInt(A("rate").v,10)||30;
     var draftable=Math.round(hours*0.6);
@@ -2001,6 +2093,10 @@ footer a:hover{text-decoration:underline}
       chip(sols.length>1 ? "The solutions that fit:" : "The solution that fits:", true);
       sols.forEach(function(s){ chip(s); });
     }
+    if(seats.length){
+      chip(seats.length>1 ? "The seats that would own it:" : "The seat that would own it:", true);
+      seats.forEach(function(x){ chip(SEAT_TRAINING[x] ? x+" (in training)" : x); });
+    }
 
     var start=document.getElementById("rStart");
     start.innerHTML="";
@@ -2018,6 +2114,11 @@ footer a:hover{text-decoration:underline}
       para(lead+run+" That reads as <b>"+tier+"</b>, starting with <b>"+sols[0]+
         "</b> at white belt: propose only, prove it, then earn the next belt."+
         (sols.length>1 ? " The other "+(sols.length-1)+" join as belts are earned, not on day one." : ""));
+      if(topSeat && !SEAT_TRAINING[topSeat]){
+        para("Once that stands, the <b>"+topSeat+"</b> is the seat that owns the number: one title a payroll would recognize, the desks it groups working under it, and every press still yours.");
+      } else if(topSeat){
+        para("The seat that would own that number, the <b>"+topSeat+"</b>, is still in training, and I do not sell a seat that has not run my own business first. The desk itself you can have now; the seat above it comes when it has earned its belt.");
+      }
     } else if(hours>2){
       para(lead+run+" That reads as <b>"+tier+"</b>.");
     }
@@ -2035,6 +2136,7 @@ footer a:hover{text-decoration:underline}
     var summary="Quiz results\n\n"+answers.filter(Boolean).map(function(a){return a.question+"\n> "+a.label;}).join("\n\n")
       +"\n\nNumber they want to move: "+(NUMBER[num]?NUMBER[num].name:"n/a")
       +"\nSolutions matched: "+(sols.length?sols.join(", "):"none")
+      +"\nSeat matched: "+(topSeat ? topSeat+(SEAT_TRAINING[topSeat]?" (in training)":"") : "none")
       +"\nEstimated draftable hours/week: "+draftable
       +(hours>2 ? "\nSuggested tier: "+tier : "")
       +(needsBuild ? "\nAlso needs build work at the builder rate." : "")
