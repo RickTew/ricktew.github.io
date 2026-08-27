@@ -176,6 +176,30 @@ CTAs. The hero photo is `rick-cutout-2x.webp`, an AI-made likeness Rick
 supplied, lifted off its backdrop with the macOS Vision framework; the
 old `rick-cutout.png` was 433px wide and blurred on Retina.
 
+**The slot is also a tool an AI agent can call (2026-08-27, WebMCP).** The
+`<form id="slotForm">` carries `toolname="post_letter_to_rick"`,
+`tooldescription`, `toolautosubmit` and a `toolparamdescription` on each
+field: that is the WebMCP declarative API, and a second read-only tool,
+`list_rick_tew_solutions`, is registered by script via
+`document.modelContext` (falls back to `navigator.modelContext`; a no-op
+where neither exists). Verified in headless Chrome 151 with
+`--enable-features=WebMCPTesting`: both tools list, the read tool answers,
+and driving the form tool posts the same JSON the button does, with
+`elapsedMs:-1` and `source:"agent"` so the endpoint's fill-time check does
+not drop it (`-1` means "do not know", which never drops). **The honeypot
+`#slotWebsite` sits OUTSIDE the `<form>` on purpose:** a tool must not offer
+an agent a field that is a tripwire. Do not move it back in. In production
+the API only exists once the origin has a Chrome origin-trial token in a
+`<meta http-equiv="origin-trial">` tag (trial runs Chrome 149 to 156;
+Rick registers it, the token is per origin, ricktew.com and www are
+separate). Without the token the page behaves exactly as before. The band
+that says so is `#agent`, just above the slot; its copy is written to stay
+true with or without the token, so do not "upgrade" it to claim assistants
+are already using it. As of July 2026 none of the big assistants call these
+tools yet; Gemini in Chrome is the announced first. Local check:
+`chrome://flags/#enable-webmcp-testing`, then the Model Context Tool
+Inspector extension, or Lighthouse's "Registered WebMCP tools" audit.
+
 **Before you touch the endpoint, run its test:**
 
 ```

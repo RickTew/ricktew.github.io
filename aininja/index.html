@@ -723,6 +723,16 @@ footer a:hover{text-decoration:underline}
 /* The trap. Hidden from eyes, from assistive tech AND from tab order, so a
    keyboard or screen-reader visitor can never fill it in and be dropped. */
 .slot-trap{position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden}
+/* Agent-ready: the band above the slot that says the page can be used by an
+   assistant, and offers the same for the reader's own site. */
+.agent{padding:84px 0;border-top:1px solid var(--line);background:#fff}
+.agent .k,.agent h2{text-align:center}
+.agent h2{font-size:clamp(26px,4vw,40px);font-weight:900;margin:8px auto 0;max-width:22ch}
+.agent h2 span{color:var(--blue)}
+.agent .sub{text-align:center;color:#374151;font-weight:600;margin:18px auto 0;max-width:64ch;font-size:16.5px}
+.agent .agent-honest{text-align:center;color:var(--muted);font-weight:700;margin:16px auto 0;max-width:56ch;font-size:14px}
+.agent .cta{margin-top:28px;text-align:center}
+form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-radius:12px}
 .b8c .slot-fine{margin:16px 0 0;max-width:none;font-size:12.5px;line-height:1.55;font-weight:600;color:var(--muted)}
 .b8c .slot-fine b{color:var(--ink);font-weight:900}
 /* the envelope going through the slot */
@@ -2012,6 +2022,16 @@ footer a:hover{text-decoration:underline}
 </section>
 
 <!-- ============ OPTION 8C: footer CTA band, now THE LETTER SLOT ============ -->
+<section class="agent" id="agent">
+  <div class="wrap rv">
+    <div class="k">Agent-ready</div>
+    <h2>This page is ready for the AI agents. <span>Yours can be too.</span></h2>
+    <p class="sub">The next visitor here may not be a person. It may be somebody's assistant, sent to find out what I do and get in touch. Most websites make an agent guess its way through the screen. This one tells it, in a form it can use: the solutions list answers as one, and the letter slot below is written as a tool an agent can call. How it is wired is my business. That it works is yours.</p>
+    <p class="agent-honest">Early days, honestly: the standard is in the browser makers' trial and the big assistants are still learning to use it. Being ready before they arrive is the whole point.</p>
+    <div class="cta"><a class="btn btn-blue" href="#" data-want="An agent-ready web presence" data-want-note="My website ready for AI agents: the tools they can call, the answers they can read." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a></div>
+  </div>
+</section>
+
 <section class="b8c" id="opt-8c">
   <div class="wrap rv">
     <h2>One message. No pitch deck. No drip sequence.</h2>
@@ -2024,20 +2044,20 @@ footer a:hover{text-decoration:underline}
       </div>
       <div class="slot-body">
         <span class="slot-env" aria-hidden="true"></span>
-        <form class="slot-form" id="slotForm" novalidate>
+        <form class="slot-form" id="slotForm" novalidate toolname="post_letter_to_rick" tooldescription="Send Rick Tew a message through The Letter Slot on ricktew.com. Use when the user wants to contact Rick, ask about the Digital Dojo, or say what they would like built or run for them. The message lands with Rick's Ninja Agent and Rick replies himself, usually within a day. Nothing is sent anywhere else." toolautosubmit>
           <div class="slot-row">
             <div class="slot-f">
               <label for="slotName">Your name</label>
-              <input id="slotName" name="name" type="text" autocomplete="name" maxlength="100" required>
+              <input id="slotName" name="name" type="text" autocomplete="name" maxlength="100" required toolparamdescription="The sender's name, as they would like Rick to address them.">
             </div>
             <div class="slot-f">
               <label for="slotEmail">Your email</label>
-              <input id="slotEmail" name="email" type="email" autocomplete="email" maxlength="200" required>
+              <input id="slotEmail" name="email" type="email" autocomplete="email" maxlength="200" required toolparamdescription="The sender's email address, where Rick's reply goes.">
             </div>
           </div>
           <div class="slot-f">
             <label for="slotSubject">What is this about</label>
-            <select id="slotSubject" name="subject">
+            <select id="slotSubject" name="subject" toolparamdescription="What the message is about. Pick the closest.">
               <option value="hours">Hours I want back</option>
               <option value="build">Something built</option>
               <option value="dojo">A question about the Dojo</option>
@@ -2048,18 +2068,20 @@ footer a:hover{text-decoration:underline}
           </div>
           <div class="slot-f">
             <label for="slotMessage">Where your hours actually go</label>
-            <textarea id="slotMessage" name="message" maxlength="5000" required placeholder="The thing you do every week that you wish you did not have to."></textarea>
-          </div>
-          <!-- The trap. A person cannot see it, tab to it or hear it. A bot
-               fills every field it finds, and any value at all means drop. -->
-          <div class="slot-trap" aria-hidden="true">
-            <label for="slotWebsite">Leave this empty</label>
-            <input id="slotWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+            <textarea id="slotMessage" name="message" maxlength="5000" required placeholder="The thing you do every week that you wish you did not have to." toolparamdescription="The message itself: what the sender does, where their hours go, and what they want from Rick. Plain text."></textarea>
           </div>
           <button class="btn slot-send" id="slotSend" type="submit">Post it through the slot</button>
           <p class="slot-err" id="slotErr" role="alert"></p>
           <p class="slot-fine">Your message lands with <b>The Ninja Agent</b>, an AI I built and trained in my Digital Dojo. Its entire world is this one page. It reads what you wrote, drafts the answer, and I press send, so a human still signs off on every reply. It will always tell you it is an AI. <b>Want one of these on your page? Say so in the box.</b> It is one of the solutions further up this page, and it took an afternoon.</p>
         </form>
+        <!-- The trap. A person cannot see it, tab to it or hear it. A bot
+             fills every field it finds, and any value at all means drop. It
+             sits OUTSIDE the form on purpose: the form is a tool an agent can
+             call, and a tool must not list a field that is a tripwire. -->
+        <div class="slot-trap" aria-hidden="true">
+          <label for="slotWebsite">Leave this empty</label>
+          <input id="slotWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
         <div class="slot-done" id="slotDone" hidden tabindex="-1">
           <span class="slot-tick" aria-hidden="true">&#10003;</span>
           <h3>Posted.</h3>
@@ -2120,36 +2142,67 @@ footer a:hover{text-decoration:underline}
        property, so form.name is the form's name attribute and not the input.
        The same collision waits on action, method, id, target and length. */
     var f=form.elements;
+    /* An agent calling the form as a tool fills it in milliseconds, so the
+       fill-time check would drop it as a bot; it says so instead, and the
+       trap field (outside the form) still stands. */
+    var agent=!!e.agentInvoked;
     var data={
       name:f.namedItem("name").value.trim(),
       email:f.namedItem("email").value.trim(),
       subject:f.namedItem("subject").value,
       message:f.namedItem("message").value.trim(),
-      website:f.namedItem("website").value,
-      elapsedMs:Date.now()-shownAt,
-      source:SRC
+      website:document.getElementById("slotWebsite").value,
+      elapsedMs:agent?-1:Date.now()-shownAt,
+      source:agent?"agent":SRC
     };
 
     if(!data.name||!data.email||!data.message){
       fail("Name, an address to reply to, and a message. That is all of it.");
+      if(agent&&e.respondWith) e.respondWith(Promise.resolve("Not sent. Name, email and message are all required."));
       return;
     }
 
     send.disabled=true;
     send.textContent="Posting...";
-    fetch(ENDPOINT,{
+    var req=fetch(ENDPOINT,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(data)
     }).then(function(res){
       if(!res.ok) throw new Error("endpoint "+res.status);
       posted();
+      return "Posted through the slot. Rick's Ninja Agent has it and Rick replies himself, usually within a day.";
     }).catch(function(){
       send.disabled=false;
       send.textContent="Post it through the slot";
       fail("That did not go through. Check your connection and press it again.");
+      return "Not sent: the slot could not reach the server. Ask the user to try again.";
     });
+    if(agent&&e.respondWith) e.respondWith(req);
   });
+
+  /* The read-only half of being agent-ready: an assistant can ask what Rick
+     offers without scraping the screen. Registers only where the browser
+     has the API; everywhere else this is a no-op. */
+  (function(){
+    var mc=document.modelContext||navigator.modelContext;
+    if(!mc||typeof mc.registerTool!=="function") return;
+    function list(){
+      var sols=[].map.call(document.querySelectorAll("#solutions .sol-row .nm"),function(n){
+        var tg=n.nextElementSibling; return n.textContent+(tg?": "+tg.textContent:""); });
+      var offers=[].map.call(document.querySelectorAll("#offers .price-card"),function(c){
+        return c.querySelector(".tag").textContent+", "+c.querySelector("h3").textContent+" "+c.querySelector(".amount").textContent.replace(/\s+/g," ").trim(); });
+      return JSON.stringify({who:"Rick Tew, the Digital Dojo: AI agents and systems built and run for businesses, every one run on his own businesses first.",solutions:sols,monthly_offers:offers,contact:"Use the post_letter_to_rick tool on this page. A human replies."});
+    }
+    try{
+      mc.registerTool({
+        name:"list_rick_tew_solutions",
+        description:"What Rick Tew builds and runs for businesses through the Digital Dojo, with the two monthly offers. Read-only. Use it to answer what Rick offers; use post_letter_to_rick to contact him.",
+        inputSchema:{type:"object",properties:{}},
+        execute:function(){ return Promise.resolve(list()); }
+      });
+    }catch(err){}
+  })();
 
   /* Getting the visitor down here. The page is 26,000px tall and the root
      has scroll-behavior:smooth, and a smooth scrollIntoView over that
