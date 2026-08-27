@@ -587,14 +587,44 @@ footer a:hover{text-decoration:underline}
 .ninja .prose p{margin-top:14px;color:#374151;font-weight:600}
 .ninja .prose p:first-child{margin-top:0}
 .ninja .prose b{color:var(--ink)}
-.buildlog{margin-top:48px;max-width:880px;margin-left:auto;margin-right:auto}
-.buildlog h3{font-size:clamp(20px,3vw,26px);font-weight:900;text-align:center}
+/* The build log as a life-rail: one line from a kid with a word processor to
+   the Dojo, ten stops on it, one card that reads the stop you are on. It
+   plays through on its own like the reel beside it; a tap holds a stop. On
+   phones the rail stands up and every note is in the open. */
+.buildlog{margin-top:56px;max-width:960px;margin-left:auto;margin-right:auto}
+.buildlog h3{font-size:clamp(22px,3.2vw,30px);font-weight:900;text-align:center}
 .buildlog .note{text-align:center;color:var(--muted);font-weight:700;font-size:14.5px;margin-top:8px}
-.buildlog ol{list-style:none;margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-@media (max-width:700px){ .buildlog ol{grid-template-columns:1fr} }
-.buildlog li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:start}
-.buildlog li b{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:15px;color:var(--blue);font-weight:900;line-height:1.3}
-.buildlog li span{font-size:14.5px;color:#374151;font-weight:600}
+.rail{list-style:none;position:relative;display:grid;grid-template-columns:repeat(10,1fr);margin:34px 0 0;padding:0}
+.rail::before{content:"";position:absolute;left:5%;right:5%;top:26px;height:3px;background:var(--blue);border-radius:2px}
+.rail li{position:relative;text-align:center}
+.rail .stop{display:flex;flex-direction:column;align-items:center;width:100%;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;color:var(--ink)}
+.rail .rm{order:1} .rail .stop::after{order:2} .rail .rt{order:3} .rail .rn{order:4}
+.rail .rm{display:block;font-size:10.5px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);height:14px;line-height:14px}
+.rail .stop::after{content:"";display:block;width:14px;height:14px;margin:5px 0 10px;flex:none;border-radius:50%;background:#fff;border:3px solid var(--blue);box-sizing:border-box;transition:transform .2s ease,background .2s ease}
+.rail .rt{display:block;font-size:12.5px;font-weight:900;line-height:1.25;padding:0 3px;color:var(--ink)}
+.rail .rn{display:none}
+.rail li.on .stop::after{background:var(--blue);transform:scale(1.5)}
+.rail li.on .rt,.rail li.on .rm{color:var(--blue)}
+.rail .stop:hover .rt{color:var(--blue-d)}
+.rail .stop:focus-visible{outline:3px solid var(--red);outline-offset:2px;border-radius:8px}
+.rail-card{margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:grid;grid-template-columns:120px 1fr auto;gap:18px;align-items:start;box-shadow:0 12px 30px rgba(16,20,24,.06);min-height:98px}
+.rail-card b{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:24px;font-weight:900;color:var(--blue);line-height:1.1}
+.rail-card p{font-size:15.5px;font-weight:600;color:#374151;margin:0}
+.rail-play{align-self:start}
+@media (prefers-reduced-motion:reduce){ .rail .stop::after{transition:none} }
+@media (max-width:760px){
+  .rail{grid-template-columns:1fr;padding-left:28px;margin-top:26px}
+  .rail::before{left:6px;right:auto;top:10px;bottom:10px;width:3px;height:auto}
+  .rail li{text-align:left;padding:8px 0 16px}
+  .rail .stop{align-items:flex-start;text-align:left}
+  .rail .stop{cursor:default}
+  .rail .stop::after{position:absolute;left:-28px;top:10px;margin:0}
+  .rail .rm{height:auto;line-height:1.3}
+  .rail .rt{font-size:16px;padding:0;margin-top:2px}
+  .rail .rn{display:block;margin-top:5px;font-size:14.5px;font-weight:600;color:#374151}
+  .rail li.on .stop::after{transform:none}
+  .rail-card,.rail-play{display:none}
+}
 .ninja .close{margin-top:36px;text-align:center;max-width:62ch;margin-left:auto;margin-right:auto;font-weight:700;color:#374151}
 .ninja .close b{color:var(--ink)}
 .ninja .cta{margin-top:18px;text-align:center}
@@ -1906,24 +1936,29 @@ footer a:hover{text-decoration:underline}
       </div>
     </div>
 
-    <div class="buildlog rv">
-      <h3>The build log, the long version</h3>
-      <p class="note">A few of many. Each one took a lot of energy, a lot of planning and a lot of work to really build.</p>
-      <ol>
-        <li><b>As a kid</b><span>The Write Stuff, my first side hustle, on a word processor I had to beg my parents to buy.</span></li>
-        <li><b>15</b><span>On TV sharing my martial arts concepts and my backyard dojo.</span></li>
-        <li><b>Teens</b><span>Game parties with friends, and my own board game built from my favorites. I sent the idea to Games Workshop and they sent back a contract. I decided to do it myself, then got too busy being a ninja.</span></li>
-        <li><b>19</b><span>Opened my first dojo.</span></li>
-        <li><b>21</b><span>Moved to Europe to teach my own system.</span></li>
-        <li><b>The camp</b><span>A real ninja camp, and a mountain retreat near Yosemite National Park with rock climbing and everything.</span></li>
-        <li><b>The shop</b><span>I always wanted my own martial arts supply company, so I built that too. Often in Maxim magazine, and we did a lot of business.</span></li>
-        <li><b>The system</b><span>WinJitsu, the mental martial art: half a year in Pai, Thailand, written from scratch. Five books.</span></li>
-        <li><b>The gym</b><span>NinjaGym on Koh Samui: the idea written twenty years ago, built for real three years ago as a new 7,000 square foot facility. Then the app that runs it.</span></li>
-        <li><b>Now</b><span>The Digital Dojo, the Ninja Office. Same builder, new tools.</span></li>
+    <div class="buildlog rv" id="buildLog">
+      <h3>Same builder since the word processor.</h3>
+      <p class="note">Ten of the many, in order. Each one took a lot of energy, a lot of planning and a lot of work to really build.</p>
+      <ol class="rail">
+        <li><button type="button" class="stop"><span class="rm">As a kid</span><span class="rt">The Write Stuff</span><span class="rn">The Write Stuff, my first side hustle, on a word processor I had to beg my parents to buy.</span></button></li>
+        <li><button type="button" class="stop"><span class="rm">15</span><span class="rt">On TV</span><span class="rn">On TV sharing my martial arts concepts and my backyard dojo.</span></button></li>
+        <li><button type="button" class="stop"><span class="rm">Teens</span><span class="rt">A board game</span><span class="rn">Game parties with friends, and my own board game built from my favorites. I sent the idea to Games Workshop and they sent back a contract. I decided to do it myself, then got too busy being a ninja.</span></button></li>
+        <li><button type="button" class="stop"><span class="rm">19</span><span class="rt">First dojo</span><span class="rn">Opened my first dojo.</span></button></li>
+        <li><button type="button" class="stop"><span class="rm">21</span><span class="rt">Europe</span><span class="rn">Moved to Europe to teach my own system.</span></button></li>
+        <li><button type="button" class="stop"><span class="rm">The camp</span><span class="rt">Ninja camp</span><span class="rn">A real ninja camp, and a mountain retreat near Yosemite National Park with rock climbing and everything.</span></button></li>
+        <li><button type="button" class="stop"><span class="rm">The shop</span><span class="rt">The supply shop</span><span class="rn">I always wanted my own martial arts supply company, so I built that too. Often in Maxim magazine, and we did a lot of business.</span></button></li>
+        <li><button type="button" class="stop"><span class="rm">The system</span><span class="rt">WinJitsu</span><span class="rn">WinJitsu, the mental martial art: half a year in Pai, Thailand, written from scratch. Five books.</span></button></li>
+        <li><button type="button" class="stop"><span class="rm">The gym</span><span class="rt">NinjaGym</span><span class="rn">NinjaGym on Koh Samui: the idea written twenty years ago, built for real three years ago as a new 7,000 square foot facility. Then the app that runs it.</span></button></li>
+        <li><button type="button" class="stop"><span class="rm">Now</span><span class="rt">The Digital Dojo</span><span class="rn">The Digital Dojo, the Ninja Office. Same builder, new tools.</span></button></li>
       </ol>
+      <div class="rail-card" aria-live="polite">
+        <b></b>
+        <p></p>
+        <button type="button" class="reel-btn rail-play">Pause</button>
+      </div>
     </div>
 
-    <p class="close">That is a lot, and it is a few of the many, but it gives you the idea of my two worlds. <b>I like to build, so you get that.</b> If you like to build too and would like help in your process, I have some time to do that.</p>
+    <p class="close">Every stop on that line was a build: a thing that did not exist, and then did. The apps are only the newest ones. <b>I have been doing this since before I could drive.</b> If you build too and would like help in your process, I have some time to do that.</p>
     <div class="cta"><a class="btn btn-blue" href="#" data-mail="I like to build too, and I would like help in my process" data-ninja>Tell me what you are building</a></div>
   </div>
 </section>
@@ -2673,6 +2708,29 @@ footer a:hover{text-decoration:underline}
   });
   video.addEventListener("ended",stopTape);
   go(0); toggle.textContent=playing?"Pause":"Play"; tick();
+})();
+/* The build log rail: plays through the life one stop at a time, holds on
+   hover, a tap holds a stop. The card under the rail reads the active stop. */
+(function(){
+  var log=document.getElementById("buildLog"); if(!log) return;
+  var lis=log.querySelectorAll(".rail li"), card=log.querySelector(".rail-card");
+  var cb=card.querySelector("b"), cp=card.querySelector("p"), btn=log.querySelector(".rail-play");
+  var i=0, timer=null;
+  var playing=!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches);
+  function show(n){
+    i=(n+lis.length)%lis.length;
+    lis.forEach(function(l,k){ l.classList.toggle("on",k===i); });
+    cb.textContent=lis[i].querySelector(".rm").textContent;
+    cp.textContent=lis[i].querySelector(".rn").textContent;
+  }
+  function tick(){ clearTimeout(timer); if(playing) timer=setTimeout(function(){ show(i+1); tick(); },3800); }
+  lis.forEach(function(l,k){
+    l.querySelector(".stop").addEventListener("click",function(){ show(k); playing=false; btn.textContent="Play"; clearTimeout(timer); });
+  });
+  btn.addEventListener("click",function(){ playing=!playing; btn.textContent=playing?"Pause":"Play"; tick(); });
+  log.addEventListener("mouseenter",function(){ clearTimeout(timer); });
+  log.addEventListener("mouseleave",tick);
+  show(0); btn.textContent=playing?"Pause":"Play"; tick();
 })();
 /* The game tiles: one figure.cycle per game, and it turns over to its next
    shot every few seconds, each tile on its own offset. Hover holds a tile. Reduced motion
