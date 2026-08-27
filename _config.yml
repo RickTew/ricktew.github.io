@@ -10,3 +10,6 @@
 # where it expects to.
 exclude:
   - supabase
+  # Working brief for a future /aininja/ offer page (pricing + copy). Source
+  # material, not a page: kept out of what Pages serves.
+  - TURNKEY-OFFER.md
