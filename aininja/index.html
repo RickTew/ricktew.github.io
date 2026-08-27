@@ -58,10 +58,11 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .nav-inner{max-width:1040px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:24px}
 .wordmark{font-weight:900;letter-spacing:.2em;font-size:15px;color:var(--ink);text-decoration:none}
 .wordmark .dot{color:var(--red)}
-.nav-links{margin-left:auto;display:flex;gap:22px;align-items:center}
-.nav-links a{font-weight:800;font-size:14px;text-decoration:none;color:var(--ink)}
+.nav-links{margin-left:auto;display:flex;gap:20px;align-items:center;flex-wrap:nowrap}
+.nav-links a{font-weight:800;font-size:14px;text-decoration:none;color:var(--ink);white-space:nowrap}
 .nav-links a:hover{color:var(--blue-d)}
 .nav .btn{padding:9px 16px;font-size:14px}
+@media (max-width:1000px){ .nav-links a[href="#ninja"],.nav-links a[href="#characters"]{display:none} }
 @media (max-width:700px){ .nav-links a:not(.btn){display:none} }
 
 /* hero */
@@ -372,10 +373,12 @@ html,body{overflow-x:clip}
 .want:hover{background:var(--blue);color:#fff;transform:translateY(-1px);box-shadow:0 8px 22px rgba(30,115,189,.28)}
 .want:hover .g{transform:rotate(-14deg) scale(1.18)}
 .want:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn .g{display:inline-block;margin-right:8px;font-size:1.15em;line-height:1;vertical-align:-2px;transition:transform .2s ease}
+.btn:hover .g{transform:rotate(-14deg) scale(1.18)}
 .master .want{align-self:flex-start}
 .dojo-card .want{margin-top:14px}
 .price-card .want{margin-top:10px;align-self:center}
-@media (prefers-reduced-motion: reduce){ .want,.want .g{transition:none} .want:hover{transform:none} .want:hover .g{transform:none} }
+@media (prefers-reduced-motion: reduce){ .want,.want .g,.btn .g{transition:none} .want:hover{transform:none} .want:hover .g,.btn:hover .g{transform:none} }
 .dojo-card h3{font-size:19px;font-weight:900}
 .dojo-card p{margin-top:10px;font-size:14.5px;color:#4b5563;font-weight:600}
 
@@ -811,7 +814,7 @@ footer a:hover{text-decoration:underline}
       <a href="#dojo">The Dojo</a>
       <a href="#quiz">The quiz</a>
       <a href="#ninja">The ninja</a>
-      <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours">&#129399; I want this Tew, Rick!</a>
+      <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
     </div>
   </div>
 </nav>
@@ -824,13 +827,13 @@ footer a:hover{text-decoration:underline}
         <h1>I'm not a marketing expert. <span class="c">I'm an AI ninja with my own Digital Dojo.</span></h1>
         <p class="lede">This is not a pitch. It is the story of one real business that needed its owner's time back, and the five months of building that followed: the Dojo where my AI ninjas train and work. Read it, keep what is useful, and if you see yourself in it, there is a simple quiz at the end, and a Dojo of your own on the other side of it.</p>
         <div class="cta-row">
-          <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours">&#129399; I want this Tew, Rick!</a>
+          <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
           <a class="btn btn-quiet" href="#quiz">Take the 2-minute quiz</a>
         </div>
       </div>
       <div class="hero-ninja">
         <img class="hero-rick" src="assets/story/rick/rick-cutout-2x.webp" width="505" height="1000" alt="Rick Tew">
-        <small>Sensei Rick Tew</small>
+        <small>Rick Tew, AI version</small>
       </div>
     </div>
     <div class="hero-stats">
@@ -849,7 +852,7 @@ footer a:hover{text-decoration:underline}
     <h2>You run the business. <em>My AI Ninja run the admin.</em></h2>
     <p class="sub">I'm Rick Tew: 25 years a martial arts sensei, and about as many as a nerd. Since March, I have been building solutions for my own businesses. I build and train an AI workforce for your life or business.</p>
     <div class="cta-row">
-      <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours">&#129399; I want this Tew, Rick!</a>
+      <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
       <a class="btn btn-quiet" href="#quiz">Take the 2-minute quiz</a>
     </div>
     <div class="proof">
