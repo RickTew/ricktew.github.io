@@ -1535,25 +1535,25 @@ footer a:hover{text-decoration:underline}
         <div class="m-top"><span class="belt-chip" style="background:var(--belt-g)"></span><span class="m-state">On the mat</span></div>
         <h3>Agentic Head of Content</h3>
         <p class="m-owns">Owns: the long things, written in your voice.</p>
-        <p>The book, the course, the manual, the newsletter that actually goes out. It asks better questions and drafts; the taste pass stays human. Writing is on the mat. Calls inside your own app are built and in human testing, so that half of the seat is still earning its belt.</p>
+        <p>The book, the course, the manual, the newsletter that actually goes out. It asks better questions and drafts; the taste pass stays human. Calls inside your own app are built and in human testing.</p>
         <p class="m-sols"><b>Runs:</b> The Publishing House, The Video Room (in testing)</p>
         <a class="want" href="#" data-want="The Agentic Head of Content seat" data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </article>
-      <article class="dojo-card master training rv">
-        <div class="m-top"><span class="belt-chip" style="background:var(--belt-y)"></span><span class="m-state">In training</span></div>
+      <article class="dojo-card master rv">
+        <div class="m-top"><span class="belt-chip" style="background:var(--belt-g)"></span><span class="m-state">On the mat</span></div>
         <h3>Agentic CFO</h3>
         <p class="m-owns">Owns: the money is right and on time.</p>
-        <p>The Money Desk already files and matches payment mail on one press. What is missing is the seat above it that watches the whole month and says so. I do not sell a seat that has not run my own books yet, so this one is in training. The desk itself you can have today.</p>
+        <p>The Money Desk files and matches payment mail on one press. The seat above it watches the whole month: what came in, what is owed, what is late, and says so before you have to ask. Every payment still waits for your press.</p>
         <p class="m-sols"><b>Runs today:</b> The Money Desk</p>
-        <a class="want" href="#" data-want="The Money Desk" data-want-note="The CFO seat is still in training, the desk itself is ready now." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
+        <a class="want" href="#" data-want="The Agentic CFO seat" data-want-note="The money is right and on time." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </article>
-      <article class="dojo-card master training rv">
-        <div class="m-top"><span class="belt-chip" style="background:var(--belt-y)"></span><span class="m-state">In training</span></div>
+      <article class="dojo-card master rv">
+        <div class="m-top"><span class="belt-chip" style="background:var(--belt-g)"></span><span class="m-state">On the mat</span></div>
         <h3>Agentic CTO</h3>
         <p class="m-owns">Owns: the apps stay up, the gear stays current.</p>
-        <p>Today that seat is me, with my own Dojo behind me, and that is exactly the service this page is selling. The agentic version, a seat that watches your builds and flags what has drifted before you notice, is in training. The human one you can talk to now.</p>
-        <p class="m-sols"><b>Runs today:</b> the sensei, by hand</p>
-        <a class="want" href="#" data-want="A CTO for a while, the human one" data-want-kind="other"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
+        <p>The seat that keeps the apps up and the gear current: it watches your builds, flags what has drifted before you notice, and keeps the tools you run on from going stale. Behind it stands me, with my own Dojo, which is exactly the service this page is selling.</p>
+        <p class="m-sols"><b>Runs:</b> the Dojo itself, with the sensei behind it</p>
+        <a class="want" href="#" data-want="The Agentic CTO seat" data-want-note="The apps stay up, the gear stays current." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </article>
     </div>
 
@@ -2476,9 +2476,9 @@ footer a:hover{text-decoration:underline}
     var sols=A("where").solutions||[];
     /* One level up from the solutions: the seat that would own the number.
        Question 12 already maps each answer to a solution; the same picks roll
-       up to a Master. Two seats are in training and the result says so
-       rather than selling them. */
-    var SEAT_TRAINING={"Agentic CFO":1,"Agentic CTO":1};
+       up to a Master. All six seats are on the mat (Rick's ruling, 27 Aug
+       2026); the map below stays so a seat can be pulled back if needed. */
+    var SEAT_TRAINING={};
     var seatCount={}, pickedSeats=A("where").seats||[];
     pickedSeats.forEach(function(x){ seatCount[x]=(seatCount[x]||0)+1; });
     /* the seat of the first pick leads, because that is the desk the result
