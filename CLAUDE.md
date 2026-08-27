@@ -157,6 +157,19 @@ auto-sends. The page says exactly that, so **do not "improve" the copy into
 claiming the agent answers instantly.** It does not, and the earlier version
 of that band did claim it.
 
+**"I want this Tew" (2026-08-27).** Every thing on the page a visitor can
+ask for (the eleven solution rows, the six Master seats, the three Dojo
+cards, the two price cards) carries one pill button, `a.want`, with
+`data-want` (the thing's name), `data-want-note` (its one-line promise) and
+`data-want-kind` (one of the form's existing subject values: `build`,
+`dojo`, `other`). Clicking it calls `window.rtWant()` in the slot script,
+which sets the subject, writes "I want this Tew: X" plus three blanks into
+the message box, and scrolls to the slot. The server is untouched: the want
+rides inside the message, and an unknown subject is coerced to Other there
+anyway. If you add a new sellable thing to the page, give it this button,
+not a new mailto and not a new form. The older `[data-mail]` links still
+work through `rtSlot()` for the non-product CTAs.
+
 **Before you touch the endpoint, run its test:**
 
 ```

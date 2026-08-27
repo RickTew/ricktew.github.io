@@ -364,6 +364,18 @@ html,body{overflow-x:clip}
 .help-fine{margin-top:16px;font-size:14px;color:#4b5563;font-weight:700}
 .help-fine .sol-mail{margin-top:0}
 .sol-mail:hover{color:var(--blue-d)}
+/* "I want this Tew": the one button under every thing on this page a
+   visitor can ask for. It carries the thing's name into The Letter Slot,
+   so the message arrives already saying what they want. */
+.want{display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#fff;color:var(--blue);border:2px solid var(--blue);border-radius:999px;padding:8px 16px 8px 12px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:14px;line-height:1;text-decoration:none;cursor:pointer;transition:transform .12s ease,background .12s ease,color .12s ease,box-shadow .12s ease}
+.want .g{font-size:18px;line-height:1;transition:transform .2s ease}
+.want:hover{background:var(--blue);color:#fff;transform:translateY(-1px);box-shadow:0 8px 22px rgba(30,115,189,.28)}
+.want:hover .g{transform:rotate(-14deg) scale(1.18)}
+.want:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.master .want{align-self:flex-start}
+.dojo-card .want{margin-top:14px}
+.price-card .want{margin-top:10px;align-self:center}
+@media (prefers-reduced-motion: reduce){ .want,.want .g{transition:none} .want:hover{transform:none} .want:hover .g{transform:none} }
 .dojo-card h3{font-size:19px;font-weight:900}
 .dojo-card p{margin-top:10px;font-size:14.5px;color:#4b5563;font-weight:600}
 
@@ -1315,57 +1327,57 @@ footer a:hover{text-decoration:underline}
       <details class="sol-row rv">
         <summary><span class="nm">The Front Desk</span><span class="tg">Support replies drafted on auto. You press send.</span></summary>
         <div class="bd"><p>An AI agent reads every support mail, day and night, and drafts the reply from your own written answers. Hours back every week, zero robot answers. Runs live in my business today.</p>
-        <a class="sol-mail" href="#" data-mail="Build me the Front Desk" data-ninja>&#129399; Want this one? Mail my Ninja</a></div>
+        <a class="want" href="#" data-want="The Front Desk" data-want-note="Support replies drafted on auto. You press send." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a></div>
       </details>
       <details class="sol-row rv">
         <summary><span class="nm">The Money Desk</span><span class="tg">Payment mail books itself. One press, done.</span></summary>
         <div class="bd"><p>"Money received" mails auto-file and auto-match against what is owed; one press confirms and writes the books. No more "did that payment come in?". Live on real payment mail today.</p>
-        <a class="sol-mail" href="#" data-mail="Build me the Money Desk" data-ninja>&#129399; Want this one? Mail my Ninja</a></div>
+        <a class="want" href="#" data-want="The Money Desk" data-want-note="Payment mail books itself. One press, done." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a></div>
       </details>
       <details class="sol-row rv">
         <summary><span class="nm">The Booking Desk</span><span class="tg">Bookings on autopilot. No back and forth.</span></summary>
         <div class="bd"><p>People book you without an account or email ping-pong; reminders, reschedules and cancels handle themselves. This system ran my own gym while I taught the classes.</p>
-        <a class="sol-mail" href="#" data-mail="Build me the Booking Desk" data-ninja>&#129399; Want this one? Mail my Ninja</a></div>
+        <a class="want" href="#" data-want="The Booking Desk" data-want-note="Bookings on autopilot. No back and forth." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a></div>
       </details>
       <details class="sol-row rv">
         <summary><span class="nm">Colleagues by Email</span><span class="tg">AI agents you mail like staff.</span></summary>
         <div class="bd"><p>Named AI agents with their own mailboxes: ask the numbers desk a question from your phone, the answer comes back by mail. No agent touches money or the outside world. Mine work this way today.</p>
-        <a class="sol-mail" href="#" data-mail="Build me Colleagues by Email" data-ninja>&#129399; Want this one? Mail my Ninja</a></div>
+        <a class="want" href="#" data-want="Colleagues by Email" data-want-note="AI agents you mail like staff." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a></div>
       </details>
       <details class="sol-row rv">
         <summary><span class="nm">The Marketing Room</span><span class="tg">Campaigns drafted in your voice, on auto.</span></summary>
         <div class="bd"><p>A brief goes in, three drafts come out in your voice; only the one you approve ships, and the day's numbers land in one glance. A marketing department's output, minus the payroll. Live in daily use.</p>
-        <a class="sol-mail" href="#" data-mail="Build me the Marketing Room" data-ninja>&#129399; Want this one? Mail my Ninja</a></div>
+        <a class="want" href="#" data-want="The Marketing Room" data-want-note="Campaigns drafted in your voice, on auto." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a></div>
       </details>
       <details class="sol-row rv">
         <summary><span class="nm">The Ad Room</span><span class="tg">Ad math and ad copy before you spend.</span></summary>
         <div class="bd"><p>The system plans exactly what your ads must deliver, drafts the copy for your approval, and never spends a cent itself. You hold the wallet; it holds the discipline.</p>
-        <a class="sol-mail" href="#" data-mail="Build me the Ad Room" data-ninja>&#129399; Want this one? Mail my Ninja</a></div>
+        <a class="want" href="#" data-want="The Ad Room" data-want-note="Ad math and ad copy before you spend." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a></div>
       </details>
       <details class="sol-row rv">
         <summary><span class="nm">The Publishing House</span><span class="tg">A system that turns members into authors.</span></summary>
         <div class="bd"><p>A guided workbook, an editorial pipeline, and an AI coach that asks better questions but never writes for them. Running in a real publishing house today.</p>
-        <a class="sol-mail" href="#" data-mail="Build me the Publishing House" data-ninja>&#129399; Want this one? Mail my Ninja</a></div>
+        <a class="want" href="#" data-want="The Publishing House" data-want-note="A system that turns members into authors." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a></div>
       </details>
       <details class="sol-row rv">
         <summary><span class="nm">The Answer Engine</span><span class="tg">Your knowledge base, answering 24/7.</span></summary>
         <div class="bd"><p>The brain behind the chat box and the drafted replies: it answers only from facts you verified and says "I don't know" instead of guessing. Every miss it logs makes your library smarter.</p>
-        <a class="sol-mail" href="#" data-mail="Build me the Answer Engine" data-ninja>&#129399; Want this one? Mail my Ninja</a></div>
+        <a class="want" href="#" data-want="The Answer Engine" data-want-note="Your knowledge base, answering 24/7." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a></div>
       </details>
       <details class="sol-row rv">
         <summary><span class="nm">The Notebook</span><span class="tg">Your AI learns. You hold the veto.</span></summary>
         <div class="bd"><p>AI agents get smarter only by proposing notes you approve, and nothing is ever deleted, so you always know what they know. Switched on in my own agents today.</p>
-        <a class="sol-mail" href="#" data-mail="Build me the Notebook" data-ninja>&#129399; Want this one? Mail my Ninja</a></div>
+        <a class="want" href="#" data-want="The Notebook" data-want-note="Your AI learns. You hold the veto." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a></div>
       </details>
       <details class="sol-row rv">
         <summary><span class="nm">The Quiz Funnel</span><span class="tg">A quiz that turns visitors into leads.</span></summary>
         <div class="bd"><p>A self-audit on your page: visitors bring their own numbers, the math tells the truth, and the answer is never held hostage for an email. The quiz further down this page is it, live.</p>
-        <a class="sol-mail" href="#" data-mail="Build me the Quiz Funnel" data-ninja>&#129399; Want this one? Mail my Ninja</a></div>
+        <a class="want" href="#" data-want="The Quiz Funnel" data-want-note="A quiz that turns visitors into leads." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a></div>
       </details>
       <details class="sol-row rv">
         <summary><span class="nm">The Video Room</span><span class="tg">Calls inside your own app.</span></summary>
         <div class="bd"><p>Voice and video built into your own app: staff dial a member, a paid room opens the moment payment lands, no-shows end in an automatic refund. Built, in human testing now.</p>
-        <a class="sol-mail" href="#" data-mail="Build me the Video Room" data-ninja>&#129399; Want this one? Mail my Ninja</a></div>
+        <a class="want" href="#" data-want="The Video Room" data-want-note="Calls inside your own app." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a></div>
       </details>
     </div>
 
@@ -1502,7 +1514,7 @@ footer a:hover{text-decoration:underline}
         <p class="m-owns">Owns: more customers.</p>
         <p>Plans the campaign, drafts three angles in your voice, does the ad math before a cent moves, and reads the numbers back to you every day. You approve, you press, you hold the wallet. It has already run on three of my own businesses: plans on the table, nothing spent.</p>
         <p class="m-sols"><b>Runs:</b> The Marketing Room, The Ad Room, The Quiz Funnel, The Letter Slot</p>
-        <a class="sol-mail" href="#" data-mail="Tell me about the Agentic CMO seat" data-ninja>&#129399; Want this seat? Mail my Ninja</a>
+        <a class="want" href="#" data-want="The Agentic CMO seat" data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </article>
       <article class="dojo-card master rv">
         <div class="m-top"><span class="belt-chip" style="background:var(--belt-g)"></span><span class="m-state">On the mat</span></div>
@@ -1510,7 +1522,7 @@ footer a:hover{text-decoration:underline}
         <p class="m-owns">Owns: every question answered, every booking kept.</p>
         <p>Reads every mail, drafts the reply from your own written answers, keeps bookings from turning into ping-pong, and says "I don't know" instead of guessing. You press every send. The Front Desk under this seat runs live in my gym today.</p>
         <p class="m-sols"><b>Runs:</b> The Front Desk, The Booking Desk, The Answer Engine, The Notebook, Colleagues by Email</p>
-        <a class="sol-mail" href="#" data-mail="Tell me about the Agentic Head of Customer Care seat" data-ninja>&#129399; Want this seat? Mail my Ninja</a>
+        <a class="want" href="#" data-want="The Agentic Head of Customer Care seat" data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </article>
       <article class="dojo-card master rv">
         <div class="m-top"><span class="belt-chip" style="background:var(--belt-g)"></span><span class="m-state">On the mat</span></div>
@@ -1518,7 +1530,7 @@ footer a:hover{text-decoration:underline}
         <p class="m-owns">Owns: is everything running, and who is doing what.</p>
         <p>One view over every desk you have, and a truthful answer to "is everything running?", including "no". It routes the work and reports to you in one place. It never does a department's job itself, and it never widens anyone's lane. Runs my own shop today.</p>
         <p class="m-sols"><b>Runs:</b> the view over every other seat, and Colleagues by Email for the handoffs</p>
-        <a class="sol-mail" href="#" data-mail="Tell me about the Agentic Chief of Staff seat" data-ninja>&#129399; Want this seat? Mail my Ninja</a>
+        <a class="want" href="#" data-want="The Agentic Chief of Staff seat" data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </article>
       <article class="dojo-card master rv">
         <div class="m-top"><span class="belt-chip" style="background:var(--belt-g)"></span><span class="m-state">On the mat</span></div>
@@ -1526,7 +1538,7 @@ footer a:hover{text-decoration:underline}
         <p class="m-owns">Owns: the long things, written in your voice.</p>
         <p>The book, the course, the manual, the newsletter that actually goes out. It asks better questions and drafts; the taste pass stays human. Writing is on the mat. Calls inside your own app are built and in human testing, so that half of the seat is still earning its belt.</p>
         <p class="m-sols"><b>Runs:</b> The Publishing House, The Video Room (in testing)</p>
-        <a class="sol-mail" href="#" data-mail="Tell me about the Agentic Head of Content seat" data-ninja>&#129399; Want this seat? Mail my Ninja</a>
+        <a class="want" href="#" data-want="The Agentic Head of Content seat" data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </article>
       <article class="dojo-card master training rv">
         <div class="m-top"><span class="belt-chip" style="background:var(--belt-y)"></span><span class="m-state">In training</span></div>
@@ -1534,7 +1546,7 @@ footer a:hover{text-decoration:underline}
         <p class="m-owns">Owns: the money is right and on time.</p>
         <p>The Money Desk already files and matches payment mail on one press. What is missing is the seat above it that watches the whole month and says so. I do not sell a seat that has not run my own books yet, so this one is in training. The desk itself you can have today.</p>
         <p class="m-sols"><b>Runs today:</b> The Money Desk</p>
-        <a class="sol-mail" href="#" data-mail="Build me the Money Desk" data-ninja>&#129399; Want the desk now? Mail my Ninja</a>
+        <a class="want" href="#" data-want="The Money Desk" data-want-note="The CFO seat is still in training, the desk itself is ready now." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </article>
       <article class="dojo-card master training rv">
         <div class="m-top"><span class="belt-chip" style="background:var(--belt-y)"></span><span class="m-state">In training</span></div>
@@ -1542,7 +1554,7 @@ footer a:hover{text-decoration:underline}
         <p class="m-owns">Owns: the apps stay up, the gear stays current.</p>
         <p>Today that seat is me, with my own Dojo behind me, and that is exactly the service this page is selling. The agentic version, a seat that watches your builds and flags what has drifted before you notice, is in training. The human one you can talk to now.</p>
         <p class="m-sols"><b>Runs today:</b> the sensei, by hand</p>
-        <a class="sol-mail" href="#" data-mail="I need a CTO for a while" data-ninja>&#129399; Want the human one? Mail my Ninja</a>
+        <a class="want" href="#" data-want="A CTO for a while, the human one" data-want-kind="other"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </article>
     </div>
 
@@ -1561,16 +1573,19 @@ footer a:hover{text-decoration:underline}
         <span class="belt-chip" style="background:var(--belt-w);border:1px solid var(--line)"></span>
         <h3>One ninja, one job</h3>
         <p>Your first hire takes the one task that eats the most hours: usually the inbox. It drafts, it files, it proposes. A human presses every send. That rule never bends, at any belt.</p>
+        <a class="want" href="#" data-want="One ninja, one job" data-want-note="Your first hire takes the one task that eats the most hours." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </div>
       <div class="dojo-card rv">
         <span class="belt-chip" style="background:var(--belt-g)"></span>
         <h3>A few desks, working together</h3>
         <p>Ninjas earn belts the way my gym kids do: by showing up and proving it. A ninja that has earned trust gets a wider lane, and desks start passing work to each other, support to bookings to money.</p>
+        <a class="want" href="#" data-want="A few desks, working together" data-want-note="Desks passing work to each other, support to bookings to money." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </div>
       <div class="dojo-card rv">
         <span class="belt-chip" style="background:var(--belt-k)"></span>
         <h3>The full dojo</h3>
         <p>A workforce with one view over all of it, and an overseer that answers "is everything running?" truthfully, including "no". Every judgment call still yours. Payroll cost of these hires: about zero.</p>
+        <a class="want" href="#" data-want="The full dojo" data-want-note="A workforce with one view over all of it." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </div>
     </div>
 
@@ -1592,6 +1607,7 @@ footer a:hover{text-decoration:underline}
           <li class="no">Decisions. Judgment calls are never outsourced; they wait for your press.</li>
         </ul>
         <a class="btn btn-blue" href="#quiz">Start with the quiz</a>
+        <a class="want" href="#" data-want="Sensei runs it, $4,444 a month" data-want-note="I build it, I run it too." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
         <p class="cancel">Monthly subscription. Cancel anytime, effective at the end of the paid month.</p>
       </div>
       <div class="price-card rv">
@@ -1609,6 +1625,7 @@ footer a:hover{text-decoration:underline}
           <li class="no">Third-party costs: your AI, software and ad accounts stay yours and in your name.</li>
         </ul>
         <a class="btn btn-quiet" href="#quiz">Start with the quiz</a>
+        <a class="want" href="#" data-want="Your Dojo, $2,222 a month" data-want-note="I build it, you run it." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
         <p class="cancel">Monthly subscription. Cancel anytime, effective at the end of the paid month.</p>
       </div>
     </div>
@@ -2176,6 +2193,32 @@ footer a:hover{text-decoration:underline}
     setTimeout(focusFirstGap, far?80:420);
   };
 
+  /* "I want this Tew". Every want button on the page lands here with the
+     thing it sat under, and the message box arrives already saying so:
+     the thing, its one-line promise, and two blanks for the visitor. The
+     subject select is set to match. If the visitor already wrote something
+     of their own, the want line is added under it rather than over it;
+     pressing a second button replaces the first prefill, not their words.
+     Nothing is sent until they press the button themselves. */
+  var lastWant="";
+  window.rtWant=function(what,kind,note){
+    if(form.hidden){ goToSlot(); return; }
+    what=(what||"").trim(); note=(note||"").trim();
+    var sel=form.elements.namedItem("subject");
+    var msg=form.elements.namedItem("message");
+    if(sel){ sel.value=kind||"build"; if(sel.value!==(kind||"build")) sel.value="other"; }
+    var line="I want this Tew: "+what+"."+(note?"\n"+note:"");
+    var body=line+"\n\nMy business:\nWhat eats the hours right now:\nWhen I would like it running:\n";
+    if(msg && what){
+      var cur=msg.value;
+      if(!cur.trim() || cur===lastWant) msg.value=body;
+      else if(cur.indexOf(line)===-1) msg.value=cur.replace(/\s+$/,"")+"\n\n"+line+"\n";
+      lastWant=msg.value;
+    }
+    var far=goToSlot();
+    setTimeout(focusFirstGap, far?80:420);
+  };
+
   /* Used by the quiz, which has real content to hand over: the answers ride
      into the message box so the visitor can read and edit them before they
      go anywhere. Nothing is sent until they press the button themselves. */
@@ -2575,6 +2618,12 @@ footer a:hover{text-decoration:underline}
     a.addEventListener("click",function(e){
       e.preventDefault();
       window.rtSlot(a.dataset.mail||"");
+    });
+  });
+  document.querySelectorAll("[data-want]").forEach(function(a){
+    a.addEventListener("click",function(e){
+      e.preventDefault();
+      window.rtWant(a.dataset.want||"",a.dataset.wantKind||"build",a.dataset.wantNote||"");
     });
   });
   var mock=document.getElementById("tbMock");
