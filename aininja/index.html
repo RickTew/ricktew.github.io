@@ -78,10 +78,10 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .hstat > span{font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
 .hstat b span{font-size:inherit;font-weight:inherit;color:inherit;letter-spacing:0;text-transform:none}
 .hstat .plus{color:var(--blue)}
-.hero-share{margin-top:18px;max-width:64ch;color:var(--muted);font-weight:700;font-size:15px;line-height:1.6}
+.hero-share{margin-top:30px;max-width:none;color:#3a4148;font-weight:600;font-size:clamp(17px,2.2vw,20px);line-height:1.55}
 .hero-share b{color:var(--ink)}
 /* the sensei, cut off his studio backdrop so he stands on the page itself */
-.hero-ninja{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px}
+.hero-ninja{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;transform:translate(-14px,-18px)}
 .hero-ninja::before{content:"";position:absolute;left:50%;top:4%;z-index:0;
   width:390px;height:390px;transform:translateX(-50%);border-radius:50%;
   background:radial-gradient(circle,rgba(30,115,189,.13),rgba(30,115,189,0) 68%)}
@@ -811,7 +811,7 @@ footer a:hover{text-decoration:underline}
       <a href="#dojo">The Dojo</a>
       <a href="#quiz">The quiz</a>
       <a href="#ninja">The ninja</a>
-      <a class="btn btn-blue" href="#story">Read the story</a>
+      <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours">&#129399; I want this Tew, Rick!</a>
     </div>
   </div>
 </nav>
@@ -824,12 +824,12 @@ footer a:hover{text-decoration:underline}
         <h1>I'm not a marketing expert. <span class="c">I'm an AI ninja with my own Digital Dojo.</span></h1>
         <p class="lede">This is not a pitch. It is the story of one real business that needed its owner's time back, and the five months of building that followed: the Dojo where my AI ninjas train and work. Read it, keep what is useful, and if you see yourself in it, there is a simple quiz at the end, and a Dojo of your own on the other side of it.</p>
         <div class="cta-row">
-          <a class="btn btn-blue" href="#story">Read the story, about 3 minutes</a>
-          <a class="btn btn-quiet" href="#quiz">Skip to the quiz</a>
+          <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours">&#129399; I want this Tew, Rick!</a>
+          <a class="btn btn-quiet" href="#quiz">Take the 2-minute quiz</a>
         </div>
       </div>
       <div class="hero-ninja">
-        <img class="hero-rick" src="assets/story/rick/rick-cutout.png" alt="Rick Tew">
+        <img class="hero-rick" src="assets/story/rick/rick-cutout-2x.webp" width="505" height="1000" alt="Rick Tew">
         <small>Sensei Rick Tew</small>
       </div>
     </div>
@@ -839,18 +839,18 @@ footer a:hover{text-decoration:underline}
       <div class="hstat"><b><span data-count="6242">0</span><span class="plus">+</span></b><span>commits since March</span></div>
       <div class="hstat"><b><span data-count="100">0</span><span class="plus">+</span></b><span>solutions built</span></div>
     </div>
-    <p class="hero-share">None of that is a pitch. I built a few things, learned some great stuff along the way and shared it with friends. I think you could get something out of it too, so read the rest as sharing, not selling.</p>
+    <p class="hero-share">I built a few things, learned some great stuff along the way and shared it with friends. I think you could get something out of it too, so read the rest as sharing, not selling.</p>
   </div>
 </header>
 
 <!-- ============ OPTION 2B: hero, the 3-second version ============ -->
 <section class="h2b" id="opt-2b">
   <div class="wrap rv">
-    <h2>You run the business. <em>My AI ninjas run the admin.</em></h2>
-    <p class="sub">I'm Rick Tew: 25 years a martial arts sensei, and about as many a nerd. Since March I have been building solutions for my own businesses. I build and train an AI workforce for your business, and a human presses every send.</p>
+    <h2>You run the business. <em>My AI Ninja run the admin.</em></h2>
+    <p class="sub">I'm Rick Tew: 25 years a martial arts sensei, and about as many as a nerd. Since March, I have been building solutions for my own businesses. I build and train an AI workforce for your life or business.</p>
     <div class="cta-row">
-      <a class="btn btn-blue" href="#quiz">Take the 3-minute quiz</a>
-      <a class="btn btn-quiet" href="#story">Read the story first</a>
+      <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours">&#129399; I want this Tew, Rick!</a>
+      <a class="btn btn-quiet" href="#quiz">Take the 2-minute quiz</a>
     </div>
     <div class="proof">
       <span>TEWGO on the Apple App Store</span>
@@ -1632,13 +1632,13 @@ footer a:hover{text-decoration:underline}
     <p class="dojo-honest" style="margin-top:22px">Straight answer to the obvious question: both are me doing the building, because that is the product. The difference is who runs the daily work once the Dojo stands: you, or me. And the line that keeps it honest: <b>you are hiring my service to build and run your AI workforce, not hiring me as your product developer.</b> Seats are capped because a sensei who takes every student teaches none of them.</p>
 
     <div class="punch rv">
-      <h3>You run the business. My AI ninjas run the admin.</h3>
+      <h3>You run the business. My AI Ninja run the admin.</h3>
       <p>That is the whole thing in one line. I build your Dojo, I train the ninjas on your own work, and every send, pay and post still waits for your press. The two ways in, and what they cost, are right above. The quiz tells you which one fits.</p>
       <div class="punch-cta">
-        <a class="btn btn-blue" href="#quiz">Take the 3-minute quiz</a>
+        <a class="btn btn-blue" href="#quiz">Take the 2-minute quiz</a>
         <a class="btn btn-quiet" href="#" id="buildMail">Ask about a build</a>
       </div>
-      <p class="punch-fine">Twelve questions, three minutes, no email asked for. The result is computed from your answers alone, and it tells you where I would start.</p>
+      <p class="punch-fine">Twelve questions, two minutes, no email asked for. The result is computed from your answers alone, and it tells you where I would start.</p>
     </div>
   </div>
 </section>
@@ -1655,7 +1655,7 @@ footer a:hover{text-decoration:underline}
       <div class="step"><span class="k">The problem</span><p>The repeatable work, the same questions, the scheduling, the invoices, the chasing, does not need your judgment. It just needs your hours. <b>And it takes them, every week.</b></p></div>
       <div class="step"><span class="k">The solution</span><p>I build you a Digital Dojo: a small AI workforce, trained on your business, that drafts and files that work. <b>Every send, pay and post waits for a human press.</b> Judgment stays yours.</p></div>
       <div class="step"><span class="k">The proof</span><p>It runs my own gym: 1,000+ members, 5,000+ app bookings since April, on auto while I teach. It runs a client's support desk today. <b>TEWGO sits on the Apple App Store.</b> Every claim has a build behind it, higher up this page.</p></div>
-      <div class="step"><span class="k">The ask</span><p>Twelve questions, three minutes. The result is computed from your answers alone, and you see it without giving an email.</p><a class="btn btn-blue" href="#quiz">Take the quiz</a></div>
+      <div class="step"><span class="k">The ask</span><p>Twelve questions, two minutes. The result is computed from your answers alone, and you see it without giving an email.</p><a class="btn btn-blue" href="#quiz">Take the quiz</a></div>
     </div>
   </div>
 </section>
@@ -2208,7 +2208,7 @@ footer a:hover{text-decoration:underline}
     var msg=form.elements.namedItem("message");
     if(sel){ sel.value=kind||"build"; if(sel.value!==(kind||"build")) sel.value="other"; }
     var line="I want this Tew: "+what+"."+(note?"\n"+note:"");
-    var body=line+"\n\nMy business:\nWhat eats the hours right now:\nWhen I would like it running:\n";
+    var body=line+"\n\nWhat I do:\nWhat eats the hours right now:\nWhen I would like it running:\n";
     if(msg && what){
       var cur=msg.value;
       if(!cur.trim() || cur===lastWant) msg.value=body;
@@ -2603,7 +2603,7 @@ footer a:hover{text-decoration:underline}
 
 <!-- ============ OPTION M1: sticky mobile CTA bar (shows under 700px only) ============ -->
 <div class="mbar" id="mbar">
-  <a class="btn btn-blue" href="#quiz">Take the 3-minute quiz</a>
+  <a class="btn btn-blue" href="#quiz">Take the 2-minute quiz</a>
   <button class="x" id="mbarX" aria-label="Dismiss">&times;</button>
 </div>
 

@@ -167,8 +167,14 @@ which sets the subject, writes "I want this Tew: X" plus three blanks into
 the message box, and scrolls to the slot. The server is untouched: the want
 rides inside the message, and an unknown subject is coerced to Other there
 anyway. If you add a new sellable thing to the page, give it this button,
-not a new mailto and not a new form. The older `[data-mail]` links still
-work through `rtSlot()` for the non-product CTAs.
+not a new mailto and not a new form. The generic form of it, "I want this Tew,
+Rick!" (nav, hero, the 3-second section), is the same button with
+`data-want="my hours back"` and pairs with the quiz as the 1-2 punch Rick
+asked for on 2026-08-27; there is no "Read the story" button any more. The
+older `[data-mail]` links still work through `rtSlot()` for the non-product
+CTAs. The hero photo is `rick-cutout-2x.webp`, an AI-made likeness Rick
+supplied, lifted off its backdrop with the macOS Vision framework; the
+old `rick-cutout.png` was 433px wide and blurred on Retina.
 
 **Before you touch the endpoint, run its test:**
 
