@@ -2134,11 +2134,11 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
           <div class="slot-f">
             <label for="slotSubject">What is this about</label>
             <select id="slotSubject" name="subject" toolparamdescription="What the message is about. Pick the closest.">
-              <option value="hours">Hours I want back</option>
-              <option value="build">Something built</option>
-              <option value="dojo">A question about the Dojo</option>
-              <option value="slot">I want a form like this one</option>
-              <option value="hininja">The HI Ninja side: camps, coaching, mat time</option>
+              <option value="hours">I want my hours back: the inbox, the bookings, the admin</option>
+              <option value="build">Build me something: an app, a site, a chat box</option>
+              <option value="dojo">Which fits me, Sensei runs it or Your Dojo?</option>
+              <option value="slot">I want a mailbox or an answer box like this on my site</option>
+              <option value="hininja">Martial arts, camps, coaching: the HI Ninja side</option>
               <option value="other">Something else</option>
             </select>
           </div>
@@ -2351,6 +2351,25 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     var far=goToSlot();
     setTimeout(focusFirstGap, far?80:420);
   };
+
+  /* When the visitor changes "What is this about" by hand, the first line of
+     the message follows it, so the two never disagree. Only a prefilled first
+     line is touched (one of ours, or an empty box); words they typed stay. */
+  var FIRST={hours:"I want this Tew: my hours back.", build:"I want this Tew: something built.",
+             dojo:"Which fits me, Sensei runs it or Your Dojo?", slot:"I want this Tew: a mailbox or an answer box like this one.",
+             hininja:"The HI Ninja side: camps, coaching, mat time.", other:""};
+  var OURS=/^(I want this Tew: .*|Which fits me, Sensei runs it or Your Dojo\?|The HI Ninja side: camps, coaching, mat time\.|About: .*)$/;
+  (function(){
+    var sel=form.elements.namedItem("subject"), msg=form.elements.namedItem("message");
+    if(!sel||!msg) return;
+    sel.addEventListener("change",function(){
+      var lines=msg.value.split("\n"), first=(lines[0]||"").trim(), line=FIRST[sel.value]||"";
+      if(!msg.value.trim()){ msg.value=line?line+"\n\nWhat I do:\nWhat eats the hours right now:\nWhen I would like it running:\n":""; return; }
+      if(!OURS.test(first)) return;
+      if(line) lines[0]=line; else lines.shift();
+      msg.value=lines.join("\n").replace(/^\n+/,"");
+    });
+  })();
 
   /* Used by the quiz, which has real content to hand over: the answers ride
      into the message box so the visitor can read and edit them before they

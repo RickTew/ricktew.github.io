@@ -57,10 +57,10 @@ const ALLOWED_ORIGINS = [
 /** The subject list the form offers. Anything else is coerced to Other, so
  *  the mail subject line can never carry attacker-chosen text. */
 const SUBJECTS: Record<string, string> = {
-  hours: 'Hours I want back',
-  build: 'Something built',
-  dojo: 'Question about the Dojo',
-  slot: 'I want a form like this one',
+  hours: 'Hours back: the inbox, the bookings, the admin',
+  build: 'Build me something',
+  dojo: 'Which fits me, Sensei runs it or Your Dojo',
+  slot: 'A mailbox or an answer box like this',
   hininja: 'The HI Ninja side',
   other: 'Something else',
 };
@@ -194,7 +194,7 @@ async function sendMail(f: {
     row('From', esc(f.name)) +
     row('Email', esc(f.email)) +
     row('About', esc(f.subjectLabel)) +
-    row('Via', 'The Letter Slot on ricktew.com/aininja/') +
+    row('Via', 'the mailbox on ricktew.com/aininja/') +
     row('Source', esc(f.sourceLabel)) +
     `</table>` +
     `<hr style="border:none;border-top:1px solid #ddd;margin:16px 0">` +
@@ -204,7 +204,7 @@ async function sendMail(f: {
 
   const text =
     `From: ${f.name}\nEmail: ${f.email}\nAbout: ${f.subjectLabel}\n` +
-    `Via: The Letter Slot on ricktew.com/aininja/\nSource: ${f.sourceLabel}\n\n${f.message}\n`;
+    `Via: the mailbox on ricktew.com/aininja/\nSource: ${f.sourceLabel}\n\n${f.message}\n`;
 
   // The subject label comes from a fixed list, so it can never carry
   // attacker-chosen text. The NAME can, and the subject is the one place
