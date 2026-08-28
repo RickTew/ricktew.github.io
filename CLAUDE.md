@@ -116,14 +116,14 @@ The other dollar signs on the page are not Rick's price: `$5` is the POS
 vendor's per-staff fee inside his own story, and `$20 / $30 / $60` are the
 quiz asking the reader what their own hour is worth. Leave them.
 
-### The live row shows two signed-in apps, so its copy is narrower than it was
+### The live row: no claim sentence any more (2026-08-28)
 
-Also 24 Aug: the TEWBEDO and WinJitsu tiles are now Rick's own captures from
-*inside* those apps, not the passkey wall and the pale landing page. The
-section used to promise every capture was "exactly as it loads for anyone who
-taps it", which those two are not any more. It now says most are what a
-stranger sees, and the two behind a login are what Rick sees once he is
-inside. **If you swap a tile, check that sentence still tells the truth.**
+The apps section used to promise every capture was "exactly as it loads for
+anyone who taps it", then narrowed that to "most are what a stranger sees,
+two are what Rick sees inside". On 28 Aug Rick cut the whole sentence as
+unneeded; the intro is now one line ("Some I built for a business, some as a
+hobby..."). Nothing on the page describes the captures any more, so a tile
+swap needs no copy check. The row label above the phones is the only text left.
 
 ---
 
