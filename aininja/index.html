@@ -2436,7 +2436,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   function shelf(id, list){
     var el=document.getElementById(id); if(!el) return;
     var one=list.map(function(a){
-      return '<div class="shelf-app"><img src="assets/'+a[0]+'.png" alt="" loading="lazy"><span>'+a[1]+'</span></div>';
+      return '<div class="shelf-app"><img src="assets/'+a[0]+'.png" alt=""><span>'+a[1]+'</span></div>';
     }).join("");
     var half=new Array(reps(list.length,134)+1).join(one);
     el.innerHTML=half+half;
