@@ -151,11 +151,24 @@ is selling contact forms, so the demo and the product are the same object.
   comment here would defeat the whole pattern, in a public repo, in a file
   anyone can fetch.
 
-**Where the mail goes.** To the Ninja Agent's mailbox, which TEWBEDO files as
-a ticket for `support-agent`. It drafts the reply, Rick presses send. Nothing
-auto-sends. The page says exactly that, so **do not "improve" the copy into
-claiming the agent answers instantly.** It does not, and the earlier version
-of that band did claim it.
+**Where the mail goes, and the one auto-reply on the site (since
+2026-08-28, Rick's ruling).** To the Ninja Agent's mailbox
+`aininja@ricktew.com`, which TEWBEDO files as a ticket. Since 28 Aug the
+Ninja Agent ANSWERS BY ITSELF, within about five seconds, every message that
+arrives at that address: it fetches the chat box's library live from
+`https://ricktew.com/aininja/ask.js` (ten-minute cache, so mail and chat
+box can never disagree), answers only on a strong match, sends the honest
+miss otherwise ("I do not have that one written down. Rick reads every
+message and follows up himself."), signs as the AI, adds the Tew Tip as a
+P.S., and never replies to machine mail, bounces or auto-responders. One
+switch in the TEWBEDO inbox header turns it off without a deploy. This is
+the deliberate exception to "a human presses every send", stated on the
+page in the FAQ and the mailbox blurb; the threads stay open for Rick's
+follow-up. **Because the library is the mail's only knowledge, every
+edit to `ask.js` is also an edit to what strangers get by email:** run the
+golden test. The page prints `aininja@ricktew.com` on purpose (the closing
+band, the chat box): it is the agent's address, not Rick's, and the no-address
+rule above still covers Rick's own.
 
 **"I want this Tew" (2026-08-27).** Every thing on the page a visitor can
 ask for (the eleven solution rows, the six Master seats, the three Dojo

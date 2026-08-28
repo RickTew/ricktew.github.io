@@ -2070,7 +2070,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <h2>The questions <span class="c">that come up every time</span></h2>
     <div class="list">
       <details><summary>Do I need to understand AI to use this?</summary><p>No, and that is the point. Only a tiny slice of people using AI will ever touch the builder tools. I build and train the Dojo; you run your business. If you ever want to learn what is under the hood, I will show you, but it is never required.</p></details>
-      <details><summary>Will an AI talk to my customers without me knowing?</summary><p>Never. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. That rule does not bend at any belt or any price.</p></details>
+      <details><summary>Will an AI talk to my customers without me knowing?</summary><p>Never. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. That rule does not bend at any belt or any price.</p><p>One exception, and it is mine: the mailbox on this page is answered first by my Ninja Agent, signed as the AI, from answers I wrote, because that is the demo. In your Dojo nothing sends without your press unless you choose the same for a lane of your own.</p></details>
       <details><summary>What does it cost?</summary><p>Sensei runs it is $4,444 a month: I build it and I run the daily work too. Your Dojo is $2,222 a month: I build it, you run it. Both are monthly, cancel anytime, effective at the end of the paid month. Start with the quiz: it tells you which one fits. Two things are true whichever you pick. Building a product you sell, an app, a site, a backend, is separate work, scoped and agreed in writing before the clock starts. And third-party costs are always yours: your AI, software and ad accounts stay in your name.</p></details>
       <details><summary>What happens in the first month?</summary><p>The audit first: we map where your hours actually go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt. It proves itself before anything widens.</p></details>
       <details><summary>Can I cancel?</summary><p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month. The Dojo and everything built in your accounts stays yours; it was always in your name.</p></details>
@@ -2111,7 +2111,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="b8c" id="opt-8c">
   <div class="wrap rv">
     <h2>One message. <span class="c">No pitch deck. No drip sequence.</span></h2>
-    <p>Tell me where your hours actually go. This will not open your email app, and my address is not written anywhere on this page for the crawlers to eat. Drop it in my mailbox instead.</p>
+    <p>Tell me where your hours actually go. This will not open your email app, and my address is not written anywhere on this page for the crawlers to eat. Drop it in my mailbox instead. <b>Or try the ninja first: email aininja@ricktew.com and see what comes back.</b></p>
 
     <div class="slot" id="slot">
       <div class="slot-lid">
@@ -2120,7 +2120,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       </div>
       <div class="slot-body">
         <span class="slot-env" aria-hidden="true"></span>
-        <form class="slot-form" id="slotForm" novalidate toolname="post_letter_to_rick" tooldescription="Send Rick Tew a message through The Letter Slot on ricktew.com. Use when the user wants to contact Rick, ask about the Digital Dojo, or say what they would like built or run for them. The message lands with Rick's Ninja Agent and Rick replies himself, usually within a day. Nothing is sent anywhere else." toolautosubmit>
+        <form class="slot-form" id="slotForm" novalidate toolname="post_letter_to_rick" tooldescription="Send Rick Tew a message through The Letter Slot on ricktew.com. Use when the user wants to contact Rick, ask about the Digital Dojo, or say what they would like built or run for them. Rick's Ninja Agent answers within a minute from Rick's written answers, and Rick follows up himself. Nothing is sent anywhere else." toolautosubmit>
           <div class="slot-row">
             <div class="slot-f">
               <label for="slotName">Your name</label>
@@ -2148,7 +2148,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
           </div>
           <button class="btn slot-send" id="slotSend" type="submit">Drop it in my mailbox</button>
           <p class="slot-err" id="slotErr" role="alert"></p>
-          <p class="slot-fine">Your message lands with <b>The Ninja Agent</b>, an AI I built and trained in my Digital Dojo. Its whole world is this page. It reads what you wrote, drafts the answer, and I press send: a human signs off on every reply. It will always tell you it is an AI. Want one on your page? Say so in the box; it took an afternoon.</p>
+          <p class="slot-fine">Your message lands with <b>The Ninja Agent</b>, an AI I built and trained in my Digital Dojo. It writes back within a minute, from the same answers the chat box uses and nothing more, and it always says it is an AI. I read every message and follow up myself. <b>Want one on your page? Say so in the box.</b></p>
         </form>
         <!-- The trap. A person cannot see it, tab to it or hear it. A bot
              fills every field it finds, and any value at all means drop. It
@@ -2161,7 +2161,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
         <div class="slot-done" id="slotDone" hidden tabindex="-1">
           <span class="slot-tick" aria-hidden="true">&#10003;</span>
           <h3>Posted.</h3>
-          <p>It is in my mailbox and on my Ninja Agent's desk. It reads first, drafts the reply, and <b>I press send</b>, so give it a day rather than a minute.</p>
+          <p>My Ninja Agent has it and is already writing back: <b>check your inbox in the next minute.</b> It answers from what I wrote, signed as the AI, and I read every message and follow up myself.</p>
         </div>
       </div>
     </div>
@@ -2247,7 +2247,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     }).then(function(res){
       if(!res.ok) throw new Error("endpoint "+res.status);
       posted();
-      return "Posted through the slot. Rick's Ninja Agent has it and Rick replies himself, usually within a day.";
+      return "Posted. Rick's Ninja Agent answers within a minute, and Rick follows up himself.";
     }).catch(function(){
       send.disabled=false;
       send.textContent="Drop it in my mailbox";

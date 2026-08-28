@@ -66,6 +66,7 @@ var GOLD=[
   ["what is the quiz", "quiz"],
   ["do you have testimonials", "testimonials"],
   ["what is your email address", "contact"],
+  ["can I email the ninja to try it", "email-the-ninja"],
   ["can we book a call", "contact"],
   ["how fast do you reply", "reply-time"],
   ["who is rick tew", "who-is-rick"],
@@ -145,7 +146,7 @@ ask.LIBRARY.filter(function(e){ return e.sol; }).forEach(function(e){
 console.log("4. hygiene");
 ask.LIBRARY.forEach(function(e){
   var t=text(e.a)+" "+e.q;
-  ok(!/@/.test(t), e.id+": an at-sign in the answer");
+  ok(!/@/.test(t.replace(/aininja@ricktew\.com/g,"")), e.id+": an address other than the ninja's in the answer");
   ok(!/[–—]|--/.test(t), e.id+": a long dash in the answer");
   ok(!/\b(kata|shelf|receipts?)\b/i.test(t), e.id+": kata, shelf or receipts in public copy");
   ok(!/\b(claude|chatgpt|gemini|openai|anthropic|grok|xai)\b/i.test(t), e.id+": a company or model named in public copy");

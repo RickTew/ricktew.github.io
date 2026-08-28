@@ -165,7 +165,7 @@
     {id:"talks-to-customers", q:"Will an AI talk to my customers without me knowing?",
      alt:["without me knowing","talk to my customers","answer my customers","email my customers","send emails for me","send email","sends email","on its own","by itself"],
      keys:"customers customer talk talks reply replies answers send sends sending email emails post posts pay pays automatic automatically autopilot unsupervised approve approval",
-     a:"<p>Never. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. That rule does not bend at any belt or any price.</p>"},
+     a:"<p>Never. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. That rule does not bend at any belt or any price.</p><p>One exception, and it is mine: the mailbox on this page is answered first by my Ninja Agent, signed as the AI, from answers I wrote. That is the demo. In your Dojo nothing sends without your press unless you choose the same for a lane of your own.</p>"},
 
     {id:"which-ai", q:"Which AI do you use?",
      alt:["which ai","what ai do you use","do you use","which model","what model","which llm","which company","which companies"],
@@ -296,13 +296,19 @@
     {id:"contact", q:"How do I contact you? Can we talk on the phone?",
      alt:["contact you","mailbox","the mailbox","email address","your email","phone number","your phone","call you","a call","zoom","book a call","talk to you","get in touch","reach you","whatsapp","line id","speak to you","speak with you","talk to rick","free consultation"],
      keys:"contact email phone call calls zoom meeting meet talk chat reach whatsapp telegram number address consultation consult conversation",
-     a:"<p>Through my mailbox at the bottom of this page. My address is not written anywhere here for the crawlers to eat, and the mailbox does not open your mail app. Your message lands with my Ninja Agent, which drafts a reply; I read it and press send myself, usually within a day.</p><p>A first conversation costs nothing. If you want a call, say so in the message and I will set one up from my side.</p>",
+     a:"<p>Through my mailbox at the bottom of this page. My address is not written anywhere here for the crawlers to eat, and the mailbox does not open your mail app. Your message lands with my Ninja Agent, which writes back within a minute from what I wrote; I read every message and follow up myself, usually within a day. Or email it straight: aininja@ricktew.com.</p><p>A first conversation costs nothing. If you want a call, say so in the message and I will set one up from my side.</p>",
      cta:{what:"a conversation", kind:"other", note:"Tell me what to call you about and when.", label:"Write to Rick"}},
 
     {id:"reply-time", q:"How fast do you reply?",
      alt:["how fast do you reply","reply time","response time","when will you reply","hear back","how soon will i hear","will you reply","do you reply"],
      keys:"reply replies respond response answer back hear wait waiting soon",
-     a:"<p>Usually within a day, and it is me. Your message lands with my Ninja Agent, an AI I built and trained in my Digital Dojo. It reads what you wrote and drafts the answer; I press send, so a human still signs off on every reply. It will always tell you it is an AI.</p>"},
+     a:"<p>The ninja, within a minute; me, usually within a day. Your message lands with my Ninja Agent, an AI I built and trained in my Digital Dojo. It writes back from the answers I wrote, signed as the AI, and I read every message and follow up myself.</p>"},
+
+    {id:"email-the-ninja", q:"Can I just email the ninja and see?",
+     alt:["email the ninja","email your ninja","email aininja","aininja","try it out","try the ninja","test the ninja","test it out","see what comes back","talk to the ninja"],
+     keys:"email mail ninja agent try test demo see comes back write aininja",
+     a:"<p>Yes. Write to aininja@ricktew.com and see what comes back. My Ninja Agent answers within a minute, from the same answers this box uses, signed as the AI, and it says so when it does not have one. I read every message and follow up myself.</p>",
+     cta:{what:"a conversation", kind:"other", note:"Or use the mailbox below.", label:"Write to Rick"}},
 
     {id:"who-is-rick", q:"Who is Rick Tew?",
      alt:["who is rick","who are you","about you","about rick","your background","your story","where are you from","where are you based","where are you located","are you american","tell me about yourself"],
@@ -508,6 +514,7 @@
     "quiz":"Answer the computer question honestly. It only changes who ends up driving.",
     "testimonials":"Ask any vendor for something you can open. A live app beats a quote.",
     "contact":"One line about where your hours go is a better first message than a polite hello.",
+    "email-the-ninja":"Ask it the question you would ask me. The answer you get is the answer your customers would get from yours.",
     "who-is-rick":"A sensei's job is taking you from white belt to black without skipping the proving part. Same job here.",
     "ownership":"Whoever builds for you, insist every account is created in your name before the first login.",
     "third-party":"Ask any builder for a weekly line on what the agents cost. If they cannot show it, they are not measuring it.",
