@@ -769,6 +769,51 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 .mbar .btn{flex:1;text-align:center;padding:12px 10px;font-size:15px}
 .mbar .x{background:none;border:none;color:#9aa4ae;font-size:22px;font-weight:900;padding:6px 10px;cursor:pointer;line-height:1}
 
+/* Ask the ninja: the chat box. Engine, answer library and behaviour live in
+   ask.js. Not an AI, and it says so: a library of answers Rick wrote,
+   matched by words, with an honest miss that hands the visitor to the slot. */
+.ask-launch{position:fixed;right:16px;bottom:16px;z-index:140;display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border:2px solid var(--ink);border-radius:999px;padding:11px 18px 11px 14px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:14px;line-height:1;cursor:pointer;box-shadow:0 12px 30px rgba(16,20,24,.3);transition:transform .12s ease,background .12s ease}
+.ask-launch .g{font-size:20px;line-height:1}
+.ask-launch:hover{background:var(--blue);border-color:var(--blue);transform:translateY(-1px)}
+.ask-launch:focus-visible,.ask-want:focus-visible,.ask-chip:focus-visible,.ask-x:focus-visible,.ask-go:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.ask-launch[hidden]{display:none}
+@media (max-width:700px){ body:has(#mbar) .ask-launch{bottom:78px} }
+.ask-panel{position:fixed;right:16px;bottom:16px;z-index:160;width:min(400px,calc(100vw - 32px));max-height:min(680px,calc(100vh - 32px));display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px rgba(16,20,24,.28);overflow:hidden}
+.ask-panel[hidden]{display:none}
+.ask-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--ink);color:#fff}
+.ask-head b{display:block;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:16px;font-weight:900}
+.ask-head span{display:block;font-size:12px;color:#aab2bc;font-weight:700;margin-top:2px}
+.ask-x{margin-left:auto;background:none;border:0;color:#aab2bc;font-size:26px;font-weight:900;cursor:pointer;line-height:1;padding:2px 8px}
+.ask-x:hover{color:#fff}
+.ask-log{flex:1;overflow-y:auto;padding:16px;background:var(--panel);display:flex;flex-direction:column;gap:12px;-webkit-overflow-scrolling:touch}
+.ask-b{max-width:92%;border-radius:14px;padding:12px 14px;font-size:14.5px;line-height:1.5}
+.ask-n{align-self:flex-start;background:#fff;border:1px solid var(--line);color:var(--ink2)}
+.ask-u{align-self:flex-end;background:var(--blue);color:#fff;font-weight:700;overflow-wrap:anywhere}
+.ask-q{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:14px;color:var(--blue-d);margin-bottom:6px}
+.ask-a p{font-weight:600;color:#4b5563}
+.ask-a p+p{margin-top:8px}
+.ask-a b{color:var(--ink)}
+.ask-act{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:12px}
+.ask-want{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:2px solid var(--blue);border-radius:999px;padding:8px 14px 8px 10px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:13px;line-height:1;cursor:pointer}
+.ask-want .g{font-size:16px;line-height:1}
+.ask-want:hover{background:var(--blue-d);border-color:var(--blue-d)}
+.ask-link{font-size:13px;font-weight:800;color:var(--blue-d)}
+.ask-also{margin-top:10px;font-size:12px;font-weight:800;color:var(--muted)}
+.ask-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ask-chip{background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font:inherit;font-size:12.5px;font-weight:800;line-height:1.3;cursor:pointer;text-align:left}
+.ask-chip:hover{border-color:var(--blue);color:var(--blue-d)}
+.ask-form{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--line);background:#fff}
+.ask-form input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px;color:var(--ink)}
+.ask-form input:focus{outline:2px solid var(--blue);outline-offset:0;border-color:var(--blue)}
+.ask-go{background:var(--ink);color:#fff;border:0;border-radius:10px;padding:10px 16px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:14px;cursor:pointer}
+.ask-go:hover{background:var(--blue)}
+.ask-foot{display:flex;align-items:center;gap:10px;padding:0 16px 14px;background:#fff;font-size:12px;font-weight:700;color:var(--muted);line-height:1.3}
+.ask-foot .btn{padding:9px 14px;font-size:13px;flex-shrink:0}
+@media (max-width:700px){ .ask-panel{right:0;bottom:0;left:0;width:100%;max-height:88vh;border-radius:18px 18px 0 0;border-left:0;border-right:0;border-bottom:0} }
+@media (prefers-reduced-motion:reduce){ .ask-launch{transition:none} .ask-launch:hover{transform:none} }
+.f8a .f8a-ask{text-align:center;margin-top:22px;font-size:14.5px;font-weight:700;color:var(--muted);max-width:720px;margin-left:auto;margin-right:auto}
+.f8a .f8a-ask a{font-weight:900;color:var(--blue-d)}
+
 /* ============ THE OPERATING SECTION: using AI vs operating with AI ============ */
 .opw{padding:84px 0;border-top:1px solid var(--line);background:var(--panel)}
 .opw .k,.opw h2{text-align:center}
@@ -2005,6 +2050,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <details><summary>What is an Agentic CMO?</summary><p>The same idea as a fractional CTO, with the work done by trained AI ninjas instead of a person on a day rate. A Master is a seat: a job title a payroll would recognize, one number it is judged on, and the solutions on this page working under it. Six seats exist. Four have run my own businesses and are for sale; two are in training and the page says which. A Master never widens a ninja's lane. Every send, pay and post still waits for your press.</p></details>
       <details><summary>Why the belts?</summary><p>Because trust is earned by showing up and proving it, which is exactly how I grade kids at the gym. A ninja that has proven its lane gets a wider one. One that has not, does not. It keeps the honest order: propose, prove, then earn.</p></details>
     </div>
+    <p class="f8a-ask">Not in the list? <a href="#ask" data-ask-open>Ask the ninja</a>. It answers from what I wrote, about AI or about the service, and hands you to me when it cannot.</p>
   </div>
 </section>
 
@@ -2660,6 +2706,27 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   paint();
 })();
 </script>
+
+<!-- ============ ASK THE NINJA: the chat box. Engine and answer library: ask.js ============
+     Not an AI. A library of answers Rick wrote, matched by the words in the
+     question; no match returns an honest "I do not have that one" and a button
+     that carries the question into The Letter Slot. Every answer ends in the
+     same want button as the nav, so a lead from here lands in the slot with
+     the questions asked riding in the message. No server, no storage. -->
+<button class="ask-launch" id="askLaunch" type="button" aria-haspopup="dialog" aria-controls="askPanel"><span class="g" aria-hidden="true">&#129399;</span>Ask the ninja</button>
+<div class="ask-panel" id="askPanel" role="dialog" aria-labelledby="askTitle" hidden>
+  <div class="ask-head">
+    <div><b id="askTitle">Ask the ninja</b><span>Answers Rick wrote. No guessing.</span></div>
+    <button class="ask-x" id="askX" type="button" aria-label="Close">&times;</button>
+  </div>
+  <div class="ask-log" id="askLog" aria-live="polite"></div>
+  <form class="ask-form" id="askForm" autocomplete="off">
+    <input id="askIn" type="text" maxlength="300" placeholder="Ask about AI, or about the service" aria-label="Your question" autocomplete="off">
+    <button class="ask-go" type="submit">Ask</button>
+  </form>
+  <div class="ask-foot"><a class="btn btn-blue" href="#" id="askCta"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a><span>Lands in the Letter Slot with what you asked.</span></div>
+</div>
+<script src="ask.js" defer></script>
 
 <!-- ============ OPTION M1: sticky mobile CTA bar (shows under 700px only) ============ -->
 <div class="mbar" id="mbar">

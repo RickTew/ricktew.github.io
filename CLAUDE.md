@@ -200,6 +200,29 @@ tools yet; Gemini in Chrome is the announced first. Local check:
 `chrome://flags/#enable-webmcp-testing`, then the Model Context Tool
 Inspector extension, or Lighthouse's "Registered WebMCP tools" audit.
 
+**Ask the ninja (2026-08-28): the chat box, and it is NOT an AI.** The
+floating "Ask the ninja" pill on `/aininja/` opens a chat panel; the engine,
+the answer library and the behaviour are all in `aininja/ask.js`, the
+markup and CSS are inline in the page (search `ask-panel`), and the FAQ
+band links to it. It is a client-side fit of the Dojo's Retrieval Brain
+kata, word half only: a hand-written library Rick approved, matched by the
+words in the question, with the kata's wall kept whole: **return nothing
+rather than guess.** A miss says "I do not have that one" and offers "Ask
+Rick this", which drops the question into the Letter Slot. Every answer
+ends in the same want button as the nav (`my hours back`, kind `hours`),
+and the hand-off writes the questions asked into the slot message, so a
+lead from the box arrives with context. No server, no storage, no model
+call, no address; it also registers a third WebMCP tool, `ask_rick_tew`.
+The welcome line tells the visitor it is not an AI; do not soften that.
+Rick's ruling, same day: the box never names an AI company or model
+("AI companies" is the phrase), and it quotes page claims as they stand,
+never sharpened. **Run `node tests/ask-golden.js` after touching the
+library or the solution rows:** it holds the solution entries to the
+page's rows word for word, keeps the nonsense controls returning nothing,
+and greps every answer for addresses, long dashes and company names.
+`tests/` is excluded from the Pages build. Unanswered questions in a
+session are readable at `window.rtAskMisses` for the playtest.
+
 **Before you touch the endpoint, run its test:**
 
 ```
