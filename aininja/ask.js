@@ -284,8 +284,8 @@
     {id:"quiz", q:"What is the quiz, and does it ask for my email?",
      alt:["the quiz","take the quiz","what is the quiz","quiz"],
      keys:"quiz questions twelve 12 result results minutes assessment self-audit email address",
-     a:"<p>Twelve questions, about two minutes. It asks what you are trying to move, where the hours really go, what runs the work today and how you honestly feel about computers. The result is computed from your answers alone and shown without asking for an email. It tells you which of the two ways in fits, and where I would start.</p>",
-     link:{href:"#quiz", label:"Take the 2-minute quiz"}},
+     a:"<p>Twelve questions. It asks what you are trying to move, where the hours really go, what runs the work today and how you honestly feel about computers. The result is computed from your answers alone and shown without asking for an email. It tells you which of the two ways in fits, and where I would start.</p>",
+     link:{href:"#quiz", label:"Take the quiz"}},
 
     {id:"testimonials", q:"Do you have testimonials or references?",
      alt:["testimonials","testimonial","reviews","references","case studies","case study","any proof","social proof","who have you worked with","other clients"],
@@ -478,7 +478,7 @@
      the next move. Kept apart from the answers so they can be edited as a
      set. An entry without a tip simply shows none. */
   var TIPS={
-    "what-is-ai":"If a prediction machine can draft your inbox, the question is not whether it is clever. It is which of your tasks it takes first. The quiz finds that in two minutes.",
+    "what-is-ai":"If a prediction machine can draft your inbox, the question is not whether it is clever. It is which of your tasks it takes first. The quiz finds that.",
     "nobody-understands":"You do not need to understand the engine to drive the car. You need a builder who tests the behaviour and keeps a hand on the brake. That is the whole Dojo.",
     "is-ai-safe":"Ask any AI vendor one question: what happens before a message goes out? If the answer is not \"a person presses\", keep walking.",
     "safer-ai":"Pick the task before the brand. A cautious AI drafting your inbox with a person pressing send is safer than a bold one with nobody watching, and the other way round.",
