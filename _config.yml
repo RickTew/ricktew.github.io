@@ -15,3 +15,5 @@ exclude:
   - TURNKEY-OFFER.md
   # The golden set for Ask the ninja (aininja/ask.js). A test, not a page.
   - tests
+  # Persona playtest brief and reports. Not pages.
+  - playtest
