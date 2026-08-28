@@ -1268,7 +1268,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <h2>Just a few of the apps <span class="c">I've made recently</span></h2>
     <p class="sub">Some I built for a business, some as a hobby, some to help a friend with theirs: games, a spa, a hostel, a gym, a console and a method.</p>
 
-    <div class="row-label">What actually opens &middot; <b>live captures</b></div>
+    <div class="row-label"><b>Live captures</b></div>
     <div class="app-rail" id="appRail" aria-hidden="true"></div>
 
     <div class="row-label">And the icons they open from</div>
@@ -1483,7 +1483,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     </div>
 
     <details class="sol-row helpings rv" id="helpings">
-      <summary><span class="nm">The helpings</span><span class="tg">The smaller things people asked for, and what got built. Tap to open.</span></summary>
+      <summary><span class="nm">The helpings</span><span class="tg">The smaller things people asked for. Tap to open.</span></summary>
       <div class="bd">
         <p>Most of what I build is not a whole app. It is the thing somebody asked for on a Tuesday: "could you make it so..." Some of them, by need, from my gym, my studio and a few unnamed clients. Every one runs today.</p>
         <div class="help-grid">
@@ -2455,7 +2455,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   function shelf(id, list){
     var el=document.getElementById(id); if(!el) return;
     var one=list.map(function(a){
-      return '<div class="shelf-app"><img src="assets/'+a[0]+'.png" alt=""><span>'+a[1]+'</span></div>';
+      return '<div class="shelf-app"><img src="assets/icons-row/'+a[0]+'.png" width="88" height="88" alt=""><span>'+a[1]+'</span></div>';
     }).join("");
     var half=new Array(reps(list.length,134)+1).join(one);
     el.innerHTML=half+half;
