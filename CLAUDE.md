@@ -231,6 +231,14 @@ and greps every answer for addresses, long dashes and company names.
 `tests/` is excluded from the Pages build. Unanswered questions in a
 session are readable at `window.rtAskMisses` for the playtest.
 
+**The sim playtest for this page is `tests/aininja-sweep.js`** (Playwright,
+loaded from the newnei-app checkout; serve the repo on 8765 first). It
+walks desktop and phone: every link and anchor, every want and mail button,
+the quiz (30 seeded random walks), the chat box, the mailbox against a
+mocked endpoint (nothing is sent), the rails, the reveals, phone overlap and
+overflow. Exit 1 on any finding. First run, 2026-08-28: two dead links
+fixed (the FAQ's `#ask` href, a hidden design-tests pill), then clean.
+
 **Before you touch the endpoint, run its test:**
 
 ```

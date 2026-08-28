@@ -2077,7 +2077,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <details><summary>What is an Agentic CMO?</summary><p>The same idea as a fractional CTO, with the work done by trained AI ninjas instead of a person on a day rate. A Master is a seat: a job title a payroll would recognize, one number it is judged on, and the solutions on this page working under it. Six seats exist. Four have run my own businesses and are for sale; two are in training and the page says which. A Master never widens a ninja's lane. Every send, pay and post still waits for your press.</p></details>
       <details><summary>Why the belts?</summary><p>Because trust is earned by showing up and proving it, which is exactly how I grade kids at the gym. A ninja that has proven its lane gets a wider one. One that has not, does not. It keeps the honest order: propose, prove, then earn.</p></details>
     </div>
-    <p class="f8a-ask">Not in the list? <a href="#ask" data-ask-open>Ask the ninja</a>. It answers from what I wrote, about AI or about the service, and hands you to me when it cannot.</p>
+    <p class="f8a-ask">Not in the list? <a href="#" data-ask-open>Ask the ninja</a>. It answers from what I wrote, about AI or about the service, and hands you to me when it cannot.</p>
   </div>
 </section>
 
@@ -2376,7 +2376,6 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   </div>
 </footer>
 
-<a href="../private/design-tests/index.html" id="dtPill" hidden style="position:fixed;right:16px;bottom:16px;z-index:200;background:#14161a;color:#fff;border:1px solid #1e73bd;border-radius:999px;padding:10px 18px;font-size:13px;font-weight:800;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.35)">&larr; All design tests</a>
 
 <script>
 (function(){
@@ -2388,9 +2387,6 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   if(ml){ ml.addEventListener("click",function(e){ e.preventDefault(); window.rtSlot(""); }); }
   var bm=document.getElementById("buildMail");
   if(bm){ bm.addEventListener("click",function(e){ e.preventDefault(); window.rtSlot("Build me something custom"); }); }
-  if(location.search.indexOf("test=1")>-1 || document.referrer.indexOf("/design-tests/")>-1){
-    document.getElementById("dtPill").hidden=false;
-  }
   var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* A -50% scroll only looks seamless while each half is wider than the
