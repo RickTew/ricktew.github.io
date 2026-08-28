@@ -502,11 +502,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 footer a{color:var(--ink);font-weight:800;text-decoration:none}
 footer a:hover{text-decoration:underline}
 
-/* Phones: lighter. Nothing is removed from the page; long blocks fold to
-   their first lines behind a "More" tap (the fold is added by script only
-   under 700px), and a few tails are hidden with .m-hide. Real copy cuts
-   are Rick's call, after the playtest. */
+/* Phones: lighter type and spacing. A "More" fold on long blocks was tried
+   on 28 Aug and cut the same day: it broke mid-sentence. The copy itself is
+   being shortened instead, section by section, on Rick's yes. */
 @media (max-width:700px){
+  footer{padding-bottom:130px}   /* the quiz bar and the Ask pill float over the page bottom; the footer links must clear them */
   body{font-size:16.5px}
   .m-hide{display:none}
   .hero{padding-top:34px}
@@ -514,10 +514,6 @@ footer a:hover{text-decoration:underline}
   .hero .lede{margin-top:16px;font-size:16px}
   .hero-stats{margin-top:26px}
   .sub{font-size:15.5px}
-  .m-fold{position:relative;max-height:13em;overflow:hidden;padding-bottom:0}
-  .m-fold.is-sub{max-height:8.2em}
-  .m-more{display:flex;width:max-content;align-items:center;gap:6px;margin:12px auto 0;background:#fff;color:var(--blue-d);border:1.5px solid var(--blue);border-radius:999px;padding:7px 16px;font:inherit;font-size:13px;font-weight:900;cursor:pointer}
-  .m-more::after{content:"\25BE";font-size:12px}
 }
 /* reveal */
 .rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
@@ -2491,22 +2487,6 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     }
     requestAnimationFrame(tick);
   }
-
-  /* Phones: fold the long blocks. Under 700px, any prose block or long
-     section intro taller than its fold gets a "More" button under it.
-     Desktop is untouched, and so is the text. */
-  (function(){
-    if(!(window.matchMedia&&matchMedia("(max-width:700px)").matches)) return;
-    var picks=[].slice.call(document.querySelectorAll(".noise-card, .prose, .opw .kata, .a6b .letter"));
-    [].forEach.call(document.querySelectorAll(".sub"), function(p){ if(p.textContent.trim().length>360) { p.classList.add("is-sub"); picks.push(p); } });
-    picks.forEach(function(el){
-      el.classList.add("m-fold");
-      if(el.scrollHeight<=el.clientHeight+24){ el.classList.remove("m-fold","is-sub"); return; }
-      var b=document.createElement("button"); b.type="button"; b.className="m-more"; b.textContent="More";
-      b.addEventListener("click", function(){ el.classList.remove("m-fold"); b.remove(); });
-      el.parentNode.insertBefore(b, el.nextSibling);
-    });
-  })();
 
   /* reveal + counters */
   if("IntersectionObserver" in window){
