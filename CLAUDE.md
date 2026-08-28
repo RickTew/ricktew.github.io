@@ -213,10 +213,18 @@ ends in the same want button as the nav (`my hours back`, kind `hours`),
 and the hand-off writes the questions asked into the slot message, so a
 lead from the box arrives with context. No server, no storage, no model
 call, no address; it also registers a third WebMCP tool, `ask_rick_tew`.
-The welcome line tells the visitor it is not an AI; do not soften that.
-Rick's ruling, same day: the box never names an AI company or model
-("AI companies" is the phrase), and it quotes page claims as they stand,
-never sharpened. **Run `node tests/ask-golden.js` after touching the
+Rick's rulings, same day: the box never names an AI company or model
+("AI companies" is the phrase); it quotes page claims as they stand, never
+sharpened; and the welcome does NOT explain the mechanism (the word
+matching is his secret sauce, and an earlier welcome that spelled it out
+was cut by him). The line that stays honest is the header, "Answers Rick
+wrote. No guessing.", and the box must never claim to be an AI. "Are you
+an AI?" lands on the answer-box entry, which says every answer is Rick's
+and offers to build one. Every answer carries a **Tew Tip** (`TIPS` map in
+`ask.js`, one leading line per entry that points at the next move); Rick's
+pasted texts are ideas to rewrite in the page's voice, never verbatim, and
+answers should say how he uses the thing himself (gym desk, SabaiSen desk
+agent, TewBeDo) where that is true. **Run `node tests/ask-golden.js` after touching the
 library or the solution rows:** it holds the solution entries to the
 page's rows word for word, keeps the nonsense controls returning nothing,
 and greps every answer for addresses, long dashes and company names.

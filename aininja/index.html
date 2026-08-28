@@ -793,8 +793,10 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 .ask-a p{font-weight:600;color:#4b5563}
 .ask-a p+p{margin-top:8px}
 .ask-a b{color:var(--ink)}
+.ask-tip{margin-top:10px;padding:10px 12px;background:#eef4fb;border:1px solid #c4dbf0;border-radius:10px;font-size:13px;font-weight:600;color:#374151;line-height:1.45}
+.ask-tip b{display:inline-block;margin-right:8px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-d)}
 .ask-act{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:12px}
-.ask-want{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:2px solid var(--blue);border-radius:999px;padding:8px 14px 8px 10px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:13px;line-height:1;cursor:pointer}
+.ask-want{display:inline-flex;align-items:center;justify-content:center;text-align:center;gap:6px;background:var(--blue);color:#fff;border:2px solid var(--blue);border-radius:999px;padding:8px 14px 8px 10px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:13px;line-height:1;cursor:pointer}
 .ask-want .g{font-size:16px;line-height:1}
 .ask-want:hover{background:var(--blue-d);border-color:var(--blue-d)}
 .ask-link{font-size:13px;font-weight:800;color:var(--blue-d)}
@@ -808,7 +810,8 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 .ask-go{background:var(--ink);color:#fff;border:0;border-radius:10px;padding:10px 16px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:14px;cursor:pointer}
 .ask-go:hover{background:var(--blue)}
 .ask-foot{display:flex;align-items:center;gap:10px;padding:0 16px 14px;background:#fff;font-size:12px;font-weight:700;color:var(--muted);line-height:1.3}
-.ask-foot .btn{padding:9px 14px;font-size:13px;flex-shrink:0}
+.ask-foot .btn{padding:9px 14px;font-size:13px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;text-align:center}
+.ask-foot .btn .g{margin-right:8px;vertical-align:0}
 @media (max-width:700px){ .ask-panel{right:0;bottom:0;left:0;width:100%;max-height:88vh;border-radius:18px 18px 0 0;border-left:0;border-right:0;border-bottom:0} }
 @media (prefers-reduced-motion:reduce){ .ask-launch{transition:none} .ask-launch:hover{transform:none} }
 .f8a .f8a-ask{text-align:center;margin-top:22px;font-size:14.5px;font-weight:700;color:var(--muted);max-width:720px;margin-left:auto;margin-right:auto}
@@ -1893,7 +1896,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
               <input type="email" id="rEmail" name="email" required placeholder="you@yourcompany.com" autocomplete="email">
               <button class="btn btn-quiet" type="submit">Send me the breakdown</button>
             </div>
-            <p class="small">One page, no sequence, no drip. Your answers travel with the request so the breakdown is about your company, not a template. This drops your results into the slot at the bottom of the page; read them, then press post.</p>
+            <p class="small">One page, no sequence, no drip. Your answers travel with the request so the breakdown is about your company, not a template. This drops your results into my mailbox at the bottom of the page; read them, then press post.</p>
           </form>
           <p class="r-honest">Honest math: your number is the hours you reported for one task, times a 60% draft-and-file share, times the hourly value you gave it. Estimates, clearly labeled as estimates, from your answers and nothing else.</p>
         </div>
@@ -2075,7 +2078,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   <div class="wrap rv">
     <div class="k">Agent-ready</div>
     <h2>This page is ready for the AI agents. <span>Yours can be too.</span></h2>
-    <p class="sub">The next visitor here may not be a person. It may be somebody's assistant, sent to find out what I do and get in touch. Most websites make an agent guess its way through the screen. This one tells it, in a form it can use: the solutions list answers as one, and the letter slot below is written as a tool an agent can call. How it is wired is my business. That it works is yours.</p>
+    <p class="sub">The next visitor here may not be a person. It may be somebody's assistant, sent to find out what I do and get in touch. Most websites make an agent guess its way through the screen. This one tells it, in a form it can use: the solutions list answers as one, and the mailbox below is written as a tool an agent can call. How it is wired is my business. That it works is yours.</p>
     <p class="agent-honest">Early days, honestly: the standard is in the browser makers' trial and the big assistants are still learning to use it. Being ready before they arrive is the whole point.</p>
     <div class="cta"><a class="btn btn-blue" href="#" data-want="An agent-ready web presence" data-want-note="My website ready for AI agents: the tools they can call, the answers they can read." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a></div>
   </div>
@@ -2084,11 +2087,11 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="b8c" id="opt-8c">
   <div class="wrap rv">
     <h2>One message. No pitch deck. No drip sequence.</h2>
-    <p>Tell me where your hours actually go. This will not open your email app, and my address is not written anywhere on this page for the crawlers to eat. Post it through the slot instead.</p>
+    <p>Tell me where your hours actually go. This will not open your email app, and my address is not written anywhere on this page for the crawlers to eat. Drop it in my mailbox instead.</p>
 
     <div class="slot" id="slot">
       <div class="slot-lid">
-        <span class="sk">The Letter Slot &middot; goes to my Ninja Agent</span>
+        <span class="sk">My mailbox &middot; goes to my Ninja Agent</span>
         <div class="slot-slit"></div>
       </div>
       <div class="slot-body">
@@ -2119,7 +2122,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
             <label for="slotMessage">Where your hours actually go</label>
             <textarea id="slotMessage" name="message" maxlength="5000" required placeholder="The thing you do every week that you wish you did not have to." toolparamdescription="The message itself: what the sender does, where their hours go, and what they want from Rick. Plain text."></textarea>
           </div>
-          <button class="btn slot-send" id="slotSend" type="submit">Post it through the slot</button>
+          <button class="btn slot-send" id="slotSend" type="submit">Drop it in my mailbox</button>
           <p class="slot-err" id="slotErr" role="alert"></p>
           <p class="slot-fine">Your message lands with <b>The Ninja Agent</b>, an AI I built and trained in my Digital Dojo. Its entire world is this one page. It reads what you wrote, drafts the answer, and I press send, so a human still signs off on every reply. It will always tell you it is an AI. <b>Want one of these on your page? Say so in the box.</b> It is one of the solutions further up this page, and it took an afternoon.</p>
         </form>
@@ -2134,7 +2137,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
         <div class="slot-done" id="slotDone" hidden tabindex="-1">
           <span class="slot-tick" aria-hidden="true">&#10003;</span>
           <h3>Posted.</h3>
-          <p>It is through the slot and on my Ninja Agent's desk. It reads first, drafts the reply, and <b>I press send</b>, so give it a day rather than a minute.</p>
+          <p>It is in my mailbox and on my Ninja Agent's desk. It reads first, drafts the reply, and <b>I press send</b>, so give it a day rather than a minute.</p>
         </div>
       </div>
     </div>
@@ -2223,7 +2226,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       return "Posted through the slot. Rick's Ninja Agent has it and Rick replies himself, usually within a day.";
     }).catch(function(){
       send.disabled=false;
-      send.textContent="Post it through the slot";
+      send.textContent="Drop it in my mailbox";
       fail("That did not go through. Check your connection and press it again.");
       return "Not sent: the slot could not reach the server. Ask the user to try again.";
     });
@@ -2724,7 +2727,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <input id="askIn" type="text" maxlength="300" placeholder="Ask about AI, or about the service" aria-label="Your question" autocomplete="off">
     <button class="ask-go" type="submit">Ask</button>
   </form>
-  <div class="ask-foot"><a class="btn btn-blue" href="#" id="askCta"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a><span>Lands in the Letter Slot with what you asked.</span></div>
+  <div class="ask-foot"><a class="btn btn-blue" href="#" id="askCta"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a><span>Lands in my mailbox with what you asked.</span></div>
 </div>
 <script src="ask.js" defer></script>
 

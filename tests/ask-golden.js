@@ -39,14 +39,19 @@ var GOLD=[
   ["what is an agentic cmo", "masters"],
   ["what does a human presses every send mean", "human-press"],
   ["what is agent-ready", "agent-ready"],
-  ["are you an AI?", "is-this-chat-ai"],
-  ["am I talking to a bot", "is-this-chat-ai"],
+  ["are you an AI?", "answer-box"],
+  ["am I talking to a bot", "answer-box"],
+  ["I want an answer box like this but not an AI, can you build that", "answer-box"],
   ["what can AI do for my business", "what-can-ai-do"],
   ["what do you offer", "what-can-ai-do"],
   ["we already use chatgpt, why would we need this", "using-vs-operating"],
   ["does it learn my business over time", "learns"],
   ["what happens when it gets something wrong", "mistakes"],
   ["how much does it cost", "cost"],
+  ["how much does it cost to make me a chat box for my website?", "build-cost"],
+  ["what would an app like that cost", "build-cost"],
+  ["can I get a quote", "build-cost"],
+  ["how do I use the mailbox", "contact"],
   ["pricing?", "cost"],
   ["what's the difference between sensei runs it and your dojo", "tiers"],
   ["can I cancel", "cancel"],
@@ -83,7 +88,9 @@ var GOLD=[
   ["what is the marketing room", "marketing-room"],
   ["what is the ad room", "ad-room"],
   ["I want to write a book", "publishing-house"],
-  ["can I have a chat box like this on my site", "answer-engine"],
+  ["can I have a chat box like this on my site", "answer-box"],
+  ["what is the answer engine", "answer-engine"],
+  ["I need a knowledge base that answers customers", "answer-engine"],
   ["what is the notebook", "notebook"],
   ["what is the quiz funnel", "quiz-funnel"],
   ["what is the video room", "video-room"],
@@ -143,6 +150,18 @@ ask.LIBRARY.forEach(function(e){
   ok(!/\b(kata|shelf|receipts?)\b/i.test(t), e.id+": kata, shelf or receipts in public copy");
   ok(!/\b(claude|chatgpt|gemini|openai|anthropic|grok|xai)\b/i.test(t), e.id+": a company or model named in public copy");
 });
+
+/* ---- 5. the tips: same hygiene, and every tip points at a real entry ---- */
+console.log("5. tips");
+var ids={}; ask.LIBRARY.forEach(function(e){ ids[e.id]=1; });
+Object.keys(ask.TIPS).forEach(function(id){
+  var t=ask.TIPS[id];
+  ok(ids[id], "tip for "+id+" has no entry");
+  ok(!/@/.test(t), id+": an at-sign in the tip");
+  ok(!/[–—]|--/.test(t), id+": a long dash in the tip");
+  ok(!/\b(claude|chatgpt|gemini|openai|anthropic|grok|xai|kata|shelf|receipts?)\b/i.test(t), id+": a name or kata word in the tip");
+});
+ask.STARTERS.forEach(function(id){ ok(ids[id], "starter "+id+" has no entry"); });
 
 console.log(fails ? "\n"+fails+" of "+n+" checks FAILED" : "\nall "+n+" checks passed");
 process.exit(fails?1:0);

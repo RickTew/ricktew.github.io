@@ -7,7 +7,7 @@
    the library does not cover gets an honest "I do not have that one" and a
    button that carries the question into The Letter Slot, where a person
    answers. Every answer ends in the same want button as the top of the
-   page, so a lead that starts in this box lands in the slot with the
+   page, so a lead that starts in this box lands in the mailbox with the
    questions asked riding along in the message.
 
    No server, no storage, no model call, no address. The library is the only
@@ -85,11 +85,14 @@
     built.forEach(function(b){
       var m=0;
       q.forEach(function(t){ if(b.keys[t]) m++; });
+      /* Whole phrases from the entry found in the question, counted (up to
+         two), so "a box like this on my site" outranks an entry that only
+         shares "chat box" with it. */
       var phrase=0;
-      for(var i=0;i<b.alts.length;i++){ if(b.alts[i].test(nq)){ phrase=1; break; } }
+      for(var i=0;i<b.alts.length&&phrase<2;i++){ if(b.alts[i].test(nq)) phrase++; }
       var ok = phrase || m>=2 || (m===1 && q.length===1 && built.df[q[0]]<=4);
       if(!ok) return;
-      hits.push({entry:b.e, score:m+(phrase?3:0), matched:m});
+      hits.push({entry:b.e, score:m+phrase*3, matched:m});
     });
     hits.sort(function(a,b){ return b.score-a.score; });
     return {hits:hits, q:q, empty:q.length===0};
@@ -167,12 +170,12 @@
     {id:"which-ai", q:"Which AI do you use?",
      alt:["which ai","what ai do you use","do you use","which model","what model","which llm","which company","which companies"],
      keys:"chatgpt claude gemini openai anthropic google copilot grok model models tool tools brand vendor company companies",
-     a:"<p>The AI companies' models, and the tools change every month, so I do not carve a name into this page. What does not change: the AI account is yours, in your name, and your way of working is written down properly and handed to every ninja, so a change of model takes nothing with it. Which one I would put under your Dojo, and why, is a straight answer in the slot.</p>"},
+     a:"<p>The AI companies' models, and the tools change every month, so I do not carve a name into this page. What does not change: the AI account is yours, in your name, and your way of working is written down properly and handed to every ninja, so a change of model takes nothing with it. Which one I would put under your Dojo, and why, is a straight answer in the mailbox.</p>"},
 
     {id:"data-privacy", q:"Is my data safe? Who sees my customer information?",
      alt:["my data","customer data","our data","privacy","private","gdpr","confidential","confidentiality"],
      keys:"data privacy private confidential information info sees access secure secret records leak leaks",
-     a:"<p>Everything I build runs in your own accounts, in your name: your AI account, your software, your mail. The ninjas' entire world is what you wrote down and verified. No agent touches money or the outside world without your press, and nothing sends itself. Every agent has a lane and never widens it on its own.</p><p>If your industry has a specific rule it must meet, say so in the slot and I will tell you straight whether the Dojo meets it.</p>"},
+     a:"<p>Everything I build runs in your own accounts, in your name: your AI account, your software, your mail. The ninjas' entire world is what you wrote down and verified. No agent touches money or the outside world without your press, and nothing sends itself. Every agent has a lane and never widens it on its own.</p><p>If your industry has a specific rule it must meet, say so in the mailbox and I will tell you straight whether the Dojo meets it.</p>"},
 
     {id:"need-to-understand", q:"Do I need to understand AI to use this?",
      alt:["understand ai","do i need to understand","need to be technical","not technical","hate computers","do not like computers","dont like computers","bad with computers","computer person","learn to code"],
@@ -203,14 +206,14 @@
     {id:"agent-ready", q:"What does \"agent-ready\" mean? Can my website be?",
      alt:["agent-ready","agent ready","webmcp","ai agents visit","assistant visit","my website ready"],
      keys:"webmcp ready website websites site web visitor visitors assistant assistants visit visits browser chrome standard tool tools call",
-     a:"<p>The next visitor to a website may not be a person. It may be somebody's assistant, sent to find out what you do and get in touch. Most websites make an agent guess its way through the screen. This one tells it, in a form it can use: the solutions list answers as one, the letter slot is written as a tool an agent can call, and so is this box.</p><p>Early days, honestly: the standard is in the browser makers' trial and the big assistants are still learning to use it. Being ready before they arrive is the whole point, and your page can be.</p>",
+     a:"<p>The next visitor to a website may not be a person. It may be somebody's assistant, sent to find out what you do and get in touch. Most websites make an agent guess its way through the screen. This one tells it, in a form it can use: the solutions list answers as one, the mailbox is written as a tool an agent can call, and so is this box.</p><p>Early days, honestly: the standard is in the browser makers' trial and the big assistants are still learning to use it. Being ready before they arrive is the whole point, and your page can be.</p>",
      cta:{what:"An agent-ready web presence", kind:"build", note:"My website ready for AI agents: the tools they can call, the answers they can read."}},
 
-    {id:"is-this-chat-ai", q:"Is this chat an AI?",
-     alt:["are you an ai","are you a bot","are you a robot","are you human","are you a human","is this an ai","is this a bot","is this chat","who am i talking to","are you real","are you rick","is this rick","am i talking to"],
-     keys:"bot robot human real person chat chatbot talking generated",
-     a:"<p>No, and I would rather tell you than let you guess. This box is a library of answers Rick wrote himself, matched to your question by the words in it. It does not generate anything, so it cannot make things up. If your question is not in the library it says so and hands you to Rick, who is a person.</p><p>The Answer Engine in the solutions list is the grown-up version of this box: the same rule, verified facts only, with an AI reading the question instead of a word match.</p>",
-     cta:{what:"The Answer Engine", kind:"build", note:"Your knowledge base, answering 24/7."}},
+    {id:"answer-box", q:"I want an answer box like this, but not an AI. Can you build that?",
+     alt:["answer box","a box like this","box like this","like this one","not an ai","without ai","no ai","are you an ai","are you a bot","are you a robot","are you human","are you a human","is this an ai","is this a bot","is this chat","who am i talking to","are you real","are you rick","is this rick","am i talking to","can you build this","build me this","on my site","on my page","for my site","for my page"],
+     keys:"box answer answers bot robot human real person chat chatbot talking build this one site website page mine own",
+     a:"<p>Yes. This box is Rick's: every answer in it is his, in his words, and nothing in it is guessed. If a question is not covered, it says so and hands you to him. Yours would work the same way, in your words, about your business, with your button at the end of every answer.</p><p>It comes in two sizes. The one you are typing into now runs on a plain web page with nothing behind it, and it took an afternoon. The Answer Engine in the solutions list is the grown-up version: the same rule, verified facts only, reading the whole question and logging every miss so the library grows.</p>",
+     cta:{what:"An answer box like this one", kind:"build", note:"Answers in my words, on my page, with my button at the end."}},
 
     {id:"what-can-ai-do", q:"What can AI actually do for a business like mine?",
      alt:["what can ai do","what can it do","what does it do","use ai in my business","how can ai help","how could ai help","what would you build","where would you start","what do you do","what do you offer","what do you sell","your services","list of services"],
@@ -240,6 +243,12 @@
      a:"<p>Sensei runs it is $4,444 a month: I build it and I run the daily work too. Your Dojo is $2,222 a month: I build it, you run it. Both are monthly, cancel anytime, effective at the end of the paid month. Start with the quiz: it tells you which one fits.</p><p>Two things are true whichever you pick. Building a product you sell, an app, a site, a backend, is separate work, scoped and agreed in writing before the clock starts. And third-party costs are always yours: your AI, software and ad accounts stay in your name.</p>",
      link:{href:"#quiz", label:"Start with the quiz"}},
 
+    {id:"build-cost", q:"How much does a build cost, like a chat box or an app?",
+     alt:["cost to make","cost to build","cost to have","much to build","much to make","much for a","much would a","much does a","much is a","price of a","cost of a","price for a","quote","estimate","how much for","app cost","website cost","site cost","form cost","box cost","like that cost","would an app","would a website","would a chat"],
+     keys:"cost costs price prices quote quotes estimate charge make build built chat box app site website form feature bot",
+     a:"<p>Straight answer: it depends on the size, and I will tell you the number before the clock starts. A build is scoped and agreed in writing first, and it sits outside the two monthly Dojo offers. The first conversation is free.</p><p>For scale, from my own shop: the box you are typing into and the mailbox at the bottom of this page each took an afternoon. The Answer Engine behind my spa's site, answering in two languages from a written guide and taking bookings from a plain email, was a bigger build over a few weeks. Tell me what you want it to answer and where it should live, and you get a real number, not a range.</p>",
+     cta:{what:"a quote for a build", kind:"build", note:"A chat box, a form or an app: tell me what it must do and I will price it.", label:"Get the number"}},
+
     {id:"tiers", q:"What is the difference between Sensei runs it and Your Dojo?",
      alt:["difference between","sensei runs it","your dojo","which tier","which plan","which one","two options","two offers","the two"],
      keys:"difference tier tiers plan plans option options sensei runs run compare comparison versus vs choose pick between package packages",
@@ -259,7 +268,7 @@
     {id:"how-long", q:"How long does it take?",
      alt:["how long","how fast","how quickly","how soon","timeline","time frame","timeframe","when will it","up and running"],
      keys:"long fast quick quickly timeline weeks week days months soon deliver delivery ready running live",
-     a:"<p>The audit is the first thing, and your first ninja takes the biggest task in month one, at white belt. It widens once it has proven itself, not on a calendar.</p><p>For scale: the letter slot at the bottom of this page took an afternoon. The whole Dojo behind my own businesses took five months, and it is a practice, not a delivery, which is why it is a subscription and not a project.</p>"},
+     a:"<p>The audit is the first thing, and your first ninja takes the biggest task in month one, at white belt. It widens once it has proven itself, not on a calendar.</p><p>For scale: the mailbox at the bottom of this page took an afternoon. The whole Dojo behind my own businesses took five months, and it is a practice, not a delivery, which is why it is a subscription and not a project.</p>"},
 
     {id:"build-app", q:"Do you build apps and websites too?",
      alt:["build an app","build me an app","build my app","build a website","build my website","build me a website","make an app","make me an app","custom software","product development","need a developer","need an app","new website"],
@@ -285,9 +294,9 @@
      link:{href:"#opt-8b", label:"See the proof wall"}},
 
     {id:"contact", q:"How do I contact you? Can we talk on the phone?",
-     alt:["contact you","email address","your email","phone number","your phone","call you","a call","zoom","book a call","talk to you","get in touch","reach you","whatsapp","line id","speak to you","speak with you","talk to rick","free consultation"],
+     alt:["contact you","mailbox","the mailbox","email address","your email","phone number","your phone","call you","a call","zoom","book a call","talk to you","get in touch","reach you","whatsapp","line id","speak to you","speak with you","talk to rick","free consultation"],
      keys:"contact email phone call calls zoom meeting meet talk chat reach whatsapp telegram number address consultation consult conversation",
-     a:"<p>Through the Letter Slot at the bottom of this page. My address is not written anywhere here for the crawlers to eat, and the slot does not open your mail app. Your message lands with my Ninja Agent, which drafts a reply; I read it and press send myself, usually within a day.</p><p>A first conversation costs nothing. If you want a call, say so in the message and I will set one up from my side.</p>",
+     a:"<p>Through my mailbox at the bottom of this page. My address is not written anywhere here for the crawlers to eat, and the mailbox does not open your mail app. Your message lands with my Ninja Agent, which drafts a reply; I read it and press send myself, usually within a day.</p><p>A first conversation costs nothing. If you want a call, say so in the message and I will set one up from my side.</p>",
      cta:{what:"a conversation", kind:"other", note:"Tell me what to call you about and when.", label:"Write to Rick"}},
 
     {id:"reply-time", q:"How fast do you reply?",
@@ -313,14 +322,14 @@
     {id:"helpings", q:"Can you just do one small thing for me?",
      alt:["one small thing","small job","small task","just one thing","a quick fix","quick fix","a flyer","flyers","business cards","a logo","the helpings","a helping","small request"],
      keys:"small quick little task job fix fixes flyer flyers cards sign signs logo poster print design tweak tweaks favour favor request",
-     a:"<p>Yes. Most of what I build is not a whole app; it is the smaller thing somebody asked for on a Tuesday: a price editor, a flyer set that reads from the live catalog, a mail persona, a workflow fix. The helpings row in the solutions list is a long list of them, every one running today. Say what your Tuesday looks like in the slot.</p>",
+     a:"<p>Yes. Most of what I build is not a whole app; it is the smaller thing somebody asked for on a Tuesday: a price editor, a flyer set that reads from the live catalog, a mail persona, a workflow fix. The helpings row in the solutions list is a long list of them, every one running today. Say what your Tuesday looks like in the mailbox.</p>",
      cta:{what:"One of the helpings", kind:"build", note:"The smaller thing I asked for on a Tuesday."},
      link:{href:"#helpings", label:"See the helpings"}},
 
     {id:"hininja", q:"What about the martial arts, camps and coaching?",
      alt:["martial arts","hi ninja","the camps","ninja camp","coaching","winjitsu","train with you","mat time","ninjagym","the gym","kids classes","life coaching","speaking"],
      keys:"martial arts camp camps coaching coach winjitsu train training lessons classes mat gym kids karate ninjutsu seminar speaking speaker retreat",
-     a:"<p>That is the other door of this site. Thirty years of teaching, the camps, the coaching and WinJitsu live behind the HI Ninja door, and NinjaGym on Koh Samui is open seven days a week. If it is mat time or coaching you want, pick the HI Ninja subject in the slot, or walk through the door.</p>",
+     a:"<p>That is the other door of this site. Thirty years of teaching, the camps, the coaching and WinJitsu live behind the HI Ninja door, and NinjaGym on Koh Samui is open seven days a week. If it is mat time or coaching you want, pick the HI Ninja subject in the mailbox, or walk through the door.</p>",
      cta:{what:"The HI Ninja side", kind:"hininja", note:"Camps, coaching, mat time.", label:"Write about the HI side"},
      link:{href:"/hininja/", label:"Take the HI Ninja door"}},
 
@@ -343,17 +352,17 @@
     {id:"availability", q:"Do you have room for new clients right now?",
      alt:["room for","taking clients","taking on","taking new","are you available","waiting list","waitlist","seats left","how many clients","how many seats","fully booked"],
      keys:"room available availability taking clients client capacity seats seat waiting waitlist list full busy booked spots spot",
-     a:"<p>Seats are capped, because a sensei who takes every student teaches none of them. Whether one is open right now is a straight answer I give in the slot. Post the message and you will hear from me, usually within a day.</p>"},
+     a:"<p>Seats are capped, because a sensei who takes every student teaches none of them. Whether one is open right now is a straight answer I give in the mailbox. Post the message and you will hear from me, usually within a day.</p>"},
 
     {id:"remote", q:"Do you work with businesses outside Thailand?",
      alt:["outside thailand","work remotely","remotely","remote","in europe","in the us","in the uk","in america","in australia","in canada","my country","time zone","timezone","time zones","other countries","overseas"],
      keys:"remote remotely outside thailand europe america usa canada australia country countries abroad international timezone zone zones location anywhere overseas worldwide",
-     a:"<p>The work happens in your own online accounts, which do not care where you are, and I have lived and taught all over the world. Say where you are and what you run in the slot and I will tell you straight whether I can take it on, time zones included.</p>"},
+     a:"<p>The work happens in your own online accounts, which do not care where you are, and I have lived and taught all over the world. Say where you are and what you run in the mailbox and I will tell you straight whether I can take it on, time zones included.</p>"},
 
     {id:"teach-me", q:"Can you teach me to do this myself?",
      alt:["teach me","teach us","learn to do it myself","do it myself","train my team","train me","workshop","course on ai","learn ai"],
      keys:"teach teaches teaching taught learn learning myself ourselves course courses workshop workshops lesson lessons training train mentor mentoring",
-     a:"<p>Yes, and I like it when it happens. I teach it the way I taught the memory program: hands on, on your own business, until you can run it without me. It is rare: one friend asked for exactly this, and six-plus hours of teaching later the request quietly changed to \"could you just do it for us?\" That is fine too. Say which one you are in the slot.</p>",
+     a:"<p>Yes, and I like it when it happens. I teach it the way I taught the memory program: hands on, on your own business, until you can run it without me. It is rare: one friend asked for exactly this, and six-plus hours of teaching later the request quietly changed to \"could you just do it for us?\" That is fine too. Say which one you are in the mailbox.</p>",
      cta:{what:"to learn to build with AI myself", kind:"other", note:"Hands on, on my own business.", label:"Ask about teaching"}},
 
     /* ---- the solutions, quoting the page's own rows ---- */
@@ -400,7 +409,7 @@
      cta:{what:"The Publishing House", kind:"build", note:"A system that turns members into authors."}},
 
     {id:"answer-engine", q:"What is The Answer Engine?", sol:"The Answer Engine",
-     alt:["answer engine","knowledge base","a chat box","chat box","chatbot for my","bot for my website","faq bot","ai chat on my site","i don't know"],
+     alt:["answer engine","knowledge base","chat box","chatbot for my","bot for my website","faq bot","ai chat on my site","i don't know"],
      keys:"knowledge base kb faq faqs answers answer chat chatbot bot library search verified facts guessing guess",
      a:"<p><b>Your knowledge base, answering 24/7.</b> The brain behind the chat box and the drafted replies: it answers only from facts you verified and says \"I don't know\" instead of guessing. Every miss it logs makes your library smarter.</p><p>Where it runs: the chat on my spa's site, in English and Thai, answering from a written studio guide, and the box you are typing into now is its simplest form.</p>",
      cta:{what:"The Answer Engine", kind:"build", note:"Your knowledge base, answering 24/7."}},
@@ -463,9 +472,68 @@
 
   /* The chips the box opens with. Six questions a reader of this page
      actually has, three about AI and three about the service. */
-  var STARTERS=["is-ai-safe","nobody-understands","what-is-ai","cost","first-month","is-this-chat-ai"];
+  var STARTERS=["is-ai-safe","nobody-understands","what-is-ai","cost","answer-my-emails","first-month","answer-box"];
 
-  var api={answer:answer, search:search, tokens:tokens, norm:norm, LIBRARY:LIBRARY, STARTERS:STARTERS, HOURS:HOURS};
+  /* Tew Tips: one leading line per answer, Rick's, that points the reader at
+     the next move. Kept apart from the answers so they can be edited as a
+     set. An entry without a tip simply shows none. */
+  var TIPS={
+    "what-is-ai":"If a prediction machine can draft your inbox, the question is not whether it is clever. It is which of your tasks it takes first. The quiz finds that in two minutes.",
+    "nobody-understands":"You do not need to understand the engine to drive the car. You need a builder who tests the behaviour and keeps a hand on the brake. That is the whole Dojo.",
+    "is-ai-safe":"Ask any AI vendor one question: what happens before a message goes out? If the answer is not \"a person presses\", keep walking.",
+    "safer-ai":"Pick the task before the brand. A cautious AI drafting your inbox with a person pressing send is safer than a bold one with nobody watching, and the other way round.",
+    "replace-staff":"List the tasks your team does that need no judgment, only hours. That list is your first ninja's job description, and the quiz writes it with you.",
+    "talks-to-customers":"A drafted reply you read before sending is faster than writing it and safer than a bot sending it. You get both.",
+    "which-ai":"The model is the least important choice you will make. The written way of working is the asset, and that is what the Dojo builds.",
+    "data-privacy":"Keep every account in your own name from day one. If a vendor wants your customers inside their account, ask why.",
+    "need-to-understand":"The best owners I work with never open the tools. They approve drafts on their phone between customers.",
+    "what-is-agent":"A chatbot saves you a search. An agent saves you a Tuesday.",
+    "belts":"Start every AI worker at white belt, even one you built yourself. Trust it has not earned is a risk you are carrying for it.",
+    "masters":"Hire the seat that owns the number you most want moved: more customers, money on time, every question answered.",
+    "human-press":"The press is a feature, not a bottleneck. Reading ten drafts takes minutes; writing ten replies took your evening.",
+    "agent-ready":"The visitor who cannot use your site tomorrow may be a customer's assistant. Being readable to it costs an afternoon.",
+    "answer-box":"Start with the twenty questions your customers actually ask. Written once, answered every time after.",
+    "what-can-ai-do":"The task that annoys you most is usually the one that pays back fastest. Say it in the mailbox.",
+    "using-vs-operating":"Write your best way of doing one thing down today. That single page is worth more than any AI subscription.",
+    "learns":"\"I don't know\" is the most valuable answer an AI can give you. It shows you exactly what to write next.",
+    "mistakes":"Measure what comes out, not what the vendor promises. A decision register keeps anyone from quietly undoing what you decided.",
+    "cost":"Count the hours first. The quiz turns the hours you report into a monthly number before you look at either price.",
+    "build-cost":"Write down the three things it must do and the one it must never do. That is nine tenths of a quote.",
+    "tiers":"If nobody on your team has the spare capacity to press, choose Sensei runs it. If someone does, Your Dojo is enough.",
+    "cancel":"The exit is the honest test of any service. Everything built stays in your accounts, so leaving costs you nothing but the machine.",
+    "first-month":"Pick the task you would hand an intern on day one. That is the audit's first answer nine times out of ten.",
+    "how-long":"The first draft waiting in your inbox is the milestone that matters. Everything after it is widening.",
+    "build-app":"Describe the job, not the app. \"Bookings without the back and forth\" is a better brief than \"a booking app\".",
+    "who-for":"If the same question reached you three times this week, you are who this is for.",
+    "quiz":"Answer the computer question honestly. It only changes who ends up driving.",
+    "testimonials":"Ask any vendor for something you can open. A live app beats a quote.",
+    "contact":"One line about where your hours go is a better first message than a polite hello.",
+    "who-is-rick":"A sensei's job is taking you from white belt to black without skipping the proving part. Same job here.",
+    "ownership":"Whoever builds for you, insist every account is created in your name before the first login.",
+    "third-party":"Ask any builder for a weekly line on what the agents cost. If they cannot show it, they are not measuring it.",
+    "helpings":"The small thing you have wanted for a year is usually an afternoon. Name it.",
+    "marketing":"Do the ad math before the ad account. If the numbers do not work on paper, no budget fixes them.",
+    "languages":"A guest answered in their own language books. One who waits for a translation calls the shop next door.",
+    "tewbedo":"One screen that says \"everything is running\" is the difference between a business you own and one that owns you.",
+    "availability":"Write now anyway. A seat that opens next month goes to the message already on my desk.",
+    "remote":"Put your time zone in the message. The drafts wait for your morning, not mine.",
+    "teach-me":"Learn it on your own inbox, not a demo. The first real draft teaches more than a course.",
+    "answer-my-emails":"Collect the ten replies you send most. That is the training set, and it is already written.",
+    "how-rick-uses":"Start with the one thing you did by hand twice this week.",
+    "front-desk":"The ten replies you send most are the whole first week of this build.",
+    "money-desk":"If \"did that payment come in?\" is a question you ask, this is your first ninja.",
+    "booking-desk":"Count the messages it takes to book one slot today. That number is what disappears.",
+    "colleagues":"Try the numbers desk first. \"How did this March compare to last?\" is the mail you will send most.",
+    "marketing-room":"Write one page on how you talk to customers. Every draft after that sounds like you.",
+    "ad-room":"No money moves until the math says what each booking is allowed to cost.",
+    "publishing-house":"A coach that asks is worth more than one that writes. The book is only yours if you wrote it.",
+    "answer-engine":"Twenty verified answers beat two hundred guessed ones.",
+    "notebook":"An AI that learns without your veto learns your worst day too.",
+    "quiz-funnel":"Never hold the result hostage for an email. People can tell.",
+    "video-room":"In testing means I will tell you when it is ready, not before."
+  };
+
+  var api={answer:answer, search:search, tokens:tokens, norm:norm, LIBRARY:LIBRARY, STARTERS:STARTERS, HOURS:HOURS, TIPS:TIPS};
 
   /* ---------- node: the golden test imports the engine and stops here ---------- */
   if(typeof module!=="undefined" && module.exports){ module.exports=api; return; }
@@ -563,6 +631,9 @@
       var b=bubble("n");
       var q=el("div","ask-q",entry.q); b.appendChild(q);
       var a=el("div","ask-a"); a.innerHTML=entry.a; b.appendChild(a);
+      if(TIPS[entry.id]){
+        var t=el("div","ask-tip"); t.appendChild(el("b",null,"Tew Tip")); t.appendChild(doc.createTextNode(TIPS[entry.id])); b.appendChild(t);
+      }
       var row=el("div","ask-act");
       row.appendChild(wantBtn(entry.cta||HOURS, entry.cta&&entry.cta.label));
       if(entry.link) row.appendChild(linkBtn(entry.link));
@@ -602,7 +673,7 @@
     function welcome(){
       var b=bubble("n");
       var a=el("div","ask-a");
-      a.innerHTML="<p>Ask me about AI, or about what Rick does. Straight up: I am not an AI. I am a box of answers Rick wrote, matched by the words you use. If your question is not in here, I say so and hand you to him.</p>";
+      a.innerHTML="<p>Ask me about AI, or about what Rick does. Short answers in his words, and if I do not have one, I hand you to him.</p>";
       b.appendChild(a);
       chips(STARTERS.map(find), b);
     }
@@ -642,7 +713,7 @@
           inputSchema:{type:"object",properties:{question:{type:"string",description:"The question, in plain words."}},required:["question"]},
           execute:function(args){
             var r=answer((args&&args.question)||"");
-            if(r.kind==="answer") return Promise.resolve(JSON.stringify({found:true, question:r.entry.q, answer:plain(r.entry.a)}));
+            if(r.kind==="answer") return Promise.resolve(JSON.stringify({found:true, question:r.entry.q, answer:plain(r.entry.a), tip:TIPS[r.entry.id]||""}));
             if(r.kind==="choose") return Promise.resolve(JSON.stringify({found:false, choose:r.entries.map(function(e){ return e.q; })}));
             return Promise.resolve(JSON.stringify({found:false, handoff:"Rick does not have that one written down. Use post_letter_to_rick and a person answers."}));
           }
