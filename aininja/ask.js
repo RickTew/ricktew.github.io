@@ -126,7 +126,7 @@
     {id:"what-is-ai", q:"What is AI, in one line?",
      alt:["what is ai","whats ai","explain ai","define ai","shortest explanation","in one line","one sentence"],
      keys:"explain explanation definition define short simple prediction predict predicts model llm language model machine learning guess guesses",
-     a:"<p>A prediction model, and the predictions are pretty good.</p><p>The AI everyone is talking about is a machine trained to guess the next word so well that the guesses turn into useful answers, working code and drafted replies. The \"intelligence\" is a side effect of being extremely good at that one guess. That is the whole trick, and it is enough to draft your inbox.</p>"},
+     a:"<p>A prediction model, and the predictions are pretty good.</p><p>The AI everyone is talking about is a machine trained to guess the next word so well that the guesses turn into useful answers, working code and drafted replies. The \"intelligence\" is a side effect of being extremely good at that one guess. That is the whole trick, and it is enough to draft your inbox: at my gym it drafts every reply from answers I wrote, and I teach the classes while it does.</p>"},
 
     {id:"nobody-understands", q:"Nobody knows how AI works. Isn't that a risk?",
      alt:["nobody knows how","no one knows how","no one understands","nobody understands","black box","how does it work","how does ai work","how it works"],
@@ -136,7 +136,23 @@
     {id:"is-ai-safe", q:"Is AI safe to use in my business?",
      alt:["is ai safe","is it safe","safe to use","make things up","makes things up"],
      keys:"safe safety secure security harm mistake mistakes hallucinate hallucination hallucinates invent invents made up lie lies lying trust trusted",
-     a:"<p>Safe the way a power tool is safe: with the guards on. The real risks are not a hidden mind. They are over-trust, bad data, and letting it make a high-stakes decision with nobody checking.</p><p>So the Dojo removes exactly those. Every ninja starts at white belt and only proposes; a human presses every send, pay and post. Answers come only from facts you verified, and a question outside them gets \"I don't know\" rather than an invention. One switch pauses every metered AI call. Your accounts stay in your name.</p>"},
+     a:"<p>Safe the way a power tool is safe: with the guards on. The real risks are not a hidden mind. They are over-trust, bad data, and letting it make a high-stakes decision with nobody checking.</p><p>So the Dojo removes exactly those. Every ninja starts at white belt and only proposes; a human presses every send, pay and post. Answers come only from facts you verified, and a question outside them gets \"I don't know\" rather than an invention. One switch pauses every metered AI call. Your accounts stay in your name.</p><p>How I run it myself: the desk at my gym drafts every reply from answers I wrote, a person presses send, and my spa's desk agent has two off switches the owner can flip without calling me. Guards first, then the speed.</p>"},
+
+    {id:"safer-ai", q:"Is one AI safer than another?",
+     alt:["safer than","which ai is safer","which ai is safest","safest ai","which is safer","is one ai safer","any one ai safer","grok","anthropic","xai","differences between","compare the ais","which ai is best","which is the best ai","most cautious"],
+     keys:"safer safest safe compare comparison versus vs difference differences between grok anthropic claude chatgpt openai gemini google xai meta llama cautious careful direct blunt filter filters refuse refuses refusing lecture lectures warnings brand brands company companies best better worse open constrained",
+     a:"<p>Some are more cautious than others, and that is a design choice by the company, not a secret personality. One AI company builds careful first: it refuses more, adds more warnings, and is slower on edgy questions. Another builds direct first: it answers more and lets you decide. Under the hood they are the same kind of machine, a next-word predictor with extra training on top, and the extra training is simply pointed at different priorities. All of them draw the same hard lines.</p><p>So \"safer\" depends on your fear. Afraid it will say something ugly? The cautious one is the more constrained product. Afraid it will lecture you instead of answering? The direct one is the more open product. Afraid a company will release more than it can control? Read what each one publishes about its safety process and what independent scorecards say, as of your last look at their own sites, not the tone of the chat window.</p><p>The part that should actually calm you: everyday risk is mostly about the user, not the logo. Do not paste private medical or legal files into any of them. Do not treat any answer as a finished decision. Do not give any of them unsupervised control of money, accounts or machines. That is exactly how my Dojo is built: nothing sends, pays or posts without a person pressing, whichever AI is underneath.</p>"},
+
+    {id:"answer-my-emails", q:"Can I use it to answer my emails?",
+     alt:["answer my emails","answer my email","reply to my emails","reply to my email","do my emails","my emails","handle my inbox","handle my email","use it to answer","deal with my inbox","drowning in email","too many emails"],
+     keys:"answer answers answering emails email mail inbox replies reply respond drafts draft drowning",
+     a:"<p>Yes. \"It\" ends up specific to your business, and I have built it several ways. At my gym, the desk reads every mail and drafts the reply from answers I wrote; a person presses send. At my spa, SabaiSen, the desk agent answers guests on the site in English and Thai from a written studio guide, turns a plain \"book me Tuesday at two\" email into a real booking, and replies in the owner's own wording, with two off switches the owner can flip. In my console, TewBeDo, I added a simple CRM, a few helper systems and an AI assistant I can ask questions. A coaching team's desk runs the same shape for one human press.</p><p>The rule is the same in every one: the AI drafts from what you wrote, it never sends on its own, and the hours come back anyway. Tell me what your inbox looks like and I will tell you which shape fits.</p>",
+     cta:{what:"The Front Desk", kind:"build", note:"Support replies drafted on auto. You press send."}},
+
+    {id:"how-rick-uses", q:"How do you use AI yourself?",
+     alt:["how do you use ai","how do you use it","how you use it","how you use ai","what do you use it for","use it yourself","in your own business","your own businesses"],
+     keys:"yourself own daily day every practice examples example use uses using",
+     a:"<p>Every day, and always on my own shop first. The app that runs my gym was built in a chat window; its desk drafts the replies. My spa app, SabaiSen, has a desk agent that answers guests and books them from a plain email, and one price table that drives the website, the booking page and both tills. TewBeDo, my console, runs my whole working life from my phone: a simple CRM, my AI staff at their desks, a news radar, and an assistant I can ask \"is everything running?\" The flyers, the signs, the gym's own songs, the characters in my games: made with AI too.</p><p>The time it gives back is the point. I teach the classes while the machine keeps the books. Everything on this page ran on me before I offered it to anyone.</p>"},
 
     {id:"replace-staff", q:"Will AI replace my staff, or me?",
      alt:["replace me","replace my staff","replace people","take my job","lose their jobs","take jobs","take our jobs"],
@@ -149,7 +165,7 @@
      a:"<p>Never. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. That rule does not bend at any belt or any price.</p>"},
 
     {id:"which-ai", q:"Which AI do you use?",
-     alt:["which ai","what ai do you use","which model","what model","which llm","which company","which companies"],
+     alt:["which ai","what ai do you use","do you use","which model","what model","which llm","which company","which companies"],
      keys:"chatgpt claude gemini openai anthropic google copilot grok model models tool tools brand vendor company companies",
      a:"<p>The AI companies' models, and the tools change every month, so I do not carve a name into this page. What does not change: the AI account is yours, in your name, and your way of working is written down properly and handed to every ninja, so a change of model takes nothing with it. Which one I would put under your Dojo, and why, is a straight answer in the slot.</p>"},
 
@@ -161,7 +177,7 @@
     {id:"need-to-understand", q:"Do I need to understand AI to use this?",
      alt:["understand ai","do i need to understand","need to be technical","not technical","hate computers","do not like computers","dont like computers","bad with computers","computer person","learn to code"],
      keys:"understand learn learning technical tech nerd computers computer knowledge skill skills required prompt prompts prompting code coding",
-     a:"<p>No, and that is the point. Only a tiny slice of people using AI will ever touch the builder tools. I build and train the Dojo; you run your business. If you ever want to learn what is under the hood, I will show you, but it is never required.</p>"},
+     a:"<p>No, and that is the point. Only a tiny slice of people using AI will ever touch the builder tools. I build and train the Dojo; you run your business. If you ever want to learn what is under the hood, I will show you, but it is never required. The staff at my gym and my spa never touch the builder tools: they see a draft, a booking, a payment to confirm, and press.</p>"},
 
     {id:"what-is-agent", q:"What is an AI agent, and why call them ninjas?",
      alt:["what is an agent","what is a ninja","what are ninjas","what are the ninjas","what is an ai agent","agent vs chatbot","difference between a chatbot","why ninjas","why call them"],
@@ -238,7 +254,7 @@
     {id:"first-month", q:"What happens in the first month?",
      alt:["first month","how do we start","how do i start","where do we start","where do i start","get started","getting started","what happens first","onboarding","how does it start","the first step"],
      keys:"start starts starting begin begins beginning first month audit onboarding kickoff step steps process happens order",
-     a:"<p>The audit first: we map where your hours actually go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt. It proves itself before anything widens.</p>"},
+     a:"<p>The audit first: we map where your hours actually go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt. It proves itself before anything widens.</p><p>That is the order it happened in for me: the gym's inbox first, then bookings, then the books, each one earning the next.</p>"},
 
     {id:"how-long", q:"How long does it take?",
      alt:["how long","how fast","how quickly","how soon","timeline","time frame","timeframe","when will it","up and running"],
@@ -317,7 +333,7 @@
     {id:"languages", q:"Does it work in other languages?",
      alt:["other languages","in thai","speak thai","multilingual","bilingual","in german","in dutch","in spanish","in french","in english","not english"],
      keys:"language languages thai english german dutch spanish french italian multilingual bilingual translate translation translations speak speaks",
-     a:"<p>Yes. My gym app speaks every language its families speak, the desk answers Thai guests in Thai, and the answer library that grows from missed questions runs in two languages at one client. A guest who writes at midnight has a draft waiting by morning, in their own language.</p>"},
+     a:"<p>Yes. My gym app speaks every language its families speak, the desk answers Thai guests in Thai, and the answer library that grows from missed questions runs in two languages at one client. A guest who writes at midnight has a draft waiting by morning, in their own language. At my spa the booking-by-email reader understands a request in nine languages besides English and Thai.</p>"},
 
     {id:"tewbedo", q:"What is TewBeDo, the console?",
      alt:["tewbedo","the console","command center","command centre","control panel"],
@@ -344,7 +360,7 @@
     {id:"front-desk", q:"What is The Front Desk?", sol:"The Front Desk",
      alt:["front desk","support desk","support inbox","help desk","helpdesk","customer service","customer support","my inbox","the inbox","answer emails","answering emails","reply to emails","crm"],
      keys:"support inbox email emails mail mails replies reply customer service helpdesk tickets ticket crm drafts drafted answering answers questions",
-     a:"<p><b>Support replies drafted on auto. You press send.</b> An AI agent reads every support mail, day and night, and drafts the reply from your own written answers. Hours back every week, zero robot answers. Runs live in my business today.</p>",
+     a:"<p><b>Support replies drafted on auto. You press send.</b> An AI agent reads every support mail, day and night, and drafts the reply from your own written answers. Hours back every week, zero robot answers. Runs live in my business today.</p><p>Where it runs: my gym's desk, my spa's desk agent, and a coaching team's inbox, each one drafting from that business's own written answers.</p>",
      cta:{what:"The Front Desk", kind:"build", note:"Support replies drafted on auto. You press send."}},
 
     {id:"money-desk", q:"What is The Money Desk?", sol:"The Money Desk",
@@ -356,7 +372,7 @@
     {id:"booking-desk", q:"What is The Booking Desk?", sol:"The Booking Desk",
      alt:["booking desk","online booking","online bookings","take bookings","bookings","appointments","scheduling","book a session"],
      keys:"booking bookings book books appointment appointments schedule scheduling calendar reminders reminder reschedule reschedules cancels slots slot availability",
-     a:"<p><b>Bookings on autopilot. No back and forth.</b> People book you without an account or email ping-pong; reminders, reschedules and cancels handle themselves. This system ran my own gym while I taught the classes.</p>",
+     a:"<p><b>Bookings on autopilot. No back and forth.</b> People book you without an account or email ping-pong; reminders, reschedules and cancels handle themselves. This system ran my own gym while I taught the classes.</p><p>At my spa it also knows the furniture: three foot chairs, two beds, one mat, and each therapist's call-in notice, so it only offers a slot the room can actually hold.</p>",
      cta:{what:"The Booking Desk", kind:"build", note:"Bookings on autopilot. No back and forth."}},
 
     {id:"colleagues", q:"What is Colleagues by Email?", sol:"Colleagues by Email",
@@ -386,7 +402,7 @@
     {id:"answer-engine", q:"What is The Answer Engine?", sol:"The Answer Engine",
      alt:["answer engine","knowledge base","a chat box","chat box","chatbot for my","bot for my website","faq bot","ai chat on my site","i don't know"],
      keys:"knowledge base kb faq faqs answers answer chat chatbot bot library search verified facts guessing guess",
-     a:"<p><b>Your knowledge base, answering 24/7.</b> The brain behind the chat box and the drafted replies: it answers only from facts you verified and says \"I don't know\" instead of guessing. Every miss it logs makes your library smarter.</p>",
+     a:"<p><b>Your knowledge base, answering 24/7.</b> The brain behind the chat box and the drafted replies: it answers only from facts you verified and says \"I don't know\" instead of guessing. Every miss it logs makes your library smarter.</p><p>Where it runs: the chat on my spa's site, in English and Thai, answering from a written studio guide, and the box you are typing into now is its simplest form.</p>",
      cta:{what:"The Answer Engine", kind:"build", note:"Your knowledge base, answering 24/7."}},
 
     {id:"notebook", q:"What is The Notebook?", sol:"The Notebook",

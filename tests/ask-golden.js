@@ -24,6 +24,14 @@ var GOLD=[
   ["which AI do you use", "which-ai"],
   ["do you use claude or chatgpt", "which-ai"],
   ["is my customer data private", "data-privacy"],
+  ["is one AI safer than another", "safer-ai"],
+  ["is grok safer than claude", "safer-ai"],
+  ["what's the difference between anthropic and xai", "safer-ai"],
+  ["which AI is the most cautious", "safer-ai"],
+  ["can I use it to answer my emails", "answer-my-emails"],
+  ["I am drowning in email", "answer-my-emails"],
+  ["how do you use AI yourself", "how-rick-uses"],
+  ["what do you use it for in your own business", "how-rick-uses"],
   ["do I need to understand AI to use this", "need-to-understand"],
   ["I hate computers", "need-to-understand"],
   ["what is an AI agent", "what-is-agent"],
@@ -133,7 +141,7 @@ ask.LIBRARY.forEach(function(e){
   ok(!/@/.test(t), e.id+": an at-sign in the answer");
   ok(!/[–—]|--/.test(t), e.id+": a long dash in the answer");
   ok(!/\b(kata|shelf|receipts?)\b/i.test(t), e.id+": kata, shelf or receipts in public copy");
-  ok(!/\b(claude|chatgpt|gemini|openai|anthropic)\b/i.test(t), e.id+": a company or model named in public copy");
+  ok(!/\b(claude|chatgpt|gemini|openai|anthropic|grok|xai)\b/i.test(t), e.id+": a company or model named in public copy");
 });
 
 console.log(fails ? "\n"+fails+" of "+n+" checks FAILED" : "\nall "+n+" checks passed");
