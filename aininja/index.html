@@ -77,7 +77,11 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .hero h1{font-size:clamp(36px,5.4vw,58px);font-weight:900;letter-spacing:-.015em;max-width:18ch}
 .hero h1 .c{color:var(--blue)}
 .hero .lede{margin-top:24px;font-size:clamp(17px,2.2vw,20px);font-weight:600;color:#3a4148;max-width:56ch}
-.hero .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero .cta-row{margin-top:34px}
+/* every pair of buttons: one grid, two equal columns, so the pair is always the same width and height */
+.cta-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:max-content;max-width:100%}
+.cta-row .btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;white-space:nowrap}
+@media (max-width:560px){ .cta-row{grid-template-columns:1fr;width:100%} .cta-row .btn{white-space:normal} }
 .hero-stats{margin-top:56px;display:flex;gap:0;flex-wrap:wrap;border-top:1px solid var(--line)}
 .hstat{padding:20px 34px 4px 0;margin-right:34px}
 .hstat b{display:block;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:32px;font-weight:900;color:var(--ink)}
@@ -97,7 +101,8 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .hero-rick{position:relative;z-index:1;height:492px;width:auto;display:block;
   filter:drop-shadow(0 10px 18px rgba(16,20,24,.14))}
 @media (max-width:900px){ .hero-ninja{transform:none;margin-top:6px} .hero-rick{height:340px} .hero-ninja::before{width:270px;height:270px;top:2%} .hero-ninja::after{width:190px;bottom:30px} }
-.hero-ninja small{position:relative;z-index:1;font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;max-width:200px;text-align:center}
+.hero-ninja small{position:relative;z-index:1;font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;max-width:200px;text-align:center;left:-14.9px}
+@media (max-width:900px){ .hero-ninja small{left:-10.3px} }
 
 /* sprites: filmstrips straight out of the games, played with steps() at 1:1.
    Every one runs its full action, not an idle twitch. */
@@ -522,7 +527,7 @@ footer a:hover{text-decoration:underline}
 .h2b h2{font-size:clamp(38px,6.2vw,66px);font-weight:900;letter-spacing:-.02em;line-height:1.02;max-width:15ch;margin:0 auto}
 .h2b h2 em{font-style:normal;color:var(--blue)}
 .h2b .sub{margin:22px auto 0;max-width:52ch;font-size:clamp(17px,2.2vw,20px);font-weight:600;color:#3a4148}
-.h2b .cta-row{margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.h2b .cta-row{margin:32px auto 0}
 .h2b .proof{margin-top:34px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .h2b .proof span{font-size:12.5px;font-weight:900;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--panel)}
 
@@ -532,7 +537,7 @@ footer a:hover{text-decoration:underline}
 .h2c h2{color:#fff;font-size:clamp(34px,5.4vw,58px);font-weight:900;letter-spacing:-.015em;max-width:20ch;line-height:1.05;margin-top:8px}
 .h2c h2 b{color:#7db4e4}
 .h2c .sub{margin-top:20px;max-width:56ch;font-size:clamp(16px,2vw,19px);font-weight:600;color:#c2cbd4}
-.h2c .cta-row{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+.h2c .cta-row{margin-top:30px}
 .h2c .btn-ghost{background:transparent;color:#fff;border-color:#3a4652}
 
 /* 3A: the straight line */
@@ -936,23 +941,6 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <p class="hero-share">I built a few things, learned some great stuff along the way and shared it with friends. I think you could get something out of it too, so read the rest as sharing, not selling.</p>
   </div>
 </header>
-
-<!-- ============ OPTION 2B: hero, the 3-second version ============ -->
-<section class="h2b" id="opt-2b">
-  <div class="wrap rv">
-    <h2>You run the business. <em>My AI Ninja run the admin.</em></h2>
-    <p class="sub">I'm Rick Tew: 25 years a martial arts sensei, and about as many as a nerd. Since March, I have been building solutions for my own businesses. I build and train an AI workforce for your life or business.</p>
-    <div class="cta-row">
-      <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
-      <a class="btn btn-quiet" href="#quiz">Take the 2-minute quiz</a>
-    </div>
-    <div class="proof">
-      <span>TEWGO on the Apple App Store</span>
-      <span>1,000+ members in my gym app</span>
-      <span>6,242+ commits since March</span>
-    </div>
-  </div>
-</section>
 
 <!-- ============ OPTION 2C: hero, the results version ============ -->
 <section class="h2c" id="opt-2c">
@@ -1409,6 +1397,23 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <p class="dojo-honest">I run my own shop this way first, the same as everything else here. Everything my ninjas know sits in one place, kept like code with every version saved, and it installs everywhere I work. <b>Sharpen one and they all get sharper the same day.</b></p>
 
     <div class="cta"><a class="btn btn-blue" href="#quiz">See what your business would run on &middot; take the quiz</a></div>
+  </div>
+</section>
+
+<!-- ============ OPTION 2B: hero, the 3-second version ============ -->
+<section class="h2b" id="opt-2b">
+  <div class="wrap rv">
+    <h2>You run the business. <em>My AI Ninja run the admin.</em></h2>
+    <p class="sub">I'm Rick Tew: 25 years a martial arts sensei, and about as many as a nerd. Since March, I have been building solutions for my own businesses. I build and train an AI workforce for your life or business.</p>
+    <div class="cta-row">
+      <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
+      <a class="btn btn-quiet" href="#quiz">Take the 2-minute quiz</a>
+    </div>
+    <div class="proof">
+      <span>TEWGO on the Apple App Store</span>
+      <span>1,000+ members in my gym app</span>
+      <span>6,242+ commits since March</span>
+    </div>
   </div>
 </section>
 
