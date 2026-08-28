@@ -53,8 +53,8 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .doorbar .db-here b{color:#6db3f0;font-weight:800}
 .doorbar .db-other{color:#ff7a7e}
 @media (max-width:700px){
-  .doorbar-in{justify-content:center;text-align:center;gap:4px 14px;padding:8px 16px}
-  .doorbar .db-here{margin:0}
+  .doorbar-in{justify-content:space-between;text-align:center;gap:4px 14px;padding:7px 16px;flex-wrap:nowrap}
+  .doorbar .db-here{display:none}
 }
 /* nav */
 .nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -491,6 +491,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 footer a{color:var(--ink);font-weight:800;text-decoration:none}
 footer a:hover{text-decoration:underline}
 
+/* Phones: lighter. Nothing is removed from the page; long blocks fold to
+   their first lines behind a "More" tap (the fold is added by script only
+   under 700px), and a few tails are hidden with .m-hide. Real copy cuts
+   are Rick's call, after the playtest. */
+@media (max-width:700px){
+  body{font-size:16.5px}
+  .m-hide{display:none}
+  .hero{padding-top:34px}
+  .hero h1{font-size:31px;max-width:none}
+  .hero .lede{margin-top:16px;font-size:16px}
+  .hero-stats{margin-top:26px}
+  .sub{font-size:15.5px}
+  .m-fold{position:relative;max-height:13em;overflow:hidden;padding-bottom:0}
+  .m-fold.is-sub{max-height:8.2em}
+  .m-more{display:inline-flex;align-items:center;gap:6px;margin:10px auto 0;background:#fff;color:var(--blue-d);border:1.5px solid var(--blue);border-radius:999px;padding:7px 16px;font:inherit;font-size:13px;font-weight:900;cursor:pointer}
+  .m-more::after{content:"\25BE";font-size:12px}
+}
 /* reveal */
 .rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
 .rv.in{opacity:1;transform:none}
@@ -765,9 +782,9 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 }
 
 /* M1: sticky mobile CTA bar */
-.mbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:150;display:none;align-items:center;gap:6px;background:var(--ink);border-radius:14px;padding:10px 12px;box-shadow:0 14px 34px rgba(16,20,24,.35)}
+.mbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:150;display:none;align-items:center;gap:6px;background:var(--ink);border-radius:14px;padding:7px 8px 7px 8px;box-shadow:0 14px 34px rgba(16,20,24,.35)}
 @media (max-width:700px){ .mbar{display:flex} }
-.mbar .btn{flex:1;text-align:center;padding:12px 10px;font-size:15px}
+.mbar .btn{flex:1;text-align:center;padding:10px 10px;font-size:15px;white-space:nowrap}
 .mbar .x{background:none;border:none;color:#9aa4ae;font-size:22px;font-weight:900;padding:6px 10px;cursor:pointer;line-height:1}
 
 /* Ask the ninja: the chat box. Engine, answer library and behaviour live in
@@ -779,7 +796,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 .ask-launch:focus-visible,.ask-want:focus-visible,.ask-chip:focus-visible,.ask-x:focus-visible,.ask-go:focus-visible{outline:3px solid var(--red);outline-offset:2px}
 .ask-launch[hidden]{display:none}
 @media (max-width:700px){ body:has(#mbar) .ask-launch{display:none} }
-.mbar .ask-mbar{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--ink);border-color:#fff;padding:12px 14px;font-size:15px}
+.mbar .ask-mbar{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--ink);border-color:#fff;padding:10px 12px;font-size:15px}
 .mbar .ask-mbar .g{margin:0;font-size:1.25em;vertical-align:0}
 .ask-panel{position:fixed;right:16px;bottom:16px;z-index:160;width:min(400px,calc(100vw - 32px));max-height:min(680px,calc(100vh - 32px));display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px rgba(16,20,24,.28);overflow:hidden}
 .ask-panel[hidden]{display:none}
@@ -899,7 +916,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <div class="hero-copy">
         <div class="k">Rick Tew &middot; The Digital Dojo</div>
         <h1>I'm not a marketing expert. <span class="c">I'm an AI ninja with my own Digital Dojo.</span></h1>
-        <p class="lede">This is not a pitch. It is the story of one real business that needed its owner's time back, and the five months of building that followed: the Dojo where my AI ninjas train and work. Read it, keep what is useful, and if you see yourself in it, there is a simple quiz at the end, and a Dojo of your own on the other side of it.</p>
+        <p class="lede">This is not a pitch. It is the story of one real business that needed its owner's time back, and the five months of building that followed: the Dojo where my AI ninjas train and work.<span class="m-hide"> Read it, keep what is useful, and if you see yourself in it, there is a simple quiz at the end, and a Dojo of your own on the other side of it.</span></p>
         <div class="cta-row">
           <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
           <a class="btn btn-quiet" href="#quiz">Take the 2-minute quiz</a>
@@ -2449,6 +2466,23 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     requestAnimationFrame(tick);
   }
 
+  /* Phones: fold the long blocks. Under 700px, any prose block or long
+     section intro taller than its fold gets a "More" button under it.
+     Desktop is untouched, and so is the text. */
+  (function(){
+    if(!(window.matchMedia&&matchMedia("(max-width:700px)").matches)) return;
+    var picks=[].slice.call(document.querySelectorAll(".noise-card, .prose, .opw .kata, .a6b .letter"));
+    [].forEach.call(document.querySelectorAll(".sub"), function(p){ if(p.textContent.trim().length>360) { p.classList.add("is-sub"); picks.push(p); } });
+    picks.forEach(function(el){
+      el.classList.add("m-fold");
+      if(el.scrollHeight<=el.clientHeight+24){ el.classList.remove("m-fold","is-sub"); return; }
+      var b=document.createElement("button"); b.type="button"; b.className="m-more"; b.textContent="More";
+      b.addEventListener("click", function(){ el.classList.remove("m-fold"); b.remove(); });
+      el.parentNode.insertBefore(b, el.nextSibling);
+      if(getComputedStyle(el.parentNode).textAlign!=="center") b.style.display="inline-flex";
+    });
+  })();
+
   /* reveal + counters */
   if("IntersectionObserver" in window){
     var io=new IntersectionObserver(function(es){
@@ -2748,7 +2782,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 
 <!-- ============ OPTION M1: sticky mobile CTA bar (shows under 700px only) ============ -->
 <div class="mbar" id="mbar">
-  <a class="btn btn-blue" href="#quiz">Take the 2-minute quiz</a>
+  <a class="btn btn-blue" href="#quiz">Take the quiz</a>
   <button class="btn ask-mbar" type="button" data-ask-open aria-label="Ask the ninja"><span class="g" aria-hidden="true">&#129399;</span>Ask</button>
   <button class="x" id="mbarX" aria-label="Dismiss">&times;</button>
 </div>
