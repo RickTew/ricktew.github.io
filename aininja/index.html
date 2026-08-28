@@ -76,6 +76,9 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 @media (max-width:900px){ .hero-grid{grid-template-columns:1fr} }
 .hero h1{font-size:clamp(36px,5.4vw,58px);font-weight:900;letter-spacing:-.015em;max-width:18ch}
 .hero h1 .c{color:var(--blue)}
+/* every section headline is half ink, half blue: the second half carries .c */
+h2 .c{color:var(--blue)}
+.b8c h2 .c{color:#bfe0ff}
 .hero .lede{margin-top:24px;font-size:clamp(17px,2.2vw,20px);font-weight:600;color:#3a4148;max-width:56ch}
 .hero .cta-row{margin-top:34px}
 /* every pair of buttons: one grid, two equal columns, so the pair is always the same width and height */
@@ -1141,7 +1144,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="charwall" id="characters">
   <div class="rv">
     <div class="k">From the games</div>
-    <h2>The characters, every one of them mine</h2>
+    <h2>The characters, <span class="c">every one of them mine</span></h2>
     <p class="sub">Heroes, the horde, marines, cyborgs and one very good dog. Most of them in DungeonHole, out of its own class and enemy tables, and the robots, cyborgs and emplacements in AstroHold. Every one animated in eight directions. These are not a promo render: they are the exact frames the games draw, at their exact size, which is why the big ones tower over the small ones the same way they do in a fight.</p>
     <p class="sub">Not for the scoreboard: I drew them because the games needed them. They are here because they are part of the story, and because I enjoyed making them.</p>
 
@@ -1262,7 +1265,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="appwall" id="apps">
   <div class="rv">
     <div class="k">Not a portfolio shot</div>
-    <h2>Just a few of the apps I've made recently</h2>
+    <h2>Just a few of the apps <span class="c">I've made recently</span></h2>
     <p class="sub">Some I built for a business, some as a hobby, some to help a friend with theirs: games, a spa, a hostel, a gym, a console and a method.</p>
 
     <div class="row-label">What actually opens &middot; <b>live captures</b></div>
@@ -1278,7 +1281,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="e1" id="opt-e1">
   <div class="wrap rv">
     <span class="k">The hardest thing to explain</span>
-    <h2>The website is not the machine. It is the handle.</h2>
+    <h2>The website is not the machine. <span class="c">It is the handle.</span></h2>
     <p class="sub">Take SabaiSen, my spa app, as the example, because it makes the mistake easy to see.</p>
 
     <div class="surface">
@@ -1748,7 +1751,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   <div class="wrap rv">
     <div class="head">
       <div class="k">The whole page, in one straight line</div>
-      <h2>If you only read one section, read this one</h2>
+      <h2>If you only read one section, <span class="c">read this one</span></h2>
     </div>
     <div class="line">
       <div class="step"><span class="k">The hook</span><p>You did not start your business to do admin. <b>Yet there it is, eating your evenings.</b></p></div>
@@ -1763,7 +1766,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="quiz-sec" id="quiz">
   <div class="wrap rv">
     <div class="k">No pitch, just a mirror</div>
-    <h2>Twelve questions. Then you tell me if I'm wrong.</h2>
+    <h2>Twelve questions. <span class="c">Then you tell me if I'm wrong.</span></h2>
     <p class="sub">Longer than these usually are, on purpose: I am not trying to qualify you out in three taps, I am trying to work out how I can actually help. It does not assume you have a company and it does not assume you want an email robot. It asks what you are trying to move, where the hours really go, what runs the work today, and how you honestly feel about computers. Three minutes. The result is computed from your answers alone, and you see it without giving an email. The belt bar fills as you go, white through black.</p>
 
     <div class="quiz-box" id="quizBox">
@@ -1937,7 +1940,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="s5a" id="opt-5a">
   <div class="wrap rv">
     <div class="k">The service, said plainly</div>
-    <h2>You keep the judgment calls. I keep the machine moving.</h2>
+    <h2>You keep the judgment calls. <span class="c">I keep the machine moving.</span></h2>
     <div class="grid">
       <div class="prose">
         <p>This is for the owner whose strength is the room, not the screen: the sensei, the clinician, the shop keeper, the consultant whose week disappears into the same questions, the same scheduling, the same chasing.</p>
@@ -1960,7 +1963,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="a6a" id="opt-6a">
   <div class="wrap rv">
     <div class="k">About the sensei</div>
-    <h2>Same job for 25 years. New tools.</h2>
+    <h2>Same job for 25 years. <span class="c">New tools.</span></h2>
     <div class="grid">
       <img src="assets/story/ninjagym/gallery-samui-kick.jpg" alt="Rick Tew mid flying kick" loading="lazy">
       <div class="prose">
@@ -1976,7 +1979,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="ninja" id="ninja">
   <div class="wrap rv">
     <div class="k">30+ years a ninja</div>
-    <h2>I like to build. That is the whole story.</h2>
+    <h2>I like to build. <span class="c">That is the whole story.</span></h2>
     <p class="sub">The other door of this site, in one section. Not a highlight reel to impress you: a few photos and four old tapes so you can see the building did not start with the apps.</p>
 
     <div class="grid">
@@ -2053,7 +2056,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="a6b" id="opt-6b">
   <div class="wrap rv">
     <span class="k">A note from Rick</span>
-    <h2>Why I do this</h2>
+    <h2>Why <span class="c">I do this</span></h2>
     <div class="letter">
       <p>If you have read this far, you have seen the whole story, so let me say the quiet part directly.</p>
       <p>I am not a marketing expert and I am not going to become one. I am a sensei who got buried in admin, refused to accept that as the job, and built his way out. The builds on this page are the trail I left doing it.</p>
@@ -2068,7 +2071,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="f8a" id="opt-8a">
   <div class="wrap rv">
     <span class="k">Asked and answered</span>
-    <h2>The questions that come up every time</h2>
+    <h2>The questions <span class="c">that come up every time</span></h2>
     <div class="list">
       <details><summary>Do I need to understand AI to use this?</summary><p>No, and that is the point. Only a tiny slice of people using AI will ever touch the builder tools. I build and train the Dojo; you run your business. If you ever want to learn what is under the hood, I will show you, but it is never required.</p></details>
       <details><summary>Will an AI talk to my customers without me knowing?</summary><p>Never. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. That rule does not bend at any belt or any price.</p></details>
@@ -2086,7 +2089,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="t8b" id="opt-8b">
   <div class="wrap rv">
     <span class="k">No testimonials yet, on purpose</span>
-    <h2>Asked for, shipped, and now part of the Dojo, waiting for you</h2>
+    <h2>Asked for, shipped, <span class="c">and now part of the Dojo, waiting for you</span></h2>
     <p class="sub">Client names stay out of it, and I will not invent a quote to fill a box. What I can show is what was asked for, and what shipped.</p>
     <div class="cards">
       <div class="card"><span class="k">Asked</span><p>"Give me my evenings back."</p><span class="k" style="margin-top:14px">Shipped</span><p><b>The gym app.</b> 1,000+ members, bookings, belts, birthdays, running on auto while the sensei teaches. That client was me.</p></div>
@@ -2111,7 +2114,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 
 <section class="b8c" id="opt-8c">
   <div class="wrap rv">
-    <h2>One message. No pitch deck. No drip sequence.</h2>
+    <h2>One message. <span class="c">No pitch deck. No drip sequence.</span></h2>
     <p>Tell me where your hours actually go. This will not open your email app, and my address is not written anywhere on this page for the crawlers to eat. Drop it in my mailbox instead.</p>
 
     <div class="slot" id="slot">
