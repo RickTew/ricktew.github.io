@@ -204,10 +204,21 @@
      a:"<p>Exactly what it says. A ninja can read, draft, file and propose all day, but the moment something would leave the building, a reply, a payment, a post, it waits for a person to press. That press is yours, or your team's, or mine if you chose Sensei runs it. It is the rule that makes the rest safe, and it does not bend at any belt or any price.</p>"},
 
     {id:"agent-ready", q:"What does \"agent-ready\" mean? Can my website be?",
-     alt:["agent-ready","agent ready","webmcp","ai agents visit","assistant visit","my website ready"],
+     alt:["agent-ready","agent ready","webmcp","ai agents visit","assistant visit","my website ready","agents are customers","agents as customers","agent is the customer","assistant deal with you","pricing an agent can read","readable to an agent","support desk an agent can call","desk that agents call","receipts for the work","audit trail"],
      keys:"webmcp ready website websites site web visitor visitors assistant assistants visit visits browser chrome standard tool tools call",
      a:"<p>The next visitor to a website may not be a person. It may be somebody's assistant, sent to find out what you do and get in touch. Most websites make an agent guess its way through the screen. This one tells it, in a form it can use: the solutions list answers as one, the mailbox is written as a tool an agent can call, and so is this box.</p><p>Early days, honestly: the standard is in the browser makers' trial and the big assistants are still learning to use it. Being ready before they arrive is the whole point, and your page can be.</p>",
      cta:{what:"An agent-ready web presence", kind:"build", note:"My website ready for AI agents: the tools they can call, the answers they can read."}},
+
+    {id:"inbox-security", q:"Is it safe to let an AI read my inbox?",
+     alt:["read my inbox","reads my inbox","reading my inbox","read my email","read my emails","reads my email","reading my email","let an ai read","access to my inbox","access to my email","access my inbox","inbox safe","inbox security","secure inbox","security for the agent"],
+     keys:"inbox safe safety secure security read reads reading access permission permissions",
+     a:"<p>Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops there. Nothing leaves without a human press. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file, so you can always see what it did and why. Whatever the AI companies change tomorrow, the press is still yours.</p>",
+     cta:{what:"The Front Desk", kind:"build", note:"Support replies drafted on auto. You press send."}},
+
+    {id:"tested-first", q:"Does anyone test it before my customers see it?",
+     alt:["test it before","tested before","before my customers","who tests it","is it tested","do you test","sandbox","simulated players","simulated users","playtest","play test","agents test"],
+     keys:"test tests tested testing tester sandbox simulated simulation players rounds routes bugs bug broken breaks break crash crashes qa",
+     a:"<p>Yes, and not by me clicking around. Simulated players go first: hundreds of rounds, every route walked, every button pressed, looking for stalls, dead ends and bad sums. Then a second pass in character, people of different ages and patience, reporting where they got lost. It began on WinJitsu, it runs on the games, and it walked this page before the chat box shipped.</p>"},
 
     {id:"answer-box", q:"I want an answer box like this, but not an AI. Can you build that?",
      alt:["answer box","a box like this","box like this","like this one","not an ai","without ai","no ai","are you an ai","are you a bot","are you a robot","are you human","are you a human","is this an ai","is this a bot","is this chat","who am i talking to","are you real","are you rick","is this rick","am i talking to","can you build this","build me this","on my site","on my page","for my site","for my page"],
@@ -498,6 +509,8 @@
     "masters":"Hire the seat that owns the number you most want moved: more customers, money on time, every question answered.",
     "human-press":"The press is a feature, not a bottleneck. Reading ten drafts takes minutes; writing ten replies took your evening.",
     "agent-ready":"The visitor who cannot use your site tomorrow may be a customer's assistant. Being readable to it costs an afternoon.",
+    "inbox-security":"Give the AI the reading and the drafting. Keep the sending. That split is the whole safety model.",
+    "tested-first":"Let a hundred fake customers break it before one real one does.",
     "answer-box":"Start with the twenty questions your customers actually ask. Written once, answered every time after.",
     "what-can-ai-do":"The task that annoys you most is usually the one that pays back fastest. Say it in the mailbox.",
     "using-vs-operating":"Write your best way of doing one thing down today. That single page is worth more than any AI subscription.",

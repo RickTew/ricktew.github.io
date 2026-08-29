@@ -763,6 +763,12 @@ footer a:hover{text-decoration:underline}
 .agent .sub{text-align:center;color:#374151;font-weight:600;margin:18px auto 0;max-width:64ch;font-size:16.5px}
 .agent .agent-honest{text-align:center;color:var(--muted);font-weight:700;margin:16px auto 0;max-width:56ch;font-size:14px}
 .agent .cta{margin-top:28px;text-align:center}
+.agent .agent-list-k{text-align:center;margin:34px auto 0;font-size:12.5px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.agent .agent-list{list-style:none;padding:0;margin:14px auto 0;max-width:880px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.agent .agent-list li{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:16px 18px;font-size:14.5px;font-weight:600;color:#4b5563;line-height:1.5}
+.agent .agent-list b{display:block;color:var(--ink);font-weight:900;font-size:15.5px;margin-bottom:4px}
+.agent .agent-hello{text-align:center;color:var(--muted);font-weight:700;margin:18px auto 0;max-width:56ch;font-size:14px}
+@media (max-width:640px){.agent .agent-list{grid-template-columns:1fr}}
 form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-radius:12px}
 .b8c .slot-fine{margin:16px 0 0;max-width:none;font-size:12.5px;line-height:1.55;font-weight:600;color:var(--muted)}
 .b8c .slot-fine b{color:var(--ink);font-weight:900}
@@ -901,6 +907,254 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 .opw .dojo-honest b{color:var(--ink)}
 .opw .cta{margin-top:32px;text-align:center}
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Person",
+   "@id": "https://ricktew.com/#rick",
+   "name": "Rick Tew",
+   "url": "https://ricktew.com/",
+   "description": "Builds and runs AI systems for small businesses through the Digital Dojo. Thirty years teaching martial arts, owner of NinjaGym in Koh Samui, Thailand.",
+   "sameAs": [
+    "https://x.com/ricktew",
+    "https://facebook.com/ricktew",
+    "https://instagram.com/ricktew",
+    "https://linkedin.com/in/ricktew",
+    "https://youtube.com/@ricktew"
+   ]
+  },
+  {
+   "@type": "ProfessionalService",
+   "@id": "https://ricktew.com/aininja/#dojo",
+   "name": "The Digital Dojo",
+   "url": "https://ricktew.com/aininja/",
+   "founder": {
+    "@id": "https://ricktew.com/#rick"
+   },
+   "description": "AI ninjas built and trained for a small business, one task at a time, with a human pressing every send.",
+   "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "url": "https://ricktew.com/aininja/#opt-8c",
+    "email": "aininja@ricktew.com",
+    "availableLanguage": "en"
+   },
+   "makesOffer": [
+    {
+     "@type": "Offer",
+     "name": "Sensei runs it",
+     "description": "Rick builds it and runs the daily work too.",
+     "price": "4444",
+     "priceCurrency": "USD",
+     "url": "https://ricktew.com/aininja/#offers",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "4444",
+      "priceCurrency": "USD",
+      "unitText": "month"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Your Dojo",
+     "description": "Rick builds it, you run it.",
+     "price": "2222",
+     "priceCurrency": "USD",
+     "url": "https://ricktew.com/aininja/#offers",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "2222",
+      "priceCurrency": "USD",
+      "unitText": "month"
+     }
+    }
+   ],
+   "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Solutions",
+    "itemListElement": [
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "The Front Desk",
+       "description": "Support replies drafted on auto. You press send."
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "The Money Desk",
+       "description": "Payment mail books itself. One press, done."
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "The Booking Desk",
+       "description": "Bookings on autopilot. No back and forth."
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Colleagues by Email",
+       "description": "AI agents you mail like staff."
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "The Marketing Room",
+       "description": "Campaigns drafted in your voice, on auto."
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "The Ad Room",
+       "description": "Ad math and ad copy before you spend."
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "The Publishing House",
+       "description": "A system that turns members into authors."
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "The Answer Engine",
+       "description": "Your knowledge base, answering 24/7."
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "The Notebook",
+       "description": "Your AI learns. You hold the veto."
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "The Quiz Funnel",
+       "description": "A quiz that turns visitors into leads."
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "The Video Room",
+       "description": "Calls inside your own app."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://ricktew.com/aininja/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Do I need to understand AI to use this?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No, and that is the point. Only a tiny slice of people using AI will ever touch the builder tools. I build and train the Dojo; you run your business. If you ever want to learn what is under the hood, I will show you, but it is never required."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Will an AI talk to my customers without me knowing?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Never. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. That rule does not bend at any belt or any price.One exception, and it is mine: the mailbox on this page is answered first by my Ninja Agent, signed as the AI, from answers I wrote, because that is the demo. In your Dojo nothing sends without your press unless you choose the same for a lane of your own."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What does it cost?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sensei runs it is $4,444 a month: I build it and I run the daily work too. Your Dojo is $2,222 a month: I build it, you run it. Both are monthly, cancel anytime, effective at the end of the paid month. Start with the quiz: it tells you which one fits. Two things are true whichever you pick. Building a product you sell, an app, a site, a backend, is separate work, scoped and agreed in writing before the clock starts. And third-party costs are always yours: your AI, software and ad accounts stay in your name."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What happens in the first month?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The audit first: we map where your hours actually go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt. It proves itself before anything widens."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I cancel?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month. The Dojo and everything built in your accounts stays yours; it was always in your name."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What is an Agentic CMO?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The same idea as a fractional CTO, with the work done by trained AI ninjas instead of a person on a day rate. A Master is a seat: a job title a payroll would recognize, one number it is judged on, and the solutions on this page working under it. Six seats exist. Four have run my own businesses and are for sale; two are in training and the page says which. A Master never widens a ninja's lane. Every send, pay and post still waits for your press."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can somebody's AI assistant deal with you instead of them?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, and this page is built for it. The solutions list and both prices are in a tool an assistant can read, and the mailbox is a tool it can call. What it posts lands where a person's message lands, and the reply goes to the person it was sent for, not to the robot. Your own website can be made to do the same, and that is one of the things I build."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is it safe to let an AI read my inbox?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops there. Nothing leaves without a human press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are stored bytes, never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file, so you can always see what it did and why. Whatever the AI companies change tomorrow, the press is still yours."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does anyone test it before my customers see it?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, and not by me clicking around. Simulated players go first: hundreds of rounds, every route walked, every button pressed, looking for stalls, dead ends and bad sums. Then a second pass in character, people of different ages and patience, reporting where they got lost. It began on WinJitsu, it runs on the games, and it walked this page before the chat box shipped."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why the belts?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Because trust is earned by showing up and proving it, which is exactly how I grade kids at the gym. A ninja that has proven its lane gets a wider one. One that has not, does not. It keeps the honest order: propose, prove, then earn."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -2075,6 +2329,9 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <details><summary>What happens in the first month?</summary><p>The audit first: we map where your hours actually go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt. It proves itself before anything widens.</p></details>
       <details><summary>Can I cancel?</summary><p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month. The Dojo and everything built in your accounts stays yours; it was always in your name.</p></details>
       <details><summary>What is an Agentic CMO?</summary><p>The same idea as a fractional CTO, with the work done by trained AI ninjas instead of a person on a day rate. A Master is a seat: a job title a payroll would recognize, one number it is judged on, and the solutions on this page working under it. Six seats exist. Four have run my own businesses and are for sale; two are in training and the page says which. A Master never widens a ninja's lane. Every send, pay and post still waits for your press.</p></details>
+      <details><summary>Can somebody's AI assistant deal with you instead of them?</summary><p>Yes, and this page is built for it. The solutions list and both prices are in a tool an assistant can read, and the mailbox is a tool it can call. What it posts lands where a person's message lands, and the reply goes to the person it was sent for, not to the robot. Your own website can be made to do the same, and that is one of the things I build.</p></details>
+      <details><summary>Is it safe to let an AI read my inbox?</summary><p>Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops there. Nothing leaves without a human press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are stored bytes, never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file, so you can always see what it did and why. Whatever the AI companies change tomorrow, the press is still yours.</p></details>
+      <details><summary>Does anyone test it before my customers see it?</summary><p>Yes, and not by me clicking around. Simulated players go first: hundreds of rounds, every route walked, every button pressed, looking for stalls, dead ends and bad sums. Then a second pass in character, people of different ages and patience, reporting where they got lost. It began on WinJitsu, it runs on the games, and it walked this page before the chat box shipped.</p></details>
       <details><summary>Why the belts?</summary><p>Because trust is earned by showing up and proving it, which is exactly how I grade kids at the gym. A ninja that has proven its lane gets a wider one. One that has not, does not. It keeps the honest order: propose, prove, then earn.</p></details>
     </div>
     <p class="f8a-ask">Not in the list? <a href="#" data-ask-open>Ask the ninja</a>. It answers from what I wrote, about AI or about the service, and hands you to me when it cannot.</p>
@@ -2101,9 +2358,17 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   <div class="wrap rv">
     <div class="k">Agent-ready</div>
     <h2>This page is ready for the AI agents. <span>Yours can be too.</span></h2>
-    <p class="sub">The next visitor may not be a person but somebody's assistant, sent to find out what I do and get in touch. This page tells it what it needs: the solutions list answers as one, and the mailbox below is a tool an agent can call. How it is wired is my business. That it works is yours.
-(CLAUDE.md says this band must stay true with or without the browser token. It does: nothing here claims an assistant has used it.)</p>
+    <p class="sub">The next visitor may not be a person but somebody's assistant, sent to find out what I do and get in touch. This page tells it what it needs: the solutions list answers as one, and the mailbox below is a tool an agent can call. How it is wired is my business. That it works is yours.</p>
+<!-- CLAUDE.md says this band must stay true with or without the browser token. It does: nothing here claims an assistant has used it. -->
     <p class="agent-honest">Early days, honestly: the standard is in the browser makers' trial and the big assistants are still learning to use it. Being ready before they arrive is the whole point.</p>
+    <p class="agent-list-k">What somebody's assistant gets here today</p>
+    <ul class="agent-list">
+      <li><b>Pricing an agent can read</b>Both monthly offers sit inside the tool an assistant can call, not only on the screen. No scraping, no guessing, no stale copy of my price on somebody else's site.</li>
+      <li><b>A support desk an agent can call</b>The mailbox below is written as a tool. A message an assistant posts on your behalf lands where yours would, filed as a ticket. My Ninja Agent answers it, signed as the AI, and the reply goes to the person it was sent for. I read every one.</li>
+      <li><b>Receipts for the work an agent does</b>Every ninja I run leaves a trail: what it proposed, who approved it, when. Nothing is deleted, so what it once believed can always be checked. On this page that is The Notebook.</li>
+      <li><b>Security for the agent that reads your inbox</b>The desk I build reads the mail, drafts the reply in your voice, and stops. A human presses send. Its rules live in code, not in a prompt, so a mail cannot talk it into anything. Attachments are stored bytes, never opened. It ignores bounces and machine mail, and it never touches money.</li>
+    </ul>
+    <p class="agent-hello">If an assistant sent you here, or you are one: hello. Everything above is true for you too.</p>
     <div class="cta"><a class="btn btn-blue" href="#" data-want="An agent-ready web presence" data-want-note="My website ready for AI agents: the tools they can call, the answers they can read." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a></div>
   </div>
 </section>
