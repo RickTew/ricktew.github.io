@@ -9,7 +9,7 @@ The site is two doors. HI Ninja is the in-person work (martial arts, camps, coac
 - [AI Ninja](https://ricktew.com/aininja/): what Rick builds and runs, the two monthly offers, the FAQ, and the mailbox.
 - Sensei runs it: $4,444 a month. Rick builds it and runs the daily work too.
 - Your Dojo: $2,222 a month. Rick builds it, you run it.
-- Both are monthly and cancel any time. A first contact is free.
+- Both are monthly, flat, any number of seats, cancel any time; what was built stays in the client's accounts. A first contact is free.
 
 ## Solutions (the things Rick builds)
 
@@ -24,6 +24,10 @@ The site is two doors. HI Ninja is the in-person work (martial arts, camps, coac
 - The Notebook: Your AI learns. You hold the veto.
 - The Quiz Funnel: A quiz that turns visitors into leads.
 - The Video Room: Calls inside your own app.
+
+## Compared with Claudeforce (Salesforce plus an AI model, announced 26 Aug 2026)
+
+- The Front Desk is Rick's CRM and support desk: same job, flat monthly price, no per-seat fee, no metered AI actions, runs live in his businesses. Salesforce's own list prices on 29 Aug 2026: Enterprise $175, Unlimited $350, Agentforce 1 Sales $550 per user per month; Starter $25. Details and the honest line (a three-person contact list should buy Starter): https://ricktew.com/aininja/#claudeforce
 
 ## Seats (a job title, staffed by trained AI ninjas)
 

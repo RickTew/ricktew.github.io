@@ -219,14 +219,28 @@ graph in the head of `/aininja/` (Person, the Dojo as a ProfessionalService
 with the two Offers in USD per month, the eleven solution rows, and a
 FAQPage). **The FAQPage and the solution list in that block are a SNAPSHOT
 of the page's FAQ `<details>` and `.sol-row` summaries.** If you change a
-FAQ question or answer, or a row, regenerate the block from the page text
-(it was built by parsing the page, so a mismatch is a bug, and Google
-treats a FAQPage that does not match the visible text as spam). The same
-goes for `llms.txt`, which quotes the rows and both prices. The Dojo's
+FAQ question or answer, or a row, or a price, run
+`python3 tests/agent-door-build.py`: it rewrites both from the page text
+(a mismatch is a bug, and Google treats a FAQPage that does not match the
+visible text as spam). Never hand-edit the block. `llms.txt` quotes the
+rows and both prices the same way. The Dojo's
 checker reads the live page: `node ~/Dev/digitaldojo/scripts/agent-door-check.mjs https://ricktew.com/aininja/`
 (8 of 8 doors on 29 Aug; presence only). The Agent-ready band `#agent`
 also lists what an assistant gets here today; every line there quotes
 something already true, keep it that way.
+
+**Claudeforce band `#claudeforce` (2026-08-29, Rick's ask).** Right after
+the price cards: Salesforce's Claudeforce (announced 26 Aug 2026) compared
+with The Front Desk, with Salesforce's list prices as read from
+salesforce.com/sales/pricing that day and the date printed in the band.
+Their prices move: re-read the page before repeating a number, and update
+the date. The five-seat arithmetic is Agentforce 1 Sales $550 x 5 x 12 =
+$33,000 against Your Dojo $2,222 x 12 = $26,664. The honest line (buy
+Starter at $25 a seat if three of you need a contact list) stays: the
+Dojo does not beat that and the band says so. The chat box has NO
+Claudeforce entry, by the never-name-an-AI-company ruling; a visitor who
+asks gets the honest miss. Sources are in the Dojo:
+`docs/Digital Dojo, Note 2026-08-29, Claudeforce and The Front Desk.md`.
 
 **Ask the ninja (2026-08-28): the chat box, and it is NOT an AI.** The
 floating "Ask the ninja" pill on `/aininja/` opens a chat panel; the engine,

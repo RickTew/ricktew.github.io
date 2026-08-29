@@ -398,6 +398,28 @@ html,body{overflow-x:clip}
 .master .want{align-self:flex-start}
 .dojo-card .want{margin-top:14px}
 .price-card .want{margin-top:10px;align-self:center}
+.vs{padding:84px 0;border-top:1px solid var(--line);background:var(--panel)}
+.vs .k,.vs h2{text-align:center}
+.vs h2{font-size:clamp(26px,4vw,40px);font-weight:900;margin:8px auto 0;max-width:24ch}
+.vs h2 span{color:var(--blue)}
+.vs .sub{text-align:center;color:#374151;font-weight:600;margin:18px auto 0;max-width:66ch;font-size:16.5px}
+.vs .grid{display:grid;grid-template-columns:150px 1fr 1fr;gap:10px;margin:36px auto 0;max-width:960px}
+.vs .grid>div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14.5px;font-weight:600;color:#4b5563;line-height:1.5}
+.vs .grid .lab{background:transparent;border-color:transparent;font-weight:900;color:var(--ink);padding-left:0}
+.vs .grid .hd{font-weight:900;color:var(--ink);font-size:15.5px;text-align:center}
+.vs .grid .me{border:2px solid var(--blue)}
+.vs .grid .hd.me{background:var(--blue);color:#fff;border-color:var(--blue)}
+.vs .grid .num{display:block;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:22px;color:var(--ink);margin-bottom:2px}
+.vs .grid .me .num{color:var(--blue-d)}
+.vs .honest{text-align:center;color:var(--muted);font-weight:700;margin:22px auto 0;max-width:60ch;font-size:14.5px}
+.vs .src{text-align:center;color:var(--muted);font-weight:600;margin:14px auto 0;max-width:70ch;font-size:12.5px}
+.vs .src a{color:var(--blue-d);font-weight:800}
+.vs .cta{margin-top:26px;text-align:center}
+@media (max-width:720px){
+  .vs .grid{grid-template-columns:1fr 1fr;gap:8px}
+  .vs .grid .lab{grid-column:1/-1;padding:8px 0 0;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .vs .grid .lab.first{display:none}
+}
 @media (prefers-reduced-motion: reduce){ .want,.want .g,.btn .g{transition:none} .want:hover{transform:none} .want:hover .g,.btn:hover .g{transform:none} }
 .dojo-card h3{font-size:19px;font-weight:900}
 .dojo-card p{margin-top:10px;font-size:14.5px;color:#4b5563;font-weight:600}
@@ -1132,6 +1154,14 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
      "acceptedAnswer": {
       "@type": "Answer",
       "text": "Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops there. Nothing leaves without a human press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are stored bytes, never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file, so you can always see what it did and why. Whatever the AI companies change tomorrow, the press is still yours."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is this like Claudeforce?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Same idea, smaller building, flat price. Claudeforce is Salesforce's CRM with a big AI wired in: per seat, per month, the AI's actions metered on top, and the AI half still in pilot as I write this. The Front Desk is the same job built for your business, no seats to count, and it runs live in mine today. For a five-person team on their AI tier you are at $33,000 a year in seats alone; mine is $26,664 built and trained, and it stays yours if you cancel. If three of you just need a contact list, buy their Starter at $25 a seat. I will not beat that."
      }
     },
     {
@@ -1997,6 +2027,47 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   </div>
 </section>
 
+<!-- ============ CLAUDEFORCE, EXPLAINED: their marketing, my flat price ============ -->
+<section class="vs" id="claudeforce">
+  <div class="wrap rv">
+    <div class="k">Claudeforce, explained</div>
+    <h2>Salesforce just wired a big AI into its CRM. <span>Same idea, flat price, yours to keep.</span></h2>
+    <p class="sub">On 26 August 2026 Salesforce announced Claudeforce: their CRM with one of the big AI companies' models inside, so a salesperson's Monday runs itself. It is real, the idea is right, and they are spending a fortune on TV telling you so. My Front Desk has been doing the same job in my own businesses since before the ad. Here is what theirs costs, what mine costs, and when you should buy theirs.</p>
+    <div class="grid">
+      <div class="lab first" aria-hidden="true"></div>
+      <div class="hd">Claudeforce</div>
+      <div class="hd me">The Front Desk, from my Dojo</div>
+
+      <div class="lab">What it is</div>
+      <div>Salesforce with an AI model wired in. The AI half is in pilot as I write this, with an open beta due September 2026 and no price published for it yet.</div>
+      <div class="me">A CRM and support desk built for your business: every mail filed against a person's record, a reply drafted and waiting, one human press to send. Runs live in my businesses today.</div>
+
+      <div class="lab">The bill</div>
+      <div><span class="num">$175 to $550</span>per seat, per month, billed yearly (Enterprise $175, Unlimited $350, Agentforce 1 Sales $550). The AI's actions are metered on top, about $0.10 each.</div>
+      <div class="me"><span class="num">$2,222 flat</span>a month for Your Dojo, or $4,444 with me running it. Any number of seats. Nothing metered. The build is included.</div>
+
+      <div class="lab">Five people, one year</div>
+      <div><span class="num">$33,000</span>on Agentforce 1 Sales, before setup and before a single AI action. $10,500 on plain Enterprise, with the AI still to buy.</div>
+      <div class="me"><span class="num">$26,664</span>on Your Dojo, built and trained, and it does not go up at seat six, or sixteen.</div>
+
+      <div class="lab">Who runs it</div>
+      <div>You, your admin, or a Salesforce partner at their day rate.</div>
+      <div class="me">You, or me. Your team reads the drafts and presses send.</div>
+
+      <div class="lab">What you own</div>
+      <div>A subscription. Stop paying and the door closes.</div>
+      <div class="me">The build sits in your own accounts. Cancel and it stays.</div>
+
+      <div class="lab">The AI inside</div>
+      <div>Their chosen model, inside their walls.</div>
+      <div class="me">Whichever of the AI companies is best that month, behind a switch. The desk still works with every model switched off.</div>
+    </div>
+    <p class="honest">Honest line: if three of you need a contact list and nothing else, buy their Starter at $25 a seat. I will not beat that, and I will not pretend to. The Dojo wins the day you want the AI to do the work, and it wins by more with every seat you add.</p>
+    <p class="src">Salesforce prices from <a href="https://www.salesforce.com/sales/pricing/" rel="noopener" target="_blank">salesforce.com/sales/pricing</a>, read 29 August 2026, USD. Claudeforce facts from Salesforce's press release of 26 August 2026. Both change; this was true the day it was written.</p>
+    <div class="cta"><a class="btn btn-blue" href="#" data-want="The Front Desk" data-want-note="Support replies drafted on auto. You press send." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a></div>
+  </div>
+</section>
+
 <!-- ============ OPTION 3A: the straight-line pitch ============ -->
 <section class="c3a" id="opt-3a">
   <div class="wrap rv">
@@ -2331,6 +2402,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <details><summary>What is an Agentic CMO?</summary><p>The same idea as a fractional CTO, with the work done by trained AI ninjas instead of a person on a day rate. A Master is a seat: a job title a payroll would recognize, one number it is judged on, and the solutions on this page working under it. Six seats exist. Four have run my own businesses and are for sale; two are in training and the page says which. A Master never widens a ninja's lane. Every send, pay and post still waits for your press.</p></details>
       <details><summary>Can somebody's AI assistant deal with you instead of them?</summary><p>Yes, and this page is built for it. The solutions list and both prices are in a tool an assistant can read, and the mailbox is a tool it can call. What it posts lands where a person's message lands, and the reply goes to the person it was sent for, not to the robot. Your own website can be made to do the same, and that is one of the things I build.</p></details>
       <details><summary>Is it safe to let an AI read my inbox?</summary><p>Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops there. Nothing leaves without a human press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are stored bytes, never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file, so you can always see what it did and why. Whatever the AI companies change tomorrow, the press is still yours.</p></details>
+      <details><summary>Is this like Claudeforce?</summary><p>Same idea, smaller building, flat price. Claudeforce is Salesforce's CRM with a big AI wired in: per seat, per month, the AI's actions metered on top, and the AI half still in pilot as I write this. The Front Desk is the same job built for your business, no seats to count, and it runs live in mine today. For a five-person team on their AI tier you are at $33,000 a year in seats alone; mine is $26,664 built and trained, and it stays yours if you cancel. If three of you just need a contact list, buy their Starter at $25 a seat. I will not beat that.</p></details>
       <details><summary>Does anyone test it before my customers see it?</summary><p>Yes, and not by me clicking around. Simulated players go first: hundreds of rounds, every route walked, every button pressed, looking for stalls, dead ends and bad sums. Then a second pass in character, people of different ages and patience, reporting where they got lost. It began on WinJitsu, it runs on the games, and it walked this page before the chat box shipped.</p></details>
       <details><summary>Why the belts?</summary><p>Because trust is earned by showing up and proving it, which is exactly how I grade kids at the gym. A ninja that has proven its lane gets a wider one. One that has not, does not. It keeps the honest order: propose, prove, then earn.</p></details>
     </div>
