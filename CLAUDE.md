@@ -213,6 +213,21 @@ tools yet; Gemini in Chrome is the announced first. Local check:
 `chrome://flags/#enable-webmcp-testing`, then the Model Context Tool
 Inspector extension, or Lighthouse's "Registered WebMCP tools" audit.
 
+**The agent door for assistants that FETCH rather than browse (2026-08-29).**
+`/llms.txt` at the repo root and a `<script type="application/ld+json">`
+graph in the head of `/aininja/` (Person, the Dojo as a ProfessionalService
+with the two Offers in USD per month, the eleven solution rows, and a
+FAQPage). **The FAQPage and the solution list in that block are a SNAPSHOT
+of the page's FAQ `<details>` and `.sol-row` summaries.** If you change a
+FAQ question or answer, or a row, regenerate the block from the page text
+(it was built by parsing the page, so a mismatch is a bug, and Google
+treats a FAQPage that does not match the visible text as spam). The same
+goes for `llms.txt`, which quotes the rows and both prices. The Dojo's
+checker reads the live page: `node ~/Dev/digitaldojo/scripts/agent-door-check.mjs https://ricktew.com/aininja/`
+(8 of 8 doors on 29 Aug; presence only). The Agent-ready band `#agent`
+also lists what an assistant gets here today; every line there quotes
+something already true, keep it that way.
+
 **Ask the ninja (2026-08-28): the chat box, and it is NOT an AI.** The
 floating "Ask the ninja" pill on `/aininja/` opens a chat panel; the engine,
 the answer library and the behaviour are all in `aininja/ask.js`, the
