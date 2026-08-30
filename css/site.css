@@ -169,7 +169,7 @@ li.has-sub ul.sub a { padding: 9px 18px; font-size: 15px; }
 section.block { padding: 28px 0; }
 
 /* ---------- Page head ---------- */
-.pagehead { text-align: center; padding: 90px 0 30px; }
+.pagehead { text-align: center; padding: 90px 24px 30px; }
 .pagehead h1 {
   font-size: 56px;
   font-weight: 700;
@@ -419,6 +419,12 @@ footer.site-footer {
 
 /* responsive type */
 @media (max-width: 700px) {
+  /* The brand row: logo 200px + "Martial Arts Adventure" on one nowrap line
+     was 419px on a 390px phone, so the tagline ran off the screen, the page
+     scrolled sideways and the menu button dropped to its own line. The
+     tagline sits under the logo on phones. */
+  .brand { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .brand .brand-sub { font-size: 14px; }
   .pagehead h1 { font-size: 34px; }
   .pagehead .subtitle { font-size: 23px; }
   .band h1, .band h2 { font-size: 28px; }
