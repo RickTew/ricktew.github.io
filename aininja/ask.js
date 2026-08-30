@@ -195,7 +195,7 @@
     {id:"masters", q:"What is an Agentic CMO, and what are the Masters?",
      alt:["agentic cmo","what is a master","what are the masters","the masters","six seats","fractional cto","fractional cmo","fractional"],
      keys:"agentic cmo cfo cto master masters seat seats general generals fractional executive executives director head heads chief officer",
-     a:"<p>The same idea as a fractional CTO, with the work done by trained AI ninjas instead of a person on a day rate. A Master is a seat: a job title a payroll would recognize, one number it is judged on, and the solutions on this page working under it. Six seats exist. Four have run my own businesses and are for sale; two are in training and the page says which. A Master never widens a ninja's lane. Every send, pay and post still waits for your press.</p>",
+     a:"<p>The same idea as a fractional CTO, with the work done by trained AI ninjas instead of a person on a day rate. A Master is a seat: a job title a payroll would recognize, one number it is judged on, and the solutions on this page working under it. Six seats exist, and all six have run my own businesses and are for sale. A Master never widens a ninja's lane. Every send, pay and post still waits for your press.</p>",
      cta:{what:"The Agentic CMO seat", kind:"dojo"}},
 
     {id:"human-press", q:"What does \"a human presses every send\" mean?",
