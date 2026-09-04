@@ -33,6 +33,8 @@ body{background:var(--bg);color:var(--ink);font-family:"Nunito","Helvetica Neue"
 img{max-width:100%}
 a{color:var(--blue-d)}
 h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink);line-height:1.05}
+/* bold inside the 600-weight body copy: the browser's "bolder" step lands on 900, Nunito Black, which is the hardest weight of the face to read at 14 to 17px; 800 keeps the emphasis */
+p b,li b,p strong,li strong{font-weight:800}
 .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
 .pixel{image-rendering:pixelated}
 .k{font-size:12px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
@@ -902,7 +904,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 .outc .col h3{font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .outc .col.on h3{color:var(--blue)}
 .outc .tag{font-size:10.5px;letter-spacing:.08em;background:#eef5fc;color:var(--blue-d);border:1px solid #c4dbf0;border-radius:999px;padding:3px 9px}
-.outc .lead{margin-top:10px;font-size:clamp(19px,2.6vw,23px);font-weight:900;line-height:1.25}
+.outc .lead{margin-top:10px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:clamp(19px,2.6vw,23px);font-weight:800;line-height:1.15;letter-spacing:-.01em}
 .outc .col.on .lead{color:var(--blue-d)}
 .outc .col p:not(.lead){margin-top:10px;font-size:14.5px;font-weight:600;color:#4b5563}
 .outc .cta{margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
@@ -911,7 +913,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 .opw .col.on{border-color:#c4dbf0;background:linear-gradient(180deg,#f2f7fc,#e6f0f9)}
 .opw .col h3{font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .opw .col.on h3{color:var(--blue)}
-.opw .col .lead{margin-top:10px;font-size:clamp(19px,2.6vw,23px);font-weight:900;line-height:1.25}
+.opw .col .lead{margin-top:10px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:clamp(19px,2.6vw,23px);font-weight:800;line-height:1.15;letter-spacing:-.01em}
 .opw .col.on .lead{color:var(--blue-d)}
 .opw .col ul{margin:16px 0 0;padding:0;list-style:none}
 .opw .col li{position:relative;padding:9px 0 9px 26px;font-size:14.5px;font-weight:600;color:#4b5563;border-top:1px solid var(--line)}
