@@ -332,6 +332,10 @@ sensei note under the price cards on `/aininja/`, `llms.txt`, and invite links.
   Intakes tab in the inbox, and an `[INTAKE REVIEW]` mission fires on
   arrival: what they want, what is missing, a follow-up DRAFT Rick sends.
   TEWBEDO matches the prefix literally: change it there first, then here.
+  **The `X-Intake-Id` header is load-bearing (2026-09-05, after Rick's first
+  sent follow-up looped back and was mistaken for a second intake):** TEWBEDO
+  files a mail as an intake only when the prefix AND that header are present,
+  so a "Re: AI Ninja Intake:" reply is never re-reviewed. Never drop it.
 - **Tests, run both after any change:**
   `./supabase/functions/ricktew-intake/run-escaping-test.sh` (44 offline
   checks: hostile submission, both mails, the Markdown, the gauntlet, paths

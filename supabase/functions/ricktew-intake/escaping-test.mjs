@@ -82,6 +82,7 @@ const checks = [
   ['ninja mail: reply_to is the client, one line', ninja && ninja.reply_to === hostile.answers.email && !/[\r\n]/.test(ninja.reply_to)],
   ['ninja mail: destination from the secret', ninja && JSON.stringify(ninja.to) === '["stub-destination@example.com"]'],
   ['ninja mail: Auto-Submitted header set', ninja && ninja.headers['Auto-Submitted'] === 'auto-generated'],
+  ['ninja mail: X-Intake-Id header set (TEWBEDO files on it, load-bearing)', ninja && ninja.headers['X-Intake-Id'] === ID],
   ['ninja mail: key reported as valid label, never the key itself', ninja && ninja.text.includes('invite "roy"') && !ninja.text.includes('goodkey123') && !ninja.html.includes('goodkey123')],
   ['ninja mail: text part is the Markdown', ninja && ninja.text === md],
   ['md: attacker-chosen keys vanish', !/attacker chosen key|polluted|name&lt;script|name<script/.test(md) && !('evil' in (rows[0]?.answers || {}))],
