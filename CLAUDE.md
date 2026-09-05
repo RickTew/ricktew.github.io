@@ -281,6 +281,66 @@ mocked endpoint (nothing is sent), the rails, the reveals, phone overlap and
 overflow. Exit 1 on any finding. First run, 2026-08-28: two dead links
 fixed (the FAQ's `#ask` href, a hidden design-tests pill), then clean.
 
+**The Intake (2026-09-05, Rick's ask): the client questionnaire at
+`/aininja/start/`.** For people who have picked an offer and want to start,
+and for new clients sent an invite link. It asks more of their time up front
+(20 to 40 minutes) so the build starts faster. Four parts: 56 push-button and
+short-text questions in nine sections (what they need, one job or the whole
+command center, front side or back office only, how far into the money, who
+logs in, who runs it, which agent seats, what may go out without a human
+press, what runs it today, timing, tier, limits, what done looks like), seven
+free-text boxes in their own words, recordings (voice note, camera video,
+screen recording with the mic mixed in, all in the browser with MediaRecorder,
+plus file upload), and one press. Answers autosave in localStorage until sent.
+The page is `noindex` and is NOT in the sitemap; the only links to it are the
+sensei note under the price cards on `/aininja/`, `llms.txt`, and invite links.
+
+- **One catalog, two copies.** Every question, option and limit lives in
+  `aininja/start/intake-questions.js`. The page builds its form from it; the
+  endpoint accepts ONLY ids and option values from it, so a stranger can never
+  choose a field name that reaches mail. `deploy.sh` copies it into the
+  function folder; `tests/intake-sweep.js` fails if the two copies differ.
+  Edit the catalog, run the sweep, run `deploy.sh`.
+- **The endpoint** is `supabase/functions/ricktew-intake/index.ts` on tews-inc
+  (`qegfhbseccinnxnzfhxw`), deployed with
+  `supabase/functions/ricktew-intake/deploy.sh`. Two actions: `upload-url`
+  hands the browser a one-shot signed PUT into the PRIVATE bucket
+  `aininja-intake` (bytes never pass through the function; 500 MB per file,
+  24 files); `submit` rewrites the sheet as Markdown, stores `intake.md` and
+  `intake.json` beside the media, inserts a row in `public.aininja_intake`
+  (RLS on, service role only), mails the Markdown to CONTACT_TO (subject
+  `AI Ninja Intake: <name>, <business>`, Reply-To the client, headers
+  `Auto-Submitted: auto-generated`, `X-Intake-Id`, `X-Intake-Key`; each
+  recording a labelled 30-day signed link), and sends the client a receipt
+  (`AI Ninja Intake received: ...`, Reply-To INTAKE_REPLY_TO) listing what
+  landed and the essential questions they skipped. Same walls as the Letter
+  Slot: always `{ok:true}`, drops logged under `ricktew-intake drop`, every
+  client character escaped at its point of use, no address in the page.
+- **Secrets on the project, not in the repo:** the three shared with
+  ricktew-contact, plus `INTAKE_KEYS` (`label:key,label:key`; a matching
+  `?key=` on the link marks the intake as that client's, no match is
+  reported as INVALID, no key is "open", nothing is dropped for it) and
+  `INTAKE_REPLY_TO` (where a reply to the receipt goes: the Ninja Agent's
+  mailbox). Mint a client key with `python3 -c "import secrets;
+  print(secrets.token_urlsafe(18))"`, append it to INTAKE_KEYS with
+  `supabase secrets set --project-ref qegfhbseccinnxnzfhxw INTAKE_KEYS=...`
+  (the whole list, it replaces), and send the client
+  `https://ricktew.com/aininja/start/?key=<key>`.
+- **TEWBEDO's side (built the same day by the TewBeDo session):** the subject
+  prefix `AI Ninja Intake:` is a guard in its auto-reply logic (the Ninja
+  Agent never answers an intake), the thread gets an "Intake" tag and an
+  Intakes tab in the inbox, and an `[INTAKE REVIEW]` mission fires on
+  arrival: what they want, what is missing, a follow-up DRAFT Rick sends.
+  TEWBEDO matches the prefix literally: change it there first, then here.
+- **Tests, run both after any change:**
+  `./supabase/functions/ricktew-intake/run-escaping-test.sh` (44 offline
+  checks: hostile submission, both mails, the Markdown, the gauntlet, paths
+  from another intake refused) and `node tests/intake-sweep.js` (Playwright,
+  serve the repo on 8765: every option tapped, autosave across a reload, a
+  mocked upload and submit, phone overflow, address wall). First real
+  end-to-end intake: 2026-09-05, id `9ztegx65t1yxqadwpyx0`, both mails
+  delivered, TEST in the name.
+
 **Before you touch the endpoint, run its test:**
 
 ```
@@ -380,6 +440,7 @@ RickTew/
 ├── aininja/        # DOOR 2: the digital work. DOJO-OWNED, see above.
 │   ├── index.html  #   the landing page itself
 │   ├── legal/      #   terms + privacy
+│   ├── start/      #   The Intake: the client questionnaire, noindex
 │   └── assets/     #   ~195 files, its own images and audio
 ├── about/  camps/  contact/  home/  ninjagym/  tours/  winjitsu/  rtms/
 │                   # the older Google Sites pages, still live at their URLs

@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Intake: start your Dojo | Rick Tew</title>
+<meta name="description" content="The intake sheet for new Digital Dojo clients: the buttons, your own words, a voice note, a video of how the work runs today. More of your time up front, a faster build after.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/assets/images/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<meta name="theme-color" content="#1e73bd">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --ink:#101418; --ink2:#20262c; --muted:#69707a;
+  --blue:#1e73bd; --blue-d:#175a94; --blue-l:#3367d6;
+  --red:#d61f26; --red-d:#a91218;
+  --line:#e8e6e2; --panel:#f7f6f4; --green:#2e8b4f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+/* the recorder rows toggle with the hidden attribute; a display:flex rule must not win over it */
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+body{background:var(--bg);color:var(--ink);font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.6}
+img{max-width:100%}
+a{color:var(--blue-d)}
+h1,h2,h3,h4{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink);line-height:1.08}
+p b,li b{font-weight:800}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+.k{font-size:12px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-weight:900;font-size:16px;border-radius:12px;padding:14px 26px;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .12s ease,background .12s ease;line-height:1.2}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 8px 22px rgba(30,115,189,.28)}
+.btn-blue:hover{background:var(--blue-d)}
+.btn-quiet{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn-quiet:hover{border-color:var(--blue)}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-d)}
+.btn[disabled]{opacity:.55;cursor:default;transform:none}
+.btn-sm{padding:9px 16px;font-size:14px;border-radius:10px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:900px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:16px}
+.wordmark{font-weight:900;letter-spacing:.2em;font-size:15px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.wordmark .dot{color:var(--red)}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:14px;font-size:13.5px;font-weight:800}
+.nav-right a{color:var(--muted);text-decoration:none;white-space:nowrap}
+.nav-right a:hover{color:var(--blue-d)}
+.saved{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.saved b{color:var(--green);font-weight:900}
+@media (max-width:560px){ .nav-right .back{display:none} }
+
+/* hero */
+.hero{padding:56px 0 30px}
+.hero h1{font-size:clamp(32px,5.6vw,56px);font-weight:900;letter-spacing:-.01em;margin-top:12px;max-width:16ch}
+.hero h1 .c{color:var(--blue)}
+.hero .lede{margin-top:20px;font-size:19px;font-weight:600;color:var(--ink2);max-width:62ch}
+.hero .lede b{font-weight:900}
+.invite{display:none;margin-top:18px;align-items:center;gap:10px;background:#eef5fc;border:2px solid var(--blue);border-radius:999px;padding:8px 16px;font-weight:800;font-size:14px;color:var(--blue-d);width:max-content;max-width:100%}
+.invite.on{display:inline-flex}
+.honest{margin-top:16px;font-size:14.5px;font-weight:700;color:var(--muted);max-width:62ch}
+
+/* how it works */
+.how{padding:26px 0 8px}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.how-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 16px 18px}
+.how-card .n{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:26px;color:var(--blue);line-height:1}
+.how-card h3{font-size:15.5px;font-weight:900;margin-top:8px}
+.how-card p{margin-top:6px;font-size:13.5px;font-weight:600;color:#4b5563;line-height:1.5}
+@media (max-width:720px){ .how-grid{grid-template-columns:1fr 1fr} }
+@media (max-width:420px){ .how-grid{grid-template-columns:1fr} }
+
+/* progress rail */
+.rail{position:sticky;top:57px;z-index:50;background:#fff;border-bottom:1px solid var(--line);padding:10px 0}
+.rail-in{max-width:900px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.bar{flex:1;min-width:140px;height:10px;border-radius:999px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--blue);border-radius:999px;transition:width .3s ease}
+.rail .cnt{font-size:13px;font-weight:900;color:var(--ink);white-space:nowrap}
+.rail .cnt span{color:var(--muted);font-weight:700}
+.chips{display:flex;gap:6px;flex-wrap:wrap;width:100%}
+.chip{font-size:12px;font-weight:800;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:#fff;white-space:nowrap}
+.chip:hover{color:var(--blue-d);border-color:var(--blue)}
+.chip.done{color:var(--green);border-color:#bfe3cb}
+.chip .t{display:inline-block;min-width:1em}
+@media (max-width:720px){ .chips{display:none} .rail{top:53px} }
+
+/* sections */
+.sec{padding:44px 0 8px;border-top:1px solid var(--line);scroll-margin-top:150px}
+.q{scroll-margin-top:170px}
+@media (max-width:720px){ .sec,.q{scroll-margin-top:110px} }
+.sec:first-of-type{border-top:none}
+.sec-head{display:flex;align-items:baseline;gap:14px}
+.sec-head .k{white-space:nowrap}
+.sec h2{font-size:clamp(24px,3.6vw,34px);font-weight:900;margin-top:6px}
+.sec .intro{margin-top:10px;color:var(--muted);font-weight:700;max-width:60ch}
+.sec .intro b{color:var(--ink)}
+.q{margin-top:30px}
+.q-label{display:block;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:17px;color:var(--ink);letter-spacing:.005em}
+.q-label .req{color:var(--red);margin-left:4px}
+.q-label .opt{font-family:"Nunito",sans-serif;font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-left:8px}
+.q-hint{margin-top:5px;font-size:14px;font-weight:600;color:var(--muted);max-width:62ch}
+.opts{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:9px}
+.opts.long{grid-template-columns:1fr}
+.q-opt{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:12px;padding:12px 40px 12px 14px;font:inherit;font-size:15.5px;font-weight:700;color:var(--ink);cursor:pointer;position:relative;transition:border-color .12s ease,background .12s ease,box-shadow .12s ease;line-height:1.35}
+.q-opt small{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-top:2px}
+.q-opt::after{content:"";position:absolute;right:13px;top:14px;width:18px;height:18px;border-radius:50%;border:2px solid var(--line);background:#fff}
+.q-opt.multi::after{border-radius:5px}
+.q-opt:hover{border-color:var(--blue);box-shadow:0 6px 16px rgba(30,115,189,.12)}
+.q-opt:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.q-opt[aria-pressed="true"]{border-color:var(--blue);background:#eef5fc}
+.q-opt[aria-pressed="true"]::after{background:var(--blue);border-color:var(--blue);box-shadow:inset 0 0 0 3px #fff}
+.more{display:none;margin-top:10px}
+.more.on{display:block}
+.field input,.field textarea,.more input{display:block;width:100%;font:inherit;font-size:16px;padding:12px 14px;border:2px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink)}
+.field input:focus-visible,.field textarea:focus-visible,.more input:focus-visible{outline:3px solid var(--red);outline-offset:1px}
+.field textarea{min-height:120px;resize:vertical;line-height:1.5}
+.field{margin-top:12px}
+.field.bad input{border-color:var(--red)}
+.count{text-align:right;font-size:12px;font-weight:700;color:var(--muted);margin-top:4px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+@media (max-width:640px){ .row2{grid-template-columns:1fr} }
+
+/* recordings */
+.rec-sec{padding:56px 0 20px;border-top:1px solid var(--line);background:var(--panel)}
+.rec-sec .wrap>h2{font-size:clamp(26px,4vw,38px);font-weight:900;margin-top:6px}
+.rec-sec .wrap>h2 .c{color:var(--blue)}
+.rec-sec .lead{margin-top:12px;font-weight:700;color:var(--ink2);max-width:62ch}
+.fives{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.fives span{background:#fff;border:2px solid var(--blue);color:var(--blue-d);border-radius:999px;padding:6px 14px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:13px}
+.rec-grid{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){ .rec-grid{grid-template-columns:1fr} }
+.rec-card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:22px 22px 24px;box-shadow:0 12px 34px rgba(16,20,24,.06);display:flex;flex-direction:column}
+.rec-card.wide{grid-column:1/-1}
+.rec-card h3{font-size:20px;font-weight:900}
+.rec-card h3 .g{margin-right:8px}
+.rec-card .say{margin-top:8px;font-size:14.5px;font-weight:600;color:#4b5563;line-height:1.5}
+.rec-card .say b{color:var(--ink);font-weight:900}
+.rec-card ul.tips{margin:10px 0 0 18px;font-size:14px;font-weight:600;color:#4b5563}
+.rec-card ul.tips li{margin-top:4px}
+.rec-ctl{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.timer{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:22px;color:var(--ink);min-width:70px}
+.timer.live{color:var(--red)}
+.timer.live::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);margin-right:8px;animation:blink 1s steps(2) infinite}
+@keyframes blink{to{opacity:.2}}
+.preview{margin-top:14px;display:none}
+.preview.on{display:block}
+.preview video,.preview audio{display:block;width:100%;border-radius:10px;background:#000}
+.preview audio{background:transparent}
+.preview video{max-height:320px}
+.live{margin-top:14px;display:none;width:100%;max-height:320px;border-radius:10px;background:#000}
+.live.on{display:block}
+.rec-note{margin-top:10px;font-size:13px;font-weight:700;color:var(--muted)}
+.rec-err{display:none;margin-top:10px;font-size:14px;font-weight:800;color:var(--red-d)}
+.rec-err.on{display:block}
+.drop{margin-top:14px;border:2px dashed var(--line);border-radius:14px;padding:22px;text-align:center;background:var(--panel);cursor:pointer;transition:border-color .12s ease}
+.drop:hover,.drop.over{border-color:var(--blue)}
+.drop b{display:block;font-weight:900}
+.drop span{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-top:4px}
+.drop input{position:absolute;left:-9999px}
+.files{margin-top:22px}
+.files h3{font-size:16px;font-weight:900}
+.files ul{list-style:none;margin-top:10px}
+.files li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:8px;display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:center;font-size:14px;font-weight:700}
+.files .fi{font-size:22px;line-height:1}
+.files .fn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.files .fm{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+.files .fp{grid-column:2/-1;height:6px;border-radius:999px;background:var(--line);overflow:hidden}
+.files .fp i{display:block;height:100%;width:0;background:var(--blue);transition:width .2s ease}
+.files .fp.ok i{background:var(--green);width:100%}
+.files .fp.bad i{background:var(--red);width:100%}
+.files .fx{font:inherit;font-size:12.5px;font-weight:800;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:4px 10px;cursor:pointer}
+.files .fx:hover{color:var(--red-d);border-color:var(--red)}
+.files .empty{font-size:14px;font-weight:600;color:var(--muted);margin-top:8px}
+
+/* send */
+.send-sec{padding:60px 0 80px;background:var(--blue);color:#fff}
+.send-sec h2{color:#fff;font-size:clamp(26px,4.2vw,40px);font-weight:900;max-width:22ch}
+.send-sec h2 .c{color:#bfe0ff}
+.send-sec .p{margin-top:14px;font-weight:700;color:#dcebf9;max-width:58ch}
+.send-box{margin-top:28px;background:#fff;color:var(--ink);border-radius:18px;padding:26px;box-shadow:0 24px 64px rgba(0,0,0,.3)}
+.send-box .sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.send-box .sum div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-align:center}
+.send-box .sum b{display:block;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:26px;font-weight:900}
+.send-box .sum span{font-size:11.5px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:480px){ .send-box .sum{grid-template-columns:1fr} }
+.send-box .gaps{margin-top:16px;font-size:14.5px;font-weight:700;color:var(--ink2)}
+.send-box .gaps a{font-weight:900}
+.consent{margin-top:18px;font-size:13.5px;line-height:1.55;font-weight:600;color:var(--muted)}
+.consent b{color:var(--ink);font-weight:900}
+.send-btn{margin-top:20px;width:100%;font-size:18px;padding:16px 26px}
+.send-err{display:none;margin-top:12px;font-size:14.5px;font-weight:800;color:var(--red-d)}
+.send-err.on{display:block}
+.trap{position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden}
+.done{display:none;text-align:center;padding:10px 4px}
+.done.on{display:block}
+.tick{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--green);color:#fff;font-size:28px;font-weight:900}
+.done h3{font-size:28px;font-weight:900;margin-top:16px}
+.done p{margin:12px auto 0;max-width:48ch;font-weight:600;color:var(--ink2)}
+.done p b{font-weight:900}
+.done .btn{margin-top:18px}
+
+footer{padding:26px 0 40px;border-top:1px solid var(--line);font-size:13px;font-weight:700;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--blue-d)}
+.nojs{background:#fff3e8;border:2px solid #e8731c;border-radius:12px;padding:16px;margin:24px auto;max-width:900px;font-weight:700}
+.sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="wordmark" href="/aininja/">DIGITAL DOJO<span class="dot">.</span></a>
+    <div class="nav-right">
+      <span class="saved" id="saved" aria-live="polite">Saves on this device as you go</span>
+      <a class="back" href="/aininja/">Back to the AI Ninja page</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="k">The Intake &middot; Rick Tew's Digital Dojo</div>
+    <h1>Let's build your Dojo. <span class="c">First, tell me everything.</span></h1>
+    <p class="lede"><b>This asks more of your time up front, 20 to 40 minutes, and it is exactly what gets your build going faster.</b> The more you give me here, the less we go back and forth, and the sooner the first ninja is working for you. Skip anything you cannot answer. Your receipt will list what you skipped, so you can send it later.</p>
+    <div class="invite" id="invite"><span aria-hidden="true">&#128273;</span> You arrived by an invite link. This sheet files under your name.</div>
+    <p class="honest">Honestly: I would rather sit in your office and watch the work happen. When that is not possible, this sheet plus a voice note and a short video is the next best thing. If we do meet, we still start from what you write here.</p>
+  </div>
+</header>
+
+<section class="how">
+  <div class="wrap">
+    <div class="how-grid">
+      <div class="how-card"><div class="n">1</div><h3>Tap the buttons</h3><p>Nine short sections. Most answers are one tap. About ten minutes.</p></div>
+      <div class="how-card"><div class="n">2</div><h3>Type what the buttons missed</h3><p>A normal day, what goes wrong, what done looks like. Write like you talk.</p></div>
+      <div class="how-card"><div class="n">3</div><h3>Record it</h3><p>A voice note, a video of the desk, a screen recording of the work. The best part.</p></div>
+      <div class="how-card"><div class="n">4</div><h3>Press send</h3><p>A receipt lands in your inbox in a minute. Rick reads the whole thing himself.</p></div>
+    </div>
+  </div>
+</section>
+
+<noscript><div class="nojs">This sheet needs JavaScript to run: the buttons, the autosave and the recorder are all script. Turn it on, or write to me through the mailbox on <a href="/aininja/#opt-8c">the AI Ninja page</a>.</div></noscript>
+
+<div class="rail" id="rail">
+  <div class="rail-in">
+    <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
+    <div class="cnt" id="cnt">Answered <b>0</b> <span>of 0</span></div>
+    <nav class="chips" id="chips" aria-label="Sections"></nav>
+  </div>
+</div>
+
+<main id="form"></main>
+
+<section class="rec-sec" id="recordings">
+  <div class="wrap">
+    <div class="k">Show me, in your own voice</div>
+    <h2>Record it. <span class="c">The five W's and the H.</span></h2>
+    <p class="lead">Typing is slow and buttons are blunt. Talk to me instead. Tell me <b>what</b> the work is, <b>who</b> does it today, <b>when</b> it happens and when you want it fixed, <b>where</b> it lives (which screen, which drawer, which app), <b>why</b> it matters, and <b>how</b> it gets done right now, step by step. Ramble. I will do the tidying.</p>
+    <div class="fives" aria-hidden="true"><span>What</span><span>Who</span><span>When</span><span>Where</span><span>Why</span><span>How</span></div>
+
+    <div class="rec-grid">
+      <div class="rec-card" id="cardAudio">
+        <h3><span class="g" aria-hidden="true">&#127908;</span>Voice note</h3>
+        <p class="say">Press record and talk. Two minutes or twenty, both fine. You can record several. <b>If recording here does not work on your phone, use your voice memo app and upload the file below.</b></p>
+        <div class="rec-ctl">
+          <button class="btn btn-red btn-sm" type="button" data-rec="audio" data-act="start">Record</button>
+          <button class="btn btn-quiet btn-sm" type="button" data-rec="audio" data-act="stop" hidden>Stop</button>
+          <span class="timer" data-timer="audio">0:00</span>
+        </div>
+        <div class="preview" data-preview="audio"></div>
+        <div class="rec-ctl" data-after="audio" hidden>
+          <button class="btn btn-blue btn-sm" type="button" data-rec="audio" data-act="keep">Add to my intake</button>
+          <button class="btn btn-quiet btn-sm" type="button" data-rec="audio" data-act="discard">Discard</button>
+        </div>
+        <p class="rec-err" data-err="audio" role="alert"></p>
+      </div>
+
+      <div class="rec-card" id="cardVideo">
+        <h3><span class="g" aria-hidden="true">&#127909;</span>Video</h3>
+        <p class="say">Point the camera at the work: your desk, the till, the diary, the wall of sticky notes, the computer screen if you are on a phone. Explain as you film. <b>Nobody is judging the lighting.</b></p>
+        <div class="rec-ctl">
+          <button class="btn btn-red btn-sm" type="button" data-rec="video" data-act="start">Record video</button>
+          <button class="btn btn-quiet btn-sm" type="button" data-rec="video" data-act="stop" hidden>Stop</button>
+          <span class="timer" data-timer="video">0:00</span>
+        </div>
+        <video class="live" data-live="video" muted playsinline autoplay></video>
+        <div class="preview" data-preview="video"></div>
+        <div class="rec-ctl" data-after="video" hidden>
+          <button class="btn btn-blue btn-sm" type="button" data-rec="video" data-act="keep">Add to my intake</button>
+          <button class="btn btn-quiet btn-sm" type="button" data-rec="video" data-act="discard">Discard</button>
+        </div>
+        <p class="rec-note">On a phone, a video you already shot uploads below just as well.</p>
+        <p class="rec-err" data-err="video" role="alert"></p>
+      </div>
+
+      <div class="rec-card" id="cardScreen">
+        <h3><span class="g" aria-hidden="true">&#128421;</span>Screen recording</h3>
+        <p class="say">On a computer: record your screen while you do the job the normal way. Open the inbox, make a booking, send an invoice, whatever eats the hours. Talk while you click. <b>This is the single most useful thing you can send me.</b></p>
+        <ul class="tips">
+          <li>Pick the window or the whole screen when the browser asks.</li>
+          <li>Your microphone is recorded with it, so narrate.</li>
+          <li>Close anything private first. I only need the work.</li>
+        </ul>
+        <div class="rec-ctl">
+          <button class="btn btn-red btn-sm" type="button" data-rec="screen" data-act="start">Record my screen</button>
+          <button class="btn btn-quiet btn-sm" type="button" data-rec="screen" data-act="stop" hidden>Stop</button>
+          <span class="timer" data-timer="screen">0:00</span>
+        </div>
+        <div class="preview" data-preview="screen"></div>
+        <div class="rec-ctl" data-after="screen" hidden>
+          <button class="btn btn-blue btn-sm" type="button" data-rec="screen" data-act="keep">Add to my intake</button>
+          <button class="btn btn-quiet btn-sm" type="button" data-rec="screen" data-act="discard">Discard</button>
+        </div>
+        <p class="rec-err" data-err="screen" role="alert"></p>
+      </div>
+
+      <div class="rec-card" id="cardFiles">
+        <h3><span class="g" aria-hidden="true">&#128193;</span>Files and anything else</h3>
+        <p class="say">Recordings you made elsewhere, screenshots, the spreadsheet you live in, a PDF of your price list, photos of the paper system, a few customer emails saved as files. <b>Up to 500 MB each.</b></p>
+        <label class="drop" id="drop">
+          <b>Choose files</b>
+          <span>or drag them here. Audio, video, images, PDF, spreadsheets, documents.</span>
+          <input type="file" id="fileInput" multiple>
+        </label>
+        <p class="rec-err" data-err="file" role="alert"></p>
+      </div>
+    </div>
+
+    <div class="files" id="files">
+      <h3>What you have added</h3>
+      <ul id="fileList"></ul>
+      <p class="empty" id="filesEmpty">Nothing yet. A single voice note already puts you ahead of most.</p>
+    </div>
+  </div>
+</section>
+
+<section class="send-sec" id="send">
+  <div class="wrap">
+    <h2>One press. <span class="c">Then I get to work.</span></h2>
+    <p class="p">Everything above goes to me as one sheet: the buttons, your words, the recordings. A receipt lands in your inbox in a minute listing what arrived and what you skipped. Rick reads every intake himself.</p>
+    <div class="send-box">
+      <div id="sendForm">
+        <div class="sum">
+          <div><b id="sumA">0</b><span>answers</span></div>
+          <div><b id="sumR">0</b><span>recordings</span></div>
+          <div><b id="sumF">0</b><span>files</span></div>
+        </div>
+        <p class="gaps" id="gaps"></p>
+        <p class="consent"><b>What happens to this.</b> The sheet and the recordings are stored privately, in a folder only Rick's Dojo can open, and are used for one thing: planning and building your system. Rick reads them; his review agent drafts the follow-up questions, and a human presses every send. Ask for it deleted at any time by replying to your receipt. Nothing here is a contract: that comes later, in writing, after we have talked.</p>
+        <button class="btn btn-blue send-btn" id="sendBtn" type="button"><span aria-hidden="true">&#129399;</span> Send my intake to Rick</button>
+        <p class="send-err" id="sendErr" role="alert"></p>
+      </div>
+      <div class="done" id="done" tabindex="-1">
+        <span class="tick" aria-hidden="true">&#10003;</span>
+        <h3>Received.</h3>
+        <p>Your sheet and <b id="doneFiles">your recordings</b> are in. <b>Check your inbox in the next minute</b> for the receipt: it lists what landed and the questions you skipped, so you can answer them by reply whenever you like.</p>
+        <p>Rick reads it himself and writes back with the first plan. If a call is the faster way, he will say so.</p>
+        <a class="btn btn-quiet" href="/aininja/">Back to the AI Ninja page</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The trap. Off-screen, hidden from assistive tech and tab order. A person
+     never fills it; a bot fills every field it finds. Named company_url and
+     NOT website, because the sheet has a real website question. -->
+<div class="trap" aria-hidden="true">
+  <label for="company_url">Leave this empty</label>
+  <input id="company_url" name="company_url" type="text" tabindex="-1" autocomplete="off">
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>THE DIGITAL DOJO &middot; by Rick Tew</span>
+    <span><a href="/aininja/">AI Ninja</a> &middot; <a href="/aininja/legal/privacy.html">Privacy</a> &middot; <a href="/aininja/legal/terms.html">Terms</a></span>
+  </div>
+</footer>
+
+<script src="intake-questions.js"></script>
+<script>
+/* THE INTAKE, front half. Sister of The Letter Slot (aininja/index.html):
+   no address anywhere in this page, the endpoint holds it in a server secret.
+   Everything the visitor answers is kept in localStorage on THEIR device
+   until they press send, so a closed tab does not cost them half an hour.
+   Recordings upload straight to private storage through one-shot signed
+   URLs the endpoint hands out; the bytes never pass through the function. */
+(function(){
+  "use strict";
+  var ENDPOINT="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-intake";
+  var C=window.RT_INTAKE; if(!C) return;
+  var STORE="rt-intake-v1";
+  var shownAt=Date.now();
+
+  /* ---- state ---- */
+  var state={intake:"",answers:{},files:[],savedAt:0};
+  function newId(){ var s="",a="abcdefghijklmnopqrstuvwxyz0123456789"; var r=new Uint8Array(20);
+    try{ crypto.getRandomValues(r); }catch(e){ for(var i=0;i<20;i++) r[i]=Math.floor(Math.random()*256); }
+    for(var j=0;j<20;j++) s+=a[r[j]%36]; return s; }
+  (function load(){
+    try{ var raw=localStorage.getItem(STORE); if(raw){ var d=JSON.parse(raw);
+      if(d&&/^[a-z0-9]{16,32}$/.test(d.intake||"")){ state=d; state.answers=state.answers||{}; state.files=(state.files||[]).filter(function(f){return f&&f.path;}); } } }catch(e){}
+    if(!state.intake) state.intake=newId();
+  })();
+  var saveT=null, savedEl=document.getElementById("saved");
+  function save(){
+    state.savedAt=Date.now();
+    try{ localStorage.setItem(STORE,JSON.stringify(state)); savedEl.innerHTML="<b>Saved</b> on this device"; }
+    catch(e){ savedEl.textContent="Could not save on this device"; }
+  }
+  function saveSoon(){ clearTimeout(saveT); saveT=setTimeout(save,400); }
+
+  var KEY=(function(){ try{ var k=new URLSearchParams(location.search).get("key")||""; return k.slice(0,80); }catch(e){ return ""; } })();
+  if(KEY) document.getElementById("invite").classList.add("on");
+
+  /* ---- build the sheet from the catalog ---- */
+  var main=document.getElementById("form");
+  var QS=C.allQuestions(), TOTAL=QS.length;
+  function el(tag,cls,html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!=null) e.innerHTML=html; return e; }
+  function txt(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+  C.SECTIONS.forEach(function(sec){
+    var s=el("section","sec"); s.id="s-"+sec.id;
+    var w=el("div","wrap");
+    w.appendChild(el("div","k",txt(sec.k)));
+    w.appendChild(el("h2",null,txt(sec.title)));
+    if(sec.intro) w.appendChild(el("p","intro",txt(sec.intro)));
+    var pair=null;
+    sec.qs.forEach(function(q){
+      var box=el("div","q"); box.id="q-"+q.id;
+      var lab=el("label","q-label",txt(q.label)+(q.required?'<span class="req" aria-hidden="true">*</span>':'<span class="opt">optional</span>'));
+      box.appendChild(lab);
+      if(q.hint) box.appendChild(el("p","q-hint",txt(q.hint)));
+      if(q.type==="single"||q.type==="multi"){
+        var longOpts=q.options.some(function(o){ return (o.label.length+(o.note?o.note.length:0))>46; });
+        var opts=el("div","opts"+(longOpts?" long":"")); opts.setAttribute("role","group"); opts.setAttribute("aria-label",q.label);
+        q.options.forEach(function(o){
+          var b=el("button","q-opt"+(q.type==="multi"?" multi":""),txt(o.label)+(o.note?"<small>"+txt(o.note)+"</small>":""));
+          b.type="button"; b.dataset.q=q.id; b.dataset.v=o.v; b.setAttribute("aria-pressed","false");
+          opts.appendChild(b);
+        });
+        box.appendChild(opts);
+        if(q.options.some(function(o){return o.more;})){
+          var m=el("div","more"); var mi=el("input"); mi.type="text"; mi.maxLength=C.LIMITS.text; mi.id="m-"+q.id; mi.placeholder="Which one? Name it here."; mi.setAttribute("aria-label",q.label+": which one");
+          mi.dataset.more=q.id; m.appendChild(mi); box.appendChild(m);
+        }
+        lab.removeAttribute("for");
+      } else {
+        var f=el("div","field"); var inp;
+        if(q.type==="long"){ inp=el("textarea"); inp.rows=4; inp.maxLength=C.LIMITS.long; }
+        else { inp=el("input"); inp.type=q.type==="text"?"text":q.type; inp.maxLength=C.LIMITS.text;
+          if(q.type==="email") inp.autocomplete="email"; if(q.type==="tel") inp.autocomplete="tel"; if(q.id==="name") inp.autocomplete="name"; if(q.type==="url"){ inp.autocomplete="url"; inp.placeholder="https://"; } }
+        inp.id="f-"+q.id; inp.dataset.q=q.id; if(q.required) inp.required=true;
+        lab.htmlFor=inp.id;
+        f.appendChild(inp); box.appendChild(f);
+        if(q.type==="long"){ var cnt=el("div","count","0 / "+C.LIMITS.long); cnt.id="c-"+q.id; box.appendChild(cnt); }
+      }
+      /* short text fields sit two to a row on a desktop */
+      if(q.type!=="long"&&q.type!=="single"&&q.type!=="multi"){
+        if(!pair){ pair=el("div","row2"); w.appendChild(pair); }
+        pair.appendChild(box);
+        if(pair.children.length===2) pair=null;
+      } else { pair=null; w.appendChild(box); }
+    });
+    s.appendChild(w); main.appendChild(s);
+  });
+
+  /* section chips in the rail */
+  var chips=document.getElementById("chips");
+  C.SECTIONS.forEach(function(sec){ var a=el("a","chip",'<span class="t">'+txt(sec.title)+"</span>"); a.href="#s-"+sec.id; a.dataset.sec=sec.id; chips.appendChild(a); });
+  var rc=el("a","chip","Recordings"); rc.href="#recordings"; chips.appendChild(rc);
+
+  /* ---- restore + wire answers ---- */
+  function setPressed(qid){
+    var q=QS.filter(function(x){return x.id===qid;})[0]; if(!q) return;
+    var v=state.answers[qid];
+    document.querySelectorAll('.q-opt[data-q="'+qid+'"]').forEach(function(b){
+      var on=q.type==="multi"?(Array.isArray(v)&&v.indexOf(b.dataset.v)!==-1):(v===b.dataset.v);
+      b.setAttribute("aria-pressed",on?"true":"false");
+    });
+    var more=document.getElementById("m-"+qid);
+    if(more){
+      var chosen=q.options.filter(function(o){ return o.more && (q.type==="multi"?(Array.isArray(v)&&v.indexOf(o.v)!==-1):v===o.v); }).length>0;
+      more.parentElement.classList.toggle("on",chosen);
+      if(!chosen){ delete state.answers[qid+"_more"]; more.value=""; }
+    }
+  }
+  QS.forEach(function(q){
+    if(q.type==="single"||q.type==="multi"){ setPressed(q.id); var m=document.getElementById("m-"+q.id); if(m&&state.answers[q.id+"_more"]) m.value=state.answers[q.id+"_more"]; }
+    else { var i=document.getElementById("f-"+q.id); if(i&&state.answers[q.id]) i.value=state.answers[q.id]; if(q.type==="long") countLong(q.id); }
+  });
+  function countLong(id){ var c=document.getElementById("c-"+id), i=document.getElementById("f-"+id); if(c&&i) c.textContent=i.value.length+" / "+C.LIMITS.long; }
+
+  main.addEventListener("click",function(e){
+    var b=e.target.closest(".q-opt"); if(!b) return;
+    var qid=b.dataset.q, v=b.dataset.v, q=QS.filter(function(x){return x.id===qid;})[0];
+    if(q.type==="single"){ state.answers[qid]=(state.answers[qid]===v)?undefined:v; if(state.answers[qid]===undefined) delete state.answers[qid]; }
+    else { var arr=Array.isArray(state.answers[qid])?state.answers[qid].slice():[]; var i=arr.indexOf(v);
+      if(i===-1){ if(v==="none"||v==="nothing") arr=[v]; else { arr=arr.filter(function(x){return x!=="none"&&x!=="nothing";}); arr.push(v); } } else arr.splice(i,1);
+      if(arr.length) state.answers[qid]=arr; else delete state.answers[qid]; }
+    setPressed(qid); progress(); saveSoon();
+    var more=document.getElementById("m-"+qid);
+    if(more&&more.parentElement.classList.contains("on")&&q.options.filter(function(o){return o.v===v&&o.more;}).length&&state.answers[qid]!==undefined) setTimeout(function(){ more.focus(); },30);
+  });
+  main.addEventListener("input",function(e){
+    var t=e.target;
+    if(t.dataset.more){ var v=t.value.trim(); if(v) state.answers[t.dataset.more+"_more"]=v; else delete state.answers[t.dataset.more+"_more"]; saveSoon(); return; }
+    if(!t.dataset.q) return;
+    var v2=t.value.trim(); if(v2) state.answers[t.dataset.q]=v2; else delete state.answers[t.dataset.q];
+    if(t.tagName==="TEXTAREA") countLong(t.dataset.q);
+    t.closest(".field").classList.remove("bad");
+    progress(); saveSoon();
+  });
+
+  /* ---- progress ---- */
+  var barFill=document.getElementById("barFill"), cntEl=document.getElementById("cnt");
+  function answeredCount(){ var n=0; QS.forEach(function(q){ if(state.answers[q.id]!==undefined) n++; }); return n; }
+  function progress(){
+    var n=answeredCount();
+    barFill.style.width=Math.round(100*n/TOTAL)+"%";
+    cntEl.innerHTML="Answered <b>"+n+"</b> <span>of "+TOTAL+"</span>";
+    C.SECTIONS.forEach(function(sec){
+      var a=0; sec.qs.forEach(function(q){ if(state.answers[q.id]!==undefined) a++; });
+      var chip=chips.querySelector('[data-sec="'+sec.id+'"]'); if(chip){ chip.classList.toggle("done",a===sec.qs.length); chip.querySelector(".t").textContent=sec.title+(a?" "+a+"/"+sec.qs.length:""); }
+    });
+    var rec=state.files.filter(function(f){return f.kind!=="file";}).length;
+    document.getElementById("sumA").textContent=n;
+    document.getElementById("sumR").textContent=rec;
+    document.getElementById("sumF").textContent=state.files.length-rec;
+    var missed=QS.filter(function(q){ return q.essential && state.answers[q.id]===undefined; });
+    var gaps=document.getElementById("gaps");
+    if(!state.answers.name||!state.answers.email) gaps.innerHTML='I need <a href="#q-name">your name</a> and <a href="#q-email">your email</a> to send this. Everything else is optional.';
+    else if(missed.length) gaps.innerHTML="You can send now. <b>"+missed.length+" of the questions I lean on most</b> are still open; the receipt will list them, or jump to the first: <a href=\"#q-"+missed[0].id+"\">"+txt(missed[0].label)+"</a>.";
+    else gaps.innerHTML="Every essential question is answered. <b>Thank you for the care.</b>";
+  }
+  progress();
+
+  /* ---- recording ---- */
+  var supportsRec=!!(window.MediaRecorder&&navigator.mediaDevices&&navigator.mediaDevices.getUserMedia);
+  var supportsScreen=!!(navigator.mediaDevices&&navigator.mediaDevices.getDisplayMedia)&&!/iPhone|iPad|Android/i.test(navigator.userAgent);
+  if(!supportsScreen){ var cs=document.getElementById("cardScreen"); cs.querySelector(".rec-ctl").hidden=true; cs.querySelector(".say").innerHTML="Screen recording needs a computer browser. <b>On a phone, film the screen with the Video button</b>, or record your screen with the phone's own recorder and upload it under Files."; cs.querySelector(".tips").hidden=true; }
+  if(!supportsRec){ ["audio","video"].forEach(function(k){ var c=document.getElementById(k==="audio"?"cardAudio":"cardVideo"); c.querySelector(".rec-ctl").hidden=true; showErr(k,"This browser cannot record here. Use your phone's voice memo or camera app and upload the file under Files."); }); }
+
+  var recs={};
+  function pickMime(kind){
+    var list=kind==="audio"?["audio/webm;codecs=opus","audio/mp4","audio/webm","audio/ogg;codecs=opus"]:["video/webm;codecs=vp9,opus","video/webm;codecs=vp8,opus","video/mp4","video/webm"];
+    for(var i=0;i<list.length;i++){ try{ if(MediaRecorder.isTypeSupported(list[i])) return list[i]; }catch(e){} }
+    return "";
+  }
+  function ext(mime){ return /mp4/.test(mime)?"mp4":/ogg/.test(mime)?"ogg":"webm"; }
+  function showErr(kind,msg){ var e=document.querySelector('[data-err="'+kind+'"]'); e.textContent=msg||""; e.classList.toggle("on",!!msg); }
+  function fmt(s){ var m=Math.floor(s/60), r=s%60; return m+":"+(r<10?"0":"")+r; }
+  function ctl(kind,act){ return document.querySelector('[data-rec="'+kind+'"][data-act="'+act+'"]'); }
+  var MAXSEC={audio:1800,video:1200,screen:1200};
+
+  function start(kind){
+    showErr(kind,"");
+    var get;
+    if(kind==="audio") get=navigator.mediaDevices.getUserMedia({audio:true});
+    else if(kind==="video") get=navigator.mediaDevices.getUserMedia({video:{facingMode:"environment",width:{ideal:1280}},audio:true});
+    else get=navigator.mediaDevices.getDisplayMedia({video:true,audio:true}).then(function(disp){
+      return navigator.mediaDevices.getUserMedia({audio:true}).then(function(mic){
+        /* screen video plus microphone; system audio mixed in when the browser gave it */
+        var tracks=disp.getVideoTracks().slice();
+        var ctx=null;
+        try{
+          ctx=new (window.AudioContext||window.webkitAudioContext)();
+          var dest=ctx.createMediaStreamDestination();
+          ctx.createMediaStreamSource(mic).connect(dest);
+          if(disp.getAudioTracks().length) ctx.createMediaStreamSource(new MediaStream(disp.getAudioTracks())).connect(dest);
+          tracks=tracks.concat(dest.stream.getAudioTracks());
+        }catch(e){ tracks=tracks.concat(mic.getAudioTracks()); }
+        var s=new MediaStream(tracks); s._extra=[disp,mic]; s._ctx=ctx; return s;
+      },function(){ return disp; });
+    });
+    get.then(function(stream){
+      var mime=pickMime(kind==="audio"?"audio":"video");
+      var mr; try{ mr=mime?new MediaRecorder(stream,{mimeType:mime}):new MediaRecorder(stream); }catch(e){ mr=new MediaRecorder(stream); }
+      var chunks=[], t0=Date.now(), timer=document.querySelector('[data-timer="'+kind+'"]');
+      var r=recs[kind]={mr:mr,stream:stream,chunks:chunks,t0:t0,tick:null};
+      mr.ondataavailable=function(ev){ if(ev.data&&ev.data.size) chunks.push(ev.data); };
+      mr.onstop=function(){
+        clearInterval(r.tick); timer.classList.remove("live");
+        stopTracks(stream);
+        var live=document.querySelector('[data-live="'+kind+'"]'); if(live){ live.srcObject=null; live.classList.remove("on"); }
+        var type=mr.mimeType||mime||(kind==="audio"?"audio/webm":"video/webm");
+        var blob=new Blob(chunks,{type:type});
+        r.blob=blob; r.seconds=Math.round((Date.now()-t0)/1000);
+        var pv=document.querySelector('[data-preview="'+kind+'"]'); pv.innerHTML="";
+        var media=document.createElement(kind==="audio"?"audio":"video"); media.controls=true; media.src=URL.createObjectURL(blob); if(kind!=="audio") media.setAttribute("playsinline","");
+        pv.appendChild(media); pv.classList.add("on");
+        document.querySelector('[data-after="'+kind+'"]').hidden=false;
+        ctl(kind,"start").hidden=false; ctl(kind,"stop").hidden=true;
+        if(blob.size<1000) showErr(kind,"That recording came out empty. Check the microphone permission and try again.");
+      };
+      if(kind==="video"){ var lv=document.querySelector('[data-live="video"]'); lv.srcObject=stream; lv.classList.add("on"); }
+      if(kind==="screen"){ stream.getVideoTracks()[0].addEventListener("ended",function(){ if(mr.state==="recording") mr.stop(); }); }
+      mr.start(1000);
+      timer.classList.add("live");
+      r.tick=setInterval(function(){ var s=Math.round((Date.now()-t0)/1000); timer.textContent=fmt(s); if(s>=MAXSEC[kind]) stop(kind); },500);
+      ctl(kind,"start").hidden=true; ctl(kind,"stop").hidden=false;
+      document.querySelector('[data-after="'+kind+'"]').hidden=true;
+      document.querySelector('[data-preview="'+kind+'"]').classList.remove("on");
+    }).catch(function(err){
+      var msg=/NotAllowed|Permission|denied/i.test(String(err))?"The browser did not get permission. Allow the microphone (and camera) when it asks, then press record again.":"Could not start recording here ("+String(err&&err.name||err)+"). Record with your phone's own app and upload the file under Files.";
+      showErr(kind,msg);
+    });
+  }
+  function stopTracks(stream){ try{ stream.getTracks().forEach(function(t){t.stop();}); (stream._extra||[]).forEach(function(s){ s.getTracks().forEach(function(t){t.stop();}); }); if(stream._ctx) stream._ctx.close(); }catch(e){} }
+  function stop(kind){ var r=recs[kind]; if(r&&r.mr&&r.mr.state!=="inactive") r.mr.stop(); }
+  function discard(kind){
+    var r=recs[kind]; if(!r) return; r.blob=null;
+    var pv=document.querySelector('[data-preview="'+kind+'"]'); pv.innerHTML=""; pv.classList.remove("on");
+    document.querySelector('[data-after="'+kind+'"]').hidden=true;
+    document.querySelector('[data-timer="'+kind+'"]').textContent="0:00";
+  }
+  function keep(kind){
+    var r=recs[kind]; if(!r||!r.blob) return;
+    var counts=state.files.filter(function(f){return f.kind===kind;}).length+1;
+    var name=(kind==="audio"?"voice-note-":kind==="video"?"video-":"screen-")+counts+"."+ext(r.blob.type);
+    upload(r.blob,name,kind,r.seconds);
+    discard(kind);
+  }
+  document.addEventListener("click",function(e){
+    var b=e.target.closest("[data-rec]"); if(!b) return;
+    var kind=b.dataset.rec, act=b.dataset.act;
+    if(act==="start") start(kind); else if(act==="stop") stop(kind); else if(act==="keep") keep(kind); else if(act==="discard") discard(kind);
+  });
+
+  /* ---- files list + upload ---- */
+  var list=document.getElementById("fileList"), empty=document.getElementById("filesEmpty");
+  var ICON={audio:"🎙",video:"🎥",screen:"🖥",file:"📁"};
+  function fmtBytes(n){ return n>=1e9?(n/1e9).toFixed(2)+" GB":n>=1e6?(n/1e6).toFixed(1)+" MB":n>=1e3?Math.round(n/1e3)+" KB":n+" B"; }
+  function label(kind){ return C.MEDIA[kind]?C.MEDIA[kind].label:"File"; }
+  function row(f){
+    var li=el("li"); li.dataset.path=f.path||"";
+    li.innerHTML='<span class="fi" aria-hidden="true">'+ICON[f.kind]+'</span><span class="fn">'+txt(f.name)+'<span class="fm">'+txt(label(f.kind))+" &middot; "+fmtBytes(f.size)+(f.seconds?" &middot; "+fmt(f.seconds):"")+'</span></span><button class="fx" type="button">Remove</button><div class="fp"><i></i></div>';
+    li.querySelector(".fx").addEventListener("click",function(){
+      if(f.xhr&&f.xhr.readyState!==4){ try{ f.xhr.abort(); }catch(e){} }
+      state.files=state.files.filter(function(x){return x!==f&&x.path!==f.path;}); li.remove(); renderEmpty(); progress(); save();
+    });
+    list.appendChild(li); return li;
+  }
+  function renderEmpty(){ empty.hidden=state.files.length>0||list.children.length>0; }
+  state.files.forEach(function(f){ var li=row(f); li.querySelector(".fp").classList.add("ok"); });
+  renderEmpty();
+
+  function upload(blob,name,kind,seconds){
+    showErr(kind==="screen"||kind==="video"||kind==="audio"?kind:"file","");
+    if(blob.size>C.LIMITS.fileBytes){ showErr(kind,"That one is over 500 MB. Trim it, or send a link to it in the Links box above."); return; }
+    if(state.files.length>=C.LIMITS.files){ showErr(kind,"That is the limit of "+C.LIMITS.files+" files on one sheet. Send the rest by reply to your receipt."); return; }
+    var f={name:name,size:blob.size,kind:kind,seconds:seconds||0,path:"",pending:true};
+    var li=row(f), bar=li.querySelector(".fp"), fill=bar.querySelector("i"); renderEmpty();
+    fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"upload-url",intake:state.intake,kind:kind,name:name,size:blob.size,mime:blob.type})})
+    .then(function(res){ if(res.status===413) throw new Error("too_big"); if(!res.ok) throw new Error("endpoint "+res.status); return res.json(); })
+    .then(function(d){
+      if(!d||!d.url||!d.path) throw new Error("no url");
+      f.path=d.path; li.dataset.path=d.path;
+      return new Promise(function(resolve,reject){
+        var x=new XMLHttpRequest(); f.xhr=x;
+        x.open("PUT",d.url,true);
+        x.setRequestHeader("Content-Type",blob.type||"application/octet-stream");
+        x.upload.onprogress=function(ev){ if(ev.lengthComputable) fill.style.width=Math.round(100*ev.loaded/ev.total)+"%"; };
+        x.onload=function(){ if(x.status>=200&&x.status<300) resolve(); else reject(new Error(x.status===413?"too_big":"upload "+x.status)); };
+        x.onerror=function(){ reject(new Error("network")); };
+        x.onabort=function(){ reject(new Error("aborted")); };
+        x.send(blob);
+      });
+    })
+    .then(function(){
+      f.pending=false; delete f.xhr; bar.classList.add("ok");
+      state.files.push({name:f.name,size:f.size,kind:f.kind,seconds:f.seconds,path:f.path});
+      progress(); save();
+    })
+    .catch(function(err){
+      if(String(err.message)==="aborted") return;
+      bar.classList.add("bad");
+      var m=/too_big/.test(err.message)?"That file is too big for the slot. Keep each under 500 MB, or drop a link to it in the Links box.":"That upload did not finish. Check your connection and add it again.";
+      li.querySelector(".fm").textContent=m; li.querySelector(".fm").style.color="#a91218";
+      showErr(kind,m);
+    });
+  }
+  var fileInput=document.getElementById("fileInput"), drop=document.getElementById("drop");
+  fileInput.addEventListener("change",function(){ [].slice.call(fileInput.files).forEach(function(file){ upload(file,file.name,guessKind(file),0); }); fileInput.value=""; });
+  ["dragenter","dragover"].forEach(function(evn){ drop.addEventListener(evn,function(e){ e.preventDefault(); drop.classList.add("over"); }); });
+  ["dragleave","drop"].forEach(function(evn){ drop.addEventListener(evn,function(e){ e.preventDefault(); drop.classList.remove("over"); }); });
+  drop.addEventListener("drop",function(e){ var fl=e.dataTransfer&&e.dataTransfer.files; if(fl) [].slice.call(fl).forEach(function(file){ upload(file,file.name,guessKind(file),0); }); });
+  function guessKind(file){ var t=file.type||""; return /^audio\//.test(t)?"audio":/^video\//.test(t)?"video":"file"; }
+
+  /* ---- send ---- */
+  var sendBtn=document.getElementById("sendBtn"), sendErr=document.getElementById("sendErr");
+  function fail(m){ sendErr.textContent=m; sendErr.classList.add("on"); }
+  sendBtn.addEventListener("click",function(){
+    sendErr.classList.remove("on");
+    var name=(state.answers.name||"").trim(), email=(state.answers.email||"").trim();
+    var bad=null;
+    if(!name) bad="name"; else if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) bad="email";
+    if(bad){
+      var fld=document.getElementById("f-"+bad); fld.closest(".field").classList.add("bad");
+      fail(bad==="name"?"Your name, so I know who I am writing to.":"An email address that works, or the receipt and the plan have nowhere to go.");
+      fld.scrollIntoView({block:"center"}); setTimeout(function(){ fld.focus({preventScroll:true}); },300); return;
+    }
+    var pending=state.files.filter(function(f){return f.pending;}).length||list.querySelectorAll(".fp:not(.ok):not(.bad)").length;
+    if(pending){ fail("A recording is still uploading. Give it a moment, then press send again."); return; }
+    sendBtn.disabled=true; sendBtn.textContent="Sending...";
+    var payload={action:"submit",intake:state.intake,key:KEY,elapsedMs:Date.now()-shownAt,company_url:document.getElementById("company_url").value,
+      answers:state.answers,files:state.files.map(function(f){ return {path:f.path,name:f.name,size:f.size,kind:f.kind,seconds:f.seconds||0}; }),source:"page"};
+    fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+    .then(function(res){ if(!res.ok) throw new Error("endpoint "+res.status); return res.json(); })
+    .then(function(){
+      var rec=state.files.filter(function(f){return f.kind!=="file";}).length, docs=state.files.length-rec;
+      document.getElementById("doneFiles").textContent=(rec?rec+" recording"+(rec===1?"":"s"):"no recordings")+(docs?" and "+docs+" file"+(docs===1?"":"s"):"");
+      document.getElementById("sendForm").hidden=true;
+      var d=document.getElementById("done"); d.classList.add("on"); d.focus();
+      try{ localStorage.removeItem(STORE); }catch(e){}
+      savedEl.textContent="Sent";
+    })
+    .catch(function(){
+      sendBtn.disabled=false; sendBtn.innerHTML='<span aria-hidden="true">&#129399;</span> Send my intake to Rick';
+      fail("That did not go through. Your answers are still saved on this device. Check your connection and press send again.");
+    });
+  });
+
+  /* the rail's chips and the gap links are far jumps: instant, not smooth */
+  document.addEventListener("click",function(e){
+    var a=e.target.closest('a[href^="#"]'); if(!a) return;
+    var t=document.getElementById(a.getAttribute("href").slice(1)); if(!t) return;
+    if(Math.abs(t.getBoundingClientRect().top)<=2200) return;
+    var root=document.documentElement, prev=root.style.scrollBehavior; root.style.scrollBehavior="auto";
+    setTimeout(function(){ root.style.scrollBehavior=prev; },60);
+  });
+  window.addEventListener("beforeunload",function(){ if(saveT){ clearTimeout(saveT); save(); } });
+})();
+</script>
+</body>
+</html>

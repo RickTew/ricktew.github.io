@@ -43,6 +43,7 @@ The site is two doors. HI Ninja is the in-person work (martial arts, camps, coac
 - The mailbox on the AI Ninja page: https://ricktew.com/aininja/#opt-8c . A form that posts JSON; an agent can call it as the WebMCP tool post_letter_to_rick.
 - The Ninja Agent's address: aininja@ricktew.com . Answered by the AI, signed as the AI, from answers Rick wrote; Rick reads every message and follows up himself.
 - Read-only tools on the page for a WebMCP browser: list_rick_tew_solutions, ask_rick_tew.
+- The Intake for new clients: https://ricktew.com/aininja/start/ . The sheet a client fills in before a build (buttons, their own words, a voice note, a video); more of their time up front, a faster build after. Open to anyone who has picked an offer; invited clients arrive with a key on the link.
 
 ## The HI Ninja door
 
