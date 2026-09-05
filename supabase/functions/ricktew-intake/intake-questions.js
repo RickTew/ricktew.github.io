@@ -174,7 +174,7 @@
             ["Give me access", "You share the logins (email, domain, the tools) for the setup and change the passwords after. Fastest. Everything stays in your name."],
             ["Be in the room", "We set it up together, on a call or in person. You type the passwords, I never see them. Slower, and fine."],
             ["Fresh accounts", "I open new accounts in your name and build on those. Nothing of yours is shared. Good when the old accounts are a mess or belong to somebody else."],
-            ["Or: I host it (R2S Hosting)", "I build it, host it and manage it on my own stack, and you pay one hosting fee that includes the management. No accounts to share at all. Pick it under the offers, further down."]
+            ["Or: I host it (R2 Hosting)", "I build it, host it and manage it on my own stack, and you pay one hosting fee that includes the management. No accounts to share at all. Pick it under the offers, further down."]
           ] },
           ask: "How do you want to handle access to your accounts during setup: hand it over, be in the room, or start on fresh accounts in your name?", options: [
           { v: "handover", label: "I can give you access to my accounts", note: "email, domain, tools; changed after" },
@@ -235,7 +235,7 @@
           { v: "sensei", label: "Sensei runs it, $4,444 a month", note: "I build it, I run it too" },
           { v: "dojo", label: "Your Dojo, $2,222 a month", note: "I build it, you run it" },
           { v: "build", label: "A one-off build, scoped in writing first" },
-          { v: "r2s", label: "R2S Hosting: $222 to build, then $99 a month or $999 a year", note: "I build it, host it and manage the hosting on my stack" },
+          { v: "r2s", label: "R2 Hosting: $222 to build, then $99 a month or $999 a year", note: "I build it, host it and manage the hosting on my stack" },
           { v: "unsure", label: "Not sure yet" } ] },
         { id: "first", label: "What should be built first?", type: "single", options: [
           { v: "hurts", label: "The thing that hurts most", more: true },

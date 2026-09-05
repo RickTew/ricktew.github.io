@@ -336,7 +336,7 @@ sensei note under the price cards on `/aininja/`, `llms.txt`, and invite links.
   sent follow-up looped back and was mistaken for a second intake):** TEWBEDO
   files a mail as an intake only when the prefix AND that header are present,
   so a "Re: AI Ninja Intake:" reply is never re-reviewed. Never drop it.
-- **R2S Hosting (Rick's ruling 2026-09-05, on the intake page only so far):**
+- **R2 Hosting (Rick's ruling 2026-09-05, on the intake page only so far):**
   a fourth offer, the entry one: $222 to build, then $99 a month or $999 a
   year, Rick builds it, hosts it and manages the hosting on his own stack.
   It is a `tier` option and a line in the access explainer on the intake
@@ -344,8 +344,8 @@ sensei note under the price cards on `/aininja/`, `llms.txt`, and invite links.
   or the JSON-LD; Rick wants a NEW PAGE for it with the details (billing
   reference: the invoice and bill-pay sections in the evercoolthailand and
   sabaisen apps). The Dojo's copy of the fact:
-  `~/Dev/digitaldojo/docs/Digital Dojo, Note 2026-09-05, R2S Hosting offer.md`.
-  Rick wrote both "R2S Hosting" and "R2 Hosting"; the page says R2S until he
+  `~/Dev/digitaldojo/docs/Digital Dojo, Note 2026-09-05, R2 Hosting offer.md`.
+  Rick wrote both "R2 Hosting" and "R2 Hosting"; the page says R2S until he
   rules.
 - **Rick's visual rulings on this page (2026-09-05), which apply to every
   new page:** one weight per paragraph (a half-bold lede reads "bubbly and
