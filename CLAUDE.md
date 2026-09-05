@@ -344,6 +344,10 @@ sensei note under the price cards on `/aininja/`, `llms.txt`, and invite links.
 - **R2 Hosting (Rick's ruling 2026-09-05, on the intake page only so far):**
   a fourth offer, the entry one: $222 to build, then $99 a month or $999 a
   year, Rick builds it, hosts it and manages the hosting on his own stack.
+  **Same day, later ruling: the $222 is a separate starter invoice and it
+  waives the first month of hosting; the first $99 bill is for the month
+  after the build.** (PreferClinic, the first client on it: starter invoice
+  in September, first $99 for October.)
   It is a `tier` option and a line in the access explainer on the intake
   page. NOT yet a price card on `/aininja/`, not in Stripe, not in llms.txt
   or the JSON-LD. **Its page is `/aininja/r2/` (live 2026-09-05, indexed,
