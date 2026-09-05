@@ -305,15 +305,20 @@ sensei note under the price cards on `/aininja/`, `llms.txt`, and invite links.
   (`qegfhbseccinnxnzfhxw`), deployed with
   `supabase/functions/ricktew-intake/deploy.sh`. Two actions: `upload-url`
   hands the browser a one-shot signed PUT into the PRIVATE bucket
-  `aininja-intake` (bytes never pass through the function; 500 MB per file,
-  24 files); `submit` rewrites the sheet as Markdown, stores `intake.md` and
+  `aininja-intake` (bytes never pass through the function; 50 MB per file,
+  24 files: the tews-inc project caps a single upload at 50 MB, a 60 MB test
+  on 5 Sep 2026 came back 400, so the recorder stops video at five minutes
+  and 46 MB; raise the project limit in the dashboard before raising the
+  catalog's); `submit` rewrites the sheet as Markdown, stores `intake.md` and
   `intake.json` beside the media, inserts a row in `public.aininja_intake`
   (RLS on, service role only), mails the Markdown to CONTACT_TO (subject
   `AI Ninja Intake: <name>, <business>`, Reply-To the client, headers
   `Auto-Submitted: auto-generated`, `X-Intake-Id`, `X-Intake-Key`; each
   recording a labelled 30-day signed link), and sends the client a receipt
   (`AI Ninja Intake received: ...`, Reply-To INTAKE_REPLY_TO) listing what
-  landed and the essential questions they skipped. Same walls as the Letter
+  landed and the essential questions they skipped; it signs "AI Ninja"
+  (Rick's ruling 2026-09-05, matching TEWBEDO's follow-up drafts: one
+  sign-off that reads right whether he or an agent answers). Same walls as the Letter
   Slot: always `{ok:true}`, drops logged under `ricktew-intake drop`, every
   client character escaped at its point of use, no address in the page.
 - **Secrets on the project, not in the repo:** the three shared with
@@ -341,9 +346,17 @@ sensei note under the price cards on `/aininja/`, `llms.txt`, and invite links.
   year, Rick builds it, hosts it and manages the hosting on his own stack.
   It is a `tier` option and a line in the access explainer on the intake
   page. NOT yet a price card on `/aininja/`, not in Stripe, not in llms.txt
-  or the JSON-LD; Rick wants a NEW PAGE for it with the details (billing
-  reference: the invoice and bill-pay sections in the evercoolthailand and
-  sabaisen apps). The Dojo's copy of the fact:
+  or the JSON-LD. **Its page is `/aininja/r2/` (live 2026-09-05, indexed,
+  in the sitemap, its own Service JSON-LD):** the three prices, what the
+  $99 covers (the six areas the evercoolthailand Pay tab lists), the four
+  steps, the two live installs (Evercoolthailand.com since June 2026,
+  SabaiSen.com since August 2026), a comparison with the two Dojo offers,
+  and a FAQ. Every claim on it comes from the two apps' Pay and Bills tabs;
+  the not-included lines (new features quoted separately, no ad spend) are
+  the Pay tab's own notes. Linked from the sensei note under the price cards
+  and llms.txt; no price card on /aininja/ yet, and no Stripe product for
+  the $222, $99 or $999 on Rick's own side yet (the two live installs bill
+  through their own subscriptions). The Dojo's copy of the fact:
   `~/Dev/digitaldojo/docs/Digital Dojo, Note 2026-09-05, R2 Hosting offer.md`.
   Rick wrote both "R2 Hosting" and "R2 Hosting"; the page says R2S until he
   rules.

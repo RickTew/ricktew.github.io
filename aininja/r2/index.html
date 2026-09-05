@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R2 Hosting: I build it, I host it, I keep it running | Rick Tew</title>
+<meta name="description" content="R2 Hosting by Rick Tew: your website or small app built on my stack and hosted there, with the management and upkeep included. $222 to build, then $99 a month or $999 a year. The entry door to the Digital Dojo.">
+<link rel="canonical" href="https://ricktew.com/aininja/r2/">
+<link rel="icon" href="/assets/images/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<meta name="theme-color" content="#1e73bd">
+<meta property="og:title" content="R2 Hosting: I build it, I host it, I keep it running">
+<meta property="og:description" content="$222 to build, then $99 a month or $999 a year. Hosting, management and upkeep on Rick Tew's stack.">
+<meta property="og:url" content="https://ricktew.com/aininja/r2/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"R2 Hosting","serviceType":"Website and app hosting with management and upkeep","provider":{"@type":"Person","name":"Rick Tew","url":"https://ricktew.com/"},"url":"https://ricktew.com/aininja/r2/","areaServed":"Worldwide","offers":[{"@type":"Offer","name":"Build","price":"222","priceCurrency":"USD","description":"One-off build of the first version of a website or small app, scoped in writing first."},{"@type":"Offer","name":"Hosting, monthly","price":"99","priceCurrency":"USD","description":"Hosting, management and upkeep, billed monthly."},{"@type":"Offer","name":"Hosting, yearly","price":"999","priceCurrency":"USD","description":"Hosting, management and upkeep, billed once a year."}]}
+</script>
+<style>
+:root{
+  --bg:#ffffff; --ink:#101418; --ink2:#20262c; --muted:#69707a;
+  --blue:#1e73bd; --blue-d:#175a94; --red:#d61f26; --red-d:#a91218;
+  --line:#e8e6e2; --panel:#f7f6f4; --green:#2e8b4f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+body{background:var(--bg);color:var(--ink);font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.6}
+img{max-width:100%}
+a{color:var(--blue-d)}
+h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink);line-height:1.08}
+p b,li b{font-weight:800}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+.k{font-size:12px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-weight:900;font-size:16px;border-radius:12px;padding:14px 26px;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .12s ease,background .12s ease;line-height:1.2;text-align:center}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 8px 22px rgba(30,115,189,.28)}
+.btn-blue:hover{background:var(--blue-d)}
+.btn-quiet{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn-quiet:hover{border-color:var(--blue)}
+
+.doorbar{background:var(--ink);color:#aab2bc;font-size:12.5px;line-height:1.4}
+.doorbar-in{max-width:960px;margin:0 auto;padding:9px 24px;display:flex;align-items:center;gap:6px 20px;flex-wrap:wrap}
+.doorbar a{color:#fff;text-decoration:none;font-weight:800}
+.doorbar a:hover{text-decoration:underline}
+.doorbar .db-here{margin:0 auto;text-transform:uppercase;letter-spacing:1.2px;font-size:11.5px;font-weight:700}
+.doorbar .db-here b{color:#6db3f0;font-weight:800}
+.doorbar .db-other{color:#ff7a7e}
+@media (max-width:700px){ .doorbar-in{justify-content:space-between;text-align:center;gap:4px 14px;padding:7px 16px;flex-wrap:nowrap} .doorbar .db-here{display:none} }
+
+.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:960px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:16px}
+.wordmark{font-weight:900;letter-spacing:.2em;font-size:15px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.wordmark .dot{color:var(--red)}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:18px;font-size:13.5px;font-weight:800}
+.nav-right a{color:var(--muted);text-decoration:none;white-space:nowrap}
+.nav-right a:hover{color:var(--blue-d)}
+.nav .btn{padding:9px 16px;font-size:14px;color:#fff}
+@media (max-width:640px){ .nav-right a:not(.btn){display:none} }
+
+.hero{padding:60px 0 40px}
+.hero h1{font-size:clamp(34px,5.8vw,60px);font-weight:900;letter-spacing:-.01em;margin-top:12px;max-width:15ch}
+.hero h1 .c{color:var(--blue)}
+.hero .lede{margin-top:20px;font-size:19px;font-weight:600;color:var(--ink2);max-width:60ch}
+.hero .cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.hero .fine{margin-top:14px;font-size:14px;font-weight:700;color:var(--muted)}
+
+.price{padding:30px 0 10px}
+.price-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+@media (max-width:760px){ .price-grid{grid-template-columns:1fr} }
+.pc{background:#fff;border:2px solid var(--line);border-radius:18px;padding:26px 24px;box-shadow:0 16px 40px rgba(16,20,24,.08);display:flex;flex-direction:column}
+.pc.hot{border-color:var(--blue)}
+.pc .tag{font-size:11.5px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.pc.hot .tag{color:var(--red)}
+.pc h3{font-size:20px;font-weight:900;margin-top:8px}
+.pc .amount{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:40px;margin-top:12px}
+.pc .amount small{font-size:15px;font-weight:800;color:var(--muted)}
+.pc p{margin-top:10px;font-size:14.5px;font-weight:600;color:#4b5563;flex:1}
+.pc .note{font-size:12.5px;font-weight:700;color:var(--muted);margin-top:14px}
+.price .sum{margin-top:18px;font-size:15px;font-weight:700;color:var(--ink2);max-width:66ch}
+
+.sec{padding:60px 0 20px;border-top:1px solid var(--line)}
+.sec h2{font-size:clamp(26px,4vw,38px);font-weight:900;margin-top:8px;max-width:24ch}
+.sec h2 .c{color:var(--blue)}
+.sec .sub{margin-top:12px;color:var(--muted);font-weight:700;max-width:62ch}
+.covers{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:700px){ .covers{grid-template-columns:1fr} }
+.covers div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.covers h3{font-size:16px;font-weight:900}
+.covers p{margin-top:6px;font-size:14.5px;font-weight:600;color:#4b5563;line-height:1.5}
+.steps{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:760px){ .steps{grid-template-columns:1fr 1fr} }
+@media (max-width:420px){ .steps{grid-template-columns:1fr} }
+.steps div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+.steps .n{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:26px;color:var(--blue);line-height:1}
+.steps h3{font-size:15.5px;font-weight:900;margin-top:8px}
+.steps p{margin-top:6px;font-size:13.5px;font-weight:600;color:#4b5563;line-height:1.5}
+.live{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:640px){ .live{grid-template-columns:1fr} }
+.live a{display:block;background:#fff;border:2px solid var(--line);border-radius:16px;padding:18px 20px;text-decoration:none;color:var(--ink);transition:border-color .12s ease,box-shadow .12s ease}
+.live a:hover{border-color:var(--blue);box-shadow:0 8px 24px rgba(30,115,189,.12)}
+.live img{display:block;width:44px;height:44px;border-radius:10px;margin-bottom:10px}
+.live b{display:block;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:17px}
+.live span{display:block;margin-top:4px;font-size:14px;font-weight:600;color:#4b5563}
+.cmp{margin-top:26px;overflow-x:auto}
+.cmp table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}
+.cmp th,.cmp td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-weight:600;color:#4b5563}
+.cmp th{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;color:var(--ink);font-size:14px}
+.cmp th.me{color:var(--blue-d)}
+.cmp td:first-child{font-weight:800;color:var(--ink)}
+.faq{margin-top:22px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:12px;margin-top:8px}
+.faq summary{cursor:pointer;padding:14px 44px 14px 18px;font-weight:800;list-style:none;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:18px;top:10px;font-weight:900;font-size:19px;color:var(--blue)}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{padding:0 18px 16px;font-size:15px;font-weight:600;color:#4b5563;line-height:1.55}
+.honest{position:relative;margin-top:28px;background:#f2f7fc;border:1px solid #d3e4f4;border-radius:16px;border-top-left-radius:4px;padding:14px 18px 14px 76px;min-height:74px;font-size:14px;color:#3f4a55;font-weight:700}
+.honest::before{content:"";position:absolute;left:14px;top:14px;width:46px;height:46px;border-radius:50%;background:url("../assets/story/rick/rick-portrait.jpg") center top/cover;border:2px solid var(--blue);box-shadow:0 4px 10px rgba(30,115,189,.25)}
+
+.start{padding:64px 0 76px;background:var(--blue);color:#fff;text-align:center}
+.start h2{color:#fff;font-size:clamp(26px,4.4vw,42px);font-weight:900;max-width:22ch;margin:0 auto}
+.start h2 .c{color:#bfe0ff}
+.start p{margin:14px auto 0;max-width:54ch;font-weight:700;color:#dcebf9}
+.start .cta{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.start .btn-blue{background:#fff;color:var(--blue-d);box-shadow:none}
+.start .btn-blue:hover{background:#eef5fc}
+.start .btn-quiet{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.start .btn-quiet:hover{border-color:#fff}
+footer{padding:26px 0 40px;font-size:13px;font-weight:700;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--blue-d)}
+</style>
+</head>
+<body>
+
+<div class="doorbar"><div class="doorbar-in">
+  <a href="/">Which ninja?</a>
+  <span class="db-here">You are in the <b>AI Ninja</b> door</span>
+  <a class="db-other" href="/hininja/">Take the HI Ninja door</a>
+</div></div>
+
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="wordmark" href="/aininja/">DIGITAL DOJO<span class="dot">.</span></a>
+    <div class="nav-right">
+      <a href="/aininja/">The AI Ninja page</a>
+      <a href="#covers">What it covers</a>
+      <a href="#compare">Compare</a>
+      <a class="btn btn-blue" href="/aininja/start/">Start with The Intake</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="k">R2 Hosting &middot; the entry door to the Dojo</div>
+    <h1>I build it. I host it. <span class="c">I keep it running.</span></h1>
+    <p class="lede">You want a website, or a small app, that exists and works. You do not want to own servers, renew certificates, chase updates or wonder who has the passwords. R2 Hosting is my stack under your name: I build the first version, I host it, and the monthly fee covers the management and the upkeep. Two live businesses pay this exact bill today.</p>
+    <div class="cta">
+      <a class="btn btn-blue" href="/aininja/start/">Start with The Intake</a>
+      <a class="btn btn-quiet" href="/aininja/#opt-8c">Ask a question first</a>
+    </div>
+    <p class="fine">No call to book, no deposit before the scope is written. The intake takes 20 to 40 minutes and a plan comes back.</p>
+  </div>
+</header>
+
+<section class="price" id="price">
+  <div class="wrap">
+    <div class="price-grid">
+      <div class="pc">
+        <span class="tag">Once</span>
+        <h3>The build</h3>
+        <div class="amount">$222</div>
+        <p>The first version of your site or small app, built from parts that already run in my own businesses. Scoped on one page, in writing, before I start. Anything beyond that page is quoted, never a surprise.</p>
+        <p class="note">Paid once, when the scope is agreed.</p>
+      </div>
+      <div class="pc hot">
+        <span class="tag">Monthly</span>
+        <h3>Hosting and upkeep</h3>
+        <div class="amount">$99<small> / month</small></div>
+        <p>Hosting on a global edge network, your domain and DNS, SSL, firewall, spam defense, daily backups, monitoring and updates. Somebody watching it who built it.</p>
+        <p class="note">Cancel any time, effective at the end of the paid month.</p>
+      </div>
+      <div class="pc">
+        <span class="tag">Yearly</span>
+        <h3>The same, paid once a year</h3>
+        <div class="amount">$999<small> / year</small></div>
+        <p>Twelve months of hosting and upkeep for the price of about ten. One invoice, one payment, no monthly card charge to think about.</p>
+        <p class="note">Saves $189 against twelve monthly payments.</p>
+      </div>
+    </div>
+    <p class="sum">Three numbers and that is the whole price list. Your own AI, software and ad accounts, if you have any, stay in your name and on your bill.</p>
+  </div>
+</section>
+
+<section class="sec" id="covers">
+  <div class="wrap">
+    <div class="k">What the $99 covers</div>
+    <h2>Far more than a server. <span class="c">Everything under the site.</span></h2>
+    <p class="sub">This is the list the two live installs pay for. Yours will have the pieces you actually need; nothing you do not have is billed.</p>
+    <div class="covers">
+      <div><h3>The public site</h3><p>Your pages, services, gallery, articles, the forms that take a quote request or a booking.</p></div>
+      <div><h3>The back office, if you have one</h3><p>A dashboard for the team: bookings, customers, quotes, reports, whatever your build included.</p></div>
+      <div><h3>Company email on your domain</h3><p>Mail delivery on your own domain, spam defense, mail storage. A shared inbox with tickets and saved replies where the build included one.</p></div>
+      <div><h3>User accounts and access</h3><p>Staff sign-in, roles, who sees which tab. Adding and removing a person is part of upkeep.</p></div>
+      <div><h3>Infrastructure and security</h3><p>Hosting on a global edge network, domain and DNS, SSL, firewall (WAF), daily backups, monitoring.</p></div>
+      <div><h3>Updates and upkeep</h3><p>The platform underneath moves every month. I move your site with it, before it breaks, not after.</p></div>
+    </div>
+    <p class="honest">Straight answer on what is not in the $99: new features. Upkeep keeps what you have running; a new page, a new form, a new report is quoted and billed separately, in writing first. Paid ads and ad spend are never in it. And running your daily work for you is a different offer, Sensei runs it, on the AI Ninja page.</p>
+  </div>
+</section>
+
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="k">How it goes</div>
+    <h2>Four steps. <span class="c">No call needed to start.</span></h2>
+    <div class="steps">
+      <div><div class="n">1</div><h3>The Intake</h3><p>You fill in the sheet: buttons, your own words, a voice note or a short video of how the work runs today.</p></div>
+      <div><div class="n">2</div><h3>One page, in writing</h3><p>I send back what the $222 builds, what it does not, and when. You say yes or you say change it.</p></div>
+      <div><div class="n">3</div><h3>I build it</h3><p>On my stack, from parts already running in my own businesses. You see it as it takes shape.</p></div>
+      <div><div class="n">4</div><h3>It goes live, and stays live</h3><p>Your domain points at it. The monthly fee starts. Bills arrive by mail, with a card link and a PDF, the way my own businesses get them.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="live">
+  <div class="wrap">
+    <div class="k">Running today</div>
+    <h2>Two businesses pay this bill. <span class="c">Same terms as yours.</span></h2>
+    <p class="sub">Both get an itemised invoice every month with a card payment link and a paid archive inside their own app. Nothing about your bill will be different.</p>
+    <div class="live">
+      <a href="https://evercoolthailand.com/" target="_blank" rel="noopener"><img src="../assets/evercool.png" alt="" width="44" height="44"><b>Evercoolthailand.com</b><span>Public site, back-office portal, shared inbox with tickets, staff accounts, equipment tracking. On R2 Hosting since June 2026.</span></a>
+      <a href="https://sabaisen.com/" target="_blank" rel="noopener"><img src="../assets/sabaisen.png" alt="" width="44" height="44"><b>SabaiSen.com</b><span>Online booking, POS, member cards, CRM, reports. On R2 Hosting since August 2026.</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="compare">
+  <div class="wrap">
+    <div class="k">Which door</div>
+    <h2>R2 Hosting, Your Dojo, or Sensei runs it.</h2>
+    <p class="sub">Same builder, three sizes. R2 Hosting is the site or app and the hosting. The Dojo offers are the AI workforce underneath a business, with or without me running the daily work.</p>
+    <div class="cmp">
+      <table>
+        <thead><tr><th></th><th class="me">R2 Hosting</th><th>Your Dojo</th><th>Sensei runs it</th></tr></thead>
+        <tbody>
+          <tr><td>Price</td><td>$222 once, then $99 a month or $999 a year</td><td>$2,222 a month</td><td>$4,444 a month</td></tr>
+          <tr><td>What you get</td><td>A website or small app, hosted, managed, kept up to date</td><td>Your command center and trained AI ninjas, built for you</td><td>Everything in Your Dojo, and I run the daily work too</td></tr>
+          <tr><td>Who runs the daily work</td><td>You, or nobody: a site mostly runs itself</td><td>You and your team</td><td>Me and my ninjas, your press on every send</td></tr>
+          <tr><td>Where it lives</td><td>My stack, your domain</td><td>Your accounts, in your name</td><td>Your accounts, in your name</td></tr>
+          <tr><td>Best when</td><td>You need the thing to exist and work, and want somebody else to own the plumbing</td><td>The admin eats your week and you want it handed to trained AI, run by your team</td><td>You want the admin gone and the machine kept moving without your team touching it</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sub">Start small and grow: an R2 site can become the front door of a Dojo later. Nothing is thrown away.</p>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="k">Questions</div>
+    <h2>The ones I get asked.</h2>
+    <div class="faq">
+      <details><summary>What does $222 actually build?</summary><p>The first version of one thing: a website of a handful of pages with a contact or booking form, or a small app with one job. It is scoped on one page before I start, and that page is the deal. Bigger builds are quoted separately, and the hosting price does not change.</p></details>
+      <details><summary>Whose name is the site in?</summary><p>The domain is yours and stays yours. The hosting runs on my accounts, which is the whole point: no logins to share, nothing for you to renew. If you ever want to leave, you keep your domain and your content.</p></details>
+      <details><summary>Do I have to talk to you first?</summary><p>No. The Intake replaces the first call: twenty to forty minutes of buttons, your own words, and a voice note or a short video of how the work runs today. A plan comes back. If a call is the faster way after that, I will say so.</p></details>
+      <details><summary>How do I pay?</summary><p>An invoice arrives by mail, monthly or yearly, with a card payment link and a PDF. Both live installs also see their bills inside their own app, with a paid archive. The build fee is paid once, when the scope is agreed.</p></details>
+      <details><summary>Can I cancel?</summary><p>Yes, any time. Monthly ends at the end of the paid month; yearly runs to the end of the paid year. The domain and the content are yours.</p></details>
+      <details><summary>Is this the Dojo?</summary><p>It is the entry door to it. The Dojo offers on the AI Ninja page build and run an AI workforce for a business. R2 Hosting is smaller: the site or app, hosted and kept running. Many will only ever need this one.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="start" id="start">
+  <div class="wrap">
+    <h2>Ready? <span class="c">Fill in The Intake.</span></h2>
+    <p>Buttons, your own words, a voice note. It asks more of your time up front and it is what gets the build going faster. Not ready? Ask my AI Ninja anything through the mailbox on the AI Ninja page, or write to aininja@ricktew.com.</p>
+    <div class="cta">
+      <a class="btn btn-blue" href="/aininja/start/">Start with The Intake</a>
+      <a class="btn btn-quiet" href="/aininja/#opt-8c">Ask a question first</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>THE DIGITAL DOJO &middot; by Rick Tew</span>
+    <span><a href="/">Which ninja?</a> &middot; <a href="/aininja/">AI Ninja</a> &middot; <a href="/aininja/legal/terms.html">Terms of Service</a> &middot; <a href="/aininja/legal/privacy.html">Privacy</a></span>
+  </div>
+</footer>
+</body>
+</html>

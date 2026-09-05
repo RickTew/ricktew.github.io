@@ -66,6 +66,11 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://ricktew.com/aininja/r2/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://ricktew.com/aininja/legal/terms.html</loc>
     <lastmod>2026-08-21</lastmod>
     <priority>0.2</priority>

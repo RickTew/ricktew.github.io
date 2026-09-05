@@ -36,6 +36,8 @@
 //                     an offer and want to start. The label is what reaches
 //                     the mail, never the key.
 //   INTAKE_REPLY_TO   optional; where a reply to the client's receipt goes.
+//                     The receipt signs "AI Ninja" (Rick's ruling 2026-09-05:
+//                     one sign-off that reads right whether he or an agent answers).
 // SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are provided by the runtime.
 //
 // Drops: select timestamp, event_message from function_logs
@@ -388,7 +390,7 @@ async function mailReceipt(p: {
     `Your intake for ${p.business || 'your business'} landed: ${landed}. It is stored privately and Rick reads every intake himself.\n\n` +
     missedText + noRec + `\n\n` +
     `What happens next: Rick reads the sheet and the recordings, then writes back with the first plan and the questions he still has. If a call is the faster way, he will say so.\n\n` +
-    `The Ninja Agent\nricktew.com/aininja\n\n(I am an AI. This receipt was written from your own sheet, nothing more. Rick reads every intake and follows up himself.)`;
+    `AI Ninja\nricktew.com/aininja\n\n(I am an AI. This receipt was written from your own sheet, nothing more. Rick reads every intake and follows up himself.)`;
   const html =
     `<div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.55;color:#101418">` +
     `<p>Hi ${esc(first || 'there')},</p>` +
@@ -398,7 +400,7 @@ async function mailReceipt(p: {
       : `<p>You answered every essential question. Thank you for the care.</p>`) +
     (rec ? '' : `<p>One more thing that helps more than anything: a two-minute voice note walking me through a normal day. Reply to this mail with it attached, or go back to the page and record it there.</p>`) +
     `<p>What happens next: Rick reads the sheet and the recordings, then writes back with the first plan and the questions he still has. If a call is the faster way, he will say so.</p>` +
-    `<p>The Ninja Agent<br>ricktew.com/aininja</p>` +
+    `<p>AI Ninja<br>ricktew.com/aininja</p>` +
     `<p style="color:#69707a;font-size:13px">(I am an AI. This receipt was written from your own sheet, nothing more. Rick reads every intake and follows up himself.)</p></div>`;
   await resend({
     from, to: [oneLine(p.email, MAX.email)],

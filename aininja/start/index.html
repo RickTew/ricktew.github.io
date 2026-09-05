@@ -292,8 +292,10 @@ footer a:hover{color:var(--blue-d)}
         <li>"It lives in ..." <span>Where. Which app, which inbox, which spreadsheet, which drawer or wall.</span></li>
         <li>"It matters because ..." <span>Why. What it costs you when it goes wrong, and what you would do with the hours back.</span></li>
         <li>"The steps today are: first ..., then ..., then ..." <span>How. Walk through it once, slowly, the way you would train a new employee. On a computer, do it on screen while you talk.</span></li>
+        <li>"An easy case looks like ... A weird one was ... The last time it went wrong was ..." <span>Three real cases. The weird one and the mistake are where the real job hides, and where I would sit and watch if I were in your office.</span></li>
         <li>"If you fixed one thing first, make it ..." <span>Your pick. Then anything else on your mind.</span></li>
       </ol>
+      <p>That is what I would do if I could sit beside you for a day: watch ten or twenty real cases before building anything. The recordings are the next best thing.</p>
     </div>
 
     <div class="rec-grid">
@@ -327,17 +329,18 @@ footer a:hover{color:var(--blue-d)}
           <button class="btn btn-blue btn-sm" type="button" data-rec="video" data-act="keep">Add to my intake</button>
           <button class="btn btn-quiet btn-sm" type="button" data-rec="video" data-act="discard">Discard</button>
         </div>
-        <p class="rec-note">On a phone, a video you already shot uploads below just as well.</p>
+        <p class="rec-note">About five minutes per clip, then add it and start the next. A video you already shot uploads below just as well, under 50 MB.</p>
         <p class="rec-err" data-err="video" role="alert"></p>
       </div>
 
       <div class="rec-card" id="cardScreen">
         <h3><span class="g" aria-hidden="true">&#128421;</span>Screen recording</h3>
-        <p class="say">On a computer: record your screen while you do the job the normal way. Open the inbox, make a booking, send an invoice, whatever eats the hours. Talk while you click. This is the single most useful thing you can send me.</p>
+        <p class="say">On a computer: record your screen while you do the job the normal way. Open the inbox, make a booking, send an invoice, whatever eats the hours. Talk while you click. Do it for three or four real cases, not one: the easy one, the weird one, the one that went wrong last week. This is the single most useful thing you can send me.</p>
         <ul class="tips">
           <li>Pick the window or the whole screen when the browser asks.</li>
           <li>Your microphone is recorded with it, so narrate.</li>
           <li>Close anything private first. I only need the work.</li>
+          <li>Recordings stop by themselves at about five minutes, which keeps each file under the 50 MB limit. Add it, then record the next case.</li>
         </ul>
         <div class="rec-ctl">
           <button class="btn btn-red btn-sm" type="button" data-rec="screen" data-act="start">Record my screen</button>
@@ -354,7 +357,7 @@ footer a:hover{color:var(--blue-d)}
 
       <div class="rec-card" id="cardFiles">
         <h3><span class="g" aria-hidden="true">&#128193;</span>Files and anything else</h3>
-        <p class="say">Recordings you made elsewhere, screenshots, the spreadsheet you live in, a PDF of your price list, photos of the paper system, a few customer emails saved as files. Up to 500 MB each.</p>
+        <p class="say">Recordings you made elsewhere, screenshots, the spreadsheet you live in, a PDF of your price list, photos of the paper system, a few customer emails saved as files. Keep each file under 50 MB: a phone video of three or four minutes, or a voice note of any length. Longer? Split it, or paste a link to it in the Links box above.</p>
         <label class="drop" id="drop">
           <b>Choose files</b>
           <span>or drag them here. Audio, video, images, PDF, spreadsheets, documents.</span>
@@ -593,7 +596,9 @@ footer a:hover{color:var(--blue-d)}
   function showErr(kind,msg){ var e=document.querySelector('[data-err="'+kind+'"]'); e.textContent=msg||""; e.classList.toggle("on",!!msg); }
   function fmt(s){ var m=Math.floor(s/60), r=s%60; return m+":"+(r<10?"0":"")+r; }
   function ctl(kind,act){ return document.querySelector('[data-rec="'+kind+'"][data-act="'+act+'"]'); }
-  var MAXSEC={audio:1800,video:1200,screen:1200};
+  var MAXSEC={audio:3600,video:300,screen:300};
+  /* the storage cap is 50 MB a file: stop a recording just short of it */
+  var MAXBYTES=46*1024*1024;
 
   function start(kind){
     showErr(kind,"");
@@ -617,10 +622,13 @@ footer a:hover{color:var(--blue-d)}
     });
     get.then(function(stream){
       var mime=pickMime(kind==="audio"?"audio":"video");
-      var mr; try{ mr=mime?new MediaRecorder(stream,{mimeType:mime}):new MediaRecorder(stream); }catch(e){ mr=new MediaRecorder(stream); }
+      var opts=kind==="audio"?{audioBitsPerSecond:64000}:{videoBitsPerSecond:1000000,audioBitsPerSecond:64000};
+      if(mime) opts.mimeType=mime;
+      var mr; try{ mr=new MediaRecorder(stream,opts); }catch(e){ try{ mr=new MediaRecorder(stream,mime?{mimeType:mime}:{}); }catch(e2){ mr=new MediaRecorder(stream); } }
       var chunks=[], t0=Date.now(), timer=document.querySelector('[data-timer="'+kind+'"]');
       var r=recs[kind]={mr:mr,stream:stream,chunks:chunks,t0:t0,tick:null};
-      mr.ondataavailable=function(ev){ if(ev.data&&ev.data.size) chunks.push(ev.data); };
+      var bytes=0;
+      mr.ondataavailable=function(ev){ if(ev.data&&ev.data.size){ chunks.push(ev.data); bytes+=ev.data.size; if(bytes>MAXBYTES&&mr.state==="recording"){ mr.stop(); showErr(kind,"Stopped at the 50 MB size limit. Add this one to your intake, then record the next part."); } } };
       mr.onstop=function(){
         clearInterval(r.tick); timer.classList.remove("live");
         stopTracks(stream);
@@ -634,6 +642,7 @@ footer a:hover{color:var(--blue-d)}
         document.querySelector('[data-after="'+kind+'"]').hidden=false;
         ctl(kind,"start").hidden=false; ctl(kind,"stop").hidden=true;
         if(blob.size<1000) showErr(kind,"That recording came out empty. Check the microphone permission and try again.");
+        else if(r.seconds>=MAXSEC[kind]) showErr(kind,"Stopped at the "+Math.round(MAXSEC[kind]/60)+" minute mark to keep the file under 50 MB. Add this one, then record the next part.");
       };
       if(kind==="video"){ var lv=document.querySelector('[data-live="video"]'); lv.srcObject=stream; lv.classList.add("on"); }
       if(kind==="screen"){ stream.getVideoTracks()[0].addEventListener("ended",function(){ if(mr.state==="recording") mr.stop(); }); }
@@ -689,7 +698,7 @@ footer a:hover{color:var(--blue-d)}
 
   function upload(blob,name,kind,seconds){
     showErr(kind==="screen"||kind==="video"||kind==="audio"?kind:"file","");
-    if(blob.size>C.LIMITS.fileBytes){ showErr(kind,"That one is over 500 MB. Trim it, or send a link to it in the Links box above."); return; }
+    if(blob.size>C.LIMITS.fileBytes){ showErr(kind,"That one is over 50 MB. Trim it, split it, or paste a link to it in the Links box above."); return; }
     if(state.files.length>=C.LIMITS.files){ showErr(kind,"That is the limit of "+C.LIMITS.files+" files on one sheet. Send the rest by reply to your receipt."); return; }
     var f={name:name,size:blob.size,kind:kind,seconds:seconds||0,path:"",pending:true};
     var li=row(f), bar=li.querySelector(".fp"), fill=bar.querySelector("i"); renderEmpty();
@@ -703,7 +712,7 @@ footer a:hover{color:var(--blue-d)}
         x.open("PUT",d.url,true);
         x.setRequestHeader("Content-Type",blob.type||"application/octet-stream");
         x.upload.onprogress=function(ev){ if(ev.lengthComputable) fill.style.width=Math.round(100*ev.loaded/ev.total)+"%"; };
-        x.onload=function(){ if(x.status>=200&&x.status<300) resolve(); else reject(new Error(x.status===413?"too_big":"upload "+x.status)); };
+        x.onload=function(){ if(x.status>=200&&x.status<300) resolve(); else reject(new Error((x.status===413||x.status===400)?"too_big":"upload "+x.status)); };
         x.onerror=function(){ reject(new Error("network")); };
         x.onabort=function(){ reject(new Error("aborted")); };
         x.send(blob);
@@ -717,7 +726,7 @@ footer a:hover{color:var(--blue-d)}
     .catch(function(err){
       if(String(err.message)==="aborted") return;
       bar.classList.add("bad");
-      var m=/too_big/.test(err.message)?"That file is too big for the slot. Keep each under 500 MB, or drop a link to it in the Links box.":"That upload did not finish. Check your connection and add it again.";
+      var m=/too_big/.test(err.message)?"That file is over the 50 MB limit. Trim it, split it, or paste a link to it in the Links box above.":"That upload did not finish. Check your connection and add it again.";
       li.querySelector(".fm").textContent=m; li.querySelector(".fm").style.color="#a91218";
       showErr(kind,m);
     });

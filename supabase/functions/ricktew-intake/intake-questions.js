@@ -267,6 +267,8 @@
         { id: "workflow", label: "Walk me through a normal day", hint: "Start to finish: what comes in, who touches it, where it goes, what gets forgotten.", type: "long", essential: true,
           ask: "Walk me through a normal day: what comes in, who touches it, where it goes." },
         { id: "challenges", label: "What goes wrong, and how often?", hint: "The double booking, the unpaid invoice nobody chased, the message answered three days late.", type: "long" },
+        { id: "cases", label: "Three real cases: an easy one, a weird one, and the last time it went wrong", hint: "The easy case is what a machine learns first. The weird one and the mistake are where the real job hides. What did you have to know that nobody wrote down?", type: "long", essential: true,
+          ask: "Give me three real cases: an easy one, a weird one, and the last time it went wrong." },
         { id: "time", label: "Where do the hours go, and what would you do with them back?", type: "long" },
         { id: "goals", label: "Goals: ninety days, and a year", type: "long" },
         { id: "pain", label: "The thing you dread. The complaint you hear most.", type: "long" },
@@ -294,7 +296,10 @@
     file:   { label: "File", accept: "image/*,video/*,audio/*,.pdf,.csv,.xls,.xlsx,.doc,.docx,.txt,.md,.json,.numbers,.pages,.key,.ppt,.pptx" }
   };
 
-  var LIMITS = { text: 300, long: 5000, fileBytes: 500 * 1024 * 1024, files: 24 };
+  /* 50 MB per file: the storage project caps a single upload there (a 60 MB
+     test on 5 Sep 2026 came back 400). Raise it in the tews-inc dashboard
+     before raising it here. */
+  var LIMITS = { text: 300, long: 5000, fileBytes: 50 * 1024 * 1024, files: 24 };
 
   function allQuestions() {
     var out = [];
