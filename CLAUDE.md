@@ -354,9 +354,14 @@ sensei note under the price cards on `/aininja/`, `llms.txt`, and invite links.
   and a FAQ. Every claim on it comes from the two apps' Pay and Bills tabs;
   the not-included lines (new features quoted separately, no ad spend) are
   the Pay tab's own notes. Linked from the sensei note under the price cards
-  and llms.txt; no price card on /aininja/ yet, and no Stripe product for
-  the $222, $99 or $999 on Rick's own side yet (the two live installs bill
-  through their own subscriptions). The Dojo's copy of the fact:
+  and llms.txt. **Since later on 2026-09-05 it is also the third price card
+  on /aininja/ (`#r2`, tag "Start here", green border), by Rick's ruling:**
+  the entry level, because managing the whole stack for Evercoolthailand,
+  SabaiSen, NinjaGym and PreferClinic is the work he actually does most.
+  The agent-door build reads its price from the card's `data-want` and
+  writes the third Offer and the llms.txt line. No Stripe product for the
+  $222, $99 or $999 on Rick's own side yet (the two live installs bill
+  through their own subscriptions). The chat box has no R2 entry yet. The Dojo's copy of the fact:
   `~/Dev/digitaldojo/docs/Digital Dojo, Note 2026-09-05, R2 Hosting offer.md`.
   Rick wrote both "R2 Hosting" and "R2 Hosting"; the page says R2S until he
   rules.

@@ -21,7 +21,8 @@ rows=re.findall(r'<details class="sol-row rv">\s*<summary><span class="nm">(.*?)
 seats=sorted(set(re.findall(r'data-want="(The Agentic [^"]+ seat)"',s)))
 prices=re.findall(r'data-want="(Sensei runs it|Your Dojo), \$([\d,]+) a month"',s)
 P=dict(prices)
-if not (len(faqs)>=7 and len(rows)==11 and len(seats)==6 and set(P)=={'Sensei runs it','Your Dojo'}):
+r2=re.search(r'data-want="R2 Hosting, \$(\d+) to build, then \$(\d+) a month"',s)
+if not (len(faqs)>=7 and len(rows)==11 and len(seats)==6 and set(P)=={'Sensei runs it','Your Dojo'} and r2):
     sys.exit("page shape changed: faqs %d rows %d seats %d prices %s"%(len(faqs),len(rows),len(seats),P))
 ld={"@context":"https://schema.org","@graph":[
  {"@type":"Person","@id":"https://ricktew.com/#rick","name":"Rick Tew","url":"https://ricktew.com/",
@@ -35,7 +36,9 @@ ld={"@context":"https://schema.org","@graph":[
     {"@type":"Offer","name":"Sensei runs it","description":"Rick builds it and runs the daily work too.","price":P['Sensei runs it'].replace(',',''),"priceCurrency":"USD","url":"https://ricktew.com/aininja/#offers",
      "priceSpecification":{"@type":"UnitPriceSpecification","price":P['Sensei runs it'].replace(',',''),"priceCurrency":"USD","unitText":"month"}},
     {"@type":"Offer","name":"Your Dojo","description":"Rick builds it, you run it.","price":P['Your Dojo'].replace(',',''),"priceCurrency":"USD","url":"https://ricktew.com/aininja/#offers",
-     "priceSpecification":{"@type":"UnitPriceSpecification","price":P['Your Dojo'].replace(',',''),"priceCurrency":"USD","unitText":"month"}}],
+     "priceSpecification":{"@type":"UnitPriceSpecification","price":P['Your Dojo'].replace(',',''),"priceCurrency":"USD","unitText":"month"}},
+    {"@type":"Offer","name":"R2 Hosting","description":"Rick builds a website or small app, hosts it and keeps it running on his stack. The entry offer: a one-off build fee, then hosting and upkeep monthly.","price":r2.group(2),"priceCurrency":"USD","url":"https://ricktew.com/aininja/r2/",
+     "priceSpecification":{"@type":"UnitPriceSpecification","price":r2.group(2),"priceCurrency":"USD","unitText":"month"}}],
   "hasOfferCatalog":{"@type":"OfferCatalog","name":"Solutions",
     "itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":txt(n),"description":txt(t)}} for n,t in rows]}},
  {"@type":"FAQPage","@id":"https://ricktew.com/aininja/#faq",
@@ -52,7 +55,8 @@ L=["# Rick Tew","",
 "- [AI Ninja](https://ricktew.com/aininja/): what Rick builds and runs, the two monthly offers, the FAQ, and the mailbox.",
 "- Sensei runs it: $%s a month. Rick builds it and runs the daily work too."%P['Sensei runs it'],
 "- Your Dojo: $%s a month. Rick builds it, you run it."%P['Your Dojo'],
-"- Both are monthly, flat, any number of seats, cancel any time; what was built stays in the client's accounts. A first contact is free.","",
+"- Both are monthly, flat, any number of seats, cancel any time; what was built stays in the client's accounts. A first contact is free.",
+"- R2 Hosting: $%s to build a site or small app, then $%s a month or $999 a year for hosting, management and upkeep on Rick's stack. The entry offer: https://ricktew.com/aininja/r2/"%(r2.group(1),r2.group(2)),"",
 "## Solutions (the things Rick builds)",""]
 L+=["- %s: %s"%(txt(n),txt(t)) for n,t in rows]
 L+=["","## Compared with Claudeforce (Salesforce plus an AI model, announced 26 Aug 2026)","",
@@ -61,7 +65,8 @@ L+=["","## Seats (a job title, staffed by trained AI ninjas)",""]+["- %s"%x for 
 L+=["","## How to get in touch","",
 "- The mailbox on the AI Ninja page: https://ricktew.com/aininja/#opt-8c . A form that posts JSON; an agent can call it as the WebMCP tool post_letter_to_rick.",
 "- The Ninja Agent's address: aininja@ricktew.com . Answered by the AI, signed as the AI, from answers Rick wrote; Rick reads every message and follows up himself.",
-"- Read-only tools on the page for a WebMCP browser: list_rick_tew_solutions, ask_rick_tew.","",
+"- Read-only tools on the page for a WebMCP browser: list_rick_tew_solutions, ask_rick_tew.",
+"- The Intake for new clients: https://ricktew.com/aininja/start/ . The sheet a client fills in before a build (buttons, their own words, a voice note, a video); more of their time up front, a faster build after. Open to anyone who has picked an offer; invited clients arrive with a key on the link.","",
 "## The HI Ninja door","",
 "- [HI Ninja](https://ricktew.com/hininja/): martial arts, live-in camps, training tours, mindset coaching.",
 "- [WinJitsu](https://winjitsu.com/): the mental martial art.",
