@@ -33,8 +33,8 @@
         { id: "business", label: "Your business", hint: "The name people know it by.", type: "text", essential: true,
           ask: "What is the business called?" },
         { id: "email", label: "Your email", hint: "Where the plan and the receipt go.", type: "email", required: true },
-        { id: "phone", label: "WhatsApp or phone", hint: "Optional. With the country code.", type: "tel" },
-        { id: "website", label: "Your website or main social page", hint: "Optional. Paste the link.", type: "url" },
+        { id: "phone", label: "WhatsApp or phone", hint: "With the country code.", type: "tel" },
+        { id: "website", label: "Your website or main social page", hint: "Paste the link.", type: "url" },
         { id: "where", label: "Where you are", hint: "City, country, and your time zone.", type: "text", essential: true,
           ask: "Where are you based, and what time zone are you in?" },
         { id: "role", label: "Your role", type: "single", options: [
@@ -72,7 +72,8 @@
           { v: "200+", label: "More than 200" }, { v: "unsure", label: "Not sure" } ] },
         { id: "languages", label: "Languages your customers write to you in", type: "multi", options: [
           { v: "en", label: "English" }, { v: "th", label: "Thai" }, { v: "nl", label: "Dutch" }, { v: "de", label: "German" },
-          { v: "es", label: "Spanish" }, { v: "fr", label: "French" }, { v: "other", label: "Other", more: true } ] }
+          { v: "es", label: "Spanish" }, { v: "fr", label: "French" }, { v: "ru", label: "Russian" }, { v: "he", label: "Hebrew" },
+          { v: "other", label: "Other", more: true } ] }
       ]
     },
     {
@@ -119,7 +120,15 @@
           { v: "payments", label: "Invoices and payments: who paid, who has not" },
           { v: "books", label: "The full books: receipts, reconciliation, the tax reports" },
           { v: "connect", label: "I have an accountant and a tool. Connect to it", more: true } ] },
-        { id: "agents", label: "Do you want an agent team with job titles?", hint: "Each seat is a trained AI ninja with one lane. Tap the ones you want, or ask me to explain.", type: "multi", options:
+        { id: "agents", label: "Do you want an agent team with job titles?", hint: "Each seat is a trained AI ninja with one lane and one number it is judged on. Tap the ones you want.", type: "multi",
+          explain: { title: "What these seats are", items: [
+            ["The Agentic Chief of Staff", "One view over every desk and a truthful answer to \"is everything running?\", including no. Routes the work, reports to you in one place."],
+            ["The Agentic CTO", "Keeps the apps up and the gear current: watches your builds, flags drift before you notice, keeps your tools from going stale."],
+            ["The Agentic CMO", "Owns more customers. Plans the campaign, drafts in your voice, does the ad math before a cent moves, reads the numbers back daily. You press, you hold the wallet."],
+            ["The Agentic CFO", "Owns the money being right and on time. Files and matches payment mail on one press, watches the month, says what is late before you ask."],
+            ["The Agentic Head of Content", "Owns the long things in your voice: the book, the course, the manual, the newsletter that actually goes out. The taste pass stays human."],
+            ["The Agentic Head of Customer Care", "Owns every question answered and every booking kept. Drafts the reply from your own answers, says \"I don't know\" instead of guessing. You press every send."]
+          ] }, options:
           SEATS.map(function (s) { return { v: s.replace(/^The Agentic /, "").toLowerCase().replace(/[^a-z]+/g, "-"), label: s }; }).concat([
           { v: "none", label: "None yet" },
           { v: "explain", label: "Not sure what these are. Explain them to me" } ]) },
@@ -161,6 +170,12 @@
           { v: "accountant-money", label: "The accountant sees the money only" },
           { v: "define", label: "I want to define this myself", more: true } ] },
         { id: "access", label: "Setting up needs access to your accounts. Which suits you?", type: "single", essential: true,
+          explain: { title: "What each of these means", items: [
+            ["Give me access", "You share the logins (email, domain, the tools) for the setup and change the passwords after. Fastest. Everything stays in your name."],
+            ["Be in the room", "We set it up together, on a call or in person. You type the passwords, I never see them. Slower, and fine."],
+            ["Fresh accounts", "I open new accounts in your name and build on those. Nothing of yours is shared. Good when the old accounts are a mess or belong to somebody else."],
+            ["Or: I host it (R2S Hosting)", "I build it, host it and manage it on my own stack, and you pay one hosting fee that includes the management. No accounts to share at all. Pick it under the offers, further down."]
+          ] },
           ask: "How do you want to handle access to your accounts during setup: hand it over, be in the room, or start on fresh accounts in your name?", options: [
           { v: "handover", label: "I can give you access to my accounts", note: "email, domain, tools; changed after" },
           { v: "room", label: "I want to be in the room when you set things up" },
@@ -220,6 +235,7 @@
           { v: "sensei", label: "Sensei runs it, $4,444 a month", note: "I build it, I run it too" },
           { v: "dojo", label: "Your Dojo, $2,222 a month", note: "I build it, you run it" },
           { v: "build", label: "A one-off build, scoped in writing first" },
+          { v: "r2s", label: "R2S Hosting: $222 to build, then $99 a month or $999 a year", note: "I build it, host it and manage the hosting on my stack" },
           { v: "unsure", label: "Not sure yet" } ] },
         { id: "first", label: "What should be built first?", type: "single", options: [
           { v: "hurts", label: "The thing that hurts most", more: true },
@@ -228,7 +244,7 @@
           { v: "medical", label: "Patient or medical information" }, { v: "minors", label: "Children or minors" },
           { v: "money", label: "Moving money" }, { v: "regulated", label: "A regulated industry", more: true },
           { v: "contracts", label: "Contracts or tools I am locked into", more: true }, { v: "nothing", label: "Nothing special" } ] },
-        { id: "tax_where", label: "Where the business is registered for tax, and what tax you charge", hint: "Country, and VAT or sales tax if any. Optional.", type: "text" },
+        { id: "tax_where", label: "Where the business is registered for tax, and what tax you charge", hint: "Country, and VAT or sales tax if any.", type: "text" },
         { id: "never", label: "What must I never do or touch?", hint: "A tool that stays, a customer list that never leaves, a person who must approve things.", type: "long" }
       ]
     },

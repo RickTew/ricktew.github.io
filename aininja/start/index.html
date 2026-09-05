@@ -28,6 +28,7 @@ img{max-width:100%}
 a{color:var(--blue-d)}
 h1,h2,h3,h4{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink);line-height:1.08}
 p b,li b{font-weight:800}
+.lede b,.lead b,.say b,.consent b{font-weight:inherit}
 .wrap{max-width:900px;margin:0 auto;padding:0 24px}
 .k{font-size:12px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-weight:900;font-size:16px;border-radius:12px;padding:14px 26px;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .12s ease,background .12s ease;line-height:1.2}
@@ -60,8 +61,8 @@ p b,li b{font-weight:800}
 .hero h1 .c{color:var(--blue)}
 .hero .lede{margin-top:20px;font-size:19px;font-weight:600;color:var(--ink2);max-width:62ch}
 .hero .lede b{font-weight:900}
-.invite{display:none;margin-top:18px;align-items:center;gap:10px;background:#eef5fc;border:2px solid var(--blue);border-radius:999px;padding:8px 16px;font-weight:800;font-size:14px;color:var(--blue-d);width:max-content;max-width:100%}
-.invite.on{display:inline-flex}
+.invite{display:none;margin-top:18px;font-weight:800;font-size:15px;color:var(--blue-d)}
+.invite.on{display:block}
 .honest{margin-top:16px;font-size:14.5px;font-weight:700;color:var(--muted);max-width:62ch}
 
 /* how it works */
@@ -101,7 +102,6 @@ p b,li b{font-weight:800}
 .q{margin-top:30px}
 .q-label{display:block;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:17px;color:var(--ink);letter-spacing:.005em}
 .q-label .req{color:var(--red);margin-left:4px}
-.q-label .opt{font-family:"Nunito",sans-serif;font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-left:8px}
 .q-hint{margin-top:5px;font-size:14px;font-weight:600;color:var(--muted);max-width:62ch}
 .opts{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:9px}
 .opts.long{grid-template-columns:1fr}
@@ -113,6 +113,22 @@ p b,li b{font-weight:800}
 .q-opt:focus-visible{outline:3px solid var(--red);outline-offset:2px}
 .q-opt[aria-pressed="true"]{border-color:var(--blue);background:#eef5fc}
 .q-opt[aria-pressed="true"]::after{background:var(--blue);border-color:var(--blue);box-shadow:inset 0 0 0 3px #fff}
+.explain{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.explain summary{cursor:pointer;padding:12px 16px;font-weight:800;font-size:14.5px;color:var(--blue-d);list-style:none;position:relative}
+.explain summary::-webkit-details-marker{display:none}
+.explain summary::after{content:"+";position:absolute;right:16px;top:9px;font-weight:900;font-size:19px;color:var(--blue)}
+.explain[open] summary::after{content:"\2212"}
+.explain dl{padding:2px 16px 14px;margin:0}
+.explain dt{font-weight:900;font-size:14.5px;margin-top:10px}
+.explain dd{margin:2px 0 0;font-size:14px;font-weight:600;color:#4b5563;line-height:1.5}
+.script{margin-top:22px;background:#fff;border:2px solid var(--blue);border-radius:18px;padding:22px 24px;box-shadow:0 12px 34px rgba(30,115,189,.10)}
+.script h3{font-size:20px;font-weight:900}
+.script p{margin-top:8px;font-size:14.5px;font-weight:600;color:#4b5563}
+.script ol{margin:12px 0 0 22px}
+.script li{margin-top:8px;font-size:15.5px;font-weight:700;line-height:1.45}
+.script li span{display:block;font-size:13.5px;font-weight:600;color:var(--muted)}
+.skip{margin-top:14px;font-size:15px;font-weight:700;color:var(--ink2)}
+.skip a{font-weight:inherit}
 .more{display:none;margin-top:10px}
 .more.on{display:block}
 .field input,.field textarea,.more input{display:block;width:100%;font:inherit;font-size:16px;padding:12px 14px;border:2px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink)}
@@ -122,15 +138,16 @@ p b,li b{font-weight:800}
 .field.bad input{border-color:var(--red)}
 .count{text-align:right;font-size:12px;font-weight:700;color:var(--muted);margin-top:4px}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
-@media (max-width:640px){ .row2{grid-template-columns:1fr} }
+.row2 .q{display:grid;grid-template-rows:subgrid;grid-row:span 3;align-content:end}
+.row2 .q .q-hint{align-self:end}
+@media (max-width:640px){ .row2{grid-template-columns:1fr} .row2 .q{display:block} }
 
 /* recordings */
 .rec-sec{padding:56px 0 20px;border-top:1px solid var(--line);background:var(--panel)}
 .rec-sec .wrap>h2{font-size:clamp(26px,4vw,38px);font-weight:900;margin-top:6px}
 .rec-sec .wrap>h2 .c{color:var(--blue)}
 .rec-sec .lead{margin-top:12px;font-weight:700;color:var(--ink2);max-width:62ch}
-.fives{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
-.fives span{background:#fff;border:2px solid var(--blue);color:var(--blue-d);border-radius:999px;padding:6px 14px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:13px}
+.fives{margin-top:14px;display:flex;flex-wrap:wrap;gap:4px 22px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
 .rec-grid{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:760px){ .rec-grid{grid-template-columns:1fr} }
 .rec-card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:22px 22px 24px;box-shadow:0 12px 34px rgba(16,20,24,.06);display:flex;flex-direction:column}
@@ -227,8 +244,9 @@ footer a:hover{color:var(--blue-d)}
   <div class="wrap">
     <div class="k">The Intake &middot; Rick Tew's Digital Dojo</div>
     <h1>Let's build your Dojo. <span class="c">First, tell me everything.</span></h1>
-    <p class="lede"><b>This asks more of your time up front, 20 to 40 minutes, and it is exactly what gets your build going faster.</b> The more you give me here, the less we go back and forth, and the sooner the first ninja is working for you. Skip anything you cannot answer. Your receipt will list what you skipped, so you can send it later.</p>
-    <div class="invite" id="invite"><span aria-hidden="true">&#128273;</span> You arrived by an invite link. This sheet files under your name.</div>
+    <p class="lede">This asks more of your time up front, 20 to 40 minutes, and it is exactly what gets your build going faster. The more you give me here, the less we go back and forth, and the sooner the first ninja is working for you. Skip anything you cannot answer. Your receipt will list what you skipped, so you can send it later.</p>
+    <p class="skip">Short on time, or not a typist? <a href="#recordings">Skip the buttons and record it instead.</a> There is a script to follow.</p>
+    <p class="invite" id="invite">You arrived by an invite link. This sheet files under your name.</p>
     <p class="honest">Honestly: I would rather sit in your office and watch the work happen. When that is not possible, this sheet plus a voice note and a short video is the next best thing. If we do meet, we still start from what you write here.</p>
   </div>
 </header>
@@ -260,13 +278,28 @@ footer a:hover{color:var(--blue-d)}
   <div class="wrap">
     <div class="k">Show me, in your own voice</div>
     <h2>Record it. <span class="c">The five W's and the H.</span></h2>
-    <p class="lead">Typing is slow and buttons are blunt. Talk to me instead. Tell me <b>what</b> the work is, <b>who</b> does it today, <b>when</b> it happens and when you want it fixed, <b>where</b> it lives (which screen, which drawer, which app), <b>why</b> it matters, and <b>how</b> it gets done right now, step by step. Ramble. I will do the tidying.</p>
+    <p class="lead">Typing is slow and buttons are blunt. Talk to me instead. If you did nothing else on this page but record the script below and press send, I would have what I need to start. Ramble. I will do the tidying.</p>
     <div class="fives" aria-hidden="true"><span>What</span><span>Who</span><span>When</span><span>Where</span><span>Why</span><span>How</span></div>
+
+    <div class="script" id="script">
+      <h3>Say this, in this order</h3>
+      <p>Press record, read each line, finish the sentence in your own words. Two minutes is plenty. On video, point the camera at the thing you are describing while you say it.</p>
+      <ol>
+        <li>"My name is ..., my business is ..., and we are in ..." <span>Who you are and where.</span></li>
+        <li>"The job that eats my time is ..." <span>What. The inbox, the bookings, the invoices, the renewals. Name it.</span></li>
+        <li>"Right now it is done by ..." <span>Who. You, a staff member, an accountant, nobody.</span></li>
+        <li>"It happens every ... and I want it fixed by ..." <span>When. Daily, every Monday, month end. And your deadline.</span></li>
+        <li>"It lives in ..." <span>Where. Which app, which inbox, which spreadsheet, which drawer or wall.</span></li>
+        <li>"It matters because ..." <span>Why. What it costs you when it goes wrong, and what you would do with the hours back.</span></li>
+        <li>"The steps today are: first ..., then ..., then ..." <span>How. Walk through it once, slowly, the way you would train a new employee. On a computer, do it on screen while you talk.</span></li>
+        <li>"If you fixed one thing first, make it ..." <span>Your pick. Then anything else on your mind.</span></li>
+      </ol>
+    </div>
 
     <div class="rec-grid">
       <div class="rec-card" id="cardAudio">
         <h3><span class="g" aria-hidden="true">&#127908;</span>Voice note</h3>
-        <p class="say">Press record and talk. Two minutes or twenty, both fine. You can record several. <b>If recording here does not work on your phone, use your voice memo app and upload the file below.</b></p>
+        <p class="say">Press record and talk. Two minutes or twenty, both fine. You can record several. If recording here does not work on your phone, use your voice memo app and upload the file below.</p>
         <div class="rec-ctl">
           <button class="btn btn-red btn-sm" type="button" data-rec="audio" data-act="start">Record</button>
           <button class="btn btn-quiet btn-sm" type="button" data-rec="audio" data-act="stop" hidden>Stop</button>
@@ -282,7 +315,7 @@ footer a:hover{color:var(--blue-d)}
 
       <div class="rec-card" id="cardVideo">
         <h3><span class="g" aria-hidden="true">&#127909;</span>Video</h3>
-        <p class="say">Point the camera at the work: your desk, the till, the diary, the wall of sticky notes, the computer screen if you are on a phone. Explain as you film. <b>Nobody is judging the lighting.</b></p>
+        <p class="say">Point the camera at the work: your desk, the till, the diary, the wall of sticky notes, the computer screen if you are on a phone. Explain as you film. Nobody is judging the lighting.</p>
         <div class="rec-ctl">
           <button class="btn btn-red btn-sm" type="button" data-rec="video" data-act="start">Record video</button>
           <button class="btn btn-quiet btn-sm" type="button" data-rec="video" data-act="stop" hidden>Stop</button>
@@ -300,7 +333,7 @@ footer a:hover{color:var(--blue-d)}
 
       <div class="rec-card" id="cardScreen">
         <h3><span class="g" aria-hidden="true">&#128421;</span>Screen recording</h3>
-        <p class="say">On a computer: record your screen while you do the job the normal way. Open the inbox, make a booking, send an invoice, whatever eats the hours. Talk while you click. <b>This is the single most useful thing you can send me.</b></p>
+        <p class="say">On a computer: record your screen while you do the job the normal way. Open the inbox, make a booking, send an invoice, whatever eats the hours. Talk while you click. This is the single most useful thing you can send me.</p>
         <ul class="tips">
           <li>Pick the window or the whole screen when the browser asks.</li>
           <li>Your microphone is recorded with it, so narrate.</li>
@@ -321,7 +354,7 @@ footer a:hover{color:var(--blue-d)}
 
       <div class="rec-card" id="cardFiles">
         <h3><span class="g" aria-hidden="true">&#128193;</span>Files and anything else</h3>
-        <p class="say">Recordings you made elsewhere, screenshots, the spreadsheet you live in, a PDF of your price list, photos of the paper system, a few customer emails saved as files. <b>Up to 500 MB each.</b></p>
+        <p class="say">Recordings you made elsewhere, screenshots, the spreadsheet you live in, a PDF of your price list, photos of the paper system, a few customer emails saved as files. Up to 500 MB each.</p>
         <label class="drop" id="drop">
           <b>Choose files</b>
           <span>or drag them here. Audio, video, images, PDF, spreadsheets, documents.</span>
@@ -351,7 +384,7 @@ footer a:hover{color:var(--blue-d)}
           <div><b id="sumF">0</b><span>files</span></div>
         </div>
         <p class="gaps" id="gaps"></p>
-        <p class="consent"><b>What happens to this.</b> The sheet and the recordings are stored privately, in a folder only Rick's Dojo can open, and are used for one thing: planning and building your system. Rick reads them; his review agent drafts the follow-up questions, and a human presses every send. Ask for it deleted at any time by replying to your receipt. Nothing here is a contract: that comes later, in writing, after we have talked.</p>
+        <p class="consent">What happens to this: the sheet and the recordings are stored privately, in a folder only Rick's Dojo can open, and are used for one thing: planning and building your system. Rick reads them; his review agent drafts the follow-up questions, and a human presses every send. Ask for it deleted at any time by replying to your receipt. Nothing here is a contract: that comes later, in writing, after we have talked.</p>
         <button class="btn btn-blue send-btn" id="sendBtn" type="button"><span aria-hidden="true">&#129399;</span> Send my intake to Rick</button>
         <p class="send-err" id="sendErr" role="alert"></p>
       </div>
@@ -432,9 +465,14 @@ footer a:hover{color:var(--blue-d)}
     var pair=null;
     sec.qs.forEach(function(q){
       var box=el("div","q"); box.id="q-"+q.id;
-      var lab=el("label","q-label",txt(q.label)+(q.required?'<span class="req" aria-hidden="true">*</span>':'<span class="opt">optional</span>'));
+      var lab=el("label","q-label",txt(q.label)+(q.required?'<span class="req" aria-hidden="true">*</span>':''));
       box.appendChild(lab);
       if(q.hint) box.appendChild(el("p","q-hint",txt(q.hint)));
+      if(q.explain){
+        var d=el("details","explain"); d.innerHTML="<summary>"+txt(q.explain.title)+"</summary>";
+        var dl=el("dl"); q.explain.items.forEach(function(it){ dl.appendChild(el("dt",null,txt(it[0]))); dl.appendChild(el("dd",null,txt(it[1]))); });
+        d.appendChild(dl); box.appendChild(d);
+      }
       if(q.type==="single"||q.type==="multi"){
         var longOpts=q.options.some(function(o){ return (o.label.length+(o.note?o.note.length:0))>46; });
         var opts=el("div","opts"+(longOpts?" long":"")); opts.setAttribute("role","group"); opts.setAttribute("aria-label",q.label);
@@ -542,7 +580,7 @@ footer a:hover{color:var(--blue-d)}
   /* ---- recording ---- */
   var supportsRec=!!(window.MediaRecorder&&navigator.mediaDevices&&navigator.mediaDevices.getUserMedia);
   var supportsScreen=!!(navigator.mediaDevices&&navigator.mediaDevices.getDisplayMedia)&&!/iPhone|iPad|Android/i.test(navigator.userAgent);
-  if(!supportsScreen){ var cs=document.getElementById("cardScreen"); cs.querySelector(".rec-ctl").hidden=true; cs.querySelector(".say").innerHTML="Screen recording needs a computer browser. <b>On a phone, film the screen with the Video button</b>, or record your screen with the phone's own recorder and upload it under Files."; cs.querySelector(".tips").hidden=true; }
+  if(!supportsScreen){ var cs=document.getElementById("cardScreen"); cs.querySelector(".rec-ctl").hidden=true; cs.querySelector(".say").innerHTML="Screen recording needs a computer browser. On a phone, film the screen with the Video button, or record your screen with the phone's own recorder and upload it under Files."; cs.querySelector(".tips").hidden=true; }
   if(!supportsRec){ ["audio","video"].forEach(function(k){ var c=document.getElementById(k==="audio"?"cardAudio":"cardVideo"); c.querySelector(".rec-ctl").hidden=true; showErr(k,"This browser cannot record here. Use your phone's voice memo or camera app and upload the file under Files."); }); }
 
   var recs={};
