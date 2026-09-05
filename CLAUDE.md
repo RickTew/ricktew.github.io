@@ -363,9 +363,18 @@ sensei note under the price cards on `/aininja/`, `llms.txt`, and invite links.
   the entry level, because managing the whole stack for Evercoolthailand,
   SabaiSen, NinjaGym and PreferClinic is the work he actually does most.
   The agent-door build reads its price from the card's `data-want` and
-  writes the third Offer and the llms.txt line. No Stripe product for the
-  $222, $99 or $999 on Rick's own side yet (the two live installs bill
-  through their own subscriptions). The chat box has no R2 entry yet. The Dojo's copy of the fact:
+  writes the third Offer and the llms.txt line. The chat box has no R2 entry yet.
+  **Stripe (Tew's Inc, live), made by the Dojo session on 2026-09-05, IDs
+  only, no keys:** product R2 Hosting `prod_VCduH2K4C7l0l5`; build $222
+  one-off `price_1UCEeZ24k28tlk41Hdf0NMQM`; monthly $99
+  `price_1UCEec24k28tlk41yWvcSEMc`; yearly $999
+  `price_1UCEef24k28tlk41K1HC4woO`. Per client: one customer, one
+  subscription on the monthly or yearly price with `trial_end` at the start
+  of month two (the build fee covers month one; this is a per-client
+  convention, nothing in Stripe encodes it), plus a one-off invoice on the
+  build price. First client on it: The Prefer Clinic, starter invoice sent
+  5 Sep 2026, subscription trialing to 1 Oct 2026. The two older installs
+  (Evercool, SabaiSen) keep their own per-client subscriptions. The Dojo's copy of the fact:
   `~/Dev/digitaldojo/docs/Digital Dojo, Note 2026-09-05, R2 Hosting offer.md`.
   Rick wrote both "R2 Hosting" and "R2 Hosting"; the page says R2S until he
   rules.
