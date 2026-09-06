@@ -62,7 +62,7 @@ var GOLD=[
   ["pricing?", "cost"],
   ["what's the difference between sensei runs it and your dojo", "tiers"],
   ["can I cancel", "cancel"],
-  ["is there a contract or lock in", "cancel"],
+  ["is there a contract or lock in", "contract"],
   ["what happens in the first month", "first-month"],
   ["how do we get started", "first-month"],
   ["how long does it take", "how-long"],
