@@ -243,9 +243,10 @@
      cta:{what:"The Notebook", kind:"build", note:"Your AI learns. You hold the veto."}},
 
     {id:"mistakes", q:"What happens when it gets something wrong?",
-     alt:["gets it wrong","gets something wrong","get it wrong","makes a mistake","make a mistake","when it fails","goes wrong","if it breaks","what if it"],
-     keys:"wrong mistake mistakes fail fails failure error errors broken breaks break fix fixes undo bad outage down",
-     a:"<p>It gets caught before it leaves the building, because nothing leaves without a press. A wrong draft is a draft you do not send. A question the library cannot answer becomes \"I don't know\" and a row in the missed-questions list, and answering that row is how the library grows.</p><p>A change that makes things worse gets put back in a minute, because the way of working is kept like code with every version saved. And an alarm tells me when the mail stops, because an outage once went unnoticed for days.</p>"},
+     alt:["gets it wrong","gets something wrong","get it wrong","makes a mistake","make a mistake","when it fails","goes wrong","if it breaks","what if it","wrong answer","wrong draft","wrong reply","loses money","lose money","who is liable","who is responsible","your liability"],
+     keys:"wrong mistake mistakes fail fails failure error errors broken breaks break fix fixes undo bad outage down liable liability responsible fault damage damages loses lose lost money guarantee guaranteed",
+     a:"<p>It gets caught before it leaves the building, because nothing leaves without a press. A wrong draft is a draft you do not send. A question the library cannot answer becomes \"I don't know\" and a row in the missed-questions list, and answering that row is how the library grows.</p><p>A change that makes things worse gets put back in a minute, because the way of working is kept like code with every version saved. And an alarm tells me when the mail stops, because an outage once went unnoticed for days.</p><p>The Terms say the rest plainly: no outcome is guaranteed, the judgment calls stay yours, and my liability is capped at the fees of the three months before a claim, sections 6 and 8.</p>",
+     link:{href:"/aininja/legal/terms.html", label:"Read the Terms"}},
 
     /* ---- the service ---- */
     {id:"cost", q:"What does it cost?",
@@ -299,7 +300,7 @@
     {id:"cancel", q:"Can I cancel?",
      alt:["cancel","lock in","locked in","commitment","minimum term","tied in","how long am i"],
      keys:"cancel cancelling cancellation contract contracts lock locked commit commitment minimum term terms subscription quit stop leave leaving refund refunds notice",
-     a:"<p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month. The Dojo and everything built in your accounts stays yours; it was always in your name.</p>"},
+     a:"<p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month. The Dojo and everything built in your accounts stays yours; it was always in your name. R2 Hosting is the one exception, by design: the site runs on my stack, so your domain and your content leave with you and the hosting ends with the subscription, at the end of the paid month or year.</p>"},
 
     {id:"first-month", q:"What happens in the first month?",
      alt:["first month","how do we start","how do i start","where do we start","where do i start","get started","getting started","what happens first","onboarding","how does it start","the first step"],
@@ -717,7 +718,7 @@
     }
     function showChoose(entries){
       var b=bubble("n");
-      var a=el("div","ask-a"); a.innerHTML="<p>Two answers fit that. Which one did you mean?</p>"; b.appendChild(a);
+      var a=el("div","ask-a"); a.innerHTML="<p>More than one answer fits that. Which one did you mean?</p>"; b.appendChild(a);
       chips(entries, b);
     }
     function showEmpty(){
