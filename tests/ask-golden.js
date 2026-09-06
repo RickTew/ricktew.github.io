@@ -64,7 +64,7 @@ var GOLD=[
   ["can I cancel", "cancel"],
   ["is there a contract or lock in", "contract"],
   ["what happens in the first month", "first-month"],
-  ["how do we get started", "first-month"],
+  ["how do we get started", "how-to-start"],
   ["how long does it take", "how-long"],
   ["can you build me an app", "build-app"],
   ["I need a new website", "build-app"],

@@ -302,8 +302,14 @@
      keys:"cancel cancelling cancellation contract contracts lock locked commit commitment minimum term terms subscription quit stop leave leaving refund refunds notice",
      a:"<p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month. The Dojo and everything built in your accounts stays yours; it was always in your name. R2 Hosting is the one exception, by design: the site runs on my stack, so your domain and your content leave with you and the hosting ends with the subscription, at the end of the paid month or year.</p>"},
 
+    {id:"how-to-start", q:"How do I start? Is there a call, or do I just pay?",
+     alt:["how do i start","how do we start","how to start","where do we start","where do i start","get started","getting started","do i just pay","just pay","start now","ready to start","sign up","signup","sign me up","the intake","fill in the intake","invite link","start today"],
+     keys:"start starts starting begin begins sign signup pay paying ready intake invite questionnaire decided today",
+     a:"<p>Three doors, all free to open. Not sure which offer fits: the quiz, twelve taps, no email needed. Want to talk first: write in the mailbox at the bottom and say so, and I set up a call from my side. Already decided: skip the back and forth and fill in The Intake, twenty to forty minutes of buttons, your own words and a voice note or a short video of how the work runs today. A plan comes back, and that is what gets the build going faster. Nothing is paid before the scope is agreed.</p>",
+     link:{href:"/aininja/start/", label:"Open The Intake"}},
+
     {id:"first-month", q:"What happens in the first month?",
-     alt:["first month","how do we start","how do i start","where do we start","where do i start","get started","getting started","what happens first","onboarding","how does it start","the first step"],
+     alt:["first month","what happens first","onboarding","how does it start","the first step","the first weeks","first weeks"],
      keys:"start starts starting begin begins beginning first month audit onboarding kickoff step steps process happens order",
      a:"<p>The audit first: we map where your hours actually go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt. It proves itself before anything widens.</p><p>That is the order it happened in for me: the gym's inbox first, then bookings, then the books, each one earning the next.</p>"},
 
@@ -555,6 +561,7 @@
     "channels":"Start with the channel your customers already use, not the one you wish they used.",
     "included":"Read the Not included lines first. They are where the surprises would have been.",
     "contract":"Read section 7 of the Terms before you write. It is the one that covers your data.",
+    "how-to-start":"If you already know what you want off your plate, The Intake is faster than a call. Bring three real cases: an easy one, a weird one, and the last mistake.",
     "cancel":"The exit is the honest test of any service. Everything built stays in your accounts, so leaving costs you nothing but the machine.",
     "first-month":"Pick the task you would hand an intern on day one. That is the audit's first answer nine times out of ten.",
     "how-long":"The first draft waiting in your inbox is the milestone that matters. Everything after it is widening.",
