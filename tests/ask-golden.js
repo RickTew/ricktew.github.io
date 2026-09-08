@@ -103,7 +103,10 @@ var GOLD=[
   ["what is the quiz funnel", "quiz-funnel"],
   ["what is the video room", "video-room"],
   ["what does the agentic cfo do", "seat-cfo"],
-  ["what does the head of customer care do", "seat-care"]
+  ["what does the head of customer care do", "seat-care"],
+  ["what is the side hustle summit", "side-hustle-summit"],
+  ["is monetise worth $1995", "side-hustle-summit"],
+  ["I watched iman gadzhi's free event and learned nothing, what was it selling", "side-hustle-summit"]
 ];
 console.log("1. must land ("+GOLD.length+")");
 GOLD.forEach(function(g){

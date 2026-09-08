@@ -297,6 +297,12 @@
      a:"<p>The Terms on this site are the contract: a monthly subscription, cancel anytime, effective at the end of the paid month, and everything built stays in your accounts. Confidentiality is written into them, section 7: what I see of your business while building and running your Dojo stays confidential. Methods and patterns learned across engagements, never your data, people or specifics, stay mine to reuse; that is what keeps my proven builds sharp for every client. If you need your own NDA on top, send it with your message.</p>",
      link:{href:"/aininja/legal/terms.html", label:"Read the Terms"}},
 
+    {id:"side-hustle-summit", q:"Seen the Side Hustle Summit? What does it sell, and do I need it?",
+     alt:["side hustle summit","the summit","hustle summit","iman gadzhi","russell brunson","monetise","monetize program","373 a day","1995","1,995","side hustle","five day event","5 day event","free event on youtube","youtube event"],
+     keys:"summit hustle monetise monetize iman gadzhi brunson 373 1995 1,995 disappointed",
+     a:"<p>Five free sessions on YouTube between 6 and 13 September 2026, and on the second day a program called Monetise: $1,995 in one payment or from about $166 a month on finance, two $25 add-ons at the checkout, a $995 offer after it, a seven-day refund. The host said on day one that the paid offer is what pays for the free week.</p><p>What the first two days taught can be done with what you already have: one person with one problem, the answer written from good public sources with the references, a short guide, put where those people already gather. That last step is the hard one and the free days had not shown it yet. I do not sell a course for it. I build systems for businesses that already exist, and if that is you, the quiz on this page says what I would build, no email asked.</p>",
+     link:{href:"/aininja/side-hustle-summit/", label:"Read the plain-words page"}},
+
     {id:"cancel", q:"Can I cancel?",
      alt:["cancel","lock in","locked in","commitment","minimum term","tied in","how long am i"],
      keys:"cancel cancelling cancellation contract contracts lock locked commit commitment minimum term terms subscription quit stop leave leaving refund refunds notice",
@@ -557,6 +563,7 @@
     "build-cost":"Write down the three things it must do and the one it must never do. That is nine tenths of a quote.",
     "tiers":"If nobody on your team has the spare capacity to press, choose Sensei runs it. If someone does, Your Dojo is enough.",
     "r2-hosting":"If the site is the whole ask, start here. It becomes the front door of a Dojo later, one piece at a time, and nothing is thrown away.",
+    "side-hustle-summit":"Keep your money until day three. The step that decides whether anyone earns is finding buyers, and no tool does that part for you.",
     "glossary":"Five words carry this whole page: Dojo, ninja, seat, belt, sensei. Read the solutions list with those in hand and it stops being jargon.",
     "channels":"Start with the channel your customers already use, not the one you wish they used.",
     "included":"Read the Not included lines first. They are where the surprises would have been.",
