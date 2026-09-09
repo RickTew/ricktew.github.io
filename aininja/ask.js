@@ -300,7 +300,7 @@
     {id:"side-hustle-summit", q:"Seen the Side Hustle Summit? What does it sell, and do I need it?",
      alt:["side hustle summit","the summit","hustle summit","iman gadzhi","russell brunson","monetise","monetize program","373 a day","1995","1,995","side hustle","five day event","5 day event","free event on youtube","youtube event"],
      keys:"summit hustle monetise monetize iman gadzhi brunson 373 1995 1,995 disappointed",
-     a:"<p>Five free sessions on YouTube between 6 and 13 September 2026, and on the second day a program called Monetise: $1,995 in one payment or from about $166 a month on finance, two $25 add-ons at the checkout, a $995 offer after it, a seven-day refund. The host said on day one that the paid offer is what pays for the free week.</p><p>What the first two days taught can be done with what you already have: one person with one problem, the answer written from good public sources with the references, a short guide, put where those people already gather. That last step is the hard one and the free days had not shown it yet. I do not sell a course for it. I build systems for businesses that already exist, and if that is you, the quiz on this page says what I would build, no email asked.</p>",
+     a:"<p>Five free sessions on YouTube between 6 and 13 September 2026, and on the second day a program called Monetise: $1,995 in one payment or from about $166 a month on finance, two $25 add-ons at the checkout, a $995 offer after it, a seven-day refund. The host said on day one that the paid offer is what pays for the free week.</p><p>What the first two days taught can be done with what you already have: one person with one problem, the answer written from good public sources with the references, a short guide, put where those people already gather. That last step is the hard one. Day three showed it: small Instagram creators with no product, found by hand, and reached by cold email through a platform that costs $597 a month on its own site. I do not sell a course for it. I build systems for businesses that already exist, and if that is you, the quiz on this page says what I would build, no email asked.</p>",
      link:{href:"/aininja/side-hustle-summit/", label:"Read the plain-words page"}},
 
     {id:"cancel", q:"Can I cancel?",
@@ -563,7 +563,7 @@
     "build-cost":"Write down the three things it must do and the one it must never do. That is nine tenths of a quote.",
     "tiers":"If nobody on your team has the spare capacity to press, choose Sensei runs it. If someone does, Your Dojo is enough.",
     "r2-hosting":"If the site is the whole ask, start here. It becomes the front door of a Dojo later, one piece at a time, and nothing is thrown away.",
-    "side-hustle-summit":"Keep your money until day three. The step that decides whether anyone earns is finding buyers, and no tool does that part for you.",
+    "side-hustle-summit":"Day three is the one to judge by. The step that decides whether anyone earns is asking a creator to say yes, and no tool does that part for you.",
     "glossary":"Five words carry this whole page: Dojo, ninja, seat, belt, sensei. Read the solutions list with those in hand and it stops being jargon.",
     "channels":"Start with the channel your customers already use, not the one you wish they used.",
     "included":"Read the Not included lines first. They are where the surprises would have been.",
