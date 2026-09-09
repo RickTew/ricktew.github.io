@@ -527,7 +527,7 @@ Verify a status with a real request before repeating it on the site.**
 |------|----------------|--------|-------|
 | Tew's Total Recall | Vercel + App Stores | Very Soon | Memory/recall curriculum app |
 | The Adroit Swordsman | adroit-swordsman.vercel.app | Very Soon | Vocabulary app, 4 age groups, comedic voice |
-| Home Study Program (HSP) | TBD (Cloud Run) | Soon | "Rick Tew's Martial Science: The Ultimate Visual Guide." 200-page illustrated book (5 belt levels, 18 lessons each) + companion web app. Repo: `/Users/ricktew/Dev/HSP/`. Built with Google AI Studio + Canva + Antigravity Build mode. |
+| Home Study Program (HSP) | Inside the WinJitsu app | Live as a $2,222 one-off inside the app (per the WinJitsu session, 2026-09-09) | "Rick Tew's Martial Science: The Ultimate Visual Guide." 200-page illustrated book (5 belt levels, 18 lessons each) + companion web app. Repo: `/Users/ricktew/Dev/HSP/`. Not sold on this site: the books are not sold separately (Rick's ruling 2026-09-09). |
 
 ### Games
 | Name | Platform | Status | Notes |
