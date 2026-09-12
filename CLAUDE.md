@@ -130,7 +130,8 @@ What that is on the site now:
 
 - **Two cards in `#offers`:** **Your Dojo, $2,222 / month** (now the `hot`
   card, headline in Rick's words "I build it, host it, and help you run
-  it.") then **R2 Hosting, $222 once** ("Start here"). The `.price-cards`
+  it.") then **R2 Hosting, $222 once** (tag "Start here" that day, "Basic
+  plan · R2 Hosting" since the third ruling below). The `.price-cards`
   grid is two columns, max 860px.
 - **"Run it for me" and "bigger than one Dojo" are a custom price, talked
   about first.** That sentence is the Your Dojo card's first not-included
@@ -214,9 +215,55 @@ What that is on the site now (all pushed 12 Sep):
   old "your AI account, in your name" is gone. **Whose key the ninjas run
   on (his, inside the price, or the client's, metered to them) is NOT
   ruled;** the copy is written to be true either way. Ask before promising.
-- **"Your data leaves with you"** is now a commitment in the Terms and on
-  the page: an export on exit. Rick has not said what form it takes; the
-  R2 page already promised domain and content, this adds records.
+- **"Your data leaves with you"** is a commitment in the Terms and on the
+  page, and since the third ruling of 12 Sep, so is "I do not keep a copy":
+  Rick confirmed "data" means their mail and content, not the builds, and
+  wanted it said that he keeps none of it. The Terms say it is handed over
+  and then removed from his stack. Backup retention is not specified.
+
+### THE THIRD RULING OF 12 SEP: easy for them, easy for him
+
+- **The AI is inside the price, on Rick's accounts.** His words: "likely
+  will be our AI keys but we run on SUB and we just charge it as part of
+  our service ... ten clients at $2,222 against a 20x Max plan at $2,222
+  ... we don't really want them to hassle with AI or any of those issues."
+  The customer type from the landing page hates computers and the
+  non-stop changes in AI. So the card has a bullet ("The AI is in the
+  price. I run it on my accounts: you never open an AI account, hold a
+  key, watch a meter or keep up with which model is best this month"), the
+  Terms section 4 says it with a fair-use line (use far beyond a small
+  business's normal day is priced in writing first, Rick's pattern from
+  the mail cap), and the FAQ, the chat box (`cost`, `included`,
+  `third-party`, `which-ai`, `is-ai-safe`), the Claudeforce "AI inside"
+  row and llms.txt agree. **Not included** is now only ad spend and
+  software the client already pays for on its own. The old "one switch
+  pauses every metered AI call" lost the word metered; the old "weekly
+  line on what the agents cost" is gone (the cost is his).
+- **Limits, Terms only plus one R2 tile:** mail from the client's domain
+  up to 5,000 sends a month (his Resend Pro 50K split ten ways; the
+  vendor is not named anywhere), more priced in writing; large media
+  (video, big files) stored as needed and priced only when it becomes a
+  real cost (Cloudflare, sometimes Supabase; also unnamed). He said "we
+  can if needed say 5K", so it is in section 4 and in the R2 "Company
+  email" tile, nowhere louder.
+- **The tags:** "Start here" read as an instruction, so the cards now say
+  **"Basic plan · R2 Hosting"** and **"Full plan · Your Dojo"** (his ask:
+  "Basic Plan or similar"); the R2 headline became "I build it, I host it,
+  I keep it running." so the name is not said twice. The WebMCP read tool
+  quotes the tags, so an agent sees the plan level with the name.
+- **The two cards share rows** (`.price-card` is a subgrid spanning seven
+  rows of `.price-cards`, row-gap 0, column-gap 18px): tag, headline,
+  price, list, button, want pill and cancel line sit level whatever wraps.
+  The Your Dojo price got a `.then` line, "flat, any number of seats, the
+  AI included", so its row is not empty against R2's "first month
+  included" line. Phones stack the cards with an 18px margin. A browser
+  without subgrid (Safari before 16, Chrome before 117) gets two
+  independent stacks, which is what it had before.
+- **Stripe:** the $4,444 product is renamed **"The Digital Dojo: Custom
+  Build Plus"** (`prod_V3zVzzFRsdk6eA`, metadata tier `custom-build-plus`,
+  description rewritten to "Your Dojo plus the custom options"; its
+  monthly price and id are unchanged). It is the invoice he sends for a
+  bigger in-house request; it is on no page.
 
 The evidence-based ruling of 26 Aug (visible prices, no anchors, no paid
 first call, a free first contact) still stands; it just applies to two

@@ -404,7 +404,7 @@ html,body{overflow-x:clip}
 .btn:hover .g{transform:rotate(-14deg) scale(1.18)}
 .master .want{align-self:flex-start}
 .dojo-card .want{margin-top:14px}
-.price-card .want{margin-top:10px;align-self:center}
+.price-card .want{margin-top:10px;justify-self:center}
 .vs{padding:84px 0;border-top:1px solid var(--line);background:var(--panel)}
 .vs .k,.vs h2{text-align:center}
 .vs h2{font-size:clamp(26px,4vw,40px);font-weight:900;margin:8px auto 0;max-width:24ch}
@@ -445,19 +445,22 @@ html,body{overflow-x:clip}
 .master .m-sols b{color:var(--ink)}
 .master .sol-mail{margin-top:12px;align-self:flex-start}
 .dojo-honest{margin-top:34px;max-width:700px;margin-left:auto;margin-right:auto;font-size:14px}
-.price-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px;max-width:860px;margin-left:auto;margin-right:auto}
-@media (max-width:900px){ .price-cards{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto} }
+/* The cards share one set of rows (subgrid), so the tag, the headline, the price, the
+   list, the buttons and the cancel line sit level across both whatever wraps. Browsers
+   without subgrid get two independent stacks, which is what they had before. */
+.price-cards{display:grid;grid-template-columns:1fr 1fr;column-gap:18px;row-gap:0;margin-top:44px;max-width:860px;margin-left:auto;margin-right:auto}
+@media (max-width:900px){ .price-cards{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto} .price-cards .price-card + .price-card{margin-top:18px} }
 .price-card.start{border-color:var(--belt-g)}
 .price-card.start .tag{color:var(--belt-g)}
 .price-card .amount .then{display:block;font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:15px;font-weight:800;color:var(--muted);margin-top:2px}
-.price-card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:28px 26px;box-shadow:0 16px 40px rgba(16,20,24,.08);display:flex;flex-direction:column}
+.price-card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:28px 26px;box-shadow:0 16px 40px rgba(16,20,24,.08);display:grid;grid-template-rows:subgrid;grid-row:span 7;align-content:start}
 .price-card.hot{border-color:var(--blue)}
 .price-card .tag{font-size:11.5px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 .price-card.hot .tag{color:var(--red)}
 .price-card h3{font-size:22px;font-weight:900;margin-top:8px}
 .price-card .amount{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:40px;margin-top:14px}
 .price-card .amount small{font-size:15px;font-weight:800;color:var(--muted)}
-.price-card ul{list-style:none;margin-top:16px;padding:0;flex:1}
+.price-card ul{list-style:none;margin-top:16px;padding:0}
 .price-card li{position:relative;padding-left:22px;margin-top:9px;font-size:14.5px;font-weight:600;color:#4b5563}
 .price-card li::before{content:"\2713";position:absolute;left:0;font-weight:900;color:var(--belt-g)}
 .price-card li.no::before{content:"\2715";color:var(--muted)}
@@ -1123,7 +1126,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
      "name": "What does it cost?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Your Dojo is $2,222 a month: I build it, host it, and help you run it; your team presses every send. Monthly, cancel anytime, effective at the end of the paid month. Smaller need? R2 Hosting is the entry level: I build your site or small app and host it on my stack, $222 to build, then $99 a month or $999 a year. Want the whole day run for you, or something bigger than one Dojo? That is not a card on this page: it is a custom price, and we talk first. Start with the quiz: it tells you which one fits. Two things are true whichever you pick. Building a product you sell, an app, a site, a backend, is separate work, scoped and agreed in writing before the clock starts. And third-party costs are not in the price: ad spend, and any AI usage or software your business needs beyond the build."
+      "text": "Your Dojo is $2,222 a month: I build it, host it, and help you run it; your team presses every send. Monthly, cancel anytime, effective at the end of the paid month. Smaller need? R2 Hosting is the entry level: I build your site or small app and host it on my stack, $222 to build, then $99 a month or $999 a year. Want the whole day run for you, or something bigger than one Dojo? That is not a card on this page: it is a custom price, and we talk first. Start with the quiz: it tells you which one fits. Two things are true whichever you pick. Building a product you sell, an app, a site, a backend, is separate work, scoped and agreed in writing before the clock starts. And the AI is in the price: I run it on my accounts, and you never open an AI account or watch a meter. What is not: ad spend, and any software your business already pays for on its own."
      }
     },
     {
@@ -1139,7 +1142,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
      "name": "Can I cancel?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack by design, so there is nothing to hand back or log out of: your domain, your content and your data leave with you, and the build and the hosting end with the subscription. Nothing is charged after."
+      "text": "Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack by design, so there is nothing to hand back or log out of: your domain, your content and your data leave with you, and I do not keep a copy; the build and the hosting end with the subscription. Nothing is charged after."
      }
     },
     {
@@ -2001,27 +2004,28 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 
     <div class="price-cards" id="offers">
       <div class="price-card hot rv">
-        <span class="tag">Your Dojo</span>
+        <span class="tag">Full plan &middot; Your Dojo</span>
         <h3>I build it, host it, and help you run it.</h3>
-        <div class="amount">$2,222<small> / month</small></div>
+        <div class="amount">$2,222<small> / month</small><span class="then">flat, any number of seats, the AI included</span></div>
         <ul>
           <li>The audit first: where the hours go, mapped with you.</li>
           <li>I build your Dojo: the command center, the trained AI ninjas, the factories behind your repeated work.</li>
           <li>I host it on my stack and keep it running: domain, SSL, backups, updates. Nothing for you to log into, renew or fix.</li>
+          <li>The AI is in the price. I run it on my accounts: you never open an AI account, hold a key, watch a meter or keep up with which model is best this month.</li>
           <li>Your team runs the daily DO; every send, pay, and post stays behind your press.</li>
           <li>Me on call as your sensei: belts advance, new ninjas join as you grow.</li>
           <li class="not-head" role="presentation">Not included</li>
           <li class="no">Running your daily work for you. I help you run it; I am not on your staff. Want the whole day run for you, or something bigger than one Dojo? That is a custom price, and we talk first.</li>
           <li class="no">Building products you sell (apps, sites, features): separate engagement, scoped in writing first.</li>
-          <li class="no">Third-party costs: ad spend, and any AI usage or software your business needs beyond the build.</li>
+          <li class="no">Ad spend, and any software your business already pays for on its own.</li>
         </ul>
         <a class="btn btn-blue" href="#quiz">Start with the quiz</a>
         <a class="want" href="#" data-want="Your Dojo, $2,222 a month" data-want-note="I build it, host it, and help you run it." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
         <p class="cancel">Monthly subscription. Cancel anytime, effective at the end of the paid month.</p>
       </div>
       <div class="price-card start rv" id="r2">
-        <span class="tag">Start here</span>
-        <h3>R2 Hosting. I build it, I host it.</h3>
+        <span class="tag">Basic plan &middot; R2 Hosting</span>
+        <h3>I build it, I host it, I keep it running.</h3>
         <div class="amount">$222<small> once</small><span class="then">first month included, then $99 / month, or $999 / year</span></div>
         <ul>
           <li>Your website or small app, built from parts that already run in my own businesses. Scoped on one page before I start.</li>
@@ -2082,7 +2086,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 
       <div class="lab">The AI inside</div>
       <div>Their chosen model, inside their walls.</div>
-      <div class="me">Whichever of the AI companies is best that month, behind a switch. The desk still works with every model switched off.</div>
+      <div class="me">Whichever of the AI companies is best that month, behind a switch, on my accounts and in the price. The desk still works with every model switched off.</div>
     </div>
     <p class="honest">If three of you need a contact list and nothing else, buy their Starter at $25 a seat. I will not beat that, and I will not pretend to. The Dojo wins the day you want the AI to do the work, and it wins by more with every seat you add.</p>
     <p class="src">Salesforce prices from <a href="https://www.salesforce.com/sales/pricing/" rel="noopener" target="_blank">salesforce.com/sales/pricing</a>, read 29 August 2026, USD. Claudeforce facts from Salesforce's press release of 26 August 2026. Both change; this was true the day it was written.</p>
@@ -2417,9 +2421,9 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <div class="list">
       <details><summary>Do I need to understand AI to use this?</summary><p>No, and that is the point. Only a tiny slice of people using AI will ever touch the builder tools. I build and train the Dojo; you run your business. If you ever want to learn what is under the hood, I will show you, but it is never required.</p></details>
       <details><summary>Will an AI talk to my customers without me knowing?</summary><p>Never. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. That rule does not bend at any belt or any price.</p><p>One exception, and it is mine: the mailbox on this page is answered first by my Ninja Agent, signed as the AI, from answers I wrote, because that is the demo. In your Dojo nothing sends without your press unless you choose the same for a lane of your own.</p></details>
-      <details><summary>What does it cost?</summary><p>Your Dojo is $2,222 a month: I build it, host it, and help you run it; your team presses every send. Monthly, cancel anytime, effective at the end of the paid month. Smaller need? R2 Hosting is the entry level: I build your site or small app and host it on my stack, $222 to build, then $99 a month or $999 a year. Want the whole day run for you, or something bigger than one Dojo? That is not a card on this page: it is a custom price, and we talk first. Start with the quiz: it tells you which one fits. Two things are true whichever you pick. Building a product you sell, an app, a site, a backend, is separate work, scoped and agreed in writing before the clock starts. And third-party costs are not in the price: ad spend, and any AI usage or software your business needs beyond the build.</p></details>
+      <details><summary>What does it cost?</summary><p>Your Dojo is $2,222 a month: I build it, host it, and help you run it; your team presses every send. Monthly, cancel anytime, effective at the end of the paid month. Smaller need? R2 Hosting is the entry level: I build your site or small app and host it on my stack, $222 to build, then $99 a month or $999 a year. Want the whole day run for you, or something bigger than one Dojo? That is not a card on this page: it is a custom price, and we talk first. Start with the quiz: it tells you which one fits. Two things are true whichever you pick. Building a product you sell, an app, a site, a backend, is separate work, scoped and agreed in writing before the clock starts. And the AI is in the price: I run it on my accounts, and you never open an AI account or watch a meter. What is not: ad spend, and any software your business already pays for on its own.</p></details>
       <details><summary>What happens in the first month?</summary><p>The audit first: we map where your hours actually go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt. It proves itself before anything widens.</p></details>
-      <details><summary>Can I cancel?</summary><p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack by design, so there is nothing to hand back or log out of: your domain, your content and your data leave with you, and the build and the hosting end with the subscription. Nothing is charged after.</p></details>
+      <details><summary>Can I cancel?</summary><p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack by design, so there is nothing to hand back or log out of: your domain, your content and your data leave with you, and I do not keep a copy; the build and the hosting end with the subscription. Nothing is charged after.</p></details>
       <details><summary>Do I have to manage any of the tech?</summary><p>No. Every plan on this site, R2 Hosting and Your Dojo, is built on my stack and stays there: the hosting, the app stack, the database, the mail plumbing, every setting that holds it together. It is the same stack my own four businesses run on, and it is why the price is flat. For you that means no hosting dashboard, no database console, no certificate to renew, no password to keep somewhere safe, and no bug that is yours to fix. When something needs changing, you tell me. What is yours, always: your domain, your content and your data, and they leave with you if you go. Want the build inside your own accounts instead, as a thing you own outright? That is a custom job, quoted in writing, and it costs more, because every login, registrar setting and card approval on your side is an hour of the build.</p></details>
       <details><summary>What is an Agentic CMO?</summary><p>The same idea as a fractional CTO, with the work done by trained AI ninjas instead of a person on a day rate. A Master is a seat: a job title a payroll would recognize, one number it is judged on, and the solutions on this page working under it. Six seats exist, and all six have run my own businesses and are for sale. A Master never widens a ninja's lane. Every send, pay and post still waits for your press.</p></details>
       <details><summary>Can somebody's AI assistant deal with you instead of them?</summary><p>Yes, and this page is built for it. The solutions list and both prices are in a tool an assistant can read, and the mailbox is a tool it can call. What it posts lands where a person's message lands, and the reply goes to the person it was sent for, not to the robot. Your own website can be made to do the same, and that is one of the things I build.</p></details>

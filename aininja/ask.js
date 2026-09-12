@@ -139,7 +139,7 @@
     {id:"is-ai-safe", q:"Is AI safe to use in my business?",
      alt:["is ai safe","is it safe","safe to use","make things up","makes things up"],
      keys:"safe safety secure security harm mistake mistakes hallucinate hallucination hallucinates invent invents made up lie lies lying trust trusted",
-     a:"<p>Safe the way a power tool is safe: with the guards on. The real risks are not a hidden mind. They are over-trust, bad data, and letting it make a high-stakes decision with nobody checking.</p><p>So the Dojo removes exactly those. Every ninja starts at white belt and only proposes; a human presses every send, pay and post. Answers come only from facts you verified, and a question outside them gets \"I don't know\" rather than an invention. One switch pauses every metered AI call. Your domain, your content and your data stay yours.</p><p>How I run it myself: the desk at my gym drafts every reply from answers I wrote, a person presses send, and my spa's desk agent has two off switches the owner can flip without calling me. Guards first, then the speed.</p>"},
+     a:"<p>Safe the way a power tool is safe: with the guards on. The real risks are not a hidden mind. They are over-trust, bad data, and letting it make a high-stakes decision with nobody checking.</p><p>So the Dojo removes exactly those. Every ninja starts at white belt and only proposes; a human presses every send, pay and post. Answers come only from facts you verified, and a question outside them gets \"I don't know\" rather than an invention. One switch pauses every AI call. Your domain, your content and your data stay yours.</p><p>How I run it myself: the desk at my gym drafts every reply from answers I wrote, a person presses send, and my spa's desk agent has two off switches the owner can flip without calling me. Guards first, then the speed.</p>"},
 
     {id:"safer-ai", q:"Is one AI safer than another?",
      alt:["safer than","which ai is safer","which ai is safest","safest ai","which is safer","is one ai safer","any one ai safer","grok","anthropic","xai","differences between","compare the ais","which ai is best","which is the best ai","most cautious"],
@@ -170,7 +170,7 @@
     {id:"which-ai", q:"Which AI do you use?",
      alt:["which ai","what ai do you use","do you use","which model","what model","which llm","which company","which companies"],
      keys:"chatgpt claude gemini openai anthropic google copilot grok model models tool tools brand vendor company companies",
-     a:"<p>The AI companies' models, and the tools change every month, so I do not carve a name into this page. What does not change: the model sits behind a switch on my stack, and your way of working is written down properly and handed to every ninja, so a change of model takes nothing with it. Which one I would put under your Dojo, and why, is a straight answer in the mailbox.</p>"},
+     a:"<p>The AI companies' models, and the tools change every month, so I do not carve a name into this page. What does not change: the models run on my accounts, inside the price, behind a switch, and your way of working is written down properly and handed to every ninja, so a change of model takes nothing with it and costs you nothing to think about. Which one I would put under your Dojo, and why, is a straight answer in the mailbox.</p>"},
 
     {id:"data-privacy", q:"Is my data safe? Who sees my customer information?",
      alt:["my data","customer data","our data","privacy","private","gdpr","confidential","confidentiality"],
@@ -252,7 +252,7 @@
     {id:"cost", q:"What does it cost?",
      alt:["how much","what does it cost","what does this cost","what do you charge","your prices","your pricing","the price","pricing","cost"],
      keys:"cost costs price prices pricing charge charges fee fees month monthly dollar dollars usd expensive cheap afford affordable budget rate rates 2222 222 99 999 hosting custom",
-     a:"<p>Your Dojo is $2,222 a month: I build it, host it, and help you run it; your team presses every send. Monthly, cancel anytime, effective at the end of the paid month. Smaller need? R2 Hosting is the entry level: I build your site or small app and host it on my stack, $222 to build, then $99 a month or $999 a year. Want the whole day run for you, or something bigger than one Dojo? That is not a card on the page: it is a custom price, and we talk first. Start with the quiz: it tells you which one fits.</p><p>Two things are true whichever you pick. Building a product you sell, an app, a site, a backend, is separate work, scoped and agreed in writing before the clock starts. And third-party costs are not in the price: ad spend, and any AI usage or software your business needs beyond the build.</p>",
+     a:"<p>Your Dojo is $2,222 a month: I build it, host it, and help you run it; your team presses every send. Monthly, cancel anytime, effective at the end of the paid month. Smaller need? R2 Hosting is the entry level: I build your site or small app and host it on my stack, $222 to build, then $99 a month or $999 a year. Want the whole day run for you, or something bigger than one Dojo? That is not a card on the page: it is a custom price, and we talk first. Start with the quiz: it tells you which one fits.</p><p>Two things are true whichever you pick. Building a product you sell, an app, a site, a backend, is separate work, scoped and agreed in writing before the clock starts. And the AI is in the price: I run it on my accounts, and you never open an AI account or watch a meter. What is not: ad spend, and any software your business already pays for on its own.</p>",
      link:{href:"#quiz", label:"Start with the quiz"}},
 
     {id:"build-cost", q:"How much does a build cost, like a chat box or an app?",
@@ -288,7 +288,7 @@
     {id:"included", q:"What exactly is included in Your Dojo?",
      alt:["included in your dojo","included in the 2222","included in the 2,222","what do I get for","what is included","what's included","whats included","what do I get","get for my money","what am I paying for","exactly is included"],
      keys:"included include includes exactly inside covers cover comes with paying",
-     a:"<p>Your Dojo, $2,222 a month, straight off the card. The audit first: where the hours go, mapped with you. I build your Dojo: the command center, the trained AI ninjas, the factories behind your repeated work. I host it on my stack and keep it running: domain, SSL, backups, updates. Nothing for you to log into, renew or fix. Your team runs the daily DO; every send, pay and post stays behind your press. Me on call as your sensei: belts advance, new ninjas join as you grow. Not included: running your daily work for you (I help you run it, I am not on your staff; the whole day run for you, or something bigger than one Dojo, is a custom price talked about first), building products you sell (a separate engagement, scoped in writing first), and third-party costs, ad spend and any AI usage or software your business needs beyond the build.</p>",
+     a:"<p>Your Dojo, $2,222 a month, straight off the card. The audit first: where the hours go, mapped with you. I build your Dojo: the command center, the trained AI ninjas, the factories behind your repeated work. I host it on my stack and keep it running: domain, SSL, backups, updates. Nothing for you to log into, renew or fix. The AI is in the price. I run it on my accounts: you never open an AI account, hold a key, watch a meter or keep up with which model is best this month. Your team runs the daily DO; every send, pay and post stays behind your press. Me on call as your sensei: belts advance, new ninjas join as you grow. Not included: running your daily work for you (I help you run it, I am not on your staff; the whole day run for you, or something bigger than one Dojo, is a custom price talked about first), building products you sell (a separate engagement, scoped in writing first), ad spend, and any software your business already pays for on its own.</p>",
      link:{href:"#offers", label:"See the card"}},
 
     {id:"contract", q:"Is there a contract or an NDA?",
@@ -306,7 +306,7 @@
     {id:"cancel", q:"Can I cancel?",
      alt:["cancel","lock in","locked in","commitment","minimum term","tied in","how long am i"],
      keys:"cancel cancelling cancellation contract contracts lock locked commit commitment minimum term terms subscription quit stop leave leaving refund refunds notice",
-     a:"<p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack by design, so there is nothing to hand back or log out of: your domain, your content and your data leave with you, and the build and the hosting end with the subscription. Nothing is charged after.</p>"},
+     a:"<p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack by design, so there is nothing to hand back or log out of: your domain, your content and your data leave with you, and I do not keep a copy; the build and the hosting end with the subscription. Nothing is charged after.</p>"},
 
     {id:"how-to-start", q:"How do I start? Is there a call, or do I just pay?",
      alt:["how do i start","how do we start","how to start","where do we start","where do i start","get started","getting started","do i just pay","just pay","start now","ready to start","sign up","signup","sign me up","the intake","fill in the intake","invite link","start today"],
@@ -372,12 +372,12 @@
     {id:"ownership", q:"Who owns what gets built, and do I have to manage any of it?",
      alt:["who owns","do i own","own the code","own it","if i leave","what happens if i cancel","what happens if i stop","take it with me","where does it live","who hosts it","do i have to manage","have to manage","your servers","your stack","my own accounts","in my own accounts","in my accounts"],
      keys:"own owns ownership owner keep keeps code accounts leave leaving stays yours mine belong belongs ip intellectual property hostage stack servers server manage managed lives",
-     a:"<p>The build is mine, and it lives on my stack: that is what keeps the price flat, and it means you never log into a server, renew a certificate or fix a bug. When something needs changing, you tell me. Your domain, your content and your data are yours, always, and they leave with you. Cancel and the hosting ends with the paid month; nothing is charged after.</p><p>Want the build inside your own accounts instead, as a thing you own outright? That is a custom job, quoted in writing, and it costs more, because every login, registrar setting and card approval on your side is an hour of the build.</p>"},
+     a:"<p>The build is mine, and it lives on my stack: that is what keeps the price flat, and it means you never log into a server, renew a certificate or fix a bug. When something needs changing, you tell me. Your domain, your content and your data are yours, always, and they leave with you; I do not keep a copy. Cancel and the hosting ends with the paid month; nothing is charged after.</p><p>Want the build inside your own accounts instead, as a thing you own outright? That is a custom job, quoted in writing, and it costs more, because every login, registrar setting and card approval on your side is an hour of the build.</p>"},
 
     {id:"third-party", q:"Are there other costs? AI subscriptions, software?",
      alt:["other costs","extra costs","hidden costs","hidden fees","third party","third-party","ai subscription","ai subscriptions","api costs","token costs","on top of"],
      keys:"extra hidden other third party costs subscriptions software tools accounts api tokens usage bills bill top",
-     a:"<p>Third-party costs are not in the price: ad spend, and any AI usage or software your business needs beyond the build. I do not mark them up. One switch in the Dojo pauses every metered AI call, and a weekly line tells you what the agents cost.</p>"},
+     a:"<p>The AI is in the price. I run the models on my own accounts, as part of the service: you never open an AI account, hold a key, watch a meter or keep up with which model is best this month. Not in the price: ad spend, and any software your business already pays for on its own. One switch in the Dojo pauses every AI call.</p>"},
 
     {id:"helpings", q:"Can you just do one small thing for me?",
      alt:["one small thing","small job","small task","just one thing","a quick fix","quick fix","a flyer","flyers","business cards","a logo","the helpings","a helping","small request"],
@@ -580,7 +580,7 @@
     "email-the-ninja":"Ask it the question you would ask me. The answer you get is the answer your customers would get from yours.",
     "who-is-rick":"A sensei's job is taking you from white belt to black without skipping the proving part. Same job here.",
     "ownership":"Own the result, not the plumbing. If you want to own the plumbing too, say so up front and I will price it.",
-    "third-party":"Ask any builder for a weekly line on what the agents cost. If they cannot show it, they are not measuring it.",
+    "third-party":"The bill that surprises people is never the flat one. Ask any builder which meters are yours to watch. Here, none.",
     "helpings":"The small thing you have wanted for a year is usually an afternoon. Name it.",
     "marketing":"Do the ad math before the ad account. If the numbers do not work on paper, no budget fixes them.",
     "languages":"A guest answered in their own language books. One who waits for a translation calls the shop next door.",
