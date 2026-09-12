@@ -151,9 +151,9 @@
       intro: "The login question decides half the design.",
       qs: [
         { id: "operator", label: "Once it stands, who runs the daily work?", type: "single", essential: true,
-          ask: "Once it is built, who runs the daily work: you, your staff, or Rick's team (Sensei runs it)?", options: [
+          ask: "Once it is built, who runs the daily work: you, your staff, or would you want Rick's team to (a custom price, talked about first)?", options: [
           { v: "me", label: "I do (Your Dojo)" },
-          { v: "rick", label: "Rick's team does (Sensei runs it)" },
+          { v: "rick", label: "Rick's team. A custom price, talk first" },
           { v: "staff", label: "A member of my staff does" },
           { v: "undecided", label: "Not decided. Help me choose" } ] },
         { id: "users", label: "Who logs in?", type: "single", essential: true,
@@ -231,11 +231,11 @@
           { v: "month", label: "This month" }, { v: "1-3", label: "In one to three months" },
           { v: "after", label: "After a date or an event", more: true }, { v: "norush", label: "No rush. I am exploring" } ] },
         { id: "tier", label: "Which offer are you leaning towards?", type: "single", essential: true,
-          ask: "Which offer are you leaning towards: Sensei runs it, Your Dojo, or a one-off build?", options: [
-          { v: "sensei", label: "Sensei runs it, $4,444 a month", note: "I build it, I run it too" },
-          { v: "dojo", label: "Your Dojo, $2,222 a month", note: "I build it, you run it" },
-          { v: "build", label: "A one-off build, scoped in writing first" },
+          ask: "Which offer are you leaning towards: Your Dojo, R2 Hosting, a one-off build, or something custom?", options: [
+          { v: "dojo", label: "Your Dojo, $2,222 a month", note: "I build it, host it, and help you run it" },
           { v: "r2s", label: "R2 Hosting: $222 to build, then $99 a month or $999 a year", note: "I build it, host it and manage the hosting on my stack" },
+          { v: "build", label: "A one-off build, scoped in writing first" },
+          { v: "custom", label: "Bigger than Your Dojo, or run for me: a custom price, talk first" },
           { v: "unsure", label: "Not sure yet" } ] },
         { id: "first", label: "What should be built first?", type: "single", options: [
           { v: "hurts", label: "The thing that hurts most", more: true },

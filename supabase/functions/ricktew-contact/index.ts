@@ -65,7 +65,7 @@ const ALLOWED_ORIGINS = [
 const SUBJECTS: Record<string, string> = {
   hours: 'Hours back: the inbox, the bookings, the admin',
   build: 'Build me something',
-  dojo: 'Which fits me, Sensei runs it or Your Dojo',
+  dojo: 'Which fits me, Your Dojo or R2 Hosting',
   slot: 'A mailbox or an answer box like this',
   hininja: 'The HI Ninja side',
   other: 'Something else',

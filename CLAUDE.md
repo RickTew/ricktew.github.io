@@ -116,6 +116,59 @@ The other dollar signs on the page are not Rick's price: `$5` is the POS
 vendor's per-staff fee inside his own story, and `$20 / $30 / $60` are the
 quiz asking the reader what their own hour is worth. Leave them.
 
+### ONE DOJO PRICE SINCE 2026-09-12: Sensei runs it is OFF THE PAGE, by Rick's ruling
+
+Rick, 12 Sep 2026: "remove or adjust the pricing for 4444 to a custom
+scenario, or remove it for now ... we don't want to get in the trap of
+building for them at too low of a rate ... two simple plans that meet most
+everyone. Tiny small business will choose the 222 and not take up our time.
+More active will take the 2222, and anyone bigger will likely be okay with a
+higher custom price that we can talk about. So it will be I build it, host
+it, and help you run it, but we are not employees doing all their work."
+
+What that is on the site now:
+
+- **Two cards in `#offers`:** **Your Dojo, $2,222 / month** (now the `hot`
+  card, headline in Rick's words "I build it, host it, and help you run
+  it.") then **R2 Hosting, $222 once** ("Start here"). The `.price-cards`
+  grid is two columns, max 860px.
+- **"Run it for me" and "bigger than one Dojo" are a custom price, talked
+  about first.** That sentence is the Your Dojo card's first not-included
+  line, the honest paragraph under the cards, the FAQ cost answer, the
+  chat box (`cost`, `tiers`, `included`), llms.txt, the quiz result and the
+  R2 page. It is NOT a card, NOT a number, NOT a "seats left" line.
+- **The quiz has one tier.** `driver` = "you" or "nobody" no longer picks a
+  $4,444 tier; it shapes the sentence (the custom conversation) and adds
+  "Wants the daily work run for them: custom price, talk first" to the
+  summary that rides into the slot. `priceNum` is 2222.
+- **Every other surface followed:** the Claudeforce band's price cell and
+  "Who runs it" row, the `#agent` band, the WebMCP read tool (key
+  `offers`, was `monthly_offers`), the mailbox subject `dojo` ("Which fits
+  me, Your Dojo or R2 Hosting?") on the page AND in
+  `ricktew-contact/index.ts` (redeployed 12 Sep), the Terms (section 1,
+  the offer list, "Seats on Your Dojo", dated 12 September 2026), the R2
+  page's comparison table (two columns) and FAQ, the intake catalog
+  (`operator` option `rick` relabelled "Rick's team. A custom price, talk
+  first"; `tier` option `sensei` replaced by `custom`; redeployed with
+  `deploy.sh` 12 Sep), and the agent-door build (one monthly Offer).
+- **The one claim worth Rick's eye:** the Your Dojo card now says "I host
+  it and keep it running ... in accounts opened in your name, so it stays
+  yours if we part ways", written to stay inside Terms section 4 (accounts
+  in the client's name; R2 Hosting is the one exception on Rick's stack).
+  If Rick means the Dojo is hosted on HIS stack like R2, section 4, the
+  Claudeforce "What you own" row, the cancel FAQ and the R2 table's "Where
+  it lives" all change with it. Not done without his word.
+- **Not touched:** the Stripe product "Sensei Runs It" on Tew's Inc (it
+  has no public link; archive it there if wanted), the Dojo's own copies
+  (`site/legal/terms.html`, `site/dojo-landing-v2.html`), and the playtest
+  reports, which are history. The golden test still lands "sensei runs it"
+  on `tiers`, whose answer says the card is off the page and points at
+  the custom conversation.
+
+The evidence-based ruling of 26 Aug (visible prices, no anchors, no paid
+first call, a free first contact) still stands; it just applies to two
+cards now.
+
 ### The live row: no claim sentence any more (2026-08-28)
 
 The apps section used to promise every capture was "exactly as it loads for

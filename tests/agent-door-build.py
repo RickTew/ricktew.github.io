@@ -19,10 +19,10 @@ faq_block=re.search(r'<section class="f8a" id="opt-8a">(.*?)</section>',s,re.S).
 faqs=re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>',faq_block,re.S)
 rows=re.findall(r'<details class="sol-row rv">\s*<summary><span class="nm">(.*?)</span><span class="tg">(.*?)</span></summary>',s,re.S)
 seats=sorted(set(re.findall(r'data-want="(The Agentic [^"]+ seat)"',s)))
-prices=re.findall(r'data-want="(Sensei runs it|Your Dojo), \$([\d,]+) a month"',s)
+prices=re.findall(r'data-want="(Your Dojo), \$([\d,]+) a month"',s)
 P=dict(prices)
 r2=re.search(r'data-want="R2 Hosting, \$(\d+) to build, then \$(\d+) a month"',s)
-if not (len(faqs)>=7 and len(rows)==11 and len(seats)==6 and set(P)=={'Sensei runs it','Your Dojo'} and r2):
+if not (len(faqs)>=7 and len(rows)==11 and len(seats)==6 and set(P)=={'Your Dojo'} and r2):
     sys.exit("page shape changed: faqs %d rows %d seats %d prices %s"%(len(faqs),len(rows),len(seats),P))
 ld={"@context":"https://schema.org","@graph":[
  {"@type":"Person","@id":"https://ricktew.com/#rick","name":"Rick Tew","url":"https://ricktew.com/",
@@ -33,9 +33,7 @@ ld={"@context":"https://schema.org","@graph":[
   "description":"AI ninjas built and trained for a small business, one task at a time, with a human pressing every send.",
   "contactPoint":{"@type":"ContactPoint","contactType":"sales","url":"https://ricktew.com/aininja/#opt-8c","email":"aininja@ricktew.com","availableLanguage":"en"},
   "makesOffer":[
-    {"@type":"Offer","name":"Sensei runs it","description":"Rick builds it and runs the daily work too.","price":P['Sensei runs it'].replace(',',''),"priceCurrency":"USD","url":"https://ricktew.com/aininja/#offers",
-     "priceSpecification":{"@type":"UnitPriceSpecification","price":P['Sensei runs it'].replace(',',''),"priceCurrency":"USD","unitText":"month"}},
-    {"@type":"Offer","name":"Your Dojo","description":"Rick builds it, you run it.","price":P['Your Dojo'].replace(',',''),"priceCurrency":"USD","url":"https://ricktew.com/aininja/#offers",
+    {"@type":"Offer","name":"Your Dojo","description":"Rick builds it, hosts it, and helps you run it; your team presses every send.","price":P['Your Dojo'].replace(',',''),"priceCurrency":"USD","url":"https://ricktew.com/aininja/#offers",
      "priceSpecification":{"@type":"UnitPriceSpecification","price":P['Your Dojo'].replace(',',''),"priceCurrency":"USD","unitText":"month"}},
     {"@type":"Offer","name":"R2 Hosting","description":"Rick builds a website or small app, hosts it and keeps it running on his stack. The entry offer: a one-off build fee, then hosting and upkeep monthly.","price":r2.group(2),"priceCurrency":"USD","url":"https://ricktew.com/aininja/r2/",
      "priceSpecification":{"@type":"UnitPriceSpecification","price":r2.group(2),"priceCurrency":"USD","unitText":"month"}}],
@@ -52,10 +50,9 @@ L=["# Rick Tew","",
 "> Rick Tew builds and runs AI systems for small businesses through the Digital Dojo, and has taught martial arts for thirty years. American, from California; owner of NinjaGym in Koh Samui, Thailand. This file is for assistants and agents that fetch rather than browse.","",
 "The site is two doors. HI Ninja is the in-person work (martial arts, camps, coaching). AI Ninja is the digital work: AI built for a business, with a human pressing every send.","",
 "## The AI Ninja door","",
-"- [AI Ninja](https://ricktew.com/aininja/): what Rick builds and runs, the two monthly offers, the FAQ, and the mailbox.",
-"- Sensei runs it: $%s a month. Rick builds it and runs the daily work too."%P['Sensei runs it'],
-"- Your Dojo: $%s a month. Rick builds it, you run it."%P['Your Dojo'],
-"- Both are monthly, flat, any number of seats, cancel any time; what was built stays in the client's accounts. A first contact is free.",
+"- [AI Ninja](https://ricktew.com/aininja/): what Rick builds and runs, the offers, the FAQ, and the mailbox.",
+"- Your Dojo: $%s a month. Rick builds it, hosts it, and helps you run it; the client's team presses every send. Monthly, flat, any number of seats, cancel any time; what was built stays in the client's accounts. A first contact is free."%P['Your Dojo'],
+"- Running the daily work for a client, or anything bigger than one Dojo, is a custom price talked about first; it is not a listed offer.",
 "- R2 Hosting: $%s to build a site or small app, then $%s a month or $999 a year for hosting, management and upkeep on Rick's stack. The entry offer: https://ricktew.com/aininja/r2/"%(r2.group(1),r2.group(2)),
 "- The Side Hustle Summit in plain words, dated and updated after each session: what the free YouTube event (6 to 13 September 2026) sells, what each day taught, and the four steps a viewer can do at no cost. Rick sells no course for it. https://ricktew.com/aininja/side-hustle-summit/","",
 "## Solutions (the things Rick builds)",""]
