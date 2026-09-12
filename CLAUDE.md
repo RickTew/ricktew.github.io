@@ -151,19 +151,72 @@ What that is on the site now:
   (`operator` option `rick` relabelled "Rick's team. A custom price, talk
   first"; `tier` option `sensei` replaced by `custom`; redeployed with
   `deploy.sh` 12 Sep), and the agent-door build (one monthly Offer).
-- **The one claim worth Rick's eye:** the Your Dojo card now says "I host
-  it and keep it running ... in accounts opened in your name, so it stays
-  yours if we part ways", written to stay inside Terms section 4 (accounts
-  in the client's name; R2 Hosting is the one exception on Rick's stack).
-  If Rick means the Dojo is hosted on HIS stack like R2, section 4, the
-  Claudeforce "What you own" row, the cancel FAQ and the R2 table's "Where
-  it lives" all change with it. Not done without his word.
-- **Not touched:** the Stripe product "Sensei Runs It" on Tew's Inc (it
-  has no public link; archive it there if wanted), the Dojo's own copies
-  (`site/legal/terms.html`, `site/dojo-landing-v2.html`), and the playtest
-  reports, which are history. The golden test still lands "sensei runs it"
-  on `tiers`, whose answer says the card is off the page and points at
-  the custom conversation.
+- **Not touched:** the Dojo's own copies (`site/legal/terms.html`,
+  `site/dojo-landing-v2.html`) and the playtest reports, which are history.
+  The golden test still lands "sensei runs it" on `tiers`, whose answer
+  says the card is off the page and points at the custom conversation.
+- **The Stripe product "Sensei Runs It" ($4,444) stays on Tew's Inc, by
+  Rick's word the same day:** not archived, it becomes the Custom option he
+  sends when a bigger in-house request comes ("we build, and we are on call
+  for that month to help, on call by chat not phone"). Verified 12 Sep that
+  no Payment Link points at it (the only link on the account is a 2022
+  Thailand training add-on). Renaming it there is his call, not done.
+
+### EVERY PLAN LIVES ON RICK'S STACK (2026-09-12, later the same day, Rick's ruling)
+
+His words: "host it is my stack and we are only going to work with our
+stack and not do the headache of other people's stacks unless CUSTOM here
+and there." The why, from helping others in their own house: the logins and
+sign-ins waste the most time; the registrar and its settings, every app
+stack setup, the database, hosting, email, and needing the client's credit
+card approval for each service is "a giant pain"; owning the builds also
+protects him and is what lets him do it cheaper. And the rule for the copy:
+**explain it only where needed, benefit first, never the fear.** Most
+customers do not understand tech and get defensive if it is over-explained;
+the ones who let him run it grasp the benefit fast: nobody wants to jump
+into their tech to change a page, fix a bug or manage the back end.
+
+What that is on the site now (all pushed 12 Sep):
+
+- **The claim, everywhere it is made:** every offer is built, hosted and
+  managed on Rick's own stack, in his accounts (hosting, app stack,
+  database, mail plumbing, settings). The build, the code and the
+  configuration are his. **What is the client's, always: their domain,
+  their content and their data,** and those leave with them; the build and
+  the hosting end with the subscription, nothing charged after. A build
+  inside the client's own accounts, so they own the machinery outright, is
+  a **custom job, quoted in writing, and costs more** because every login,
+  registrar setting and card approval on their side is an hour.
+- **Where it is explained (and nowhere else):** the Terms section 4, now
+  "Where it lives, and what is yours" (the contract carries the full
+  statement; section 1's custom line adds "on call by chat, not by phone,
+  for the month of the build"; section 3's work-in-progress line); a new
+  band `#why` on `/aininja/r2/` ("You get the result. I keep the
+  plumbing.", four benefit tiles, one honest line, linked from its nav as
+  "Why my stack"); a new FAQ on `/aininja/`, "Do I have to manage any of
+  the tech?" (in the JSON-LD via the build); the chat box `ownership`
+  entry (now also answers "where does it live" and "do I have to manage").
+- **Where the old claim was quietly corrected:** the Your Dojo card's
+  hosting bullet ("on my stack ... nothing for you to log into, renew or
+  fix") and third-party line; the honest paragraph under the cards; the
+  Claudeforce "What you own" row (it now concedes the build ends with the
+  subscription, same as theirs, and points at custom); the cancel FAQ; the
+  Claudeforce FAQ; the R2 table's "Where it lives" (both "My stack, your
+  domain"); llms.txt; and six chat-box entries (`is-ai-safe`, `which-ai`,
+  `data-privacy`, `contract`, `cancel`, `third-party`) plus two Tew Tips.
+  The intake's `access` question is reframed: the only access needed is
+  for what stays theirs (domain, mail, tools to move out of); "build on
+  new accounts in my name" is now "I want it built inside my own accounts
+  (a custom job, quoted first)", same value `fresh`; the `tier` custom
+  label names in-house. Redeployed with `deploy.sh`.
+- **Third-party costs** are still not in the price, phrased as "ad spend,
+  and any AI usage or software your business needs beyond the build"; the
+  old "your AI account, in your name" is gone. **Whose key the ninjas run
+  on (his, inside the price, or the client's, metered to them) is NOT
+  ruled;** the copy is written to be true either way. Ask before promising.
+- **"Your data leaves with you"** is now a commitment in the Terms and on
+  the page: an export on exit. Rick has not said what form it takes; the
+  R2 page already promised domain and content, this adds records.
 
 The evidence-based ruling of 26 Aug (visible prices, no anchors, no paid
 first call, a free first contact) still stands; it just applies to two

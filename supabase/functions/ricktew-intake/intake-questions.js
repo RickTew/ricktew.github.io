@@ -169,17 +169,17 @@
           { v: "staff-no-money", label: "Staff see customers, not the money" },
           { v: "accountant-money", label: "The accountant sees the money only" },
           { v: "define", label: "I want to define this myself", more: true } ] },
-        { id: "access", label: "Setting up needs access to your accounts. Which suits you?", type: "single", essential: true,
+        { id: "access", label: "Setting up touches a few things in your name. Which suits you?", type: "single", essential: true,
           explain: { title: "What each of these means", items: [
-            ["Give me access", "You share the logins (email, domain, the tools) for the setup and change the passwords after. Fastest. Everything stays in your name."],
+            ["Where it lives", "Every plan on this site, R2 Hosting and Your Dojo, is built on my stack and stays there: nothing for you to log into, renew or fix, and one hosting fee that includes the management. The only access I need is for what stays yours: your domain, and anything moving over."],
+            ["Give me access", "You share the logins for what stays in your name (the domain, the email, the tools I am moving things out of) for the setup, and change the passwords after. Fastest."],
             ["Be in the room", "We set it up together, on a call or in person. You type the passwords, I never see them. Slower, and fine."],
-            ["Fresh accounts", "I open new accounts in your name and build on those. Nothing of yours is shared. Good when the old accounts are a mess or belong to somebody else."],
-            ["Or: I host it (R2 Hosting)", "I build it, host it and manage it on my own stack, and you pay one hosting fee that includes the management. No accounts to share at all. Pick it under the offers, further down."]
+            ["My own accounts", "You want the build inside your own accounts, in your name, so you own the machinery outright. That is a custom job, quoted in writing first, because every login and setting on your side adds hours."]
           ] },
-          ask: "How do you want to handle access to your accounts during setup: hand it over, be in the room, or start on fresh accounts in your name?", options: [
-          { v: "handover", label: "I can give you access to my accounts", note: "email, domain, tools; changed after" },
+          ask: "How do you want to handle access to what stays in your name (domain, email, tools) during setup: hand it over, be in the room, or do you want the whole build inside your own accounts, which is a custom job?", options: [
+          { v: "handover", label: "I can give you access to what needs moving", note: "domain, email, tools; changed after" },
           { v: "room", label: "I want to be in the room when you set things up" },
-          { v: "fresh", label: "No shared logins. Build on new accounts in my name" } ] },
+          { v: "fresh", label: "I want it built inside my own accounts", note: "a custom job, quoted first" } ] },
         { id: "owns", label: "Who owns these today?", hint: "Tap what is in YOUR name.", type: "multi", options: [
           { v: "domain", label: "The domain name" }, { v: "hosting", label: "The website hosting" },
           { v: "email", label: "The business email" }, { v: "socials", label: "The social accounts" },
@@ -235,7 +235,7 @@
           { v: "dojo", label: "Your Dojo, $2,222 a month", note: "I build it, host it, and help you run it" },
           { v: "r2s", label: "R2 Hosting: $222 to build, then $99 a month or $999 a year", note: "I build it, host it and manage the hosting on my stack" },
           { v: "build", label: "A one-off build, scoped in writing first" },
-          { v: "custom", label: "Bigger than Your Dojo, or run for me: a custom price, talk first" },
+          { v: "custom", label: "Custom: inside my own accounts, run for me, or bigger than one Dojo. Talk first" },
           { v: "unsure", label: "Not sure yet" } ] },
         { id: "first", label: "What should be built first?", type: "single", options: [
           { v: "hurts", label: "The thing that hurts most", more: true },
