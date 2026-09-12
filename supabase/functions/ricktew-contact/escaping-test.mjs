@@ -108,6 +108,69 @@ for (const [label, ok] of checks) {
 }
 console.log('');
 console.log('subject line sent:', JSON.stringify(sent.subject));
+
+// ---- The gauntlet, through the REAL handler ----
+//
+// The kit's own test scores the function; this drives the probes through the
+// endpoint and reads what the endpoint DID: a drop must answer exactly like
+// an acceptance (200, ok:true), compose no mail, and write one drop line.
+// The four probes are the real ones from the night of 11 to 12 Sep 2026,
+// which the previous copy of the check scored 2 and let through.
 console.log('');
-console.log(bad === 0 ? 'ALL ESCAPING CHECKS PASSED' : bad + ' CHECK(S) FAILED');
+console.log('-- the gauntlet, through the real handler');
+const probes = [
+  ['NBRRFThoNaJNvSWZJVOsCCbA', 'thangav.e.l.u.s.en.n.iya.ppa.n@gmail.com', 'APSCFUwhpzfBzWkcBbig'],
+  ['RULMjiEseTZnzygGwZHaCA', 'bellachristie@yahoo.com', 'nQwErTyUiOpAsDf'],
+  ['qaYfWZPAEqTFeOpmu', 'adea.n.ho.o.v.er@gmail.com', 'xKcVbNmAsDfG'],
+  ['gDRzEkKJhuoBXBMFM', 'jmanthei@kemkrest.com', 'pLmOkNiJbUhVgY'],
+];
+const people = [
+  ['Somchai', 'somchai.p@gmail.com', 'Interested'],
+  ['McDonald', 'r.mcdonald@gmail.com', 'Call me please'],
+];
+const realLog = console.log;
+async function post(name, email, message) {
+  sent = null;
+  const drops = [];
+  console.log = (...a) => { if (String(a[0]).startsWith('ricktew-contact drop')) drops.push(a.join(' ')); else realLog(...a); };
+  const r = await handler(new Request('https://x/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Origin: 'https://ricktew.com' },
+    body: JSON.stringify({ name, email, subject: 'hours', message, website: '', elapsedMs: 30000, source: '' }),
+  }));
+  console.log = realLog;
+  return { status: r.status, body: await r.text(), mailed: !!sent, drops };
+}
+for (const [name, email, message] of probes) {
+  const r = await post(name, email, message);
+  const ok = r.status === 200 && r.body === '{"ok":true}' && !r.mailed && r.drops.length === 1 && r.drops[0].includes('"reason":"nonsense"');
+  console.log((ok ? '  PASS  ' : '  FAIL  ') + 'probe dropped like an acceptance, no mail, one drop line: ' + JSON.stringify(name));
+  if (!ok) { bad++; console.log('          got', JSON.stringify(r)); }
+}
+for (const [name, email, message] of people) {
+  const r = await post(name, email, message);
+  const ok = r.status === 200 && r.mailed && r.drops.length === 0;
+  console.log((ok ? '  PASS  ' : '  FAIL  ') + 'person mailed, nothing dropped: ' + JSON.stringify(name));
+  if (!ok) { bad++; console.log('          got', JSON.stringify(r)); }
+}
+{
+  // A perfect submission with no Origin header: not a browser, so a drop,
+  // answered like an acceptance.
+  sent = null;
+  const drops = [];
+  console.log = (...a) => { if (String(a[0]).startsWith('ricktew-contact drop')) drops.push(a.join(' ')); else realLog(...a); };
+  const r = await handler(new Request('https://x/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: 'Somchai', email: 'somchai.p@gmail.com', subject: 'hours', message: 'Interested', website: '', elapsedMs: 30000, source: '' }),
+  }));
+  console.log = realLog;
+  const body = await r.text();
+  const ok = r.status === 200 && body === '{"ok":true}' && !sent && drops.length === 1 && drops[0].includes('"reason":"no_origin"');
+  console.log((ok ? '  PASS  ' : '  FAIL  ') + 'no Origin header: dropped like an acceptance, no mail, one drop line');
+  if (!ok) { bad++; console.log('          got', JSON.stringify({ status: r.status, body, mailed: !!sent, drops })); }
+}
+
+console.log('');
+console.log(bad === 0 ? 'ALL ESCAPING AND GAUNTLET CHECKS PASSED' : bad + ' CHECK(S) FAILED');
 process.exit(bad === 0 ? 0 : 1);

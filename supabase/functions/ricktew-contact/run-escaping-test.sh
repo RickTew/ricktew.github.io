@@ -9,5 +9,8 @@ npx --yes -p typescript@5 tsc "$DIR/index.ts" \
   --target esnext --module esnext --outDir "$OUT" --skipLibCheck 2>/dev/null || true
 [ -f "$OUT/index.js" ] || { echo "transpile produced nothing"; exit 1; }
 mv "$OUT/index.js" "$OUT/fn.mjs"
+# The gauntlet is imported as ./gauntlet.ts (Deno wants the extension), and
+# Node 23.6+ reads a .ts file directly, so the source goes in beside fn.mjs.
+cp "$DIR/gauntlet.ts" "$OUT/gauntlet.ts"
 cp "$DIR/escaping-test.mjs" "$OUT/harness.mjs"
 cd "$OUT" && node harness.mjs

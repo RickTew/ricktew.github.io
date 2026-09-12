@@ -45,6 +45,12 @@
 // From is one of our own domains, which is exactly this case, so the
 // agent's reply reaches the visitor and not this machine.
 
+// The nonsense check is the kit's file, copied in verbatim from
+// ~/Dev/digitaldojo/kits/letter-slot/gauntlet.ts. Fix it THERE and re-copy;
+// a local edit here is how this install drifted one point too shy in the
+// first place and let four probe bots through in one night (12 Sep 2026).
+import { gauntletScore } from './gauntlet.ts';
+
 const ALLOWED_ORIGINS = [
   'https://ricktew.com',
   'https://www.ricktew.com',
@@ -130,39 +136,6 @@ function looksLikeEmail(s: string) {
   return /^[^\s@,;:<>"']+@[^\s@,;:<>"']+\.[^\s@,;:<>"']{2,}$/.test(s);
 }
 
-/**
- * The shy one. Machine-written short messages tend to be long, space-free,
- * case-scrambled and link-heavy; real ones are not. Scored rather than
- * matched, applied to SHORT messages only, and deliberately tuned to let
- * marginal cases through, because eating one real customer message is a
- * worse failure than passing one spam. Every drop is logged so the tuning
- * can be done against reality instead of imagination.
- */
-function nonsenseScore(name: string, message: string) {
-  const m = message.trim();
-  if (m.length >= 120) return 0; // a long message is somebody's actual problem
-
-  let score = 0;
-  const longestWord = m.split(/\s+/).reduce((max, w) => Math.max(max, w.length), 0);
-  if (longestWord >= 25) score += 1;
-  if (longestWord >= 40) score += 1;
-
-  const scrambles =
-    (m.match(/[a-z][A-Z]/g) || []).length + (name.match(/[a-z][A-Z]/g) || []).length;
-  if (scrambles >= 3) score += 1;
-  if (scrambles >= 6) score += 1;
-
-  const links = (m.match(/https?:\/\/|\[url|<a\s/gi) || []).length;
-  if (links >= 1) score += 1;
-  if (links >= 3) score += 1;
-
-  const digits = (m.match(/\d/g) || []).length;
-  if (m.length > 0 && digits / m.length > 0.4) score += 1;
-
-  return score;
-}
-
-const NONSENSE_DROP_AT = 3;
 
 /** One line per dropped or unsent message, holding the whole thing, so a
  *  real person the gauntlet ate can still be answered. */
@@ -248,6 +221,23 @@ Deno.serve(async (req) => {
     return json({ error: 'bad_request' }, 400, origin);
   }
 
+  // No Origin header at all: not a browser. Every browser sends Origin on a
+  // cross-site JSON POST, and the page (including its in-page agent tool) is
+  // this endpoint's only legitimate caller. A script replaying the POST does
+  // not send one unless its operator thought to. Found 12 Sep 2026: 221
+  // POSTs in a day against 10 preflights, from a German residential proxy
+  // pool rotating browsers from 2002 to 2012 in the user agent. Answered as
+  // an acceptance and logged, like every other drop, so the day the operator
+  // adds the header shows up in the log and nowhere else.
+  if (!origin) {
+    logDrop('no_origin', {
+      name: typeof p.name === 'string' ? p.name : '',
+      email: typeof p.email === 'string' ? p.email : '',
+      message: typeof p.message === 'string' ? p.message : '',
+    });
+    return json({ ok: true }, 200, origin);
+  }
+
   const str = (v: unknown) => (typeof v === 'string' ? v : '');
   const name = str(p.name).trim();
   const email = str(p.email).trim();
@@ -289,9 +279,9 @@ Deno.serve(async (req) => {
     logDrop('too_fast', { ...seen, elapsedMs });
     return json({ ok: true }, 200, origin);
   }
-  const score = nonsenseScore(name, message);
-  if (score >= NONSENSE_DROP_AT) {
-    logDrop('nonsense', { ...seen, score });
+  const verdict = gauntletScore({ name, email, message });
+  if (verdict.drop) {
+    logDrop('nonsense', { ...seen, score: verdict.score, tells: verdict.tells });
     return json({ ok: true }, 200, origin);
   }
 
