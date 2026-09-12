@@ -398,10 +398,28 @@ sensei note under the price cards on `/aininja/`, `llms.txt`, and invite links.
 ```
 
 It transpiles the real endpoint, stubs only the mailer, drives a hostile
-submission through it and reads every tag in the produced mail. Twelve
-assertions. No secrets, no inbox, runs anywhere. The kata is explicit that
-this is the one check a person reading the code reliably passes and the code
-reliably fails, and two earlier installs shipped that exact bug.
+submission through it and reads every tag in the produced mail, then drives
+four real probe bots, two real people and a POST with no Origin header
+through the real handler. Twenty-one assertions. No secrets, no inbox, runs
+anywhere. The kata is explicit that the escaping half is the one check a
+person reading the code reliably passes and the code reliably fails, and two
+earlier installs shipped that exact bug.
+
+**The nonsense check is the Dojo's file, not this repo's (2026-09-12).**
+`gauntlet.ts` beside `index.ts` is `~/Dev/digitaldojo/kits/letter-slot/gauntlet.ts`
+copied in verbatim; `index.ts` imports it. Fix it in the kit and re-copy,
+never edit the copy: a local rewrite is how the August version drifted one
+point too shy and passed four probes to the Ninja Agent in one night, each
+of which got an answer. Same day, a second wall: a POST with no Origin header
+is dropped like an acceptance (`no_origin` in the log). Every browser sends
+Origin on this cross-site POST, including the page's own WebMCP tool. Be
+clear about what this wall does and does not do: the September bot copies
+the Origin header (its hits after the deploy all dropped as `nonsense` at
+score 5, none as `no_origin`), so the gauntlet is what stops it; the Origin
+wall costs nothing and catches only the careless script. The page's `fetch`
+at the `ENDPOINT` line is the endpoint's only legitimate caller, and
+`llms.txt` points assistants at the tool, not the URL. Keep it that way: a
+new caller that posts from outside a browser is dropped silently.
 
 **Read the drop log monthly for the first quarter.** Supabase logs, filter
 `event_message like '%ricktew-contact drop%'`. A rejected submission is
