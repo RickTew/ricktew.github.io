@@ -14,7 +14,7 @@
 //                     A person's one-word name switches case once at most
 //                     (McDonald, DeAngelo, LaToya). This is the rule the
 //                     shy copy lost, and the rule the two oldest installs
-//                     (NinjaGym, SabaiSen) have dropped on since May 2026.
+//                     have dropped on since May 2026.
 //                     It is scored whatever the message length.
 //   dotted_mailbox    four dots or more in the part before the @. Gmail
 //                     ignores dots, so one account mints endless "unique"
