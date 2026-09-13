@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  :root{
+    --blue:#1273c9; --blue-deep:#0b4d8f; --navy:#0d1b2e; --red:#e21f26;
+    --gold:#ffc41f; --ink:#16263b; --muted:#5d6b7d; --line:#e3eaf2; --bg:#f4f8fc;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  html{font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif;color:var(--ink);}
+  @page{size:A4;margin:0;}
+  .page{position:relative;width:210mm;height:297mm;overflow:hidden;background:#fff;page-break-after:always;}
+  .page:last-child{page-break-after:auto;}
+  .pad{padding:20mm 18mm;}
+  h1,h2,h3{line-height:1.05;letter-spacing:-.01em;}
+  p{line-height:1.6;color:#33445a;font-size:11pt;}
+  .eyebrow{font-size:9pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);}
+  .eyebrow.red{color:var(--red);}
+  .rule{height:4px;width:54px;background:var(--red);border-radius:4px;margin:13px 0 20px;}
+  .shead h2{font-size:29pt;font-weight:800;color:var(--navy);}
+  .shead h2 .b{color:var(--blue);}
+  .lead{font-size:12pt;color:#44566c;line-height:1.5;font-weight:500;}
+
+  .foot{position:absolute;left:18mm;right:18mm;bottom:11mm;display:flex;justify-content:space-between;
+    align-items:center;font-size:8pt;letter-spacing:.1em;text-transform:uppercase;color:#9aa7b6;
+    border-top:1px solid var(--line);padding-top:8px;}
+  .foot b{color:var(--blue-deep);font-weight:700;}
+
+  /* COVER */
+  .cover{background:radial-gradient(120% 90% at 85% 10%, #1a86e0 0%, #0d5aa6 42%, #0a3f7a 100%);color:#fff;}
+  .cover .top{position:absolute;top:16mm;left:18mm;right:18mm;display:flex;justify-content:space-between;align-items:center;}
+  .cover .top img{height:74px;}
+  .cover .top .date{font-size:9pt;letter-spacing:.2em;text-transform:uppercase;opacity:.85;}
+  .cover .hero{position:absolute;top:44mm;left:18mm;right:18mm;}
+  .cover .kick{font-size:9.5pt;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:13px;}
+  .cover h1{font-size:58pt;font-weight:800;color:#fff;}
+  .cover h1 .y{color:var(--gold);}
+  .cover .sub{margin-top:16px;font-size:13.5pt;font-weight:600;color:#dfeeff;max-width:112mm;line-height:1.4;}
+  .cover .tagchip{display:inline-block;margin-top:22px;background:var(--red);color:#fff;font-weight:700;font-size:11pt;
+     padding:11px 20px;border-radius:40px;}
+  .cover .mascot{position:absolute;right:6mm;bottom:34mm;width:104mm;}
+  .cover .tract{position:absolute;left:18mm;bottom:30mm;display:flex;gap:26px;}
+  .cover .tract .ti .n{font-size:21pt;font-weight:800;color:#fff;line-height:1;}
+  .cover .tract .ti .n .u{color:var(--gold);}
+  .cover .tract .ti .l{font-size:7.5pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#bcd6f1;margin-top:5px;}
+  .cover .footbar{position:absolute;left:0;right:0;bottom:0;height:18mm;background:rgba(7,28,54,.55);
+     display:flex;align-items:center;justify-content:space-between;padding:0 18mm;
+     font-size:9pt;letter-spacing:.14em;text-transform:uppercase;color:#cfe2f6;}
+  .cover .footbar b{color:#fff;}
+  .cover .stripes{position:absolute;left:0;top:0;bottom:0;width:8mm;
+     background:repeating-linear-gradient(180deg,var(--red) 0 22px,#c81a20 22px 44px);}
+
+  /* FOUNDER HERO */
+  .heroft{display:grid;grid-template-columns:1fr 1.18fr;border-radius:18px;overflow:hidden;margin-top:16px;min-height:58mm;}
+  .heroft .panel{background:var(--navy);padding:22px 24px;color:#dce8f4;display:flex;flex-direction:column;justify-content:center;}
+  .heroft .panel .e{font-size:8pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);}
+  .heroft .panel h3{font-size:25pt;font-weight:800;color:#fff;margin-top:5px;line-height:1;}
+  .heroft .panel .role{font-size:8.5pt;font-weight:700;color:#9fc1e6;letter-spacing:.04em;margin-top:5px;text-transform:uppercase;}
+  .heroft .panel .real{font-size:11.5pt;font-weight:800;color:var(--gold);margin-top:13px;line-height:1.2;}
+  .heroft .panel ul{list-style:none;margin-top:11px;}
+  .heroft .panel li{font-size:9pt;color:#c4d6ea;padding-left:17px;position:relative;margin-bottom:6px;line-height:1.35;}
+  .heroft .panel li::before{content:"";position:absolute;left:0;top:5px;width:8px;height:8px;background:var(--red);border-radius:50%;}
+  .heroft .panel li b{color:#fff;}
+  .heroft .photo{position:relative;background:#0a3f7a;}
+  .heroft .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block;}
+  .heroft .badge{position:absolute;top:13px;right:13px;background:var(--red);color:#fff;border-radius:50%;width:62px;height:62px;
+     display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.4);}
+  .heroft .badge .b1{font-size:15pt;font-weight:800;line-height:.9;}
+  .heroft .badge .b2{font-size:5.4pt;font-weight:700;letter-spacing:.08em;margin-top:3px;text-align:center;}
+
+  .belowhero{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;align-items:start;margin-top:16px;}
+  .stats{display:flex;gap:10px;margin-top:14px;}
+  .stat{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 18px;text-align:center;}
+  .stat .n{font-size:18pt;font-weight:800;color:var(--blue);line-height:1;}
+  .stat .n .u{font-size:10pt;color:var(--red);}
+  .stat .l{margin-top:5px;font-size:7pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+  .bookbox{display:flex;align-items:center;gap:14px;background:var(--navy);border-radius:13px;padding:14px 16px;}
+  .bookbox img{flex:none;height:33mm;width:auto;}
+  .bookbox .bt{font-size:9pt;color:#cfe0f2;line-height:1.45;}
+  .bookbox .bt b{color:var(--gold);}
+  .sidequote{display:grid;grid-template-columns:1.55fr 1fr;gap:11mm;align-items:center;margin-top:18px;}
+  .sidequote.flip{grid-template-columns:1fr 1.55fr;}
+  .sidequote img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);}
+  .sidequote .q .mk{font-family:Georgia,serif;font-size:46pt;font-weight:800;color:var(--gold);line-height:.4;display:block;}
+  .sidequote .q p{font-size:15.5pt;font-weight:800;color:var(--navy);line-height:1.24;margin-top:12px;}
+  .sidequote .q .sub{font-size:8pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-top:11px;}
+
+  /* ZONES */
+  .zones{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px;}
+  .zone{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;}
+  .zone .cap{height:6px;}
+  .zone .body{padding:13px 14px;}
+  .zone .num{font-size:9.5pt;font-weight:800;color:#fff;display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;margin-bottom:7px;}
+  .zone h3{font-size:12pt;font-weight:800;color:var(--navy);}
+  .zone p{font-size:8.8pt;margin-top:5px;line-height:1.42;color:#566678;}
+  .glabel{font-size:9pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:18px 0 10px;}
+  .collagefull{display:block;width:100%;height:auto;border-radius:14px;}
+
+  /* METHOD */
+  .mlead{font-size:16.5pt;font-weight:800;color:var(--navy);line-height:1.28;max-width:168mm;margin-top:14px;}
+  .mlead .b{color:var(--blue);} .mlead i{color:var(--red);font-style:italic;}
+  .flow{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr;align-items:stretch;margin-top:22px;}
+  .fcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;text-align:center;display:flex;flex-direction:column;}
+  .fcard .cap{height:6px;}
+  .fcard .vis{height:40mm;display:flex;align-items:center;justify-content:center;background:#fff;}
+  .fcard .vis img{max-height:32mm;max-width:78%;}
+  .fcard .body{padding:12px 10px 15px;}
+  .fcard h3{font-size:13pt;font-weight:800;color:var(--navy);}
+  .fcard .jt{font-size:8pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+  .arrow{display:flex;align-items:center;justify-content:center;font-size:18pt;color:var(--red);font-weight:800;}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;margin-top:22px;}
+  .principle{display:flex;gap:11px;}
+  .principle .d{flex:none;width:9px;height:9px;border-radius:50%;background:var(--red);margin-top:6px;}
+  .principle h4{font-size:10.5pt;font-weight:800;color:var(--navy);}
+  .principle .kx{font-family:"Hiragino Sans GB","STHeiti",sans-serif;color:var(--red);}
+  .principle p{font-size:9.2pt;color:#566678;margin-top:2px;line-height:1.42;}
+  .mkanji{font-family:"Hiragino Sans GB","STHeiti",sans-serif;font-weight:700;}
+
+  /* FAMILY BENEFITS */
+  .dropband{margin-top:16px;background:var(--navy);border-radius:16px;padding:20px 26px;color:#fff;
+     display:flex;align-items:center;justify-content:space-between;gap:22px;}
+  .dropband .big{font-size:19pt;font-weight:800;color:#fff;line-height:1.12;flex:none;}
+  .dropband .big .g{color:var(--gold);}
+  .dropband .sub{font-size:10pt;color:#cfe0f2;line-height:1.45;}
+  .twoben{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;}
+  .bencard{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:#fff;}
+  .bencard .h{display:flex;align-items:center;gap:11px;margin-bottom:12px;}
+  .bencard .h .ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16pt;}
+  .bencard h3{font-size:13.5pt;font-weight:800;color:var(--navy);}
+  .bencard ul{list-style:none;}
+  .bencard li{position:relative;padding-left:18px;font-size:9.8pt;color:#445566;margin-bottom:9px;line-height:1.42;}
+  .bencard li:last-child{margin-bottom:0;}
+  .bencard li::before{content:"";position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:50%;background:var(--red);}
+  .bencard li b{color:var(--navy);}
+
+  /* TRACTION */
+  .tband{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:16px;}
+  .tcard{background:var(--navy);border-radius:14px;padding:18px 12px;text-align:center;color:#fff;}
+  .tcard.alt{background:var(--blue);}
+  .tcard .n{font-size:25pt;font-weight:800;line-height:1;}
+  .tcard .n .u{color:var(--gold);}
+  .tcard.alt .n .u{color:#fff;}
+  .tcard .l{margin-top:8px;font-size:7.8pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#bcd2ea;}
+  .tcard.alt .l{color:#e6f0fb;}
+  .proofchip{display:inline-block;margin-top:14px;background:var(--bg);border:1px solid var(--line);border-radius:30px;
+     padding:7px 16px;font-size:9pt;font-weight:700;color:var(--blue-deep);}
+  .spotlight{margin-top:14px;background:var(--blue);border-radius:16px;padding:20px 26px;color:#fff;}
+  .spotlight .kx{font-size:8pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .spotlight .big{font-size:20pt;font-weight:800;color:#fff;line-height:1.12;}
+  .spotlight .big .g{color:var(--gold);}
+  .spotlight p{font-size:10.4pt;color:#eaf2fb;margin-top:9px;line-height:1.45;max-width:160mm;}
+  .spotlight p b{color:#fff;}
+  .ben{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);}
+  .ben:last-child{border-bottom:none;}
+  .ben .ic{flex:none;width:42px;height:42px;border-radius:11px;background:var(--blue);color:#fff;font-weight:800;font-size:15pt;display:flex;align-items:center;justify-content:center;}
+  .ben .ic.red{background:var(--red);} .ben .ic.gold{background:var(--gold);color:var(--navy);}
+  .ben h3{font-size:12pt;font-weight:800;color:var(--navy);margin-bottom:3px;}
+  .ben p{font-size:9.6pt;color:#566678;line-height:1.42;}
+  .bottomline{margin-top:14px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 22px;}
+  .bottomline .e{font-size:8.5pt;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);}
+  .bottomline p{margin-top:6px;font-size:11pt;font-weight:600;color:var(--navy);line-height:1.42;}
+
+  /* APP */
+  .appwrap{display:grid;grid-template-columns:1fr 64mm;gap:11mm;align-items:center;margin-top:20px;}
+  .appwrap .shot{width:100%;border-radius:22px;border:6px solid #0d1b2e;}
+  .feat{display:flex;gap:12px;margin-bottom:13px;}
+  .feat .dot{flex:none;width:10px;height:10px;border-radius:50%;background:var(--red);margin-top:5px;}
+  .feat h3{font-size:11pt;font-weight:800;color:var(--navy);}
+  .feat p{font-size:9.3pt;color:#566678;margin-top:2px;line-height:1.4;}
+  .qrbar{margin-top:18px;background:var(--navy);border-radius:14px;padding:16px 20px;display:flex;align-items:center;gap:16px;color:#fff;}
+  .qrbar .qr{width:70px;height:70px;background:#fff;border-radius:10px;padding:6px;flex:none;}
+  .qrbar .qrtxt h3{font-size:12pt;font-weight:800;color:#fff;}
+  .qrbar .qrtxt p{font-size:9.4pt;color:#cfe0f2;margin-top:4px;line-height:1.4;}
+  .qrbar .qrtxt b{color:var(--gold);}
+  .urlchip{display:inline-block;background:var(--blue);color:#fff;font-weight:700;padding:8px 15px;border-radius:30px;font-size:10pt;}
+
+  /* PROGRAMS */
+  .progrow{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:16px;}
+  .pgcard{border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--line);}
+  .pgcard img{display:block;width:100%;height:30mm;object-fit:cover;}
+  .pgcard .cap{padding:9px 10px;}
+  .pgcard .cap h4{font-size:9pt;font-weight:800;color:var(--navy);line-height:1.1;}
+  .pgcard .cap p{font-size:7.4pt;color:#7a8696;margin-top:3px;line-height:1.32;}
+  .beltwrap{margin-top:16px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:15px 18px;}
+  .belthead{font-size:9.4pt;font-weight:800;letter-spacing:.02em;color:var(--navy);margin-bottom:13px;}
+  .belthead b{color:var(--red);}
+  .belts{display:grid;grid-template-columns:repeat(7,1fr);gap:9px;}
+  .belt{text-align:center;}
+  .belt .bar{display:block;height:15px;border-radius:8px;margin-bottom:7px;border:1px solid rgba(0,0,0,.14);}
+  .belt .nm{font-size:8pt;font-weight:800;color:var(--navy);}
+  .belt small{display:block;font-size:6.8pt;color:#7a8696;margin-top:2px;line-height:1.2;}
+  .belt.bk .bar{border:2px solid var(--gold);}
+
+  /* CLOSE */
+  .close{background:radial-gradient(120% 90% at 20% 0%, #1a86e0 0%, #0d5aa6 45%, #0a3f7a 100%);color:#fff;}
+  .close .pad{display:flex;flex-direction:column;height:100%;}
+  .close h2{font-size:30pt;font-weight:800;color:#fff;}
+  .close h2 .y{color:var(--gold);}
+  .close .lead2{font-size:12pt;color:#dbeafe;max-width:135mm;margin-top:12px;line-height:1.48;}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;}
+  .step{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:13px;padding:14px;}
+  .step .n{width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--navy);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:10pt;margin-bottom:8px;}
+  .step h3{font-size:10.5pt;color:#fff;font-weight:800;}
+  .step p{font-size:8.8pt;color:#cfe2f6;margin-top:4px;line-height:1.38;}
+  .closeimg{display:block;width:100%;height:auto;border-radius:14px;margin-top:16px;}
+  .contact{margin-top:auto;background:rgba(7,28,54,.5);border-radius:16px;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;}
+  .contact .co{font-size:15pt;font-weight:800;color:#fff;}
+  .contact .co span{display:block;font-size:8.5pt;font-weight:600;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-top:4px;}
+  .contact .lines{text-align:right;font-size:9.4pt;color:#dbeafe;line-height:1.6;}
+  .contact .lines b{color:#fff;}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 COVER -->
+<section class="page cover">
+  <div class="stripes"></div>
+  <div class="top">
+    <img src="img/logo.png" alt="Rick Tew's NinjaGym">
+    <div class="date">Partnership Proposal &nbsp;&bull;&nbsp; 2026</div>
+  </div>
+  <div class="hero">
+    <div class="kick">Rick Tew's NinjaGym&reg; &nbsp;|&nbsp; For Kids Ages 3&ndash;10</div>
+    <h1>Bring a <span class="y">NinjaGym</span><br>to your property.</h1>
+    <div class="sub">The real ninja center for kids, by a real ninja. We turn family visits into
+      longer stays, repeat footfall, and a destination kids ask to come back to.</div>
+    <div class="tagchip">Run, Jump, Kick, Climb, and Play like a Ninja!</div>
+  </div>
+  <img class="mascot" src="img/mascot.png" alt="NinjaGym mascot">
+  <div class="tract">
+    <div class="ti"><div class="n">25<span class="u">+</span></div><div class="l">Years a Ninja</div></div>
+    <div class="ti"><div class="n">10,000<span class="u">+</span></div><div class="l">Sessions / Year</div></div>
+    <div class="ti"><div class="n">700<span class="u">+</span></div><div class="l">App Members</div></div>
+  </div>
+  <div class="footbar">
+    <span>Rick Tew Co., Limited &bull; Koh Samui, Thailand</span>
+    <span><b>ninjagym.com</b></span>
+  </div>
+</section>
+
+<!-- PAGE 2 FOUNDER -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">The Founder</div>
+    <div class="rule"></div>
+    <div class="shead"><h2>The real ninja behind<br>Rick Tew's <span class="b">NinjaGym.</span></h2></div>
+    <p style="margin-top:14px;max-width:158mm;">This is <b>Rick Tew's NinjaGym</b>: a real ninja center for
+      kids, created by a real ninja. Not another obstacle-course knock-off faking the name. We transform
+      young lives through movement, mindfulness, and mentorship, an adventure zone where guides train
+      alongside every child, not a traditional dojo and not unstructured play.</p>
+
+    <div class="heroft">
+      <div class="panel">
+        <div class="e">The Mastermind</div>
+        <h3>Rick Tew</h3>
+        <div class="role">Founder &amp; Head Instructor</div>
+        <div class="real">A real ninja for 25+ years.</div>
+        <ul>
+          <li>Creator of <b>RTMS</b>, Rick Tew's Martial Science.</li>
+          <li>Author of <b>Winjitsu</b>, the mental martial art.</li>
+          <li>Internationally recognized <b>peak-performance coach</b>.</li>
+        </ul>
+      </div>
+      <div class="photo">
+        <img src="img/hero_rick.jpg" alt="Rick Tew flying side kick">
+        <div class="badge"><div class="b1">25+</div><div class="b2">YEARS</div></div>
+      </div>
+    </div>
+
+    <div class="belowhero">
+      <div>
+        <p style="font-size:10.2pt;line-height:1.5;">Rick opened his first school at 19 and has taught
+          multi-martial arts around the world ever since. His philosophy is simple, and it is why NinjaGym
+          works: <b>"Be a Ninja in what you Do."</b> Your mental skills take you further than your physical
+          ones, so every program trains both mind and body.</p>
+        <div class="stats">
+          <div class="stat"><div class="n">25<span class="u">+</span></div><div class="l">Years a Ninja</div></div>
+          <div class="stat"><div class="n">5</div><div class="l">Book System</div></div>
+        </div>
+      </div>
+      <div class="bookbox">
+        <img src="img/books.png" alt="Winjitsu books">
+        <div class="bt"><b>Winjitsu&trade;</b><br>The five-book mental martial art: "Be a Black Belt in What You Do."</div>
+      </div>
+    </div>
+
+    <div class="sidequote">
+      <img src="img/inblue.jpg" alt="Rick Tew teaching martial arts around the world">
+      <div class="q">
+        <span class="mk">&ldquo;</span>
+        <p>Teaching martial arts around the world for 25+ years.</p>
+        <div class="sub">Rick Tew &bull; Europe &amp; Asia</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span><b>ninjagym.com</b> &bull; ricktew.com</span><span><b>Rick Tew Co., Limited</b> &bull; Thailand</span></div>
+</section>
+
+<!-- PAGE 3 EXPERIENCE -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow red">The Experience</div>
+    <div class="rule"></div>
+    <div class="shead"><h2>Run, jump, kick, climb,<br>and <span class="b">play like a ninja.</span></h2></div>
+    <p class="lead" style="margin-top:12px;max-width:158mm;">Every session, our guides train alongside the
+      kids through martial arts, climbing, parkour, and ninja obstacles. A structured path, not random play:
+      they learn to jump, roll, balance, and move like a ninja, building confidence, focus, and fitness.</p>
+
+    <div class="zones" style="margin-top:18px;">
+      <div class="zone"><div class="cap" style="background:var(--blue);"></div><div class="body">
+        <div class="num" style="background:var(--blue);">1</div><h3>Climbing</h3>
+        <p>Walls, holds, and obstacles that build grip strength, courage, and coordination.</p></div></div>
+      <div class="zone"><div class="cap" style="background:var(--red);"></div><div class="body">
+        <div class="num" style="background:var(--red);">2</div><h3>Ninja Obstacles</h3>
+        <p>Parkour-style jumps, rolls, and balance challenges that turn energy into agility.</p></div></div>
+      <div class="zone"><div class="cap" style="background:var(--gold);"></div><div class="body">
+        <div class="num" style="background:var(--gold);color:var(--navy);">3</div><h3>Martial Arts</h3>
+        <p>Movement fundamentals with honor and respect, guided by our coaches every step.</p></div></div>
+    </div>
+
+    <div class="glabel">Inside the NinjaGym &middot; real kids, real action</div>
+    <img class="collagefull" src="img/collage_a.jpg" alt="Kids in action at the NinjaGym">
+  </div>
+  <div class="foot"><span><b>ninjagym.com</b> &bull; ricktew.com</span><span><b>Rick Tew Co., Limited</b> &bull; Thailand</span></div>
+</section>
+
+<!-- PAGE 4 THE NINJAGYM METHOD -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">The Philosophy</div>
+    <div class="rule"></div>
+    <div class="shead"><h2>Rick Tew's <span class="b">NinjaGym</span> Method.</h2></div>
+    <p class="mlead">A <span class="b">jutsu</span> is a method. A <span class="b">jitsu</span> is a truth.
+      Our method turns one into the other, so a child does not just <i>learn</i> to be a ninja, they
+      <i>become</i> one in what they do.</p>
+
+    <div class="flow">
+      <div class="fcard"><div class="cap" style="background:var(--blue);"></div>
+        <div class="vis"><img src="img/kanji.png" alt="Nin: patience and endurance" style="max-height:30mm;"></div>
+        <div class="body"><h3>Ninjutsu</h3><div class="jt">The method &middot; jutsu</div></div></div>
+      <div class="arrow">&#10142;</div>
+      <div class="fcard"><div class="cap" style="background:var(--red);"></div>
+        <div class="vis"><img src="img/tobedo.png" alt="To Be, To Do"></div>
+        <div class="body"><h3>Learn by Doing</h3><div class="jt">To Be + To Do</div></div></div>
+      <div class="arrow">&#10142;</div>
+      <div class="fcard"><div class="cap" style="background:var(--gold);"></div>
+        <div class="vis"><img src="img/mascot.png" alt="Ninja"></div>
+        <div class="body"><h3>Ninjitsu</h3><div class="jt">The truth &middot; jitsu</div></div></div>
+    </div>
+
+    <p style="margin-top:20px;max-width:168mm;font-size:11pt;line-height:1.55;color:#33445a;">
+      Kids are guided along a path through three zones, Climbing, Ninja, and Martial Arts, where they
+      <b>learn by doing</b>: to climb, jump, roll, kick, balance, and move like a ninja. The discipline behind
+      it is <b class="mkanji">&#24525;</b>, the ninja symbol of patience and endurance. When a child chooses
+      <b>To Be</b> a ninja and, with our guides, does the work <b>To Do</b>, the method (jutsu) becomes real and
+      lived (jitsu). That is <b>Ninjitsu</b>, and it is why we say: <b>"Be a Ninja in what you Do."</b></p>
+
+    <div class="mgrid">
+      <div class="principle"><div class="d"></div><div><h4>Guided, never just watched</h4>
+        <p>An adventure zone, not a dojo. Our guides train alongside every child, not from the sidelines.</p></div></div>
+      <div class="principle"><div class="d"></div><div><h4><span class="kx">&#24525;</span> Patience &amp; endurance</h4>
+        <p>Consistency over intensity. Small wins, repeated, build focus, courage, and the habit of showing up.</p></div></div>
+      <div class="principle"><div class="d"></div><div><h4>Mind and body together</h4>
+        <p>Through Winjitsu, Rick's mental martial art, because mental skills take you further than physical ones.</p></div></div>
+      <div class="principle"><div class="d"></div><div><h4>For every child</h4>
+        <p>All levels, ages 3 and up, in a safe, encouraging community where every kid can be a ninja.</p></div></div>
+    </div>
+  </div>
+  <div class="foot"><span><b>ninjagym.com</b> &bull; ricktew.com</span><span><b>Rick Tew Co., Limited</b> &bull; Thailand</span></div>
+</section>
+
+<!-- PAGE 5 FOR THE WHOLE FAMILY -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow red">For the Whole Family</div>
+    <div class="rule"></div>
+    <div class="shead"><h2>Loved by kids. <span class="b">Trusted by parents.</span></h2></div>
+    <p style="margin-top:13px;max-width:162mm;">NinjaGym is a true drop-off center. Parents drop and go,
+      kids get moving, and everyone leaves better for it, the energy burned now, the benefits felt long after.</p>
+
+    <div class="dropband">
+      <div class="big">Drop and go.<br><span class="g">We've got them.</span></div>
+      <div class="sub">A safe, supervised, high-energy space with guides who train right alongside the kids,
+        so parents get their time back the moment they walk away.</div>
+    </div>
+
+    <div class="twoben">
+      <div class="bencard">
+        <div class="h"><div class="ic" style="background:var(--blue);">&#9733;</div><h3>For the Kids</h3></div>
+        <ul>
+          <li><b>Real exercise and training</b>, climbing, parkour, and martial arts that build strong, capable bodies.</li>
+          <li><b>Confidence, focus, and coordination</b> that carry into school and everyday life.</li>
+          <li><b>And above all, FUN</b>, the kind of fun they beg to come back for.</li>
+        </ul>
+      </div>
+      <div class="bencard">
+        <div class="h"><div class="ic" style="background:var(--red);">&#10084;</div><h3>For the Parents</h3></div>
+        <ul>
+          <li><b>Instant peace of mind</b>, kids are safe, supervised, and genuinely cared for.</li>
+          <li><b>Time back</b>, free to shop, dine, or relax in the mall while the kids train.</li>
+          <li><b>The payoff later</b>, kids who focus better, behave better, and sleep better.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sidequote flip">
+      <div class="q">
+        <span class="mk">&ldquo;</span>
+        <p>And the best part? They actually sleep.</p>
+        <div class="sub">Every NinjaGym parent, ever</div>
+      </div>
+      <img src="img/photo_camp.jpg" alt="A child looked after at the NinjaGym">
+    </div>
+  </div>
+  <div class="foot"><span><b>ninjagym.com</b> &bull; ricktew.com</span><span><b>Rick Tew Co., Limited</b> &bull; Thailand</span></div>
+</section>
+
+<!-- PAGE 6 WHY PROPERTY + TRACTION -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Proven Traction</div>
+    <div class="rule"></div>
+    <div class="shead"><h2>A family anchor that <span class="b">drives footfall.</span></h2></div>
+    <p style="margin-top:14px;max-width:158mm;">This is not a concept. Our flagship NinjaGym already operates
+      at scale, bringing families back week after week, and turning every visit into time and money spent in the mall.</p>
+
+    <div class="spotlight">
+      <div class="kx">The win for your mall</div>
+      <div class="big">While kids train, <span class="g">parents shop.</span></div>
+      <p>NinjaGym is a drop-off center, so every session hands a parent up to an hour of free time, and they
+        spend it right here: <b>dining, shopping, and coming back week after week.</b> You are not just renting
+        space, you are adding a reason for paying customers to stay in your mall.</p>
+    </div>
+
+    <div class="tband">
+      <div class="tcard"><div class="n">700<span class="u">+</span></div><div class="l">Served Each Month</div></div>
+      <div class="tcard alt"><div class="n">10,000<span class="u">+</span></div><div class="l">Sessions a Year</div></div>
+      <div class="tcard"><div class="n">20,000<span class="u">+</span></div><div class="l">Classes Delivered</div></div>
+      <div class="tcard alt"><div class="n">700<span class="u">+</span></div><div class="l">App Members</div></div>
+    </div>
+
+    <div style="margin-top:16px;">
+      <div class="ben"><div class="ic red">&#8635;</div><div>
+        <h3>Reliable, repeat footfall</h3>
+        <p>Members train on multi-session packages and monthly plans, so families return on a predictable
+           schedule, not as one-off visitors.</p></div></div>
+      <div class="ben"><div class="ic gold">&#9733;</div><div>
+        <h3>A premium family destination</h3>
+        <p>A clean, modern, supervised kids' experience raises the profile of your property and gives
+           families a reason to choose you over the competition.</p></div></div>
+    </div>
+
+    <div class="bottomline">
+      <div class="e">The bottom line</div>
+      <p>Hosting a NinjaGym is not just renting out space. It is adding a proven community hub that brings
+        families in, keeps them longer, and sends them into the businesses around us. A genuine win-win.</p>
+    </div>
+  </div>
+  <div class="foot"><span><b>ninjagym.com</b> &bull; ricktew.com</span><span><b>Rick Tew Co., Limited</b> &bull; Thailand</span></div>
+</section>
+
+<!-- PAGE 7 APP -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow red">Our Own App</div>
+    <div class="rule"></div>
+    <div class="shead"><h2>Every family gets <span class="b">app access.</span></h2></div>
+    <p style="margin-top:13px;max-width:150mm;">NinjaGym runs on our own app at <b>ninjagym.com</b>, with
+      over 700 members already registered. We give every customer their own access: families join, manage
+      their membership, check in, book birthdays and events, and earn rewards from their phone, while staff
+      run sales, attendance, and reporting from a single tablet.</p>
+
+    <div class="appwrap">
+      <div>
+        <div class="feat"><div class="dot"></div><div>
+          <h3>Personal app access for every member</h3>
+          <p>Each family gets a digital membership card and login, so the NinjaGym experience lives on their phone.</p></div></div>
+        <div class="feat"><div class="dot"></div><div>
+          <h3>Book birthdays, events &amp; day camps</h3>
+          <p>Parties, private events, and camps are booked and paid right in the app, no phone tag.</p></div></div>
+        <div class="feat"><div class="dot"></div><div>
+          <h3>PIN check-in, PromptPay &amp; cash</h3>
+          <p>Fast, paperless check-in by PIN, cashless or cash payments, and instant digital receipts.</p></div></div>
+        <div class="feat"><div class="dot"></div><div>
+          <h3>Belt ranks &amp; loyalty rewards</h3>
+          <p>A new ninja belt rank every 5 sessions and a free session every 10 visits, all tracked automatically.</p></div></div>
+      </div>
+      <img class="shot" src="img/app.png" alt="NinjaGym app">
+    </div>
+
+    <div class="qrbar">
+      <img class="qr" src="img/qr.png" alt="ninjagym.com QR code">
+      <div class="qrtxt">
+        <h3>See the live app now</h3>
+        <p>Scan the code or visit <b>ninjagym.com</b> to open the real customer app we give to every NinjaGym family.</p>
+      </div>
+      <div class="urlchip" style="margin-left:auto;">ninjagym.com</div>
+    </div>
+  </div>
+  <div class="foot"><span><b>ninjagym.com</b> &bull; ricktew.com</span><span><b>Rick Tew Co., Limited</b> &bull; Thailand</span></div>
+</section>
+
+<!-- PAGE 8 WHAT WE OFFER -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">What We Offer</div>
+    <div class="rule"></div>
+    <div class="shead"><h2>Programs for <span class="b">every family.</span></h2></div>
+    <p style="margin-top:12px;max-width:155mm;">A NinjaGym is a full family destination, not a single class.
+      The exact mix is tailored to your site and audience.</p>
+
+    <div class="progrow">
+      <div class="pgcard"><img src="img/photo_ninja.jpg" alt="Open play">
+        <div class="cap"><h4>Open Play &amp; Drop-In</h4><p>Climbing, parkour, obstacles. All day, every day.</p></div></div>
+      <div class="pgcard"><img src="img/photo_train.jpg" alt="Martial arts coaching">
+        <div class="cap"><h4>Martial Arts Coaching</h4><p>Guided fundamentals, honor and respect.</p></div></div>
+      <div class="pgcard"><img src="img/photo_game.jpg" alt="Game room">
+        <div class="cap"><h4>The Game Room</h4><p>Video games and an educational game room.</p></div></div>
+      <div class="pgcard"><img src="img/photo_party.jpg" alt="Birthdays and events">
+        <div class="cap"><h4>Birthdays &amp; Events</h4><p>Parties and private events, booked in the app.</p></div></div>
+      <div class="pgcard"><img src="img/photo_camp.jpg" alt="Day camps">
+        <div class="cap"><h4>Day Camps</h4><p>Full-day camps, 10am to 2pm.</p></div></div>
+    </div>
+
+    <div class="beltwrap">
+      <div class="belthead">Earn your belt: a new rank every <b>5 sessions</b>, each unlocking a perk, plus a free session every <b>10 visits</b>.</div>
+      <div class="belts">
+        <div class="belt"><span class="bar" style="background:#ffffff;"></span><span class="nm">White</span><small>Start here</small></div>
+        <div class="belt"><span class="bar" style="background:#ffd21f;"></span><span class="nm">Yellow</span><small>Friend free</small></div>
+        <div class="belt"><span class="bar" style="background:#ff8a1f;"></span><span class="nm">Orange</span><small>Free game</small></div>
+        <div class="belt"><span class="bar" style="background:#29a745;"></span><span class="nm">Green</span><small>Free 1-on-1</small></div>
+        <div class="belt"><span class="bar" style="background:#1273c9;"></span><span class="nm">Blue</span><small>Free combo</small></div>
+        <div class="belt"><span class="bar" style="background:#e21f26;"></span><span class="nm">Red</span><small>Friends party</small></div>
+        <div class="belt bk"><span class="bar" style="background:#111418;"></span><span class="nm">Black</span><small>Birthday party</small></div>
+      </div>
+    </div>
+
+    <p style="margin-top:14px;font-size:10.5pt;color:#44566c;line-height:1.5;max-width:166mm;">
+      Beyond daily sessions, we host <b>group events</b>, <b>birthday parties</b>, and official
+      <b>school programs</b>, plus branded gear in our shop, every one bringing more families through your doors.</p>
+
+    <div class="sidequote flip">
+      <div class="q">
+        <span class="mk">&ldquo;</span>
+        <p>A place kids beg to come back to.</p>
+        <div class="sub">More moments from inside the NinjaGym</div>
+      </div>
+      <img src="img/collage_c.jpg" alt="Kids in action at the NinjaGym">
+    </div>
+  </div>
+  <div class="foot"><span><b>ninjagym.com</b> &bull; ricktew.com</span><span><b>Rick Tew Co., Limited</b> &bull; Thailand</span></div>
+</section>
+
+<!-- PAGE 9 CLOSE -->
+<section class="page close">
+  <div class="pad">
+    <div class="eyebrow" style="color:var(--gold);">Let's Build It Together</div>
+    <div class="rule" style="background:var(--gold);"></div>
+    <h2>Ready to bring a <span class="y">NinjaGym</span> to your space?</h2>
+    <p class="lead2">Setting up a NinjaGym at your property is about more than renting space. It is about
+      fostering a community, providing holistic growth for kids, and creating a relationship that benefits
+      everyone. With a real ninja at the helm, we offer something new, and yet tried and true.</p>
+
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Connect</h3>
+        <p>Reach out and tell us about your property, location, and available space.</p></div>
+      <div class="step"><div class="n">2</div><h3>Design</h3>
+        <p>We tailor the zone layout, schedule, and terms to fit your site and audience.</p></div>
+      <div class="step"><div class="n">3</div><h3>Open</h3>
+        <p>We fit out, launch, and operate the center, you gain a family destination and footfall.</p></div>
+    </div>
+
+    <img class="closeimg" src="img/collage_b.jpg" alt="Inside the NinjaGym">
+
+    <div class="contact">
+      <div class="co">Rick Tew<span>Rick Tew Co., Limited &bull; Thailand</span></div>
+      <div class="lines">
+        <b>ninjagym.com</b> &nbsp;&bull;&nbsp; ricktew.com<br>
+        info@ricktew.com<br>
+        Tax ID 0115566016978
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

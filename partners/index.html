@@ -1,0 +1,1339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rick Tew's NinjaGym Bangkok: Expansion Roadmap</title>
+<style>
+@page { size: A4; margin: 15mm 16mm 16mm; }
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600;1,700&family=Fraunces:ital,opsz,wght@1,9..144,500;0,9..144,600;0,9..144,700&display=swap');
+
+/* NinjaGym house palette: blue-led, green = profit, gold = cash, orange = caution. */
+:root{
+  --canvas:#f5f8fc; --ink:#1f2937; --ink2:#16233a; --muted:#6b7280;
+  --navy:#173a6b; --navy-d:#0f2647; --blue:#2f6fed; --blue-d:#1d4fb8; --sky:#4aa3e0;
+  --green:#1f9d5b; --green-d:#14663c; --orange:#e8731c; --purple:#6b4a9c;
+  --red:#d64545; --gold:#c98a2e; --gold-d:#8a5a18; --line:#e5e7eb; --hair:#e2e9f2;
+}
+*{ margin:0; padding:0; box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ background:#fff; color:var(--ink); font-family:"Nunito","Helvetica Neue",Arial,sans-serif; font-size:10.2pt; line-height:1.44; }
+
+/* ---------- COVER ---------- */
+.cover{
+  min-height:262mm; border-radius:18px; overflow:hidden;
+  background:linear-gradient(150deg,#0d2044 0%,#173a6b 32%,#2f6fed 72%,#8bc0f2 100%);
+  color:#fff; padding:26mm 20mm; display:flex; flex-direction:column;
+  page-break-after:always; position:relative;
+}
+.cover::after{ content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(circle at 82% 14%, rgba(255,255,255,.16), transparent 42%); }
+.cover > *{ position:relative; z-index:1; }
+.brandrow{ display:flex; align-items:center; gap:22px; flex-wrap:wrap; row-gap:12px; }
+.wordmark .rt, .gwm .rt{ font-weight:700; font-size:.62em; letter-spacing:.22em; color:#c9d6f2; margin-right:2px; }
+.brandlogo{ width:120px; height:auto; filter:drop-shadow(0 3px 10px rgba(0,0,0,.35)); }
+.langtoggle{ margin-left:auto; font-size:9.5pt; font-weight:700; color:#ffd479; text-decoration:none; border:1px solid rgba(255,212,121,.5); border-radius:999px; padding:5px 14px; }
+.langtoggle:hover{ background:rgba(255,212,121,.12); }
+@media print{ .langtoggle{ display:none !important; } }
+.brandtext{ display:flex; flex-direction:column; gap:4px; }
+.wordmark{ font-weight:900; letter-spacing:.16em; font-size:15pt; color:#ffd479; }
+.wordmark .g{ color:#ffd479; }
+.cover .kicker{ font-size:10.5pt; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:#cfe6ff; line-height:1.7; }
+.cover h1{ font-family:"Fraunces",Georgia,serif; font-weight:600; font-style:italic; font-size:52pt; line-height:.98; margin-top:auto; padding-top:7mm; }
+.cover .lede{ font-size:15pt; font-weight:700; color:#eaf4ff; margin-top:9mm; max-width:158mm; line-height:1.32; }
+.cover .statrow{ margin-top:11mm; margin-bottom:auto; display:flex; gap:10px; flex-wrap:wrap; }
+.cover .stat{ background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.28); border-radius:12px; padding:9px 14px; }
+.cover .stat .sv{ font-size:18pt; font-weight:900; line-height:1; }
+.cover .stat .sl{ font-size:8.2pt; font-weight:800; letter-spacing:.04em; text-transform:uppercase; color:#d6e8ff; margin-top:4px; }
+.cover .meta{ margin-top:11mm; display:flex; gap:24px; flex-wrap:wrap; font-size:10pt; color:#dcecff; }
+.cover .meta b{ color:#fff; font-weight:800; }
+.cover .foothint{ margin-top:8mm; font-size:9.3pt; color:#cfe0f5; max-width:158mm; line-height:1.5; }
+
+/* ---------- GENERIC ---------- */
+.section{ page-break-before:always; }
+.eyebrow{ font-size:9pt; font-weight:900; letter-spacing:.18em; text-transform:uppercase; color:var(--blue-d); }
+h2.h{ font-size:23pt; font-weight:900; line-height:1.05; color:var(--navy-d); margin-top:3mm; letter-spacing:-.01em; }
+h2.h .c{ color:var(--blue); }
+h3.sub{ font-size:13pt; font-weight:900; color:var(--navy); margin-top:5.5mm; }
+h4.mini{ font-size:11pt; font-weight:900; color:var(--blue-d); margin-top:5mm; text-transform:uppercase; letter-spacing:.04em; }
+p{ margin-top:2.4mm; max-width:172mm; }
+.lead{ font-size:11pt; color:#33404f; margin-top:4.5mm; max-width:172mm; }
+b,strong{ color:var(--ink2); font-weight:800; }
+.rule{ height:3px; width:54px; background:var(--blue); border-radius:3px; margin-top:5mm; }
+ul{ margin-top:3mm; padding-left:0; list-style:none; }
+li{ position:relative; padding-left:15px; margin-top:2.1mm; max-width:172mm; }
+li::before{ content:"\2022"; position:absolute; left:0; color:var(--blue); font-weight:900; }
+.small{ font-size:9.4pt; color:var(--muted); }
+.live{ color:var(--navy-d); }
+
+/* tags */
+.tag{ display:inline-block; font-size:7.6pt; font-weight:900; letter-spacing:.06em; text-transform:uppercase;
+  border-radius:999px; padding:2.5px 9px; vertical-align:middle; }
+.t-real{ background:#1f9d5b1a; color:var(--green-d); border:1px solid #1f9d5b55; }
+.t-assume{ background:#e8731c1a; color:#b4560f; border:1px solid #e8731c66; }
+.t-fut{ background:#2f6fed14; color:var(--blue-d); border:1px solid #2f6fed44; }
+.t-gold{ background:#c98a2e1f; color:var(--gold-d); border:1px solid #c98a2e66; }
+
+/* cards & boxes */
+.card{ background:var(--canvas); border:1.5px solid var(--hair); border-radius:13px; padding:9px 13px; margin-top:3.4mm; page-break-inside:avoid; }
+.qa{ border-left:5px solid var(--blue); }
+.q{ font-weight:900; color:var(--navy-d); font-size:10.9pt; }
+.a{ margin-top:2.5mm; color:#33404f; }
+.callout{ background:linear-gradient(160deg,#eef6f1,#e6f3ec); border:1.5px solid #c7e6d4; border-left:8px solid var(--green); border-radius:13px; padding:13px 16px; margin-top:6mm; page-break-inside:avoid; }
+.callout .ct{ font-weight:900; color:var(--green-d); font-size:11pt; }
+.callout.gold{ background:linear-gradient(160deg,#fbf3e2,#f7ead0); border-color:#e7d3a8; border-left-color:var(--gold); }
+.callout.gold .ct{ color:var(--gold-d); }
+.callout.blue{ background:linear-gradient(160deg,#eef4fe,#e2edfd); border-color:#c6dbfb; border-left-color:var(--blue); }
+.callout.blue .ct{ color:var(--blue-d); }
+.warn{ background:#fff7ef; border:1.5px solid #f3d6b3; border-left:8px solid var(--orange); border-radius:13px; padding:12px 15px; margin-top:6mm; page-break-inside:avoid; }
+.warn .ct{ font-weight:900; color:#b4560f; font-size:10.6pt; }
+
+/* exec summary numbered */
+.big5{ counter-reset:b5; margin-top:6mm; }
+.big5 .row{ display:flex; gap:13px; margin-top:5mm; page-break-inside:avoid; }
+.big5 .n{ counter-increment:b5; flex:0 0 30px; }
+.big5 .n::before{ content:counter(b5); display:flex; align-items:center; justify-content:center;
+  width:30px; height:30px; border-radius:50%; background:var(--blue); color:#fff; font-weight:900; font-size:12pt; }
+.big5 .tx b{ color:var(--navy-d); }
+
+/* roadmap / timeline rows */
+.rm{ margin-top:5mm; }
+.rm .item{ display:flex; gap:11px; padding:7px 0; border-bottom:1px solid var(--line); page-break-inside:avoid; }
+.rm .eff{ flex:0 0 56px; height:22px; border-radius:6px; background:var(--navy); color:#fff; font-size:8.2pt; font-weight:900;
+  display:flex; align-items:center; justify-content:center; margin-top:1px; padding:0 4px; }
+.rm .eff.build{ background:var(--orange); } .rm .eff.fill{ background:var(--sky); } .rm .eff.run{ background:var(--green); } .rm .eff.cash{ background:var(--gold); }
+.rm .it b{ color:var(--navy-d); }
+
+/* checklist */
+.chk li{ padding-left:24px; }
+.chk li::before{ content:"\2713"; color:var(--green); font-weight:900; left:0; top:0; }
+.chk.todo li::before{ content:"\25A2"; color:var(--blue); font-weight:700; }
+.chk.done li::before{ content:"\2713"; color:var(--green); }
+
+/* footer */
+.foot{ margin-top:9mm; padding-top:5mm; border-top:2px solid var(--hair); font-size:9pt; color:var(--muted);
+  display:flex; justify-content:space-between; }
+
+/* section header icons */
+.shead{ display:flex; align-items:flex-start; gap:12px; }
+.shead .badge{ flex:0 0 42px; width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+.shead .badge svg{ width:23px; height:23px; stroke:#fff; stroke-width:1.9; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.shead .stxt{ flex:1; min-width:0; }
+.b-blue{ background:var(--blue); } .b-navy{ background:var(--navy); } .b-green{ background:var(--green); }
+.b-orange{ background:var(--orange); } .b-gold{ background:var(--gold); } .b-sky{ background:var(--sky); }
+
+/* tier cards (2-up) and phase cards (3-up) */
+.doors{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:6mm; }
+.tiers{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:6mm; }
+.door{ border-radius:13px; border:1.5px solid var(--hair); padding:12px 13px; page-break-inside:avoid; background:#fff; }
+.door .dn{ font-size:8.4pt; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
+.door .dp{ font-size:19pt; font-weight:900; margin-top:2px; }
+.door .dp small{ font-size:9pt; font-weight:800; color:var(--muted); }
+.door .dd{ font-size:9.2pt; color:#33404f; margin-top:5px; line-height:1.42; }
+.door.d-orange{ background:#fff4ea; border-color:#f3d6b3; } .door.d-orange .dn, .door.d-orange .dp{ color:#b4560f; }
+.door.d-sky{ background:#eef6fc; border-color:#c6e0f4; } .door.d-sky .dn, .door.d-sky .dp{ color:var(--blue-d); }
+.door.d-green{ background:#eef6f0; border-color:#bfe0c9; } .door.d-green .dn, .door.d-green .dp{ color:var(--green-d); }
+/* tier P&L mini-lines */
+.pl{ margin-top:8px; border-top:1px dashed #cdd8e6; padding-top:7px; }
+.pl .plr{ display:flex; justify-content:space-between; font-size:9.4pt; margin-top:3px; }
+.pl .plr span:first-child{ color:var(--muted); font-weight:700; }
+.pl .plr span:last-child{ font-weight:900; color:var(--navy-d); }
+.pl .plr.win span:last-child{ color:var(--green-d); }
+.pl .plr.tot{ border-top:1px solid #dbe3ee; margin-top:5px; padding-top:5px; }
+.pl .plr.dim span:first-child, .pl .plr.dim span:last-child{ color:var(--muted); font-weight:700; }
+
+/* calculator result grid */
+.calc{ display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin-top:6mm; }
+.cc{ border-radius:12px; border:1.5px solid var(--hair); padding:10px 12px; page-break-inside:avoid; background:#fff; }
+.cc .cl{ font-size:8.4pt; font-weight:900; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
+.cc .cv{ font-size:16pt; font-weight:900; color:var(--navy-d); margin-top:3px; }
+.cc.win{ background:#eef6f0; border-color:#bfe0c9; } .cc.win .cv{ color:var(--green-d); }
+.cc.gold{ background:#fbf3e2; border-color:#e7d3a8; } .cc.gold .cv{ color:var(--gold-d); }
+.cc.blue{ background:#eef4fe; border-color:#c6dbfb; } .cc.blue .cv{ color:var(--blue-d); }
+
+/* ladder bars */
+.funnel{ margin-top:6mm; }
+.frow{ display:flex; align-items:center; gap:10px; margin-top:6px; page-break-inside:avoid; }
+.fbar{ display:flex; align-items:center; justify-content:space-between; height:40px; border-radius:9px; color:#fff; padding:0 13px; box-shadow:0 1px 2px rgba(0,0,0,.12); min-width:160px; }
+.fbar .fl{ font-size:9.2pt; font-weight:800; opacity:.95; }
+.fbar .fn{ font-size:14pt; font-weight:900; white-space:nowrap; }
+.fwk{ font-size:8pt; color:var(--muted); font-weight:800; flex:0 0 auto; }
+
+/* assumptions table */
+.knobs{ width:100%; border-collapse:collapse; margin-top:5mm; font-size:9.6pt; }
+.knobs th,.knobs td{ text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); }
+.knobs th{ font-size:8pt; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+.knobs td.v{ font-weight:900; color:var(--navy-d); white-space:nowrap; }
+.knobs td.src .tag{ vertical-align:baseline; }
+.knobs tr:last-child td{ border-bottom:none; }
+
+/* scaling table */
+.scale{ width:100%; border-collapse:collapse; margin-top:5mm; font-size:9.8pt; }
+.scale th,.scale td{ padding:8px 10px; border-bottom:1px solid var(--line); text-align:right; }
+.scale th:first-child,.scale td:first-child{ text-align:left; }
+.scale th{ font-size:8pt; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+.scale td{ font-weight:800; color:var(--navy-d); }
+.scale td.hi{ color:var(--green-d); }
+.scale tr.flag td{ background:#eef4fe; }
+.scale tr.goal td{ background:#eef6f0; font-weight:900; }
+
+/* modest vs upside table */
+.mvu{ width:100%; border-collapse:collapse; margin-top:5mm; font-size:9.8pt; }
+.mvu th,.mvu td{ padding:8px 11px; border-bottom:1px solid var(--line); text-align:right; }
+.mvu th:first-child,.mvu td:first-child{ text-align:left; }
+.mvu thead th{ font-size:8pt; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+.mvu thead th.cmod{ color:#b4560f; } .mvu thead th.cups{ color:var(--green-d); }
+.mvu td{ font-weight:800; color:var(--navy-d); }
+.mvu td.cmod{ color:#b4560f; } .mvu td.cups{ color:var(--green-d); }
+.mvu tr.head td{ font-size:8pt; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); font-weight:900; background:#fafbfd; }
+.mvu tr.tot td{ background:#eef6f0; font-weight:900; font-size:10.4pt; }
+.mvu tr.sub td{ color:var(--muted); font-weight:700; }
+
+/* investor tables + waterfall */
+.scale tr.hl td, .mvu tr.hl td{ background:#eef4fe; }
+.waterfall{ margin-top:6mm; border:1.5px solid var(--hair); border-radius:13px; overflow:hidden; page-break-inside:avoid; }
+.wf-row{ display:flex; justify-content:space-between; align-items:center; gap:12px; padding:11px 15px; border-bottom:1px solid var(--line); }
+.wf-row:last-child{ border-bottom:none; }
+.wf-l{ color:#33404f; font-weight:700; font-size:10pt; }
+.wf-v{ font-weight:900; font-size:12pt; color:var(--navy-d); white-space:nowrap; }
+.wf-g{ background:#eef4fe; } .wf-g .wf-v{ color:var(--blue-d); }
+.wf-r{ background:#fdf1f0; } .wf-r .wf-v{ color:var(--red); }
+.wf-o{ background:#fff7ef; } .wf-o .wf-v{ color:#b4560f; }
+.wf-f{ background:#f4f0fb; } .wf-f .wf-v{ color:var(--purple); }
+.wf-w{ background:#eef6f0; } .wf-w .wf-l{ font-weight:900; color:var(--green-d); font-size:10.6pt; } .wf-w .wf-v{ color:var(--green-d); font-size:14pt; }
+.deal{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:6mm; }
+.deal .dcard{ border-radius:13px; border:1.5px solid var(--hair); background:#fff; padding:12px 14px; page-break-inside:avoid; }
+.deal .dcard .dnum{ width:26px; height:26px; border-radius:50%; background:var(--navy); color:#fff; font-weight:900; font-size:11pt; display:flex; align-items:center; justify-content:center; }
+.deal .dcard .dt{ font-weight:900; color:var(--navy-d); margin-top:8px; font-size:11pt; }
+.deal .dcard .dx{ font-size:9.4pt; color:#33404f; margin-top:4px; line-height:1.44; }
+.citychips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:5mm; }
+.chipx{ font-weight:900; font-size:9.8pt; border-radius:999px; padding:7px 15px; background:var(--navy); color:#fff; page-break-inside:avoid; }
+.chipx em{ font-style:normal; font-weight:800; font-size:7.4pt; text-transform:uppercase; letter-spacing:.06em; opacity:.85; margin-left:7px; }
+.chipx.alt{ background:#eef4fe; color:var(--blue-d); border:1.5px solid #c6dbfb; }
+.dllinks{ display:flex; gap:10px; flex-wrap:wrap; margin-top:4mm; }
+.dllink{ display:inline-flex; align-items:center; gap:7px; font-weight:900; font-size:9.8pt; text-decoration:none; border-radius:10px; padding:9px 16px; background:var(--blue); color:#fff; }
+.dllink:hover{ background:var(--blue-d); }
+.dllink.alt{ background:#fff; color:var(--blue-d); border:1.6px solid #c6dbfb; }
+.dllink svg{ width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.proprow{ display:flex; gap:16px; align-items:flex-start; margin-top:2mm; }
+.proprow .proptext{ flex:1 1 auto; min-width:0; }
+.propcover{ flex:0 0 auto; display:block; text-decoration:none; }
+.propcover img{ width:150px; height:auto; border-radius:8px; border:1.5px solid #b9d2f6; box-shadow:0 4px 12px rgba(23,58,107,.20); display:block; }
+.propcover .pcap{ margin-top:5px; font-size:8pt; font-weight:900; letter-spacing:.04em; text-transform:uppercase; color:var(--blue-d); text-align:center; }
+.propcover:hover img{ box-shadow:0 6px 18px rgba(23,58,107,.30); }
+@media screen and (max-width:720px){ .proprow{ flex-direction:column-reverse; } .propcover{ align-self:center; } .propcover img{ width:190px; } }
+
+/* cash-flow chart */
+.chartwrap{ margin-top:6mm; border:1.5px solid var(--hair); border-radius:14px; padding:12px 14px 8px; background:#fff; page-break-inside:avoid; }
+.chartwrap .clegend{ display:flex; gap:16px; flex-wrap:wrap; font-size:8.6pt; font-weight:800; color:var(--muted); margin-top:2px; }
+.chartwrap .clegend i{ display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+.cchart{ width:100%; height:auto; display:block; }
+.cchart text.cax{ font:700 8.5px "Nunito",sans-serif; fill:#8493a6; }
+.cchart text.cdip{ font:800 9px "Nunito",sans-serif; fill:#b03434; }
+.cchart text.ccross{ font:800 9px "Nunito",sans-serif; fill:#14663c; }
+
+/* ============ INTERACTIVE CONTROL PANEL (screen only) ============ */
+.panel{ display:none; }
+@media screen{
+  .panel{ display:block; border:1.6px solid #d6e2f4; border-radius:16px; background:linear-gradient(180deg,#fbfdff,#f2f7fe);
+    padding:18px 20px 20px; margin-top:26px; box-shadow:0 8px 26px rgba(23,58,107,.09); }
+  .panel .ph{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .panel .ph .pt{ font-weight:900; font-size:14pt; color:var(--navy-d); }
+  .panel .ph .pd{ font-size:9.6pt; color:var(--muted); font-weight:700; flex:1 1 240px; }
+  .panel .presets{ display:flex; gap:7px; flex-wrap:wrap; margin-top:12px; }
+  .chip{ font-family:inherit; font-weight:800; font-size:9.2pt; border-radius:999px; padding:6px 12px; cursor:pointer;
+    border:1.4px solid #c6d6ef; background:#fff; color:var(--blue-d); }
+  .chip:hover{ background:#eef4fe; }
+  .chip.ghost{ border-style:dashed; color:var(--muted); }
+  /* live summary strip */
+  .psum{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:14px; }
+  .psum .ps{ border-radius:11px; padding:9px 11px; background:#fff; border:1.4px solid var(--hair); }
+  .psum .ps .pl2{ font-size:7.8pt; font-weight:900; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); }
+  .psum .ps .pv{ font-size:15pt; font-weight:900; color:var(--navy-d); margin-top:2px; line-height:1; }
+  .psum .ps.win{ background:#eef6f0; border-color:#bfe0c9; } .psum .ps.win .pv{ color:var(--green-d); }
+  .psum .ps.gold{ background:#fbf3e2; border-color:#e7d3a8; } .psum .ps.gold .pv{ color:var(--gold-d); }
+  .psum .ps.blue{ background:#eef4fe; border-color:#c6dbfb; } .psum .ps.blue .pv{ color:var(--blue-d); }
+  /* slider groups */
+  .sliders{ display:flex; gap:22px; margin-top:16px; align-items:flex-start; }
+  .scol{ flex:1 1 0; min-width:0; }
+  .sgrp + .sgrp{ margin-top:16px; }
+  .sgrp .gt{ font-size:8.4pt; font-weight:900; text-transform:uppercase; letter-spacing:.06em; color:var(--blue-d);
+    border-bottom:1.5px solid #dbe6f6; padding-bottom:5px; margin-bottom:6px; }
+  .sl{ margin-top:9px; }
+  .sl .slh{ display:flex; justify-content:space-between; align-items:baseline; }
+  .sl .slh label{ font-size:9.4pt; font-weight:700; color:#33404f; }
+  .sl .slh .val{ font-size:10.2pt; font-weight:900; color:var(--navy-d); font-variant-numeric:tabular-nums; }
+  .sl input[type=range]{ -webkit-appearance:none; appearance:none; width:100%; height:5px; border-radius:5px;
+    background:#d6e2f4; margin-top:6px; outline:none; }
+  .sl input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:17px; height:17px; border-radius:50%;
+    background:var(--blue); border:2.5px solid #fff; box-shadow:0 1px 4px rgba(47,111,237,.4); cursor:pointer; }
+  .sl input[type=range]::-moz-range-thumb{ width:15px; height:15px; border-radius:50%; background:var(--blue);
+    border:2.5px solid #fff; box-shadow:0 1px 4px rgba(47,111,237,.4); cursor:pointer; }
+  .sl input[type=range].extra{ background:#f0e2c4; }
+  .sl input[type=range].extra::-webkit-slider-thumb{ background:var(--gold); box-shadow:0 1px 4px rgba(201,138,46,.5); }
+  .sl input[type=range].extra::-moz-range-thumb{ background:var(--gold); box-shadow:0 1px 4px rgba(201,138,46,.5); }
+  .panel .pnote{ font-size:8.8pt; color:var(--muted); margin-top:13px; line-height:1.5; }
+  .panel #wage-row{ margin-top:6px; }
+  .panel .tunebox{ padding:13px 14px; }
+  .panel .tnums{ display:flex; gap:22px; margin-top:6px; }
+  .panel .tnums .tnv{ font-size:18pt; font-weight:900; line-height:1; color:var(--navy-d); }
+  .panel .tnums .tnv.win{ color:var(--green-d); }
+  .panel .tnums .tnl{ font-size:7.8pt; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); margin-top:3px; }
+  .panel .tsliders{ margin-top:10px; border-top:1px dashed #cdd8e6; padding-top:3px; margin-bottom:2px; }
+  .panel .tc-roi{ margin-top:11px; font-size:9pt; font-weight:700; color:var(--navy-d); background:rgba(255,255,255,.6); border:1px solid rgba(0,0,0,.06); border-radius:9px; padding:8px 10px; line-height:1.5; }
+  .adjust-fab{ position:fixed; bottom:16px; right:16px; z-index:98; font-family:"Nunito",sans-serif; font-weight:900; font-size:11px;
+    letter-spacing:.02em; background:var(--navy); color:#fff; border:none; border-radius:999px; padding:9px 15px; cursor:pointer;
+    box-shadow:0 4px 14px rgba(23,58,107,.34); }
+  .adjust-fab:hover{ background:var(--navy-d); }
+}
+@media screen and (max-width:720px){
+  .panel .sliders{ flex-direction:column; gap:0; }
+  .panel .scol + .scol{ margin-top:16px; }
+  .panel .psum{ grid-template-columns:1fr 1fr; }
+}
+
+/* screen-only Save-as-PDF button */
+@media screen{ .pdfbtn{ position:fixed; top:14px; right:14px; z-index:99; font-family:"Nunito",sans-serif; font-weight:900; font-size:11px; letter-spacing:.02em; background:var(--blue); color:#fff; border:none; border-radius:999px; padding:9px 15px; cursor:pointer; box-shadow:0 4px 14px rgba(47,111,237,.32); } .pdfbtn:hover{ background:var(--blue-d); } }
+@media print{ .pdfbtn, .panel, .adjust-fab{ display:none !important; } }
+
+/* SCREEN reflow */
+@media screen{
+  body{ max-width:940px; margin:0 auto; padding:28px 22px 64px; }
+  .cover{ min-height:auto; padding:34px 30px; border-radius:16px; }
+  .brandlogo{ width:92px; }
+  .cover .kicker{ font-size:9pt; letter-spacing:.14em; }
+  .section{ page-break-before:auto; margin-top:52px; padding-top:44px; border-top:1px solid var(--hair); }
+}
+@media screen and (max-width:720px){
+  body{ padding:22px 16px 48px; }
+  .calc,.doors,.tiers,.deal{ grid-template-columns:1fr; }
+  .cover{ padding:26px 20px; }
+  .cover h1{ font-size:38pt; line-height:1.02; }
+  .foot{ flex-direction:column; gap:8px; }
+  .scale, .mvu{ font-size:8.8pt; }
+}
+
+/* ---------- income sections (app upgrade + starter pack) ---------- */
+.plantoggle{ display:inline-flex; border:1.6px solid #c6d6ef; border-radius:999px; overflow:hidden; background:#fff; margin-top:4mm; }
+.plantoggle button{ font-family:inherit; font-weight:900; font-size:9.6pt; padding:8px 18px; border:none; background:transparent; color:var(--blue-d); cursor:pointer; }
+.plantoggle button.on{ background:var(--blue); color:#fff; }
+.bigline{ font-size:14pt; font-weight:900; color:var(--navy-d); margin-top:4mm; }
+.bigline .g{ color:var(--green-d); }
+.wjrow{ display:flex; gap:18px; align-items:flex-start; margin-top:2mm; }
+.wjrow .wjtext{ flex:1 1 auto; min-width:0; }
+@media screen and (max-width:720px){ .wjrow{ flex-direction:column; } .gphone{ align-self:center; } }
+/* CSS phone mockup (mirrors the WinJitsu phone on ninjagym.com/gns) */
+.gphone{ flex:0 0 auto; width:200px; border-radius:26px; padding:11px 10px 13px; position:relative;
+  background:linear-gradient(165deg,#15151c,#2a1c26); border:2px solid #3a3a46; box-shadow:0 8px 22px rgba(0,0,0,.28); page-break-inside:avoid; }
+.gphone .notch{ display:block; width:52px; height:6px; border-radius:999px; background:#3a3a46; margin:0 auto 8px; }
+.gphone .pscreen{ border-radius:15px; background:#1b1b22; padding:10px 9px; }
+.gphone .pbrandrow{ display:flex; align-items:center; gap:7px; }
+.gphone .pbrandrow img{ width:26px; height:26px; border-radius:6px; background:#fff; display:block; }
+.gphone .pbrand{ font-family:"Fraunces",Georgia,serif; font-style:italic; font-weight:700; font-size:12pt; color:#e23b2e; }
+.gphone .ptag{ font-size:6.6pt; font-weight:700; color:#b9b3c2; margin-top:3px; line-height:1.3; }
+.gphone .ptile{ display:flex; align-items:center; gap:6px; background:#26262f; border-radius:8px; padding:5px 7px; margin-top:5px; }
+.gphone .ptile.hot{ background:#3a2430; border:1px solid #e23b2e66; }
+.gphone .psec{ font-size:6.2pt; font-weight:900; letter-spacing:.09em; text-transform:uppercase; color:#8a93a6; margin-top:8px; }
+.gphone .ptile .ic{ font-size:9pt; }
+.gphone .ptile b{ display:block; font-size:6.8pt; color:#f3eef6; }
+.gphone .ptile i{ display:block; font-style:normal; font-size:5.9pt; color:#a89fb3; }
+.gphone .pcap2{ text-align:center; font-size:6.4pt; font-weight:900; letter-spacing:.06em; text-transform:uppercase; color:#8a93a6; margin-top:7px; }
+.income-controls{ margin-top:5mm; }
+.hpill{ display:inline-block; font-size:9pt; font-weight:900; letter-spacing:.04em; text-transform:uppercase; border-radius:999px; padding:4px 13px; margin-left:10px; vertical-align:middle; }
+.hpill.h-great{ background:#1f9d5b22; color:var(--green-d); border:1.5px solid #1f9d5b77; }
+.hpill.h-okay{ background:#c98a2e22; color:var(--gold-d); border:1.5px solid #c98a2e77; }
+.hpill.h-watch{ background:#e8731c22; color:#b4560f; border:1.5px solid #e8731c77; }
+.hpill.h-slow{ background:#d6454522; color:var(--red); border:1.5px solid #d6454577; }
+.hpill.h-good{ background:#2f6fed1c; color:var(--blue-d); border:1.5px solid #2f6fed66; }
+.hpill.h-plan{ background:#173a6b22; color:var(--navy-d); border:1.5px solid #173a6b66; }
+.hpill.h-mature{ background:#6b4a9c22; color:var(--purple); border:1.5px solid #6b4a9c77; }
+.hrules{ font-size:8.6pt; color:var(--muted); font-weight:700; margin-top:6px; line-height:1.5; }
+@media print{ .income-controls .sliders, .plantoggle{ display:none !important; } }
+
+/* ---------- simple access gate (soft, screen only) ---------- */
+#gate{ position:fixed; inset:0; z-index:100000; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(150deg,#0d2044 0%,#173a6b 60%,#0f2647 100%); color:#fff;
+  font-family:"Nunito","Helvetica Neue",Arial,sans-serif; padding:24px; }
+#gate .gcard{ width:100%; max-width:370px; text-align:center; }
+#gate .gwm{ font-weight:900; letter-spacing:.16em; font-size:18pt; }
+#gate .gwm .g{ color:#ffd479; }
+#gate .gkick{ margin-top:8px; font-size:8.6pt; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#9fc0ea; }
+#gate .gsub{ margin-top:16px; font-size:11pt; color:#dbe8fb; font-weight:700; line-height:1.4; }
+#gate .grow{ margin-top:18px; display:flex; gap:8px; }
+#gate input{ flex:1; min-width:0; font-family:inherit; font-size:13pt; font-weight:700; padding:11px 14px; border-radius:11px;
+  border:1.6px solid rgba(255,255,255,.3); background:rgba(255,255,255,.12); color:#fff; outline:none; }
+#gate input::placeholder{ color:#a9c1e6; font-weight:600; }
+#gate input:focus{ border-color:#8bc0f2; background:rgba(255,255,255,.18); }
+#gate button{ font-family:inherit; font-weight:900; font-size:11pt; padding:11px 20px; border-radius:11px; border:none;
+  background:#2f6fed; color:#fff; cursor:pointer; }
+#gate button:hover{ background:#1d4fb8; }
+#gate .gerr{ margin-top:11px; font-size:9.6pt; font-weight:800; color:#ffd0cf; min-height:15px; }
+#gate .ghint{ margin-top:6px; font-size:9pt; color:#8fa9cf; }
+body.locked{ overflow:hidden; }
+@media print{ #gate{ display:none !important; } }
+</style>
+</head>
+<body>
+
+<!-- ========================= ACCESS GATE (soft) ========================= -->
+<div id="gate">
+  <div class="gcard">
+    <div class="gwm"><span class="rt">RICK TEW'S</span> NINJA<span class="g">GYM</span></div>
+    <div class="gkick">Bangkok Roadmap</div>
+    <div class="gsub">This is a private preview. Enter the access code to view.</div>
+    <div class="grow">
+      <input id="gate-input" type="password" placeholder="Access code" autocomplete="off" spellcheck="false" aria-label="Access code">
+      <button id="gate-btn" type="button">Enter</button>
+    </div>
+    <div class="gerr" id="gate-err"></div>
+    <div class="ghint">Ask Rick Tew's NinjaGym for the code.</div>
+  </div>
+</div>
+<script>
+(function(){
+  var CODE = 'ninjagym';
+  var gate = document.getElementById('gate');
+  var input = document.getElementById('gate-input');
+  var btn = document.getElementById('gate-btn');
+  var err = document.getElementById('gate-err');
+  function unlock(){
+    try{ sessionStorage.setItem('ng_roadmap_ok','1'); }catch(e){}
+    gate.style.display='none';
+    document.body.classList.remove('locked');
+  }
+  var ok=false;
+  try{ ok = sessionStorage.getItem('ng_roadmap_ok')==='1'; }catch(e){}
+  if(ok){ gate.style.display='none'; }
+  else {
+    document.body.classList.add('locked');
+    setTimeout(function(){ if(input) input.focus(); }, 60);
+  }
+  function tryUnlock(){
+    var v = (input.value||'').trim().toLowerCase();
+    if(v===CODE){ unlock(); }
+    else { err.textContent='That code did not match. Try again.'; input.select(); }
+  }
+  if(btn) btn.addEventListener('click', tryUnlock);
+  if(input) input.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); tryUnlock(); } });
+})();
+</script>
+
+<button class="adjust-fab" onclick="document.getElementById('panel').scrollIntoView({behavior:'smooth',block:'start'})" title="Jump to the interactive model controls">Tune the model &#9881;</button>
+
+<!-- ========================= COVER ========================= -->
+<div class="cover">
+  <div class="brandrow">
+    <img class="brandlogo" src="ninjagym-logo.png" alt="Rick Tew's NinjaGym logo">
+    <div class="brandtext">
+      <div class="wordmark">RICK TEW'S NINJAGYM</div>
+      <div class="kicker">Proven in Samui &middot; built for Bangkok<br>and beyond &middot; open to partners</div>
+    </div>
+    <a class="langtoggle" href="https://ricktew-com.translate.goog/partners/?_x_tr_sl=en&amp;_x_tr_tl=th&amp;_x_tr_hl=th" rel="noopener" title="Read this page in Thai via Google Translate">อ่านภาษาไทย</a>
+  </div>
+  <h1>Bangkok<br>Roadmap</h1>
+  <div class="lede">Our first center in Koh Samui is open, busy, and profitable. This is the conservative plan to bring the model to Bangkok: one repeatable center, sized to its site by the entry budget, built in clusters near schools and affluent neighborhoods, growing until the network runs itself.</div>
+
+  <div class="statrow">
+    <div class="stat"><div class="sv" id="cov-small">฿178K</div><div class="sl">Center profit / mo</div></div>
+    <div class="stat"><div class="sv" id="cov-big">฿534K</div><div class="sl">Cluster of three / mo</div></div>
+    <div class="stat"><div class="sv" id="cov-goal">~฿41M</div><div class="sl">Goal network / yr</div></div>
+  </div>
+
+  </div>
+
+<!-- ========================= INTERACTIVE PANEL (screen only) ========================= -->
+<section class="panel" id="panel">
+  <div class="ph">
+    <div class="pt">Tune the model &#9881;</div>
+  </div>
+  <div class="presets">
+    <button class="chip" data-preset="reset">Reset to defaults</button>
+  </div>
+
+  <div id="wage-row"></div>
+
+  <div class="sliders" id="sliders"></div>
+
+  <div class="pnote" id="panel-note"></div>
+</section>
+
+<!-- ========================= NETWORK GOAL BOX ========================= -->
+<div class="section">
+  <div class="shead"><span class="badge b-green"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 6-7"/></svg></span><div class="stxt"><div class="eyebrow">The long-term goal</div>
+  <h2 class="h">The whole network at scale</h2></div></div>
+  <div class="rule"></div>
+  <p class="lead">Set how many centers the network grows to. The totals use the exact per-center profit you tuned in the panel above, so this is your own goal, priced live.</p>
+
+  <div class="callout">
+    <div id="goal-sliders" class="sliders"></div>
+    <div class="calc" style="margin-top:6mm">
+      <div class="cc"><div class="cl">Network size</div><div class="cv" id="goal-total">30 centers</div></div>
+      <div class="cc win"><div class="cl">Operating profit / mo</div><div class="cv" id="goal-mo">฿4M</div></div>
+      <div class="cc win"><div class="cl">Operating profit / yr</div><div class="cv" id="goal-yr">฿48M</div></div>
+    </div>
+
+    <div class="pl" style="margin-top:6mm">
+      <div class="plr win"><span>Investors keep</span><span id="goal-inv">฿0</span></div>
+      <div class="plr"><span>Rick Tew Co., the business</span><span id="goal-co">฿0</span></div>
+      <div class="plr"><span>Founder, Rick Tew (10% of gross)</span><span id="goal-fo">฿0</span></div>
+      <div class="plr"><span>Thai tax</span><span id="goal-tax">฿0</span></div>
+      <div class="plr tot"><span>Operating profit / yr</span><span id="goal-op">฿0</span></div>
+    </div>
+
+    <p class="small" style="margin-top:4mm"><span id="goal-split">30 centers</span>, at <span id="goal-pct">100%</span> investor funding (set by the Investor slider in the panel above). Each year's operating profit splits four ways: what <b>investors net</b> on the share they funded, <b>Rick Tew Co.</b> (20% of gross to run the business, plus any share it funds itself), the <b>founder</b> (10% of gross), and <b>Thai tax</b>. The investor figure is already after that tax, it is the same split as each center's card, added up.</p>
+  </div>
+</div>
+
+<!-- ========================= EXEC SUMMARY ========================= -->
+<div class="section">
+  <div class="shead"><span class="badge b-blue"><svg viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></span><div class="stxt"><div class="eyebrow">The idea in one page</div>
+  <h2 class="h">A proven center, brought to Bangkok in <span class="c">small, self-funding clusters.</span></h2></div></div>
+  <div class="rule"></div>
+
+  <p class="lead"><b>We are not testing whether this works. We already know it does.</b> The question this plan answers is how to copy Samui's success across Bangkok without betting the whole thing at once: small enough steps that each one pays for the next, sized so a single weak location never sinks the plan, and placed where the families already are, near schools and in affluent neighborhoods.</p>
+
+  <div class="callout blue">
+    <div class="ct">North star</div>
+    <p style="margin-top:2mm">Take what already works in Samui and make Rick Tew's NinjaGym the default kids' ninja gym across Bangkok and beyond, one small cluster at a time, so the network's own profit pays for its growth and the downside of any single site stays small.</p>
+  </div>
+</div>
+
+<!-- ========================= TWO SIZES ========================= -->
+<div class="section">
+  <div class="shead"><span class="badge b-navy"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-4 7 4v13"/><path d="M9 21v-6h6v6"/></svg></span><div class="stxt"><div class="eyebrow">The unit we build</div>
+  <h2 class="h">Three centers make a cluster</h2></div></div>
+  <div class="rule"></div>
+  <p class="lead">A <b>cluster</b> is our unit for an investor who wants more than one center. Everything else in this plan is just this one box, repeated.</p>
+
+  <div class="callout"><div class="ct">What a cluster is, and how an investor grows into one</div>
+    <p style="margin-top:2mm"><b>One cluster = three centers.</b> There is no separate "small" and "big" model: every center runs the same calculator, and the entry budget, rent, and revenue sliders set its size. The company co-invests ฿100K of each center's build, so an investor funds about <span class="live" id="ts-blended">฿500K</span> per center: a full cluster is roughly <b><span class="live" id="ts-cl-build">฿1.5M</span> of investor capital to open</b> and, once mature, earns about <b><span class="live" id="ts-cl-mo">฿400K</span> a month combined across all three</b> (about <span class="live" id="ts-cl-yr">฿4.8M</span> a year). These are cluster totals, not per-center; the goal network is <span class="live" id="ts-goal-clusters">ten</span> of these clusters.</p>
+    <p style="margin-top:2mm"><b>Start with one center, grow into a cluster.</b> An investor can fund a single center to start (from about ฿250K, the 50% minimum, with the company co-investing ฿100K per center), then let their earnings <b>accrue to open a second and third center</b>, up to one full cluster. Growing beyond a single cluster needs a new agreement, so no small stake quietly rolls up many centers.</p>
+    <p style="margin-top:2mm"><b>Or take the whole cluster up front,</b> all three at once under one agreement.</p>
+  </div>
+</div>
+
+
+<!-- ========================= FULL PROPOSAL ========================= -->
+<div class="section">
+  <div class="callout blue"><div class="ct">Turn-key from day one: the NinjaGym app</div>
+  <div class="proprow">
+    <div class="proptext">
+      <p style="margin-top:2mm">A big reason a center can open and fill this fast is the <b>NinjaGym app</b>, which runs the whole operation out of the box: memberships and PINs, the POS and daily cash, check-ins, belt progress, loyalty, and birthdays. A new location is close to turn-key from the day it opens, and the system, not any one person, is what makes each center repeatable. The full NinjaGym proposal has the detail:</p>
+      <div class="dllinks">
+        <a class="dllink" href="proposal-en.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h8l4 4v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M14 3v4h4"/></svg>Full proposal, English</a>
+        <a class="dllink alt" href="proposal-th.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h8l4 4v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M14 3v4h4"/></svg>ข้อเสนอฉบับเต็ม ภาษาไทย</a>
+      </div>
+    </div>
+    <a class="propcover" href="proposal-en.html" target="_blank" rel="noopener" title="Open the full NinjaGym partnership proposal"><img src="proposal-cover.png" alt="NinjaGym partnership proposal, front page"><div class="pcap">Full proposal &rarr;</div></a>
+  </div></div>
+</div>
+
+<!-- ========================= WHERE WE BUILD ========================= -->
+<div class="section">
+  <div class="shead"><span class="badge b-sky"><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div class="stxt"><div class="eyebrow">Where we build</div>
+  <h2 class="h">Near schools and affluent neighborhoods</h2></div></div>
+  <div class="rule"></div>
+  <p class="lead">The whole model rests on each center finding its own families. Site selection is not an afterthought, it is the plan. Two simple rules place every center.</p>
+
+  <div class="doors">
+    <div class="door d-sky"><div class="dn">Near schools</div><div class="dp">Foot traffic</div><div class="dd">Lean centers near schools, where the after-school and weekend demand already exists. Lower rent and entry budget, quicker to fill, and a natural feeder for birthdays and holiday camps.</div></div>
+    <div class="door d-green"><div class="dn">Affluent areas</div><div class="dp">Spend + space</div><div class="dd">Bigger-budget centers anchor affluent neighborhoods, with the space and family spending to support a full climb zone, game room, and events. Same model, larger entry slider.</div></div>
+    <div class="door d-orange"><div class="dn">Spacing matters</div><div class="dp">Own catchment</div><div class="dd">Centers are spread across Bangkok's districts, never stacked, so each one adds new families instead of splitting the same ones. Fresh catchment is what lets a center hit its number.</div></div>
+  </div>
+
+  <div class="callout blue"><div class="ct">Why this de-risks it</div><p style="margin-top:2mm">Placing lean centers where children already gather (schools) and bigger builds where families can spend (affluent areas) means demand is found, not manufactured. It is the single biggest lever on whether a center hits its modest number, and it costs nothing but discipline in choosing sites.</p></div>
+
+  <h3 class="sub">Bangkok first, then the other hubs</h3>
+  <p>This roadmap prices the Bangkok build. The same cluster model is open in Thailand's other family and tourist hubs for a partner who wants a region of their own. The structure, the flywheel, and the partnership terms are identical; only the market changes.</p>
+  <div class="citychips">
+    <span class="chipx">Bangkok <em>this plan</em></span>
+    <span class="chipx alt">Phuket</span>
+    <span class="chipx alt">Chiang Mai</span>
+    <span class="chipx alt">Pattaya</span>
+    <span class="chipx alt">Hua Hin</span>
+  </div>
+  <p class="small" style="margin-top:4mm">Phuket, Chiang Mai, Pattaya, and Hua Hin are premium and tourist markets with higher rents and build costs, so a cluster in one of them is a <b>larger investment</b> than the Bangkok figures on this page. Bangkok is the focus of this roadmap; the other city clusters are available on request, priced to their market.</p>
+</div>
+
+<!-- ========================= STAFFING ========================= -->
+<div class="section">
+  <div class="shead"><span class="badge b-navy"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div class="stxt"><div class="eyebrow">The people plan</div>
+  <h2 class="h">Staffing: <span class="c">Bangkok's biggest hidden advantage</span></h2></div></div>
+  <div class="rule"></div>
+  <p class="lead">Every center is two-plus people, and finding the right people is the hardest thing about running Samui. The staffing case is one of the strongest and least obvious reasons Bangkok comes before Phuket or Pattaya: it is not just the biggest customer market in Thailand, it is by far the biggest <b>hiring</b> market for exactly the kind of person NinjaGym needs.</p>
+
+  <h3 class="sub">The wage numbers, grounded</h3>
+  <div class="calc">
+    <div class="cc"><div class="cl">Bangkok minimum wage</div><div class="cv">฿400<span style="font-size:9pt">/day &asymp; ฿10.4K/mo</span></div></div>
+    <div class="cc"><div class="cl">Bangkok average salary</div><div class="cv">~฿22K<span style="font-size:9pt">/mo</span></div></div>
+    <div class="cc blue"><div class="cl">This model budgets</div><div class="cv">฿20K<span style="font-size:9pt">/mo per staff</span></div></div>
+  </div>
+  <p class="small" style="margin-top:3mm">Bangkok moved to the ฿400/day tier on 1 July 2025 (so did Koh Samui and Phuket, so the legal floor is the same everywhere we would build; what differs is supply). The model's ฿20K default sits above minimum and near the Bangkok average, enough to hire well without inflating the cost base, with the wage slider there to stress-test higher. English-strong Thai staff price above average; the budget leaves room for one English-strong lead per center with juniors around them.</p>
+
+  <h3 class="sub">Three legal hiring pools beyond the obvious one</h3>
+  <div class="doors">
+    <div class="door d-sky"><div class="dn">Pool 1 &middot; The kick-start hire (15+)</div><div class="dp" style="font-size:12.5pt">Junior ninjas on staff</div><div class="dd" style="margin-top:6px">Thai law allows employment from age 15, with young-worker protections that happen to fit a kids' gym perfectly: no overtime, no work between 22:00 and 06:00, non-hazardous work only. A daytime kids' sports center is exactly that. Hiring 15 to 18 year olds as junior coaches gives local teens a first job with a real skill ladder, costs less than adult hires, and the ones who grew up training are often the best floor staff a kids' gym can get.</div></div>
+    <div class="door d-green"><div class="dn">Pool 2 &middot; Sport-science students</div><div class="dp" style="font-size:12.5pt">700,000+ students in town</div><div class="dd" style="margin-top:6px">Bangkok has roughly 40 universities with 700K+ enrolled students, including sport-science, physical-education, and coaching programs. Part-time and internship hires from these programs arrive already wanting the work NinjaGym offers, and the schedule (after-class evenings, weekends, holidays) matches exactly when the gym is busiest. Samui has no university at all; this pool simply does not exist there.</div></div>
+    <div class="door d-orange"><div class="dn">Pool 3 &middot; Myanmar workers, legally</div><div class="dp" style="font-size:12.5pt">The MOU route</div><div class="dd" style="margin-top:6px">Myanmar nationals work legally in Thailand's service sector through the MOU system, with a named employer and a proper work permit, and many bring strong English. They widen the pool at competitive wages. The rule is strict compliance: MOU paperwork done properly per hire, no shortcuts, which is also what keeps an investor's center clean.</div></div>
+  </div>
+
+  <h3 class="sub">Hire the ones already training</h3>
+  <div class="callout blue"><div class="ct">The mission-fit rule, learned the hard way in Samui</div>
+    <p style="margin-top:2mm">A hire who only wants a paycheck does the minimum and quits; Rick's system needs people who actually care about kids, martial arts, sports, or mentoring. In Samui that person is rare and we make it work anyway. <b>Bangkok is full of them</b>: it is one of the world's great martial-arts cities, with hundreds of Muay Thai, BJJ, taekwondo, and climbing gyms full of people who already pay to train every week. For that person, a NinjaGym job is not a job pitch, it is <b>"get paid to be in a gym"</b>: free training, a belt path of their own, and kids who think they are superheroes.</p>
+    <ul>
+      <li><b>Recruit where they already are:</b> notice boards and coach networks at Muay Thai, taekwondo, BJJ, and climbing gyms; university sport-science and PE departments; school sports days we already run (the assistant coaches we meet there are candidates).</li>
+      <li><b>Show the job, don't describe it:</b> short TikTok and Instagram clips of coaches mid-class, kids flying, belt days. The right person sees thirty seconds and applies; the wrong person self-selects out.</li>
+      <li><b>Audition, don't interview:</b> the hiring step is running ten minutes of a real kids' session. Warmth with kids and floor presence show up instantly and cannot be faked on a CV.</li>
+      <li><b>The network is the career ladder:</b> a new center every few months means junior coach, coach, head coach, then <b>opening your own center as its manager</b>. That ladder is a hiring pitch no single-location gym in Bangkok can match, and it staffs the expansion from inside.</li>
+      <li><b>Staff perks over salary inflation:</b> free training for them and discounts for their family cost the center almost nothing (the same empty-capacity rule as the member perks) and hold exactly the mission-fit people longer.</li>
+    </ul>
+  </div>
+
+  <div class="callout"><div class="ct">Why this makes the Bangkok-first case stronger</div>
+    <p style="margin-top:2mm">Phuket and Pattaya are tourist labor markets like Samui: tight, seasonal, and with hospitality competing hard for anyone with English. Bangkok has 10M+ people, the universities, the martial-arts scene, and the deepest pool of mission-fit staff in the country, at the same ฿400/day legal floor as the islands. Customers were always the visible reason to start in Bangkok; staffing is the quiet one. A model that needs 2 to 4 good people per center, times 30 centers, should be built where those people already live and train.</p>
+  </div>
+</div>
+
+<!-- ========================= MARKETING ========================= -->
+<div class="section">
+  <div class="shead"><span class="badge b-orange"><svg viewBox="0 0 24 24"><path d="M3 10v4h4l5 4V6L7 10H3z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19.5 6a9 9 0 0 1 0 12"/></svg></span><div class="stxt"><div class="eyebrow">Filling the centers</div>
+  <h2 class="h">A simple marketing tripod</h2></div></div>
+  <div class="rule"></div>
+  <p class="lead">Marketing is kept simple, low-cost, and word-of-mouth led. Three channels bring families in the door; the app, events, and word of mouth compound them. It is deliberately not a big ad budget, so it fits inside each center's modest operating numbers.</p>
+
+  <h3 class="sub">The three legs</h3>
+  <div class="doors">
+    <div class="door d-green"><div class="dn">1 &middot; Affluent-area ads</div><div class="dp" style="font-size:13pt">Reach the parents</div><div class="dd" style="margin-top:6px">Targeted online ads (Facebook, Instagram, Google) aimed at parents in the affluent neighborhoods around each center. Simple, measurable, and easy to turn up or down per location.</div></div>
+    <div class="door d-sky"><div class="dn">2 &middot; Free school sports days</div><div class="dp" style="font-size:13pt">The kids sell it</div><div class="dd" style="margin-top:6px">Invite a school to bring a class or group for a free intro sports day at the center. The kids try NinjaGym, love it, and go home and tell their parents. Near-zero cost, high word of mouth, and a natural feeder for birthdays and camps.</div></div>
+    <div class="door d-orange"><div class="dn">3 &middot; Tourist &amp; expat families</div><div class="dp" style="font-size:13pt">The English market</div><div class="dd" style="margin-top:6px">A separate English-language campaign for tourists and foreigners living in Bangkok who have kids, through expat groups, international schools, and family hotels. A ready audience already looking for things to do with their children.</div></div>
+  </div>
+
+  <h3 class="sub">What compounds it</h3>
+  <div class="doors">
+    <div class="door"><div class="dn">The app + perks</div><div class="dd" style="margin-top:6px">Every family is on the NinjaGym app, with birthday rewards, belt perks, and loyalty benefits. Members also get the <b>WinJitsu app</b>, Rick Tew's mental-training and martial-art system in a home-study format, so the learning continues at home. It keeps families engaged between visits and turns happy parents into referrers.</div></div>
+    <div class="door"><div class="dn">Bi-annual events</div><div class="dd" style="margin-top:6px">Twice a year, run a NinjaGym event in different Bangkok locations to lift the brand, pull in new families, and give existing members a reason to bring friends.</div></div>
+    <div class="door"><div class="dn">Word of mouth</div><div class="dd" style="margin-top:6px">The compounding engine. Kids telling kids, and parents telling parents, is the cheapest and strongest channel; the three legs above exist mainly to start it.</div></div>
+  </div>
+
+  <div class="callout"><div class="ct">Simple on purpose, and already in the numbers</div><p style="margin-top:2mm">The tripod, affluent-area ads, free school sports days, and the tourist and expat campaign, is low-cost and designed to trigger word of mouth, which then carries itself. Because it is word-of-mouth led rather than ad-spend heavy, marketing sits inside each center's "other operating" line, so it is already included in the modest numbers, not an extra cost on top.</p></div>
+
+</div>
+
+<!-- ========================= ADDITIONAL INCOME: APP UPGRADE ========================= -->
+<div class="section" id="income">
+  <div class="shead"><span class="badge b-gold"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/><path d="M12 7l1.2 2.4 2.6.4-1.9 1.8.5 2.6L12 13l-2.4 1.2.5-2.6-1.9-1.8 2.6-.4z"/></svg></span><div class="stxt"><div class="eyebrow">Additional income &middot; stream 1</div>
+  <h2 class="h">The app upgrade: <span class="c">recurring income on top of the door</span></h2></div></div>
+  <div class="rule"></div>
+  <p class="lead">Everything above is income that walks in the door: sessions, camps, birthdays. This is the second engine: a <b>digital upgrade sold inside the NinjaGym app</b>, and the app is not a promise, it is a <b>real, installed PWA running the business today</b> in Samui. The upgrade is <b>two products sold as one bundle</b>: the NinjaGym VIP membership and the WinJitsu app, together at <b>฿790 a month or ฿7,900 a year</b>. For international marketing that is $22 / $222, the same "all 2s" pricing family as the GNS program's $2,222. The whole stack costs about ฿10K a month to run for every center combined (roughly ฿1,000 per center), so nearly all of it is margin, and it pays whether the mats are busy or quiet. This is the line with real potential to <b>cover a center's fixed running costs by itself</b>.</p>
+
+  <div class="calc">
+    <div class="cc gold"><div class="cl">Bundle, monthly</div><div class="cv">฿790<span style="font-size:9pt">/mo ($22)</span></div></div>
+    <div class="cc gold"><div class="cl">Bundle, annual</div><div class="cv">฿7,900<span style="font-size:9pt">/yr ($222)</span></div></div>
+    <div class="cc win"><div class="cl">Cost to deliver (the stack)</div><div class="cv">~฿10K<span style="font-size:9pt">/mo whole network (~฿1K per center)</span></div></div>
+  </div>
+
+  <div class="callout gold income-controls">
+    <div class="ct">What the upgrade does to a center's math</div>
+    <p style="margin-top:2mm">A center's running costs at the model defaults are about <b>฿120K a month</b>. At ฿790, roughly <b>155 upgraded families cover the entire fixed costs</b> before a single session is sold. Slide the take-up to see it live:</p>
+    <div class="sliders" style="margin-top:4mm">
+      <div class="scol">
+        <div class="sl"><div class="slh"><label>Upgraded families per center (฿790/mo bundle)</label><span class="val" id="au-n-val">80</span></div>
+          <input type="range" id="au-n" min="0" max="400" step="10" value="80"></div>
+      </div>
+    </div>
+    <div class="calc" style="margin-top:4mm">
+      <div class="cc win"><div class="cl">App income / center / mo</div><div class="cv" id="au-mo">฿77K</div></div>
+      <div class="cc win"><div class="cl">App income / center / yr</div><div class="cv" id="au-yr">฿927K</div></div>
+      <div class="cc blue"><div class="cl">Of center running costs covered</div><div class="cv" id="au-cov">64%</div></div>
+    </div>
+    <div class="calc" style="margin-top:3mm">
+      <div class="cc gold"><div class="cl">Across the goal network / yr</div><div class="cv" id="au-net">฿28M</div></div>
+      <div class="cc"><div class="cl">Take-up to cover a whole center</div><div class="cv">~155 <span style="font-size:9pt">families</span></div></div>
+      <div class="cc"><div class="cl">Take-up to cover just the rent</div><div class="cv">~75 <span style="font-size:9pt">families</span></div></div>
+    </div>
+    <p class="small" style="margin-top:3mm">Counted at the ฿790/mo bundle, minus the ~฿1,000 per-center share of the stack. Network figure multiplies the per-center income by the 30-center goal network. The whole system runs on about ฿10K a month of servers for every center combined, so nearly every baht lands directly against fixed costs. This app income is also wired into the main model at the top of the page: each center card has VIP and WinJitsu family sliders, and the income flows straight into that center's revenue.</p>
+  </div>
+
+  <h3 class="sub">The two products in the bundle</h3>
+  <div class="tiers">
+    <div class="door d-sky">
+      <div class="dn">Product 1 &middot; NinjaGym VIP membership <span class="tag t-real">real PWA, live today</span> <span class="tag t-real">perk engine already built</span></div>
+      <div class="dp" style="font-size:12.5pt">The center, upgraded</div>
+      <div class="dd" style="margin-top:7px">Built on the NinjaGym app families already install on their phone (a real PWA with offline support, already running memberships, PINs, check-ins, and belt progress in Samui). The perk engine is <b>already built and running in Samui</b>; VIP simply unlocks it:
+        <ul style="margin-top:5px">
+          <li><b>A free session for every 10 used</b>, tracked automatically by the app's check-ins.</li>
+          <li><b>Bring-a-friend passes</b> and <b>earn a birthday at NinjaGym</b>, the belt-perk rewards already live today.</li>
+          <li><b>Good at every NinjaGym in Thailand.</b> One membership, the whole network: on vacation in Samui, or near a different Bangkok center, the perks and PIN travel with the family. Each new center makes every existing membership worth more.</li>
+          <li><b>Priority booking</b> for the best class times, day camps, and holiday programs.</li>
+          <li><b>20% off</b> additional sessions and birthday parties.</li>
+          <li><b>Home ninja challenges</b> and a progress dashboard parents can follow.</li>
+          <li><b>Early access</b> to new programs, plus <b>family sharing</b> for siblings on one plan.</li>
+        </ul>
+        <p style="margin-top:6px;font-size:9.2pt;color:#33404f"><b>The perk design rule:</b> reward with capacity that would otherwise sit empty (a quiet-hour session, a friend pass on a slow day, a camp hour on a birthday), so perks feel big to parents and kids while costing the center almost nothing. There is room to keep adding perks under this rule as the network grows.</p>
+      </div>
+    </div>
+    <div class="door" style="background:#fdf3f1;border-color:#eec8c2">
+      <div class="dn" style="color:#a33327">Product 2 &middot; The WinJitsu app <span class="tag t-real">live PWA at winjitsu.com</span> <span class="tag t-fut">kids version ~Aug</span></div>
+      <div class="dp" style="font-size:12.5pt;color:#a33327">The mind, at home</div>
+      <div class="dd" style="margin-top:7px">
+        <div class="wjrow">
+          <div class="wjtext"><b>Win</b> (to succeed) + <b>Jitsu</b> (truth, your own true way) = <b>the Winning Truth</b>. Rick Tew's system, live today as an installable PWA with a real program lineup. For NinjaGym families it leads with <b>Pocket Dojo</b>, Tew's Martial Arts Home Study, the physical art trained at home between center visits. Behind it: <b>WinJitsu Basics</b> (the five methods, 100 chapters), <b>Total Recall</b> (memory training), <b>Word Ninja</b> (vocabulary through story), and <b>Planet Thai</b> (learn Thai inside a novel, 500 phrases with audio). Every lesson runs the same shape, <b>To BE</b> (understand the method) then <b>To DO</b> (apply it, make it yours), with checkable action lists. The live app already sells full access at $22 a month, and a <b>kids version toggle lands around August</b>, which is exactly what this bundle hands to NinjaGym families. 25+ years behind it, not a loyalty gimmick.</div>
+          <div class="gphone" aria-hidden="true">
+            <span class="notch"></span>
+            <div class="pscreen">
+              <div class="pbrandrow"><img src="data:image/png;base64,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" alt=""><span class="pbrand">Winjitsu</span></div>
+              <div class="ptag">The art of winning, in your pocket.</div>
+              <div class="psec">Programs</div>
+              <div class="ptile hot"><span class="ic">&#129355;</span><span><b>Pocket Dojo</b><i>Tew's Martial Arts Home Study</i></span></div>
+              <div class="ptile"><span class="ic">&#9994;</span><span><b>WinJitsu Basics</b><i>Force Five Synergy, 100 chapters</i></span></div>
+              <div class="ptile"><span class="ic">&#129504;</span><span><b>Total Recall</b><i>Memory, belt ladder + Daily Drill</i></span></div>
+              <div class="ptile"><span class="ic">&#127919;</span><span><b>Word Ninja</b><i>Master words through story</i></span></div>
+              <div class="ptile"><span class="ic">&#127760;</span><span><b>Planet Thai</b><i>Learn Thai by crash landing</i></span></div>
+              <div class="psec">Connect</div>
+              <div class="ptile"><span class="ic">&#129309;</span><span><b>Direct Connect</b><i>Their method, your truth</i></span></div>
+              <div class="psec">Your practice</div>
+              <div class="ptile"><span class="ic">&#128221;</span><span><b>Practice journal</b><i>Open your journal</i></span></div>
+            </div>
+            <div class="pcap2">winjitsu.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout gold"><div class="ct">One price, both apps: why we bundle instead of selling two subscriptions</div>
+    <p style="margin-top:2mm">The instinct is to sell VIP and WinJitsu separately, two products, two prices. The consumer-psychology research says do the opposite, and it is worth being deliberate about because a kids' gym asking parents for two subscriptions <b>reads as greedy</b>, while one bundle reads as generous:</p>
+    <ul>
+      <li><b>Choice overload is real.</b> The classic Iyengar and Lepper "jam study" line of research: more options attract attention but reduce purchases. Two subscriptions means two decisions, two chances to say "later."</li>
+      <li><b>Single-option aversion cuts the other way.</b> Mochon's research shows a lone offer with no comparison also depresses buying. The fix is not two products, it is <b>one purchase with a visible comparison inside it</b>: show the two components and their standalone worth, sell only the bundle.</li>
+      <li><b>Bundling reframes the price.</b> "Two apps for ฿790" anchors against the sum of the parts, so the bundle feels like a deal rather than an upsell. Presenting each part's value ("worth ฿550 each, get both for ฿790") does the anchoring for the parent.</li>
+      <li><b>One subscription protects retention.</b> Every separate subscription is a separate cancel button. A family that values either half keeps both.</li>
+      <li><b>Monthly vs annual is the healthy choice to offer.</b> The one comparison parents should make is ฿790 a month vs ฿7,900 a year (about two and a half months free). That choice raises commitment instead of splitting the product.</li>
+    </ul>
+    <p style="margin-top:2mm"><b>The play:</b> market both names, VIP Ninja and WinJitsu, everywhere, but sell exactly one thing: <b>the bundle, ฿790 a month or ฿7,900 a year, both apps included</b>. If data later shows a big segment wants only WinJitsu (for example, families far from a center), a standalone WinJitsu price can be added then, priced so the bundle stays the obvious win.</p>
+  </div>
+
+  <div class="callout blue income-controls">
+    <div class="ct">The parent's side of the math (this is the in-app pitch)</div>
+    <p style="margin-top:2mm">The upgrade only recurs if parents feel the value every month. This is the calculator families see inside the app: a typical member does about 8 sessions a month at ฿350, which is <b>฿2,800 a month of training value</b>, before any of the discounts or the home system.</p>
+    <div class="plantoggle" role="group" aria-label="Choose a plan">
+      <button type="button" id="pp-mo" class="on">Monthly &middot; ฿790</button>
+      <button type="button" id="pp-yr">Annual &middot; ฿7,900</button>
+    </div>
+    <div class="calc" style="margin-top:4mm">
+      <div class="cc blue"><div class="cl">Your plan</div><div class="cv" id="pp-cost">฿790<span style="font-size:9pt">/mo</span></div></div>
+      <div class="cc win"><div class="cl">Training value / yr</div><div class="cv">฿33,600</div></div>
+      <div class="cc gold"><div class="cl">Value vs plan cost</div><div class="cv" id="pp-mult">3.5&times;</div></div>
+    </div>
+    <div class="bigline" id="pp-line">Two apps, one plan. Your ninja trains all year for less than a third of the session value. &#129399;</div>
+    <p class="small" style="margin-top:3mm">Annual plan saves ฿1,580 a year versus monthly (about two and a half months free). Kid-focused, warm, and honest: "your ninja," not "your child."</p>
+  </div>
+
+  <h3 class="sub">Four ways to pitch it (pick per audience, or test all four)</h3>
+  <div class="tiers">
+    <div class="door d-sky"><div class="dn">1 &middot; VIP Ninja Club</div><div class="dp" style="font-size:12.5pt">Premium and exclusive</div><div class="dd" style="margin-top:6px"><b>"Join the VIP Ninja Club, unlock elite training for your child."</b> For serious ninja families who want priority access, extra skills, and faster progress: the full dojo experience at home plus in-class advantages. Best for ambitious parents who already attend regularly.</div></div>
+    <div class="door d-green"><div class="dn">2 &middot; Smart investment</div><div class="dp" style="font-size:12.5pt">Clear ROI</div><div class="dd" style="margin-top:6px"><b>"Upgrade your membership, save money while your child trains more."</b> Pay ฿790 a month and get two apps plus the equivalent of ฿2,800+ in session value and discounts. Stop paying full price for every session. Best for budget-conscious families who like the numbers.</div></div>
+    <div class="door"><div class="dn">3 &middot; Family growth plan</div><div class="dp" style="font-size:12.5pt">Emotional, long-term</div><div class="dd" style="margin-top:6px"><b>"Build your ninja's future."</b> Consistent training builds confidence, discipline, and fitness; the plan gives each child a dedicated path with progress tracking, home challenges, and special events. Sell it with progress stories and achievement badges.</div></div>
+    <div class="door d-orange"><div class="dn">4 &middot; Founding member launch</div><div class="dp" style="font-size:12.5pt">Urgency at launch</div><div class="dd" style="margin-top:6px"><b>"Be one of the first 100 VIP Ninjas."</b> Founding-member pricing at launch: first month ฿390 plus a welcome pack, lifetime launch rate for early families. Runs once per new center opening, which also front-loads the recurring base.</div></div>
+  </div>
+
+  <div class="callout"><div class="ct">Why this matters to an investor</div><p style="margin-top:2mm">Session income scales with floor space and staff. App income scales with the member list, at near-zero marginal cost, and it smooths the revenue curve: rain, school exams, or low season hit the door, not the subscription. A center that converts even a third of its families to the ฿790 bundle has effectively <b>put its rent and staff on autopay</b>, and every center added to the network adds its member list to the same engine.</p></div>
+</div>
+
+<!-- ========================= ADDITIONAL INCOME: STARTER MEMBERSHIP ========================= -->
+<div class="section">
+  <div class="shead"><span class="badge b-gold"><svg viewBox="0 0 24 24"><path d="M20 12v9H4v-9"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span><div class="stxt"><div class="eyebrow">Additional income &middot; stream 2</div>
+  <h2 class="h">The NinjaGym membership fee: <span class="c">a one-time starter pack</span></h2></div></div>
+  <div class="rule"></div>
+  <p class="lead">Separate from the app upgrade: every new family pays a <b>one-time starter fee</b> when they join. One-time is the key design decision, and it comes from research, not taste: the industry's recurring annual "registration fees" are exactly the fees that read as greedy and kill trial-minded families. Ours is once per family, forever, and the family walks away with a pack in hand, so it reads as a welcome, not a toll.</p>
+
+  <div class="callout blue"><div class="ct">What the research says about mandatory joining fees for kids' activities</div>
+    <ul>
+      <li><b>Enrollment fees are industry standard and parents expect them.</b> Dance studios, gymnastics, swim schools, and martial arts schools almost all charge one (typically $25 to $100, about ฿900 to ฿3,600), usually framed as onboarding plus a welcome pack. A mandatory fee does not scare families away when it is visible up front and clearly buys something.</li>
+      <li><b>But surprise or recurring fees damage retention.</b> The pricing literature is blunt: add-on fees families learn about late create sticker shock and make a school "feel expensive even if tuition is moderate." The annual re-registration fee is the classic offender: it arrives as a bill for nothing new.</li>
+      <li><b>Paying to join increases follow-through.</b> Commitment research in gyms shows members who make an upfront commitment attend measurably more in months 2 to 4, exactly when a child's first excitement fades. A small paid enrollment is a feature for the parent, not just revenue: it nudges the family through the dip.</li>
+      <li><b>The "kids change their minds" problem has a standard fix: the credited trial.</b> Studios let a child try for a small per-class fee and credit it against enrollment if the family joins. The trial family risks almost nothing, and the fee never blocks the door.</li>
+      <li><b>Waiving the fee is the promo lever.</b> Schools run "enrollment fee waived" join weeks instead of discounting tuition, which protects the recurring price while still creating urgency.</li>
+    </ul>
+    <p style="margin-top:2mm"><b>Applied to NinjaGym, the balance:</b> the fee is <b>mandatory but once-ever per family</b>, never annual and never per child, so the family that stays 3 months and the family that stays 3 years pay the same fair welcome. A first visit needs no membership: pay the normal session price, and if the family joins within 7 days that session credits toward the fee. New-center openings waive the fee for founding families instead of discounting sessions. The recurring money lives in the ฿790 app bundle, where the family gets something new every month; the fee stays a one-time welcome with a pack in hand. The main model at the top has a <b>Member fee slider</b> (new families joining per month); slide it to zero to compare the with-fee and without-fee versions of a center live.</p>
+  </div>
+
+  <div class="doors">
+    <div class="door d-sky"><div class="dn">In the pack</div><div class="dp" style="font-size:12.5pt">&#129399; Ninja shirt</div><div class="dd" style="margin-top:6px">An official NinjaGym training shirt in the child's size. Worn to every session, it is also walking advertising at every school in the catchment.</div></div>
+    <div class="door d-green"><div class="dn">In the pack</div><div class="dp" style="font-size:12.5pt">&#128218; Ninja guide</div><div class="dd" style="margin-top:6px">The printed starter guide: the belt path, the house rules, the technique map, and what parents can expect month by month.</div></div>
+    <div class="door d-orange"><div class="dn">In the pack</div><div class="dp" style="font-size:12.5pt">&#128241; WinJitsu starter</div><div class="dd" style="margin-top:6px">Starter access to the WinJitsu martial-art system app, so every family tastes the home-study system from day one. It is also the natural on-ramp to the ฿790 VIP + WinJitsu bundle above.</div></div>
+  </div>
+
+  <div class="callout gold income-controls">
+    <div class="ct">What the starter fee adds per center</div>
+    <div class="sliders" style="margin-top:3mm">
+      <div class="scol">
+        <div class="sl"><div class="slh"><label>Starter fee (one time)</label><span class="val" id="st-fee-val">฿1,500</span></div>
+          <input type="range" id="st-fee" min="500" max="3000" step="100" value="1500"></div>
+        <div class="sl"><div class="slh"><label>Pack cost (shirt + guide + app)</label><span class="val" id="st-cost-val">฿400</span></div>
+          <input type="range" id="st-cost" min="0" max="1000" step="50" value="400"></div>
+        <div class="sl"><div class="slh"><label>New families per center per month</label><span class="val" id="st-n-val">25</span></div>
+          <input type="range" id="st-n" min="0" max="100" step="5" value="25"></div>
+      </div>
+    </div>
+    <div class="calc" style="margin-top:4mm">
+      <div class="cc"><div class="cl">Net per new family</div><div class="cv" id="st-net">฿1,100</div></div>
+      <div class="cc win"><div class="cl">Starter income / center / mo</div><div class="cv" id="st-mo">฿28K</div></div>
+      <div class="cc gold"><div class="cl">Across the goal network / yr</div><div class="cv" id="st-yr">฿9.9M</div></div>
+    </div>
+    <p class="small" style="margin-top:3mm">One time per family, so this line follows new joins, strongest while a center fills and at each new opening. Network figure is per-center income times the 30-center goal.</p>
+  </div>
+
+  <div class="callout blue"><div class="ct">Why a starter fee works here</div><p style="margin-top:2mm">Martial arts parents expect a joining pack; a gym that hands over a real shirt, a real guide, and a real app feels premium, not extractive. It quietly recovers part of each family's acquisition cost on day one, seeds the VIP + WinJitsu bundle, and puts the brand on a child's back in every schoolyard in the district. Together, the starter fee and the app upgrade are the two lines that turn each center's member list into income that does not depend on floor space.</p></div>
+</div>
+
+<!-- ========================= ADDITIONAL INCOME: DAY CAMP ========================= -->
+<div class="section">
+  <div class="shead"><span class="badge b-gold"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg></span><div class="stxt"><div class="eyebrow">Additional income &middot; stream 3</div>
+  <h2 class="h">Day Camp: <span class="c">filling the quiet hours, proven in Samui</span></h2></div></div>
+  <div class="rule"></div>
+  <p class="lead">Every kids' gym has the same dead zone: the hours before school lets out. Samui already fills it with a <b>4-hour Day Camp, 10am to 2pm</b> (Bangkok would likely run <b>9am to 2pm</b> to catch the school-run mom on the way back). It is a separate program with its own price, staffed by the same team who would otherwise be standing in an empty gym, so almost every baht of it is found money. Holidays are the proof: school breaks reliably fill Samui's camp today.</p>
+
+  <div class="doors">
+    <div class="door d-sky"><div class="dn">Who it catches</div><div class="dp" style="font-size:12.5pt">The out-of-school kids</div><div class="dd" style="margin-top:6px">Holiday and term-break kids (the big one), homeschoolers, international-calendar families, tourists, and the too-young-for-school-but-ready-for-ninja set. These families are free exactly when the gym is empty.</div></div>
+    <div class="door d-green"><div class="dn">The superpower</div><div class="dp" style="font-size:12.5pt">Drop and go</div><div class="dd" style="margin-top:6px">NinjaGym centers are drop-off locations: parents leave their ninja training and go shop, work, or breathe, even for an hour. Day Camp is that promise at its best, four supervised hours. The parent wins, the kid wins, the center earns through its quietest block.</div></div>
+    <div class="door d-orange"><div class="dn">What it is NOT</div><div class="dp" style="font-size:12.5pt">Not day care</div><div class="dd" style="margin-top:6px">Never branded or described as day care or childcare, which can carry licensing and regulatory baggage. It is a sports program with a coach, and every camper must be restroom-independent. That one policy line keeps the program clearly on the sports side.</div></div>
+  </div>
+
+  <div class="callout blue"><div class="ct">The rebrand question: capture the moms without saying "care"</div>
+    <p style="margin-top:2mm">"Day Camp" works for holidays but undersells the everyday weekday version to a mom with a 4-year-old who just wants two free hours. Naming candidates, all deliberately activity-flavored, none care-flavored:</p>
+    <ul>
+      <li><b>Ninja Mornings</b>, the everyday weekday block. Says when, sounds routine, easy to book "every Tuesday."</li>
+      <li><b>Drop &amp; Train</b>, leads with the drop-off superpower itself. The name is the permission slip.</li>
+      <li><b>Little Ninja Camp</b>, aims squarely at the pre-school-age market (still restroom-independent).</li>
+      <li><b>Ninja Day Camp</b>, keep as the umbrella and holiday name, with one of the above as the weekday product under it.</li>
+    </ul>
+    <p style="margin-top:2mm"><b>Suggested shape:</b> "Ninja Day Camp" stays the holiday brand (it already fills), and the weekday quiet-hours block gets the mom-facing name. Same room, same coach, same 4 hours, two labels for two audiences.</p>
+  </div>
+
+  <div class="callout gold income-controls">
+    <div class="ct">What the quiet hours are worth per center</div>
+    <p style="margin-top:2mm">Even a handful of campers changes the bottom line, because the rent and staff for those hours are already paid. Two campers a day is real money; holiday weeks spike far above this.</p>
+    <div class="sliders" style="margin-top:3mm">
+      <div class="scol">
+        <div class="sl"><div class="slh"><label>Campers per weekday (average across the month)</label><span class="val" id="dc-n-val">4</span></div>
+          <input type="range" id="dc-n" min="0" max="20" step="1" value="4"></div>
+        <div class="sl"><div class="slh"><label>Price per camper per day</label><span class="val" id="dc-p-val">฿1,000</span></div>
+          <input type="range" id="dc-p" min="500" max="2000" step="50" value="1000"></div>
+      </div>
+    </div>
+    <div class="calc" style="margin-top:4mm">
+      <div class="cc win"><div class="cl">Day Camp income / center / mo</div><div class="cv" id="dc-mo">฿88K</div></div>
+      <div class="cc win"><div class="cl">Just 2 campers a day</div><div class="cv" id="dc-two">฿44K<span style="font-size:9pt">/mo</span></div></div>
+      <div class="cc gold"><div class="cl">Across the goal network / yr</div><div class="cv" id="dc-net">฿32M</div></div>
+    </div>
+    <p class="small" style="margin-top:3mm">Counted at 22 weekdays a month at ฿750. Day Camp has its own gold slider in the main calculator at the top, so it flows straight into each center's revenue, health pill, and break-even. Marginal cost is near zero: the space and coach are already there in those hours, and the small ads budget that reaches these parents (a break for the day sells itself, especially in the holidays) sits inside the center's "Other operating" line.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  function fmtK(n){
+    if(Math.abs(n)>=1000000) return '฿'+(Math.round(n/100000)/10)+'M';
+    if(Math.abs(n)>=1000) return '฿'+Math.round(n/1000)+'K';
+    return '฿'+Math.round(n);
+  }
+  function el(id){ return document.getElementById(id); }
+  var NETWORK_CENTERS = 30, SMALL_COSTS = 121000;
+
+  function calcApp(){
+    var n = +el('au-n').value;
+    el('au-n-val').textContent = n;
+    var perMo = Math.max(0, n*790 - (n>0 ? 1000 : 0));
+    el('au-mo').textContent = fmtK(perMo);
+    el('au-yr').textContent = fmtK(perMo*12);
+    el('au-cov').textContent = Math.round(perMo/SMALL_COSTS*100)+'%';
+    el('au-net').textContent = fmtK(perMo*12*NETWORK_CENTERS);
+  }
+  function calcStarter(){
+    var fee = +el('st-fee').value, cost = +el('st-cost').value, n = +el('st-n').value;
+    el('st-fee-val').textContent = '฿'+fee.toLocaleString();
+    el('st-cost-val').textContent = '฿'+cost.toLocaleString();
+    el('st-n-val').textContent = n;
+    var net = Math.max(0, fee-cost);
+    el('st-net').textContent = '฿'+net.toLocaleString();
+    el('st-mo').textContent = fmtK(net*n);
+    el('st-yr').textContent = fmtK(net*n*12*NETWORK_CENTERS);
+  }
+  function calcCamp(){
+    var n = +el('dc-n').value, p = +el('dc-p').value, DAYS = 22;
+    el('dc-n-val').textContent = n;
+    el('dc-p-val').textContent = '฿'+p.toLocaleString();
+    el('dc-mo').textContent = fmtK(n*p*DAYS);
+    el('dc-two').innerHTML = fmtK(2*p*DAYS)+'<span style="font-size:9pt">/mo</span>';
+    el('dc-net').textContent = fmtK(n*p*DAYS*12*NETWORK_CENTERS);
+  }
+  ['au-n'].forEach(function(id){ el(id).addEventListener('input', calcApp); });
+  ['st-fee','st-cost','st-n'].forEach(function(id){ el(id).addEventListener('input', calcStarter); });
+  ['dc-n','dc-p'].forEach(function(id){ el(id).addEventListener('input', calcCamp); });
+  calcApp(); calcStarter(); calcCamp();
+
+  function setPlan(yearly){
+    el('pp-mo').classList.toggle('on', !yearly);
+    el('pp-yr').classList.toggle('on', yearly);
+    if(yearly){
+      el('pp-cost').innerHTML = '฿7,900<span style="font-size:9pt">/yr</span>';
+      el('pp-mult').innerHTML = '4.3&times;';
+      el('pp-line').innerHTML = 'Two apps, one plan, all year, and you save ฿1,580. Less than a quarter of the session value. &#9889;';
+    } else {
+      el('pp-cost').innerHTML = '฿790<span style="font-size:9pt">/mo</span>';
+      el('pp-mult').innerHTML = '3.5&times;';
+      el('pp-line').innerHTML = 'Two apps, one plan. Your ninja trains all year for less than a third of the session value. &#129399;';
+    }
+  }
+  el('pp-mo').addEventListener('click', function(){ setPlan(false); });
+  el('pp-yr').addEventListener('click', function(){ setPlan(true); });
+})();
+</script>
+
+<!-- ========================= REALITY CHECK ========================= -->
+<div class="section">
+  <div class="shead"><span class="badge b-orange"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span><div class="stxt"><div class="eyebrow">Risks and guardrails</div>
+  <h2 class="h">What's solid, what's conservative, what to watch</h2></div></div>
+  <div class="rule"></div>
+  <p class="lead">An honest plan says where the soft spots are. None of these break the idea; they are why the numbers were kept modest in the first place. Each one is a slider above, so you can price the downside instead of just naming it.</p>
+
+  <div class="card qa"><span class="q">Samui is proven; Bangkok is new ground <span class="tag t-real">proven</span></span><div class="a">The Koh Samui center is open and profitable, which is why this plan exists. But Bangkok is a different market: higher rents, more competition, a fresh brand to build. The modest numbers are the buffer against that difference. One center cannot prove the model travels: a single site could stumble for reasons that have nothing to do with the model, a weak location, a slow street, an unforeseen local factor. A first cluster, a few centers together, is what shows the model repeats in Bangkok, rather than resting the whole answer on one site that may just have been lucky or unlucky.</div></div>
+
+  <div class="card qa"><span class="q">The numbers are intentionally low <span class="tag t-assume">upside is higher</span></span><div class="a">Rather than promise a single figure, the plan assumes a modest range: a center pulling in roughly ฿150K to ฿400K a month in sessions depending on its size and site, set at or below what Samui already does, so the plan still works on a soft month or a slow site. The calculator floors go far lower on purpose: drag revenue down and watch exactly where a center stops covering itself.</div></div>
+
+  <div class="card qa"><span class="q">Costs are grounded, but vary by site <span class="tag t-assume">confirm per lease</span></span><div class="a">Rent (฿60K at the defaults), staff (฿20K each), and electric (฿10K) come from running a center, which is what makes the running-cost figure credible. An affluent-area lease can run well above ฿100K, and the ฿20K to ฿30K "other" line (water, internet, marketing, upkeep) is a conservative allowance. Push the rent and "other" sliders up to see how much cushion the plan has. Profit shown is before tax. Budget a range per site, not a single number.</div></div>
+
+
+  <div class="card qa"><span class="q">Ramp may be slower than two months <span class="tag t-assume">conservative</span></span><div class="a">A brand-new center in a new city may take longer than two months to fill, and during ramp a center runs near breakeven. A slower fill deepens the early cash dip. The fill-time slider shows exactly how much: each extra fill month pushes the deepest dip lower and the cash-positive date later. Keeping a little more working capital than the bare minimum is prudent.</div></div>
+
+  <div class="callout"><div class="ct">The slow-center protection plan (built into the model)</div>
+    <p style="margin-top:2mm">Two rules keep a slow center from quietly bleeding an investor, and both are wired into the cards above:</p>
+    <ul>
+      <li><b>The 20% + 10% gross shares defer in any loss month.</b> The company and founder are only paid their share of gross in months the center covers its own costs. In a loss month those shares show ฿0 (deferred), so the operator never earns fees off a bleeding center while the investor eats the loss. Deferred, not waived: a center that recovers pays them from later profits, which keeps the operator hungry to fix it rather than content to milk it.</li>
+      <li><b>The card carries a live health pill with fixed revenue bands.</b> By total monthly pull-in, apps and member fees included: SLOW under ฿100K (or any loss), OKAY at ฿100K, GOOD at ฿200K, GREAT at ฿300K, AS PLANNED at ฿400K, MATURED at ฿500K. "Slow" is a defined state everyone can see, not an argument. And <b>every card shows its live break-even in sessions.</b> Not an abstract revenue figure: the number of ฿300 and ฿200 sessions per month (and per day) the center must sell to cover its costs, recomputed as every slider moves. Staff can be handed one number: "we need 10 a day."</li>
+    </ul>
+    <p style="margin-top:2mm"><b>The operational playbook when a center runs under break-even:</b> push the app bundle first (it is nearly pure margin and needs no floor space), run school sports days to refill the funnel at near-zero cost, drop to minimum staffing, renegotiate rent at the lease break, and if the site is still under water by the end of the 3-year term, the term ends and the cluster's other centers are untouched (each cluster is ring-fenced). The break-even line makes "slow" visible in week one, not month six.</p>
+  </div>
+
+</div>
+
+<!-- ========================= INVESTOR RETURNS (Part 1) ========================= -->
+<div class="section">
+  <div class="shead"><span class="badge b-gold"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg></span><div class="stxt"><div class="eyebrow">For investors and partners</div>
+  <h2 class="h">Fund a center, <span class="c">share its profit</span></h2></div></div>
+  <div class="rule"></div>
+  <p class="lead">Rick Tew Co., Ltd builds, owns, and runs every center. Investors provide the build capital and, in return, take the center's profit in proportion to what they put in. The math below is the same modest model, split three ways: operating costs, the company, and you.</p>
+
+  <div class="deal">
+    <div class="dcard"><div class="dnum">1</div><div class="dt">You fund the build</div><div class="dx"><b>An investor funds about <span class="live" id="inv-center-buy">฿500K</span></b> per center, or <b><span class="live" id="inv-cluster-buy">฿1.5M</span></b> for a full cluster of three. The company co-invests a further <b>฿100K per center</b>, and together that capital builds and opens each center.</div></div>
+    <div class="dcard"><div class="dnum">2</div><div class="dt">Rick Tew Co. owns and runs it</div><div class="dx">The company stays full owner and operator and takes <b><span class="live" id="inv-rick-pct">20%</span> of gross</b> for the system, brand, apps, and day-to-day management, and the founder, Rick Tew, takes a further <b><span class="live" id="inv-founder-pct">10%</span> of gross</b> for building and standing behind each center. It also puts <b>฿100K of its own money into every center's build</b> alongside you. You are a passive capital partner, not an operator.</div></div>
+    <div class="dcard"><div class="dnum">3</div><div class="dt">You take the profit</div><div class="dx">After the company's and founder's shares and all operating costs, <b>what is left is yours</b>, at the share you funded. Fund your full share of a center and you keep 100% of its leftover profit, with the company's ฿100K in alongside you.</div></div>
+  </div>
+
+
+  <div class="callout" style="border-left-color:var(--purple);background:linear-gradient(160deg,#f5f1fb,#efe9f8);border-color:#dccdf0">
+    <div class="ct" style="color:var(--purple)">The founder's share: why Rick Tew takes 10%</div>
+    <p style="margin-top:2mm">Separate from the company's 20%, <b>Rick Tew, the founder, takes <span class="live" id="inv-founder-pct2">10%</span> of each center's gross</b>. The company's share pays for the system, the apps, and running the business. The founder's share is for the person: Rick Tew is the name and face behind NinjaGym and the one who personally builds and opens each center, trains its team, and puts his reputation on it. That personal involvement is a large part of why families trust and choose the centers.</p>
+    <p style="margin-top:2mm">It is a share of <b>gross, not a salary or a cost line</b>, so the founder earns only when the center earns, which keeps his interests locked to yours. At the modest numbers that is about <span class="live" id="inv-founder-cluster2">฿80K</span> a month per cluster, and roughly <span class="live" id="inv-founder-goal2">฿9.6M</span> a year across the full network.</p>
+  </div>
+
+  <div class="callout blue"><div class="ct">The term: 3-year cycles</div><p style="margin-top:2mm">The profit share is not perpetual, and it is not a rigid fixed period either. Each center partnership runs in <b>3-year terms</b>, matching the standard Thai commercial lease. At the end of each 3 years either side can continue or step out: the <b>partner</b> may renew for another term or take their position out, and <b>Rick Tew Co., Ltd</b> may renew, restructure, or end the partnership, for example where the company has carried much of the build or cost and the return has not come through. If a center is forced to close for reasons outside anyone's control (a landlord not renewing, an area changing), the term ends with it. The aim is a partnership that is strong for a funding partner and realistic for the company. How this is structured legally, and the ownership and tax questions a partner will ask, are covered in the next section.</p></div>
+</div>
+
+<!-- ========================= LEGAL STRUCTURE (Part 2) ========================= -->
+<div class="section">
+  <div class="shead"><span class="badge b-navy"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V11m14 10V11"/><path d="M4 11l8-6 8 6"/><path d="M9 21v-5h6v5"/></svg></span><div class="stxt"><div class="eyebrow">The legal side, for investors</div>
+  <h2 class="h">Ownership, contracts, and tax</h2></div></div>
+  <div class="rule"></div>
+
+  <div class="warn"><div class="ct">Read first: general information, not legal or tax advice</div><p style="margin-top:2mm">This is a plain-English map of how a deal like this is usually structured in Thailand. It is not legal or tax advice, and Thai rules are moving (the Foreign Business Act is under reform through 2025 to 2026, and exchange-control rules were relaxed in January 2026). Every point here must be confirmed with a licensed Thai lawyer and a Thai accountant before anything is signed.</p></div>
+
+  <p class="lead">Rick Tew Co., Ltd is a Thai company. There are two clean, legal ways to bring in a foreign investor. The <b>default is Option A</b>, which keeps every center inside the existing company; <b>Option B</b> is offered to a partner who wants actual equity and fully funds a cluster. A Thai lawyer confirms the choice per deal.</p>
+
+  <div class="tiers">
+    <div class="door d-sky"><div class="dn">Option A &middot; Rick keeps 100%</div><div class="dp" style="font-size:13.5pt">Lender or profit-partner</div><div class="dd" style="margin-top:7px">The investor is not a shareholder. They fund the build as a <b>documented loan</b> or under a <b>profit-participation contract</b> and receive interest or a contractual share of a center's profit. Rick Tew Co., Ltd stays the sole owner and operator. This matches the "full owner" intent, but the contract must be drafted as genuinely passive finance (a foreigner cannot be handed hidden control), and payments to a non-resident carry withholding tax.</div></div>
+    <div class="door d-green"><div class="dn">Option B &middot; Shared equity</div><div class="dp" style="font-size:13.5pt">Thai company per cluster</div><div class="dd" style="margin-top:7px">Each cluster is its own Thai company. The Rick side holds <b>at least 51%</b>, the foreign investor holds <b>up to 49%</b>, and returns come as <b>dividends</b>. Because Thais keep the majority, the company is legally "Thai," needs no foreign business licence to run a gym, and the investor stays passive with no visa. Lowest legal risk, but it shares ownership rather than keeping 100%.</div></div>
+  </div>
+  <p style="margin-top:4mm"><b>Funding is not the same as ownership.</b> How much of a center you <b>fund</b> (the Investor slider at the top, up to 100%) is separate from how much of the Thai company you legally <b>own</b>. Under the default Option A you are a contract partner or lender, not a shareholder, so you can fund up to 100% and take that profit share while Rick Tew Co. stays the owner, and no foreign-ownership cap applies to your return. The 49% cap only comes in with Option B, actual equity, where a foreign investor may hold up to 49% of the Thai company (a US investor can hold up to 100% via the US-Thai Treaty of Amity). Option A keeps everything inside one company with one set of books; Option B is a separate company that ring-fences liability and gives real shares, for a partner who wants that. Nominee shareholders (Thais secretly holding shares for a foreigner) are illegal and actively prosecuted; this plan never uses them.</p>
+
+  <h3 class="sub">Who's who</h3>
+  <div class="doors">
+    <div class="door"><div class="dn">Rick Tew Co., Ltd</div><div class="dd" style="margin-top:6px">Thai company. Owner and operator of every center; holds the brand, the apps, the system, and the day-to-day management. Takes 20% of gross and the majority (or all) of ownership.</div></div>
+    <div class="door"><div class="dn">The cluster company</div><div class="dd" style="margin-top:6px">A Thai company per cluster that signs the lease, hires staff, and runs the three centers. Limited liability keeps each cluster's risk contained.</div></div>
+    <div class="door"><div class="dn">The investor</div><div class="dd" style="margin-top:6px">Passive capital partner: up to 49% shareholder, or a lender / profit-participation partner. Never personally on the lease, and no visa or work permit as long as they do not work in the business.</div></div>
+  </div>
+
+  <h3 class="sub">Tax at a glance</h3>
+  <div class="calc">
+    <div class="cc"><div class="cl">Company profit tax</div><div class="cv">20%<span style="font-size:9pt"> CIT</span></div></div>
+    <div class="cc gold"><div class="cl">Dividend to non-resident</div><div class="cv">10%<span style="font-size:9pt"> WHT</span></div></div>
+    <div class="cc"><div class="cl">Loan interest to non-resident</div><div class="cv">~15%<span style="font-size:9pt"> WHT</span></div></div>
+    <div class="cc blue"><div class="cl">Thai personal tax under 180 days</div><div class="cv">None*</div></div>
+  </div>
+  <p class="small" style="margin-top:4mm">Profit is taxed once at the company (20% corporate income tax, lower on the SME scale for a small company), then a 10% withholding tax when dividends are paid to a foreign investor, which is normally the investor's final Thai tax. An investor who stays under 180 days a year is not a Thai tax resident and generally owes no further Thai personal tax. A double-tax treaty (Thailand has them with 60-plus countries, including the US) and a home-country foreign-tax credit usually prevent being taxed twice. *Confirm your own position with a tax advisor in Thailand and at home.</p>
+
+  <div class="callout"><div class="ct">Doing it cleanly</div><p style="margin-top:2mm">A structure holds up when Thais genuinely hold the majority (or a proper Treaty-of-Amity structure is used), capital comes in through the banking system and is documented (keep the Foreign Exchange Transaction records so it can be sent back out), loan and management terms are arm's-length, taxes are withheld and paid, and the books are audited. Dividends, profit shares, interest, and loan repayments are then freely remittable to a non-resident once Thai taxes are paid.</p></div>
+
+  <h4 class="mini">Contracts an investor signs</h4>
+  <ul>
+    <li><b>Share subscription + shareholders' agreement</b> (equity route): how many shares at what price, and the rules among shareholders (dividends, board, exit).</li>
+    <li><b>Loan agreement</b> (debt route): principal, interest, repayment, and the interest-withholding mechanics.</li>
+    <li><b>Joint-venture / profit-participation agreement</b>: the profit-share formula, per-center accounting, and information rights, drafted to keep the investor passive.</li>
+    <li><b>Management agreement</b>: confirms Rick Tew Co., Ltd operates each center, which keeps the operator Thai and the investor hands-off.</li>
+  </ul>
+</div>
+
+<!-- ========================= INVESTOR FAQ ========================= -->
+<div class="section">
+  <div class="shead"><span class="badge b-blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.3a2.6 2.6 0 0 1 4.6 1.6c0 1.7-2.3 2.1-2.3 3.6"/><path d="M12 17.2h.01"/></svg></span><div class="stxt"><div class="eyebrow">Investor FAQ</div>
+  <h2 class="h">Questions an investor will ask</h2></div></div>
+  <div class="rule"></div>
+  <p class="lead">Short, honest answers to the questions that come up reading this proposal. These are general information; each should be confirmed with Thai counsel for your own case.</p>
+
+  <div class="card qa"><span class="q">Do I own the center?</span><div class="a">You own a share of the Thai company that owns and runs it (up to 49% as a foreign investor), or you are a contractual profit partner or lender if the company stays 100% Rick-owned. You do not personally own the land, building, or lease; those sit with the Thai company.</div></div>
+
+  <div class="card qa"><span class="q">Will Rick Tew Co., Ltd still control and run everything?</span><div class="a">Yes. The Thai company keeps operational control and the majority (or all) of ownership, and a management agreement documents that Rick's team operates the center. You fund and share profit; you do not manage.</div></div>
+
+  <div class="card qa"><span class="q">Can I get my money out of Thailand?</span><div class="a">Yes. Dividends, profit shares, interest, and loan repayments are freely remittable to non-residents once Thai taxes are paid, through an authorised Thai bank with the right paperwork. Bring your capital in through the banking system and keep the inflow records so it can be sent back cleanly.</div></div>
+
+  <div class="card qa"><span class="q">Will I be taxed twice?</span><div class="a">Profit is taxed once at the company (20% corporate income tax), then 10% withholding when a dividend is paid to you as a non-resident. Your home country may also tax the dividend, but a tax treaty or foreign-tax credit usually relieves the double charge. Confirm with a tax advisor in both countries.</div></div>
+
+  <div class="card qa"><span class="q">Do I need to move to Thailand or get a visa?</span><div class="a">No, not as a purely passive investor who only provides funds. You can hold your interest from abroad. A visa and work permit are only needed if you take a director or signatory role, or actually work in the business.</div></div>
+
+  <div class="card qa"><span class="q">Who holds the lease and the premises?</span><div class="a">The Thai operating company signs the commercial lease and holds the premises. Foreigners cannot own land in Thailand, and you are never personally on the lease; you sit behind the Thai company.</div></div>
+
+  <div class="card qa"><span class="q">What if a location fails?</span><div class="a">If each cluster is its own Thai company, losses are ring-fenced to that entity, so one failing center should not reach your capital in other centers or expose you to another site's debts. Your downside is limited to what you put into that entity.</div></div>
+
+  <div class="card qa"><span class="q">Am I liable if the company is sued?</span><div class="a">In a Thai limited company, a shareholder's liability is generally limited to unpaid share capital, so your exposure is capped at your investment, assuming no personal guarantee and no involvement in management. A lender's exposure is likewise limited to the loan terms.</div></div>
+
+  <div class="card qa"><span class="q">Is the profit share legally enforceable?</span><div class="a">Dividends on genuine shares are enforceable through company law. A pure profit-share contract is enforceable only if it is a genuine passive-finance arrangement; a Thai court can void any side deal whose underlying purpose is to give a foreigner control or ownership beyond what the law allows. That is why the paperwork must be drafted correctly by Thai counsel.</div></div>
+
+  <div class="card qa"><span class="q">Is this legal, or is it a workaround?</span><div class="a">It is legal when Thais genuinely hold the majority (or a proper Treaty-of-Amity structure is used), capital is genuine and documented, and no nominee shareholders are used. Using Thais to secretly hold shares for a foreigner is a crime with fines and prison, and Thailand is actively prosecuting it. This plan avoids that entirely.</div></div>
+
+  <div class="card qa"><span class="q">The slider goes to 100%, but I heard foreigners are capped at 49%?</span><div class="a">Those are two different things. The Investor slider is how much you <b>fund</b> a center and therefore how much of its profit you take, up to 100%. The 49% is a cap on foreign <b>equity ownership</b> of a Thai company. Under the default Option A you fund up to 100% and take that profit by contract without being a shareholder, so the 49% cap does not touch your funding or return. It only applies if you choose Option B (actual shares), where a foreigner may hold up to 49% (or up to 100% for a US citizen under the Treaty of Amity).</div></div>
+
+  <div class="callout blue"><div class="ct">Bottom line</div><p style="margin-top:2mm">The default keeps every center inside Rick Tew Co., Ltd, with the partner funding as a documented loan or profit-participation contract, so there is no new company, no new share capital, and one set of books. A partner who wants actual equity can instead take up to 49% of a dedicated Thai company for a full cluster. Either way it is passive, needs no visa, the profit is freely remittable after tax, and it stays fully inside Thai law. The exact structure and the 3-year term are set with a Thai lawyer and accountant before signing.</p></div>
+</div>
+
+<!-- ========================= NEXT STEPS ========================= -->
+<div class="section">
+  <div class="shead"><span class="badge b-green"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span><div class="stxt"><div class="eyebrow">Next steps</div>
+  <h2 class="h">From roadmap to the first Bangkok center</h2></div></div>
+  <div class="rule"></div>
+  <p class="lead">The plan is sound in shape. Four things turn it into a fundable decision, before opening the first center.</p>
+
+  <div class="rm">
+    <div class="item"><div class="eff run">1</div><div class="it"><b>Lock the first center's budget.</b> Set the entry and monthly operating figures, so the numbers are fixed before the first lease is signed.</div></div>
+    <div class="item"><div class="eff run">2</div><div class="it"><b>Confirm the entry cost.</b> Does about ฿600K per center (of which the company co-invests ฿100K, leaving roughly ฿500K for the investor) truly cover the security deposit, rent, fit-out, equipment, and licensing before revenue? Size the figure so the payback math holds.</div></div>
+    <div class="item"><div class="eff run">3</div><div class="it"><b>Line up the working capital.</b> Enough to cover the early cash dip while the first centers fill, with a margin for a slower ramp. Confirm it is in hand (or committed) before breaking ground on the first Bangkok center.</div></div>
+    <div class="item"><div class="eff run">4</div><div class="it"><b>Choose the first districts.</b> A school area for a lean center, an affluent neighborhood for a bigger build, spaced for their own catchments. A first cluster, not a single center, is the real test of whether the model travels off the island: a few centers together show it repeats, where one site alone could mislead either way.</div></div>
+  </div>
+
+  <div class="callout blue"><div class="ct">In one line</div><p style="margin-top:2mm">Samui proved the center; Bangkok gets it one center at a time, each paying for the next, until the network runs itself. The numbers are all in the model at the top; this is the plan to raise against.</p></div>
+
+  <div class="foot"><span>RICK TEW'S NINJAGYM &middot; Bangkok Expansion Roadmap</span><span>Interactive, tune the model at the top</span></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* app economics: VIP ฿500/mo + WinJitsu ฿290/mo (both together = the ฿790 bundle); stack ~฿1K per center per month */
+  var BUNDLE_PRICE=790, STACK_PER_CENTER=1000, FEE_PRICE=1500, FEE_PACK=400, CAMP_PRICE=750, CAMP_DAYS=22;
+
+  var DEFAULTS = {
+    rev:170000,
+    fam:50, join:10, camp:2,
+    rent:60000, staff:2, wage:20000,
+    elec:10000, other:10000,
+    build:500000, companyStake:100000,
+    cadence:3,
+    tax:0.20,
+    rickShare:0.20, rickPersonal:0.10,
+    investorPct:1,
+    goalCenters:30
+  };
+  var S = Object.assign({}, DEFAULTS);
+
+  /* ---------- formatters ---------- */
+  function nf(n){ return Math.round(Math.abs(n)).toLocaleString('en-US'); }
+  function baht(n){ return (n<0?'-฿':'฿')+nf(n); }
+  function kb(n){
+    if(Math.abs(n)>=1e6) return mb(n);
+    var k = Math.abs(n)/1000;
+    var r = k>=100 ? Math.round(k) : Math.round(k*10)/10;
+    return (n<0?'-฿':'฿')+r+'K';
+  }
+  function mb(n){ var m=Math.abs(n)/1e6; var r=Math.round(m*10)/10; return (n<0?'-฿':'฿')+r+'M'; }
+  function mbR(n){ return (n<0?'-฿':'฿')+Math.round(Math.abs(n)/1e6)+'M'; }
+  function words(n){ var w=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve']; return w[n]||(''+n); }
+
+  function compute(s){
+    var appRev = s.fam*BUNDLE_PRICE;
+    var stack  = s.fam>0 ? STACK_PER_CENTER : 0;
+    var feeRev = s.join*(FEE_PRICE-FEE_PACK);
+    var campRev = s.camp*CAMP_PRICE*CAMP_DAYS;
+    var gross  = s.rev + appRev + feeRev + campRev;
+    var run    = s.rent + s.staff*s.wage + s.elec + s.other + stack;
+    var profit = gross - run;
+    var centerEntry = Math.max(0, s.build - s.companyStake);   // investor capital per center
+    var clProfit = 3*profit, clEntry = 3*centerEntry, clGross = 3*gross;
+    var goalProfitMo = s.goalCenters*profit;
+    var goalGrossMo  = s.goalCenters*gross;
+    return { appRev:appRev, stack:stack, feeRev:feeRev, campRev:campRev, gross:gross, run:run, profit:profit,
+      centerEntry:centerEntry, clProfit:clProfit, clEntry:clEntry, clGross:clGross,
+      goalProfitMo:goalProfitMo, goalGrossMo:goalGrossMo };
+  }
+
+  /* ---------- DOM helpers ---------- */
+  function $(id){ return document.getElementById(id); }
+  function set(id,v){ var e=$(id); if(e) e.textContent=v; }
+  function setMoney(id,v,fmt){ var e=$(id); if(!e) return; e.textContent=(fmt||baht)(v); e.style.color = v<0 ? 'var(--red)' : ''; }
+
+  /* ---------- renderers ---------- */
+  function renderCover(C){
+    set('cov-small', kb(C.profit));
+    set('cov-big',   kb(C.clProfit));
+    set('cov-goal',  '~'+mbR(C.goalProfitMo*12));
+    set('cov-cadence', S.cadence);
+    set('cov-goalcenters', S.goalCenters+' centers');
+  }
+
+  function ownerSplit(C){
+    /* smart-partner rule: the company + founder gross shares are only TAKEN in months
+       the center covers its own costs; in a loss month they defer to protect the investor. */
+    var inLoss = C.profit <= 0;
+    var co  = inLoss ? 0 : S.rickShare * C.gross;
+    var fo  = inLoss ? 0 : S.rickPersonal * C.gross;
+    var pre = C.profit - co - fo;
+    var tax = pre > 0 ? pre * S.tax : 0;
+    set('ct-co-label',  'Company ('+Math.round(S.rickShare*100)+'% of gross'+(inLoss?', deferred in a loss month)':')'));
+    set('ct-co',  co===0 ? '฿0' : '-'+baht(co));
+    set('ct-fo-label',  'Founder ('+Math.round(S.rickPersonal*100)+'% of gross'+(inLoss?', deferred in a loss month)':')'));
+    set('ct-fo',  fo===0 ? '฿0' : '-'+baht(fo));
+    set('ct-tax-label', 'Corporate tax ('+Math.round(S.tax*100)+'%)');
+    set('ct-tax', tax===0 ? '฿0' : '-'+baht(tax));
+    var net = pre - tax;
+    var pct=S.investorPct, coFund=(1-pct)*net, netInv=pct*net;
+    var cofundRow=$('ct-cofund-row');
+    if(cofundRow) cofundRow.style.display = pct < 1 ? '' : 'none';
+    set('ct-cofund-label', 'Company funds the other '+Math.round((1-pct)*100)+'%');
+    set('ct-cofund', (coFund<0?'+':'-')+baht(Math.abs(coFund)));
+    setMoney('ct-net', Math.max(0, netInv));
+    var cap=pct*C.centerEntry, payback = net>0 ? C.centerEntry/net : null;
+    /* health status: revenue bands on total pull-in (sessions + app + member fees) */
+    var st=$('ct-status');
+    if(st){
+      var g=C.gross, cls, label;
+      if(C.profit<=0){ cls='h-slow'; label='Slow'; }
+      else if(g>=500000){ cls='h-mature'; label='Matured'; }
+      else if(g>=400000){ cls='h-plan'; label='As planned'; }
+      else if(g>=300000){ cls='h-great'; label='Great'; }
+      else if(g>=200000){ cls='h-good'; label='Good'; }
+      else if(g>=100000){ cls='h-okay'; label='Okay'; }
+      else { cls='h-slow'; label='Slow'; }
+      st.className='hpill '+cls; st.textContent=label;
+    }
+    var roi=$('ct-roi');
+    if(roi) roi.innerHTML = 'Investor puts in <b>'+kb(cap)+'</b> ('+Math.round(pct*100)+'% of the '+kb(C.centerEntry)
+      + ' investor entry; the company co-invests '+kb(S.companyStake)+') &rarr; recoups it in <b>'
+      + (payback==null?'n/a at these settings (the center runs at a loss)':'~'+Math.round(payback)+' months')+'</b>';
+  }
+
+  function breakEven(C){
+    var el=$('ct-be'); if(!el) return;
+    var extra = C.appRev + C.feeRev + C.campRev;
+    var needOp = Math.max(0, C.run - extra);
+    var combined = S.rickShare + S.rickPersonal;
+    var needFull = Math.max(0, C.run/(1-combined) - extra);
+    /* color by where the CURRENT session revenue sits vs the requirement */
+    var col, bg, bd, state;
+    if(S.rev >= needFull){ col='var(--green-d)'; bg='#eef6f0'; bd='#bfe0c9'; state='current sessions already cover this'; }
+    else if(S.rev >= needOp){ col='var(--gold-d)'; bg='#fbf3e2'; bd='#e7d3a8'; state='costs covered, the 30% shares are not yet'; }
+    else { col='var(--red)'; bg='#fdf1f0'; bd='#eec8c2'; state='current sessions are below this'; }
+    function chip(price){
+      var mo=Math.ceil(needOp/price), day=Math.round(mo/30*10)/10;
+      var moF=Math.ceil(needFull/price);
+      return '<div style="flex:1;min-width:120px;background:'+bg+';border:1.4px solid '+bd+';border-radius:10px;padding:8px 10px;text-align:center">'
+        + '<div style="font-size:17pt;font-weight:900;color:'+col+';line-height:1">'+day+'<span style="font-size:8.5pt;font-weight:800"> sessions/day</span></div>'
+        + '<div style="font-size:7.8pt;font-weight:800;color:var(--muted);margin-top:4px">at ฿'+price+' &middot; '+mo+'/mo &middot; '+moF+'/mo incl. the 30% shares</div>'
+        + '</div>';
+    }
+    el.innerHTML = '<b>Break-even, adjusts as you slide:</b> sessions needed to cover all costs (app, member fees and Day Camp already counted in). <span style="color:'+col+';font-weight:900">'+state+'</span>'
+      + '<div style="display:flex;gap:9px;margin-top:7px;flex-wrap:wrap">'+chip(300)+chip(200)+'</div>';
+  }
+
+  function renderCenter(C){
+    set('ct-hdr-rev', kb(C.gross));
+    setMoney('ct-hdr-profit', C.profit, kb);
+    set('ct-rev', baht(S.rev));
+    set('ct-app-label', 'App bundle: '+S.fam+' families × ฿790');
+    set('ct-app', '+'+baht(C.appRev));
+    set('ct-fee-label', 'Member fees: '+S.join+' joins × ฿1,100 net');
+    set('ct-fee', '+'+baht(C.feeRev));
+    set('ct-camp-label', 'Day Camp 9-2: '+S.camp+'/day × ฿750 × 22 days');
+    set('ct-camp', '+'+baht(C.campRev));
+    set('ct-rent', '-'+baht(S.rent));
+    set('ct-staff-label', 'Staff ('+S.staff+' × '+kb(S.wage)+')');
+    set('ct-staff', '-'+baht(S.staff*S.wage));
+    set('ct-elec', '-'+baht(S.elec));
+    set('ct-other', '-'+baht(S.other));
+    set('ct-stack', '-'+baht(C.stack));
+    setMoney('ct-profit2', C.profit);
+    ownerSplit(C);
+    breakEven(C);
+    /* cluster line */
+    set('ts-blended', kb(C.centerEntry));
+    set('ts-cl-build', mb(C.clEntry));
+    set('ts-cl-mo', kb(C.clProfit));
+    set('ts-cl-yr', mb(C.clProfit*12));
+    set('ts-goal-clusters', words(Math.round(S.goalCenters/3)));
+  }
+
+  function renderInvestor(C){
+    var pct = Math.round(S.rickShare*100)+'%';
+    set('inv-center-buy', kb(C.centerEntry));
+    set('inv-cluster-buy', kb(C.clEntry));
+    set('inv-rick-pct', pct);
+    var fpct = Math.round(S.rickPersonal*100)+'%';
+    set('inv-founder-pct', fpct); set('inv-founder-pct2', fpct);
+    set('inv-founder-cluster2', kb(S.rickPersonal*C.clGross));
+    set('inv-founder-goal2', mb(S.rickPersonal*C.goalGrossMo*12));
+  }
+
+  function renderGoalBox(C){
+    var n=S.goalCenters;
+    var op    = n*C.profit;
+    var gross = n*C.gross;
+    var co = S.rickShare*gross;
+    var fo = S.rickPersonal*gross;
+    var preDistrib = op - co - fo;
+    var tax = preDistrib>0 ? preDistrib*S.tax : 0;
+    var netDistrib = preDistrib - tax;
+    var pct = S.investorPct;
+    var invKeep = pct*netDistrib;
+    var coTotal = co + (1-pct)*netDistrib;
+    set('goal-total', n+' centers');
+    set('goal-split', n+' centers, about '+Math.round(n/3)+' clusters');
+    set('goal-pct', Math.round(pct*100)+'%');
+    set('goal-mo', mb(op));
+    set('goal-yr', mbR(op*12));
+    set('goal-inv', mb(invKeep*12));
+    set('goal-co',  mb(coTotal*12));
+    set('goal-fo',  mb(fo*12));
+    set('goal-tax', mb(tax*12));
+    set('goal-op',  mb(op*12));
+  }
+
+  function render(){
+    var C=compute(S);
+    renderCover(C); renderCenter(C); renderInvestor(C); renderGoalBox(C);
+    set('panel-note','Drag any slider and the whole page recomputes live: the center card, the cluster figures, and the network goal. Size is not a separate model; the entry, rent, and revenue sliders set how big a center is.');
+  }
+
+  /* ---------- sliders ---------- */
+  function fams(n){ return n+(n===1?' family':' families'); }
+  var CENTER_SLIDERS = [
+    {k:'rev',   label:'Revenue, sessions and events only', min:50000, max:800000, step:10000, fmt:kb},
+    {k:'fam',   label:'App bundle: VIP + WinJitsu (฿790/mo per family)', min:0, max:600, step:5, fmt:fams, extra:true},
+    {k:'join',  label:'Member fee: new families / month (one-time ฿1,500, ฿1,100 net)', min:0, max:100, step:1, fmt:fams, extra:true},
+    {k:'camp',  label:'Day Camp 9am-2pm: campers per weekday (฿750/day each)', min:0, max:20, step:1, fmt:function(n){return n+(n===1?' camper':' campers');}, extra:true},
+    {k:'rent',  label:'Rent', min:20000, max:260000, step:5000, fmt:kb},
+    {k:'staff', label:'Staff (people)', min:1, max:10, step:1, fmt:function(n){return n+(n===1?' person':' people');}},
+    {k:'elec',  label:'Electric', min:0, max:60000, step:5000, fmt:kb},
+    {k:'other', label:'Other operating', min:0, max:60000, step:5000, fmt:kb},
+    {k:'build', label:'Center entry (deposit, rent, equipment): this slider IS the size of the center', min:300000, max:1500000, step:25000, fmt:kb}
+  ];
+  var SHARED_SLIDERS = [
+    {k:'wage', label:'Staff wage (each)', min:12000, max:40000, step:1000, fmt:kb},
+    {k:'investorPct', label:"Investor's share of one center (100% is about ฿500K; company co-invests ฿100K)", min:0.5, max:1, step:0.05, fmt:function(n){return Math.round(n*100)+'%';}}
+  ];
+  var GOAL_SLIDERS = [
+    {k:'goalCenters', label:'Centers in the goal network', min:3, max:60, step:1, fmt:function(n){return ''+n;}}
+  ];
+  var ALL_SLIDERS = CENTER_SLIDERS.concat(SHARED_SLIDERS, GOAL_SLIDERS);
+
+  function sliderRowHTML(it){
+    return '<div class="sl"><div class="slh"><label for="sl-'+it.k+'">'+it.label+'</label>'
+      + '<span class="val" id="val-'+it.k+'">'+it.fmt(S[it.k])+'</span></div>'
+      + '<input type="range" '+(it.extra?'class="extra" ':'')+'id="sl-'+it.k+'" min="'+it.min+'" max="'+it.max+'" step="'+it.step+'" value="'+S[it.k]+'"></div>';
+  }
+  function centerBlockHTML(){
+    var rows=''; for(var i=0;i<CENTER_SLIDERS.length;i++) rows+=sliderRowHTML(CENTER_SLIDERS[i]);
+    return '<div class="tunebox door d-sky">'
+      + '<div class="dn">One center (size it with the sliders) <span class="hpill h-great" id="ct-status">Great</span></div>'
+      + '<div class="hrules"><b>Health rules, by total monthly pull-in (sessions + app + member fees):</b> <span style="color:var(--red)">SLOW</span> under ฿100K &middot; <span style="color:var(--gold-d)">OKAY</span> ฿100K+ &middot; <span style="color:var(--blue-d)">GOOD</span> ฿200K+ &middot; <span style="color:var(--green-d)">GREAT</span> ฿300K+ &middot; <span style="color:var(--navy-d)">AS PLANNED</span> ฿400K+ &middot; <span style="color:var(--purple)">MATURED</span> ฿500K+. The apps and member fees count, so the digital lines lift a center up the ladder. The pill updates live as you slide.</div>'
+      + '<div class="tnums">'
+      +   '<div class="tnum"><div class="tnv" id="ct-hdr-rev">฿0</div><div class="tnl">pulls in / mo</div></div>'
+      +   '<div class="tnum"><div class="tnv win" id="ct-hdr-profit">฿0</div><div class="tnl">profit / mo</div></div>'
+      + '</div>'
+      + '<div class="tsliders">'+rows+'</div>'
+      + '<div class="pl">'
+      +   '<div class="plr win"><span>Sessions and events / month</span><span id="ct-rev">฿0</span></div>'
+      +   '<div class="plr win"><span id="ct-app-label">App bundle</span><span id="ct-app">฿0</span></div>'
+      +   '<div class="plr win"><span id="ct-fee-label">Starter fees</span><span id="ct-fee">฿0</span></div>'
+      +   '<div class="plr win"><span id="ct-camp-label">Day Camp</span><span id="ct-camp">฿0</span></div>'
+      +   '<div class="plr"><span>Rent</span><span id="ct-rent">฿0</span></div>'
+      +   '<div class="plr"><span id="ct-staff-label">Staff</span><span id="ct-staff">฿0</span></div>'
+      +   '<div class="plr"><span>Electric</span><span id="ct-elec">฿0</span></div>'
+      +   '<div class="plr"><span>Other (water, net, upkeep)</span><span id="ct-other">฿0</span></div>'
+      +   '<div class="plr dim"><span>App stack (servers, per center)</span><span id="ct-stack">฿0</span></div>'
+      +   '<div class="plr tot win"><span>Operating profit / mo</span><span id="ct-profit2">฿0</span></div>'
+      +   '<div class="plr dim"><span id="ct-co-label">Company (20% of gross)</span><span id="ct-co">฿0</span></div>'
+      +   '<div class="plr dim"><span id="ct-fo-label">Founder (10% of gross)</span><span id="ct-fo">฿0</span></div>'
+      +   '<div class="plr dim"><span id="ct-tax-label">Corporate tax (20%)</span><span id="ct-tax">฿0</span></div>'
+      +   '<div class="plr dim" id="ct-cofund-row"><span id="ct-cofund-label">Company funds the other 50%</span><span id="ct-cofund">฿0</span></div>'
+      +   '<div class="plr tot win"><span>Net to investor / mo</span><span id="ct-net">฿0</span></div>'
+      + '</div>'
+      + '<div class="tc-roi" id="ct-be"></div>'
+      + '<div class="tc-roi" id="ct-roi"></div>'
+      + '</div>';
+  }
+
+  function wireSlider(it){
+    var input=$('sl-'+it.k);
+    if(!input) return;
+    input.addEventListener('input', function(){
+      S[it.k]=parseFloat(input.value);
+      set('val-'+it.k, it.fmt(S[it.k]));
+      render();
+    });
+  }
+
+  function buildSliders(){
+    var host=$('sliders'); if(!host) return;
+    host.innerHTML = '<div class="scol" style="flex:1 1 100%">'+centerBlockHTML()+'</div>';
+    var wr=$('wage-row');
+    if(wr) wr.innerHTML=SHARED_SLIDERS.map(sliderRowHTML).join('');
+    var gs=$('goal-sliders');
+    if(gs) gs.innerHTML='<div class="scol">'+sliderRowHTML(GOAL_SLIDERS[0])+'</div>';
+    for(var i=0;i<ALL_SLIDERS.length;i++) wireSlider(ALL_SLIDERS[i]);
+  }
+
+  function syncSliders(){
+    for(var i=0;i<ALL_SLIDERS.length;i++){
+      var it=ALL_SLIDERS[i], input=$('sl-'+it.k);
+      if(input){ input.value=S[it.k]; set('val-'+it.k, it.fmt(S[it.k])); }
+    }
+  }
+
+  function wirePresets(){
+    var btns=document.querySelectorAll('.chip[data-preset]');
+    for(var i=0;i<btns.length;i++){
+      btns[i].addEventListener('click', function(){
+        var p=this.getAttribute('data-preset');
+        if(p==='reset'){ S=Object.assign({},DEFAULTS); }
+        syncSliders(); render();
+      });
+    }
+  }
+
+  buildSliders();
+  wirePresets();
+  render();
+})();
+</script>
+
+</body>
+</html>
