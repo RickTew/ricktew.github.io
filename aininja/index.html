@@ -428,22 +428,39 @@ html,body{overflow-x:clip}
 .vs h2{font-size:clamp(26px,4vw,40px);font-weight:900;margin:8px auto 0;max-width:24ch}
 .vs h2 span{color:var(--blue)}
 .vs .sub{text-align:center;color:#374151;font-weight:600;margin:18px auto 0;max-width:66ch;font-size:16.5px}
-.vs .grid{display:grid;grid-template-columns:150px 1fr 1fr;gap:10px;margin:36px auto 0;max-width:960px}
-.vs .grid>div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14.5px;font-weight:600;color:#4b5563;line-height:1.5}
-.vs .grid .lab{background:transparent;border-color:transparent;font-weight:900;color:var(--ink);padding-left:0}
-.vs .grid .hd{font-weight:900;color:var(--ink);font-size:15.5px;text-align:center}
-.vs .grid .me{border:2px solid var(--blue);background:#f4f8fd;color:#2f3a46}
-.vs .grid .hd.me{background:var(--blue);color:#fff;border-color:var(--blue)}
-.vs .grid .num{display:block;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:22px;color:var(--ink);margin-bottom:2px}
-.vs .grid .me .num{color:var(--blue-d);font-size:25px}
+.vs .bill{max-width:620px;margin:36px auto 0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 26px 20px;box-shadow:0 12px 30px rgba(16,20,24,.06)}
+.vs .bill .bh{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:12px;border-bottom:2px dashed var(--line);font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:19px;color:var(--ink)}
+.vs .bill .bh small{font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:12.5px;color:var(--muted);text-align:right}
+.vs .bill .row{display:grid;grid-template-columns:1fr auto;gap:2px 16px;align-items:baseline;padding:12px 0;border-bottom:1px dashed var(--line)}
+.vs .bill .row b{font-weight:900;color:var(--ink);font-size:15px}
+.vs .bill .row .amt{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:18px;color:var(--ink);white-space:nowrap}
+.vs .bill .row small{grid-column:1/-1;font-size:13px;font-weight:600;color:var(--muted)}
+.vs .bill .tot{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 0 2px;font-weight:900;font-size:15px;color:var(--ink)}
+.vs .bill .tot .amt{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:21px;white-space:nowrap}
+.vs .bill .still{margin-top:16px;background:var(--panel);border-radius:12px;padding:14px 16px}
+.vs .bill .still h4{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:16.5px;color:var(--ink)}
+.vs .bill .still ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.vs .bill .still li{position:relative;padding-left:24px;font-size:14.5px;font-weight:700;color:#4b5563;line-height:1.45}
+.vs .bill .still li::before{content:"\2717";position:absolute;left:2px;top:0;color:var(--red);font-weight:900}
+.vs .relief{max-width:860px;margin:48px auto 0;text-align:center}
+.vs .relief h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:clamp(23px,3.4vw,34px);line-height:1.12;max-width:22ch;margin:0 auto}
+.vs .relief h3 span{color:var(--blue)}
+.vs .relief>p{color:#374151;font-weight:600;margin:14px auto 0;max-width:56ch;font-size:16px}
+.vs .ways{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px;text-align:left}
+.vs .way{background:#fff;border:2px solid var(--blue);border-radius:16px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;box-shadow:0 12px 30px rgba(30,115,189,.08)}
+.vs .way .tag{font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--blue)}
+.vs .way .amt{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:26px;line-height:1.1;color:var(--ink)}
+.vs .way .amt small{font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:700;color:var(--muted)}
+.vs .way p{font-size:14.5px;font-weight:600;color:#4b5563;line-height:1.55;flex:1;margin:0}
+.vs .way .want{align-self:flex-start;margin-top:4px}
+.vs .custom{margin-top:16px;font-weight:700;color:var(--muted);font-size:14.5px}
 .vs .honest{text-align:center;color:var(--muted);font-weight:700;margin:22px auto 0;max-width:60ch;font-size:14.5px}
 .vs .src{text-align:center;color:var(--muted);font-weight:600;margin:14px auto 0;max-width:70ch;font-size:12.5px}
 .vs .src a{color:var(--blue-d);font-weight:800}
 .vs .cta{margin-top:26px;text-align:center}
 @media (max-width:720px){
-  .vs .grid{grid-template-columns:1fr 1fr;gap:8px}
-  .vs .grid .lab{grid-column:1/-1;padding:8px 0 0;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-  .vs .grid .lab.first{display:none}
+  .vs .ways{grid-template-columns:1fr}
+  .vs .bill{padding:18px 18px 16px}
 }
 @media (prefers-reduced-motion: reduce){ .want,.want .g,.btn .g{transition:none} .want:hover{transform:none} .want:hover .g,.btn:hover .g{transform:none} }
 .dojo-card h3{font-size:19px;font-weight:900}
@@ -1200,7 +1217,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
      "name": "Is this like Claudeforce?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Same idea, smaller building, one flat bill. Claudeforce is Salesforce's CRM with a big AI wired in: $320 to $550 a person a month for a seat with the AI on it, the AI's actions metered on top, and the AI half still in pilot as I write this. The Front Desk is the same job built for your business, inside Your Dojo at $2,222 a month, any number of people, the AI in the price, and it runs live in mine today. Ten people for a year: $38,400 to $66,000 in their licenses alone; $26,664 for mine with everything in. Not ready for the AI? R2 Hosting is $99 a month after a $222 build. If three of you just need a contact list, buy their Starter at $25 a seat. I will not beat that."
+      "text": "Same idea, and mine comes with the tech done for you. Claudeforce is Salesforce's CRM with a big AI inside: $195 to $550 a person a month for a seat, from $125 more for the AI on it, every job it does metered on top, and you still set it up, learn it and run it. Mine: R2 Hosting, $222 to build then $99 a month, is your site, the forms, your customer list and a shared inbox, built and run by me. Your Dojo, $2,222 a month flat, adds trained AI ninjas so every reply is drafted and waiting for one press, any number of people, the AI in the price. If three of you just need a contact list, buy their Starter at $25 a seat. I will not beat that."
      }
     },
     {
@@ -2087,44 +2104,49 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="vs" id="claudeforce">
   <div class="wrap rv">
     <div class="k">Claudeforce, explained</div>
-    <h2>Salesforce just wired a big AI into its CRM. <span>Same idea. One flat bill, built for you.</span></h2>
-    <p class="sub">On 26 August 2026 Salesforce announced Claudeforce: their CRM with one of the big AI companies' models inside, so a salesperson's Monday runs itself. It is real, the idea is right, and they are spending a fortune on TV telling you so. My Front Desk has been doing the same job in my own businesses since before the ad. Their number is a seat license, before anything works. Mine is the whole job. Here is both, and when you should buy theirs.</p>
-    <div class="grid">
-      <div class="lab first" aria-hidden="true"></div>
-      <div class="hd">Claudeforce</div>
-      <div class="hd me">The Front Desk, inside Your Dojo</div>
+    <h2>Somebody told you to get Claudeforce? <span>Here is the honest bill.</span></h2>
+    <p class="sub">Salesforce put a big AI inside its CRM and called it Claudeforce. Good idea, and they are spending a fortune on TV telling you so. Before you sign, here is what it costs, in plain English, and the part the ad leaves out: you still do all the work.</p>
 
-      <div class="lab">What it is</div>
-      <div>Salesforce with an AI model wired in. Sales is in pilot, the open beta is due this month, and as I write this on 13 September 2026 no price has been published for the AI half.</div>
-      <div class="me">A CRM and support desk built for your business: every mail filed against a person's record, a reply drafted and waiting, one human press to send. Runs live in my businesses today, and comes inside Your Dojo with the rest of your admin.</div>
-
-      <div class="lab">What the number buys</div>
-      <div><span class="num">$320 to $550</span>per person, per month, billed yearly, for one seat with the AI on it (Core $195 plus the AI add-on from $125, or Max $550 with it in). The AI's actions are metered on top, about $0.10 each. Setup, and the person who runs it, on top of that.</div>
-      <div class="me"><span class="num">$2,222 flat</span>a month for Your Dojo, the whole job: built, hosted on my stack, the AI inside on my accounts, me on call. Any number of people. Nothing metered, nothing to set up, nobody extra to hire.</div>
-
-      <div class="lab">Ten people, one year</div>
-      <div><span class="num">$38,400 to $66,000</span>on the licenses alone, before a single metered action, before setup, before anyone runs it.</div>
-      <div class="me"><span class="num">$26,664</span>everything in, and it does not go up at person eleven, or twenty. At five people it is a closer race, $19,200 to $33,000 on theirs, and mine sits in the middle with the build, the hosting and the actions already inside.</div>
-
-      <div class="lab">Not ready for the AI yet</div>
-      <div>Pro at $100 a person a month, no AI. Starter at $25 for a contact list.</div>
-      <div class="me"><span class="num">$99 a month</span>after a $222 build: R2 Hosting. Your site or small app, mail on your domain, the forms and a shared inbox, on my stack. No AI workforce yet. It becomes the front door of a Dojo when you are ready, nothing thrown away.</div>
-
-      <div class="lab">Who runs it</div>
-      <div>You, your admin, or a Salesforce partner at their day rate.</div>
-      <div class="me">Your team presses send; I build it, host it and stay on call. Want the whole day run for you? That is a custom price, and we talk first.</div>
-
-      <div class="lab">What you own</div>
-      <div>A subscription. Stop paying and the door closes.</div>
-      <div class="me">Your domain, your content and your data, always; they leave with you. The build runs on my stack and ends with the subscription, same as theirs. Want it in your own house? That is a custom build, quoted in writing.</div>
-
-      <div class="lab">The AI inside</div>
-      <div>Their chosen model, inside their walls, metered.</div>
-      <div class="me">Whichever of the AI companies is best that month, behind a switch, on my accounts and in the price. The desk still works with every model switched off.</div>
+    <div class="bill" aria-label="What Claudeforce costs, per person, per month">
+      <div class="bh">Claudeforce <small>per person, per month</small></div>
+      <div class="row"><b>A seat that can take the AI</b><span class="amt">$195 to $550</span><small>Billed for the year up front.</small></div>
+      <div class="row"><b>The AI on that seat</b><span class="amt">+ $125</span><small>Unless you buy the $550 seat, which has it in.</small></div>
+      <div class="row"><b>Every job the AI does</b><span class="amt">about 10 cents</span><small>Metered, on top, every time.</small></div>
+      <div class="row"><b>Claudeforce itself</b><span class="amt">no price yet</span><small>Still in pilot as I write this, 13 September 2026.</small></div>
+      <div class="tot"><span>Ten people, one year</span><span class="amt">$38,400 to $66,000</span></div>
+      <div class="still">
+        <h4>And that is with you doing all the work.</h4>
+        <ul>
+          <li>You set it up, or pay a Salesforce partner by the day.</li>
+          <li>You learn it, and learn it again every time it changes.</li>
+          <li>You watch the meter.</li>
+          <li>You run it. Every day.</li>
+        </ul>
+      </div>
     </div>
-    <p class="honest">If three of you need a contact list and nothing else, buy their Starter at $25 a seat. I will not beat that, and I will not pretend to. The Dojo wins the day you want the AI to do the work, and it wins by more with every person you add.</p>
+
+    <div class="relief">
+      <h3>Or press one button and let <span>the AI Ninja</span> think about all of that.</h3>
+      <p>You never wanted a CRM. You wanted the phone to ring, the mail answered and the customer remembered. Two ways in, one bill each, and the tech is my problem.</p>
+      <div class="ways">
+        <div class="way">
+          <span class="tag">Basic plan &middot; R2 Hosting</span>
+          <span class="amt">$222 to build<small>, then $99 a month</small></span>
+          <p>Your site, the forms that bring work in, your customer list, a shared inbox that files every mail. Built, hosted and kept running by me. Nothing for you to log into. For a lot of small businesses, this is all the CRM they ever needed.</p>
+          <a class="want" href="#" data-want="R2 Hosting, $222 to build, then $99 a month" data-want-note="I build it, I host it, I keep it running." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
+        </div>
+        <div class="way">
+          <span class="tag">Full plan &middot; Your Dojo</span>
+          <span class="amt">$2,222 a month<small>, flat</small></span>
+          <p>All of that, plus trained AI ninjas doing the admin: every reply drafted and waiting, one press to send. Any number of people. The AI is in the price. Me on call.</p>
+          <a class="want" href="#" data-want="Your Dojo, $2,222 a month" data-want-note="I build it, host it, and help you run it." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
+        </div>
+      </div>
+      <p class="custom">Want the whole day run for you? That is a custom price, and we talk first.</p>
+    </div>
+
+    <p class="honest">If three of you need a contact list and nothing else, buy their Starter at $25 a seat. I will not beat that, and I will not pretend to.</p>
     <p class="src">Salesforce prices from <a href="https://www.salesforce.com/sales/pricing/" rel="noopener" target="_blank">salesforce.com/sales/pricing</a> and <a href="https://www.salesforce.com/agentforce/pricing/" rel="noopener" target="_blank">salesforce.com/agentforce/pricing</a>, read 13 September 2026, USD. Claudeforce facts from Salesforce's press release of 26 August 2026 and its Claudeforce page, read the same day. Both change; this was true the day it was written.</p>
-    <div class="cta"><a class="btn btn-blue" href="#" data-want="The Front Desk" data-want-note="Support replies drafted on auto. You press send." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a></div>
   </div>
 </section>
 
@@ -2462,7 +2484,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <details><summary>What is an Agentic CMO?</summary><p>The same idea as a fractional CTO, with the work done by trained AI ninjas instead of a person on a day rate. A Master is a seat: a job title a payroll would recognize, one number it is judged on, and the solutions on this page working under it. Six seats exist, and all six have run my own businesses and are for sale. A Master never widens a ninja's lane. Every send, pay and post still waits for your press.</p></details>
       <details><summary>Can somebody's AI assistant deal with you instead of them?</summary><p>Yes, and this page is built for it. The solutions list and both prices are in a tool an assistant can read, and the mailbox is a tool it can call. What it posts lands where a person's message lands, and the reply goes to the person it was sent for, not to the robot. Your own website can be made to do the same, and that is one of the things I build.</p></details>
       <details><summary>Is it safe to let an AI read my inbox?</summary><p>Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops there. Nothing leaves without a human press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are stored bytes, never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file, so you can always see what it did and why. Whatever the AI companies change tomorrow, the press is still yours.</p></details>
-      <details><summary>Is this like Claudeforce?</summary><p>Same idea, smaller building, one flat bill. Claudeforce is Salesforce's CRM with a big AI wired in: $320 to $550 a person a month for a seat with the AI on it, the AI's actions metered on top, and the AI half still in pilot as I write this. The Front Desk is the same job built for your business, inside Your Dojo at $2,222 a month, any number of people, the AI in the price, and it runs live in mine today. Ten people for a year: $38,400 to $66,000 in their licenses alone; $26,664 for mine with everything in. Not ready for the AI? R2 Hosting is $99 a month after a $222 build. If three of you just need a contact list, buy their Starter at $25 a seat. I will not beat that.</p></details>
+      <details><summary>Is this like Claudeforce?</summary><p>Same idea, and mine comes with the tech done for you. Claudeforce is Salesforce's CRM with a big AI inside: $195 to $550 a person a month for a seat, from $125 more for the AI on it, every job it does metered on top, and you still set it up, learn it and run it. Mine: R2 Hosting, $222 to build then $99 a month, is your site, the forms, your customer list and a shared inbox, built and run by me. Your Dojo, $2,222 a month flat, adds trained AI ninjas so every reply is drafted and waiting for one press, any number of people, the AI in the price. If three of you just need a contact list, buy their Starter at $25 a seat. I will not beat that.</p></details>
       <details><summary>Does anyone test it before my customers see it?</summary><p>Yes, and not by me clicking around. Simulated players go first: hundreds of rounds, every route walked, every button pressed, looking for stalls, dead ends and bad sums. Then a second pass in character, people of different ages and patience, reporting where they got lost. It began on WinJitsu, it runs on the games, and it walked this page before the chat box shipped.</p></details>
       <details><summary>Why the belts?</summary><p>Because trust is earned by showing up and proving it, which is exactly how I grade kids at the gym. A ninja that has proven its lane gets a wider one. One that has not, does not. It keeps the honest order: propose, prove, then earn.</p></details>
     </div>
