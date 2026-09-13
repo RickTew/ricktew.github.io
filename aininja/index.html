@@ -133,9 +133,8 @@ h2 .c{color:var(--blue)}
 .noise-card h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:clamp(24px,3.4vw,34px);font-weight:900;margin-top:8px;line-height:1.1}
 .noise-card p{margin-top:14px;font-weight:600;color:#3a4148;font-size:16.5px;line-height:1.7}
 .noise-card b{color:var(--ink)}
-.hype{margin-top:24px;padding:16px 16px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
-.hype .hk{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.5}
-.hype-list{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.hype-list{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.noise-card h3.after{margin-top:28px}
 .hype-list li{min-width:0}
 .thumb{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;border-radius:8px;background:#141414;color:#fff;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
 .thumb .big{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:clamp(15px,1.7vw,22px);letter-spacing:-.01em;text-transform:uppercase;color:#ffe14d;text-shadow:0 2px 0 #000,0 0 14px rgba(0,0,0,.6);padding:0 8px;text-align:center}
@@ -155,7 +154,7 @@ h2 .c{color:var(--blue)}
 .week .wbody p:first-child{margin-top:0}
 .week .wbody a{color:var(--blue-d);font-weight:800}
 @media (max-width:700px){ .hype-list{grid-template-columns:repeat(2,minmax(0,1fr))} }
-@media (max-width:600px){ .noise-card{padding:22px 20px} .hype{padding:14px 12px 12px} }
+@media (max-width:600px){ .noise-card{padding:22px 20px} }
 
 /* timeline */
 .tl-head{padding:84px 0 10px}
@@ -1283,24 +1282,19 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   <div class="wrap rv">
     <div class="noise-card" id="summit">
       <div class="k">This week</div>
-      <h3>I'm not from that playbook.</h3>
-      <p>What you see on social right now: people claiming to be multi-millionaires, even billionaires, or super marketing experts.</p>
-      <p>They saw an opportunity, and it is not your problem they want to solve.</p>
-      <p>It reminds me of the old seminar speakers who never built anything, taught you how to make money, and ironically the teaching is what made them the money.</p>
+      <h3>What you see on social right now.</h3>
+      <p>People claiming to be multi-millionaires, even billionaires, or super marketing experts. The four below are made up, and you have seen every one of them anyway.</p>
 
-      <div class="hype" aria-label="Four made-up video titles in the style of the feed">
-        <div class="hk">The shape of it. Made up, all four. You have seen every one of them anyway.</div>
-        <ul class="hype-list">
-          <li><span class="thumb" aria-hidden="true"><span class="big">$2.7M</span><span class="face">&#129327;</span></span><span class="t">How I Made $2.7M This Year With AI (Copy My EXACT System)</span><span class="m">Never shows the business.</span></li>
-          <li><span class="thumb" aria-hidden="true"><span class="big">BILLIONAIRE</span><span class="face">&#128073;</span></span><span class="t">Billionaire Reveals The ONE Skill That Made Him Rich (Watch Before It Gets Deleted)</span><span class="m">It never gets deleted.</span></li>
-          <li><span class="thumb" aria-hidden="true"><span class="big">SECRET</span><span class="face">&#129323;</span></span><span class="t">I Ran Ads For 500 Businesses. The Secret Nobody Tells You</span><span class="m">The secret is a course.</span></li>
-          <li><span class="thumb" aria-hidden="true"><span class="big">$1,997</span><span class="face">&#127908;</span></span><span class="t">Quit Your Job In 90 Days: The Blueprint (Free Webinar, Seats Limited)</span><span class="m">The teaching is the money.</span></li>
-        </ul>
-      </div>
+      <ul class="hype-list" aria-label="Four made-up video titles in the style of the feed">
+        <li><span class="thumb" aria-hidden="true"><span class="big">$2.7M</span><span class="face">&#129327;</span></span><span class="t">How I Made $2.7M This Year With AI (Copy My EXACT System)</span><span class="m">Never shows the business.</span></li>
+        <li><span class="thumb" aria-hidden="true"><span class="big">BILLIONAIRE</span><span class="face">&#128073;</span></span><span class="t">Billionaire Reveals The ONE Skill That Made Him Rich (Watch Before It Gets Deleted)</span><span class="m">It never gets deleted.</span></li>
+        <li><span class="thumb" aria-hidden="true"><span class="big">SECRET</span><span class="face">&#129323;</span></span><span class="t">I Ran Ads For 500 Businesses. The Secret Nobody Tells You</span><span class="m">The secret is a course.</span></li>
+        <li><span class="thumb" aria-hidden="true"><span class="big">$1,997</span><span class="face">&#127908;</span></span><span class="t">Quit Your Job In 90 Days: The Blueprint (Free Webinar, Seats Limited)</span><span class="m">The teaching is the money.</span></li>
+      </ul>
 
       <div class="week">
         <details>
-          <summary><span class="wd">10 September 2026</span>Seen the Side Hustle Summit? Here is what it sells, in plain words.</summary>
+          <summary><span class="wd">A real one &middot; 10 September 2026</span>The Side Hustle Summit: five free days on YouTube, and a $1,995 program on day two. Here is what it sells, in plain words.</summary>
           <div class="wbody">
             <p>Five free sessions on YouTube, and on the second day a program for $1,995, or from about $166 a month on finance, with two $25 add-ons at the checkout and a $995 offer after it. The host said on day one that the paid offer is what pays for the free week. That is allowed. It is also worth knowing before you hand over a WhatsApp number for a workbook.</p>
             <p>What the two days taught can be done with what you already have: one person with one problem, the answer written from good public sources with the references, a short guide, put where those people already gather. The last step is the hard one, and as of day two the free sessions had not shown it. Day three showed it: small Instagram creators with no product, found by hand, and reached by cold email through a platform that costs $597 a month on its own site. Day four was the scaling step: put the next thing a buyer needs on the page after the order. Free, and older than the internet. I do not sell a course for any of this. If you run a business and would rather have the work built, the twelve questions further down say what that would be, and they do not ask for your email.</p>
@@ -1308,6 +1302,10 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
           </div>
         </details>
       </div>
+
+      <h3 class="after">I'm not from that playbook.</h3>
+      <p>They saw an opportunity, and it is not your problem they want to solve.</p>
+      <p>It reminds me of the old seminar speakers who never built anything, taught you how to make money, and ironically the teaching is what made them the money.</p>
     </div>
   </div>
 </div>
@@ -1477,9 +1475,9 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
         </a>
       </div>
       <p class="vis-cap" style="max-width:340px;margin-top:12px">TEWGO is on the Apple App Store. Five in a row, two to capture. The other four games are still mine to finish.</p>
-      <div class="photos stack" style="margin-top:18px">
-        <figure><img src="assets/story/rick/childhood-game.webp" alt="The arena game Rick built on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles" loading="lazy" style="aspect-ratio:auto"><figcaption>The game I built on paper as a kid: boards, character sheets, a bag of hand-cut tiles. It is becoming a real game now.</figcaption></figure>
-        <figure><img src="assets/story/rick/arena-rpg.webp" alt="Arena RPG key art: an armoured champion with a lion shield, a dragon, a wizard and a twenty-sided die in a packed arena" loading="lazy" style="aspect-ratio:auto"><figcaption>Arena RPG. The same game the paper one was always trying to be.</figcaption></figure>
+      <div class="photos" style="margin-top:18px">
+        <figure><img src="assets/story/rick/childhood-game.webp" alt="The arena game Rick built on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles" loading="lazy" style="aspect-ratio:3/4"><figcaption>The game I built on paper as a kid: boards, character sheets, a bag of hand-cut tiles. It is becoming a real game now.</figcaption></figure>
+        <figure><img src="assets/story/rick/arena-rpg.webp" alt="Arena RPG key art: an armoured champion with a lion shield, a dragon, a wizard and a twenty-sided die in a packed arena" loading="lazy" style="aspect-ratio:3/4"><figcaption>Arena RPG. The same game the paper one was always trying to be.</figcaption></figure>
       </div>
     </div>
   </div>
@@ -1489,8 +1487,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="charwall" id="characters">
   <div class="rv">
     <div class="k">From the games</div>
-    <h2>The characters, <span class="c">every one of them mine</span></h2>
-    <p class="sub">Heroes, the horde, marines, cyborgs and one very good dog. Most from DungeonHole's class and enemy tables, the robots and emplacements from AstroHold. All animated in eight directions. Not promo renders: the exact frames the games draw, at exact size, so the big ones tower the way they do in a fight.</p>
+    <h2>The characters</h2>
 
     <div class="spr-row" aria-hidden="true">
       <div class="spr-fig"><span class="spr spr-ninja pixel"></span></div>
