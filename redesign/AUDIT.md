@@ -43,7 +43,7 @@
 ### Tier 1 — Very Soon (launch-ready, include with real info)
 - The Adroit Swordsman — live at adroit-swordsman.vercel.app
 - Tew's Total Recall — live on Vercel
-- Pixel Dungeon — Phaser 4 web game, live at dungeon-king.vercel.app. Repo: `DungeonKing/Phaser/` (Next.js + Phaser 4 + TypeScript)
+- Dungeon Hole (the name since 2026-07-12; this audit first called it Pixel Dungeon), Phaser 4 web game, live at dungeonhole.com. Repo: `~/Dev/DungeonHole/` (Next.js + Phaser 4 + TypeScript)
 
 ### Tier 2 — Soon (in dev, show as teaser)
 - Winjitsu
@@ -67,7 +67,7 @@
 ### Per Project (Tier 1 — Very Soon)
 - [ ] **Adroit Swordsman** — screenshot, tagline, link
 - [ ] **Tew's Total Recall** — screenshot, tagline, link
-- [ ] **Pixel Dungeon** — live at dungeon-king.vercel.app. Need screenshot + short description for site card.
+- [ ] **Dungeon Hole**, live at dungeonhole.com. Need screenshot + short description for site card.
 
 ### Per Project (Tier 2 — Teaser cards)
 - [ ] **Winjitsu** — logo or name treatment, one-line teaser, "coming soon"
@@ -169,7 +169,7 @@ Modern CSS — no build step, no npm, open `index.html` in a browser to develop.
 
 ## Open Questions
 
-1. **Pixel Dungeon vs Dungeon King** — Resolved. Pixel Dungeon = Phaser 4 web game (live). Dungeon King = Godot version (in dev). Both in `DungeonKing/` repo.
+1. **Pixel Dungeon vs Dungeon King**: resolved again 2026-09-13. They were one game. It is Dungeon Hole (Phaser 4, live at dungeonhole.com, repo `~/Dev/DungeonHole/`). No Godot version ever landed in git.
 2. **Home Study Program (HSP)** — Confirmed: 200-page visual book + companion app, in design phase in Claude Chat Projects. No local repo yet. Still TBD: is it under the Winjitsu brand, or standalone?
 3. **Bio voice** — First person ("I build...") or third person ("Rick Tew builds...")?
 4. **Design direction** — Any reference sites you like the feel of? Colors or vibe in mind?

@@ -703,8 +703,8 @@ Verify a status with a real request before repeating it on the site.**
 ### Games
 | Name | Platform | Status | Notes |
 |------|----------|--------|-------|
-| Pixel Dungeon | Web (Phaser 4) | **Live** at dungeon-king.vercel.app (verified 2026-08-21) | Repo: `DungeonKing/Phaser/` |
-| Dungeon King | PC/Mac (Godot) | In dev | Godot version of same IP. Repo: `DungeonKing/Godot/` |
+| Dungeon Hole | Web (Phaser 4 + Next.js) | **Live** at dungeonhole.com, also dungeon-hole.vercel.app (verified 2026-09-13) | 1v1 asymmetric dungeon strategy. Renamed from Dungeon King 2026-07-12; the old dungeon-king.vercel.app 308s to the new address. Repo: `~/Dev/DungeonHole/` (flat, no `Phaser/` subfolder since June 2026). The game's own title is two words; `/aininja/` writes it DungeonHole, one word, and Rick has not ruled which. |
+| Dungeon King (Godot) | PC/Mac | **Does not exist** | Was listed here as in dev. No Godot folder or `project.godot` was ever tracked in the DungeonHole repo (checked 2026-09-13); Dungeon King is only the big game's old name. Never list it as a product. |
 | TEWGO | iOS | **Live on the App Store** (verified 2026-08-21) | Pente-variant, SwiftUI + SpriteKit. apps.apple.com/us/app/tewgo/id6763025917 |
 | Ninja Ninja Defense | PC (Unity) | Soon | Tower defense with on-device AI |
 | NinjaCampBuilder | PC (Unity 2D, Steam) | Stalled | Omit for now |
