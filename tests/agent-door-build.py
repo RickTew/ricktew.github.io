@@ -60,7 +60,7 @@ L=["# Rick Tew","",
 "## Solutions (the things Rick builds)",""]
 L+=["- %s: %s"%(txt(n),txt(t)) for n,t in rows]
 L+=["","## Compared with Claudeforce (Salesforce plus an AI model, announced 26 Aug 2026)","",
-"- The Front Desk is Rick's CRM and support desk: same job, flat monthly price, no per-seat fee, no metered AI actions, runs live in his businesses. Salesforce's own list prices on 29 Aug 2026: Enterprise $175, Unlimited $350, Agentforce 1 Sales $550 per user per month; Starter $25. Details and the honest line (a three-person contact list should buy Starter): https://ricktew.com/aininja/#claudeforce"]
+"- The Front Desk is Rick's CRM and support desk: same job, one flat bill, no per-seat fee, no metered AI actions, runs live in his businesses; it comes inside Your Dojo ($2,222 a month, any number of people, the AI in the price). Salesforce's own list prices on 13 Sep 2026: Starter $25, Pro $100, Core $195, Advanced $395, Max $550 per user per month; the AI is an add-on from Core up, from $125 a user a month, actions metered at about $0.10 each; no Claudeforce price published yet. Not ready for the AI: R2 Hosting, $222 to build then $99 a month. Details and the honest line (a three-person contact list should buy Starter): https://ricktew.com/aininja/#claudeforce"]
 L+=["","## Seats (a job title, staffed by trained AI ninjas)",""]+["- %s"%x for x in seats]
 L+=["","## How to get in touch","",
 "- The mailbox on the AI Ninja page: https://ricktew.com/aininja/#opt-8c . A form that posts JSON; an agent can call it as the WebMCP tool post_letter_to_rick.",
