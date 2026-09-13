@@ -294,6 +294,7 @@ figure.fig.small img { max-width: 480px; width: 100%; }
 }
 .btn:hover { filter: brightness(1.08); }
 .btn.wide { display: block; text-align: center; }
+.pagehead .btn { margin-top: 24px; }
 
 /* ---------- Quote bubble (gray speech bubble + avatar) ---------- */
 .bubble-quote { margin: 46px auto; max-width: 620px; text-align: center; }
