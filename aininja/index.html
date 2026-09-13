@@ -133,10 +133,29 @@ h2 .c{color:var(--blue)}
 .noise-card h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-size:clamp(24px,3.4vw,34px);font-weight:900;margin-top:8px;line-height:1.1}
 .noise-card p{margin-top:14px;font-weight:600;color:#3a4148;font-size:16.5px;line-height:1.7}
 .noise-card b{color:var(--ink)}
-.noise-note{margin-top:16px;border-color:var(--line);box-shadow:none}
-.noise-note h3{font-size:clamp(20px,2.8vw,26px)}
-.noise-note a{color:var(--blue-d);font-weight:800}
-@media (max-width:600px){ .noise-card{padding:22px 20px} }
+.hype{margin-top:24px;padding:16px 16px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.hype .hk{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.5}
+.hype-list{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.hype-list li{min-width:0}
+.thumb{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;border-radius:8px;background:#141414;color:#fff;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.thumb .big{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:clamp(15px,1.7vw,22px);letter-spacing:-.01em;text-transform:uppercase;color:#ffe14d;text-shadow:0 2px 0 #000,0 0 14px rgba(0,0,0,.6);padding:0 8px;text-align:center}
+.thumb .face{position:absolute;right:6px;bottom:2px;font-size:clamp(18px,2.2vw,28px);line-height:1;filter:drop-shadow(0 2px 2px rgba(0,0,0,.5))}
+.thumb::before{content:"\279C";position:absolute;left:6px;top:4px;font-size:clamp(20px,2.4vw,30px);line-height:1;color:var(--red);transform:rotate(35deg);text-shadow:0 0 6px rgba(0,0,0,.7)}
+.hype-list .t{display:block;margin-top:8px;font-size:13.5px;font-weight:800;line-height:1.35;color:var(--ink)}
+.hype-list .m{display:block;margin-top:4px;font-size:12.5px;font-weight:700;color:var(--red-d)}
+.week{margin-top:22px}
+.week details{border:1px solid var(--line);border-radius:12px;background:#fff}
+.week details + details{margin-top:10px}
+.week summary{cursor:pointer;list-style:none;position:relative;padding:16px 44px 16px 18px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:clamp(17px,2.2vw,21px);line-height:1.25}
+.week summary::-webkit-details-marker{display:none}
+.week summary::after{content:"+";position:absolute;right:18px;top:12px;font-size:22px;font-weight:900;color:var(--blue)}
+.week details[open] summary::after{content:"\2212"}
+.week .wd{display:block;font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.week .wbody{padding:0 18px 18px}
+.week .wbody p:first-child{margin-top:0}
+.week .wbody a{color:var(--blue-d);font-weight:800}
+@media (max-width:700px){ .hype-list{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:600px){ .noise-card{padding:22px 20px} .hype{padding:14px 12px 12px} }
 
 /* timeline */
 .tl-head{padding:84px 0 10px}
@@ -1262,19 +1281,33 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 
 <div class="noise">
   <div class="wrap rv">
-    <div class="noise-card">
-      <div class="k">Before the story</div>
+    <div class="noise-card" id="summit">
+      <div class="k">This week</div>
       <h3>I'm not from that playbook.</h3>
       <p>What you see on social right now: people claiming to be multi-millionaires, even billionaires, or super marketing experts.</p>
       <p>They saw an opportunity, and it is not your problem they want to solve.</p>
       <p>It reminds me of the old seminar speakers who never built anything, taught you how to make money, and ironically the teaching is what made them the money.</p>
-    </div>
-    <div class="noise-card noise-note" id="summit">
-      <div class="k">This week &middot; 10 September 2026</div>
-      <h3>Seen the Side Hustle Summit? Here is what it sells, in plain words.</h3>
-      <p>Five free sessions on YouTube, and on the second day a program for $1,995, or from about $166 a month on finance, with two $25 add-ons at the checkout and a $995 offer after it. The host said on day one that the paid offer is what pays for the free week. That is allowed. It is also worth knowing before you hand over a WhatsApp number for a workbook.</p>
-      <p>What the two days taught can be done with what you already have: one person with one problem, the answer written from good public sources with the references, a short guide, put where those people already gather. The last step is the hard one, and as of day two the free sessions had not shown it. Day three showed it: small Instagram creators with no product, found by hand, and reached by cold email through a platform that costs $597 a month on its own site. Day four was the scaling step: put the next thing a buyer needs on the page after the order. Free, and older than the internet. I do not sell a course for any of this. If you run a business and would rather have the work built, the twelve questions further down say what that would be, and they do not ask for your email.</p>
-      <p><a href="/aininja/side-hustle-summit/">The plain-words page: what it sells, what it taught, the four steps at no cost. Updated after each session.</a></p>
+
+      <div class="hype" aria-label="Four made-up video titles in the style of the feed">
+        <div class="hk">The shape of it. Made up, all four. You have seen every one of them anyway.</div>
+        <ul class="hype-list">
+          <li><span class="thumb" aria-hidden="true"><span class="big">$2.7M</span><span class="face">&#129327;</span></span><span class="t">How I Made $2.7M This Year With AI (Copy My EXACT System)</span><span class="m">Never shows the business.</span></li>
+          <li><span class="thumb" aria-hidden="true"><span class="big">BILLIONAIRE</span><span class="face">&#128073;</span></span><span class="t">Billionaire Reveals The ONE Skill That Made Him Rich (Watch Before It Gets Deleted)</span><span class="m">It never gets deleted.</span></li>
+          <li><span class="thumb" aria-hidden="true"><span class="big">SECRET</span><span class="face">&#129323;</span></span><span class="t">I Ran Ads For 500 Businesses. The Secret Nobody Tells You</span><span class="m">The secret is a course.</span></li>
+          <li><span class="thumb" aria-hidden="true"><span class="big">$1,997</span><span class="face">&#127908;</span></span><span class="t">Quit Your Job In 90 Days: The Blueprint (Free Webinar, Seats Limited)</span><span class="m">The teaching is the money.</span></li>
+        </ul>
+      </div>
+
+      <div class="week">
+        <details>
+          <summary><span class="wd">10 September 2026</span>Seen the Side Hustle Summit? Here is what it sells, in plain words.</summary>
+          <div class="wbody">
+            <p>Five free sessions on YouTube, and on the second day a program for $1,995, or from about $166 a month on finance, with two $25 add-ons at the checkout and a $995 offer after it. The host said on day one that the paid offer is what pays for the free week. That is allowed. It is also worth knowing before you hand over a WhatsApp number for a workbook.</p>
+            <p>What the two days taught can be done with what you already have: one person with one problem, the answer written from good public sources with the references, a short guide, put where those people already gather. The last step is the hard one, and as of day two the free sessions had not shown it. Day three showed it: small Instagram creators with no product, found by hand, and reached by cold email through a platform that costs $597 a month on its own site. Day four was the scaling step: put the next thing a buyer needs on the page after the order. Free, and older than the internet. I do not sell a course for any of this. If you run a business and would rather have the work built, the twelve questions further down say what that would be, and they do not ask for your email.</p>
+            <p><a href="/aininja/side-hustle-summit/">The plain-words page: what it sells, what it taught, the four steps at no cost. Updated after each session.</a></p>
+          </div>
+        </details>
+      </div>
     </div>
   </div>
 </div>
