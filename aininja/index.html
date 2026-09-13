@@ -607,6 +607,15 @@ footer a:hover{text-decoration:underline}
 .h2b .proof span{font-size:12.5px;font-weight:900;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--panel)}
 
 /* 2C: the results hero */
+.you{padding:72px 0 76px;background:#fff;border-top:1px solid var(--line)}
+.you .wrap{max-width:860px}
+.you h2{font-size:clamp(28px,4.4vw,44px);font-weight:900;letter-spacing:-.01em;line-height:1.08;margin-top:8px;max-width:22ch}
+.you h2 .c{color:var(--blue)}
+.you-list{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:10px}
+.you-list li{position:relative;padding-left:34px;font-size:clamp(16px,2vw,19px);font-weight:700;color:var(--ink);line-height:1.4}
+.you-list li::before{content:"\2713";position:absolute;left:0;top:-1px;width:24px;height:24px;border-radius:6px;background:var(--blue);color:#fff;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center}
+.you-p{margin-top:22px;max-width:60ch;font-size:16.5px;font-weight:600;color:#3a4148;line-height:1.7}
+.you .cta-row{margin-top:26px}
 .h2c{background:var(--ink);color:#fff;padding:80px 0;border-bottom:1px solid var(--line)}
 .h2c .k{color:#7db4e4}
 .h2c h2{color:#fff;font-size:clamp(34px,5.4vw,58px);font-weight:900;letter-spacing:-.015em;max-width:20ch;line-height:1.05;margin-top:8px}
@@ -1275,6 +1284,24 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   </div>
 </header>
 
+<!-- ============ WHO THIS IS FOR: the reader, named ============ -->
+<section class="you" id="you">
+  <div class="wrap rv">
+    <div class="k">Is this you?</div>
+    <h2>You do not like tech. Or you are tired of it. <span class="c">You still want it to work.</span></h2>
+    <ul class="you-list">
+      <li>You would rather be with a customer than at a screen.</li>
+      <li>You have tried an app, a tool, a "system". It is somewhere on your phone.</li>
+      <li>You do not want it explained. You want it done.</li>
+    </ul>
+    <p class="you-p">Good. That is who I build for. You press one button and I think about the rest: the tech, the AI, which model is best this month, the thing that broke at 2am. None of it is yours to carry.</p>
+    <div class="cta-row">
+      <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
+      <a class="btn btn-quiet" href="#quiz">Take the quiz</a>
+    </div>
+  </div>
+</section>
+
 <!-- ============ OPTION 2C: hero, the results version ============ -->
 <section class="h2c" id="opt-2c">
   <div class="wrap rv">
@@ -1320,7 +1347,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   <div class="wrap rv">
     <div class="k">The story, in build order</div>
     <h2>Five months. <span class="c">Solutions and goals.</span> One reason.</h2>
-    <p>Every date below comes from the project history, in the order it happened.</p>
+    <p>The one reason: I wanted my evenings back. If that is your reason too, this page is for you. Every date below comes from the project history, in the order it happened.</p>
   </div>
 </section>
 
@@ -1622,7 +1649,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <!-- ============ OPTION E1: the engine explainer ============ -->
 <section class="e1" id="opt-e1">
   <div class="wrap rv">
-    <span class="k">The engine under the website</span>
+    <span class="k">What you never have to touch</span>
     <h2>The website is not the machine. <span class="c">It is the handle.</span></h2>
     <p class="sub">Take SabaiSen, my spa app, as the example.</p>
 
@@ -2265,7 +2292,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <!-- ============ OPTION 5A: the service page, in one section ============ -->
 <section class="s5a" id="opt-5a">
   <div class="wrap rv">
-    <div class="k">The service, said plainly</div>
+    <div class="k">What you get, what I do</div>
     <h2>You keep the judgment calls. <span class="c">I keep the machine moving.</span></h2>
     <div class="grid">
       <div class="prose">
