@@ -589,7 +589,7 @@ footer a:hover{text-decoration:underline}
   .sub{font-size:15.5px}
 }
 /* reveal */
-.rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.rv{opacity:0;transform:translateY(12px);transition:opacity .3s ease,transform .3s ease}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){ .rv{opacity:1;transform:none;transition:none} }
 
@@ -2767,6 +2767,11 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   /* Used by the quiz, which has real content to hand over: the answers ride
      into the message box so the visitor can read and edit them before they
      go anywhere. Nothing is sent until they press the button themselves. */
+  /* A prefill never overwrites the visitor's own words (persona round three,
+     14 Sep 2026: "Ask Rick this" wiped a message Lena had typed). Only an
+     untouched earlier prefill is replaced; anything else is kept and the new
+     block goes under it. */
+  var lastFill="";
   window.rtSlotFill=function(body,subject,email,lead){
     if(form.hidden){ goToSlot(); return; }
     var sel=form.elements.namedItem("subject");
@@ -2774,7 +2779,11 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     var mail=form.elements.namedItem("email");
     if(sel&&subject) sel.value=subject;
     if(mail&&email&&!mail.value) mail.value=email;
-    if(msg) msg.value=(lead?lead+"\n\n":"")+body;
+    if(msg){
+      var fill=(lead?lead+"\n\n":"")+body, own=msg.value;
+      msg.value=(own.trim()&&own!==lastFill) ? own.replace(/\s+$/,"")+"\n\n"+fill : fill;
+      lastFill=msg.value;
+    }
     var far=goToSlot();
     setTimeout(focusFirstGap, far?80:420);
   };
@@ -2907,7 +2916,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
           io.unobserve(en.target);
         }
       });
-    },{threshold:.05,rootMargin:"0px 0px 80px 0px"});
+    },{threshold:0,rootMargin:"0px 0px 50% 0px"});
     document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
     /* Failsafe: a block taller than the phone screen, or one the observer
        missed, reveals the moment any part of it has been scrolled into view. */
@@ -3183,15 +3192,17 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     if(HI[hi]) para("And the hours themselves go "+HI[hi]);
 
     var summary="Quiz results\n\n"+answers.filter(Boolean).map(function(a){return a.question+"\n> "+a.label;}).join("\n\n")
-      +"\n\nNumber they want to move: "+(NUMBER[num]?NUMBER[num].name:"n/a")
+      +"\n\nWhat the quiz made of it\n"
+      +"The number I want to move: "+(NUMBER[num]?NUMBER[num].name:"n/a")
       +"\nSolutions matched: "+(sols.length?sols.join(", "):"none")
       +"\nSeat matched: "+(topSeat ? topSeat+(SEAT_TRAINING[topSeat]?" (in training)":"") : "none")
-      +"\nEstimated draftable hours/week: "+draftable
-      +(hours>2 ? "\nSuggested tier: "+tier+" ("+price+")" : "")
-      +((hours>2 && wantsRun) ? "\nWants the daily work run for them: custom price, talk first." : "")
-      +(under ? "\nValue below the tier price: R2 Hosting suggested first." : "")
-      +(needsBuild ? "\nAlso needs build work, scoped and agreed in writing first." : "")
-      +((hours>2 && money) ? "\nEstimated value: USD "+monthly+"/month" : "");
+      +"\nEstimated draftable hours a week: "+draftable
+      +((hours>2 && money) ? "\nEstimated value: USD "+monthly+" a month" : "")
+      +(hours>2 ? (under ? "\nBy these numbers "+tier+" ("+price+") does not add up yet: a smaller start first, one desk scoped in writing or R2 Hosting."
+                         : "\nSuggested plan: "+tier+" ("+price+")") : "")
+      +((hours>2 && driver==="you") ? "\nI would want the daily work run for me: custom price, talk first." : "")
+      +((hours>2 && driver==="nobody") ? "\nNobody here has the capacity to run it day to day: custom price, talk first." : "")
+      +(needsBuild ? "\nSome of this is a build, scoped and agreed in writing first." : "");
     /* The quiz answers ride down to The Letter Slot instead of into a
        mail client. Nothing here opens the visitor's email app. */
     document.getElementById("rBook").onclick=function(e){

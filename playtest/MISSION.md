@@ -83,7 +83,8 @@ reading; **cosmetic** = noticed, no behaviour change.
 
 - Load the `claude-in-chrome` tools via ToolSearch in ONE call before
   starting. The page is live and static: no local server is needed.
-- Open a NEW tab at https://ricktew.com/aininja/ . For a phone-first persona,
+- Open a NEW tab at https://ricktew.com/aininja/ , unless your persona file
+  names a different starting page (then start there and follow its links). For a phone-first persona,
   note that the page cannot be resized by the tools: read it on desktop and
   say so in the report; the sim sweep covers the phone layout.
 - `https://ricktew.com/aininja/#ask` opens the chat box directly.

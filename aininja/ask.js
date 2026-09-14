@@ -660,7 +660,7 @@
     function handoff(want){
       want=want||HOURS;
       var body="I want this Tew: "+want.what+"."+(want.note?"\n"+want.note:"");
-      if(asked.length) body+="\n\nI asked your ninja on the page:\n"+asked.slice(-6).map(function(q){ return "- "+q; }).join("\n");
+      if(asked.length) body+="\n\nI asked your ninja on the page:\n"+asked.slice(-12).map(function(q){ return "- "+q; }).join("\n");
       body+="\n\nWhat I do:\nWhat eats the hours right now:\nWhen I would like it running:\n";
       close();
       if(typeof root.rtSlotFill==="function") root.rtSlotFill(body, want.kind||"hours");
@@ -669,7 +669,7 @@
     function askRick(q){
       var body="Your ninja on the page did not have this one:\n\""+q+"\"\n\nWhat I do:\nWhere this question comes from:\n";
       close();
-      if(typeof root.rtSlotFill==="function") root.rtSlotFill(body, "dojo");
+      if(typeof root.rtSlotFill==="function") root.rtSlotFill(body, "other");
       else location.hash="#opt-8c";
     }
     if(cta) cta.addEventListener("click", function(e){ e.preventDefault(); handoff(HOURS); });
