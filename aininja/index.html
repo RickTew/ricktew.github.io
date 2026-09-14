@@ -293,6 +293,41 @@ h2 .c{color:var(--blue)}
 .spr-row{display:flex;justify-content:center;gap:38px;margin-top:46px;align-items:flex-end;flex-wrap:wrap}
 @media (max-width:700px){ .spr-row{gap:14px 10px;margin-top:22px} }
 .spr-fig{display:flex;flex-direction:column;align-items:center;gap:8px}
+/* the hobby band: the charwall shell, the sprinkle grid and the phone fan,
+   all reused smaller (14 Sep, the games chapter folded into one aside) */
+.charwall.games{padding:48px 0}
+.games .wrap{text-align:center}
+.games .sub{color:#374151;font-weight:600;font-size:16.5px;line-height:1.6;margin-top:12px;max-width:60ch}
+.games .sub.closer{margin-top:10px}
+.games .want{margin-top:16px}
+.games .sprinkle{grid-template-columns:1.78fr 1fr 1fr 1.1fr;gap:12px;margin-top:26px;align-items:start}
+.games .sprinkle figure{transform:none}
+.games .sprinkle figure:hover{transform:scale(1.04)}
+.games .gclip{aspect-ratio:16/9}
+.games .gclip video{display:block;width:100%;height:100%;object-fit:cover;border-radius:12px;border:1px solid var(--line);box-shadow:0 6px 16px rgba(16,20,24,.10);background:var(--line)}
+.games .gfan{aspect-ratio:auto}
+.games .gfan:hover{transform:none}
+.games .gfan .phone img{aspect-ratio:440/954;border:0;box-shadow:none;border-radius:12px}
+.phone-fan.sm{min-height:196px}
+.phone-fan.sm .phone{width:92px;padding:4px;border-radius:16px;box-shadow:0 10px 20px rgba(16,20,24,.24)}
+.phone-fan.sm .p1{transform:rotate(-8deg) translateX(-46px)}
+.phone-fan.sm .p3{transform:rotate(11deg) translateX(50px)}
+.phone-fan.sm:hover .p1{transform:rotate(-11deg) translateX(-58px)}
+.phone-fan.sm:hover .p3{transform:rotate(14deg) translateX(62px)}
+.games .store-row{margin-top:12px;justify-content:center}
+.games .store-badge{padding:7px 12px}
+.games .store-badge .b2{font-size:15px}
+.games .spr-row{gap:24px;margin-top:14px}
+@media (max-width:700px){
+  .games .sprinkle{grid-template-columns:1fr 1fr}
+  .games .gclip,.games .gfan{grid-column:1/-1}
+  .phone-fan.sm{min-height:250px}
+  .phone-fan.sm .phone{width:112px}
+  .phone-fan.sm .p1{transform:rotate(-8deg) translateX(-56px)}
+  .phone-fan.sm .p3{transform:rotate(11deg) translateX(60px)}
+  .games .spr-row{gap:6px}
+  .games .spr-fig:nth-child(2),.games .spr-fig:nth-child(3),.games .spr-fig:nth-child(6){display:none}
+}
 .spr-fig small{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
 
 /* the sprinkle: close ups from the games, filling the space the chapter text
@@ -1472,17 +1507,25 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     </div>
   </div>
 
-  <!-- CH 4: game season -->
-  <div class="chapter rv">
-    <div class="dot" aria-hidden="true"></div>
-    <div class="ch-text">
-      <div class="ch-date"><b>May 2026</b> &middot; the goal I never let go of</div>
-      <h3>The games I carried in my head for decades came out.</h3>
-      <div class="prose">
-        <p>One goal I never let go of: a game with my name on it on the Apple App Store. In one May, five half-built games came out of the notebooks and became playable. TEWGO made the App Store. The rest are still in beta, because a good game takes months and a hundred questions the player never sees. Games are hard. Apps and business tools are far easier, which is good news for you.</p>
-      </div>
-      <div class="sprinkle" id="gameTiles">
-        <figure class="cycle" data-game="DungeonHole">
+</div>
+
+<!-- the hobby band (full bleed, between the two timelines): TewBit Games, share not sell -->
+<section class="charwall games" id="games">
+  <div class="wrap rv">
+    <div class="k">TewBit Games, my hobby</div>
+    <h2>Got an old idea in a drawer? So did I.</h2>
+    <p class="sub">Mine was a board game I drew on paper as a kid. It is being built for real now, under my TewBit Games brand, with the rest. Most I made for me. The pixel look was a choice, I built the characters myself, and I learned more than one way to make a game. One made the App Store. The rest are in beta, which means not finished.</p>
+    <p class="sub closer">Games are hard. Apps and business tools are far easier, which is good news for you. Bring yours: I scope it in writing before you pay a thing.</p>
+    <a class="want" href="#" data-want="my old idea, out of the drawer" data-want-note="Priced in writing first. Nothing paid before the scope is agreed." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
+
+    <div class="sprinkle" id="gameTiles">
+      <figure class="gclip">
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/story/games/arena-zoom-poster.webp" aria-label="The camera zooms down onto the arena board">
+          <source src="assets/story/games/arena-zoom.webm" type="video/webm">
+          <source src="assets/story/games/arena-zoom.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <figure class="cycle" data-game="DungeonHole">
           <img src="assets/story/games/dh-board.webp" alt="Dungeon Hole: the dungeon board, chests in the corners, orcs and goblins waiting" class="on">
           <img src="assets/story/games/dh-sneak.webp" alt="Dungeon Hole: the ninja lands a sneak attack in the middle of the board" loading="lazy">
           <img src="assets/story/games/dh-party.webp" alt="Dungeon Hole: the party spread across the board with the treasure glowing in the corner" loading="lazy">
@@ -1494,54 +1537,32 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
           <img src="assets/story/games/dh-stand.webp" alt="Dungeon Hole: Stand and fight!, the Wizard's Arcane Blast on the troll, gargoyle closing in" loading="lazy">
           <img src="assets/story/games/dh-lair.webp" alt="Dungeon Hole: the Defender's dungeon, skeletons, ogre, goblins and a gargoyle laid out around the treasure" loading="lazy">
           <img src="assets/story/games/dh-march.webp" alt="Dungeon Hole: Thief, Fighter, Ranger, Cleric and Wizard on the green squares, ready to march" loading="lazy">
-          <img src="assets/story/games/dh-ui-home.webp" alt="Dungeon Hole: the front door, the title and the three ways in" loading="lazy">
-          <img src="assets/story/games/dh-ui-lobby.webp" alt="Dungeon Hole: the lobby, pick a difficulty and a depth, or fight" loading="lazy">
-          <img src="assets/story/games/dh-ui-shop.webp" alt="Dungeon Hole: hero picks with the Mage shop open" loading="lazy">
-          <img src="assets/story/games/dh-ui-backpack.webp" alt="Dungeon Hole: the backpack, gear for the party before the door opens" loading="lazy">
-          <img src="assets/story/games/dh-ui-defender.webp" alt="Dungeon Hole: the Defender's build screen, the horde shop bar and the traps" loading="lazy">
-          <img src="assets/story/games/dh-ui-results.webp" alt="Dungeon Hole: round results, the score and the breakdown" loading="lazy">
-          <img src="assets/story/games/dh-ui-compendium.webp" alt="Dungeon Hole: the compendium index, heroes, gear, horde, traps, legend" loading="lazy">
-          <img src="assets/story/games/dh-ui-heroes.webp" alt="Dungeon Hole: the heroes compendium, five roles and their cards" loading="lazy">
-          <img src="assets/story/games/dh-ui-horde.webp" alt="Dungeon Hole: the horde compendium, the bestiary group by group" loading="lazy">
-        </figure>
-        <figure class="cycle" data-game="AstroHold">
+      </figure>
+      <figure class="cycle" data-game="AstroHold">
           <img src="assets/story/games/ah-log.webp" alt="AstroHold: the turret line, the walkers and the turn log" class="on">
           <img src="assets/story/games/ah-lastword.webp" alt="AstroHold: a fallen marine and his last word, tell my mom" loading="lazy">
           <img src="assets/story/games/ah-turrets.webp" alt="AstroHold: two turrets, a sphere and a walker on the grid" loading="lazy">
           <img src="assets/story/games/ah-medic.webp" alt="AstroHold: the medic pad between two marines and a sniper" loading="lazy">
           <img src="assets/story/games/ah-squad.webp" alt="AstroHold: the dog, the sentry and two marines, close up" loading="lazy">
-        </figure>
-      </div>
-      <p class="sprinkle-cap">Two games walking their own screens: Dungeon Hole and AstroHold, both playable, both in beta.</p>
+          <img src="assets/story/games/ah-3d-cyborg.webp" alt="The marine in 3D, mid-idle, made from the pixel version" loading="lazy">
+          <img src="assets/story/games/ah-3d-core.webp" alt="The power core in 3D, spikes and a lit window" loading="lazy">
+          <img src="assets/story/rick/childhood-game.webp" alt="The arena game Rick built on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles" loading="lazy" style="object-position:center top">
+          <img src="assets/story/rick/arena-rpg.webp" alt="The same arena game as key art: an armoured champion with a lion shield, a dragon, a wizard and a twenty-sided die in a packed arena" loading="lazy">
+      </figure>
+      <figure class="gfan">
+        <div class="phone-fan sm">
+          <div class="phone p1"><img src="assets/story/shots/shot_feudalJapan.webp" alt="The App Store game, feudal Japan board" loading="lazy"></div>
+          <div class="phone p2"><img src="assets/story/shots/shot_home.webp" alt="The App Store game, home screen" loading="lazy"></div>
+          <div class="phone p3"><img src="assets/story/shots/shot_ocean.webp" alt="The App Store game, ocean board" loading="lazy"></div>
+        </div>
+        <div class="store-row">
+          <a class="store-badge" href="https://apps.apple.com/us/app/tewgo/id6763025917" target="_blank" rel="noopener">
+            <svg width="24" height="28" viewBox="0 0 24 28" aria-hidden="true"><path d="M18.7 14.9c0-3 2.4-4.4 2.5-4.5-1.4-2-3.5-2.3-4.2-2.3-1.8-.2-3.5 1-4.4 1-.9 0-2.3-1-3.8-1-2 0-3.8 1.1-4.8 2.9-2 3.5-.5 8.7 1.5 11.6 1 1.4 2.1 3 3.6 2.9 1.5-.1 2-.9 3.8-.9s2.3.9 3.8.9 2.6-1.4 3.5-2.8c1.1-1.6 1.6-3.2 1.6-3.3-.1 0-3.1-1.2-3.1-4.5zM15.8 6.2c.8-1 1.4-2.4 1.2-3.8-1.2.1-2.6.8-3.4 1.8-.8.9-1.5 2.3-1.3 3.7 1.3.1 2.7-.7 3.5-1.7z"/></svg>
+            <span><span class="b1">Download on the</span><span class="b2">App Store</span></span>
+          </a>
+        </div>
+      </figure>
     </div>
-    <div class="ch-vis">
-      <div class="phone-fan">
-        <div class="phone p1"><img src="assets/story/shots/shot_feudalJapan.webp" alt="TEWGO gameplay, feudal Japan board" loading="lazy"></div>
-        <div class="phone p2"><img src="assets/story/shots/shot_home.webp" alt="The TEWGO home screen: theme, board style, play against the AI, play online, pass and play" loading="lazy"></div>
-        <div class="phone p3"><img src="assets/story/shots/shot_ocean.webp" alt="TEWGO gameplay, ocean board" loading="lazy"></div>
-      </div>
-      <p class="vis-cap">TEWGO, captures from my phone: three boards, each with its own music, made by me.</p>
-      <div class="store-row">
-        <img class="store-icon" src="assets/tewgo.webp" alt="The TEWGO app icon" loading="lazy">
-        <a class="store-badge" href="https://apps.apple.com/us/app/tewgo/id6763025917" target="_blank" rel="noopener">
-          <svg width="24" height="28" viewBox="0 0 24 28" aria-hidden="true"><path d="M18.7 14.9c0-3 2.4-4.4 2.5-4.5-1.4-2-3.5-2.3-4.2-2.3-1.8-.2-3.5 1-4.4 1-.9 0-2.3-1-3.8-1-2 0-3.8 1.1-4.8 2.9-2 3.5-.5 8.7 1.5 11.6 1 1.4 2.1 3 3.6 2.9 1.5-.1 2-.9 3.8-.9s2.3.9 3.8.9 2.6-1.4 3.5-2.8c1.1-1.6 1.6-3.2 1.6-3.3-.1 0-3.1-1.2-3.1-4.5zM15.8 6.2c.8-1 1.4-2.4 1.2-3.8-1.2.1-2.6.8-3.4 1.8-.8.9-1.5 2.3-1.3 3.7 1.3.1 2.7-.7 3.5-1.7z"/></svg>
-          <span><span class="b1">Download on the</span><span class="b2">App Store</span></span>
-        </a>
-      </div>
-      <p class="vis-cap" style="max-width:340px;margin-top:12px">TEWGO is on the Apple App Store. Five in a row, two to capture.</p>
-      <div class="photos" style="margin-top:18px">
-        <figure><img src="assets/story/rick/childhood-game.webp" alt="The arena game Rick built on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles" loading="lazy" style="aspect-ratio:3/4"><figcaption>The board game I built on paper as a kid. It is becoming a real game now.</figcaption></figure>
-        <figure><img src="assets/story/rick/arena-rpg.webp" alt="Arena RPG key art: an armoured champion with a lion shield, a dragon, a wizard and a twenty-sided die in a packed arena" loading="lazy" style="aspect-ratio:3/4"><figcaption>Arena RPG. The same game the paper one was always trying to be.</figcaption></figure>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- character wall (full bleed, between chapters) -->
-<section class="charwall" id="characters">
-  <div class="rv">
-    <div class="k">From the games</div>
-    <h2>The characters</h2>
 
     <div class="spr-row" aria-hidden="true">
       <div class="spr-fig"><span class="spr spr-ninja pixel"></span></div>
@@ -3411,7 +3432,10 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
    leaves the first shot standing. */
 (function(){
   var tiles=document.querySelectorAll("#gameTiles .cycle"); if(!tiles.length) return;
-  if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){
+    var v=document.querySelector("#games video"); if(v){ v.removeAttribute("autoplay"); v.removeAttribute("loop"); try{ v.pause(); }catch(e){} }
+    return;
+  }
   tiles.forEach(function(fig,n){
     var imgs=fig.querySelectorAll("img"), i=0, hold=false;
     if(imgs.length<2) return;
