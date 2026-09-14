@@ -277,7 +277,7 @@
     },
     {
       id: "missed", title: "What I may have missed", k: "9 of 9",
-      intro: "Links, people, worries. Then the recordings below, which are the best part.",
+      intro: "Links, people, worries. Then the recordings below.",
       qs: [
         { id: "links", label: "Links to the tools and pages you use", hint: "One per line. Your booking page, your invoicing tool, the spreadsheet, the Facebook page.", type: "long" },
         { id: "people", label: "Who else should I talk to?", hint: "The person who really runs the front desk. The accountant. Names and how to reach them, if they agree.", type: "long" },
