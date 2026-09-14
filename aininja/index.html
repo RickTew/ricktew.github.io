@@ -446,20 +446,20 @@ html,body{overflow-x:clip}
 .vs .relief h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:clamp(23px,3.4vw,34px);line-height:1.12;max-width:22ch;margin:0 auto}
 .vs .relief h3 span{color:var(--blue)}
 .vs .relief>p{color:#374151;font-weight:600;margin:14px auto 0;max-width:56ch;font-size:16px}
-.vs .ways{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px;text-align:left}
-.vs .way{background:#fff;border:2px solid var(--blue);border-radius:16px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;box-shadow:0 12px 30px rgba(30,115,189,.08)}
-.vs .way .tag{font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--blue)}
-.vs .way .amt{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:26px;line-height:1.1;color:var(--ink)}
-.vs .way .amt small{font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:700;color:var(--muted)}
-.vs .way p{font-size:14.5px;font-weight:600;color:#4b5563;line-height:1.55;flex:1;margin:0}
-.vs .way .want{align-self:flex-start;margin-top:4px}
-.vs .custom{margin-top:16px;font-weight:700;color:var(--muted);font-size:14.5px}
+.vs .ways,.you .ways{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px;text-align:left}
+.vs .way,.you .way{background:#fff;border:2px solid var(--blue);border-radius:16px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;box-shadow:0 12px 30px rgba(30,115,189,.08)}
+.vs .way .tag,.you .way .tag{font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--blue)}
+.vs .way .amt,.you .way .amt{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:26px;line-height:1.1;color:var(--ink)}
+.vs .way .amt small,.you .way .amt small{font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:700;color:var(--muted)}
+.vs .way p,.you .way p{font-size:14.5px;font-weight:600;color:#4b5563;line-height:1.55;flex:1;margin:0}
+.vs .way .want,.you .way .want{align-self:flex-start;margin-top:4px}
+.vs .custom,.you .custom{margin-top:16px;font-weight:700;color:var(--muted);font-size:14.5px}
 .vs .honest{text-align:center;color:var(--muted);font-weight:700;margin:22px auto 0;max-width:60ch;font-size:14.5px}
 .vs .src{text-align:center;color:var(--muted);font-weight:600;margin:14px auto 0;max-width:70ch;font-size:12.5px}
 .vs .src a{color:var(--blue-d);font-weight:800}
 .vs .cta{margin-top:26px;text-align:center}
 @media (max-width:720px){
-  .vs .ways{grid-template-columns:1fr}
+  .vs .ways,.you .ways{grid-template-columns:1fr}
   .vs .bill{padding:18px 18px 16px}
 }
 @media (prefers-reduced-motion: reduce){ .want,.want .g,.btn .g{transition:none} .want:hover{transform:none} .want:hover .g,.btn:hover .g{transform:none} }
@@ -1167,7 +1167,15 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
      "name": "What happens in the first month?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "The audit first: we map where your hours go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt. It proves itself before anything widens."
+      "text": "The audit first: we map where your hours go, together, and nothing is paid before the scope is agreed. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt: it can be up and running within days. It proves itself before anything widens."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What happens if you disappear?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "You lose the window, not the room. The build is the window: the desk, the forms, the site I made so you can see the work and press. The room is yours: your domain, your mail, your content, your videos, your customer records. They are yours in writing, they leave with you, and I keep no copy. What ends with me is the window and the hosting, and nothing is charged after."
      }
     },
     {
@@ -1278,7 +1286,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <div class="hero-stats">
       <div class="hstat"><b><span data-count="30">0</span><span class="plus">+</span></b><span>years a ninja</span></div>
       <div class="hstat"><b><span data-count="25">0</span><span class="plus">+</span></b><span>years a nerd</span></div>
-      <div class="hstat"><b><span data-count="6242">0</span><span class="plus">+</span></b><span>commits since March</span></div>
+      <div class="hstat"><b><span data-count="6242">0</span><span class="plus">+</span></b><span>rounds of changes since March</span></div>
       <div class="hstat"><b><span data-count="100">0</span><span class="plus">+</span></b><span>solutions built</span></div>
     </div>
   </div>
@@ -1288,7 +1296,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="you" id="you">
   <div class="wrap rv">
     <div class="k">Is this you?</div>
-    <h2>You do not like tech, or you are tired of it, or there is no time for it. <span class="c">You still want it to work.</span></h2>
+    <h2>No love for tech, tired of it, or you need more time. <span class="c">You still want it to work.</span></h2>
     <ul class="you-list">
       <li>You would rather be with a customer than at a screen.</li>
       <li>You have tried an app, a tool, a "system". It is somewhere on your phone.</li>
@@ -1296,6 +1304,21 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <li>You do not want it explained. You want it done.</li>
     </ul>
     <p class="you-p">Good. That is who I build for. You press one button and I think about the rest: the tech, the AI, which model is best this month, the thing that broke at 2am. None of it is yours to carry.</p>
+      <div class="ways">
+        <div class="way">
+          <span class="tag">Basic plan &middot; R2 Hosting</span>
+          <span class="amt">$222 to build<small>, then $99 a month</small></span>
+          <p>Your website or small app, with the forms that bring work in. Built, hosted and kept running by me. Nothing for you to log into. For a lot of small businesses, this is all the system they ever needed.</p>
+          <a class="want" href="#" data-want="R2 Hosting, $222 to build, then $99 a month" data-want-note="I build it, I host it, I keep it running." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
+        </div>
+        <div class="way">
+          <span class="tag">Full plan &middot; Your Dojo</span>
+          <span class="amt">$2,222 a month<small>, flat</small></span>
+          <p>All of that, plus trained AI ninjas doing the admin: every reply drafted and waiting, one press to send. Any number of people. The AI is in the price. Me on call.</p>
+          <a class="want" href="#" data-want="Your Dojo, $2,222 a month" data-want-note="I build it, host it, and help you run it." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
+        </div>
+      </div>
+      <p class="custom">Your team presses every send. Want the whole day run for you? That is a custom price, and we talk first.</p>
     <div class="cta-row">
       <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
       <a class="btn btn-quiet" href="#quiz">Take the quiz</a>
@@ -1623,7 +1646,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <div class="stats">
         <div class="stat"><b><span data-count="6">0</span><span class="plus">+</span></b><span>hours of teaching, in person</span></div>
         <div class="stat"><b>1</b><span>human press on every send</span></div>
-        <div class="stat"><b><span data-count="1900">0</span><span class="plus">+</span></b><span>commits, for them</span></div>
+        <div class="stat"><b><span data-count="1900">0</span><span class="plus">+</span></b><span>rounds of changes, for them</span></div>
         <div class="stat"><b>3</b><span>businesses, built front to back</span></div>
       </div>
       <p class="vis-cap" style="max-width:100%;text-align:left;margin-top:12px">Those three stay unnamed on purpose.</p>
@@ -1777,7 +1800,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <div class="proof">
       <span>TEWGO on the Apple App Store</span>
       <span>1,000+ members in my gym app</span>
-      <span>6,242+ commits since March</span>
+      <span>6,242+ rounds of changes since March</span>
     </div>
   </div>
 </section>
@@ -2055,7 +2078,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
         <p class="cancel">Cancel anytime, effective at the end of the paid month or year.</p>
       </div>
     </div>
-    <p class="dojo-honest" style="margin-top:22px">It is me doing the building, on the same stack my own four businesses run on. Nothing for you to log into, renew or fix, and your domain, your content and your data stay yours. Once it stands, your team runs the daily work and I stay on call. I help you run it; I do not run it for you, and I am not on your payroll. Want the whole day run for you, something bigger than one Dojo, or the build inside your own accounts? That is a custom price, and we talk first. Seats are capped, because a sensei who takes every student teaches none of them. <b>Already decided?</b> Skip the back and forth and <a href="/aininja/start/"><b>fill in The Intake</b></a>: 20 to 40 minutes, a voice note and a short video, and the build starts faster. <b>Smaller need?</b> <a href="/aininja/r2/"><b>R2 Hosting</b></a>: your site or small app, built and hosted by me, $222 to build, then $99 a month.</p>
+    <p class="dojo-honest" style="margin-top:22px">It is me doing the building, on the same stack my own four businesses run on. Nothing for you to log into, renew or fix, and your domain, your content and your data stay yours. Once it stands, your team runs the daily work and I stay on call. I help you run it; I do not run it for you, and I am not on your payroll. Want the whole day run for you, something bigger than one Dojo, or the build inside your own accounts? That is a custom price, and we talk first. I take a limited number of clients at a time, because a sensei who takes every student teaches none of them. <b>Already decided?</b> Skip the back and forth and <a href="/aininja/start/"><b>fill in The Intake</b></a>: 20 to 40 minutes, a voice note and a short video, and the build starts faster. <b>Smaller need?</b> <a href="/aininja/r2/"><b>R2 Hosting</b></a>: your site or small app, built and hosted by me, $222 to build, then $99 a month.</p>
 
     <div class="punch rv">
       <h3>You run the business. My AI Ninja run the admin.</h3>
@@ -2099,7 +2122,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
         <div class="way">
           <span class="tag">Basic plan &middot; R2 Hosting</span>
           <span class="amt">$222 to build<small>, then $99 a month</small></span>
-          <p>Your site, the forms that bring work in, your customer list, a shared inbox that files every mail. Built, hosted and kept running by me. Nothing for you to log into. For a lot of small businesses, this is all the CRM they ever needed.</p>
+          <p>Your website or small app, with the forms that bring work in. Built, hosted and kept running by me. Nothing for you to log into. For a lot of small businesses, this is all the system they ever needed.</p>
           <a class="want" href="#" data-want="R2 Hosting, $222 to build, then $99 a month" data-want-note="I build it, I host it, I keep it running." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
         </div>
         <div class="way">
@@ -2141,6 +2164,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
             <button class="q-opt" data-v="solo">I work for myself. One person, my own thing</button>
             <button class="q-opt" data-v="pro">I am a professional inside somebody else's company</button>
             <button class="q-opt" data-v="passion">It is a passion project, a hobby, or something I build on the side</button>
+            <button class="q-opt" data-v="none">Nothing yet. I work a job, and I am looking</button>
           </div>
         </div>
 
@@ -2151,11 +2175,12 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
             <button class="q-opt" data-v="sell">I sell things. Products, a shop, orders going out the door</button>
             <button class="q-opt" data-v="expertise">I sell what is in my head. Consulting, coaching, teaching, an agency</button>
             <button class="q-opt" data-v="make">I make things. Software, media, books, courses, games</button>
+            <button class="q-opt" data-v="trade">A trade. A garage, a plumber, a builder, a cleaner</button>
           </div>
         </div>
 
         <div class="q-step" data-q="number">
-          <h3>Three numbers anyone will pay you to move. Which changes most for you?</h3>
+          <h3>Which of these would change the most for you?</h3>
           <div class="q-opts">
             <button class="q-opt" data-v="more">Get more customers. People who were not in my world before</button>
             <button class="q-opt" data-v="worth">Make each one worth more. They come back, they buy again, they stay</button>
@@ -2208,6 +2233,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
             <button class="q-opt" data-v="rented">Software I rent, and it does not quite fit what I do</button>
             <button class="q-opt" data-v="sheets">Spreadsheets, notes, and my memory</button>
             <button class="q-opt" data-v="paper">Paper, honestly</button>
+            <button class="q-opt" data-v="phone">My phone. Calls, WhatsApp, a diary</button>
           </div>
         </div>
 
@@ -2427,7 +2453,8 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <details><summary>Do I need to understand AI to use this?</summary><p>No. That is the point. I build and train the Dojo; you run your business. If you ever want to see under the hood, I will show you. You never have to.</p></details>
       <details><summary>Will an AI talk to my customers without me knowing?</summary><p>Never. Every ninja starts at white belt: propose only. Drafts pile up for your review, and a person presses every send, pay and post. That rule does not bend at any belt or any price.</p><p>One exception, and it is mine: the mailbox on this page is answered first by my Ninja Agent, signed as the AI, from answers I wrote, because that is the demo. In your Dojo nothing sends without your press unless you choose the same for a lane of your own.</p></details>
       <details><summary>What does it cost?</summary><p>Your Dojo is $2,222 a month: I build it, host it, and help you run it; your team presses every send. Monthly, cancel anytime, effective at the end of the paid month. Smaller need? R2 Hosting: I build your site or small app and host it on my stack, $222 to build, then $99 a month or $999 a year. Want the whole day run for you, or something bigger than one Dojo? That is a custom price, and we talk first. The AI is in the price: I run it on my accounts, and you never open an AI account or watch a meter. Not in the price: ad spend, software your business already pays for on its own, and building a product you sell, which is separate work agreed in writing first. The quiz says where I would start.</p></details>
-      <details><summary>What happens in the first month?</summary><p>The audit first: we map where your hours go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt. It proves itself before anything widens.</p></details>
+      <details><summary>What happens in the first month?</summary><p>The audit first: we map where your hours go, together, and nothing is paid before the scope is agreed. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt: it can be up and running within days. It proves itself before anything widens.</p></details>
+      <details><summary>What happens if you disappear?</summary><p>You lose the window, not the room. The build is the window: the desk, the forms, the site I made so you can see the work and press. The room is yours: your domain, your mail, your content, your videos, your customer records. They are yours in writing, they leave with you, and I keep no copy. What ends with me is the window and the hosting, and nothing is charged after.</p></details>
       <details><summary>Can I cancel?</summary><p>Anytime. Cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack, so there is nothing to hand back or log out of. Your domain, your content and your data leave with you, and I do not keep a copy. The build and the hosting end with the subscription, and nothing is charged after.</p></details>
       <details><summary>Do I have to manage any of the tech?</summary><p>No. Both plans are built on my stack and stay there: the hosting, the database, the mail plumbing, every setting that holds it together. It is the same stack my own four businesses run on, and it is why the price is flat. For you that means no dashboard, no console, no certificate to renew, no password to keep somewhere safe, and no bug that is yours to fix. When something needs changing, you tell me. Yours, always: your domain, your content and your data. Want it built inside your own accounts instead, as a thing you own outright? That is a custom job, quoted in writing, and it costs more, because every login and card approval on your side is an hour of the build.</p></details>
       <details><summary>What is an Agentic CMO?</summary><p>A department head, with the work done by trained AI ninjas instead of a person on a day rate, the way a fractional executive works. A Master is a seat: a job title, one number it is judged on, and the solutions on this page working under it. Six seats exist, all six have run my own businesses, and all six are for sale.</p></details>
@@ -3099,7 +3126,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     var rate=parseInt(A("rate").v,10)||30;
     var draftable=Math.round(hours*0.6);
     var monthly=Math.round((draftable*4.33*rate)/50)*50;
-    var money=(who!=="passion");   /* no invoice at the end of a passion project */
+    var money=(who!=="passion" && who!=="none");   /* no invoice at the end of a passion project */
 
     /* who runs it once it exists used to pick one of two tiers. Since
        12 Sep 2026 (Rick's ruling) there is one Dojo offer: I build it, host
@@ -3114,7 +3141,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     var conflictDown = wantsRun && tech==="love";
     var conflict = conflictUp || conflictDown;
     /* and whether anything has to be BUILT before a desk can sit on it */
-    var needsBuild = (stack==="sheets"||stack==="paper"||stack==="rented")
+    var needsBuild = (stack==="sheets"||stack==="paper"||stack==="rented"||stack==="phone")
                      || selfserve==="none" || dream==="tool" || dream==="own";
 
     var big=document.getElementById("rBig"), sub=document.getElementById("rSub");
