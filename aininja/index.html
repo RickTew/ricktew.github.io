@@ -294,10 +294,10 @@ h2 .c{color:var(--blue)}
 @media (max-width:700px){ .spr-row{gap:14px 10px;margin-top:22px} }
 .spr-fig{display:flex;flex-direction:column;align-items:center;gap:8px}
 /* the games chapter: the zoom clip is a tile that spans the two cycle tiles */
-.sprinkle.wide{grid-column:1/-1;grid-template-columns:1fr 1.4fr 1fr;gap:16px;align-items:center;margin-top:8px}
+.sprinkle.wide{grid-template-columns:1fr 1.25fr 1fr;gap:10px;align-items:center;margin-top:28px}
 .sprinkle .gclip{aspect-ratio:16/9;transform:none}
 .sprinkle .gclip:hover{transform:scale(1.02)}
-@media (max-width:700px){ .sprinkle.wide{grid-template-columns:1fr;gap:12px} }
+@media (max-width:700px){ .sprinkle.wide{gap:8px} }
 .sprinkle .gclip video{display:block;width:100%;height:100%;object-fit:cover;border-radius:12px;border:1px solid var(--line);box-shadow:0 6px 16px rgba(16,20,24,.10);background:var(--line)}
 .chapter .prose .want{margin-top:6px}
 /* the characters: the strip without its heading */
@@ -1494,6 +1494,45 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
         <p>Games are harder, not impossible; apps and websites show results on day one. I share this because it is what I love to do. You might not love this kind of work, and I can do it for you too. Bring yours either way.</p>
         <p><a class="want" href="#" data-want="my old idea, out of the drawer" data-want-note="An idea or an old starter, into action." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a></p>
       </div>
+      <div class="sprinkle wide" id="gameTiles">
+          <figure class="cycle" data-game="DungeonHole">
+            <img src="assets/story/games/dh-board.webp" alt="Dungeon Hole: the dungeon board, chests in the corners, orcs and goblins waiting" class="on">
+            <img src="assets/story/games/dh-sneak.webp" alt="Dungeon Hole: the ninja lands a sneak attack in the middle of the board" loading="lazy">
+            <img src="assets/story/games/dh-party.webp" alt="Dungeon Hole: the party spread across the board with the treasure glowing in the corner" loading="lazy">
+            <img src="assets/story/games/dh-ranger.webp" alt="Dungeon Hole: the ranger's line of fire across the tiles to a skeleton" loading="lazy">
+            <img src="assets/story/games/dh-mage.webp" alt="Dungeon Hole: the wild mage, the seductress and the shadow, close up" loading="lazy">
+            <img src="assets/story/games/dh-ninja.webp" alt="Dungeon Hole: the ninja squares up to two goblins" loading="lazy">
+            <img src="assets/story/games/dh-raid.webp" alt="Dungeon Hole: tick zero of a raid, the party comes through the door with For the party! and the horde waits" loading="lazy">
+            <img src="assets/story/games/dh-grab.webp" alt="Dungeon Hole: the Valkyrie grabs the treasure, Got it! Run!, while the Wizard blasts the troll" loading="lazy">
+            <img src="assets/story/games/dh-stand.webp" alt="Dungeon Hole: Stand and fight!, the Wizard's Arcane Blast on the troll, gargoyle closing in" loading="lazy">
+            <img src="assets/story/games/dh-lair.webp" alt="Dungeon Hole: the Defender's dungeon, skeletons, ogre, goblins and a gargoyle laid out around the treasure" loading="lazy">
+            <img src="assets/story/games/dh-march.webp" alt="Dungeon Hole: Thief, Fighter, Ranger, Cleric and Wizard on the green squares, ready to march" loading="lazy">
+            <img src="assets/story/games/dh-ui-home.webp" alt="Dungeon Hole: the front door, the title and the three ways in" loading="lazy">
+            <img src="assets/story/games/dh-ui-lobby.webp" alt="Dungeon Hole: the lobby, pick a difficulty and a depth, or fight" loading="lazy">
+            <img src="assets/story/games/dh-ui-shop.webp" alt="Dungeon Hole: hero picks with the Mage shop open" loading="lazy">
+            <img src="assets/story/games/dh-ui-backpack.webp" alt="Dungeon Hole: the backpack, gear for the party before the door opens" loading="lazy">
+            <img src="assets/story/games/dh-ui-defender.webp" alt="Dungeon Hole: the Defender's build screen, the horde shop bar and the traps" loading="lazy">
+            <img src="assets/story/games/dh-ui-results.webp" alt="Dungeon Hole: round results, the score and the breakdown" loading="lazy">
+            <img src="assets/story/games/dh-ui-compendium.webp" alt="Dungeon Hole: the compendium index, heroes, gear, horde, traps, legend" loading="lazy">
+            <img src="assets/story/games/dh-ui-heroes.webp" alt="Dungeon Hole: the heroes compendium, five roles and their cards" loading="lazy">
+            <img src="assets/story/games/dh-ui-horde.webp" alt="Dungeon Hole: the horde compendium, the bestiary group by group" loading="lazy">
+          </figure>
+          <figure class="gclip">
+            <video autoplay muted loop playsinline preload="metadata" poster="assets/story/games/arena-zoom-poster.webp" aria-label="The camera zooms down onto the arena board">
+              <source src="assets/story/games/arena-zoom.webm" type="video/webm">
+              <source src="assets/story/games/arena-zoom.mp4" type="video/mp4">
+            </video>
+          </figure>
+          <figure class="cycle" data-game="AstroHold">
+            <img src="assets/story/games/ah-log.webp" alt="AstroHold: the turret line, the walkers and the turn log" class="on">
+            <img src="assets/story/games/ah-lastword.webp" alt="AstroHold: a fallen marine and his last word, tell my mom" loading="lazy">
+            <img src="assets/story/games/ah-turrets.webp" alt="AstroHold: two turrets, a sphere and a walker on the grid" loading="lazy">
+            <img src="assets/story/games/ah-medic.webp" alt="AstroHold: the medic pad between two marines and a sniper" loading="lazy">
+            <img src="assets/story/games/ah-squad.webp" alt="AstroHold: the dog, the sentry and two marines, close up" loading="lazy">
+            <img src="assets/story/games/ah-3d-cyborg.webp" alt="The marine in 3D, mid-idle, made from the pixel version" loading="lazy">
+            <img src="assets/story/games/ah-3d-core.webp" alt="The power core in 3D, spikes and a lit window" loading="lazy">
+          </figure>
+      </div>
     </div>
     <div class="ch-vis">
       <div class="phone-fan">
@@ -1511,48 +1550,9 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       </div>
       <p class="vis-cap" style="max-width:340px;margin-top:12px">On the Apple App Store. Five in a row, two to capture.</p>
       <div class="photos" style="margin-top:18px">
-        <figure><img src="assets/story/rick/childhood-game.webp" alt="The arena game Rick built on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles" loading="lazy" style="aspect-ratio:3/4"><figcaption>The board game I built on paper as a kid. It is becoming a real game now.</figcaption></figure>
-        <figure><img src="assets/story/rick/arena-rpg.webp" alt="Arena RPG key art: an armoured champion with a lion shield, a dragon, a wizard and a twenty-sided die in a packed arena" loading="lazy" style="aspect-ratio:3/4"><figcaption>The same game, as it looks now.</figcaption></figure>
+        <figure><img src="assets/story/rick/childhood-game.webp" alt="The arena game Rick built on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles" loading="lazy" style="aspect-ratio:3/4"><figcaption>The board game I built on paper as a kid.</figcaption></figure>
+        <figure><img src="assets/story/rick/arena-rpg.webp" alt="Arena RPG key art: an armoured champion with a lion shield, a dragon, a wizard and a twenty-sided die in a packed arena" loading="lazy" style="aspect-ratio:3/4"><figcaption>Key art for the same game.</figcaption></figure>
       </div>
-    </div>
-    <div class="sprinkle wide" id="gameTiles">
-        <figure class="cycle" data-game="DungeonHole">
-          <img src="assets/story/games/dh-board.webp" alt="Dungeon Hole: the dungeon board, chests in the corners, orcs and goblins waiting" class="on">
-          <img src="assets/story/games/dh-sneak.webp" alt="Dungeon Hole: the ninja lands a sneak attack in the middle of the board" loading="lazy">
-          <img src="assets/story/games/dh-party.webp" alt="Dungeon Hole: the party spread across the board with the treasure glowing in the corner" loading="lazy">
-          <img src="assets/story/games/dh-ranger.webp" alt="Dungeon Hole: the ranger's line of fire across the tiles to a skeleton" loading="lazy">
-          <img src="assets/story/games/dh-mage.webp" alt="Dungeon Hole: the wild mage, the seductress and the shadow, close up" loading="lazy">
-          <img src="assets/story/games/dh-ninja.webp" alt="Dungeon Hole: the ninja squares up to two goblins" loading="lazy">
-          <img src="assets/story/games/dh-raid.webp" alt="Dungeon Hole: tick zero of a raid, the party comes through the door with For the party! and the horde waits" loading="lazy">
-          <img src="assets/story/games/dh-grab.webp" alt="Dungeon Hole: the Valkyrie grabs the treasure, Got it! Run!, while the Wizard blasts the troll" loading="lazy">
-          <img src="assets/story/games/dh-stand.webp" alt="Dungeon Hole: Stand and fight!, the Wizard's Arcane Blast on the troll, gargoyle closing in" loading="lazy">
-          <img src="assets/story/games/dh-lair.webp" alt="Dungeon Hole: the Defender's dungeon, skeletons, ogre, goblins and a gargoyle laid out around the treasure" loading="lazy">
-          <img src="assets/story/games/dh-march.webp" alt="Dungeon Hole: Thief, Fighter, Ranger, Cleric and Wizard on the green squares, ready to march" loading="lazy">
-          <img src="assets/story/games/dh-ui-home.webp" alt="Dungeon Hole: the front door, the title and the three ways in" loading="lazy">
-          <img src="assets/story/games/dh-ui-lobby.webp" alt="Dungeon Hole: the lobby, pick a difficulty and a depth, or fight" loading="lazy">
-          <img src="assets/story/games/dh-ui-shop.webp" alt="Dungeon Hole: hero picks with the Mage shop open" loading="lazy">
-          <img src="assets/story/games/dh-ui-backpack.webp" alt="Dungeon Hole: the backpack, gear for the party before the door opens" loading="lazy">
-          <img src="assets/story/games/dh-ui-defender.webp" alt="Dungeon Hole: the Defender's build screen, the horde shop bar and the traps" loading="lazy">
-          <img src="assets/story/games/dh-ui-results.webp" alt="Dungeon Hole: round results, the score and the breakdown" loading="lazy">
-          <img src="assets/story/games/dh-ui-compendium.webp" alt="Dungeon Hole: the compendium index, heroes, gear, horde, traps, legend" loading="lazy">
-          <img src="assets/story/games/dh-ui-heroes.webp" alt="Dungeon Hole: the heroes compendium, five roles and their cards" loading="lazy">
-          <img src="assets/story/games/dh-ui-horde.webp" alt="Dungeon Hole: the horde compendium, the bestiary group by group" loading="lazy">
-        </figure>
-        <figure class="gclip">
-          <video autoplay muted loop playsinline preload="metadata" poster="assets/story/games/arena-zoom-poster.webp" aria-label="The camera zooms down onto the arena board">
-            <source src="assets/story/games/arena-zoom.webm" type="video/webm">
-            <source src="assets/story/games/arena-zoom.mp4" type="video/mp4">
-          </video>
-        </figure>
-        <figure class="cycle" data-game="AstroHold">
-          <img src="assets/story/games/ah-log.webp" alt="AstroHold: the turret line, the walkers and the turn log" class="on">
-          <img src="assets/story/games/ah-lastword.webp" alt="AstroHold: a fallen marine and his last word, tell my mom" loading="lazy">
-          <img src="assets/story/games/ah-turrets.webp" alt="AstroHold: two turrets, a sphere and a walker on the grid" loading="lazy">
-          <img src="assets/story/games/ah-medic.webp" alt="AstroHold: the medic pad between two marines and a sniper" loading="lazy">
-          <img src="assets/story/games/ah-squad.webp" alt="AstroHold: the dog, the sentry and two marines, close up" loading="lazy">
-          <img src="assets/story/games/ah-3d-cyborg.webp" alt="The marine in 3D, mid-idle, made from the pixel version" loading="lazy">
-          <img src="assets/story/games/ah-3d-core.webp" alt="The power core in 3D, spikes and a lit window" loading="lazy">
-        </figure>
     </div>
   </div>
 </div>
