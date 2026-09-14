@@ -43,9 +43,8 @@
           { v: "staff", label: "I work here and I am filling this in for the boss" },
           { v: "consultant", label: "I advise this business from outside" } ] },
         { id: "reach", label: "How you like to be reached", type: "multi", options: [
-          { v: "email", label: "Email" }, { v: "whatsapp", label: "WhatsApp" }, { v: "line", label: "LINE" },
-          { v: "call", label: "A phone call" }, { v: "video", label: "A video call" } ] },
-        { id: "best_time", label: "Best days and hours for a call", hint: "In your time zone.", type: "text" }
+          { v: "email", label: "Email" }, { v: "whatsapp", label: "WhatsApp" }, { v: "line", label: "LINE" } ] },
+        { id: "best_time", label: "Best days and hours to reach you", hint: "In your time zone. I work in writing; a call is a custom step for the builds that need one.", type: "text" }
       ]
     },
     {
