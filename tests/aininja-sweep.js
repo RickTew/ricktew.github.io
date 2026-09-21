@@ -40,7 +40,18 @@ async function walk(browser, label, ctxOpts) {
   const consoleErrors = [], pageErrors = [], badReq = [];
   page.on("console", m => { if (m.type() === "error") consoleErrors.push(m.text()); });
   page.on("pageerror", e => pageErrors.push(String(e)));
-  page.on("requestfailed", r => { if (r.url().startsWith(BASE.slice(0, BASE.indexOf("/aininja")))) badReq.push([r.url(), r.failure() && r.failure().errorText]); });
+  // A media element's own range fetch ends in net::ERR_ABORTED by design:
+  // Chromium cancels the preload="metadata" request once it has the header
+  // and opens a fresh range when the clip plays (checked 21 Sep 2026 on the
+  // arena clip: readyState 4, no error, on the page with and without the
+  // five-words storyboard; only the race with the "load" event changed). So
+  // an aborted webm, mp4 or m4a is not a finding; anything else still is.
+  page.on("requestfailed", r => {
+    if (!r.url().startsWith(BASE.slice(0, BASE.indexOf("/aininja")))) return;
+    const err = r.failure() && r.failure().errorText;
+    if (err === "net::ERR_ABORTED" && /\.(webm|mp4|m4a)(\?|$)/.test(r.url())) return;
+    badReq.push([r.url(), err]);
+  });
   page.on("response", r => { if (r.status() >= 400 && r.url().startsWith("http://127.0.0.1")) badReq.push([r.url(), r.status()]); });
   let posted = null;
   await page.route(ENDPOINT, async route => { posted = route.request().postDataJSON(); await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' }); });
