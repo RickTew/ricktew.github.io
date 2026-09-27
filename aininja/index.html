@@ -6,13 +6,13 @@
 <!-- Chrome WebMCP origin trial, ricktew.com and subdomains, valid to 17 Nov 2026.
      Public by design: this is what switches on the two tools registered on this page. -->
 <meta http-equiv="origin-trial" content="AqyeiXSxn9Qi3JaUNaIKwbTI9jidPCD6fW8Qh8v6GtV/UjwruoNc27uPD0/GlAJB+0IrHd+FdQSSX50nHZwnZw4AAABeeyJvcmlnaW4iOiJodHRwczovL3JpY2t0ZXcuY29tOjQ0MyIsImZlYXR1cmUiOiJXZWJNQ1AiLCJleHBpcnkiOjE3OTQ4NzM2MDAsImlzU3ViZG9tYWluIjp0cnVlfQ==">
-<title>Rick Tew: a ninja who builds with AI</title>
+<title>Done-for-you AI for small business, managed by a real person</title>
 <meta name="description" content="For owners who hate tech or have no time for it. You press one button. I build it, host it and run the AI behind it. Every send is still your press.">
 <link rel="canonical" href="https://ricktew.com/aininja/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Rick Tew">
 <meta property="og:url" content="https://ricktew.com/aininja/">
-<meta property="og:title" content="Rick Tew: a ninja who builds with AI">
+<meta property="og:title" content="Done-for-you AI for small business, managed by a real person">
 <meta property="og:description" content="For owners who hate tech or have no time for it. You press one button. I build it, host it and run the AI behind it. Every send is still your press.">
 <meta property="og:image" content="https://ricktew.com/assets/images/og-ricktew.jpg">
 <meta property="og:image:width" content="1200">
@@ -638,6 +638,13 @@ footer a:hover{text-decoration:underline}
 .you-list li::before{content:"\2713";position:absolute;left:0;top:-1px;width:24px;height:24px;border-radius:6px;background:var(--blue);color:#fff;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center}
 .you-p{margin-top:22px;max-width:60ch;font-size:16.5px;font-weight:600;color:#3a4148;line-height:1.7}
 .you .cta-row{margin-top:26px}
+/* How it works: four steps under the plan cards (Rick, 27 Sep: the service is a person running it, the ninjas do the legwork). Numbers are plain type, not badges: nothing here is pressable */
+.hows{margin-top:24px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px 20px}
+.how-steps{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px 20px}
+.how-steps li{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700;color:var(--ink);line-height:1.45}
+.how-steps b{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:26px;line-height:1;color:var(--blue)}
+@media (max-width:760px){ .how-steps{grid-template-columns:1fr 1fr} }
+@media (max-width:460px){ .how-steps{grid-template-columns:1fr;gap:12px} .how-steps li{flex-direction:row;align-items:baseline;gap:12px} .how-steps b{font-size:22px;min-width:16px} }
 .you .gloss{margin-top:26px;max-width:760px;font-size:14.5px;line-height:1.6;color:var(--muted)}
 /* The five words as a storyboard (the Dojo's "show it, then say it" way,
    first run outside WinJitsu, 21 Sep 2026). Five boxes, one word each, one
@@ -1289,7 +1296,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
      "name": "What is an Agentic CMO?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "A department head, with the work done by trained AI ninjas instead of a person on a day rate, the way a fractional executive works. A Master is a seat: a job title, one number it is judged on, and the solutions on this page working under it. Six seats exist, all six have run my own businesses, and all six are for sale."
+      "text": "A department head's job, run as a service: trained AI ninjas do the legwork, I manage them, and you approve what goes out. It works the way a fractional executive does, without the day rate. A Master is a seat: a job title, one number it is judged on, and the solutions on this page working under it. Six seats exist, all six have run my own businesses, and all six are for sale."
      }
     },
     {
@@ -1361,7 +1368,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <div class="hero-grid">
       <div class="hero-copy">
         <div class="k">Rick Tew &middot; The Digital Dojo</div>
-        <h1>I'm not a marketing expert. <span class="c">I'm an AI ninja with my own Digital Dojo.</span></h1>
+        <h1>I'm not a marketing expert. <span class="c">I'm the person behind your AI ninjas.</span></h1>
         <p class="lede">Not a pitch. One real business needed its owner's time back. Five months of building followed: the Dojo where my AI ninjas work. I build the same for your business, and either you run it yourself or I run it with you. See yourself in it? The quiz at the end says where I would start.</p>
         <div class="cta-row">
           <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
@@ -1404,11 +1411,20 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
         <div class="way">
           <span class="tag">Full plan &middot; Your Dojo</span>
           <span class="amt">$2,222 a month<small>, flat</small></span>
-          <p>All of that, plus trained AI ninjas doing the admin: every reply drafted and waiting, one press to send. Any number of people. The AI is in the price. Me overseeing it.</p>
+          <p>All of that, plus your admin handled as a service. I manage the AI ninjas that draft every reply and file every payment. Your team checks it and presses send. Any number of people. The AI is in the price.</p>
           <a class="want" href="#" data-want="Your Dojo, $2,222 a month" data-want-note="I build it, host it, and help you run it." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
         </div>
       </div>
       <p class="custom">Your team presses every send. Want the whole day run for you? That is a custom price, and we talk first.</p>
+    <div class="hows">
+      <div class="k">How it works</div>
+      <ol class="how-steps">
+        <li><b>1</b><span>You tell me the job.</span></li>
+        <li><b>2</b><span>My AI ninjas do the legwork: the drafts, the filing, the bookings.</span></li>
+        <li><b>3</b><span>A person checks it. Nothing goes out without a press.</span></li>
+        <li><b>4</b><span>I manage all of it and report to you in writing.</span></li>
+      </ol>
+    </div>
     <div class="cta-row">
       <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
       <a class="btn btn-quiet" href="#quiz">Take the quiz</a>
@@ -1905,7 +1921,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <!-- ============ OPTION 2B: hero, the 3-second version ============ -->
 <section class="h2b" id="opt-2b">
   <div class="wrap rv">
-    <h2>You run the business. <em>My AI ninjas run the admin.</em></h2>
+    <h2>You run the business. <em>I run the ninjas that do your admin.</em></h2>
     <p class="sub">I am Rick Tew: 25 years a martial arts sensei, about as many a nerd. Since March I have built the AI workforce that runs my own businesses. Now I build and train one for yours.</p>
     <div class="cta-row">
       <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
@@ -1923,7 +1939,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   <div class="wrap rv">
     <div class="k k-hero">Eleven, each proven on my own business</div>
     <h2>The solutions. <span style="color:var(--blue)">Every one ran on me first.</span></h2>
-    <p class="sub">Replies drafted while you sleep, payments that file themselves, bookings with no back and forth. Each one hands you hours back. Each works alone or as part of the whole. You never need to like computers. <b>I only build for you what I already run.</b> See one you want? Tap the ninja.</p>
+    <p class="sub">Replies drafted while you sleep, payments that file themselves, bookings with no back and forth. Each one hands you hours back. Each works alone or as part of the whole. You never need to like computers. <b>I only build for you what I already run.</b> These are the parts I build with. The audit decides which ones your business gets, and I manage them. See one you want? Tap the ninja.</p>
 
     <div class="sol-list">
       <details class="sol-row rv">
@@ -2066,7 +2082,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <section class="dojo-sec" id="masters">
   <div class="wrap rv">
     <div class="k k-hero">Who runs it</div>
-    <h2>Six Agentic Masters. <span style="color:var(--blue)">Ready to run your Dojo.</span></h2>
+    <h2>Six Agentic Masters. <span style="color:var(--blue)">I run them. You hold the press.</span></h2>
     <p class="sub">Nobody hires a reply drafter. They hire whoever runs the marketing, keeps the books, answers the customers. These are those seats: one job, one number it is judged on, the solutions above doing the work. Each one ran my own businesses first, or it is not for sale.</p>
 
     <div class="master-cards">
@@ -2146,7 +2162,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <div class="dojo-card rv">
         <span class="belt-chip" style="background:var(--belt-k)"></span>
         <h3>The full dojo</h3>
-        <p>A workforce with one view over all of it and an overseer that reports to you. Every judgment call is still yours. Payroll for these hires: about zero.</p>
+        <p>A workforce with one view over all of it, and me overseeing it, reporting to you in writing. Every judgment call is still yours.</p>
         <a class="want" href="#" data-want="The full dojo" data-want-note="A workforce with one view over all of it." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </div>
     </div>
@@ -2195,7 +2211,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <p class="dojo-honest" style="margin-top:22px">It is me doing the building, on the same stack my own businesses and my clients' run on. Nothing for you to log into, renew or fix, and your domain, your content and your data stay yours. Once it stands, your team runs the daily work and I stay close, overseeing it, in writing. I help you run it; I do not run it for you, and I am not on your payroll. Want the whole day run for you, something bigger than one Dojo, or the build inside your own accounts? That is a custom price, and we talk first. I take a limited number of clients at a time, because a sensei who takes every student teaches none of them. <b>Already decided?</b> Skip the back and forth and <a href="/aininja/start/"><b>fill in The Intake</b></a>: 20 to 40 minutes, a voice note and a short video, and the build starts faster. <b>Smaller need?</b> <a href="/aininja/r2/"><b>R2 Hosting</b></a>: your site or small app, built and hosted by me, $222 to build, then $99 a month.</p>
 
     <div class="punch rv">
-      <h3>You run the business. My AI ninjas run the admin.</h3>
+      <h3>You run the business. I run the ninjas that do your admin.</h3>
       <div class="punch-cta">
         <a class="btn btn-blue" href="#quiz">Take the quiz</a>
         <a class="btn btn-quiet" href="#" id="buildMail">Ask about a build</a>
@@ -2242,7 +2258,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
         <div class="way">
           <span class="tag">Full plan &middot; Your Dojo</span>
           <span class="amt">$2,222 a month<small>, flat</small></span>
-          <p>All of that, plus trained AI ninjas doing the admin: every reply drafted and waiting, one press to send. Any number of people. The AI is in the price. Me overseeing it.</p>
+          <p>All of that, plus your admin handled as a service. I manage the AI ninjas that draft every reply and file every payment. Your team checks it and presses send. Any number of people. The AI is in the price.</p>
           <a class="want" href="#" data-want="Your Dojo, $2,222 a month" data-want-note="I build it, host it, and help you run it." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
         </div>
       </div>
@@ -2571,7 +2587,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <details><summary>What happens if you disappear?</summary><p>You lose the window, not the room. The build is the window: the desk, the forms, the site I made so you can see the work and press. The room is yours: your domain, your mail, your content, your videos, your customer records. They are yours in writing, they leave with you, and I keep no copy. What ends with me is the window and the hosting, and nothing is charged after.</p></details>
       <details><summary>Can I cancel?</summary><p>Anytime. Cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack, so there is nothing to hand back or log out of. Your domain, your content and your data leave with you, and I do not keep a copy. The build and the hosting end with the subscription, and nothing is charged after.</p></details>
       <details><summary>Do I have to manage any of the tech?</summary><p>No. Both plans are built on my stack and stay there: the hosting, the database, the mail plumbing, every setting that holds it together. It is the same stack my own businesses and my clients' run on, and it is why the price is flat. For you that means no dashboard, no console, no certificate to renew, no password to keep somewhere safe, and no bug that is yours to fix. When something needs changing, you tell me. Yours, always: your domain, your content and your data. Want it built inside your own accounts instead, as a thing you own outright? That is a custom job, quoted in writing, and it costs more, because every login and card approval on your side is an hour of the build.</p></details>
-      <details><summary>What is an Agentic CMO?</summary><p>A department head, with the work done by trained AI ninjas instead of a person on a day rate, the way a fractional executive works. A Master is a seat: a job title, one number it is judged on, and the solutions on this page working under it. Six seats exist, all six have run my own businesses, and all six are for sale.</p></details>
+      <details><summary>What is an Agentic CMO?</summary><p>A department head's job, run as a service: trained AI ninjas do the legwork, I manage them, and you approve what goes out. It works the way a fractional executive does, without the day rate. A Master is a seat: a job title, one number it is judged on, and the solutions on this page working under it. Six seats exist, all six have run my own businesses, and all six are for sale.</p></details>
       <details><summary>Can somebody's AI assistant deal with you instead of them?</summary><p>Yes. The solutions list and both prices sit in a tool an assistant can read, and the mailbox is a tool it can call. What it posts lands where a person's message lands, and the reply goes to the person it was sent for, not to the robot. Your own website can do the same; that is one of the things I build.</p></details>
       <details><summary>Is it safe to let an AI read my inbox?</summary><p>Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops. Nothing leaves without a person's press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file. Whatever the AI companies change tomorrow, the press is still yours.</p></details>
       <details><summary>Is this like Claudeforce?</summary><p>Same idea, and mine comes with the tech done for you. Claudeforce is Salesforce's CRM with a big AI inside: $195 to $550 a person a month for a seat, from $125 more for the AI on it, every job it does metered on top, and you still set it up, learn it and run it. Mine: R2 Hosting, $222 to build then $99 a month, is your website or small app, with the forms that bring work in, built and run by me. Your Dojo, $2,222 a month flat, adds trained AI ninjas so every reply is drafted and waiting for one press, any number of people, the AI in the price. If three of you just need a contact list, buy their Starter at $25 a seat. I will not beat that.</p></details>
@@ -2777,7 +2793,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
         var tg=n.nextElementSibling; return n.textContent+(tg?": "+tg.textContent:""); });
       var offers=[].map.call(document.querySelectorAll("#offers .price-card"),function(c){
         return c.querySelector(".tag").textContent+", "+c.querySelector("h3").textContent+" "+c.querySelector(".amount").textContent.replace(/\s+/g," ").trim(); });
-      return JSON.stringify({who:"Rick Tew, the Digital Dojo: AI agents and systems built and run for businesses, every one run on his own businesses first.",solutions:sols,offers:offers,contact:"Use the post_letter_to_rick tool on this page. A human replies."});
+      return JSON.stringify({who:"Rick Tew, the Digital Dojo: a done-for-you service for small businesses. AI agents and systems built and managed by Rick, a person checking the work, every one run on his own businesses first.",solutions:sols,offers:offers,contact:"Use the post_letter_to_rick tool on this page. A human replies."});
     }
     try{
       mc.registerTool({
