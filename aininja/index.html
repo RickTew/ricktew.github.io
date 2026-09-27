@@ -38,7 +38,7 @@
   --belt-b:#22416b; --belt-br:#6b4a2e; --belt-k:#1b1b1b;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:84px} /* anchor jumps clear the sticky nav bar */
 @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
 body{background:var(--bg);color:var(--ink);font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:17.5px;line-height:1.6}
 img{max-width:100%}
@@ -1272,7 +1272,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
      "name": "What happens in the first month?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "The audit first, and it is free: we map where your hours go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt: it can be up and running within days. It proves itself before anything widens."
+      "text": "The audit first, and it is free: we map where your hours go, together, in writing. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt: it can be up and running within days. It proves itself before anything widens."
      }
     },
     {
@@ -2443,7 +2443,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
               <input type="email" id="rEmail" name="email" required placeholder="you@yourcompany.com" autocomplete="email">
               <button class="btn btn-quiet" type="submit">Send me the breakdown</button>
             </div>
-            <p class="small">One page. Press the button and your answers drop into my mailbox at the bottom of the page; read them there, press post, and the breakdown comes back to you by email. It is built from your answers, not a template.</p>
+            <p class="small">One page. Press the button and your answers drop into my mailbox at the bottom of the page; read them there, drop them in, and the breakdown comes back to you by email. It is built from your answers, not a template.</p>
           </form>
           <p class="r-honest">Honest math: your number is the hours you reported, times a 60% draft-and-file share, times the hourly value you gave it. Estimates, clearly labeled as estimates, from your answers and nothing else.</p>
         </div>
@@ -2593,7 +2593,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <details><summary>Will an AI talk to my customers without me knowing?</summary><p>Never. Every ninja starts at white belt: propose only. Drafts pile up for your review, and a person presses every send, pay and post. That rule does not bend at any belt or any price.</p><p>One exception, and it is mine: the mailbox on this page is answered first by my Ninja Agent, signed as the AI, from answers I wrote, because that is the demo. In your Dojo nothing sends without your press unless you choose the same for a lane of your own.</p></details>
       <details><summary>What does it cost?</summary><p>Your Dojo is $2,222 a month: I build it, host it, and help you run it; your team presses every send. The audit that comes first is free. Monthly, cancel anytime, effective at the end of the paid month. Smaller need? R2 Hosting: I build your site or small app and host it on my stack, $222 to build, then $99 a month or $999 a year. Want the whole day run for you, or something bigger than one Dojo? That is a custom price, and we talk first. The AI is in the price: I run it on my accounts, and you never open an AI account or watch a meter. Not in the price: ad spend, software your business already pays for on its own, and building a product you sell, which is separate work agreed in writing first. The quiz says where I would start.</p></details>
       <details><summary>Can I get just one desk?</summary><p>A desk is one AI ninja on one job, like the Front Desk drafting your support replies. And yes: that is how every Dojo starts. The free audit picks the one job that eats the most hours, usually the inbox, and one ninja takes it. More join once it has proven itself, and the price stays $2,222 a month, flat. One desk built on its own, without the monthly service, is a custom job, quoted in writing.</p></details>
-      <details><summary>What happens in the first month?</summary><p>The audit first, and it is free: we map where your hours go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt: it can be up and running within days. It proves itself before anything widens.</p></details>
+      <details><summary>What happens in the first month?</summary><p>The audit first, and it is free: we map where your hours go, together, in writing. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt: it can be up and running within days. It proves itself before anything widens.</p></details>
       <details><summary>What happens if you disappear?</summary><p>You lose the window, not the room. The build is the window: the desk, the forms, the site I made so you can see the work and press. The room is yours: your domain, your mail, your content, your videos, your customer records. They are yours in writing, they leave with you, and I keep no copy. What ends with me is the window and the hosting, and nothing is charged after.</p></details>
       <details><summary>Can I cancel?</summary><p>Anytime. Cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack, so there is nothing to hand back or log out of. Your domain, your content and your data leave with you, and I do not keep a copy. The build and the hosting end with the subscription, and nothing is charged after.</p></details>
       <details><summary>Do I have to manage any of the tech?</summary><p>No. Both plans are built on my stack and stay there: the hosting, the database, the mail plumbing, every setting that holds it together. It is the same stack my own businesses and my clients' run on, and it is why the price is flat. For you that means no dashboard, no console, no certificate to renew, no password to keep somewhere safe, and no bug that is yours to fix. When something needs changing, you tell me. Yours, always: your domain, your content and your data. Want it built inside your own accounts instead, as a thing you own outright? That is a custom job, quoted in writing, and it costs more, because every login and card approval on your side is an hour of the build.</p></details>
@@ -3634,6 +3634,26 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 /* Installable: register the site's service worker. Registration is silent
    and the page works exactly the same without it. */
 if("serviceWorker" in navigator){ window.addEventListener("load",function(){ navigator.serviceWorker.register("/sw.js").catch(function(){}); }); }
+</script>
+<script>
+/* Arriving with a #hash from another page (the done-for-you and R2 pages,
+   llms.txt, a shared link): the browser jumps before the images and scenes
+   above the target have their height, and on a phone the page then grows
+   by about 900px, so the visitor lands a screen short of the mailbox or the
+   quiz (Maria, persona round 27 Sep: three taps of three). Hold the target
+   in place while the layout settles, and let go the moment the visitor
+   scrolls, taps or types, follows another anchor, or after four seconds. */
+(function(){
+  var id=""; try{ id=decodeURIComponent(location.hash.slice(1)); }catch(e){}
+  var el=id && document.getElementById(id); if(!el) return;
+  var done=false, ro=null;
+  function stop(){ done=true; if(ro) ro.disconnect(); }
+  ["wheel","touchstart","keydown","mousedown","hashchange"].forEach(function(e){ addEventListener(e,stop,{passive:true,once:true}); });
+  function pin(){ if(!done) el.scrollIntoView({block:"start",behavior:"instant"}); }
+  if(window.ResizeObserver){ ro=new ResizeObserver(pin); ro.observe(document.body); }
+  addEventListener("load",pin);
+  setTimeout(stop,4000);
+})();
 </script>
 </body>
 </html>

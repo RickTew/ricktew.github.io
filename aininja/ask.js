@@ -228,12 +228,12 @@
      cta:{what:"The Agentic CMO seat", kind:"dojo"}},
 
     {id:"human-press", q:"What does \"a human presses every send\" mean?",
-     alt:["human press","presses every send","human presses","press send","press every","approve everything","approve every","final say","in control","stay in control"],
+     alt:["human press","presses every send","human presses","press send","press every","approve everything","approve every","final say","in control","stay in control","check everything","have to check","still check","check what it writes","check the drafts"],
      keys:"press presses pressed send sends approve approval approves review reviewed sign off signoff signs control final say decide decides decision decisions",
      a:"<p>Exactly what it says. A ninja can read, draft, file and propose all day, but the moment something would leave the building, a reply, a payment, a post, it waits for a person to press. That press is yours, or your team's. It is the rule that makes the rest safe, and it does not bend at any belt or any price.</p>"},
 
     {id:"a-person", q:"Is there a real person behind this, or is it all AI?",
-     alt:["real person behind","a person behind","person behind this","human behind","is it all ai","all ai","just ai","only ai","fully ai","is a human involved","human involved","is there a human","who checks the work","who checks it","checks the work","does the ai do the work","do you do the work","is it a service","service or software","done for you","done-for-you","human in the loop","who manages it","managed by a person","managed by a real person","who runs the daily work","who runs the daily"],
+     alt:["real person behind","a person behind","person behind this","human behind","is it all ai","all ai","just ai","only ai","fully ai","is a human involved","human involved","is there a human","who checks the work","who checks it","checks the work","does the ai do the work","do you do the work","is it a service","service or software","done for you","done-for-you","human in the loop","who manages it","managed by a person","managed by a real person","different from the ai apps","different from other ai","other ai apps","other ai tools","ai apps i already","apps i already pay","who runs the daily work","who runs the daily"],
      keys:"person people human humans behind manage manages managed managing check checks checked checking legwork service done work loop oversee oversees",
      a:"<p>Yes, me. Your admin is handled as a service. My AI ninjas do the legwork: the drafts, the filing, the bookings. A person checks it. Nothing goes out without a press. I manage all of it and report to you in writing.</p><p>Your team checks the work and presses send. I help you run it; I am not on your staff. Want the whole day run for you? That is a custom price, and we talk first.</p>",
      link:{href:"#you", label:"See how it works"}},
@@ -311,7 +311,7 @@
     {id:"glossary", q:"What is a Dojo, and what is a ninja here?",
      alt:["what is a dojo","what is the dojo","what do you mean by dojo","what do you mean by a dojo","mean by dojo","what is a ninja","what do you mean by ninja","mean by ninja","dojo and ninjas","dojo and ninja","what is a sensei","what is a seat","what is a belt","what is a desk","what do you mean by desk","mean by desk","the words","jargon","glossary"],
      keys:"dojo ninja ninjas sensei seat seats belt belts desk desks mean means word words jargon glossary terms vocabulary",
-     a:"<p>The Dojo is your AI workforce and the command center over it: the trained agents, the factories behind your repeated work, and one screen that shows whether everything is running. A ninja is one trained AI agent with one job: the inbox, the payment mail, the bookings. A desk is one ninja on one job, like the Front Desk. A seat is a ninja with a title a payroll would recognize, the Agentic CMO or the Agentic CFO, grouping the desks under it. Belts are trust earned: every ninja starts at white belt, propose only, and earns the right to act. The sensei is me. I build the Dojo, train the ninjas and stay close, overseeing it.</p>",
+     a:"<p>The Dojo is your AI workforce and the command center over it: the trained agents, the factories behind your repeated work, and one screen that shows whether everything is running. A ninja is one trained AI agent with one job: the inbox, the payment mail, the bookings. A desk is one ninja on one job, like the Front Desk. A seat is a job a few ninjas fill together, like marketing or the books: the Agentic CMO, the Agentic CFO. Belts are trust earned: every ninja starts at white belt, propose only, and earns the right to act. The sensei is me. I build the Dojo, train the ninjas and stay close, overseeing it.</p>",
      link:{href:"#solutions", label:"See the solutions"}},
 
     {id:"channels", q:"Can it answer WhatsApp, LINE or Facebook messages, not just email?",
@@ -352,7 +352,7 @@
     {id:"first-month", q:"What happens in the first month?",
      keys:"start starts starting begin begins beginning first month audit onboarding kickoff step steps process happens order",
      alt:["first month","what happens first","onboarding","how does it start","the first step","the first weeks","first weeks","the audit","what is the audit","what is audited","audit take","audit cost","the audit cost","audit free","pay for the audit","cost of the audit"],
-     a:"<p>The audit first, and it is free: we map where your hours actually go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt: it can be up and running within days. It proves itself before anything widens.</p><p>That is the order it happened in for me: the gym's inbox first, then bookings, then the books, each one earning the next.</p>"},
+     a:"<p>The audit first, and it is free: we map where your hours actually go, together, in writing. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt: it can be up and running within days. It proves itself before anything widens.</p><p>That is the order it happened in for me: the gym's inbox first, then bookings, then the books, each one earning the next.</p>"},
 
     {id:"how-long", q:"How long does it take?",
      alt:["how long","how fast","how quickly","how soon","timeline","time frame","timeframe","when will it","up and running","start tonight","tonight","this month","this week","working this month","start date","when can we start","when can i start","how soon can we start"],

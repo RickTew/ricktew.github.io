@@ -51,6 +51,8 @@ var GOLD=[
   ["do you do the work or does the AI", "a-person"],
   ["what is done for you ai", "a-person"],
   ["is a human involved", "a-person"],
+  ["how is this different from the AI apps I already pay for", "a-person"],
+  ["do I still have to check everything the AI writes", "human-press"],
   ["what is a desk", "glossary"],
   ["is the audit free", "first-month"],
   ["what does the audit cost", "first-month"],
