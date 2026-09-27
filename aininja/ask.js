@@ -232,6 +232,12 @@
      keys:"press presses pressed send sends approve approval approves review reviewed sign off signoff signs control final say decide decides decision decisions",
      a:"<p>Exactly what it says. A ninja can read, draft, file and propose all day, but the moment something would leave the building, a reply, a payment, a post, it waits for a person to press. That press is yours, or your team's. It is the rule that makes the rest safe, and it does not bend at any belt or any price.</p>"},
 
+    {id:"a-person", q:"Is there a real person behind this, or is it all AI?",
+     alt:["real person behind","a person behind","person behind this","human behind","is it all ai","all ai","just ai","only ai","fully ai","is a human involved","human involved","is there a human","who checks the work","who checks it","checks the work","does the ai do the work","do you do the work","is it a service","service or software","done for you","done-for-you","human in the loop","who manages it","managed by a person","managed by a real person","who runs the daily work","who runs the daily"],
+     keys:"person people human humans behind manage manages managed managing check checks checked checking legwork service done work loop oversee oversees",
+     a:"<p>Yes, me. Your admin is handled as a service. My AI ninjas do the legwork: the drafts, the filing, the bookings. A person checks it. Nothing goes out without a press. I manage all of it and report to you in writing.</p><p>Your team checks the work and presses send. I help you run it; I am not on your staff. Want the whole day run for you? That is a custom price, and we talk first.</p>",
+     link:{href:"#you", label:"See how it works"}},
+
     {id:"agent-ready", q:"What does \"agent-ready\" mean? Can my website be?",
      alt:["agent-ready","agent ready","webmcp","ai agents visit","assistant visit","my website ready","agents are customers","agents as customers","agent is the customer","assistant deal with you","pricing an agent can read","readable to an agent","support desk an agent can call","desk that agents call","receipts for the work","audit trail"],
      keys:"webmcp ready website websites site web visitor visitors assistant assistants visit visits browser chrome standard tool tools call",
@@ -303,9 +309,9 @@
      link:{href:"/aininja/r2/", label:"See R2 Hosting"}},
 
     {id:"glossary", q:"What is a Dojo, and what is a ninja here?",
-     alt:["what is a dojo","what is the dojo","what do you mean by dojo","what do you mean by a dojo","mean by dojo","what is a ninja","what do you mean by ninja","mean by ninja","dojo and ninjas","dojo and ninja","what is a sensei","what is a seat","what is a belt","the words","jargon","glossary"],
-     keys:"dojo ninja ninjas sensei seat seats belt belts mean means word words jargon glossary terms vocabulary",
-     a:"<p>The Dojo is your AI workforce and the command center over it: the trained agents, the factories behind your repeated work, and one screen that shows whether everything is running. A ninja is one trained AI agent with one job: the inbox, the payment mail, the bookings. A seat is a ninja with a title a payroll would recognize, the Agentic CMO or the Agentic CFO, grouping the desks under it. Belts are trust earned: every ninja starts at white belt, propose only, and earns the right to act. The sensei is me. I build the Dojo, train the ninjas and stay close, overseeing it.</p>",
+     alt:["what is a dojo","what is the dojo","what do you mean by dojo","what do you mean by a dojo","mean by dojo","what is a ninja","what do you mean by ninja","mean by ninja","dojo and ninjas","dojo and ninja","what is a sensei","what is a seat","what is a belt","what is a desk","what do you mean by desk","mean by desk","the words","jargon","glossary"],
+     keys:"dojo ninja ninjas sensei seat seats belt belts desk desks mean means word words jargon glossary terms vocabulary",
+     a:"<p>The Dojo is your AI workforce and the command center over it: the trained agents, the factories behind your repeated work, and one screen that shows whether everything is running. A ninja is one trained AI agent with one job: the inbox, the payment mail, the bookings. A desk is one ninja on one job, like the Front Desk. A seat is a ninja with a title a payroll would recognize, the Agentic CMO or the Agentic CFO, grouping the desks under it. Belts are trust earned: every ninja starts at white belt, propose only, and earns the right to act. The sensei is me. I build the Dojo, train the ninjas and stay close, overseeing it.</p>",
      link:{href:"#solutions", label:"See the solutions"}},
 
     {id:"channels", q:"Can it answer WhatsApp, LINE or Facebook messages, not just email?",
@@ -345,7 +351,7 @@
 
     {id:"first-month", q:"What happens in the first month?",
      keys:"start starts starting begin begins beginning first month audit onboarding kickoff step steps process happens order",
-     alt:["first month","what happens first","onboarding","how does it start","the first step","the first weeks","first weeks","the audit","what is the audit","what is audited","audit take"],
+     alt:["first month","what happens first","onboarding","how does it start","the first step","the first weeks","first weeks","the audit","what is the audit","what is audited","audit take","audit cost","the audit cost","audit free","pay for the audit","cost of the audit"],
      a:"<p>The audit first, and it is free: we map where your hours actually go, together. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt: it can be up and running within days. It proves itself before anything widens.</p><p>That is the order it happened in for me: the gym's inbox first, then bookings, then the books, each one earning the next.</p>"},
 
     {id:"how-long", q:"How long does it take?",
@@ -579,6 +585,7 @@
     "what-is-agent":"A chatbot saves you a search. An agent saves you a Tuesday.",
     "belts":"Start every AI worker at white belt, even one you built yourself. Trust it has not earned is a risk you are carrying for it.",
     "masters":"Hire the seat that owns the number you most want moved: more customers, money on time, every question answered.",
+    "a-person":"Start with the free audit: it maps where your hours go, and that picks the first job.",
     "human-press":"The press is a feature, not a bottleneck. Reading ten drafts takes minutes; writing ten replies took your evening.",
     "agent-ready":"The visitor who cannot use your site tomorrow may be a customer's assistant. Being readable to it costs an afternoon.",
     "inbox-security":"Give the AI the reading and the drafting. Keep the sending. That split is the whole safety model.",

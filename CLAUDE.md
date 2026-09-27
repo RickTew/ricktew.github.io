@@ -433,6 +433,15 @@ the quiz (30 seeded random walks), the chat box, the mailbox against a
 mocked endpoint (nothing is sent), the rails, the reveals, phone overlap and
 overflow. Exit 1 on any finding. First run, 2026-08-28: two dead links
 fixed (the FAQ's `#ask` href, a hidden design-tests pill), then clean.
+**The rest of the door: `tests/aidoor-sweep.js`** (27 Sep): the landing page plus
+done-for-you, R2, the Intake, the summit, both legal pages, the front page
+and /hininja/, desktop and phone, shape only, plus two copy walls: lines
+Rick retired ("My AI ninjas run the admin", "Payroll for these hires",
+"on call", $4,444 and the rest in its RETIRED list) must not come back in
+the page, the chat library, the small pages or llms.txt, and every dollar
+figure on the small pages must be a real price. The HI page's Vimeo intro
+answers 401 to headless browsers (a bot check; it is public and plays), so
+the sweep treats Vimeo and Cloudflare challenge noise as noise.
 
 **The Intake (2026-09-05, Rick's ask): the client questionnaire at
 `/aininja/start/`.** For people who have picked an offer and want to start,
