@@ -544,6 +544,25 @@ sensei note under the price cards on `/aininja/`, `llms.txt`, and invite links.
   end-to-end intake: 2026-09-05, id `9ztegx65t1yxqadwpyx0`, both mails
   delivered, TEST in the name.
 
+**The done-for-you page, `/aininja/done-for-you/` (2026-09-27, Rick's GO
+on the SEO run).** A short page written on the words buyers actually type
+("done for you AI automation", "for small business owners"; "AI ninja" and
+"Digital Dojo" get no Google suggestions), because the 9,000-word landing
+page is about twenty things and Google showed it 5 times in 28 days. Every
+line on it is taken from `/aininja/`: nothing new is claimed there, so a
+change to a claim, a price or one of its five FAQ answers on the landing
+page must be copied here too. Its ld+json (a Service with the two offers,
+prices read from the landing page, plus a FAQPage) is written by
+`tests/agent-door-build.py`: never hand-edit it. In the sitemap, in
+llms.txt, linked from the landing page footer ("Done-for-you AI, in
+short"). Same day, same ruling: the landing page's title is "Done-for-you
+AI for small business, managed by a real person" and it sells a SERVICE run
+by a person (Rick manages the AI ninjas, a person checks the work, the
+client's team presses send), not AI agents. The service itself did not
+change; Rick: "it is our service, ... explain our offer better". The audit
+is free (his ruling, 27 Sep), and one desk is how every Dojo starts, not a
+separate price.
+
 **Before you touch the endpoint, run its test:**
 
 ```

@@ -12,6 +12,7 @@ The site is two doors. HI Ninja is the in-person work (martial arts, camps, coac
 - The AI is in the price: Rick runs the models on his own accounts; the client never opens an AI account or watches a meter. Not in the price: ad spend, and software the client already pays for on its own.
 - Running the daily work for a client, a build inside the client's own accounts, or anything bigger than one Dojo, is a custom price talked about first; it is not a listed offer.
 - R2 Hosting: $222 to build a site or small app, then $99 a month or $999 a year for hosting, management and upkeep on Rick's stack. The entry offer: https://ricktew.com/aininja/r2/
+- Done-for-you AI for small business owners, on one short page: how it works, the jobs it takes off an owner, the two plans and the common questions. https://ricktew.com/aininja/done-for-you/
 - The Side Hustle Summit in plain words, dated and updated after each session: what the free YouTube event (6 to 13 September 2026) sells, what each day taught, and the four steps a viewer can do at no cost. Rick sells no course for it. https://ricktew.com/aininja/side-hustle-summit/
 
 ## Solutions (the things Rick builds)

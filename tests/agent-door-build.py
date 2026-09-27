@@ -30,7 +30,7 @@ ld={"@context":"https://schema.org","@graph":[
   "sameAs":["https://x.com/ricktew","https://facebook.com/ricktew","https://instagram.com/ricktew","https://linkedin.com/in/ricktew","https://youtube.com/@ricktew"]},
  {"@type":"ProfessionalService","@id":"https://ricktew.com/aininja/#dojo","name":"The Digital Dojo","url":"https://ricktew.com/aininja/",
   "founder":{"@id":"https://ricktew.com/#rick"},
-  "description":"AI ninjas built and trained for a small business, one task at a time, with a human pressing every send.",
+  "description":"A done-for-you AI service for small businesses: AI ninjas built, trained and managed by Rick, one task at a time, with a human pressing every send.",
   "contactPoint":{"@type":"ContactPoint","contactType":"sales","url":"https://ricktew.com/aininja/#opt-8c","email":"aininja@ricktew.com","availableLanguage":"en"},
   "makesOffer":[
     {"@type":"Offer","name":"Your Dojo","description":"Rick builds it, hosts it, and helps you run it; your team presses every send.","price":P['Your Dojo'].replace(',',''),"priceCurrency":"USD","url":"https://ricktew.com/aininja/#offers",
@@ -56,6 +56,7 @@ L=["# Rick Tew","",
 "- The AI is in the price: Rick runs the models on his own accounts; the client never opens an AI account or watches a meter. Not in the price: ad spend, and software the client already pays for on its own.",
 "- Running the daily work for a client, a build inside the client's own accounts, or anything bigger than one Dojo, is a custom price talked about first; it is not a listed offer.",
 "- R2 Hosting: $%s to build a site or small app, then $%s a month or $999 a year for hosting, management and upkeep on Rick's stack. The entry offer: https://ricktew.com/aininja/r2/"%(r2.group(1),r2.group(2)),
+"- Done-for-you AI for small business owners, on one short page: how it works, the jobs it takes off an owner, the two plans and the common questions. https://ricktew.com/aininja/done-for-you/",
 "- The Side Hustle Summit in plain words, dated and updated after each session: what the free YouTube event (6 to 13 September 2026) sells, what each day taught, and the four steps a viewer can do at no cost. Rick sells no course for it. https://ricktew.com/aininja/side-hustle-summit/","",
 "## Solutions (the things Rick builds)",""]
 L+=["- %s: %s"%(txt(n),txt(t)) for n,t in rows]
@@ -103,3 +104,31 @@ if os.path.exists(sub):
     t=re.sub(r'<script type="application/ld\+json">.*?</script>',lambda m:sblock,t,count=1,flags=re.S)
     open(sub,'w',encoding='utf-8').write(t)
     print("rebuilt: side-hustle-summit ld+json (%d FAQ, updated %s)"%(len(sf),upd))
+
+# The done-for-you page (2026-09-27, Rick's GO on the SEO run): a short page
+# on the words buyers type, every line taken from the AI Ninja page. Its own
+# ld+json, a Service with the two offers (prices read from the AI Ninja page
+# above, so one source) plus a FAQPage from its FAQ <details>.
+dfy=os.path.join(root,'aininja','done-for-you','index.html')
+if os.path.exists(dfy):
+    t=open(dfy,encoding='utf-8').read()
+    h1=txt(re.search(r'<h1>(.*?)</h1>',t,re.S).group(1))
+    desc=html.unescape(re.search(r'<meta name="description" content="(.*?)">',t).group(1))
+    fb=re.search(r'<section class="sec" id="faq">(.*?)</section>',t,re.S).group(1)
+    df=re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>',fb,re.S)
+    if len(df)<4: sys.exit("done-for-you page shape changed: %d FAQ"%len(df))
+    u="https://ricktew.com/aininja/done-for-you/"
+    dld={"@context":"https://schema.org","@graph":[
+     {"@type":"Service","@id":u+"#service","name":h1,"description":desc,"url":u,"serviceType":"Done-for-you AI automation for small businesses",
+      "provider":{"@type":"Person","@id":"https://ricktew.com/#rick","name":"Rick Tew","url":"https://ricktew.com/"},"areaServed":"Worldwide",
+      "offers":[{"@type":"Offer","name":"Your Dojo","price":P['Your Dojo'].replace(',',''),"priceCurrency":"USD","url":"https://ricktew.com/aininja/#offers",
+                 "priceSpecification":{"@type":"UnitPriceSpecification","price":P['Your Dojo'].replace(',',''),"priceCurrency":"USD","unitText":"month"}},
+                {"@type":"Offer","name":"R2 Hosting","price":r2.group(2),"priceCurrency":"USD","url":"https://ricktew.com/aininja/r2/",
+                 "priceSpecification":{"@type":"UnitPriceSpecification","price":r2.group(2),"priceCurrency":"USD","unitText":"month"}}]},
+     {"@type":"FAQPage","@id":u+"#faq",
+      "mainEntity":[{"@type":"Question","name":txt(q),"acceptedAnswer":{"@type":"Answer","text":txt(a)}} for q,a in df]}]}
+    dblock='<script type="application/ld+json">\n'+json.dumps(dld,ensure_ascii=False,indent=1)+'\n</script>'
+    if len(re.findall(r'<script type="application/ld\+json">.*?</script>',t,re.S))!=1: sys.exit("done-for-you page: expected one ld+json block")
+    t=re.sub(r'<script type="application/ld\+json">.*?</script>',lambda m:dblock,t,count=1,flags=re.S)
+    open(dfy,'w',encoding='utf-8').write(t)
+    print("rebuilt: done-for-you ld+json (%d FAQ)"%len(df))
