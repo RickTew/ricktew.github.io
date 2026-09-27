@@ -117,6 +117,33 @@ if os.path.exists(dfy):
     fb=re.search(r'<section class="sec" id="faq">(.*?)</section>',t,re.S).group(1)
     df=re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>',fb,re.S)
     if len(df)<4: sys.exit("done-for-you page shape changed: %d FAQ"%len(df))
+    # Word for word (the Dojo's catch, 27 Sep): this page copies lines from
+    # the landing page by hand. Every sentence in its jobs tiles, its plan
+    # cards and its FAQ answers must still be on the landing page, and every
+    # dollar figure on it must be in the landing page's cost answer, so a
+    # landing-page edit that is not copied here fails the build, not drifts.
+    # ADAPT lists the only rewordings allowed, visibly.
+    def vis(h):
+        h=re.sub(r'<(script|style)[^>]*>.*?</\1>','',h,flags=re.S)
+        h=re.sub(r'</?(p|div|li|h\d|summary|details|br|section|ul|ol|header|footer|nav|a class="want"[^>]*)\b[^>]*>',' ',h)
+        return re.sub(r'\s+',' ',html.unescape(re.sub(r'<[^>]+>','',h))).strip()
+    lt=vis(s)
+    ADAPT={"the mailbox on my AI Ninja page":"the mailbox on this page"}
+    cost=vis(dict((txt(q),a) for q,a in faqs)["What does it cost?"])
+    copied=[]
+    for sec in ("jobs","plans"):
+        body=re.search(r'<section class="sec" id="%s">(.*?)</section>'%sec,t,re.S).group(1)
+        copied+=[vis(x) for x in re.findall(r'<div><h3>.*?</h3><p>(.*?)</p></div>',body,re.S)]
+        copied+=[vis(x) for x in re.findall(r'<p>(.*?)</p>',re.search(r'<div class="price-grid">(.*?)</section>',body+'</section>',re.S).group(1),re.S)] if sec=="plans" else []
+    copied+=[vis(a) for q,a in df]
+    miss=[]
+    for para in copied:
+        for sent in re.split(r'(?<=[.?!])\s+(?=[A-Z"])',para):
+            for a,b in ADAPT.items(): sent=sent.replace(a,b)
+            if re.search(r'\$\d',sent):
+                miss+=["price %s not in the landing cost answer"%d for d in re.findall(r'\$[\d,]+',sent) if d not in cost]
+            elif sent not in lt: miss.append(sent)
+    if miss: sys.exit("done-for-you drifted from the landing page, copy these across:\n  "+"\n  ".join(miss))
     u="https://ricktew.com/aininja/done-for-you/"
     dld={"@context":"https://schema.org","@graph":[
      {"@type":"Service","@id":u+"#service","name":h1,"description":desc,"url":u,"serviceType":"Done-for-you AI automation for small businesses",

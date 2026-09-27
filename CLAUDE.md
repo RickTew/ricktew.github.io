@@ -551,7 +551,7 @@ on the SEO run).** A short page written on the words buyers actually type
 page is about twenty things and Google showed it 5 times in 28 days. Every
 line on it is taken from `/aininja/`: nothing new is claimed there, so a
 change to a claim, a price or one of its five FAQ answers on the landing
-page must be copied here too. Its ld+json (a Service with the two offers,
+page must be copied here too; `tests/agent-door-build.py` now fails, naming the line, if a sentence in its jobs tiles, plan cards or FAQ answers is no longer on the landing page or a dollar figure is not in the landing cost answer (its ADAPT list holds the only allowed rewording). Its ld+json (a Service with the two offers,
 prices read from the landing page, plus a FAQPage) is written by
 `tests/agent-door-build.py`: never hand-edit it. In the sitemap, in
 llms.txt, linked from the landing page footer ("Done-for-you AI, in
