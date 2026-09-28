@@ -618,6 +618,41 @@ findings this install sent back: `~/Dev/digitaldojo/private/proof-ledger.md`.
 
 ---
 
+## /gns/: Gooffy Ninja ShhT!! (moved from NinjaGym 2026-09-28)
+
+Rick's live-in 2-week ninja program on Koh Samui ($2,222, +$1,000 a week).
+Rick, 28 Sep: GNS belongs on ricktew.com/gns, not NinjaGym. The NinjaGym
+session handed over everything it knew in
+`~/Dev/GNS/GNS-HANDOFF-from-NinjaGym.md` (brand rules, the quiz, the vault,
+open items); read it before changing the page. Canonical program docs:
+`~/Dev/GNS/GNS-*.md`.
+
+- **The page is a static port, word for word,** of the Next.js page that
+  ran at ninjagym.com/gns: `gns/index.html` (markup and CSS) and
+  `gns/gns.js` (belt tabs, the vault, the branching quiz, the scroll
+  motion). The GNS look lives only on GNS pages: dark "ninja night",
+  orange `#ff7a1a`, red `#e23b2e`, Bangers / Nunito / Fredoka. It is its
+  own sub-brand, so the light-page and door-bar rules do not apply to it.
+- **Payment stays on NinjaGym.** Every Enroll button goes to
+  `https://ninjagym.com/gns/enroll` (the Stripe USD checkout, the webhook
+  branch and the `gns_bookings` table live in `~/Dev/NinjaGym`). The quiz's
+  contact links go to `https://ninjagym.com/contact`. Never edit anything in
+  `~/Dev/NinjaGym`: Rick's rule is that nothing GNS does may break the
+  NinjaGym app. If payment ever moves here, tell the NinjaGym session first.
+- **The vault's tapes and world photos are not copied:** the page plays the
+  same files `/aininja/` serves from `aininja/assets/story/ninja/`. Moving
+  those breaks both pages.
+- **The two "sticky" bars do not stick,** exactly as on NinjaGym (the page
+  root has `overflow-x:hidden`). Switching them on puts the enroll bar over
+  the hero's Enroll button on a phone and a 900px laptop; Rick's call.
+- **Test:** `node tests/gns-sweep.js` (serve the repo on 8765): desktop and
+  phone, links, every Enroll target, belts, the vault, 40 quiz walks.
+- In the sitemap and in llms.txt (HI door section, via
+  `tests/agent-door-build.py`). Not linked from `/hininja/` or the front
+  page; on NinjaGym it was not in the nav either.
+
+---
+
 ## Site Purpose
 
 - About Rick Tew (who he is, what he does)
@@ -686,6 +721,7 @@ RickTew/
 ├── robots.txt      # Allow: / , plus sitemap
 ├── sitemap.xml
 ├── hininja/        # DOOR 1: the in-person work
+├── gns/            # Gooffy Ninja ShhT!!, moved from ninjagym.com 2026-09-28
 ├── aininja/        # DOOR 2: the digital work. DOJO-OWNED, see above.
 │   ├── index.html  #   the landing page itself
 │   ├── legal/      #   terms + privacy

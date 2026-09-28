@@ -1,0 +1,1130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gooffy Ninja ShhT!! | Live-in Ninja Training in Koh Samui</title>
+<meta name="description" content="Real ninja skills, zero seriousness. Train by day, game by night with Rick Tew in Koh Samui. 2 weeks, $2,222.">
+<link rel="canonical" href="https://ricktew.com/gns/">
+<link rel="icon" href="/assets/images/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<meta name="theme-color" content="#0d0906">
+<meta property="og:title" content="Gooffy Ninja ShhT!! | Live-in Ninja Training in Koh Samui">
+<meta property="og:description" content="Real ninja skills, zero seriousness. Train by day, game by night with Rick Tew in Koh Samui. 2 weeks, $2,222.">
+<meta property="og:url" content="https://ricktew.com/gns/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ricktew.com/gns/gns-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;600&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<!--
+  Gooffy Ninja ShhT!! (GNS): Rick's live-in 2-week ninja program on Koh Samui.
+  Moved here from ninjagym.com/gns on 28 Sep 2026 (a static port of the
+  NinjaGym Next.js page: GnsLanding, GnsVault, GnsQuiz, GnsMotion). The GNS
+  look lives ONLY on GNS pages: dark "ninja night", orange #ff7a1a, red
+  #e23b2e, Bangers / Nunito / Fredoka. No long dashes anywhere (GNS rule and
+  site rule). The behaviour is in gns.js beside this file.
+
+  PAYMENT STAYS ON NINJAGYM. ricktew.com is static, so every Enroll button
+  goes to ninjagym.com/gns/enroll, where the Stripe USD checkout, the webhook
+  branch and the bookings table live. Do not build a checkout here.
+
+  The vault tapes and the world photos are NOT copied: they are the same
+  files /aininja/ already serves from /aininja/assets/story/ninja/. Moving
+  or renaming those breaks this page too.
+-->
+<style>
+/* a small preflight, the part of the old page's Tailwind reset it leaned on */
+*,::before,::after{box-sizing:border-box;margin:0;padding:0;border:0 solid}
+html{-webkit-text-size-adjust:100%;line-height:1.5;scroll-padding-top:64px;background:#0d0906}
+@media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+body{background:#0d0906;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+h1,h2,h3{font-size:inherit;font-weight:inherit}
+a{color:inherit;text-decoration:inherit}
+b{font-weight:bolder}
+button{font:inherit;color:inherit;background:transparent;cursor:pointer;text-align:inherit}
+ul{list-style:none}
+img,svg,video{display:block;vertical-align:middle}
+img,video{max-width:100%;height:auto}
+[hidden]{display:none!important}
+
+/* layout helpers, standing in for the Tailwind utilities the page used */
+.shell{width:100%;max-width:72rem;margin-inline:auto;padding-inline:1.25rem}
+.shell-3xl{width:100%;max-width:48rem;margin-inline:auto;padding-inline:1.25rem}
+@media(min-width:640px){ .shell,.shell-3xl{padding-inline:2rem} }
+.tc{text-align:center}
+.note{margin:.5rem auto 0;max-width:28rem;font-size:.875rem;line-height:1.25rem;color:var(--muted)}
+.note-lg{max-width:32rem}
+.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}
+.mt-7{margin-top:1.75rem}.mt-8{margin-top:2rem}.mt-9{margin-top:2.25rem}.mt-10{margin-top:2.5rem}.mb-4{margin-bottom:1rem}
+
+#gt{
+  --font-nunito:"Nunito"; --font-bangers:"Bangers"; --font-fredoka:"Fredoka";
+  --ink:#0d0906; --ink2:#171009; --ink3:#1e150b;
+  --paper:#f5e9d8; --muted:#b6a488;
+  --orange:#ff7a1a; --red:#e23b2e; --gold:#ffd23f;
+  --edge:rgba(255,226,120,.14);
+  min-height:100vh; min-height:100dvh;
+  background:
+    radial-gradient(1200px 700px at 50% -10%, #241708 0%, transparent 60%),
+    linear-gradient(180deg,#160f08 0%, var(--ink) 40%, #0a0705 100%);
+  color:var(--paper);
+  font-family:var(--font-nunito), sans-serif;
+  /* hidden, as on NinjaGym, and it means the two "sticky" bars below do not
+     stick: the top bar scrolls away and the enroll bar is a strip at the
+     end. That is how the page looked live. A true sticky enroll bar would sit
+     on top of the hero's Enroll button on a phone and a 900px laptop, so it
+     was not switched on in the move. */
+  overflow-x:hidden;
+}
+
+/* top bar */
+.gt-bar{ position:sticky; top:0; z-index:40; background:rgba(13,9,6,.82); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border-bottom:1px solid var(--edge); }
+.gt-bar-in{ display:flex; height:3.5rem; align-items:center; justify-content:space-between; }
+.gt-bar-r{ display:flex; align-items:center; gap:.5rem; }
+.gt-back{ font-size:12px; font-weight:700; color:rgba(245,233,216,.6); }
+.gt-back:hover{ color:var(--orange); }
+.gt-pill{ display:inline-flex; font-family:var(--font-fredoka),sans-serif; font-weight:600; font-size:12px; color:var(--gold); border:1px solid rgba(255,122,26,.5); border-radius:999px; padding:6px 14px; }
+.gt-pill:hover{ background:rgba(255,122,26,.15); }
+.gt-pill-ghost{ display:none; color:rgba(245,233,216,.75); border-color:rgba(245,233,216,.22); }
+.gt-pill-ghost:hover{ color:var(--gold); border-color:rgba(255,122,26,.5); }
+@media(min-width:640px){ .gt-pill-ghost{ display:inline-flex; } }
+
+/* shared type */
+.gt-eyebrow{ font-family:var(--font-fredoka),sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:.22em; font-size:12px; color:var(--orange); }
+.gt-eyebrow-orange{ color:var(--orange); }
+.gt-h2{ font-family:var(--font-bangers),cursive; font-size:clamp(2rem,5vw,3.25rem); line-height:1; letter-spacing:.02em; color:var(--gold); text-wrap:balance; margin-top:.35rem; }
+.gt-ink-gold{ color:var(--gold); }
+.gt-ink-orange{ color:var(--orange); }
+
+/* sections */
+.gt-sec{ padding:clamp(3.5rem,8vw,6rem) 0; position:relative; }
+.gt-sec-alt{ background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.14)); border-top:1px solid var(--edge); border-bottom:1px solid var(--edge); }
+/* the classified vault gets its own full band so it never feels tacked on */
+.gt-sec-vault{ padding:clamp(5rem,11vw,8.5rem) 0; background:linear-gradient(180deg, rgba(0,0,0,.4), rgba(226,59,46,.05) 50%, rgba(0,0,0,.3)); border-top:1px solid rgba(240,193,75,.25); border-bottom:1px solid rgba(240,193,75,.25); }
+
+/* speed lines + halftone (the signature devices) */
+.gt-speedlines{ position:absolute; inset:-30% -10%; z-index:0; pointer-events:none;
+  background:repeating-conic-gradient(from 0deg at 50% 40%, transparent 0 2.4deg, rgba(255,255,255,.05) 2.4deg 3deg);
+  -webkit-mask-image:radial-gradient(circle at 50% 40%, transparent 24%, #000 60%);
+  mask-image:radial-gradient(circle at 50% 40%, transparent 24%, #000 60%);
+}
+.gt-halftone{ position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.5;
+  background-image:radial-gradient(rgba(255,122,26,.16) 1px, transparent 1.7px);
+  background-size:11px 11px;
+  -webkit-mask-image:radial-gradient(circle at 50% 30%, #000 0%, transparent 70%);
+  mask-image:radial-gradient(circle at 50% 30%, #000 0%, transparent 70%);
+}
+
+/* hero */
+.gt-hero{ position:relative; overflow:hidden; }
+.gt-hero-in{ position:relative; display:flex; flex-direction:column; align-items:center; padding-block:4rem; text-align:center; }
+@media(min-width:640px){ .gt-hero-in{ padding-block:6rem; } }
+.gt-logo{ width:11rem; height:auto; filter:drop-shadow(0 18px 40px rgba(0,0,0,.55)); }
+@media(min-width:640px){ .gt-logo{ width:14rem; } }
+.gt-h1{ font-family:var(--font-bangers),cursive; font-size:clamp(2.9rem,9vw,6.5rem); line-height:.9; letter-spacing:.01em; color:var(--gold); text-shadow:3px 4px 0 var(--red); text-wrap:balance; }
+.gt-h1-red{ color:#ffb347; }
+.gt-lede{ max-width:34rem; color:rgba(245,233,216,.86); font-size:clamp(1rem,1.6vw,1.15rem); line-height:1.6; }
+.gt-hero-ctas{ margin-top:2.25rem; display:flex; flex-direction:column; align-items:center; gap:.75rem; }
+@media(min-width:640px){ .gt-hero-ctas{ flex-direction:row; } }
+
+/* CTAs */
+.gt-cta{ font-family:var(--font-bangers),cursive; letter-spacing:.03em; font-size:1.5rem; border-radius:999px; padding:.7rem 2.4rem; display:inline-flex; align-items:center; justify-content:center; transition:transform .12s ease, box-shadow .12s ease, background .15s ease; }
+.gt-cta-sm{ font-size:1.1rem; padding:.5rem 1.4rem; }
+.gt-cta:focus-visible{ outline:3px solid var(--gold); outline-offset:3px; }
+.gt-cta-fill{ background:var(--orange); color:#1a1209; box-shadow:4px 5px 0 var(--red); }
+.gt-cta-fill:hover{ transform:translate(-2px,-2px); box-shadow:6px 7px 0 var(--red); }
+.gt-cta-ghost{ color:var(--paper); border:2px solid rgba(245,233,216,.28); }
+.gt-cta-ghost:hover{ border-color:var(--orange); color:var(--gold); }
+
+/* price chip */
+.gt-pricechip{ display:inline-flex; align-items:baseline; gap:.6rem; border:1px solid var(--edge); background:rgba(0,0,0,.25); border-radius:999px; padding:.5rem 1.3rem; }
+.gt-pricechip-num{ font-family:var(--font-bangers),cursive; font-size:1.6rem; color:var(--gold); }
+.gt-pricechip-sub{ font-size:11px; color:var(--muted); }
+
+/* marquee */
+.gt-marquee-wrap{ overflow:hidden; border-top:1px solid var(--edge); border-bottom:1px solid var(--edge); background:var(--orange); color:#1a1209; }
+.gt-marquee{ display:flex; width:max-content; animation:gt-scroll 26s linear infinite; }
+.gt-marquee-run{ display:flex; }
+.gt-marquee-item{ font-family:var(--font-bangers),cursive; font-size:1.15rem; letter-spacing:.04em; padding:.5rem 1.1rem; white-space:nowrap; }
+.gt-marquee-item b{ color:var(--red); font-weight:400; }
+@keyframes gt-scroll{ to{ transform:translateX(-50%); } }
+
+/* editorial split */
+.gt-split{ display:grid; align-items:start; gap:2.5rem; }
+@media(min-width:768px){ .gt-split{ grid-template-columns:.9fr 1.1fr; } }
+.gt-pullquote{ font-family:var(--font-bangers),cursive; font-size:clamp(1.8rem,4.2vw,3rem); line-height:1.02; color:var(--paper); text-wrap:balance; margin-top:.5rem; }
+.gt-body-col{ display:flex; flex-direction:column; gap:1rem; color:rgba(245,233,216,.85); line-height:1.7; font-size:1.02rem; max-width:60ch; }
+
+/* big number */
+.gt-bignum-wrap{ position:relative; display:inline-block; margin-top:.4rem; }
+.gt-speedlines-sm{ inset:-120% -60%; -webkit-mask-image:radial-gradient(circle at 50% 50%, #000 0, transparent 62%); mask-image:radial-gradient(circle at 50% 50%, #000 0, transparent 62%); }
+.gt-bignum{ position:relative; font-family:var(--font-bangers),cursive; font-size:clamp(4rem,13vw,8.5rem); line-height:.9; color:var(--gold); text-shadow:3px 5px 0 var(--red); }
+
+/* grids */
+.g-4{ display:grid; grid-template-columns:1fr; gap:1rem; text-align:left; }
+@media(min-width:640px){ .g-4{ grid-template-columns:repeat(2,1fr); } }
+@media(min-width:1024px){ .g-4{ grid-template-columns:repeat(4,1fr); } }
+.g-life{ display:grid; grid-template-columns:repeat(2,1fr); gap:.75rem; }
+@media(min-width:640px){ .g-life{ grid-template-columns:repeat(3,1fr); } }
+@media(min-width:1024px){ .g-life{ grid-template-columns:repeat(5,1fr); } }
+.g-facts{ display:grid; grid-template-columns:repeat(2,1fr); gap:.75rem; }
+@media(min-width:640px){ .g-facts{ grid-template-columns:repeat(3,1fr); } }
+
+/* comic panels */
+.gt-panel{ position:relative; background:var(--ink2); border:1.5px solid var(--edge); border-radius:14px; padding:1.15rem 1.2rem; box-shadow:5px 6px 0 -1px rgba(226,59,46,.32); transition:transform .15s ease, box-shadow .15s ease; }
+.gt-panel:hover{ transform:translate(-2px,-2px); box-shadow:7px 8px 0 -1px rgba(226,59,46,.5); }
+.gt-panel-num .gt-panel-2{ font-family:var(--font-bangers),cursive; font-size:2.4rem; line-height:.8; color:var(--orange); display:block; }
+.gt-panel-title{ font-weight:800; color:var(--gold); margin-top:.4rem; }
+.gt-panel-line{ font-size:.9rem; color:rgba(245,233,216,.72); line-height:1.45; margin-top:.25rem; }
+
+/* extension ladder */
+.gt-ladder{ margin-inline:auto; max-width:34rem; }
+.gt-ladder-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem; }
+.gt-ladder-cell{ background:rgba(0,0,0,.28); border:1px solid var(--edge); border-radius:12px; padding:.75rem .4rem; }
+.gt-ladder-cell-lead{ border-color:rgba(255,122,26,.5); box-shadow:inset 0 0 0 1px rgba(255,122,26,.25); }
+.gt-ladder-weeks{ font-size:11px; color:var(--muted); }
+.gt-ladder-price{ font-family:var(--font-bangers),cursive; font-size:1.6rem; color:var(--gold); }
+.gt-ladder-note{ font-size:10px; color:var(--muted); }
+
+/* day timeline */
+.gt-day{ position:relative; display:grid; grid-template-columns:1fr; gap:1.75rem; }
+.gt-day-track{ display:none; }
+.gt-day-item{ position:relative; padding-left:1.6rem; }
+.gt-day-dot{ position:absolute; left:0; top:5px; width:15px; height:15px; border-radius:999px; background:var(--gold); border:3px solid var(--ink); box-shadow:0 0 0 2px var(--orange); }
+.gt-day-tag{ font-family:var(--font-bangers),cursive; font-size:1.25rem; letter-spacing:.03em; color:var(--orange); }
+.gt-day-time{ font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); }
+.gt-day-title{ font-weight:800; color:var(--paper); margin-top:.35rem; }
+.gt-day-line{ font-size:.9rem; color:rgba(245,233,216,.72); line-height:1.5; margin-top:.2rem; }
+@media(min-width:900px){
+  .gt-day{ grid-template-columns:repeat(4,1fr); gap:1.4rem; }
+  .gt-day-track{ display:block; position:absolute; top:6px; left:12.5%; right:12.5%; height:3px; background:linear-gradient(90deg,var(--gold),var(--orange),var(--red)); border-radius:2px; }
+  .gt-day-item{ padding-left:0; padding-top:2.1rem; text-align:center; }
+  .gt-day-dot{ left:50%; transform:translateX(-50%); top:0; }
+}
+
+/* belt selector */
+.gt-belts{ display:grid; grid-template-columns:repeat(5,1fr); gap:.5rem; }
+.gt-belt{ position:relative; text-align:center; border:1.5px solid var(--edge); border-radius:12px; padding:.7rem .3rem .6rem; background:rgba(0,0,0,.25); cursor:pointer; transition:transform .12s ease, border-color .12s ease, background .12s ease; overflow:hidden; }
+.gt-belt::before{ content:""; position:absolute; left:0; right:0; top:0; height:5px; background:var(--belt); }
+.gt-belt:hover{ transform:translateY(-2px); }
+.gt-belt:focus-visible{ outline:3px solid var(--gold); outline-offset:2px; }
+.gt-belt-on{ border-color:var(--belt); background:color-mix(in srgb, var(--belt) 16%, transparent); }
+.gt-belt-n{ display:block; font-family:var(--font-bangers),cursive; font-size:1.5rem; line-height:1; color:var(--belt); }
+.gt-belt-name{ display:block; font-size:11px; font-weight:700; color:var(--paper); margin-top:.15rem; }
+
+.gt-beltcard{ border:1.5px solid var(--belt); border-radius:16px; background:var(--ink2); padding:1.3rem 1.4rem; box-shadow:6px 7px 0 -1px color-mix(in srgb, var(--belt) 40%, transparent); }
+.gt-beltcard-head{ display:flex; align-items:center; gap:.85rem; }
+.gt-beltcard-badge{ font-family:var(--font-bangers),cursive; font-size:1.7rem; width:2.6rem; height:2.6rem; display:flex; align-items:center; justify-content:center; border-radius:10px; }
+.gt-beltcard-belt{ font-weight:800; color:var(--paper); }
+.gt-beltcard-goofy{ font-size:.9rem; font-style:italic; color:var(--muted); }
+.gt-beltcard-list{ display:grid; grid-template-columns:1fr; gap:.4rem; margin-top:1rem; font-size:.92rem; color:rgba(245,233,216,.86); }
+@media(min-width:640px){ .gt-beltcard-list{ grid-template-columns:1fr 1fr; } }
+.gt-beltcard-list li{ display:flex; gap:.5rem; }
+.gt-chev{ font-weight:800; color:var(--belt); }
+.gt-beltcard-mind{ margin-top:1rem; border-top:1px solid var(--edge); padding-top:.8rem; font-size:.92rem; color:rgba(255,210,63,.92); }
+
+/* lifestyle */
+.gt-life{ position:relative; overflow:hidden; background:var(--ink2); border:1.5px solid var(--edge); border-radius:14px; padding:1.1rem 1rem 1.15rem; }
+.gt-life-emoji{ position:absolute; right:-8px; top:-10px; font-size:3.4rem; opacity:.16; transform:rotate(-8deg); }
+.gt-life-name{ font-family:var(--font-bangers),cursive; font-size:1.5rem; color:var(--orange); }
+.gt-life-line{ font-size:.85rem; color:rgba(245,233,216,.72); line-height:1.4; margin-top:.15rem; }
+
+/* facts */
+.gt-fact{ background:rgba(0,0,0,.24); border:1px solid var(--edge); border-radius:12px; padding:.85rem .95rem; }
+.gt-fact-k{ font-family:var(--font-fredoka),sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--orange); }
+.gt-fact-v{ font-size:.9rem; color:rgba(245,233,216,.86); line-height:1.35; margin-top:.2rem; }
+
+/* winjitsu bonus */
+.gt-bonus{ position:relative; display:flex; flex-direction:column; gap:1.25rem; border:2px solid rgba(255,122,26,.5); border-radius:20px; padding:1.6rem 1.7rem; background:linear-gradient(135deg, rgba(255,122,26,.16), rgba(226,59,46,.1)); box-shadow:7px 8px 0 -1px rgba(226,59,46,.35); }
+@media(min-width:720px){ .gt-bonus{ flex-direction:row; align-items:center; } .gt-bonus-main{ flex:1; } }
+.gt-bonus-title{ font-family:var(--font-bangers),cursive; font-size:clamp(1.7rem,3.4vw,2.4rem); color:var(--gold); text-shadow:2px 2px 0 var(--red); margin-top:.15rem; }
+.gt-bonus-line{ font-size:.96rem; color:rgba(245,233,216,.86); line-height:1.55; margin-top:.6rem; max-width:52ch; }
+.gt-stamp{ flex-shrink:0; align-self:center; width:8rem; height:8rem; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--orange); color:#1a1209; box-shadow:0 6px 0 rgba(0,0,0,.35); transform:rotate(-8deg); border:3px dashed rgba(26,18,9,.35); }
+.gt-stamp-1{ font-family:var(--font-bangers),cursive; font-size:3.6rem; line-height:.8; }
+.gt-stamp-sub{ font-family:var(--font-bangers),cursive; font-size:1.1rem; letter-spacing:.03em; }
+
+/* winjitsu phone mockup (pocket dojo) */
+.gt-bonus-visual{ position:relative; flex-shrink:0; align-self:center; }
+.gt-phone{ width:212px; border-radius:32px; padding:9px; background:linear-gradient(160deg,#2a1c0e,#0e0906); border:1px solid rgba(255,226,120,.22); box-shadow:0 16px 36px rgba(0,0,0,.5), inset 0 0 0 2px rgba(0,0,0,.55); transform:rotate(3deg); }
+.gt-phone-notch{ display:block; width:66px; height:5px; border-radius:99px; background:rgba(255,255,255,.22); margin:3px auto 9px; }
+.gt-phone-screen{ border-radius:24px; background:linear-gradient(180deg,#fff8ee,#f2e6d2); padding:14px 12px 16px; }
+.gt-phone-brand{ font-family:var(--font-bangers),cursive; font-size:1.55rem; letter-spacing:.03em; line-height:1; color:#c2410c; }
+.gt-phone-tag{ font-size:9.5px; color:#7c6a52; margin-top:2px; }
+.gt-phone-tiles{ display:flex; flex-direction:column; gap:6px; margin-top:12px; }
+.gt-phone-tile{ display:flex; align-items:center; gap:8px; background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:12px; padding:7px 8px; box-shadow:0 1px 2px rgba(0,0,0,.05); }
+.gt-phone-tile-hot{ background:linear-gradient(135deg,#fff2e2,#ffe0c0); border-color:rgba(255,122,26,.55); box-shadow:0 3px 9px rgba(255,122,26,.26); }
+.gt-phone-ic{ font-size:1.1rem; line-height:1; }
+.gt-phone-txt{ display:flex; flex-direction:column; line-height:1.15; }
+.gt-phone-txt b{ font-size:11px; font-weight:800; color:#1a1209; }
+.gt-phone-txt i{ font-size:9px; font-style:normal; color:#8a755a; }
+.gt-phone-tile-hot .gt-phone-txt b{ color:#b4460a; }
+.gt-stamp-onphone{ position:absolute; top:-16px; right:-16px; width:5.4rem; height:5.4rem; transform:rotate(-12deg); box-shadow:0 5px 0 rgba(0,0,0,.3); }
+.gt-stamp-onphone .gt-stamp-1{ font-size:2.4rem; }
+.gt-stamp-onphone .gt-stamp-sub{ font-size:.75rem; }
+@media(prefers-reduced-motion: no-preference){ .gt-phone{ transition:transform .2s ease; } .gt-bonus:hover .gt-phone{ transform:rotate(0deg); } }
+
+/* free tee tile */
+.gt-tee{ position:relative; display:flex; align-items:center; gap:1.4rem; border:1.5px solid rgba(255,122,26,.45); border-radius:18px; padding:1.25rem 1.4rem;
+  background:linear-gradient(135deg, rgba(255,122,26,.12), rgba(0,0,0,.3) 45%, rgba(226,59,46,.1));
+  box-shadow:inset 0 0 40px rgba(0,0,0,.4), 0 0 24px rgba(255,122,26,.08); overflow:hidden; }
+.gt-tee-main{ flex:1; min-width:0; }
+.gt-tee-title{ font-family:var(--font-bangers),cursive; font-size:clamp(1.4rem,3vw,2rem); color:var(--gold); text-shadow:2px 2px 0 var(--red); margin-top:.1rem; }
+.gt-tee-line{ font-size:.92rem; color:rgba(245,233,216,.82); line-height:1.5; margin-top:.35rem; max-width:46ch; }
+.gt-tee-shirt{ flex-shrink:0; position:relative; width:6.2rem; height:6.2rem; display:flex; align-items:flex-start; justify-content:center;
+  background:linear-gradient(160deg, #2b2b31 0%, #131316 55%, #1d1d22 100%);
+  /* a chunky t-shirt silhouette via clip-path */
+  clip-path:polygon(30% 0,70% 0,100% 22%,86% 40%,74% 33%,74% 100%,26% 100%,26% 33%,14% 40%,0 22%);
+  filter:drop-shadow(3px 5px 0 rgba(255,122,26,.35)); transform:rotate(-6deg); }
+.gt-tee-print{ width:30%; height:auto; margin-top:1rem; filter:drop-shadow(0 0 5px rgba(120,180,255,.35)); }
+.gt-tee-badge{ flex-shrink:0; align-self:center; position:relative; width:4.6rem; height:4.6rem; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  background:radial-gradient(circle at 32% 28%, #ffe98a, var(--gold) 60%, #d9a616); color:#1a1209; transform:rotate(8deg);
+  box-shadow:0 6px 0 rgba(0,0,0,.35), 0 0 22px rgba(240,193,75,.35); }
+.gt-tee-badge::after{ content:""; position:absolute; inset:4px; border-radius:50%; border:2px dashed rgba(26,18,9,.4); }
+.gt-tee-badge-free{ font-family:var(--font-bangers),cursive; font-size:1.6rem; line-height:.8; }
+.gt-tee-badge-sub{ font-family:var(--font-bangers),cursive; font-size:.9rem; letter-spacing:.04em; }
+@media(max-width:520px){ .gt-tee-badge{ display:none; } .gt-tee-shirt{ width:4.8rem; height:4.8rem; } }
+
+/* faq */
+.gt-faqs{ display:flex; flex-direction:column; gap:.625rem; }
+.gt-faq{ background:var(--ink2); border:1px solid var(--edge); border-radius:14px; padding:.95rem 1.15rem; }
+.gt-faq summary{ display:flex; align-items:center; justify-content:space-between; gap:1rem; cursor:pointer; list-style:none; font-weight:800; color:var(--gold); }
+.gt-faq summary::-webkit-details-marker{ display:none; }
+.gt-faq-plus{ color:var(--orange); font-family:var(--font-bangers),cursive; font-size:1.4rem; transition:transform .18s ease; }
+.gt-faq[open] .gt-faq-plus{ transform:rotate(45deg); }
+.gt-faq p{ margin-top:.6rem; font-size:.92rem; color:rgba(245,233,216,.8); line-height:1.6; }
+
+/* final */
+.gt-final{ position:relative; overflow:hidden; padding:clamp(4rem,9vw,7rem) 0; background:linear-gradient(180deg, rgba(226,59,46,.14), rgba(0,0,0,.4)); border-top:1px solid var(--edge); }
+.gt-final-in{ position:relative; text-align:center; }
+.gt-speedlines-final{ inset:-40% -20%; opacity:.7; }
+.gt-final-h{ font-family:var(--font-bangers),cursive; font-size:clamp(2.6rem,7vw,5rem); line-height:.95; color:var(--gold); text-shadow:3px 4px 0 var(--red); text-wrap:balance; }
+.gt-final-p{ margin-top:.75rem; color:rgba(245,233,216,.8); }
+.gt-foot{ display:flex; flex-wrap:wrap; justify-content:center; gap:1.1rem; margin-top:2rem; font-size:.85rem; }
+.gt-foot a{ color:rgba(245,233,216,.6); }
+.gt-foot a:hover{ color:var(--orange); }
+
+/* sticky */
+.gt-sticky{ position:sticky; bottom:0; z-index:40; background:rgba(13,9,6,.95); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-top:1px solid rgba(255,122,26,.3); }
+.gt-sticky-in{ display:flex; align-items:center; gap:.75rem; padding-block:.625rem; }
+.gt-sticky-in .gt-cta{ margin-left:auto; }
+.gt-sticky-num{ font-family:var(--font-bangers),cursive; font-size:1.4rem; line-height:1; color:var(--gold); }
+.gt-sticky-sub{ font-size:10px; line-height:1; color:var(--muted); }
+
+/* reveal (only when the script runs, so the page reads without it) */
+.js .gt-reveal{ opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+.js .gt-reveal.gt-in{ opacity:1; transform:none; }
+.gt-hero-el{ animation:gt-pop .7s both; }
+@keyframes gt-pop{ from{ opacity:0; transform:translateY(16px) scale(.97); } to{ opacity:1; transform:none; } }
+
+@media (prefers-reduced-motion: reduce){
+  .gt-reveal, .gt-hero-el{ opacity:1 !important; transform:none !important; transition:none !important; animation:none !important; }
+  .gt-marquee{ animation:none; }
+}
+
+/* ---------- the vault (The Real ShhT) ---------- */
+.gv{ position:relative; }
+.gv-eyebrow{ color:var(--gold); }
+.gv-sub{ margin:.6rem auto 0; max-width:46rem; font-size:1rem; line-height:1.6; color:rgba(245,233,216,.82); }
+.gv-ink{ color:var(--gold); }
+
+/* sealed folder (collapsed state): compact, does not disturb the page */
+.gv-folder{ position:relative; text-align:center; max-width:640px; margin-inline:auto; padding:2.2rem 1.6rem 2rem; border:1.5px dashed rgba(240,193,75,.45); border-radius:18px;
+  background:linear-gradient(150deg, rgba(255,122,26,.07), rgba(0,0,0,.35) 55%);
+  box-shadow:inset 0 0 40px rgba(0,0,0,.45); }
+.gv-folder-stamp{ position:absolute; top:1rem; right:1rem; }
+.gv-declass{ margin-top:1.3rem; display:inline-flex; align-items:center; gap:.5rem; cursor:pointer;
+  font-family:var(--font-bangers),cursive; font-size:1.25rem; letter-spacing:.05em; color:#1a1209;
+  background:linear-gradient(180deg, #ffbf58, var(--orange)); border:0; border-radius:999px; padding:.7rem 1.7rem;
+  box-shadow:0 5px 0 rgba(226,59,46,.55), 0 0 26px rgba(255,122,26,.25); transition:transform .15s ease; }
+.gv-declass:hover{ transform:translateY(-2px) rotate(-1deg); }
+
+/* opened file */
+.gv-head{ text-align:center; }
+.gv-dossier{ max-width:640px; margin:1.6rem auto 0; border:1.5px solid var(--edge); border-radius:14px; overflow:hidden; background:rgba(0,0,0,.28); }
+.gv-dossier-row{ display:flex; gap:1rem; align-items:baseline; padding:.6rem 1rem; }
+.gv-dossier-row + .gv-dossier-row{ border-top:1px dashed rgba(240,193,75,.25); }
+.gv-dossier-k{ flex:0 0 8.5rem; font-family:var(--font-fredoka),sans-serif; font-weight:600; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); }
+.gv-dossier-v{ font-size:.92rem; color:rgba(245,233,216,.86); line-height:1.45; }
+
+/* file tabs */
+.gv-tabs{ display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem; margin-top:1.6rem; }
+.gv-tab{ cursor:pointer; text-align:left; border:1.5px solid var(--edge); border-radius:12px; padding:.55rem .95rem; background:rgba(0,0,0,.3); transition:border-color .15s ease, background .15s ease, transform .15s ease; }
+.gv-tab:hover{ transform:translateY(-1px); border-color:rgba(240,193,75,.5); }
+.gv-tab-on{ border-color:var(--gold); background:rgba(255,122,26,.14); box-shadow:0 0 18px rgba(240,193,75,.15); }
+.gv-tab-code{ display:block; font-family:var(--font-bangers),cursive; font-size:1.05rem; letter-spacing:.06em; color:var(--gold); }
+.gv-tab-title{ display:block; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:rgba(245,233,216,.6); margin-top:.1rem; }
+
+/* featured full video */
+.gv-feature{ margin-top:1.4rem; }
+.gv-feature-frame{ position:relative; width:100%; max-width:820px; margin-inline:auto; aspect-ratio:4/3; border:1.5px solid var(--edge); border-radius:16px; overflow:hidden; background:#000; box-shadow:6px 8px 0 -1px rgba(226,59,46,.3); }
+.gv-feature-video{ width:100%; height:100%; object-fit:contain; background:#000; display:block; outline:none; }
+.gv-feature-video:focus, .gv-feature-video:focus-visible{ outline:none; }
+.gv-feature-line{ text-align:center; margin:.8rem auto 0; max-width:40rem; font-size:.92rem; color:rgba(245,233,216,.72); line-height:1.5; }
+.gv-winjitsu{ text-align:center; margin:.9rem auto 0; max-width:40rem; font-size:.92rem; color:rgba(245,233,216,.75); line-height:1.5; }
+.gv-winjitsu a{ color:var(--gold); text-decoration:underline; text-underline-offset:3px; }
+.gv-winjitsu a:hover{ color:var(--orange); }
+.gv-reseal-wrap{ text-align:center; margin-top:1.4rem; }
+.gv-reseal{ cursor:pointer; font-family:var(--font-bangers),cursive; font-size:1.05rem; letter-spacing:.05em; color:var(--gold);
+  background:rgba(0,0,0,.3); border:1.5px dashed rgba(240,193,75,.5); border-radius:999px; padding:.5rem 1.4rem; transition:border-color .15s ease, color .15s ease; }
+.gv-reseal:hover{ border-color:var(--orange); color:var(--orange); }
+
+/* the world files: three regional classified folders */
+.gv-world{ margin-top:2.6rem; }
+.gv-world-h{ text-align:center; font-family:var(--font-bangers),cursive; font-size:clamp(1.5rem,3.5vw,2.1rem); letter-spacing:.05em; color:var(--gold); }
+.gv-world-sub{ text-align:center; margin:.5rem auto 0; max-width:42rem; font-size:.95rem; line-height:1.55; color:rgba(245,233,216,.78); }
+.gv-world-close{ text-align:center; margin:1.6rem auto 0; max-width:42rem; font-size:.95rem; line-height:1.55; color:rgba(245,233,216,.8); }
+.gv-regions{ display:flex; flex-direction:column; gap:1rem; margin-top:1.5rem; }
+.gv-region{ border:1.5px dashed rgba(240,193,75,.45); border-radius:16px; background:linear-gradient(150deg, rgba(255,122,26,.06), rgba(0,0,0,.35) 55%); }
+.gv-region-sealed{ position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:.15rem; width:100%; text-align:left; cursor:pointer; padding:1.1rem 1.3rem 1.15rem; transition:border-color .15s ease, transform .15s ease; }
+.gv-region-sealed:hover{ border-color:var(--gold); transform:translateY(-2px); }
+.gv-region-stamp{ position:absolute; top:.9rem; right:.9rem; font-size:.85rem; }
+.gv-region-code{ font-family:var(--font-fredoka),sans-serif; font-weight:600; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--orange); }
+.gv-region-title{ font-family:var(--font-bangers),cursive; font-size:1.6rem; letter-spacing:.05em; color:var(--gold); line-height:1.1; }
+.gv-region-tag{ font-size:.9rem; color:rgba(245,233,216,.72); }
+.gv-region-open{ margin-top:.55rem; font-family:var(--font-fredoka),sans-serif; font-weight:600; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); }
+.gv-region-open-file{ border-style:solid; border-color:rgba(240,193,75,.6); padding:1.1rem 1.2rem 1.3rem; box-shadow:0 0 24px rgba(240,193,75,.08); }
+.gv-region-head{ display:flex; align-items:baseline; gap:.8rem; flex-wrap:wrap; }
+.gv-region-body{ display:flex; gap:1.2rem; margin-top:.9rem; align-items:flex-start; }
+.gv-region-photo{ flex:1 1 52%; min-width:0; }
+.gv-region-photo img{ width:100%; border-radius:12px; border:1.5px solid var(--edge); background:#000; display:block; }
+.gv-region-cap{ margin-top:.5rem; font-size:.85rem; line-height:1.45; color:rgba(245,233,216,.72); }
+.gv-region-dots{ display:flex; gap:.4rem; margin-top:.55rem; }
+.gv-region-dot{ width:.6rem; height:.6rem; border-radius:999px; border:1.5px solid rgba(240,193,75,.5); background:transparent; cursor:pointer; padding:0; }
+.gv-region-dot-on{ background:var(--orange); border-color:var(--orange); }
+.gv-region-text{ flex:1 1 48%; min-width:0; }
+.gv-region-text p{ font-size:.92rem; line-height:1.6; color:rgba(245,233,216,.84); }
+.gv-region-text p + p{ margin-top:.7rem; }
+.gv-region-reseal{ margin-top:1rem; }
+@media(max-width:700px){
+  .gv-region-body{ flex-direction:column; }
+}
+
+/* locked freeze-frame: the orange duotone overlay + Classified stamp */
+.gv-feature-lock{ position:absolute; inset:0; z-index:3; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.7rem; cursor:pointer; border:0; padding:0; background:transparent; }
+.gv-feature-lock:focus-visible{ outline:3px solid var(--gold); outline-offset:-4px; }
+.gv-lock-tint{ position:absolute; inset:0; background:linear-gradient(160deg, rgba(255,122,26,.95), rgba(226,59,46,.9)); mix-blend-mode:color; }
+.gv-lock-tint::after{ content:""; position:absolute; inset:0; background:repeating-linear-gradient(0deg, rgba(0,0,0,.14) 0 2px, transparent 2px 4px); opacity:.5; }
+.gv-feature-lock::before{ content:""; position:absolute; inset:0; z-index:1; background:radial-gradient(circle at 50% 46%, rgba(30,12,2,.25) 0%, rgba(30,12,2,.1) 34%, rgba(30,12,2,.55) 100%); }
+.gv-lock-play{ position:relative; z-index:2; width:4.4rem; height:4.4rem; display:flex; align-items:center; justify-content:center; border-radius:999px; background:rgba(13,9,6,.55); border:3px solid var(--gold); color:var(--gold); font-size:1.5rem; padding-left:.28rem; box-shadow:0 6px 20px rgba(0,0,0,.45); transition:transform .15s ease, background .15s ease, color .15s ease; }
+.gv-feature-lock:hover .gv-lock-play{ transform:scale(1.08); background:var(--orange); color:#1a1209; }
+.gv-lock-code{ position:relative; z-index:2; font-family:var(--font-fredoka),sans-serif; font-weight:600; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); text-shadow:0 1px 6px rgba(0,0,0,.7); }
+.gv-stamp{ font-family:var(--font-bangers),cursive; font-size:1rem; letter-spacing:.08em; text-transform:uppercase; color:var(--red); border:2px solid var(--red); border-radius:6px; padding:.05rem .5rem; transform:rotate(-7deg); background:rgba(10,7,4,.4); }
+.gv-stamp-corner{ position:absolute; z-index:2; top:.85rem; left:.85rem; }
+
+@media(max-width:560px){
+  .gv-dossier-row{ flex-direction:column; gap:.15rem; }
+  .gv-dossier-k{ flex:none; }
+}
+@media (prefers-reduced-motion: reduce){
+  .gv-lock-play, .gv-declass, .gv-tab{ transition:none !important; }
+}
+
+/* ---------- the quiz (Which Gooffy Ninja are you?) ---------- */
+.qz{ margin-inline:auto; width:100%; max-width:460px; overflow:hidden; border-radius:1.5rem; background:#fff; color:#1a1626; box-shadow:0 24px 60px rgba(0,0,0,.45); text-align:left; }
+.qz-in{ padding:2rem 1.5rem; }
+@media(min-width:640px){ .qz-in{ padding-inline:1.75rem; } }
+.qz-brand{ display:flex; align-items:center; gap:.625rem; margin-bottom:.25rem; }
+.qz-g{ display:flex; width:2.25rem; height:2.25rem; align-items:center; justify-content:center; border-radius:.5rem; background:#ff7a1a; font-size:1rem; font-weight:900; color:#fff; }
+.qz-name{ font-size:.875rem; font-weight:800; line-height:1.25; color:#1a1626; }
+.qz-tag{ font-size:11px; line-height:1.25; color:#6b6480; }
+.qz-dots{ display:flex; gap:.375rem; margin-block:1.25rem; }
+.qz-dot{ height:.375rem; flex:1; border-radius:999px; background:#ece7f2; transition:background-color .15s ease; }
+.qz-dot-on{ background:#ff7a1a; }
+.qz-step{ animation:gnsfade .35s ease; }
+@keyframes gnsfade{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
+.qz-h{ margin-bottom:.5rem; font-size:1.5rem; font-weight:800; line-height:1.25; }
+.qz-p{ margin-bottom:1.25rem; font-size:15px; line-height:1.625; color:#6b6480; }
+.qz-q{ font-size:1.25rem; font-weight:800; line-height:1.375; }
+.qz-sub{ margin:.25rem 0 1.25rem; font-size:14px; line-height:1.4; color:#6b6480; }
+.qz-gap{ height:1rem; }
+.qz-opts{ display:flex; flex-direction:column; gap:.625rem; }
+.qz-opt{ display:flex; width:100%; align-items:flex-start; border-radius:1rem; border:2px solid #ece7f2; background:#fff; padding:.875rem 1rem; text-align:left; transition:border-color .15s ease, transform .15s ease; }
+.qz-opt:hover{ border-color:#ff7a1a; }
+.qz-opt:active{ transform:scale(.985); }
+.qz-opt:focus-visible{ outline:3px solid #ff7a1a; outline-offset:2px; }
+.qz-em{ margin:.125rem .625rem 0 0; font-size:1.125rem; line-height:1; }
+.qz-t{ display:block; font-size:1rem; font-weight:600; line-height:1.375; }
+.qz-d{ display:block; margin-top:.125rem; font-size:13px; line-height:1.375; color:#6b6480; }
+.qz-btn{ display:block; width:100%; border-radius:1rem; background:#ff7a1a; padding-block:1rem; text-align:center; font-size:17px; font-weight:800; color:#fff; transition:transform .15s ease; }
+.qz-btn:active{ transform:scale(.99); }
+.qz-btn-red{ background:#e23b2e; font-size:16px; }
+.qz-btn-md{ font-size:16px; }
+.qz-link{ display:block; width:100%; margin-top:.75rem; text-align:center; font-size:.875rem; font-weight:600; color:#6b6480; text-decoration:underline; }
+.qz-link-sm{ font-size:12px; color:#a9a3bd; }
+.qz-back{ margin-top:1rem; font-size:.875rem; font-weight:600; color:#6b6480; text-decoration:underline; }
+.qz-calc{ padding-block:2rem; text-align:center; }
+.qz-spin{ width:4rem; height:4rem; margin:0 auto 1.5rem; animation:qz-spin .85s linear infinite; }
+@keyframes qz-spin{ to{ transform:rotate(360deg); } }
+.qz-bar{ height:.5rem; overflow:hidden; border-radius:999px; background:#ece7f2; margin-block:1.25rem; }
+.qz-bar-fill{ height:100%; border-radius:999px; background:linear-gradient(90deg,#ff7a1a,#e23b2e); transition:width .2s ease; }
+.qz-msg{ font-size:.875rem; color:#6b6480; }
+.qz-badge{ display:inline-block; margin-bottom:.75rem; border-radius:999px; background:rgba(255,122,26,.1); padding:.375rem .75rem; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.025em; color:#ff7a1a; }
+.qz-type{ font-family:var(--font-bangers),cursive; font-size:1.875rem; line-height:1; letter-spacing:.025em; color:#1a1626; }
+.qz-line{ margin-top:.5rem; font-size:15px; line-height:1.625; color:#6b6480; }
+.qz-mix{ display:flex; flex-direction:column; gap:.5rem; margin-top:.75rem; }
+.qz-mix p{ border-radius:.75rem; background:rgba(255,122,26,.1); padding:.625rem .875rem; font-size:13.5px; line-height:1.625; color:#1a1626; }
+.qz-box{ margin-top:.75rem; border-radius:.75rem; border:2px dashed rgba(255,122,26,.4); padding:.625rem .875rem; }
+.qz-box-ink{ border-color:rgba(26,22,38,.15); }
+.qz-label{ font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.025em; color:#ff7a1a; }
+.qz-box-ink .qz-label{ color:#6b6480; }
+.qz-box-txt{ display:flex; flex-direction:column; gap:.375rem; margin-top:.25rem; }
+.qz-box-txt p{ font-size:13.5px; line-height:1.625; color:#1a1626; }
+.qz-sum{ margin-block:1rem; border-radius:1rem; background:#f7f5fb; padding:.875rem 1rem; font-size:13.5px; }
+.qz-row{ display:flex; justify-content:space-between; gap:.75rem; padding-block:.25rem; color:#6b6480; }
+.qz-row b{ text-align:right; color:#1a1626; }
+.qz-code{ margin-top:.375rem; border-top:1px solid #ece7f2; padding-top:.5rem; font-size:12px; color:#a9a3bd; }
+.qz-perks{ margin-bottom:1rem; border-radius:1rem; background:#1a1626; padding:.875rem 1rem; }
+.qz-perks .qz-label{ color:#ffd23f; }
+.qz-perks ul{ display:flex; flex-direction:column; gap:.375rem; margin-top:.375rem; }
+.qz-perks li{ font-size:13px; line-height:1.625; color:rgba(255,255,255,.85); }
+.qz-notes{ display:flex; flex-direction:column; gap:.5rem; margin-bottom:1rem; }
+.qz-notes .qz-label{ color:#e23b2e; }
+.qz-note{ border-radius:.75rem; padding:.625rem .875rem; font-size:13px; line-height:1.625; color:#1a1626; background:#f7f5fb; }
+.qz-note-warn{ border:2px solid rgba(226,59,46,.3); background:rgba(226,59,46,.05); }
+@media (prefers-reduced-motion: reduce){ .qz-step{ animation:none; } .qz-spin{ animation-duration:3s; } }
+
+/* ---------- motion: chi bar, scroll ninja, day/night arc (decorative) ---------- */
+.chi{ position:fixed; left:0; top:8px; width:100%; height:4px; z-index:50; pointer-events:none; background:rgba(0,0,0,.25); }
+.chi-fill{ position:relative; height:100%; width:calc(var(--p,0) * 100%); background:linear-gradient(90deg,#ffd23f,#ff7a1a 55%,#e23b2e); box-shadow:0 0 10px rgba(255,122,26,.6); }
+.chi-star{ position:absolute; right:-9px; top:-7px; line-height:0; transform:rotate(calc(var(--p,0) * 1440deg)); }
+@media(prefers-reduced-motion:reduce){ .chi-star{ transform:none; } }
+
+.njw{ pointer-events:none; z-index:30; }
+/* fixed left gutter, only shown where the 72rem content leaves real clearance */
+.njw-page{ position:fixed; left:0; top:0; height:100vh; width:124px; display:none; }
+@media(min-width:1400px){ .njw-page{ display:block; } }
+.nj-rope{ position:absolute; left:62px; top:58px; bottom:56px; width:2px; background:repeating-linear-gradient(180deg, rgba(255,210,63,.32) 0 6px, transparent 6px 14px); }
+.njw-page .nj-mover{ position:absolute; left:2px; width:120px; transform:translateY(calc(64px + var(--p,0) * (100vh - 275px))); }
+.nj-rig{ position:relative; width:120px; height:185px; }
+.nj-svg{ width:120px; height:185px; overflow:visible; filter:drop-shadow(0 10px 14px rgba(0,0,0,.45)); }
+.nj-body,.nj-limb rect,.nj-limb circle,.nj-hood{ fill:#100b07; stroke:#f3e4c6; stroke-width:3; stroke-linejoin:round; }
+.nj-belt,.nj-belt-tail{ fill:var(--belt,#f5f0e6); stroke:#0f0b07; stroke-width:2; transition:fill .45s ease; }
+.nj-slit{ fill:#f5e9d8; stroke:none; }
+.nj-tails path{ fill:#100b07; stroke:#f3e4c6; stroke-width:2; stroke-linejoin:round; }
+.nj-eye{ fill:#100b07; stroke:none; }
+.nj-hand{ fill:#100b07; }
+.nj-foot{ fill:#0c0805; stroke:#f3e4c6; stroke-width:3; }
+.nj-shadow{ fill:rgba(0,0,0,.4); opacity:0; transition:opacity .4s ease; }
+/* belt rank colors (the real NinjaGym belt order) */
+.nj-rig[data-pose="white"]{ --belt:#f5f0e6; }
+.nj-rig[data-pose="yellow"]{ --belt:#facc15; }
+.nj-rig[data-pose="orange"]{ --belt:#ff7a1a; }
+.nj-rig[data-pose="green"]{ --belt:#22c55e; }
+.nj-rig[data-pose="blue"]{ --belt:#3b82f6; }
+.nj-rig[data-pose="red"],.nj-rig[data-pose="throw"]{ --belt:#e23b2e; }
+.nj-svg{ transform-origin:60px 82px; transition:transform .5s cubic-bezier(.2,.85,.25,1); }
+.nj-limb,.nj-head,.nj-torso{ transform-box:view-box; transition:transform .5s cubic-bezier(.2,.85,.25,1); }
+.nj-head{ transform-origin:60px 55px; }
+.nj-torso{ transform-origin:60px 84px; }
+.nj-armL{ transform-origin:51px 66px; }
+.nj-armR{ transform-origin:69px 66px; }
+.nj-legL{ transform-origin:54px 106px; }
+.nj-legR{ transform-origin:66px 106px; }
+.nj-tails{ transform-box:view-box; transform-origin:41px 33px; animation:nj-flutter 1.15s ease-in-out infinite alternate; }
+@keyframes nj-flutter{ from{ transform:rotate(-7deg) } to{ transform:rotate(10deg) } }
+.nj-burst{ position:absolute; font-family:var(--font-bangers),cursive; font-size:20px; color:#ffd23f; -webkit-text-stroke:1px #0f0b07; opacity:0; transform:scale(.4) rotate(-8deg); transition:opacity .18s ease, transform .18s ease; pointer-events:none; white-space:nowrap; }
+.nj-burst-shh{ left:82px; top:2px; }
+.nj-burst-pow{ left:84px; top:46px; color:#facc15; font-size:32px; }
+.nj-burst-kiai{ left:86px; top:66px; color:#ff7a1a; }
+/* poses: +deg is clockwise, so a negative angle swings a limb into the page */
+[data-pose="white"] .nj-torso{ transform:translateY(4px) scaleY(.96); }
+[data-pose="white"] .nj-armL{ transform:rotate(-52deg); }
+[data-pose="white"] .nj-armR{ transform:rotate(-118deg); }
+[data-pose="white"] .nj-legL{ transform:rotate(18deg); }
+[data-pose="white"] .nj-legR{ transform:rotate(-18deg); }
+[data-pose="white"] .nj-burst-shh{ opacity:1; transform:scale(1) rotate(-8deg); }
+[data-pose="yellow"] .nj-torso{ transform:rotate(7deg); }
+[data-pose="yellow"] .nj-head{ transform:rotate(4deg); }
+[data-pose="yellow"] .nj-armR{ transform:rotate(-92deg); }
+[data-pose="yellow"] .nj-armL{ transform:rotate(-152deg); }
+[data-pose="yellow"] .nj-legL{ transform:rotate(24deg); }
+[data-pose="yellow"] .nj-legR{ transform:rotate(-14deg); }
+[data-pose="yellow"] .nj-burst-pow{ opacity:1; transform:scale(1) rotate(6deg); }
+[data-pose="orange"] .nj-torso{ transform:rotate(-7deg); }
+[data-pose="orange"] .nj-head{ transform:rotate(-4deg); }
+[data-pose="orange"] .nj-armL{ transform:rotate(-66deg); }
+[data-pose="orange"] .nj-armR{ transform:rotate(-134deg); }
+[data-pose="orange"] .nj-legL{ transform:rotate(32deg); }
+[data-pose="orange"] .nj-legR{ transform:rotate(-86deg); }
+[data-pose="orange"] .nj-burst-kiai{ opacity:1; transform:scale(1) rotate(6deg); }
+[data-pose="green"] .nj-torso{ transform:translateY(2px); }
+[data-pose="green"] .nj-armL{ transform:rotate(128deg); }
+[data-pose="green"] .nj-armR{ transform:rotate(-128deg); }
+[data-pose="green"] .nj-legL{ transform:rotate(90deg); }
+[data-pose="green"] .nj-legR{ transform:rotate(-90deg); }
+[data-pose="blue"] .nj-torso{ transform:rotate(-20deg); }
+[data-pose="blue"] .nj-head{ transform:rotate(-12deg); }
+[data-pose="blue"] .nj-armL{ transform:rotate(-58deg); }
+[data-pose="blue"] .nj-armR{ transform:rotate(28deg); }
+[data-pose="blue"] .nj-legL{ transform:rotate(8deg); }
+[data-pose="blue"] .nj-legR{ transform:rotate(-96deg); }
+[data-pose="blue"] .nj-burst-kiai{ opacity:1; transform:scale(1) rotate(6deg); }
+[data-pose="red"] .nj-svg{ transform:scaleY(-1) rotate(12deg); }
+[data-pose="red"] .nj-armL{ transform:rotate(184deg); }
+[data-pose="red"] .nj-armR{ transform:rotate(-92deg); }
+[data-pose="red"] .nj-legL{ transform:rotate(56deg); }
+[data-pose="red"] .nj-legR{ transform:rotate(-56deg); }
+[data-pose="throw"] .nj-torso{ transform:rotate(6deg); }
+[data-pose="throw"] .nj-head{ transform:rotate(3deg); }
+[data-pose="throw"] .nj-armL{ transform:rotate(-45deg); }
+[data-pose="throw"] .nj-armR{ transform:rotate(-96deg); }
+[data-pose="throw"] .nj-legL{ transform:rotate(28deg); }
+[data-pose="throw"] .nj-legR{ transform:rotate(-32deg); }
+.nj-star{ opacity:0; }
+[data-pose="throw"] .nj-star{ animation:nj-throw 1.1s ease-out infinite; }
+@keyframes nj-throw{
+  0%{ opacity:0; transform:translate(64px,64px) rotate(0deg) scale(.7); }
+  14%{ opacity:1; }
+  100%{ opacity:0; transform:translate(160px,48px) rotate(1080deg) scale(1.5); }
+}
+@media(prefers-reduced-motion:reduce){
+  .nj-limb,.nj-head,.nj-torso,.nj-tails,.nj-star,.nj-svg{ animation:none !important; transition:none !important; }
+}
+
+/* day/night arc: the script sets --p (0 to 1) plus the fades it derives from it */
+.dn{ position:relative; width:100%; height:120px; overflow:hidden; border-radius:16px; border:1.5px solid var(--edge, rgba(255,226,120,.14)); --p:.5; --glow:1; --sunA:1; --moonA:0; --starsA:0; }
+.dn-sky{ position:absolute; inset:0; background:linear-gradient(180deg,#111b3c,#241a38 72%,#2c1f2f); }
+.dn-sky::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,#ffd66a 0%,#ffab52 34%,#ff7a3a 62%,#e8542a 100%); opacity:var(--glow); transition:opacity .1s linear; }
+.dn-stars{ position:absolute; left:0; right:0; top:0; height:78px; pointer-events:none;
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, #fff, transparent),
+    radial-gradient(1px 1px at 27% 44%, #fff, transparent),
+    radial-gradient(1.4px 1.4px at 45% 15%, #fff, transparent),
+    radial-gradient(1px 1px at 62% 33%, #fff, transparent),
+    radial-gradient(1.3px 1.3px at 78% 21%, #fff, transparent),
+    radial-gradient(1px 1px at 88% 39%, #fff, transparent),
+    radial-gradient(1px 1px at 36% 27%, #fff, transparent),
+    radial-gradient(1px 1px at 70% 11%, #fff, transparent);
+  opacity:var(--starsA); }
+.dn-body{ position:absolute; inset:0; }
+.dn-sun,.dn-moon{ position:absolute; width:30px; height:30px; border-radius:50%;
+  left:calc(6% + var(--p) * 82%);
+  top:calc(78px - (0.25 - (var(--p) - 0.5) * (var(--p) - 0.5)) * 240px);
+  transform:translate(-50%,-50%); }
+.dn-sun{ background:radial-gradient(circle at 42% 40%,#fff3cf,#ffd24f 52%,#ff9a3a); box-shadow:0 0 26px rgba(255,200,80,.85); opacity:var(--sunA); }
+.dn-moon{ background:radial-gradient(circle at 38% 38%,#fdfbef,#d7cfb6 60%,#9a917a); box-shadow:0 0 18px rgba(245,233,216,.5); opacity:var(--moonA); }
+.dn-island{ position:absolute; left:0; right:0; bottom:40px; height:15px; pointer-events:none;
+  background:
+    radial-gradient(38px 15px at 20% 100%, #100c08 62%, transparent 64%),
+    radial-gradient(52px 17px at 52% 100%, #100c08 62%, transparent 64%),
+    radial-gradient(34px 13px at 82% 100%, #100c08 62%, transparent 64%); }
+.dn-sea{ position:absolute; left:0; right:0; bottom:0; height:44px; background:linear-gradient(180deg,#13223f,#0a1326); }
+.dn-sea::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,#c8572a 0%,#8a3d20 55%,#5a2916 100%); opacity:var(--glow); }
+.dn-reflection{ position:absolute; bottom:0; height:42px; width:24px; left:calc(6% + var(--p) * 82%); transform:translateX(-50%); filter:blur(1px);
+  background:linear-gradient(180deg, rgba(255,214,110,.8), rgba(255,150,70,.18) 68%, transparent); opacity:var(--sunA); }
+.dn-palm{ position:absolute; bottom:0; height:132px; width:auto; fill:#0a0704; pointer-events:none; }
+.dn-palm-l{ left:1%; }
+.dn-palm-r{ right:1%; height:114px; transform:scaleX(-1); }
+</style>
+</head>
+<body>
+<div id="gt">
+
+  <!-- scroll-driven fun visuals (decorative). The scroll ninja only appears on
+       wide desktops where the gutter is clear. -->
+  <div class="chi" aria-hidden="true">
+    <div class="chi-fill" id="chiFill">
+      <span class="chi-star">
+        <svg viewBox="-10 -10 20 20" width="18" height="18"><path d="M0,-9 L2.4,-2.4 L9,0 L2.4,2.4 L0,9 L-2.4,2.4 L-9,0 L-2.4,-2.4 Z" fill="#0f0b07" stroke="#ffd23f" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      </span>
+    </div>
+  </div>
+  <div class="njw njw-page" aria-hidden="true">
+    <span class="nj-rope"></span>
+    <div class="nj-mover" id="njMover">
+      <div class="nj-rig" id="njRig" data-pose="white">
+        <svg class="nj-svg" viewBox="0 0 120 175" aria-hidden="true">
+          <ellipse class="nj-shadow" cx="60" cy="167" rx="30" ry="6"/>
+          <g class="nj-star">
+            <path d="M0,-16 L4.2,-4.2 L16,0 L4.2,4.2 L0,16 L-4.2,4.2 L-16,0 L-4.2,-4.2 Z" fill="#f5e9d8" stroke="#0f0b07" stroke-width="2.2" stroke-linejoin="round"/>
+            <circle r="3.2" fill="none" stroke="#0f0b07" stroke-width="1.8"/>
+          </g>
+          <g class="nj-limb nj-legL"><rect x="49" y="104" width="11" height="36" rx="5.5"/><rect class="nj-foot" x="46" y="136" width="18" height="9" rx="4.5"/></g>
+          <g class="nj-limb nj-legR"><rect x="60" y="104" width="11" height="36" rx="5.5"/><rect class="nj-foot" x="57" y="136" width="18" height="9" rx="4.5"/></g>
+          <g class="nj-torso">
+            <rect class="nj-body" x="44" y="58" width="32" height="50" rx="15"/>
+            <rect class="nj-belt" x="43" y="95" width="34" height="8" rx="4"/>
+            <path class="nj-belt-tail" d="M75,99 q10,3 9,15 q-5,-6 -11,-5 q6,-4 2,-10 Z"/>
+          </g>
+          <g class="nj-limb nj-armL"><rect x="46" y="63" width="10" height="33" rx="5"/><circle class="nj-hand" cx="51" cy="96" r="6"/></g>
+          <g class="nj-limb nj-armR"><rect x="64" y="63" width="10" height="33" rx="5"/><circle class="nj-hand" cx="69" cy="96" r="6"/></g>
+          <g class="nj-head">
+            <circle class="nj-hood" cx="60" cy="37" r="22"/>
+            <path class="nj-slit" d="M41,37 q19,-8 38,0 q-19,7 -38,0 Z"/>
+            <path class="nj-eye" d="M49,36 q5,-3 10,-0.5 q-5,3 -10,0.5 Z"/>
+            <path class="nj-eye" d="M64,35.5 q5,-3 10,-0.5 q-5,3 -10,0.5 Z"/>
+            <g class="nj-tails">
+              <path d="M40,29 q-23,-4 -31,6 q15,-3 25,2 q-6,-6 6,-8 Z"/>
+              <path d="M40,33 q-19,6 -23,17 q13,-8 23,-6 q-8,-5 0,-11 Z"/>
+            </g>
+          </g>
+        </svg>
+        <span class="nj-burst nj-burst-shh">SHH!</span>
+        <span class="nj-burst nj-burst-pow">POW!</span>
+        <span class="nj-burst nj-burst-kiai">KIAI!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- top bar -->
+  <header class="gt-bar">
+    <div class="shell gt-bar-in">
+      <a href="/" class="gt-back">&larr; RickTew.com</a>
+      <div class="gt-bar-r">
+        <a href="#vault" class="gt-pill gt-pill-ghost">Sneak peek 👀</a>
+        <a href="#quiz" class="gt-pill">Which ninja are you? &rarr;</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+  <!-- 1. HERO -->
+  <section class="gt-hero" id="gns-top">
+    <div class="gt-speedlines" aria-hidden="true"></div>
+    <div class="gt-halftone" aria-hidden="true"></div>
+    <div class="shell gt-hero-in">
+      <img src="gns-logo.webp" alt="Gooffy Ninja ShhT" width="480" height="610" class="gt-hero-el gt-logo" style="animation-delay:40ms" fetchpriority="high">
+      <p class="gt-hero-el gt-eyebrow mt-6" style="animation-delay:160ms">Shh, don't tell anyone</p>
+      <h1 class="gt-hero-el gt-h1 mt-2" style="animation-delay:240ms">Real Ninja Skills.<br><span class="gt-h1-red">Zero Seriousness.</span></h1>
+      <p class="gt-hero-el gt-lede mt-6" style="animation-delay:360ms">Live-in ninja martial arts training with Rick Tew in Koh Samui, Thailand. Morning class, evening club session, the island in between. 2 weeks.</p>
+      <div class="gt-hero-el gt-hero-ctas" style="animation-delay:460ms">
+        <a href="https://ninjagym.com/gns/enroll" class="gt-cta gt-cta-fill">Enroll Now</a>
+        <a href="#quiz" class="gt-cta gt-cta-ghost">Take the 2-minute quiz</a>
+      </div>
+      <div class="gt-hero-el gt-pricechip mt-8" style="animation-delay:560ms">
+        <span class="gt-pricechip-num">$2,222</span>
+        <span class="gt-pricechip-sub">2 weeks, all in</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- marquee -->
+  <div class="gt-marquee-wrap" aria-hidden="true">
+    <div class="gt-marquee">
+      <div class="gt-marquee-run">
+        <span class="gt-marquee-item">Shh, don't tell anyone <b>✦</b></span>
+        <span class="gt-marquee-item">Real ninja skills <b>✦</b></span>
+        <span class="gt-marquee-item">Zero seriousness <b>✦</b></span>
+        <span class="gt-marquee-item">Eat. Train. Think. Play. Sleep. <b>✦</b></span>
+        <span class="gt-marquee-item">Kick, laugh, live <b>✦</b></span>
+      </div>
+      <div class="gt-marquee-run">
+        <span class="gt-marquee-item">Shh, don't tell anyone <b>✦</b></span>
+        <span class="gt-marquee-item">Real ninja skills <b>✦</b></span>
+        <span class="gt-marquee-item">Zero seriousness <b>✦</b></span>
+        <span class="gt-marquee-item">Eat. Train. Think. Play. Sleep. <b>✦</b></span>
+        <span class="gt-marquee-item">Kick, laugh, live <b>✦</b></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. WHAT IS GNS, editorial split -->
+  <section class="gt-sec">
+    <div class="shell gt-split">
+      <div class="gt-reveal">
+        <p class="gt-eyebrow">What is it</p>
+        <p class="gt-pullquote">Eat, Train, Think, <span class="gt-ink-gold">Play</span>, and Sleep like a ninja.</p>
+      </div>
+      <div class="gt-reveal gt-body-col">
+        <p>A live-in martial arts program at Rick Tew's NinjaGym in Koh Samui. It teaches a genuine, structured ninja skill set, stances, rolls, falls, strikes, kicks, self-defense, Ninja Tools, and mental focus, wrapped in a deliberately silly delivery. The training is legit. The vibe is fun.</p>
+        <p>The whole brand runs on a playful secrecy joke. The misspelling, "Gooffy," "ShhT," is part of the identity, not a typo. <b class="gt-ink-orange">Serious skill, silly delivery.</b> Train by day, game by night, and walk away with real skills to take home without giving up your holiday.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2b. SNEAK PEEK: the classified file -->
+  <section id="vault" class="gt-sec gt-sec-vault">
+    <div class="shell">
+      <div class="gt-reveal">
+        <div class="gv" id="gv">
+
+          <div class="gv-folder" id="gvFolder">
+            <span class="gv-stamp gv-folder-stamp">Classified</span>
+            <p class="gt-eyebrow gv-eyebrow">Shh, here is the secret</p>
+            <h2 class="gt-h2">The Real ShhT</h2>
+            <p class="gv-sub">There is a file on Mr. Tew. Old tapes, real training, a very long record. It is sealed for a reason. Open it if you must.</p>
+            <button type="button" class="gv-declass" id="gvDeclass">Declassify the file 👀</button>
+          </div>
+
+          <div class="gv-file" id="gvFile" hidden>
+            <div class="gv-head">
+              <p class="gt-eyebrow gv-eyebrow">File opened. You did not get this from us</p>
+              <h2 class="gt-h2">The Real ShhT</h2>
+              <p class="gv-sub">The goofy is the whole point. Every session is silly and all about fun, and it is backed by more than <b class="gv-ink">25 years</b> of real ninja training, taught around the globe. Roll the tapes.</p>
+            </div>
+
+            <div class="gv-dossier">
+              <div class="gv-dossier-row"><span class="gv-dossier-k">Field record</span><span class="gv-dossier-v">Teaching since his teens: first classes at 16, his own dojo at 19, Europe at 21</span></div>
+              <div class="gv-dossier-row"><span class="gv-dossier-k">First of a kind</span><span class="gv-dossier-v">The first in the martial arts industry to run live-in Ninja Training Camps</span></div>
+              <div class="gv-dossier-row"><span class="gv-dossier-k">Deployment</span><span class="gv-dossier-v">Students trained outdoors in wild locations across the USA, Europe and Asia</span></div>
+              <div class="gv-dossier-row"><span class="gv-dossier-k">Systems on file</span><span class="gv-dossier-v">RTMS (Rick Tew's Martial Science), NinjaGym, and Winjitsu, the mental martial art (plus 5 books)</span></div>
+              <div class="gv-dossier-row"><span class="gv-dossier-k">In the press</span><span class="gv-dossier-v">Black Belt, KO Karate, Fighting Spirit Zendokan, Fighting Sports and International Lifestyle Magazine</span></div>
+              <div class="gv-dossier-row"><span class="gv-dossier-k">Credentials</span><span class="gv-dossier-v">Certified Strategic Intervention Coach, Robbins-Madanes Training (the Tony Robbins school of coaching)</span></div>
+              <div class="gv-dossier-row"><span class="gv-dossier-k">Status today</span><span class="gv-dossier-v">Fun-first sessions. The skills underneath are very real</span></div>
+            </div>
+
+            <div class="gv-tabs" role="tablist" aria-label="Archive tapes">
+              <button type="button" role="tab" class="gv-tab gv-tab-on" aria-selected="true" aria-controls="tape-trms" data-tape="trms"><span class="gv-tab-code">TRMS 2000</span><span class="gv-tab-title">The action tape</span></button>
+              <button type="button" role="tab" class="gv-tab" aria-selected="false" aria-controls="tape-nunchaku" data-tape="nunchaku"><span class="gv-tab-code">Nunchaku</span><span class="gv-tab-title">Ninja tools</span></button>
+              <button type="button" role="tab" class="gv-tab" aria-selected="false" aria-controls="tape-strikes" data-tape="strikes"><span class="gv-tab-code">Strikes &amp; Kicks</span><span class="gv-tab-title">The forms</span></button>
+              <button type="button" role="tab" class="gv-tab" aria-selected="false" aria-controls="tape-intro" data-tape="intro"><span class="gv-tab-code">Rick Tew</span><span class="gv-tab-title">Meet the sensei</span></button>
+            </div>
+
+            <!-- the tapes are the same files /aininja/ serves; nothing loads until the file is declassified -->
+            <div class="gv-feature" id="tape-trms" role="tabpanel">
+              <div class="gv-feature-frame">
+                <video class="gv-feature-video" src="/aininja/assets/story/ninja/tapes/trms-full.mp4" poster="/aininja/assets/story/ninja/tapes/trms-poster.webp" playsinline preload="none"></video>
+                <button type="button" class="gv-feature-lock" aria-label="Play the TRMS 2000 archive tape"><span class="gv-lock-tint" aria-hidden="true"></span><span class="gv-stamp gv-stamp-corner">Classified</span><span class="gv-lock-play" aria-hidden="true">▶</span><span class="gv-lock-code">TRMS 2000</span></button>
+              </div>
+              <p class="gv-feature-line">Real training camp footage from the year 2000. Full speed, full contact with the ground, zero CGI.</p>
+            </div>
+            <div class="gv-feature" id="tape-nunchaku" role="tabpanel" hidden>
+              <div class="gv-feature-frame">
+                <video class="gv-feature-video" src="/aininja/assets/story/ninja/tapes/nunchaku-full.mp4" poster="/aininja/assets/story/ninja/tapes/nunchaku-poster.webp" playsinline preload="none"></video>
+                <button type="button" class="gv-feature-lock" aria-label="Play the Nunchaku archive tape"><span class="gv-lock-tint" aria-hidden="true"></span><span class="gv-stamp gv-stamp-corner">Classified</span><span class="gv-lock-play" aria-hidden="true">▶</span><span class="gv-lock-code">Nunchaku</span></button>
+              </div>
+              <p class="gv-feature-line">One example from the toolbox. Spins, wraps and the occasional lesson in humility.</p>
+            </div>
+            <div class="gv-feature" id="tape-strikes" role="tabpanel" hidden>
+              <div class="gv-feature-frame">
+                <video class="gv-feature-video" src="/aininja/assets/story/ninja/tapes/strikes-intro.mp4" poster="/aininja/assets/story/ninja/tapes/strikes-poster.webp" playsinline preload="none"></video>
+                <button type="button" class="gv-feature-lock" aria-label="Play the Strikes &amp; Kicks archive tape"><span class="gv-lock-tint" aria-hidden="true"></span><span class="gv-stamp gv-stamp-corner">Classified</span><span class="gv-lock-play" aria-hidden="true">▶</span><span class="gv-lock-code">Strikes &amp; Kicks</span></button>
+              </div>
+              <p class="gv-feature-line">The opening of the Strikes &amp; Kicks tape. A great form to learn while you are here, then practice on your own at our center.</p>
+            </div>
+            <div class="gv-feature" id="tape-intro" role="tabpanel" hidden>
+              <div class="gv-feature-frame">
+                <video class="gv-feature-video" src="/aininja/assets/story/ninja/tapes/intro-full.mp4" poster="/aininja/assets/story/ninja/tapes/intro-poster.webp" playsinline preload="none"></video>
+                <button type="button" class="gv-feature-lock" aria-label="Play the Rick Tew archive tape"><span class="gv-lock-tint" aria-hidden="true"></span><span class="gv-stamp gv-stamp-corner">Classified</span><span class="gv-lock-play" aria-hidden="true">▶</span><span class="gv-lock-code">Rick Tew</span></button>
+              </div>
+              <p class="gv-feature-line">Rick Tew in his own words. The man behind the ShhT.</p>
+            </div>
+
+            <div class="gv-world">
+              <h3 class="gv-world-h">The world files</h3>
+              <p class="gv-world-sub">Three continents, one sensei. He has taught, lived and started over in the USA, Europe and Asia. Open a file. It reseals when you move on.</p>
+              <div class="gv-regions" id="gvRegions"></div>
+              <p class="gv-world-close">Martial arts. Self-help. Travel. Building a life in a new country. The man has receipts on all of it, and two weeks is enough time for him to hand you a few.</p>
+            </div>
+
+            <p class="gv-winjitsu">Want more? Hundreds of clips and full lessons live on our Martial Arts Home Study App at <a href="https://www.winjitsu.com" target="_blank" rel="noopener noreferrer">WinJitsu.com</a>.</p>
+            <div class="gv-reseal-wrap">
+              <button type="button" class="gv-reseal" id="gvReseal">Reseal the file 🤐</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PRICE, the Four 2s -->
+  <section class="gt-sec gt-sec-alt">
+    <div class="shell tc">
+      <p class="gt-eyebrow gt-reveal">The Four 2s</p>
+      <div class="gt-bignum-wrap gt-reveal">
+        <span class="gt-speedlines gt-speedlines-sm" aria-hidden="true"></span>
+        <p class="gt-bignum">$2,222</p>
+      </div>
+      <p class="gt-reveal note" style="margin-top:.25rem">Four 2s, four reasons. Training, lodging, and meals all in.</p>
+
+      <div class="g-4 mt-10">
+        <div class="gt-reveal gt-panel gt-panel-num"><span class="gt-panel-2">2</span><p class="gt-panel-title">2 arts</p><p class="gt-panel-line">Ninjitsu (the body) and WinJitsu (the mind), two martial arts in one.</p></div>
+        <div class="gt-reveal gt-panel gt-panel-num" style="transition-delay:60ms"><span class="gt-panel-2">2</span><p class="gt-panel-title">2-hour morning class</p><p class="gt-panel-line">Daily instruction, 8am to 10am. Rick teaches the new material.</p></div>
+        <div class="gt-reveal gt-panel gt-panel-num" style="transition-delay:120ms"><span class="gt-panel-2">2</span><p class="gt-panel-title">2-hour evening review</p><p class="gt-panel-line">Club-style practice with the group, where the real learning happens.</p></div>
+        <div class="gt-reveal gt-panel gt-panel-num" style="transition-delay:180ms"><span class="gt-panel-2">2</span><p class="gt-panel-title">2 weeks</p><p class="gt-panel-line">Your stay on the island. Extend later if you want more.</p></div>
+      </div>
+
+      <div class="gt-reveal gt-ladder mt-8">
+        <p class="gt-eyebrow mb-4">Stay longer, the 222 stays</p>
+        <div class="gt-ladder-row">
+          <div class="gt-ladder-cell gt-ladder-cell-lead"><p class="gt-ladder-weeks">2 weeks</p><p class="gt-ladder-price">$2,222</p><p class="gt-ladder-note">base program</p></div>
+          <div class="gt-ladder-cell"><p class="gt-ladder-weeks">3 weeks</p><p class="gt-ladder-price">$3,222</p><p class="gt-ladder-note">+$1,000</p></div>
+          <div class="gt-ladder-cell"><p class="gt-ladder-weeks">4 weeks</p><p class="gt-ladder-price">$4,222</p><p class="gt-ladder-note">+$1,000</p></div>
+        </div>
+      </div>
+
+      <a href="https://ninjagym.com/gns/enroll" class="gt-cta gt-cta-fill gt-reveal mt-9">Enroll Now</a>
+    </div>
+  </section>
+
+  <!-- 4. A DAY, timeline -->
+  <section class="gt-sec">
+    <div class="shell">
+      <div class="gt-reveal tc">
+        <p class="gt-eyebrow">Monday to Friday</p>
+        <h2 class="gt-h2">A Day in the ShhT</h2>
+      </div>
+      <div class="gt-day gt-reveal mt-10">
+        <div class="gt-day-track" aria-hidden="true"></div>
+        <div class="gt-day-item"><span class="gt-day-dot" aria-hidden="true"></span><p class="gt-day-tag">Morning</p><p class="gt-day-time">8am to 10am</p><p class="gt-day-title">The taught class</p><p class="gt-day-line">Rick teaches the new material, drills, and corrections. The one formal instruction session.</p></div>
+        <div class="gt-day-item"><span class="gt-day-dot" aria-hidden="true"></span><p class="gt-day-tag">Free</p><p class="gt-day-time">Midday</p><p class="gt-day-title">The island is yours</p><p class="gt-day-line">Explore Koh Samui on your own terms. Real skills without giving up your holiday.</p></div>
+        <div class="gt-day-item"><span class="gt-day-dot" aria-hidden="true"></span><p class="gt-day-tag">Evening</p><p class="gt-day-time">Optional</p><p class="gt-day-title">Club-style review</p><p class="gt-day-line">An optional 2-hour group session. Drill with the others and the skills really stick.</p></div>
+        <div class="gt-day-item"><span class="gt-day-dot" aria-hidden="true"></span><p class="gt-day-tag">After dark</p><p class="gt-day-time">Free time</p><p class="gt-day-title">Your kind of night</p><p class="gt-day-line">Go out and explore, or stay in and chill. Games, hangs, or an early night, your call.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. THE 5 LEVELS, interactive belt selector -->
+  <section class="gt-sec gt-sec-alt">
+    <div class="shell">
+      <div class="gt-reveal tc">
+        <p class="gt-eyebrow">Body and mind level up together</p>
+        <h2 class="gt-h2">Five Belts, One WinJitsu Book Each</h2>
+      </div>
+
+      <div class="gt-belts gt-reveal mt-9" role="tablist" aria-label="Belt levels" id="gtBelts">
+        <button type="button" role="tab" class="gt-belt" aria-selected="false" aria-controls="belt-1" style="--belt:#facc15"><span class="gt-belt-n">L1</span><span class="gt-belt-name">Yellow</span></button>
+        <button type="button" role="tab" class="gt-belt gt-belt-on" aria-selected="true" aria-controls="belt-2" style="--belt:#ff7a1a"><span class="gt-belt-n">L2</span><span class="gt-belt-name">Orange</span></button>
+        <button type="button" role="tab" class="gt-belt" aria-selected="false" aria-controls="belt-3" style="--belt:#22c55e"><span class="gt-belt-n">L3</span><span class="gt-belt-name">Green</span></button>
+        <button type="button" role="tab" class="gt-belt" aria-selected="false" aria-controls="belt-4" style="--belt:#3b82f6"><span class="gt-belt-n">L4</span><span class="gt-belt-name">Blue</span></button>
+        <button type="button" role="tab" class="gt-belt" aria-selected="false" aria-controls="belt-5" style="--belt:#e23b2e"><span class="gt-belt-n">L5</span><span class="gt-belt-name">Red</span></button>
+      </div>
+
+      <div class="gt-reveal mt-5">
+        <div class="gt-beltcard" id="belt-1" role="tabpanel" style="--belt:#facc15" hidden>
+          <div class="gt-beltcard-head"><span class="gt-beltcard-badge" style="background:#facc15;color:#1a1209">L1</span><div><p class="gt-beltcard-belt">Yellow Belt</p><p class="gt-beltcard-goofy">"Ninja Newbie Nonsense"</p></div></div>
+          <ul class="gt-beltcard-list">
+            <li><span class="gt-chev">›</span>Stances: Horse, Cat, Triangle Duck</li>
+            <li><span class="gt-chev">›</span>Rolls: Forward, Reverse</li>
+            <li><span class="gt-chev">›</span>Falls: Flat Fall (back)</li>
+            <li><span class="gt-chev">›</span>Strikes: Fist, Palm Heel</li>
+            <li><span class="gt-chev">›</span>Kicks: Front Kick, Low Sweep</li>
+          </ul>
+          <p class="gt-beltcard-mind">🧠 WinJitsu Book 1, "Whack-a-Mind": mental basics, shutting down self-doubt.</p>
+        </div>
+        <div class="gt-beltcard" id="belt-2" role="tabpanel" style="--belt:#ff7a1a">
+          <div class="gt-beltcard-head"><span class="gt-beltcard-badge" style="background:#ff7a1a;color:#1a1209">L2</span><div><p class="gt-beltcard-belt">Orange Belt</p><p class="gt-beltcard-goofy">"Orange Belt Oopsies"</p></div></div>
+          <ul class="gt-beltcard-list">
+            <li><span class="gt-chev">›</span>Stances: Defensive, Power</li>
+            <li><span class="gt-chev">›</span>Rolls: Side, Diving</li>
+            <li><span class="gt-chev">›</span>Falls: Side Fall</li>
+            <li><span class="gt-chev">›</span>Strikes: Knife Hand, boxing combos</li>
+            <li><span class="gt-chev">›</span>Kicks: Back Kick, Round Kick</li>
+            <li><span class="gt-chev">›</span>Footwork: Pivot, Shuffle, Shift</li>
+          </ul>
+          <p class="gt-beltcard-mind">🧠 WinJitsu Book 2, "Ninja Noodle No More": building focus.</p>
+        </div>
+        <div class="gt-beltcard" id="belt-3" role="tabpanel" style="--belt:#22c55e" hidden>
+          <div class="gt-beltcard-head"><span class="gt-beltcard-badge" style="background:#22c55e;color:#06140b">L3</span><div><p class="gt-beltcard-belt">Green Belt</p><p class="gt-beltcard-goofy">"Green Belt Goofiness"</p></div></div>
+          <ul class="gt-beltcard-list">
+            <li><span class="gt-chev">›</span>Stances: Fighting, Low Defensive</li>
+            <li><span class="gt-chev">›</span>Rolls: Dropping, Superman</li>
+            <li><span class="gt-chev">›</span>Falls: Air Fall</li>
+            <li><span class="gt-chev">›</span>Strikes: Finger Strike</li>
+            <li><span class="gt-chev">›</span>Kicks: Side Kick, Crescent Kick</li>
+            <li><span class="gt-chev">›</span>Acrobatics: Kips, Hand Spring</li>
+          </ul>
+          <p class="gt-beltcard-mind">🧠 WinJitsu Book 3, "Wobble-Stopper": mental resilience.</p>
+        </div>
+        <div class="gt-beltcard" id="belt-4" role="tabpanel" style="--belt:#3b82f6" hidden>
+          <div class="gt-beltcard-head"><span class="gt-beltcard-badge" style="background:#3b82f6;color:#fff">L4</span><div><p class="gt-beltcard-belt">Blue Belt</p><p class="gt-beltcard-goofy">"Blue Belt Bonanza"</p></div></div>
+          <ul class="gt-beltcard-list">
+            <li><span class="gt-chev">›</span>Stances: Open Bow, Blade</li>
+            <li><span class="gt-chev">›</span>Rolls: Table Roll, rolling with objects</li>
+            <li><span class="gt-chev">›</span>Falls: Defensive Falls</li>
+            <li><span class="gt-chev">›</span>Strikes: Forearm, Knee, Elbows</li>
+            <li><span class="gt-chev">›</span>Kicks: Reverse Heel Kick</li>
+            <li><span class="gt-chev">›</span>Skills: Stealth Mode</li>
+          </ul>
+          <p class="gt-beltcard-mind">🧠 WinJitsu Book 4, "Brain Shuriken Showdown": applied mental mastery.</p>
+        </div>
+        <div class="gt-beltcard" id="belt-5" role="tabpanel" style="--belt:#e23b2e" hidden>
+          <div class="gt-beltcard-head"><span class="gt-beltcard-badge" style="background:#e23b2e;color:#fff">L5</span><div><p class="gt-beltcard-belt">Red Belt</p><p class="gt-beltcard-goofy">"Master of Ninja Mayhem"</p></div></div>
+          <ul class="gt-beltcard-list">
+            <li><span class="gt-chev">›</span>Stances: Reactive, Combat</li>
+            <li><span class="gt-chev">›</span>Rolls: Rolling Attack</li>
+            <li><span class="gt-chev">›</span>Falls: Stunt Falls</li>
+            <li><span class="gt-chev">›</span>Strikes: Ridge Hand, Knuckle Fist</li>
+            <li><span class="gt-chev">›</span>Kicks: Dropping Heel, Jump Spinning Kick</li>
+            <li><span class="gt-chev">›</span>Forms: Strikes &amp; Kicks, Rolls &amp; Falls</li>
+          </ul>
+          <p class="gt-beltcard-mind">🧠 WinJitsu Book 5, "Grand Gooffball": total Ninja Mind Control TEW.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. LIFESTYLE -->
+  <section class="gt-sec">
+    <div class="shell">
+      <div class="gt-reveal tc">
+        <h2 class="gt-h2">Eat. Train. Think. Play. Sleep.</h2>
+        <p class="note">Sand, sanook, rinse and repeat.</p>
+      </div>
+      <div class="gt-reveal mt-7" style="max-width:48rem;margin-inline:auto">
+        <div class="dn" id="dnArc" aria-hidden="true">
+          <div class="dn-sky"></div>
+          <div class="dn-stars"></div>
+          <div class="dn-body"><span class="dn-sun"></span><span class="dn-moon"></span></div>
+          <div class="dn-island"></div>
+          <div class="dn-sea"></div>
+          <div class="dn-reflection"></div>
+          <svg class="dn-palm dn-palm-l" viewBox="0 -6 92 104" aria-hidden="true"><use href="#dnPalm"/></svg>
+          <svg class="dn-palm dn-palm-r" viewBox="0 -6 92 104" aria-hidden="true"><use href="#dnPalm"/></svg>
+        </div>
+      </div>
+      <div class="g-life mt-9">
+        <div class="gt-reveal gt-life"><span class="gt-life-emoji" aria-hidden="true">🍜</span><p class="gt-life-name">Eat</p><p class="gt-life-line">Ninja-themed, simple, hearty meals to fuel training.</p></div>
+        <div class="gt-reveal gt-life" style="transition-delay:60ms"><span class="gt-life-emoji" aria-hidden="true">🥋</span><p class="gt-life-name">Train</p><p class="gt-life-line">Morning class and evening club. Ninjitsu body, WinJitsu mind.</p></div>
+        <div class="gt-reveal gt-life" style="transition-delay:120ms"><span class="gt-life-emoji" aria-hidden="true">🧠</span><p class="gt-life-name">Think</p><p class="gt-life-line">WinJitsu mindset work. Plan three moves ahead.</p></div>
+        <div class="gt-reveal gt-life" style="transition-delay:180ms"><span class="gt-life-emoji" aria-hidden="true">🎮</span><p class="gt-life-name">Play</p><p class="gt-life-line">Wind down in the gaming dojo: RPGs, LAN, board strategy.</p></div>
+        <div class="gt-reveal gt-life" style="transition-delay:240ms"><span class="gt-life-emoji" aria-hidden="true">😴</span><p class="gt-life-name">Sleep</p><p class="gt-life-line">Rest and recover in the hostel.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. WHAT'S INCLUDED + WinJitsu bonus -->
+  <section class="gt-sec gt-sec-alt">
+    <div class="shell">
+      <div class="gt-reveal tc">
+        <h2 class="gt-h2">What's Included</h2>
+      </div>
+      <div class="g-facts mt-9">
+        <div class="gt-reveal gt-fact"><p class="gt-fact-k">Duration</p><p class="gt-fact-v">2 weeks, extendable</p></div>
+        <div class="gt-reveal gt-fact" style="transition-delay:50ms"><p class="gt-fact-k">Schedule</p><p class="gt-fact-v">Morning class + evening club, Mon to Fri</p></div>
+        <div class="gt-reveal gt-fact" style="transition-delay:100ms"><p class="gt-fact-k">Stay</p><p class="gt-fact-v">Hostel-style bunks, basic and comfy</p></div>
+        <div class="gt-reveal gt-fact" style="transition-delay:150ms"><p class="gt-fact-k">Meals</p><p class="gt-fact-v">Simple, hearty, provided</p></div>
+        <div class="gt-reveal gt-fact" style="transition-delay:200ms"><p class="gt-fact-k">Location</p><p class="gt-fact-v">NinjaGym, Big C Mall, Koh Samui</p></div>
+        <div class="gt-reveal gt-fact" style="transition-delay:250ms"><p class="gt-fact-k">Who</p><p class="gt-fact-v">Beginners to experienced, solo or with friends</p></div>
+      </div>
+
+      <div class="gt-reveal gt-bonus mt-6">
+        <div class="gt-bonus-main">
+          <p class="gt-eyebrow gt-eyebrow-orange">Free bonus, every enrollment</p>
+          <p class="gt-bonus-title">One Free Month of WinJitsu</p>
+          <p class="gt-bonus-line">Every enrollment comes with a free month of <b class="gt-ink-gold">WinJitsu.com</b>, our separate training app. It is your <b class="gt-ink-orange">pocket dojo</b>: the full home study martial art and the WinJitsu mind art you drill through all five belts, right on your phone. The art of winning, in your pocket, and it comes home with you.</p>
+          <a href="https://www.winjitsu.com" target="_blank" rel="noopener noreferrer" class="gt-cta gt-cta-ghost gt-cta-sm mt-4">Peek at WinJitsu.com &rarr;</a>
+        </div>
+        <div class="gt-bonus-visual">
+          <div class="gt-phone" aria-hidden="true">
+            <span class="gt-phone-notch"></span>
+            <div class="gt-phone-screen">
+              <p class="gt-phone-brand">WinJitsu</p>
+              <p class="gt-phone-tag">The art of winning, in your pocket.</p>
+              <div class="gt-phone-tiles">
+                <div class="gt-phone-tile gt-phone-tile-hot"><span class="gt-phone-ic">🥋</span><span class="gt-phone-txt"><b>Pocket Dojo</b><i>Martial arts home study</i></span></div>
+                <div class="gt-phone-tile"><span class="gt-phone-ic">🧠</span><span class="gt-phone-txt"><b>Total Recall</b><i>Memory mastery</i></span></div>
+                <div class="gt-phone-tile"><span class="gt-phone-ic">🎯</span><span class="gt-phone-txt"><b>Word Ninja</b><i>Focus and words</i></span></div>
+                <div class="gt-phone-tile"><span class="gt-phone-ic">📚</span><span class="gt-phone-txt"><b>Books</b><i>All five belts</i></span></div>
+              </div>
+            </div>
+          </div>
+          <span class="gt-stamp gt-stamp-onphone" aria-hidden="true"><span class="gt-stamp-1">1</span><span class="gt-stamp-sub">month free</span></span>
+        </div>
+      </div>
+
+      <!-- second freebie: the GNS tee (enrollment perk, handed over on arrival) -->
+      <div class="gt-reveal gt-tee mt-4">
+        <span class="gt-tee-shirt" aria-hidden="true"><img src="gns-logo.webp" alt="" class="gt-tee-print" width="480" height="610" loading="lazy"></span>
+        <div class="gt-tee-main">
+          <p class="gt-eyebrow gt-eyebrow-orange">And one more thing</p>
+          <p class="gt-tee-title">Your Free Gooffy Ninja Tee</p>
+          <p class="gt-tee-line">Every enrollment comes with a <b class="gt-ink-gold">free GNS t-shirt</b>. Pick your size when you land, wear the secret out loud. Shh.</p>
+        </div>
+        <span class="gt-tee-badge" aria-hidden="true"><span class="gt-tee-badge-free">Free</span><span class="gt-tee-badge-sub">tee</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. WHY KOH SAMUI -->
+  <section class="gt-sec">
+    <div class="shell">
+      <div class="gt-reveal tc">
+        <p class="gt-eyebrow">Why here</p>
+        <h2 class="gt-h2">Koh Samui, with the American Ninja</h2>
+      </div>
+      <div class="g-4 mt-9">
+        <div class="gt-reveal gt-panel"><p class="gt-panel-title">Rick Tew</p><p class="gt-panel-line">The American Ninja, more than 25 years of experience, serious technique with a grin.</p></div>
+        <div class="gt-reveal gt-panel" style="transition-delay:60ms"><p class="gt-panel-title">Tropical paradise</p><p class="gt-panel-line">Beaches, jungle, and a relaxed island vibe that pairs hard training with real downtime.</p></div>
+        <div class="gt-reveal gt-panel" style="transition-delay:120ms"><p class="gt-panel-title">Game by night</p><p class="gt-panel-line">A game room at the center and the hostel. Train hard, then replay your favorites.</p></div>
+        <div class="gt-reveal gt-panel" style="transition-delay:180ms"><p class="gt-panel-title">All welcome</p><p class="gt-panel-line">Beginners to seasoned fighters, come solo or with friends. Bringing family? Book your own stay nearby and the kids can train at our NinjaGym Kids center.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. QUIZ (built by gns.js) -->
+  <section id="quiz" class="gt-sec gt-sec-alt">
+    <div class="shell">
+      <div class="gt-reveal tc">
+        <h2 class="gt-h2">Which Gooffy Ninja Are You?</h2>
+        <p class="note note-lg">A slightly silly 2-minute quiz that reshapes itself around your answers. Get your ninja profile, your tailored mix, and a perk or two. Shh.</p>
+      </div>
+      <div class="gt-reveal mt-8">
+        <div class="qz"><div class="qz-in" id="qz">
+          <noscript><p class="qz-p" style="margin:0">The quiz needs JavaScript. Everything else on this page reads fine without it.</p></noscript>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FAQ -->
+  <section class="gt-sec">
+    <div class="shell-3xl">
+      <div class="gt-reveal tc">
+        <h2 class="gt-h2">Shh, the FAQ</h2>
+      </div>
+      <div class="gt-faqs mt-8">
+        <details class="gt-reveal gt-faq"><summary>Do I need experience?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>No. Beginners are welcome, and so are seasoned fighters. Everyone trains at their level.</p></details>
+        <details class="gt-reveal gt-faq"><summary>What if I am not a morning person?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>No worries. Just show up to the evening review sessions, where we go over what we did that morning. Mr. Tew rotates teaching mornings and evenings, so both types get at least 2 classes a week with Mr. Tew.</p></details>
+        <details class="gt-reveal gt-faq"><summary>Can I bring my family or kids?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>The live-in program stays in hostel-style bunks built for solo travelers, so it is not set up for families to lodge together. You are welcome to book your own accommodation nearby, and the kids can train at our NinjaGym Kids center while you are in the program.</p></details>
+        <details class="gt-reveal gt-faq"><summary>Can I stay longer?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>Yes, a flat $1,000 per extra week. So 3 weeks is $3,222, 4 weeks is $4,222. The 222 tail stays.</p></details>
+        <details class="gt-reveal gt-faq"><summary>What is the free month of WinJitsu?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>Every enrollment comes with one free month of WinJitsu.com, our separate training app. It holds the full home study program and everything we actually teach.</p></details>
+        <details class="gt-reveal gt-faq"><summary>Where exactly is it?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>Rick Tew's NinjaGym, Big C Mall, Koh Samui, plus a small hostel nearby. Game room at both.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FINAL CTA -->
+  <section class="gt-final">
+    <div class="gt-speedlines gt-speedlines-final" aria-hidden="true"></div>
+    <div class="shell gt-final-in">
+      <h2 class="gt-reveal gt-final-h">Kick, Laugh, Live.</h2>
+      <p class="gt-reveal gt-final-p">Lock in your spot. Shh, keep it secret, keep it fun.</p>
+      <a href="https://ninjagym.com/gns/enroll" class="gt-cta gt-cta-fill gt-reveal mt-7">Enroll Now</a>
+      <div class="gt-foot gt-reveal">
+        <a href="/">RickTew.com</a>
+        <a href="https://www.ninjagym.com" target="_blank" rel="noopener noreferrer">NinjaGym.com</a>
+        <a href="https://www.winjitsu.com" target="_blank" rel="noopener noreferrer">WinJitsu.com</a>
+        <a href="https://ninjagym.com/contact">Contact</a>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- sticky enroll bar -->
+  <div class="gt-sticky">
+    <div class="shell gt-sticky-in">
+      <div>
+        <p class="gt-sticky-num">$2,222</p>
+        <p class="gt-sticky-sub">2 weeks, all in</p>
+      </div>
+      <a href="https://ninjagym.com/gns/enroll" class="gt-cta gt-cta-fill gt-cta-sm">Enroll Now</a>
+    </div>
+  </div>
+
+  <!-- the coconut palm, drawn once and used twice by the day/night arc -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <g id="dnPalm">
+        <path d="M31,96 C29,72 33,49 42,29 L48,31 C41,51 37,73 39,96 Z"/>
+        <circle cx="43" cy="31" r="3.1"/>
+        <circle cx="49" cy="32" r="2.9"/>
+        <circle cx="46" cy="35" r="2.9"/>
+        <path d="M45,29 C27,18 13,18 3,23 C16,21 31,24 46,32 Z"/>
+        <path d="M45,29 C30,31 17,38 10,50 C22,40 35,35 47,33 Z"/>
+        <path d="M45,29 C41,11 43,3 49,-4 C52,7 51,18 48,31 Z"/>
+        <path d="M45,29 C64,17 79,17 89,22 C77,20 61,23 46,32 Z"/>
+        <path d="M45,29 C61,31 74,39 81,51 C70,41 57,35 47,33 Z"/>
+        <path d="M45,29 C53,12 60,6 69,3 C60,13 52,21 47,31 Z"/>
+      </g>
+    </defs>
+  </svg>
+
+</div>
+<script src="gns.js" defer></script>
+</body>
+</html>
