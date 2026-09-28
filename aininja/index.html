@@ -2954,6 +2954,27 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     var far=goToSlot();
     setTimeout(focusFirstGap, far?80:420);
   };
+
+  /* A link from another page can arrive with its topic already chosen:
+     /aininja/?about=gns#opt-8c. Since 28 Sep 2026 that is how the GNS page's
+     Enroll and contact buttons reach Rick (NinjaGym no longer takes GNS
+     bookings, and this site has no checkout for it). A fixed list, so a link
+     can never write its own words into the box; any other value is ignored.
+     Nothing is sent until the visitor presses the button themselves. */
+  (function(){
+    var ABOUT={
+      "gns":["hininja","I want this Tew: a spot on Gooffy Ninja ShhT!!, the 2-week live-in program on Koh Samui ($2,222).","When I would like to come:\nHow many weeks:\nComing solo or with friends:\n"],
+      "gns-private":["hininja","I want this Tew: private 1-on-1 sessions with Rick, from the Gooffy Ninja ShhT!! quiz.","When I would like to come:\nWhat I want to train:\n"],
+      "gns-ask":["hininja","About: Gooffy Ninja ShhT!!",""]
+    };
+    var k=""; try{ k=(new URLSearchParams(location.search).get("about")||"").toLowerCase(); }catch(e){}
+    var a=Object.prototype.hasOwnProperty.call(ABOUT,k) && ABOUT[k];
+    var sel=form.elements.namedItem("subject"), msg=form.elements.namedItem("message");
+    if(!a || !sel || !msg || form.hidden || msg.value.trim()) return;
+    sel.value=a[0];
+    msg.value=a[1]+"\n\n"+a[2];
+    ourLines[a[1]]=1; lastWant=msg.value;
+  })();
 })();
 </script>
 

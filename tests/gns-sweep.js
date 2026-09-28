@@ -4,15 +4,16 @@
    Desktop and phone: 200, console and page errors, failed requests,
    sideways scroll, NaN / undefined / [object Object], long dashes, mailto
    links, stray addresses, links and anchors that go nowhere. Then the page's
-   own moving parts: every Enroll goes to the NinjaGym checkout (the only
-   place payment works), the belt tabs, the vault (declassify, every tape
+   own moving parts: every Enroll lands on the Letter Slot on /aininja/ with
+   the GNS request written in (there is no GNS checkout since NinjaGym
+   dropped it on 28 Sep 2026), the belt tabs, the vault (declassify, every tape
    tab, a tape plays, every world file opens, reseal), the quiz (every first
    answer, then 40 seeded random walks to a result, Back, Retake, and "See
    the full program" going back to the top). Exit 1 on any finding. */
 "use strict";
 const { chromium, devices } = require("/Users/ricktew/Dev/Roy Martina/newnei-app/node_modules/playwright");
 const BASE = "http://localhost:8765", URL_ = "/gns/";
-const ENROLL = "https://ninjagym.com/gns/enroll";
+const ENROLL = BASE + "/aininja/?about=gns#opt-8c";
 const found = {};
 function flag(kind, msg) { (found[kind] = found[kind] || []).push(msg); }
 
@@ -23,7 +24,7 @@ function rng(seed) { return () => (seed = (seed * 1103515245 + 12345) % 21474836
   const b = await chromium.launch({ args: ["--autoplay-policy=no-user-gesture-required"] });
   for (const [dev, opts] of [["desktop", { viewport: { width: 1440, height: 900 } }], ["phone", devices["iPhone 13"]]]) {
     const ctx = await b.newContext(opts);
-    // never leave the site: the Enroll and Contact targets are checked by href, not by visiting
+    // never leave the site
     await ctx.route(/^https:\/\/(www\.)?(ninjagym|winjitsu)\.com\//, r => r.fulfill({ status: 200, body: "stub" }));
     const p = await ctx.newPage(), errs = [], bad = [];
     p.on("pageerror", e => errs.push(e.message));
@@ -133,7 +134,7 @@ function rng(seed) { return () => (seed = (seed * 1103515245 + 12345) % 21474836
       if (/[–—]/.test(out)) flag("quiz", at + " walk " + walk + ": long dash");
       if (!/^The (Shadow|Thunder|Twilight) /m.test(out)) flag("quiz", at + " walk " + walk + ": type " + (out.match(/The .*/) || [""])[0]);
       const hrefs = await p.$$eval(qz + " a", a => a.map(x => x.href));
-      hrefs.forEach(h => { if (!/^https:\/\/(ninjagym\.com\/contact|www\.winjitsu\.com\/?)$/.test(h)) flag("quiz", at + ": link " + h); });
+      hrefs.forEach(h => { if (h !== BASE + "/aininja/?about=gns-private#opt-8c" && !/^https:\/\/www\.winjitsu\.com\/?$/.test(h)) flag("quiz", at + ": link " + h); });
       if (walk === 3) {
         const full = await p.$(qz + " >> text=/^See the full/");
         if (!full) flag("quiz", at + ": no See the full program button");
@@ -155,6 +156,23 @@ function rng(seed) { return () => (seed = (seed * 1103515245 + 12345) % 21474836
       const q = await p.$eval(qz + " .qz-q", n => n.textContent);
       if (!q || q === "What pulls you in most?") flag("quiz", at + ": " + f + " did not branch");
       await p.click(qz + " .qz-back"); // back on the first question for the next one
+    }
+
+    // the three Letter Slot links arrive with the subject and the first line
+    // written in; a value not on the list leaves the box alone
+    const ABOUT = { "gns": "I want this Tew: a spot on Gooffy Ninja ShhT!!",
+      "gns-private": "I want this Tew: private 1-on-1 sessions with Rick", "gns-ask": "About: Gooffy Ninja ShhT!!", "evil": "" };
+    for (const [k, first] of Object.entries(ABOUT)) {
+      const q = await ctx.newPage();
+      q.on("pageerror", e => errs.push("slot " + k + ": " + e.message));
+      await q.goto(BASE + "/aininja/?about=" + k + "#opt-8c", { waitUntil: "load" });
+      const got = await q.evaluate(() => ({ sub: document.getElementById("slotSubject").value, msg: document.getElementById("slotMessage").value }));
+      if (first ? (got.sub !== "hininja" || !got.msg.startsWith(first)) : got.msg !== "") flag("slot prefill", at + " " + k + ": " + JSON.stringify(got).slice(0, 120));
+      if (first) {
+        const inView = await q.evaluate(() => { const r = document.getElementById("opt-8c").getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; });
+        if (!inView) flag("slot prefill", at + " " + k + ": the mailbox is not on screen");
+      }
+      await q.close();
     }
 
     errs.forEach(e => flag("console", at + ": " + e.slice(0, 160)));

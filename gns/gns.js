@@ -1,13 +1,14 @@
 /* Gooffy Ninja ShhT!! (/gns/): the page's behaviour, in plain JS.
    Ported 28 Sep 2026 from the NinjaGym Next.js components (GnsLanding,
    GnsVault, GnsQuiz, GnsMotion). The words are theirs, unchanged.
-   Every Enroll goes to ninjagym.com, where the checkout lives.
+   There is no GNS checkout (NinjaGym removed it 28 Sep 2026): Enroll and
+   contact go to the Letter Slot on /aininja/ with the request written in.
    No long dashes anywhere (GNS rule and site rule). */
 (function () {
   "use strict";
 
-  var ENROLL = "https://ninjagym.com/gns/enroll";
-  var CONTACT = "https://ninjagym.com/contact";
+  var ENROLL = "/aininja/?about=gns#opt-8c";
+  var CONTACT = "/aininja/?about=gns-private#opt-8c";
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var clamp01 = function (n) { return n < 0 ? 0 : n > 1 ? 1 : n; };
 

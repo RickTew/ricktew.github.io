@@ -633,12 +633,19 @@ open items); read it before changing the page. Canonical program docs:
   motion). The GNS look lives only on GNS pages: dark "ninja night",
   orange `#ff7a1a`, red `#e23b2e`, Bangers / Nunito / Fredoka. It is its
   own sub-brand, so the light-page and door-bar rules do not apply to it.
-- **Payment stays on NinjaGym.** Every Enroll button goes to
-  `https://ninjagym.com/gns/enroll` (the Stripe USD checkout, the webhook
-  branch and the `gns_bookings` table live in `~/Dev/NinjaGym`). The quiz's
-  contact links go to `https://ninjagym.com/contact`. Never edit anything in
-  `~/Dev/NinjaGym`: Rick's rule is that nothing GNS does may break the
-  NinjaGym app. If payment ever moves here, tell the NinjaGym session first.
+- **There is no GNS checkout anywhere (since later on 28 Sep).** Rick ruled
+  that NinjaGym removes GNS completely: its checkout, bookings table and
+  images are gone, and ninjagym.com/gns, /gns/* and /gooffy-ninja 308 to
+  ricktew.com/gns/. Until Rick rules on a checkout, every Enroll button goes
+  to the Letter Slot, `/aininja/?about=gns#opt-8c`, which arrives with the
+  HI Ninja subject and the request written in; the quiz's private-sessions
+  button uses `?about=gns-private` and the footer Contact `?about=gns-ask`.
+  Those three values are a fixed list in the slot script on `/aininja/`;
+  any other value does nothing. The Ninja Agent's auto-reply answers them
+  from the chat box's `hininja` entry, then Rick follows up. A card
+  checkout (a Stripe Payment Link on Tew's Inc, or more) is his call and,
+  by the lane ruling, not built from this session without his word. Never
+  edit anything in `~/Dev/NinjaGym`.
 - **The vault's tapes and world photos are not copied:** the page plays the
   same files `/aininja/` serves from `aininja/assets/story/ninja/`. Moving
   those breaks both pages.
@@ -646,7 +653,8 @@ open items); read it before changing the page. Canonical program docs:
   root has `overflow-x:hidden`). Switching them on puts the enroll bar over
   the hero's Enroll button on a phone and a 900px laptop; Rick's call.
 - **Test:** `node tests/gns-sweep.js` (serve the repo on 8765): desktop and
-  phone, links, every Enroll target, belts, the vault, 40 quiz walks.
+  phone, links, every Enroll target, the three slot prefills, belts, the
+  vault, 40 quiz walks.
 - In the sitemap and in llms.txt (HI door section, via
   `tests/agent-door-build.py`). Not linked from `/hininja/` or the front
   page; on NinjaGym it was not in the nav either.
