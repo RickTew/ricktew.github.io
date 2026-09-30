@@ -54,7 +54,10 @@ async function walk(browser, label, ctxOpts) {
   });
   await page.route(STORAGE_PUT, async route => { uploadPuts++; await route.fulfill({ status: 200, contentType: "application/json", body: '{"Key":"x"}' }); });
 
-  await page.goto(BASE + "?key=testkey", { waitUntil: "load" });
+  // A Shop order rides in on the link too (30 Sep 2026): ?sku=&plan=&order=.
+  await page.goto(BASE + "?key=testkey&sku=AIN-CONTACT-FORM&plan=we-run-it&order=cs_live_TESTtest1234567890", { waitUntil: "load" });
+  const bought = await page.textContent("#bought");
+  if (bought !== "This sheet is for your order: Contact Form, We run it (SKU AIN-CONTACT-FORM).") flag("purchase", label + ": order line reads " + JSON.stringify(bought));
   await page.waitForTimeout(600);
 
   // ---- text shape ----
@@ -182,6 +185,8 @@ async function walk(browser, label, ctxOpts) {
   if (!sub) flag("submit", label + ": no submit posted");
   else {
     if (sub.key !== "testkey") flag("submit", label + ": key not carried");
+    const pu = sub.purchase || {};
+    if (pu.sku !== "AIN-CONTACT-FORM" || pu.plan !== "we-run-it" || pu.order !== "cs_live_TESTtest1234567890") flag("purchase", label + ": order not carried: " + JSON.stringify(sub.purchase));
     if (sub.company_url !== "") flag("submit", label + ": trap field not empty");
     if (typeof sub.elapsedMs !== "number" || sub.elapsedMs < 0) flag("submit", label + ": elapsedMs missing");
     if (!sub.answers || sub.answers.name !== "Answer name" || sub.answers.email !== "tester@example.com") flag("submit", label + ": contact answers missing");

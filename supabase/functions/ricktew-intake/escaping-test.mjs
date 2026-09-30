@@ -139,6 +139,33 @@ await dropCase('bad email', b => { b.answers.email = 'not-an-address'; }, 'bad_c
   checks.push(['upload-url: over the cap is a 413 the browser can act on', r4.status === 413]);
 }
 
+// ---- the Shop purchase (30 Sep 2026): ?sku=&plan=&order= carried from a Payment Link ----
+{
+  const noBuy = mails.find(m => m.subject.startsWith('AI Ninja Intake:'));
+  checks.push(['purchase: none sent, no SKU header and no "Bought" line', noBuy && !noBuy.headers['X-Intake-Sku'] && !noBuy.text.includes('Bought in the Shop')]);
+
+  const ORDER = 'cs_live_a1B2c3D4e5F6g7H8i9J0';
+  let before = mails.length; rows.length = 0;
+  await post({ ...hostile, purchase: { sku: 'AIN-CONTACT-FORM', plan: 'we-run-it', order: ORDER } });
+  let [nm, rc] = [mails[before], mails[before + 1]];
+  const json = JSON.parse(stored[Object.keys(stored).find(k => k.endsWith('/intake.json'))]);
+  checks.push(['purchase: SKU, plan and order headers on the Ninja mail', nm && nm.headers['X-Intake-Sku'] === 'AIN-CONTACT-FORM' && nm.headers['X-Intake-Plan'] === 'we-run-it' && nm.headers['X-Intake-Order'] === ORDER]);
+  checks.push(['purchase: the sheet says what was bought', nm && nm.text.includes(`Bought in the Shop: AIN-CONTACT-FORM, We run it (Stripe checkout ${ORDER})`)]);
+  checks.push(['purchase: subject prefix and X-Intake-Id unchanged (TEWBEDO files on both)', nm && nm.subject.startsWith('AI Ninja Intake: ') && nm.headers['X-Intake-Id'] === ID]);
+  checks.push(['purchase: the receipt carries the same SKU', rc && rc.text.includes('filed with your order: AIN-CONTACT-FORM, We run it')]);
+  checks.push(['purchase: intake.json keeps it, the table row does not (no column)', json.purchase && json.purchase.sku === 'AIN-CONTACT-FORM' && rows.length === 1 && !('purchase' in rows[0])]);
+
+  before = mails.length;
+  await post({ ...hostile, purchase: { sku: 'AIN-X"><script>alert(1)</script>', plan: 'we-run-it', order: ORDER } });
+  nm = mails[before];
+  checks.push(['purchase: a hostile SKU drops the whole purchase', nm && !nm.headers['X-Intake-Sku'] && !nm.headers['X-Intake-Order'] && !nm.text.includes('Bought in the Shop') && !JSON.stringify(nm).includes('AIN-X')]);
+
+  before = mails.length;
+  await post({ ...hostile, purchase: { sku: 'AIN-CUSTOMER-INBOX', plan: '<b>free</b>', order: 'cs_live_x"><img src=x>' } });
+  [nm, rc] = [mails[before], mails[before + 1]];
+  checks.push(['purchase: a bad plan or order is dropped, the SKU kept', nm && nm.headers['X-Intake-Sku'] === 'AIN-CUSTOMER-INBOX' && !nm.headers['X-Intake-Plan'] && !nm.headers['X-Intake-Order'] && nm.text.includes('Bought in the Shop: AIN-CUSTOMER-INBOX\n') && !/free<\/b>|cs_live_x/.test(JSON.stringify(nm) + JSON.stringify(rc))]);
+}
+
 let bad = 0;
 for (const [label, ok] of checks) { origLog((ok ? '  PASS  ' : '  FAIL  ') + label); if (!ok) bad++; }
 origLog('');

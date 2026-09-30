@@ -247,6 +247,7 @@ footer a:hover{color:var(--blue-d)}
     <p class="lede">This asks more of your time up front, 20 to 40 minutes, and it is exactly what gets your build going faster. The more you give me here, the less we go back and forth, and the sooner the first ninja is working for you. Skip anything you cannot answer. Your receipt will list what you skipped, so you can send it later.</p>
     <p class="skip">Short on time, or not a typist? <a href="#recordings">Skip the buttons and record it instead.</a> There is a script to follow.</p>
     <p class="invite" id="invite">You arrived by an invite link. This sheet files under your name.</p>
+    <p class="invite" id="bought"></p>
     <p class="honest">Honestly: I would rather sit in your office and watch the work happen. When that is not possible, this sheet plus a voice note and a short video is the next best thing. If we do meet, we still start from what you write here.</p>
   </div>
 </header>
@@ -452,6 +453,23 @@ footer a:hover{color:var(--blue-d)}
 
   var KEY=(function(){ try{ var k=new URLSearchParams(location.search).get("key")||""; return k.slice(0,80); }catch(e){ return ""; } })();
   if(KEY) document.getElementById("invite").classList.add("on");
+
+  /* A Shop order (30 Sep 2026): a helper's Payment Link lands the buyer here
+     with ?sku=&plan=&order=. Each value is held to a fixed shape (the endpoint
+     checks again), kept with the saved sheet, shown at the top, and sent in. */
+  var SHOP={"AIN-CONTACT-FORM":"Contact Form","AIN-CUSTOMER-INBOX":"Customer Inbox"}, PLAN={"yours-to-run":"Yours to run","we-run-it":"We run it"};
+  (function(){
+    var q; try{ q=new URLSearchParams(location.search); }catch(e){ return; }
+    var sku=(q.get("sku")||"").trim(), plan=(q.get("plan")||"").trim(), order=(q.get("order")||"").trim();
+    if(/^[A-Z0-9-]{3,40}$/.test(sku)){
+      state.purchase={sku:sku, plan:PLAN[plan]?plan:"", order:/^cs_(live|test)_[A-Za-z0-9]{10,200}$/.test(order)?order:""};
+      save();
+    }
+    var b=state.purchase; if(!b||!b.sku) return;
+    var el=document.getElementById("bought");
+    el.textContent="This sheet is for your order: "+(SHOP[b.sku]||b.sku)+(b.plan?", "+PLAN[b.plan]:"")+" (SKU "+b.sku+").";
+    el.classList.add("on");
+  })();
 
   /* ---- build the sheet from the catalog ---- */
   var main=document.getElementById("form");
@@ -755,7 +773,8 @@ footer a:hover{color:var(--blue-d)}
     if(pending){ fail("A recording is still uploading. Give it a moment, then press send again."); return; }
     sendBtn.disabled=true; sendBtn.textContent="Sending...";
     var payload={action:"submit",intake:state.intake,key:KEY,elapsedMs:Date.now()-shownAt,company_url:document.getElementById("company_url").value,
-      answers:state.answers,files:state.files.map(function(f){ return {path:f.path,name:f.name,size:f.size,kind:f.kind,seconds:f.seconds||0}; }),source:"page"};
+      answers:state.answers,files:state.files.map(function(f){ return {path:f.path,name:f.name,size:f.size,kind:f.kind,seconds:f.seconds||0}; }),source:"page",
+      purchase:state.purchase||null};
     fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
     .then(function(res){ if(!res.ok) throw new Error("endpoint "+res.status); return res.json(); })
     .then(function(){

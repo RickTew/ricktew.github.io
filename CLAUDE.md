@@ -544,6 +544,17 @@ sensei note under the price cards on `/aininja/`, `llms.txt`, and invite links.
   new page:** one weight per paragraph (a half-bold lede reads "bubbly and
   unprofessional"); round pill shapes only on things you can press; never
   tag a field "optional", just ask.
+- **Shop orders (30 Sep 2026, Rick's yes):** a Shop helper's Payment Link
+  lands the buyer on `/aininja/start/?sku=<SKU>&plan=<yours-to-run|we-run-it>&order=<Stripe checkout id>`.
+  The page holds each value to a fixed shape and keeps it with the saved sheet.
+  It shows "This sheet is for your order: ..." (`SHOP` in the page script maps
+  SKU to name) and sends `purchase` with the submit. The endpoint checks the
+  values again: a bad SKU drops the whole purchase, and a bad plan or order
+  drops just that value. It writes "Bought in the Shop:" into the sheet, puts
+  `purchase` in intake.json (NOT the table, which has no column for it), adds
+  `X-Intake-Sku`, `X-Intake-Plan` and `X-Intake-Order` to the Ninja mail, and
+  puts the same line in the receipt. The subject prefix and `X-Intake-Id` are
+  untouched.
 - **Tests, run both after any change:**
   `./supabase/functions/ricktew-intake/run-escaping-test.sh` (44 offline
   checks: hostile submission, both mails, the Markdown, the gauntlet, paths
