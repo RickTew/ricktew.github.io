@@ -618,6 +618,46 @@ findings this install sent back: `~/Dev/digitaldojo/private/proof-ledger.md`.
 
 ---
 
+## The Shop: /aininja/shop/ (live 2026-09-30)
+
+Rick, 30 Sep, in the Dojo chat: "Ricktew.com should have a shop under AI Ninja
+too they can buy as pre-made products as well." This reverses his 9 Sep rule
+that the site says nothing about products. The first product is PAM, the
+Personal Achievement Map (a WinJitsu workbook PDF, $2.99). More are coming from
+the Dojo.
+
+- **Three pages, all in this repo.** `aininja/shop/` is the product page,
+  indexable. `aininja/shop/thanks/` is where Stripe lands the buyer after paying.
+  It is noindex, and with `?link=expired` it becomes the run-out page.
+  `aininja/shop/download/` is where the download mail links:
+  `#t=TOKEN&f=letter|a4&p=SKU`, with the token in the fragment so it never
+  reaches a server log. It is noindex and no-referrer, starts the file once, and
+  a reload does not count again. As of 30 Sep nothing links to the shop and it is
+  not in the sitemap or llms.txt. The footer link, sitemap and llms.txt are
+  Rick's calls.
+- **Checkout and delivery are the DOJO's, not this repo's.** The Buy button is a
+  Stripe Payment Link on Tew's Inc (PAM: `plink_1ULKLE24k28tlk41lQTOvSGM`).
+  The delivery function `ricktew-shop` runs on tews-inc (`qegfhbseccinnxnzfhxw`),
+  but its source lives in the private Dojo repo at
+  `~/Dev/digitaldojo/shop/supabase/functions/ricktew-shop/`, NOT under
+  `supabase/` here. It checks the Stripe signature, mails the buyer and counts
+  downloads (7 days, 5 per order). It serves each PDF stamped "Licensed to" the
+  buyer. The files sit in the private bucket `aininja-shop`. **No PDF ever goes
+  in this repo:** it is public.
+- **Adding a product:** the Dojo sends its name, picture, Rick's own lines,
+  price, buy URL, plink id and sku. It gets a card on the shop page, a line in
+  `PRODUCTS` in the download page's script (sku to name), and its price in
+  `PRICES` in `tests/aidoor-sweep.js`. At three or more products the shop page
+  moves from one big card to a grid.
+- **Copy rules for the shop (Rick, 30 Sep):** the product's words are Rick's
+  own plus plain facts. **No promises of any kind:** not "I read every message",
+  not "I will sort it out", not "within a minute", not "always", not "free".
+  Give plain directions instead ("Didn't get it? Write to me with the email you
+  paid with."). Contact goes to the Letter Slot, never an address.
+- **Test:** `node tests/aidoor-sweep.js` covers the three shop pages.
+
+---
+
 ## /gns/: Gooffy Ninja ShhT!! (moved from NinjaGym 2026-09-28)
 
 Rick's live-in 2-week ninja program on Koh Samui ($2,222, +$1,000 a week).
