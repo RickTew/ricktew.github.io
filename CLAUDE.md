@@ -626,8 +626,13 @@ that the site says nothing about products. The first product is PAM, the
 Personal Achievement Map (a WinJitsu workbook PDF, $2.99). More are coming from
 the Dojo.
 
-- **Three pages, all in this repo.** `aininja/shop/` is the product page,
-  indexable. `aininja/shop/thanks/` is where Stripe lands the buyer after paying.
+- **The pages, all in this repo.** `aininja/shop/` is the catalogue,
+  indexable: small thumbnail tiles under "Ready now", then "Coming soon" with
+  one dropdown per WinJitsu area. That list is written by
+  `python3 tests/shop-build.py` from the Dojo's catalogue
+  (`~/Dev/digitaldojo/private/products/catalogue/wj`); never hand-edit it.
+  Each ready product has its own page at its SKU, lowercased:
+  `aininja/shop/win-cmt-pam/` for PAM (SKU `WIN-CMT-PAM`). `aininja/shop/thanks/` is where Stripe lands the buyer after paying.
   It is noindex, and with `?link=expired` it becomes the run-out page.
   `aininja/shop/download/` is where the download mail links:
   `#t=TOKEN&f=letter|a4&p=SKU`, with the token in the fragment so it never
@@ -645,10 +650,12 @@ the Dojo.
   buyer. The files sit in the private bucket `aininja-shop`. **No PDF ever goes
   in this repo:** it is public.
 - **Adding a product:** the Dojo sends its name, picture, Rick's own lines,
-  price, buy URL, plink id and sku. It gets a card on the shop page, a line in
-  `PRODUCTS` in the download page's script (sku to name), and its price in
-  `PRICES` in `tests/aidoor-sweep.js`. At three or more products the shop page
-  moves from one big card to a grid.
+  price, buy URL, plink id and SKU. It gets a tile (`data-sku`) and a page at
+  `aininja/shop/<sku lowercased>/`, a line in `PRODUCTS` in the download page's
+  script (SKU to name), its price in `PRICES` and its page in `PAGES` in
+  `tests/aidoor-sweep.js`. Then run `tests/shop-build.py`, which drops it from
+  Coming soon. The SKU matches everywhere (Rick, 30 Sep): the tile, the page,
+  the mail, the order row and the download link's `p=`.
 - **Copy rules for the shop (Rick, 30 Sep):** the product's words are Rick's
   own plus plain facts. **No promises of any kind:** not "I read every message",
   not "I will sort it out", not "within a minute", not "always", not "free".
