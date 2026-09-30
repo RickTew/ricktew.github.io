@@ -661,7 +661,7 @@ the Dojo.
   not "I will sort it out", not "within a minute", not "always", not "free".
   Give plain directions instead ("Didn't get it? Write to me with the email you
   paid with."). Contact goes to the Letter Slot, never an address.
-- **Test:** `node tests/aidoor-sweep.js` covers the three shop pages.
+- **Test:** `node tests/aidoor-sweep.js` covers every shop page.
 
 ---
 
