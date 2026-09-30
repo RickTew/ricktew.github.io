@@ -13,7 +13,7 @@ const fs = require("fs"), path = require("path");
 const { chromium, devices } = require("/Users/ricktew/Dev/Roy Martina/newnei-app/node_modules/playwright");
 const ROOT = path.join(__dirname, ".."), BASE = "http://localhost:8765";
 const PAGES = ["/aininja/", "/aininja/done-for-you/", "/aininja/r2/", "/aininja/start/",
-  "/aininja/shop/", "/aininja/shop/win-cmt-pam/", "/aininja/shop/thanks/", "/aininja/shop/thanks/?link=expired", "/aininja/shop/download/",
+  "/aininja/shop/", "/aininja/shop/win-cmt-pam/", "/aininja/shop/ain-contact-form/", "/aininja/shop/ain-customer-inbox/", "/aininja/shop/thanks/", "/aininja/shop/thanks/?link=expired", "/aininja/shop/download/",
   "/aininja/side-hustle-summit/", "/aininja/legal/terms.html", "/aininja/legal/privacy.html", "/", "/hininja/"];
 const AGENT_ADDRESS = "aininja@ricktew.com"; // printed on purpose; Rick's own never is
 const PLACEHOLDERS = new Set(["you@yourcompany.com"]); // the mailbox field's example text
@@ -30,8 +30,9 @@ const RETIRED = [
 const RETIRED_FILES = ["aininja/index.html", "aininja/ask.js", "aininja/done-for-you/index.html",
   "aininja/r2/index.html", "llms.txt"];
 // Dollar figures a small page may print: the two plans, R2's three numbers,
-// and the Shop's prices (PAM, $2.99, since 30 Sep 2026).
-const PRICES = new Set(["$2,222", "$222", "$99", "$999", "$189", "$2.99"]);
+// and the Shop's prices (PAM, $2.99, since 30 Sep 2026; the helpers' $22 a
+// month, shown "Not open yet" for Rick's review on 30 Sep).
+const PRICES = new Set(["$2,222", "$222", "$99", "$999", "$189", "$2.99", "$22"]);
 
 const found = {};
 function flag(kind, msg) { (found[kind] = found[kind] || []).push(msg); }
