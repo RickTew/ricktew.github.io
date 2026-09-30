@@ -13,7 +13,7 @@ const fs = require("fs"), path = require("path");
 const { chromium, devices } = require("/Users/ricktew/Dev/Roy Martina/newnei-app/node_modules/playwright");
 const ROOT = path.join(__dirname, ".."), BASE = "http://localhost:8765";
 const PAGES = ["/aininja/", "/aininja/done-for-you/", "/aininja/r2/", "/aininja/start/",
-  "/aininja/shop/", "/aininja/shop/thanks/", "/aininja/shop/thanks/?link=expired", "/aininja/shop/download/",
+  "/aininja/shop/", "/aininja/shop/win-cmt-pam/", "/aininja/shop/thanks/", "/aininja/shop/thanks/?link=expired", "/aininja/shop/download/",
   "/aininja/side-hustle-summit/", "/aininja/legal/terms.html", "/aininja/legal/privacy.html", "/", "/hininja/"];
 const AGENT_ADDRESS = "aininja@ricktew.com"; // printed on purpose; Rick's own never is
 const PLACEHOLDERS = new Set(["you@yourcompany.com"]); // the mailbox field's example text

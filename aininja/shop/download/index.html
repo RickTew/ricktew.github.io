@@ -122,8 +122,9 @@ footer a:hover{color:var(--blue-d)}
 (function(){
   "use strict";
   var FN = "https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/d";
-  // One line per product. An unknown sku still downloads; it just says "Your file".
-  var PRODUCTS = { pam: "The Personal Achievement Map" };
+  // One line per product, keyed by the Dojo's SKU (p=WIN-CMT-PAM). "pam" is the
+  // key the first mails used. An unknown sku still downloads; it just says "Your file".
+  var PRODUCTS = { "WIN-CMT-PAM": "The Personal Achievement Map", pam: "The Personal Achievement Map" };
   var SIZES = { letter: "US Letter", a4: "A4" };
 
   function params(s) {

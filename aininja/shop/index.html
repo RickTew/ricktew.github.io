@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Shop: PAM, the Personal Achievement Map | Rick Tew</title>
-<meta name="description" content="Pre-made, to buy and use. PAM, the Personal Achievement Map: a WinJitsu workbook by Rick Tew. Seven steps as seven belt ranks, white to black. Printable PDF, US Letter and A4. $2.99.">
+<title>The Shop: pre-made workbooks | Rick Tew</title>
+<meta name="description" content="The Shop by Rick Tew: pre-made WinJitsu workbooks, printable PDF, US Letter and A4. Pay once, and the download comes to your email.">
 <link rel="canonical" href="https://ricktew.com/aininja/shop/">
 <link rel="icon" href="/assets/images/favicon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
 <meta name="theme-color" content="#1e73bd">
-<meta property="og:title" content="Say hello to PAM, the Personal Achievement Map">
-<meta property="og:description" content="A WinJitsu workbook by Rick Tew. Printable PDF, US Letter and A4. $2.99.">
+<meta property="og:title" content="The Shop by Rick Tew">
+<meta property="og:description" content="Pre-made WinJitsu workbooks. Printable PDF, US Letter and A4.">
 <meta property="og:url" content="https://ricktew.com/aininja/shop/">
 <meta property="og:image" content="https://ricktew.com/aininja/shop/pam-map.png">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":"PAM, the Personal Achievement Map","description":"A WinJitsu workbook by Rick Tew. Seven steps as seven belt ranks, white to black: Purpose, Goal, Declaration, Vision, Beliefs, Plan, Motto. Printable PDF, 13 pages, US Letter and A4.","image":"https://ricktew.com/aininja/shop/pam-map.png","brand":{"@type":"Brand","name":"WinJitsu"},"author":{"@type":"Person","name":"Rick Tew","url":"https://ricktew.com/"},"url":"https://ricktew.com/aininja/shop/","offers":{"@type":"Offer","price":"2.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ricktew.com/aininja/shop/#pam"}}
+{"@context":"https://schema.org","@type":"ItemList","name":"The Shop","url":"https://ricktew.com/aininja/shop/","itemListElement":[{"@type":"ListItem","position":1,"url":"https://ricktew.com/aininja/shop/win-cmt-pam/","name":"PAM, the Personal Achievement Map"}]}
 </script>
 <style>
 :root{
@@ -67,31 +67,30 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .hero h1 .c{color:var(--blue)}
 .hero .lede{margin-top:18px;font-size:19px;font-weight:600;color:var(--ink2);max-width:56ch}
 
-/* One product for now. Each product is one .item; the next one is a copy. */
-.item{padding:34px 0 64px}
-.item-card{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;align-items:start;border:2px solid var(--line);border-radius:22px;padding:34px;box-shadow:0 16px 40px rgba(16,20,24,.08)}
-@media (max-width:760px){ .item-card{grid-template-columns:1fr;gap:26px;padding:22px 18px} }
-.item-pic{text-align:center}
-.item-pic img{display:block;width:100%;max-width:320px;height:auto;margin:0 auto}
-@media (max-width:760px){ .item-pic img{max-width:220px} }
-.item h2{font-size:clamp(30px,4.6vw,44px);font-weight:900;margin-top:10px}
-.item .name{margin-top:6px;font-size:18px;font-weight:800;color:var(--ink2)}
-.item .why{margin-top:22px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:clamp(21px,2.6vw,26px);line-height:1.25;color:var(--blue-d)}
-.item .what{margin-top:10px;font-size:17px;font-weight:600;color:var(--ink2)}
-.belts-k{margin-top:26px;font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.belts{list-style:none;margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:6px 20px}
-@media (max-width:420px){ .belts{grid-template-columns:1fr} }
-.belts li{display:flex;align-items:center;gap:12px;padding:7px 0;border-bottom:1px solid var(--line);font-weight:800;line-height:1.25}
-.belts li span{display:block;font-size:13px;font-weight:700;color:var(--muted)}
-.belts svg{flex:0 0 auto;width:34px;height:20px}
-.facts{list-style:none;margin-top:22px;font-size:15px;font-weight:600;color:#4b5563}
-.facts li{padding:2px 0}
-.facts li::before{content:"\2713";color:var(--blue);font-weight:900;margin-right:10px}
-.buy{margin-top:26px;display:flex;align-items:center;gap:14px 22px;flex-wrap:wrap}
-.buy .amount{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:40px;line-height:1}
-.buy .amount small{font-size:15px;font-weight:800;color:var(--muted)}
-.after{margin-top:14px;font-size:14px;font-weight:700;color:var(--muted);max-width:52ch}
-.ask{margin-top:10px;font-size:14px;font-weight:700}
+.shelf{padding:26px 0 30px}
+.shelf h2,.soon h2{font-size:clamp(22px,3vw,28px);font-weight:900}
+/* Small thumbnails: every product is one .tile, linked to its own page. */
+.tiles{list-style:none;margin-top:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+@media (max-width:480px){ .tiles{grid-template-columns:1fr 1fr;gap:12px} }
+.tile a{display:flex;flex-direction:column;height:100%;background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px 10px 14px;text-decoration:none;color:var(--ink);transition:border-color .12s ease,box-shadow .12s ease}
+.tile a:hover{border-color:var(--blue);box-shadow:0 8px 24px rgba(30,115,189,.14)}
+.tile a:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.tile .pic{background:var(--panel);border-radius:10px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;padding:10px}
+.tile img{display:block;max-width:100%;max-height:100%;width:auto;height:auto}
+.tile b{display:block;margin-top:10px;font-size:15px;font-weight:800;line-height:1.3}
+.tile .sku{display:block;margin-top:3px;font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--muted)}
+.tile .price{display:block;margin-top:auto;padding-top:8px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:18px}
+.soon{padding:30px 0 64px;border-top:1px solid var(--line)}
+.soon .sub{margin-top:8px;color:var(--muted);font-weight:700;font-size:15px}
+.soon details{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.soon summary{cursor:pointer;list-style:none;position:relative;padding:13px 44px 13px 16px;font-weight:800}
+.soon summary::-webkit-details-marker{display:none}
+.soon summary::after{content:"+";position:absolute;right:16px;top:9px;font-weight:900;font-size:19px;color:var(--blue)}
+.soon details[open] summary::after{content:"\2212"}
+.soon summary span{color:var(--muted);font-weight:700;font-size:14px}
+.soon ul{list-style:none;padding:0 16px 12px;columns:2 240px;column-gap:24px}
+.soon li{break-inside:avoid;padding:6px 0;border-top:1px solid var(--line);font-size:14.5px;font-weight:700;line-height:1.35}
+.soon li small{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--muted)}
 
 footer{padding:26px 0 40px;font-size:13px;font-weight:700;color:var(--muted);border-top:1px solid var(--line)}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -124,45 +123,127 @@ footer a:hover{color:var(--blue-d)}
   </div>
 </header>
 
-<section class="item" id="pam">
+<section class="shelf" id="now">
   <div class="wrap">
-    <div class="item-card">
-      <div class="item-pic">
-        <img src="pam-map.png" alt="The PAM map: seven tiles, one for each step, from Purpose at the top to Motto at the bottom" width="816" height="1336">
-      </div>
-      <div>
-        <div class="k">A WinJitsu workbook &middot; by Rick Tew</div>
-        <h2>Say hello to PAM.</h2>
-        <p class="name">The Personal Achievement Map</p>
-        <p class="why">Success doesn't have to be complicated.</p>
-        <p class="what">PAM is a map designed to move you toward achieving a desired goal.</p>
+    <h2>Ready now</h2>
+    <ul class="tiles">
+      <li class="tile" data-sku="WIN-CMT-PAM"><a href="/aininja/shop/win-cmt-pam/">
+        <span class="pic"><img src="/aininja/shop/pam-map.png" alt="" width="816" height="1336" loading="lazy"></span>
+        <b>PAM, the Personal Achievement Map</b>
+        <span class="sku">WIN-CMT-PAM</span>
+        <span class="price">$2.99</span>
+      </a></li>
+    </ul>
+  </div>
+</section>
 
-        <p class="belts-k">Seven steps as seven belt ranks, white to black</p>
-        <ol class="belts">
-          <li><svg viewBox="0 0 34 20" aria-hidden="true"><path d="M1 5h32v6H1z M13 3h8v10h-8z M14 12l-4 7h5l2-4 2 4h5l-4-7z" fill="#fff" stroke="#9aa1a9" stroke-width="1.2" stroke-linejoin="round"/></svg><div>Purpose<span>White belt</span></div></li>
-          <li><svg viewBox="0 0 34 20" aria-hidden="true"><path d="M1 5h32v6H1z M13 3h8v10h-8z M14 12l-4 7h5l2-4 2 4h5l-4-7z" fill="#e8b10a"/></svg><div>Goal<span>Yellow belt</span></div></li>
-          <li><svg viewBox="0 0 34 20" aria-hidden="true"><path d="M1 5h32v6H1z M13 3h8v10h-8z M14 12l-4 7h5l2-4 2 4h5l-4-7z" fill="#f47216"/></svg><div>Declaration<span>Orange belt</span></div></li>
-          <li><svg viewBox="0 0 34 20" aria-hidden="true"><path d="M1 5h32v6H1z M13 3h8v10h-8z M14 12l-4 7h5l2-4 2 4h5l-4-7z" fill="#22b35a"/></svg><div>Vision<span>Green belt</span></div></li>
-          <li><svg viewBox="0 0 34 20" aria-hidden="true"><path d="M1 5h32v6H1z M13 3h8v10h-8z M14 12l-4 7h5l2-4 2 4h5l-4-7z" fill="#3b82f6"/></svg><div>Beliefs<span>Blue belt</span></div></li>
-          <li><svg viewBox="0 0 34 20" aria-hidden="true"><path d="M1 5h32v6H1z M13 3h8v10h-8z M14 12l-4 7h5l2-4 2 4h5l-4-7z" fill="#e5383b"/></svg><div>Plan<span>Red belt</span></div></li>
-          <li><svg viewBox="0 0 34 20" aria-hidden="true"><path d="M1 5h32v6H1z M13 3h8v10h-8z M14 12l-4 7h5l2-4 2 4h5l-4-7z" fill="#101418"/></svg><div>Motto<span>Black belt</span></div></li>
-        </ol>
-
-        <ul class="facts">
-          <li>Printable PDF, US Letter and A4</li>
-          <li>13 pages, with the map sheet to print and fill in</li>
-          <li>A download, nothing is shipped. For your own use.</li>
-        </ul>
-
-        <div class="buy" id="buy">
-          <div class="amount">$2.99 <small>USD</small></div>
-          <!-- Stripe Payment Link on Tew's Inc, plink_1ULKLE24k28tlk41lQTOvSGM (the Dojo, 30 Sep). After payment Stripe sends the buyer to /aininja/shop/thanks/. -->
-          <a class="btn btn-blue" id="buyPam" href="https://buy.stripe.com/8x2aEQ8yV9TGbylaiqg3601">Buy PAM</a>
-        </div>
-        <p class="after">After you pay, the download link comes to your email. Save the file when it arrives: the link runs out.</p>
-        <p class="ask"><a href="/aininja/#opt-8c">A question first? Write to me.</a></p>
-      </div>
-    </div>
+<section class="soon" id="soon">
+  <div class="wrap">
+    <h2>Coming soon</h2>
+<!-- SHOP-SOON:START (written by tests/shop-build.py from the Dojo's catalogue; do not hand-edit) -->
+    <p class="sub">91 more WinJitsu workbooks, by area. Tap an area to see them.</p>
+    <details><summary>Achieving Combined Excellence <span>&middot; 20 workbooks</span></summary><ul>
+      <li>Achieving Combined Excellence<small>WIN-ACE-ACHIEVING-EXCELLENCE</small></li>
+      <li>Deciding to Be an ACE<small>WIN-ACE-DECIDING-TO-BE-AN-ACE</small></li>
+      <li>Open Your Eyes<small>WIN-ACE-OPEN-YOUR-EYES</small></li>
+      <li>Warming Up for Life<small>WIN-ACE-WARMING-UP-FOR-LIFE</small></li>
+      <li>Calculated Risk<small>WIN-ACE-CALCULATED-RISK</small></li>
+      <li>Stretch Past Your Limits<small>WIN-ACE-STRETCH-PAST-YOUR-LIMITS</small></li>
+      <li>It Is in the Doing<small>WIN-ACE-IT-IS-IN-THE-DOING</small></li>
+      <li>Stick to the Task<small>WIN-ACE-STICK-TO-THE-TASK</small></li>
+      <li>Walk Before You Fly<small>WIN-ACE-WALK-BEFORE-YOU-FLY</small></li>
+      <li>Thumbs Up Attitude<small>WIN-ACE-THUMBS-UP-ATTITUDE</small></li>
+      <li>Be Young - Have Fun<small>WIN-ACE-BE-YOUNG-HAVE-FUN</small></li>
+      <li>Live on the Bright Side<small>WIN-ACE-LIVE-ON-THE-BRIGHT-SIDE</small></li>
+      <li>Time for Freedom<small>WIN-ACE-TIME-FOR-FREEDOM</small></li>
+      <li>Determine Your Values<small>WIN-ACE-DETERMINE-YOUR-VALUES</small></li>
+      <li>Design Your Destiny<small>WIN-ACE-DESIGN-YOUR-DESTINY</small></li>
+      <li>Success Is Failure<small>WIN-ACE-SUCCESS-IS-FAILURE</small></li>
+      <li>Choose Your Adventure!<small>WIN-ACE-CHOOSE-YOUR-ADVENTURE</small></li>
+      <li>Can You Spare Some Change?<small>WIN-ACE-SPARE-SOME-CHANGE</small></li>
+      <li>Direction of Thought<small>WIN-ACE-DIRECTION-OF-THOUGHT</small></li>
+      <li>Synergy for Success<small>WIN-ACE-SYNERGY-FOR-SUCCESS</small></li>
+    </ul></details>
+    <details><summary>Creative Mental Training <span>&middot; 11 workbooks</span></summary><ul>
+      <li>Creative Mental Training<small>WIN-CMT-CREATIVE-MENTAL-TRAINING</small></li>
+      <li>Positive Creativity<small>WIN-CMT-POSITIVE-CREATIVITY</small></li>
+      <li>Thinking in Pictures<small>WIN-CMT-THINKING-IN-PICTURES</small></li>
+      <li>The Way Is in Training<small>WIN-CMT-THE-WAY-IS-IN-TRAINING</small></li>
+      <li>Daily CMT<small>WIN-CMT-DAILY-CMT</small></li>
+      <li>Brain Storms<small>WIN-CMT-BRAIN-STORMS</small></li>
+      <li>Two Minute Ninja<small>WIN-CMT-TWO-MINUTE-NINJA</small></li>
+      <li>Mental Kata<small>WIN-CMT-MENTAL-KATA</small></li>
+      <li>Memory Made EASI-A<small>WIN-CMT-MEMORY-MADE-EASI-A</small></li>
+      <li>Self Image Resume<small>WIN-CMT-SELF-IMAGE-RESUME</small></li>
+      <li>Personal Power<small>WIN-CMT-PERSONAL-POWER</small></li>
+    </ul></details>
+    <details><summary>Mind - Body - Spirit <span>&middot; 20 workbooks</span></summary><ul>
+      <li>Mind - Body - Spirit<small>WIN-MBS-MIND-BODY-SPIRIT</small></li>
+      <li>Walls of Change<small>WIN-MBS-WALLS-OF-CHANGE</small></li>
+      <li>Mind Strategies<small>WIN-MBS-MIND-STRATEGIES</small></li>
+      <li>Phases of Combat<small>WIN-MBS-PHASES-OF-COMBAT</small></li>
+      <li>Win Without Fighting<small>WIN-MBS-WIN-WITHOUT-FIGHTING</small></li>
+      <li>Body Strategies<small>WIN-MBS-BODY-STRATEGIES</small></li>
+      <li>The Air You Breathe<small>WIN-MBS-THE-AIR-YOU-BREATHE</small></li>
+      <li>The Water You Drink<small>WIN-MBS-THE-WATER-YOU-DRINK</small></li>
+      <li>The Food You Eat<small>WIN-MBS-THE-FOOD-YOU-EAT</small></li>
+      <li>Rest and Recovery<small>WIN-MBS-REST-AND-RECOVERY</small></li>
+      <li>Spirit Strategies<small>WIN-MBS-SPIRIT-STRATEGIES</small></li>
+      <li>Less Is More<small>WIN-MBS-LESS-IS-MORE</small></li>
+      <li>Now Presenting…You<small>WIN-MBS-NOW-PRESENTING-YOU</small></li>
+      <li>I Present You with This Gift<small>WIN-MBS-I-PRESENT-YOU-THIS-GIFT</small></li>
+      <li>Synergy of Mind-Body-Spirit<small>WIN-MBS-SYNERGY-MIND-BODY-SPIRIT</small></li>
+      <li>Mind, Body, Spirit Triangle<small>WIN-MBS-MBS-TRIANGLE</small></li>
+      <li>Focus<small>WIN-MBS-FOCUS</small></li>
+      <li>Avoiding Mental Bankruptcy<small>WIN-MBS-MENTAL-BANKRUPTCY</small></li>
+      <li>Less Stress Is Best<small>WIN-MBS-LESS-STRESS-IS-BEST</small></li>
+      <li>Breaking Barriers<small>WIN-MBS-BREAKING-BARRIERS</small></li>
+    </ul></details>
+    <details><summary>Motivation, Action &amp; Knowledge <span>&middot; 20 workbooks</span></summary><ul>
+      <li>Motivation, Action &amp; Knowledge<small>WIN-MAK-MOTIVATION-ACTION</small></li>
+      <li>Motivation Moves You<small>WIN-MAK-MOTIVATION-MOVES-YOU</small></li>
+      <li>Goals<small>WIN-MAK-GOALS</small></li>
+      <li>Perception<small>WIN-MAK-PERCEPTION</small></li>
+      <li>The Big Boss<small>WIN-MAK-THE-BIG-BOSS</small></li>
+      <li>Choosing Your Goals<small>WIN-MAK-CHOOSING-YOUR-GOALS</small></li>
+      <li>Lights, Camera, Action!<small>WIN-MAK-LIGHTS-CAMERA-ACTION</small></li>
+      <li>Act with Self-Interest<small>WIN-MAK-ACT-WITH-SELF-INTEREST</small></li>
+      <li>No One Is Coming<small>WIN-MAK-NO-ONE-IS-COMING</small></li>
+      <li>Doubt<small>WIN-MAK-DOUBT</small></li>
+      <li>Fear: Reality or Fiction<small>WIN-MAK-FEAR-REALITY-OR-FICTION</small></li>
+      <li>2 FAQ&#x27;s<small>WIN-MAK-2-FAQS</small></li>
+      <li>Drop Dead Dread<small>WIN-MAK-DROP-DEAD-DREAD</small></li>
+      <li>Confidence<small>WIN-MAK-CONFIDENCE</small></li>
+      <li>Smarter and Harder<small>WIN-MAK-SMARTER-AND-HARDER</small></li>
+      <li>Knowledge Is a Key<small>WIN-MAK-KNOWLEDGE-IS-A-KEY</small></li>
+      <li>Falling Forward<small>WIN-MAK-FALLING-FORWARD</small></li>
+      <li>Labels Limit Potential<small>WIN-MAK-LABELS-LIMIT-POTENTIAL</small></li>
+      <li>True Knowledge<small>WIN-MAK-TRUE-KNOWLEDGE</small></li>
+      <li>Percentage Principle<small>WIN-MAK-PERCENTAGE-PRINCIPLE</small></li>
+    </ul></details>
+    <details><summary>Neuro Reasons for Growth <span>&middot; 20 workbooks</span></summary><ul>
+      <li>Neuro Reasons for Growth<small>WIN-NRG-NEURO-REASONS-FOR-GROWTH</small></li>
+      <li>Passion Is Energy<small>WIN-NRG-PASSION-IS-ENERGY</small></li>
+      <li>What Makes NRG?<small>WIN-NRG-WHAT-MAKES-NRG</small></li>
+      <li>Change Is a Choice<small>WIN-NRG-CHANGE-IS-A-CHOICE</small></li>
+      <li>Blow Away Your Fear<small>WIN-NRG-BLOW-AWAY-YOUR-FEAR</small></li>
+      <li>How Do You Feel Now?<small>WIN-NRG-HOW-DO-YOU-FEEL-NOW</small></li>
+      <li>Your Mind Control<small>WIN-NRG-YOUR-MIND-CONTROL</small></li>
+      <li>What&#x27;s Your State of Mind?<small>WIN-NRG-WHATS-YOUR-STATE-OF-MIND</small></li>
+      <li>Picture Perfect<small>WIN-NRG-PICTURE-PERFECT</small></li>
+      <li>Is Your Sky Blue?<small>WIN-NRG-IS-YOUR-SKY-BLUE</small></li>
+      <li>Using a 3D Memory<small>WIN-NRG-USING-A-3D-MEMORY</small></li>
+      <li>Who Are Your Role Models?<small>WIN-NRG-WHO-ARE-YOUR-ROLE-MODELS</small></li>
+      <li>Pain-Pleasure Principle<small>WIN-NRG-PAIN-PLEASURE-PRINCIPLE</small></li>
+      <li>Making Mind Movies<small>WIN-NRG-MAKING-MIND-MOVIES</small></li>
+      <li>Physiology Controls<small>WIN-NRG-PHYSIOLOGY-CONTROLS</small></li>
+      <li>Stand This Way<small>WIN-NRG-STAND-THIS-WAY</small></li>
+      <li>Elements<small>WIN-NRG-ELEMENTS</small></li>
+      <li>Hyah! Shout It Out<small>WIN-NRG-HYAH-SHOUT-IT-OUT</small></li>
+      <li>Stop, Drop and Roll<small>WIN-NRG-STOP-DROP-AND-ROLL</small></li>
+      <li>Get the Job You Love<small>WIN-NRG-GET-THE-JOB-YOU-LOVE</small></li>
+    </ul></details>
+<!-- SHOP-SOON:END -->
   </div>
 </section>
 
