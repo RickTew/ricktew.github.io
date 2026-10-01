@@ -15,14 +15,19 @@ root=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 page=os.path.join(root,'aininja','index.html')
 s=open(page,encoding='utf-8').read()
 def txt(h): return html.unescape(re.sub(r'<[^>]+>','',h)).strip()
-faq_block=re.search(r'<section class="f8a" id="opt-8a">(.*?)</section>',s,re.S).group(1)
+# Five questions sit under How it works in #you since 1 Oct 2026 (Rick's go on
+# the less-is-more pass); the rest stay in the FAQ band. Both are visible, so
+# both go into the FAQPage, in page order.
+faq_block=re.search(r'<div class="you-faq" id="faq-first">(.*?)</div>',s,re.S).group(1)+\
+          re.search(r'<section class="f8a" id="opt-8a">(.*?)</section>',s,re.S).group(1)
 faqs=re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>',faq_block,re.S)
 rows=re.findall(r'<details class="sol-row rv">\s*<summary><span class="nm">(.*?)</span><span class="tg">(.*?)</span></summary>',s,re.S)
 seats=sorted(set(re.findall(r'data-want="(The Agentic [^"]+ seat)"',s)))
 prices=re.findall(r'data-want="(Your Dojo), \$([\d,]+) a month"',s)
 P=dict(prices)
 r2=re.search(r'data-want="R2 Hosting, \$(\d+) to build, then \$(\d+) a month"',s)
-if not (len(faqs)>=7 and len(rows)==11 and len(seats)==6 and set(P)=={'Your Dojo'} and r2):
+# The six seat buttons left with the Masters band on 1 Oct 2026; seats may be 0.
+if not (len(faqs)>=7 and len(rows)==11 and len(seats) in (0,6) and set(P)=={'Your Dojo'} and r2):
     sys.exit("page shape changed: faqs %d rows %d seats %d prices %s"%(len(faqs),len(rows),len(seats),P))
 ld={"@context":"https://schema.org","@graph":[
  {"@type":"Person","@id":"https://ricktew.com/#rick","name":"Rick Tew","url":"https://ricktew.com/",
@@ -62,7 +67,7 @@ L=["# Rick Tew","",
 L+=["- %s: %s"%(txt(n),txt(t)) for n,t in rows]
 L+=["","## Compared with Claudeforce (Salesforce plus an AI model, announced 26 Aug 2026)","",
 "- Claudeforce is Salesforce's CRM with an AI model inside (announced 26 Aug 2026, no price published as of 13 Sep 2026). Salesforce list prices read 13 Sep 2026: a seat that can take the AI is Core $195 to Max $550 per user per month, the AI add-on from $125 a user a month (Max includes it), actions metered at about $0.10 each; ten people a year is $38,400 to $66,000 in licenses, and the customer still sets it up, learns it and runs it. Rick's answer, with the tech done for the customer: R2 Hosting ($222 to build, then $99 a month) is the site, the forms, a customer list and a shared inbox, built and run by Rick; Your Dojo ($2,222 a month flat, any number of people, the AI in the price) adds trained AI ninjas that draft every reply for one human press. The honest line stays: a three-person contact list should buy Starter at $25 a seat. https://ricktew.com/aininja/#claudeforce"]
-L+=["","## Seats (a job title, staffed by trained AI ninjas)",""]+["- %s"%x for x in seats]
+if seats: L+=["","## Seats (a job title, staffed by trained AI ninjas)",""]+["- %s"%x for x in seats]
 L+=["","## How to get in touch","",
 "- The mailbox on the AI Ninja page: https://ricktew.com/aininja/#opt-8c . A form that posts JSON; an agent can call it as the WebMCP tool post_letter_to_rick.",
 "- The Ninja Agent's address: aininja@ricktew.com . Answered by the AI, signed as the AI, from answers Rick wrote; Rick reads every message and follows up himself.",

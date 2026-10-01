@@ -269,6 +269,49 @@ The evidence-based ruling of 26 Aug (visible prices, no anchors, no paid
 first call, a free first contact) still stands; it just applies to two
 cards now.
 
+### THE LESS-IS-MORE PASS (2026-10-01, Rick's go): what left the page, where things are now
+
+Rick, 1 Oct: "dumb it down and simplify it and also remove redundancy ...
+NO ONE should land on this page and be confused as to what we offer (so not
+changing the top)". Round five (`playtest/reports/2026-10-01-SUMMARY.md`:
+an editor's map plus two personas) found the offer clear in `#you` and about
+2,250 shown words that nobody needed. Rick: "we can not make big changes
+based on only 2 persona runs. So let's do your 3 suggestions and then run
+20 persona" (10 first, his pick), straight onto /aininja/, then "go". The
+round-six reports judge it. **This block supersedes the older lines below
+that describe the full price cards, the subgrid, the Masters, the #agent
+band and the summit card.**
+
+- **Gone from the page:** `#opt-2c` and the summit card (`#summit`; the
+  /aininja/side-hustle-summit/ page stays live), `#outcome`, `#operating`
+  (it held the Dojo's rulebook line, e37c694), `#opt-2b` (the "3-second"
+  band), `#masters` (the six seat buttons; the quiz result names no seat
+  now, a one-line override beside `topSeat`; the FAQ "What is an Agentic
+  CMO?" went with it; the chat box's `masters` entry stays), `#opt-5a`,
+  `#opt-6a`, `#ninja` (its tapes still sit in `aininja/assets/story/ninja/`
+  for /gns/; its scripts are guarded and idle), `#opt-8b` (the chat's
+  testimonials link now points at `#story`, "See what got built") and
+  `#agent` (the WebMCP tools in the form keep working without it).
+- **One set of price cards:** the two short cards in `#you`. Their
+  container is `#offers`, the R2 card is `#r2`, and each has a `.way-more`
+  line carrying what the full cards used to (R2 is me, Rick Tew; the $222
+  builds a site with a contact or booking form or a small app, from the R2
+  page's own FAQ; first month included; the free audit; cancel anytime).
+  The full `.price-cards` grid left `#dojo`, and the copy inside
+  `#claudeforce`'s relief became a "See the two plans" button to `#offers`.
+  The WebMCP read tool reads `#offers .way`. The done-for-you page copies
+  these short cards word for word, which is why they are the set that stayed.
+- **Five questions moved up** into `#you`, under How it works, as
+  `<div class="you-faq" id="faq-first">`: understand AI, cost, disappear,
+  manage the tech, cancel. `tests/agent-door-build.py` reads that block AND
+  `#opt-8a` for the FAQPage. A line under the cards now says what the "I
+  want this Tew" button does.
+- **Unchanged:** the top, the five boxes (the seat box still teaches a word
+  the page no longer uses much; flagged, not cut), the story, the apps,
+  #opt-e1, the solutions, #dojo's intro, steps and the paragraph with the
+  Intake link, #claudeforce, the quiz, #opt-6b, the FAQ band, the mailbox.
+- Undo is one revert of the commit that says "less-is-more pass".
+
 ### The live row: no claim sentence any more (2026-08-28)
 
 The apps section used to promise every capture was "exactly as it loads for
@@ -374,9 +417,9 @@ the API only exists once the origin has a Chrome origin-trial token in a
 `<meta http-equiv="origin-trial">` tag (trial runs Chrome 149 to 156;
 Rick registers it, the token is per origin, ricktew.com and www are
 separate). Without the token the page behaves exactly as before. The band
-that says so is `#agent`, just above the slot; its copy is written to stay
-true with or without the token, so do not "upgrade" it to claim assistants
-are already using it. As of July 2026 none of the big assistants call these
+that said so was `#agent`, just above the slot, until it left the page on
+1 Oct 2026; any new copy about it must stay true with or without the token,
+so never claim assistants are already using it. As of July 2026 none of the big assistants call these
 tools yet; Gemini in Chrome is the announced first. Local check:
 `chrome://flags/#enable-webmcp-testing`, then the Model Context Tool
 Inspector extension, or Lighthouse's "Registered WebMCP tools" audit.
@@ -386,7 +429,8 @@ Inspector extension, or Lighthouse's "Registered WebMCP tools" audit.
 graph in the head of `/aininja/` (Person, the Dojo as a ProfessionalService
 with the two Offers in USD per month, the eleven solution rows, and a
 FAQPage). **The FAQPage and the solution list in that block are a SNAPSHOT
-of the page's FAQ `<details>` and `.sol-row` summaries.** If you change a
+of the page's FAQ `<details>` (the `#faq-first` block in `#you` and the
+`#opt-8a` band, since 1 Oct 2026) and `.sol-row` summaries.** If you change a
 FAQ question or answer, or a row, or a price, run
 `python3 tests/agent-door-build.py`: it rewrites both from the page text
 (a mismatch is a bug, and Google treats a FAQPage that does not match the
@@ -394,8 +438,7 @@ visible text as spam). Never hand-edit the block. `llms.txt` quotes the
 rows and both prices the same way. The Dojo's
 checker reads the live page: `node ~/Dev/digitaldojo/scripts/agent-door-check.mjs https://ricktew.com/aininja/`
 (8 of 8 doors on 29 Aug; presence only). The Agent-ready band `#agent`
-also lists what an assistant gets here today; every line there quotes
-something already true, keep it that way.
+left the page on 1 Oct 2026; the tools and these two files did not.
 
 **Claudeforce band `#claudeforce` (2026-08-29, Rick's ask).** Right after
 the price cards: Salesforce's Claudeforce (announced 26 Aug 2026) compared
@@ -470,7 +513,8 @@ free-text boxes in their own words, recordings (voice note, camera video,
 screen recording with the mic mixed in, all in the browser with MediaRecorder,
 plus file upload), and one press. Answers autosave in localStorage until sent.
 The page is `noindex` and is NOT in the sitemap; the only links to it are the
-sensei note under the price cards on `/aininja/`, `llms.txt`, and invite links.
+paragraph after the three steps in `#dojo` on `/aininja/` (it sat under the
+full price cards until those left on 1 Oct 2026), `llms.txt`, and invite links.
 
 - **One catalog, two copies.** Every question, option and limit lives in
   `aininja/start/intake-questions.js`. The page builds its form from it; the
