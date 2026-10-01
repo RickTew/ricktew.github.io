@@ -2123,7 +2123,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
             <button class="q-opt" data-v="18">Under $20</button>
             <button class="q-opt" data-v="30">Around $30</button>
             <button class="q-opt" data-v="60">$60 or more</button>
-            <button class="q-opt" data-v="30">No idea, and I would rather not invent one</button>
+            <button class="q-opt" data-v="none">No idea, and I would rather not invent one</button>
           </div>
         </div>
 
@@ -2898,6 +2898,10 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     var draftable=Math.round(hours*0.6);
     var monthly=Math.round((draftable*4.33*rate)/50)*50;
     var money=(who!=="passion" && who!=="none");   /* no invoice at the end of a passion project */
+    /* "No idea" used to carry the same value as "Around $30", so the result
+       printed a dollar figure "by your own numbers" the visitor never gave
+       (round seven, 1 Oct 2026). Now it shows hours, no dollars. */
+    var rateKnown = A("rate").v!=="none";
 
     /* who runs it once it exists used to pick one of two tiers. Since
        12 Sep 2026 (Rick's ruling) there is one Dojo offer: I build it, host
@@ -2923,15 +2927,19 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     if(hours<=2){
       big.innerHTML="You run a tight ship.";
       sub.textContent="By your own numbers there is not enough repeatable grind here yet to hand anyone, and I am not going to invent some. Come back the week that changes, or write to me if you think the quiz asked the wrong question, because it might have.";
-    } else if(money){
+    } else if(money && rateKnown){
       big.innerHTML="Of the hours you reported, about <b>"+draftable+" a week</b> are draft-and-file work"+many+
         ", worth roughly <b>$"+monthly.toLocaleString("en-US")+" a month</b> by your own numbers.";
       sub.textContent="That is the share a trained ninja drafts and files while every judgment call stays yours. Not a robot answering your customers behind your back: it proposes, you press.";
     } else {
       big.innerHTML="Of the hours you reported, about <b>"+draftable+" a week</b> come back"+many+".";
-      sub.textContent="You called this a passion project, so I am leaving the dollar figure out of it. Hours are the currency that matters here, and those are the ones I can give you back.";
+      sub.textContent = money
+        ? "You left the hourly value open, so I am leaving the dollar figure out of it. Hours are the currency that matters here, and those are the ones I can give you back."
+        : "You called this a passion project, so I am leaving the dollar figure out of it. Hours are the currency that matters here, and those are the ones I can give you back.";
     }
 
+    /* the honest-math line explains a dollar figure, so it shows only when there is one */
+    var hon=document.querySelector("#quiz .r-honest"); if(hon) hon.hidden=!(hours>2 && money && rateKnown);
     var kwrap=document.getElementById("rKatas"); kwrap.innerHTML="";
     function chip(text, quiet){
       var s=document.createElement("span"); s.textContent=text;
@@ -2977,7 +2985,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
        apart and the gap went unsaid. Now it is said, and R2 Hosting is the
        honest smaller start (Rick's go, 6 Sep 2026). */
     var priceNum = 2222;
-    var under = money && hours>2 && monthly < priceNum;
+    var under = money && rateKnown && hours>2 && monthly < priceNum;
     if(under){
       para("Worth saying out loud: by your own numbers that is about $"+monthly.toLocaleString("en-US")+" a month back against "+price+". It does not add up yet, and I would rather say so than sell it. Two smaller starts: one desk on its own, <b>"+(sols[0]||"the one that fits")+"</b>, as a build scoped and priced in writing first, or <b>R2 Hosting</b>, $222 to build your site or small app then $99 a month with me hosting it, if a site is the real need. Either grows into a Dojo the week the admin starts eating your hours.");
     }
@@ -2998,7 +3006,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       +"\nSolutions matched: "+(sols.length?sols.join(", "):"none")
       +(topSeat ? "\nSeat matched: "+topSeat+(SEAT_TRAINING[topSeat]?" (in training)":"") : "")
       +"\nEstimated draftable hours a week: "+draftable
-      +((hours>2 && money) ? "\nEstimated value: USD "+monthly+" a month" : "")
+      +((hours>2 && money && rateKnown) ? "\nEstimated value: USD "+monthly+" a month" : "")
       +(hours>2 ? (under ? "\nBy these numbers "+tier+" ("+price+") does not add up yet: a smaller start first, one desk scoped in writing or R2 Hosting."
                          : "\nSuggested plan: "+tier+" ("+price+")") : "")
       +((hours>2 && driver==="you") ? "\nI would want the daily work run for me: custom price, talk first." : "")

@@ -319,7 +319,7 @@
      link:{href:"#solutions", label:"See the solutions"}},
 
     {id:"channels", q:"Can it answer WhatsApp, LINE or Facebook messages, not just email?",
-     alt:["line messages","facebook messages","messenger","instagram messages","sms","text messages","other channels","not just email","only email","just email","handle whatsapp","does it handle","by whatsapp","on whatsapp","via whatsapp","come by whatsapp"],
+     alt:["line messages","facebook messages","messenger","instagram messages","sms","text messages","other channels","not just email","only email","just email","handle whatsapp","does it handle","by whatsapp","on whatsapp","via whatsapp","come by whatsapp","line and","and whatsapp","on line","whatsapp booking","whatsapp bookings","instagram","instagram dms","dms","texts","texting","text my customers"],
      keys:"whatsapp line facebook messenger instagram sms text texts channel channels chat chats",
      a:"<p>Email first, because that is where every desk I have built runs today: The Front Desk drafts replies to customer mail, The Money Desk files payment mail, The Booking Desk takes its bookings from a plain email. Another channel is a build, not a switch. If your customers live on WhatsApp or LINE, tell me which one and what they usually ask, and I scope it in writing before the clock starts. The rule does not change with the channel: nothing goes out without a human press.</p>",
      cta:{what:"the desks on my messaging channel", kind:"build", note:"Which channel your customers use, and what they usually ask.", label:"Ask about a channel"}},
@@ -343,7 +343,7 @@
      link:{href:"/aininja/side-hustle-summit/", label:"Read the plain-words page"}},
 
     {id:"cancel", q:"Can I cancel?",
-     alt:["cancel","lock in","locked in","commitment","minimum term","tied in","how long am i"],
+     alt:["cancel","lock in","locked in","commitment","minimum term","tied in","how long am i","get out of it","get out","how do i leave","stop paying","if i stop paying","walk away"],
      keys:"cancel cancelling cancellation contract contracts lock locked commit commitment minimum term terms subscription quit stop leave leaving refund refunds notice",
      a:"<p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack by design, so there is nothing to hand back or log out of: your domain, your content and your data leave with you, and I do not keep a copy; the build and the hosting end with the subscription. Nothing is charged after.</p>"},
 
@@ -359,7 +359,7 @@
      a:"<p>The audit first, and it is free: we map where your hours actually go, together, in writing. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt: it can be up and running within days. It proves itself before anything widens.</p><p>That is the order it happened in for me: the gym's inbox first, then bookings, then the books, each one earning the next.</p>"},
 
     {id:"how-long", q:"How long does it take?",
-     alt:["how long","how fast","how quickly","how soon","timeline","time frame","timeframe","when will it","up and running","start tonight","tonight","this month","this week","working this month","start date","when can we start","when can i start","how soon can we start"],
+     alt:["how long","how fast can you","how fast can it","how fast to set up","how quickly can you","how soon","timeline","time frame","timeframe","when will it","up and running","start tonight","tonight","this month","this week","working this month","start date","when can we start","when can i start","how soon can we start"],
      keys:"long fast quick quickly timeline weeks week days months soon deliver delivery ready running live tonight date",
      a:"<p>Days, for the first desk. The audit comes first, we map where your hours go. Then your first ninja takes the biggest task, usually the inbox, and it can be up and running within days, at white belt: it drafts, you press. It widens once it has proven itself, not on a calendar.</p><p>Tonight? The mailbox at the bottom of this page, and I reply myself, usually within a day.</p>"},
 
@@ -387,7 +387,7 @@
      link:{href:"#story", label:"See what got built"}},
 
     {id:"contact", q:"How do I contact you? Can we talk on the phone?",
-     alt:["contact you","mailbox","the mailbox","email address","your email","phone number","your phone","call you","a call","zoom","book a call","talk to you","get in touch","reach you","line id","talk on whatsapp","chat on whatsapp","whatsapp you","your whatsapp","speak to you","speak with you","talk to rick","free consultation"],
+     alt:["contact you","mailbox","the mailbox","email address","your email","phone number","your phone","call you","a call","zoom","book a call","talk to you","get in touch","reach you","line id","talk on whatsapp","chat on whatsapp","whatsapp you","your whatsapp","speak to you","speak with you","talk to rick","free consultation","ring you","can i ring","telephone","on the phone","phone you"],
      keys:"contact email phone call calls zoom meeting meet talk chat reach whatsapp telegram number address consultation consult conversation",
      a:"<p>Through my mailbox at the bottom of this page. My address is not written anywhere here for the crawlers to eat, and the mailbox does not open your mail app. Your message lands with my Ninja Agent, which writes back within a minute from what I wrote; I read every message and follow up myself, usually within a day. Or email it straight: aininja@ricktew.com.</p><p>The first conversation happens in writing. I stick to text on purpose: everything we agree is on the record. A call is a custom step, for the builds that need one.</p>",
      cta:{what:"a conversation", kind:"other", note:"Tell me what to call you about and when.", label:"Write to Rick"}},
@@ -414,7 +414,7 @@
      a:"<p>The build is mine, and it lives on my stack: that is what keeps the price flat, and it means you never log into a server, renew a certificate or fix a bug. When something needs changing, you tell me. Your domain, your content and your data are yours, always, and they leave with you; I do not keep a copy. Cancel and the hosting ends with the paid month; nothing is charged after.</p><p>Want the build inside your own accounts instead, as a thing you own outright? That is a custom job, quoted in writing, and it costs more, because every login, registrar setting and card approval on your side is an hour of the build.</p>"},
 
     {id:"existing-apps", q:"Does it replace the apps I already pay for?",
-     alt:["already pay for","apps i pay for","software i already use","software we already use","software we use","the software i use","my software","our software","existing software","booking app","booking software","booking system","my till","the till","card reader","point of sale","pos system","my pos","rota app","work with my","works with my","work with our","work with that","connect to my","connect to our","plug into","integrate","integrates","integration","sit on top","sits on top","on top of my","replace my","replaces my","get rid of my"],
+     alt:["already pay for","apps i pay for","software i already use","software we already use","software we use","the software i use","my software","our software","existing software","booking app","booking software","booking system","my till","the till","card reader","point of sale","pos system","my pos","rota app","work with my","works with my","work with our","work with that","connect to my","connect to our","plug into","integrate","integrates","integration","sit on top","sits on top","on top of my","replace my","replaces my","get rid of my","crm","my crm","the crm","quickbooks","xero","shopify","dentrix","cliniko","booking sites","booking com","agoda","airbnb","work with booking"],
      keys:"replace replaces replacing existing already software app apps system systems booking till pos square cliniko rota integrate integration connect connects plug alongside",
      a:"<p>Not by default. It works alongside what you already use, like your booking app or your till. The free audit maps what connects to them, and whether anything is worth replacing. Name the apps you run when you write, so the audit can start from them.</p>"},
 
@@ -477,13 +477,13 @@
      cta:{what:"The Front Desk", kind:"build", note:"Support replies drafted on auto. You press send."}},
 
     {id:"money-desk", q:"What is The Money Desk?", sol:"The Money Desk",
-     alt:["money desk","payment mail","payment emails","did that payment","the books","bookkeeping","reconciliation","reconcile payments"],
+     alt:["money desk","payment mail","payment emails","did that payment","the books","bookkeeping","reconciliation","reconcile payments","send the invoice","send invoices","invoicing","the invoices"],
      keys:"payment payments paid money received books bookkeeping reconcile reconciliation match matching invoices invoice accounting accounts file files filing bank",
      a:"<p><b>Payment mail books itself. One press, done.</b> \"Money received\" mails file themselves and match against what is owed. One press confirms and writes the books. No more \"did that payment come in?\"</p>",
      cta:{what:"The Money Desk", kind:"build", note:"Payment mail books itself. One press, done."}},
 
     {id:"booking-desk", q:"What is The Booking Desk?", sol:"The Booking Desk",
-     alt:["booking desk","online booking","online bookings","take bookings","bookings","appointments","scheduling","book a session"],
+     alt:["booking desk","online booking","online bookings","take bookings","bookings","appointments","scheduling","book a session","late cancellations","class cancellations","cancellation messages","waitlist","waitlists","wait list","no shows","no-shows","no show","no-show","reminders","reschedule","reschedules"],
      keys:"booking bookings book books appointment appointments schedule scheduling calendar reminders reminder reschedule reschedules cancels slots slot availability",
      a:"<p><b>Bookings on autopilot. No back and forth.</b> People book you without an account or email ping-pong. Reminders, reschedules and cancels handle themselves. It ran my gym while I taught the classes.</p><p>At my spa it also knows the furniture: three foot chairs, two beds, one mat, and each therapist's call-in notice, so it only offers a slot the room can actually hold.</p>",
      cta:{what:"The Booking Desk", kind:"build", note:"Bookings on autopilot. No back and forth."}},
@@ -531,7 +531,7 @@
      cta:{what:"The Quiz Funnel", kind:"build", note:"A quiz that turns visitors into leads."}},
 
     {id:"video-room", q:"What is The Video Room?", sol:"The Video Room",
-     alt:["video room","video calls","voice calls","calls inside","paid room","paid rooms","no-show","no show"],
+     alt:["video room","video calls","voice calls","calls inside","paid room","paid rooms","no-show refund","no show refund","refunds itself"],
      keys:"video calls call voice zoom rooms room paid refund refunds no-show noshow dial",
      a:"<p><b>Calls inside your own app.</b> Voice and video inside your own app: staff dial a member, a paid room opens when payment lands, a no-show refunds itself. Built, in human testing now.</p>",
      cta:{what:"The Video Room", kind:"build", note:"Calls inside your own app."}},
