@@ -690,7 +690,7 @@ footer a:hover{text-decoration:underline}
 .sb-more[open] summary::after{content:"\2212"}
 .sb-more p{margin:8px 0 0;max-width:760px}
 /* the first box arrives drawn (round seven, 1 Oct 2026: a scrolling reader saw an empty frame) */
-.sb-frame.sb-end .is [class*="-"]{animation-delay:-60s !important}
+.sb-frame.sb-end .is [class*="-"]:not(.is-cycle){animation-delay:-60s !important}  /* the cycling sign keeps its own stagger, or all its names land on top of each other */
 .sb-wrap{margin-top:22px}
 .sb-wrap>summary{display:inline-block;cursor:pointer;list-style:none;font-weight:900;font-size:15px;color:var(--blue);border-bottom:2px solid currentColor;padding-bottom:1px}
 .sb-wrap>summary::-webkit-details-marker{display:none}

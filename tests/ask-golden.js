@@ -100,6 +100,8 @@ var GOLD=[
   ["does it work with my CRM", "existing-apps"],
   ["does this work with Booking.com and Agoda", "existing-apps"],
   ["can it send the invoice when the job is done", "money-desk"],
+  ["are you HIPAA compliant", "data-privacy"],
+  ["will you sign a business associate agreement", "data-privacy"],
   ["what is your email address", "contact"],
   ["can I email the ninja to try it", "email-the-ninja"],
   ["can we book a call", "contact"],
