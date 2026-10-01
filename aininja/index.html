@@ -2109,7 +2109,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 
         <div class="q-step" data-q="where" data-multi="1">
           <h3>Now the honest one. Where do the hours actually go?</h3>
-          <p class="q-note">Tap everything that is true. This is the question that decides what I would build you, so do not be shy.</p>
+          <p class="q-note">Tap everything that is true, the one that eats the most time first. This is the question that decides what I would build you, so do not be shy.</p>
           <div class="q-opts">
             <button class="q-opt" data-v="front" data-seat="Agentic Head of Customer Care" data-sol="The Front Desk">Answering the same questions, again and again</button>
             <button class="q-opt" data-v="booking" data-seat="Agentic Head of Customer Care" data-sol="The Booking Desk">Scheduling. Does Tuesday work, can we move it, are you free</button>
@@ -2117,7 +2117,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
             <button class="q-opt" data-v="marketing" data-seat="Agentic CMO" data-sol="The Marketing Room">Making things to say. Posts, newsletters, product copy, images</button>
             <button class="q-opt" data-v="retrieval" data-seat="Agentic Head of Customer Care" data-sol="The Answer Engine">Hunting for my own information. Where is that file, what did we quote</button>
             <button class="q-opt" data-v="publishing" data-seat="Agentic Head of Content" data-sol="The Publishing House">Writing the long things. A book, a course, the manual</button>
-            <button class="q-opt" data-v="calls" data-seat="Agentic Head of Content" data-sol="The Video Room">Calls. Setting them up, sitting in them, writing them up after</button>
+            <button class="q-opt" data-v="calls" data-seat="Agentic Head of Content" data-sol="The Video Room">Video calls. Setting them up, sitting in them, writing them up after</button>
             <button class="q-opt" data-v="handoff" data-seat="Agentic Chief of Staff" data-sol="Colleagues by Email">Passing work between people, then chasing where it got to</button>
           </div>
           <button class="q-next" data-next="1">That is all of them &rarr;</button>
@@ -2825,16 +2825,21 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     var next = step.querySelector(".q-next");
     if(multi && next){
       next.disabled = true;
+      /* the first job tapped leads the result (1 Oct 2026): list order used
+         to decide, so The Front Desk, first on the list, always led */
+      var taps=0;
       step.querySelectorAll(".q-opt").forEach(function(btn){
         btn.setAttribute("aria-pressed","false");
         btn.addEventListener("click",function(){
           var on = btn.classList.toggle("on");
+          if(on) btn.dataset.tap=String(++taps); else delete btn.dataset.tap;
           btn.setAttribute("aria-pressed", on ? "true" : "false");
           next.disabled = !step.querySelector(".q-opt.on");
         });
       });
       next.addEventListener("click",function(){
-        var picked=Array.prototype.slice.call(step.querySelectorAll(".q-opt.on"));
+        var picked=Array.prototype.slice.call(step.querySelectorAll(".q-opt.on"))
+          .sort(function(a,b){ return (+a.dataset.tap||0)-(+b.dataset.tap||0); });
         answers[idx]={ key:step.dataset.q, multi:true,
                        v:picked.map(function(b){return b.dataset.v;}),
                        solutions:picked.map(function(b){return b.dataset.sol;}).filter(Boolean),
