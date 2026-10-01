@@ -291,12 +291,11 @@ Mailbox"). Never write the old name in this repo again. The Dojo's files
 still carry it in their paths (`packs/letter-slot.md`,
 `kits/letter-slot/`), and `gauntlet.ts` here keeps its first line until the
 Dojo renames its kit and it is re-copied; the playtest reports are history.
-The display name inside the `CONTACT_FROM` secret was the old name as well
-(checked 1 Oct against the secret's digest). That is the sender on the
-mailbox mail AND on the Intake receipt every client gets. The rename to "AI
-Ninja" (matching the receipt's sign-off) is a secret write, which is Rick's
-to run. To check it without reading the secret, compare the digest that
-`supabase secrets list` shows with the sha256 of the expected value.
+The display name inside the `CONTACT_FROM` secret was the old name as well.
+That is the sender on the mailbox mail AND on the Intake receipt every client
+gets. Rick renamed it to "AI Ninja", matching the receipt's sign-off, on
+1 Oct (verified by digest). To check a secret without reading it, compare the
+digest that `supabase secrets list` shows with the sha256 of the expected value.
 
 Live since 2026-08-23, inline in the closing band of `/aininja/` (`#opt-8c`).
 The form is deliberately ON the page rather than on a contact page: the band
