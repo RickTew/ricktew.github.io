@@ -287,10 +287,10 @@ name ... stop using letter slot for anything going forward."** The page has
 always said "My mailbox" and "Drop it in my mailbox"; "The Letter Slot" was
 only the Dojo kata's name, and it had leaked into the CMO seat's Runs line,
 the chat box and the WebMCP tool description (all now "the mailbox" or "The
-Mailbox"). Never write the old name in this repo again. The Dojo's files
-still carry it in their paths (`packs/letter-slot.md`,
-`kits/letter-slot/`), and `gauntlet.ts` here keeps its first line until the
-Dojo renames its kit and it is re-copied; the playtest reports are history.
+Mailbox"). Never write the old name in this repo again. The Dojo renamed
+its side the same day (its 6055770: `packs/mailbox.md`, `kits/mailbox/`), and
+`gauntlet.ts` here was re-copied from the renamed kit. The playtest reports
+are history and keep the old name.
 The display name inside the `CONTACT_FROM` secret was the old name as well.
 That is the sender on the mailbox mail AND on the Intake receipt every client
 gets. Rick renamed it to "AI Ninja", matching the receipt's sign-off, on
@@ -613,7 +613,7 @@ person reading the code reliably passes and the code reliably fails, and two
 earlier installs shipped that exact bug.
 
 **The nonsense check is the Dojo's file, not this repo's (2026-09-12).**
-`gauntlet.ts` beside `index.ts` is `~/Dev/digitaldojo/kits/letter-slot/gauntlet.ts`
+`gauntlet.ts` beside `index.ts` is `~/Dev/digitaldojo/kits/mailbox/gauntlet.ts`
 copied in verbatim; `index.ts` imports it. Fix it in the kit and re-copy,
 never edit the copy: a local rewrite is how the August version drifted one
 point too shy and passed four probes to the Ninja Agent in one night, each
@@ -639,7 +639,7 @@ caught it in seconds.
 `supabase/` is excluded from the Pages build by `_config.yml`, so the endpoint
 source is not served at ricktew.com. It was, briefly, until 2026-08-23.
 
-**Kata:** `~/Dev/digitaldojo/packs/letter-slot.md`. Receipts and the two
+**Kata:** `~/Dev/digitaldojo/packs/mailbox.md`. Receipts and the two
 findings this install sent back: `~/Dev/digitaldojo/private/proof-ledger.md`.
 
 ---
@@ -928,6 +928,6 @@ Format: `ricktew` on every platform (or however each platform renders it).
   actively harmful. It was then corrected to "the pattern is on the Dojo
   shelf if a page ever needs one". As of 2026-08-23 the site HAS one, so:
   **The mailbox is live** in the closing band of `/aininja/` (`#opt-8c`),
-  the third install of `~/Dev/digitaldojo/packs/letter-slot.md` after
+  the third install of `~/Dev/digitaldojo/packs/mailbox.md` after
   ninjagym.com and playtewgo.com. Anything on this site that needs a contact
   action links to it. See the Contact section below.

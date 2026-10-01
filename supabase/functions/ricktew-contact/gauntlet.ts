@@ -1,8 +1,8 @@
-// The Letter Slot's gauntlet, the nonsense half. Kata: packs/letter-slot.md.
+// The Mailbox's gauntlet, the nonsense half. Kata: packs/mailbox.md.
 //
 // COPY THIS FILE IN. Do not re-implement it from the kata's prose: the prose
 // was re-implemented once, on 2026-08, and the copy came out one point too
-// shy. It then passed four probe bots in a night on a slot that feeds an
+// shy. It then passed four probe bots in a night on a mailbox that feeds an
 // auto-answering desk, so every probe got a reply, which is a receipt telling
 // the bot's operator that the form works and the address is live.
 //

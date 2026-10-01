@@ -1,5 +1,5 @@
 // ricktew.com contact form. The server half of the mailbox on
-// /aininja/ (kata: ~/Dev/digitaldojo/packs/letter-slot.md): the site shows a form, this
+// /aininja/ (kata: ~/Dev/digitaldojo/packs/mailbox.md): the site shows a form, this
 // holds the address.
 //
 // Why a server exists at all for a static GitHub Pages site: the whole
@@ -46,7 +46,7 @@
 // agent's reply reaches the visitor and not this machine.
 
 // The nonsense check is the kit's file, copied in verbatim from
-// ~/Dev/digitaldojo/kits/letter-slot/gauntlet.ts. Fix it THERE and re-copy;
+// ~/Dev/digitaldojo/kits/mailbox/gauntlet.ts. Fix it THERE and re-copy;
 // a local edit here is how this install drifted one point too shy in the
 // first place and let four probe bots through in one night (12 Sep 2026).
 import { gauntletScore } from './gauntlet.ts';
