@@ -169,7 +169,7 @@
     {id:"talks-to-customers", q:"Will an AI talk to my customers without me knowing?",
      alt:["without me knowing","talk to my customers","answer my customers","email my customers","send emails for me","send email","sends email","on its own","by itself"],
      keys:"customers customer talk talks reply replies answers send sends sending email emails post posts pay pays automatic automatically autopilot unsupervised approve approval",
-     a:"<p>Never. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. That rule does not bend at any belt or any price.</p><p>One exception, and it is mine: the mailbox on this page is answered first by my Ninja Agent, signed as the AI, from answers I wrote. That is the demo. In your Dojo nothing sends without your press unless you choose the same for a lane of your own.</p>"},
+     a:"<p>Never. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. By default nothing goes out without a press. Sending on its own is your choice, task by task, and only after it has been tested.</p><p>One exception, and it is mine: the mailbox on this page is answered first by my Ninja Agent, signed as the AI, from answers I wrote. That is the demo. In your Dojo nothing sends without your press unless you choose the same for a lane of your own.</p>"},
 
     {id:"which-ai", q:"Which AI do you use?",
      alt:["which ai","what ai do you use","do you use","which model","what model","which llm","which company","which companies"],
@@ -189,7 +189,7 @@
     {id:"my-plate", q:"What stays on my plate after I pay?",
      alt:["what do i still have to do","still have to do","what do i have to do","on my plate","my plate","what is left for me","do myself","my part","what is my job","what do i do","what do you need from me","need from me"],
      keys:"plate left remain remains remaining part job press send myself after pay paying still need",
-     a:"<p>One press. Your team reads the draft and presses send, confirms the booking, approves the payment. That rule never bends, because nothing goes out without a human press. Everything else, the tech, the hosting, the AI, the thing that broke at 2am, is mine to carry. At the start I need an hour or two of your answers, in the quiz or The Intake, so the first desk drafts in your voice. Want the day run for you as well? That is a custom price, and we talk first.</p>"},
+     a:"<p>One press. Your team reads the draft and presses send, confirms the booking, approves the payment. By default nothing goes out without a press. Sending on its own is your choice, task by task, and only after it has been tested. Everything else, the tech, the hosting, the AI, the thing that broke at 2am, is mine to carry. At the start I need an hour or two of your answers, in the quiz or The Intake, so the first desk drafts in your voice. Want the day run for you as well? That is a custom price, and we talk first.</p>"},
 
     {id:"hours-back", q:"How many hours a week do I get back?",
      alt:["how many hours","hours back","hours a week","get back","time back","save me time","how much time","time do i save","hours do i save","hours will i save","hours would i save"],
@@ -234,7 +234,7 @@
     {id:"human-press", q:"What does \"a human presses every send\" mean?",
      alt:["human press","presses every send","human presses","press send","press every","approve everything","approve every","final say","in control","stay in control","check everything","have to check","still check","check what it writes","check the drafts"],
      keys:"press presses pressed send sends approve approval approves review reviewed sign off signoff signs control final say decide decides decision decisions",
-     a:"<p>Exactly what it says. A ninja can read, draft, file and propose all day, but the moment something would leave the building, a reply, a payment, a post, it waits for a person to press. That press is yours, or your team's. It is the rule that makes the rest safe, and it does not bend at any belt or any price.</p>"},
+     a:"<p>Exactly what it says. A ninja can read, draft, file and propose all day, but the moment something would leave the building, a reply, a payment, a post, it waits for a person to press. That press is yours, or your team's. It is the rule that makes the rest safe. Sending on its own is your choice, task by task, and only after it has been tested.</p>"},
 
     {id:"a-person", q:"Is there a real person behind this, or is it all AI?",
      alt:["real person behind","a person behind","a robot","or a robot","person behind this","human behind","is it all ai","all ai","just ai","only ai","fully ai","is a human involved","human involved","is there a human","who checks the work","who checks it","checks the work","does the ai do the work","do you do the work","is it a service","service or software","done for you","done-for-you","human in the loop","who manages it","managed by a person","managed by a real person","different from the ai apps","different from other ai","other ai apps","other ai tools","ai apps i already","apps i already pay","who runs the daily work","who runs the daily"],

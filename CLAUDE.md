@@ -334,10 +334,11 @@ band and the summit card.**
     it has been tested ("lean on No and all auto is their option for
     different tasks"). Coded system replies are not AI, but nobody grasps
     the difference, so the page does not explain it. Do not write a new
-    "that rule never bends" absolute. Five old ones remain ("does not bend at
-    any belt or any price" in the FAQ "Will an AI talk to my customers
-    without me knowing?", its done-for-you copy, and three chat answers),
-    put to Rick on 1 Oct; change them only on his word.
+    "that rule never bends" absolute. The five old ones (the FAQ "Will an AI
+    talk to my customers without me knowing?", its done-for-you copy, three
+    chat answers) now read, on Rick's yes the same day: "By default nothing
+    goes out without a press. Sending on its own is your choice, task by
+    task, and only after it has been tested."
 - **Second pass, same day, after round six** (ten personas,
   `playtest/reports/2026-10-01-r6-SUMMARY.md`; Rick's click answers):
   - **The story folds:** chapter 1 ("A gym full of kids") and chapter 7
