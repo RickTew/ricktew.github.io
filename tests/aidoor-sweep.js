@@ -13,7 +13,7 @@ const fs = require("fs"), path = require("path");
 const { chromium, devices } = require("/Users/ricktew/Dev/Roy Martina/newnei-app/node_modules/playwright");
 const ROOT = path.join(__dirname, ".."), BASE = "http://localhost:8765";
 const PAGES = ["/aininja/", "/aininja/done-for-you/", "/aininja/r2/", "/aininja/start/",
-  "/aininja/shop/", "/aininja/shop/win-cmt-pam/", "/aininja/shop/ain-contact-form/", "/aininja/shop/ain-customer-inbox/", "/aininja/shop/thanks/", "/aininja/shop/thanks/?link=expired", "/aininja/shop/download/",
+  "/aininja/shop/", "/aininja/shop/win-cmt-pam/", "/aininja/shop/win-cmt-brain-storms/", "/aininja/shop/ain-contact-form/", "/aininja/shop/ain-customer-inbox/", "/aininja/shop/thanks/", "/aininja/shop/thanks/?link=expired", "/aininja/shop/download/",
   "/aininja/side-hustle-summit/", "/aininja/legal/terms.html", "/aininja/legal/privacy.html", "/", "/hininja/"];
 const AGENT_ADDRESS = null; // none printed since 1 Oct 2026 (Rick: "never give out our email address as we use message boxes")
 const PLACEHOLDERS = new Set(["you@yourcompany.com"]); // the mailbox field's example text
