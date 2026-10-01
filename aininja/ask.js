@@ -77,7 +77,11 @@
      real word and it is a distinctive one (in four entries or fewer).
      One word out of five matching is a weak win, and a weak win is a
      gap, not coverage: "tell me a joke" must not find the bio because
-     the bio says "tell me about yourself". */
+     the bio says "tell me about yourself". Since 1 Oct 2026 two words are
+     only enough when they are more than half the question's real words:
+     in round six, 8 of 10 personas got a confident wrong answer from two
+     common words ("work" and "use", "client" and "email") in a long
+     question. Those now get the honest miss. */
   function search(question, lib){
     var built = lib ? build(lib) : (BUILT || (BUILT=build(LIBRARY)));
     var nq=norm(question), q=tokens(question);
@@ -90,7 +94,7 @@
          shares "chat box" with it. */
       var phrase=0;
       for(var i=0;i<b.alts.length&&phrase<2;i++){ if(b.alts[i].test(nq)) phrase++; }
-      var ok = phrase || m>=2 || (m===1 && q.length===1 && built.df[q[0]]<=4);
+      var ok = phrase || (m>=2 && m*2>q.length) || (m===1 && q.length===1 && built.df[q[0]]<=4);
       if(!ok) return;
       hits.push({entry:b.e, score:m+phrase*3, matched:m});
     });
@@ -173,7 +177,7 @@
      a:"<p>The AI companies' models, and the tools change every month, so I do not carve a name into this page. What does not change: the models run on my accounts, inside the price, behind a switch, and your way of working is written down properly and handed to every ninja, so a change of model takes nothing with it and costs you nothing to think about. Which one I would put under your Dojo, and why, is a straight answer in the mailbox.</p>"},
 
     {id:"data-privacy", q:"Is my data safe? Who sees my customer information?",
-     alt:["my data","customer data","our data","privacy","private","gdpr","confidential","confidentiality"],
+     alt:["my data","customer data","our data","privacy","private","gdpr","confidential","confidentiality","see my clients","see my customers","read my clients","read my customers","clients emails","clients mail","customers emails","customers mail","who can read","who can see"],
      keys:"data privacy private confidential information info sees access secure secret records leak leaks",
      a:"<p>Everything I build runs on my stack, the same one my own businesses run on, and what I see of your business stays confidential; it is written into the Terms, section 7. Your domain, your content and your data stay yours. The ninjas' entire world is what you wrote down and verified. No agent touches money or the outside world without your press, and nothing sends itself. Every agent has a lane and never widens it on its own.</p><p>If your industry has a specific rule it must meet, say so in the mailbox and I will tell you straight whether the Dojo meets it.</p>"},
 
@@ -233,7 +237,7 @@
      a:"<p>Exactly what it says. A ninja can read, draft, file and propose all day, but the moment something would leave the building, a reply, a payment, a post, it waits for a person to press. That press is yours, or your team's. It is the rule that makes the rest safe, and it does not bend at any belt or any price.</p>"},
 
     {id:"a-person", q:"Is there a real person behind this, or is it all AI?",
-     alt:["real person behind","a person behind","person behind this","human behind","is it all ai","all ai","just ai","only ai","fully ai","is a human involved","human involved","is there a human","who checks the work","who checks it","checks the work","does the ai do the work","do you do the work","is it a service","service or software","done for you","done-for-you","human in the loop","who manages it","managed by a person","managed by a real person","different from the ai apps","different from other ai","other ai apps","other ai tools","ai apps i already","apps i already pay","who runs the daily work","who runs the daily"],
+     alt:["real person behind","a person behind","a robot","or a robot","person behind this","human behind","is it all ai","all ai","just ai","only ai","fully ai","is a human involved","human involved","is there a human","who checks the work","who checks it","checks the work","does the ai do the work","do you do the work","is it a service","service or software","done for you","done-for-you","human in the loop","who manages it","managed by a person","managed by a real person","different from the ai apps","different from other ai","other ai apps","other ai tools","ai apps i already","apps i already pay","who runs the daily work","who runs the daily"],
      keys:"person people human humans behind manage manages managed managing check checks checked checking legwork service done work loop oversee oversees",
      a:"<p>Yes, me. Your admin is handled as a service. My AI ninjas do the legwork: the drafts, the filing, the bookings. A person checks it. Nothing goes out without a press. I manage all of it and report to you in writing.</p><p>Your team checks the work and presses send. I help you run it; I am not on your staff. Want the whole day run for you? That is a custom price, and we talk first.</p>",
      link:{href:"#you", label:"See how it works"}},
@@ -377,7 +381,7 @@
      link:{href:"#quiz", label:"Take the quiz"}},
 
     {id:"testimonials", q:"Do you have testimonials or references?",
-     alt:["testimonials","testimonial","reviews","references","a reference","case studies","case study","any proof","social proof","who have you worked with","other clients","speak to one","talk to one","speak to a client","talk to a client","one of your clients","businesses paying you","call one"],
+     alt:["testimonials","testimonial","any reviews","your reviews","references","a reference","case studies","case study","any proof","social proof","who have you worked with","other clients","speak to one","talk to one","speak to a client","talk to a client","one of your clients","businesses paying you","call one"],
      keys:"testimonials review reviews reference references case studies study proof clients client results evidence worked track record speak talk call paying",
      a:"<p>No testimonials yet, on purpose. Client names stay out of it, and I will not invent a quote to fill a box. What I can show is what was asked for and what shipped: the gym app with 1,000+ members, a client's support desk that drafts every reply for one human press, my own POS backend, and the whole front and back office of a 1998 factory. The story on this page shows each one.</p><p>When client quotes appear, they will be real, attributed with permission, and boring compared to the builds. That is how you will know they are true.</p>",
      link:{href:"#story", label:"See what got built"}},
@@ -408,6 +412,11 @@
      alt:["who owns","do i own","own the code","own it","if i leave","what happens if i cancel","what happens if i stop","take it with me","where does it live","who hosts it","do i have to manage","have to manage","your servers","your stack","my own accounts","in my own accounts","in my accounts"],
      keys:"own owns ownership owner keep keeps code accounts leave leaving stays yours mine belong belongs ip intellectual property hostage stack servers server manage managed lives",
      a:"<p>The build is mine, and it lives on my stack: that is what keeps the price flat, and it means you never log into a server, renew a certificate or fix a bug. When something needs changing, you tell me. Your domain, your content and your data are yours, always, and they leave with you; I do not keep a copy. Cancel and the hosting ends with the paid month; nothing is charged after.</p><p>Want the build inside your own accounts instead, as a thing you own outright? That is a custom job, quoted in writing, and it costs more, because every login, registrar setting and card approval on your side is an hour of the build.</p>"},
+
+    {id:"existing-apps", q:"Does it replace the apps I already pay for?",
+     alt:["already pay for","apps i pay for","software i already use","software we already use","software we use","the software i use","my software","our software","existing software","booking app","booking software","booking system","my till","the till","card reader","point of sale","pos system","my pos","rota app","work with my","works with my","work with our","work with that","connect to my","connect to our","plug into","integrate","integrates","integration","sit on top","sits on top","on top of my","replace my","replaces my","get rid of my"],
+     keys:"replace replaces replacing existing already software app apps system systems booking till pos square cliniko rota integrate integration connect connects plug alongside",
+     a:"<p>Not by default. It works alongside what you already use, like your booking app or your till. The free audit maps what connects to them, and whether anything is worth replacing. Name the apps you run when you write, so the audit can start from them.</p>"},
 
     {id:"third-party", q:"Are there other costs? AI subscriptions, software?",
      alt:["other costs","extra costs","hidden costs","hidden fees","third party","third-party","ai subscription","ai subscriptions","api costs","token costs","on top of"],
@@ -580,7 +589,7 @@
     "replace-staff":"List the tasks your team does that need no judgment, only hours. That list is your first ninja's job description, and the quiz writes it with you.",
     "talks-to-customers":"A drafted reply you read before sending is faster than writing it and safer than a bot sending it. You get both.",
     "which-ai":"The model is the least important choice you will make. The written way of working is the asset, and that is what the Dojo builds.",
-    "data-privacy":"Keep every account in your own name from day one. If a vendor wants your customers inside their account, ask why.",
+    "data-privacy":"Ask any builder where your data lives and who can open it. You should get a straight answer.",
     "need-to-understand":"The best owners I work with never open the tools. They approve drafts on their phone between customers.",
     "what-is-agent":"A chatbot saves you a search. An agent saves you a Tuesday.",
     "belts":"Start every AI worker at white belt, even one you built yourself. Trust it has not earned is a risk you are carrying for it.",
@@ -616,6 +625,7 @@
     "email-the-ninja":"Ask it the question you would ask me. The answer you get is the answer your customers would get from yours.",
     "who-is-rick":"A sensei's job is taking you from white belt to black without skipping the proving part. Same job here.",
     "ownership":"Own the result, not the plumbing. If you want to own the plumbing too, say so up front and I will price it.",
+    "existing-apps":"Count the hours an app costs you before you swap it. If the number is small, keep it.",
     "third-party":"The bill that surprises people is never the flat one. Ask any builder which meters are yours to watch. Here, none.",
     "helpings":"The small thing you have wanted for a year is usually an afternoon. Name it.",
     "marketing":"Do the ad math before the ad account. If the numbers do not work on paper, no budget fixes them.",

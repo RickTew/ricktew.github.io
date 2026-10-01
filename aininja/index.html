@@ -638,6 +638,12 @@ footer a:hover{text-decoration:underline}
 .you-list li::before{content:"\2713";position:absolute;left:0;top:-1px;width:24px;height:24px;border-radius:6px;background:var(--blue);color:#fff;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center}
 .you-p{margin-top:22px;max-width:60ch;font-size:16.5px;font-weight:600;color:#3a4148;line-height:1.7}
 .you .cta-row{margin-top:26px}
+.tl-more{margin:0}
+.tl-more>summary{display:block;width:max-content;max-width:calc(100% - 32px);margin:6px auto 34px;cursor:pointer;list-style:none;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:12px 22px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:15px}
+.tl-more>summary::-webkit-details-marker{display:none}
+.tl-more>summary::after{content:" +";color:var(--blue)}
+.tl-more[open]>summary::after{content:" \2212"}
+.tl-more>summary:hover{background:var(--panel)}
 .you .way .way-more{margin-top:10px;font-size:13.5px;font-weight:600;color:var(--muted);line-height:1.6}
 .you .way .way-more a{color:var(--blue);font-weight:800}
 .you-faq{margin-top:30px}
@@ -1262,6 +1268,22 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     },
     {
      "@type": "Question",
+     "name": "Does it replace the apps I already pay for?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not by default. It works alongside what you already use, like your booking app or your till. The free audit maps what connects to them, and whether anything is worth replacing."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is it safe to let an AI read my inbox?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops. Nothing leaves without a person's press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file. Whatever the AI companies change tomorrow, the press is still yours."
+     }
+    },
+    {
+     "@type": "Question",
      "name": "What happens if you disappear?",
      "acceptedAnswer": {
       "@type": "Answer",
@@ -1314,22 +1336,6 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
      "acceptedAnswer": {
       "@type": "Answer",
       "text": "Yes. The solutions list and both prices sit in a tool an assistant can read, and the mailbox is a tool it can call. What it posts lands where a person's message lands, and the reply goes to the person it was sent for, not to the robot. Your own website can do the same; that is one of the things I build."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Is it safe to let an AI read my inbox?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops. Nothing leaves without a person's press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file. Whatever the AI companies change tomorrow, the press is still yours."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Is this like Claudeforce?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Same idea, and mine comes with the tech done for you. Claudeforce is Salesforce's CRM with a big AI inside: $195 to $550 a person a month for a seat, from $125 more for the AI on it, every job it does metered on top, and you still set it up, learn it and run it. Mine: R2 Hosting, $222 to build then $99 a month, is your website or small app, with the forms that bring work in, built and run by me. Your Dojo, $2,222 a month flat, adds trained AI ninjas so every reply is drafted and waiting for one press, any number of people, the AI in the price. If three of you just need a contact list, buy their Starter at $25 a seat. I will not beat that."
      }
     },
     {
@@ -1426,8 +1432,8 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
           <a class="want" href="#" data-want="Your Dojo, $2,222 a month" data-want-note="I build it, host it, and help you run it." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
         </div>
       </div>
-      <p class="custom">Your team presses every send. Want the whole day run for you? That is a custom price, and we talk first.</p>
-      <p class="custom">The &ldquo;I want this Tew&rdquo; button writes your pick into my mailbox at the bottom of this page. You add a line and send it.</p>
+      <p class="custom">Your team presses every send. Want the whole day run for you? That is a custom price, and we talk first. Smaller than that? One desk on its own, without the monthly plan, is quoted in writing after the free audit.</p>
+      <p class="custom">The &ldquo;I want this Tew&rdquo; button writes your pick into my mailbox at the bottom of this page. You add a line and send it. I stick to text on purpose: everything we agree is on the record. A call is a custom step.</p>
     <div class="hows">
       <div class="k">How it works</div>
       <ol class="how-steps">
@@ -1441,6 +1447,8 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <span class="k">The first questions</span>
       <details><summary>Do I need to understand AI to use this?</summary><p>No. That is the point. I build and train the Dojo; you run your business. If you ever want to see under the hood, I will show you. You never have to.</p></details>
       <details><summary>What does it cost?</summary><p>Your Dojo is $2,222 a month: I build it, host it, and help you run it; your team presses every send. The audit that comes first is free. Monthly, cancel anytime, effective at the end of the paid month. Smaller need? R2 Hosting: I build your site or small app and host it on my stack, $222 to build, then $99 a month or $999 a year. Want the whole day run for you, or something bigger than one Dojo? That is a custom price, and we talk first. The AI is in the price: I run it on my accounts, and you never open an AI account or watch a meter. Not in the price: ad spend, software your business already pays for on its own, and building a product you sell, which is separate work agreed in writing first. The quiz says where I would start.</p></details>
+      <details><summary>Does it replace the apps I already pay for?</summary><p>Not by default. It works alongside what you already use, like your booking app or your till. The free audit maps what connects to them, and whether anything is worth replacing.</p></details>
+      <details><summary>Is it safe to let an AI read my inbox?</summary><p>Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops. Nothing leaves without a person's press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file. Whatever the AI companies change tomorrow, the press is still yours.</p></details>
       <details><summary>What happens if you disappear?</summary><p>You lose the window, not the room. The build is the window: the desk, the forms, the site I made so you can see the work and press. The room is yours: your domain, your mail, your content, your videos, your customer records. They are yours in writing, they leave with you, and I keep no copy. What ends with me is the window and the hosting, and nothing is charged after.</p></details>
       <details><summary>Do I have to manage any of the tech?</summary><p>No. Both plans are built on my stack and stay there: the hosting, the database, the mail plumbing, every setting that holds it together. It is the same stack my own businesses and my clients' run on, and it is why the price is flat. For you that means no dashboard, no console, no certificate to renew, no password to keep somewhere safe, and no bug that is yours to fix. When something needs changing, you tell me. Yours, always: your domain, your content and your data. Want it built inside your own accounts instead, as a thing you own outright? That is a custom job, quoted in writing, and it costs more, because every login and card approval on your side is an hour of the build.</p></details>
       <details><summary>Can I cancel?</summary><p>Anytime. Cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack, so there is nothing to hand back or log out of. Your domain, your content and your data leave with you, and I do not keep a copy. The build and the hosting end with the subscription, and nothing is charged after.</p></details>
@@ -1507,6 +1515,16 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       </div>
     </div>
   </div>
+
+</div>
+
+<!-- The hobby chapters fold behind one tap (Rick, 1 Oct 2026, after round six:
+     all ten personas left the page in these chapters). Nothing is deleted. -->
+<details class="tl-more">
+  <summary>More of what I built</summary>
+<div class="timeline">
+  <div class="tl-rail" aria-hidden="true"></div>
+  <div class="tl-fill" id="tlFill3" aria-hidden="true"></div>
 
   <!-- CH 2: the couch app -->
   <div class="chapter flip rv">
@@ -1739,6 +1757,13 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <p class="vis-cap" style="max-width:100%;text-align:left">The books are finished. The app is live at winjitsu.com in its old clothes; this screen is its new look.</p>
     </div>
   </div>
+
+</div>
+</details>
+
+<div class="timeline">
+  <div class="tl-rail" aria-hidden="true"></div>
+  <div class="tl-fill" id="tlFill4" aria-hidden="true"></div>
 
   <!-- CH 7: the friend -->
   <div class="chapter rv">
@@ -2016,43 +2041,6 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   </div>
 </section>
 
-<!-- ============ CLAUDEFORCE, EXPLAINED: their marketing, my flat price ============ -->
-<section class="vs" id="claudeforce">
-  <div class="wrap rv">
-    <div class="k">Claudeforce, explained</div>
-    <h2>Somebody told you to get Claudeforce? <span>Here is the honest bill.</span></h2>
-    <p class="sub">Salesforce put a big AI inside its CRM and called it Claudeforce. Good idea, and they are spending a fortune on TV telling you so. Before you sign, here is what it costs, in plain English, and the part the ad leaves out: you still do all the work.</p>
-
-    <div class="bill" aria-label="What Claudeforce costs, per person, per month">
-      <div class="bh">Claudeforce <small>per person, per month</small></div>
-      <div class="row"><b>A seat that can take the AI</b><span class="amt">$195 to $550</span><small>Billed for the year up front.</small></div>
-      <div class="row"><b>The AI on that seat</b><span class="amt">+ $125</span><small>Unless you buy the $550 seat, which has it in.</small></div>
-      <div class="row"><b>Every job the AI does</b><span class="amt">about 10 cents</span><small>Metered, on top, every time.</small></div>
-      <div class="row"><b>Claudeforce itself</b><span class="amt">no price yet</span><small>Still in pilot as I write this, 13 September 2026.</small></div>
-      <div class="tot"><span>Ten people, one year</span><span class="amt">$38,400 to $66,000</span></div>
-      <div class="still">
-        <h4>And that is with you doing all the work.</h4>
-        <ul>
-          <li>You set it up, or pay a Salesforce partner by the day.</li>
-          <li>You learn it, and learn it again every time it changes.</li>
-          <li>You watch the meter.</li>
-          <li>You run it. Every day.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="relief">
-      <h3>Or press one button and let <span>the AI Ninja</span> think about all of that.</h3>
-      <p>You never wanted a CRM. You wanted the phone to ring, the mail answered and the customer remembered. Two ways in, one bill each, and the tech is my problem.</p>
-      <div class="cta"><a class="btn btn-blue" href="#offers">See the two plans</a></div>
-    </div>
-
-    <p class="honest">If three of you need a contact list and nothing else, buy their Starter at $25 a seat. I will not beat that, and I will not pretend to.</p>
-    <p class="honest">Or hire a person. Marlow sells one full-time assistant plus an AI trained on your business: $2,650 a month billed for the year, or $2,977 month to month. If you want someone doing your daily work all day, that is what they sell, and it is not what I sell. Mine is $2,222 a month, flat, for any number of people: my AI ninjas do the legwork, I manage them, and your team presses send.</p>
-    <p class="src">Salesforce prices from <a href="https://www.salesforce.com/sales/pricing/" rel="noopener" target="_blank">salesforce.com/sales/pricing</a> and <a href="https://www.salesforce.com/agentforce/pricing/" rel="noopener" target="_blank">salesforce.com/agentforce/pricing</a>, read 13 September 2026, USD. Claudeforce facts from Salesforce's press release of 26 August 2026 and its Claudeforce page, read the same day. Marlow's prices from <a href="https://www.hiremarlow.com/pricing" rel="noopener" target="_blank">hiremarlow.com/pricing</a>, read 27 September 2026, USD. All of these change; this was true the day it was written.</p>
-  </div>
-</section>
-
 <section class="quiz-sec" id="quiz">
   <div class="wrap rv">
     <div class="k">The Focus Funnel &middot; twelve questions</div>
@@ -2253,8 +2241,6 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <details><summary>Can I get just one desk?</summary><p>A desk is one AI ninja on one job, like the Front Desk drafting your support replies. And yes: that is how every Dojo starts. The free audit picks the one job that eats the most hours, usually the inbox, and one ninja takes it. More join once it has proven itself, and the price stays $2,222 a month, flat. One desk built on its own, without the monthly service, is a custom job, quoted in writing.</p></details>
       <details><summary>What happens in the first month?</summary><p>The audit first, and it is free: we map where your hours go, together, in writing. Then your first ninja takes the one task that eats the most, usually the inbox, at white belt: it can be up and running within days. It proves itself before anything widens.</p></details>
       <details><summary>Can somebody's AI assistant deal with you instead of them?</summary><p>Yes. The solutions list and both prices sit in a tool an assistant can read, and the mailbox is a tool it can call. What it posts lands where a person's message lands, and the reply goes to the person it was sent for, not to the robot. Your own website can do the same; that is one of the things I build.</p></details>
-      <details><summary>Is it safe to let an AI read my inbox?</summary><p>Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops. Nothing leaves without a person's press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file. Whatever the AI companies change tomorrow, the press is still yours.</p></details>
-      <details><summary>Is this like Claudeforce?</summary><p>Same idea, and mine comes with the tech done for you. Claudeforce is Salesforce's CRM with a big AI inside: $195 to $550 a person a month for a seat, from $125 more for the AI on it, every job it does metered on top, and you still set it up, learn it and run it. Mine: R2 Hosting, $222 to build then $99 a month, is your website or small app, with the forms that bring work in, built and run by me. Your Dojo, $2,222 a month flat, adds trained AI ninjas so every reply is drafted and waiting for one press, any number of people, the AI in the price. If three of you just need a contact list, buy their Starter at $25 a seat. I will not beat that.</p></details>
       <details><summary>Does anyone test it before my customers see it?</summary><p>Yes, and not by me clicking around. Simulated players go first: hundreds of rounds, every button pressed, looking for stalls, dead ends and bad sums. Then a second pass in character, people of different ages and patience, reporting where they got lost. It walked this page before the chat box shipped.</p></details>
       <details><summary>Why the belts?</summary><p>Because trust is earned by showing up and proving it, which is how I grade kids at the gym. A ninja that has proven itself gets more to do. One that has not, does not.</p></details>
     </div>
@@ -2783,7 +2769,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     }
     addEventListener("scroll",onScroll,{passive:true}); onScroll();
   }
-  wireFill("tlFill"); wireFill("tlFill2");
+  wireFill("tlFill"); wireFill("tlFill2"); wireFill("tlFill3"); wireFill("tlFill4");
 
   /* quiz: twelve questions, because the job is working out how I can help,
      not qualifying anyone out. The belt bar fills across the whole set. */
@@ -2926,7 +2912,10 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     var conflictDown = wantsRun && tech==="love";
     var conflict = conflictUp || conflictDown;
     /* and whether anything has to be BUILT before a desk can sit on it */
-    var needsBuild = (stack==="sheets"||stack==="paper"||stack==="rented"||stack==="phone")
+    /* Renters left this list on 1 Oct 2026 (Rick): the service works alongside
+       the software they already pay for, and the free audit decides what
+       connects, so "it is the system" was wrong for them. */
+    var needsBuild = (stack==="sheets"||stack==="paper"||stack==="phone")
                      || selfserve==="none" || dream==="tool" || dream==="own";
 
     var big=document.getElementById("rBig"), sub=document.getElementById("rSub");

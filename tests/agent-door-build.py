@@ -65,8 +65,7 @@ L=["# Rick Tew","",
 "- The Side Hustle Summit in plain words, dated and updated after each session: what the free YouTube event (6 to 13 September 2026) sells, what each day taught, and the four steps a viewer can do at no cost. Rick sells no course for it. https://ricktew.com/aininja/side-hustle-summit/","",
 "## Solutions (the things Rick builds)",""]
 L+=["- %s: %s"%(txt(n),txt(t)) for n,t in rows]
-L+=["","## Compared with Claudeforce (Salesforce plus an AI model, announced 26 Aug 2026)","",
-"- Claudeforce is Salesforce's CRM with an AI model inside (announced 26 Aug 2026, no price published as of 13 Sep 2026). Salesforce list prices read 13 Sep 2026: a seat that can take the AI is Core $195 to Max $550 per user per month, the AI add-on from $125 a user a month (Max includes it), actions metered at about $0.10 each; ten people a year is $38,400 to $66,000 in licenses, and the customer still sets it up, learns it and runs it. Rick's answer, with the tech done for the customer: R2 Hosting ($222 to build, then $99 a month) is the site, the forms, a customer list and a shared inbox, built and run by Rick; Your Dojo ($2,222 a month flat, any number of people, the AI in the price) adds trained AI ninjas that draft every reply for one human press. The honest line stays: a three-person contact list should buy Starter at $25 a seat. https://ricktew.com/aininja/#claudeforce"]
+# The Claudeforce comparison left the page on 1 Oct 2026 (Rick, after round six), so llms.txt drops it too.
 if seats: L+=["","## Seats (a job title, staffed by trained AI ninjas)",""]+["- %s"%x for x in seats]
 L+=["","## How to get in touch","",
 "- The mailbox on the AI Ninja page: https://ricktew.com/aininja/#opt-8c . A form that posts JSON; an agent can call it as the WebMCP tool post_letter_to_rick.",

@@ -311,6 +311,35 @@ band and the summit card.**
   #opt-e1, the solutions, #dojo's intro, steps and the paragraph with the
   Intake link, #claudeforce, the quiz, #opt-6b, the FAQ band, the mailbox.
 - Undo is one revert of the commit that says "less-is-more pass".
+- **Second pass, same day, after round six** (ten personas,
+  `playtest/reports/2026-10-01-r6-SUMMARY.md`; Rick's click answers):
+  - **The story folds:** chapter 1 ("A gym full of kids") and chapter 7
+    ("Friends asked about AI") stay open. Chapters 2 to 6 and the sprite
+    wall sit inside `<details class="tl-more">` ("More of what I built"),
+    with their own fills `tlFill3` and `tlFill4`. Nothing was deleted.
+  - **`#claudeforce` is gone,** with its FAQ "Is this like Claudeforce?"
+    and its llms.txt section (the build no longer writes it). The Marlow
+    line went with it.
+  - **Under the cards:** the smaller start in one line, "One desk on its
+    own, without the monthly plan, is quoted in writing after the free
+    audit." (no number, Rick's pick), and the chat box's "I stick to text
+    on purpose: everything we agree is on the record. A call is a custom
+    step."
+  - **The first questions** gained "Does it replace the apps I already pay
+    for?" (Rick's fact: it works alongside what they already use; the
+    free audit decides what connects and whether anything is worth
+    replacing) and "Is it safe to let an AI read my inbox?" (moved up from
+    the FAQ band).
+  - **The quiz** no longer tells renters "it is the system": `rented`
+    left `needsBuild`.
+  - **The chat box** gained the `existing-apps` entry. Its gate now needs
+    two matched words to be MORE than half the question's real words (8 of
+    10 personas got a confident wrong answer from two common words), and
+    `data-privacy`, `a-person` and `testimonials` got tighter phrases. The
+    `data-privacy` Tew Tip changed to "Ask any builder where your data
+    lives and who can open it. You should get a straight answer." (the old
+    one argued against the on-my-stack offer). The golden set gained seven
+    regression lines.
 
 ### The live row: no claim sentence any more (2026-08-28)
 
@@ -440,6 +469,8 @@ checker reads the live page: `node ~/Dev/digitaldojo/scripts/agent-door-check.mj
 (8 of 8 doors on 29 Aug; presence only). The Agent-ready band `#agent`
 left the page on 1 Oct 2026; the tools and these two files did not.
 
+**Claudeforce band `#claudeforce`: REMOVED 2026-10-01 (Rick, after round six:
+10 of 10 personas said it could go). The notes below are history.**
 **Claudeforce band `#claudeforce` (2026-08-29, Rick's ask).** Right after
 the price cards: Salesforce's Claudeforce (announced 26 Aug 2026) compared
 with The Front Desk, with Salesforce's list prices as read from
