@@ -417,15 +417,15 @@ async function mailReceipt(p: {
   const noRec = rec ? '' : `\n\nOne more thing that helps more than anything: a two-minute voice note walking me through a normal day. Reply to this mail with it attached, or go back to the page and record it there.`;
   const text =
     `Hi ${first || 'there'},\n\n` +
-    `Your intake for ${p.business || 'your business'} landed: ${landed}. It is stored privately and Rick reads every intake himself.\n\n` +
+    `Your intake for ${p.business || 'your business'} landed: ${landed}. It is stored privately, and Rick picks it up from there.\n\n` +
     (p.purchase ? `It is filed with your order: ${purchaseLine(p.purchase)}.\n\n` : '') +
     missedText + noRec + `\n\n` +
     `What happens next: Rick reads the sheet and the recordings, then writes back with the first plan and the questions he still has. If a call is the faster way, he will say so.\n\n` +
-    `AI Ninja\nricktew.com/aininja\n\n(I am an AI. This receipt was written from your own sheet, nothing more. Rick reads every intake and follows up himself.)`;
+    `AI Ninja\nricktew.com/aininja\n\n(This receipt was written from your own sheet, nothing more. Rick picks it up from there.)`;
   const html =
     `<div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.55;color:#101418">` +
     `<p>Hi ${esc(first || 'there')},</p>` +
-    `<p>Your intake for <b>${esc(p.business || 'your business')}</b> landed: ${esc(landed)}. It is stored privately and Rick reads every intake himself.</p>` +
+    `<p>Your intake for <b>${esc(p.business || 'your business')}</b> landed: ${esc(landed)}. It is stored privately, and Rick picks it up from there.</p>` +
     (p.purchase ? `<p>It is filed with your order: ${esc(purchaseLine(p.purchase))}.</p>` : '') +
     (p.missed.length
       ? `<p>A few questions on the sheet are still open. Reply to this mail with the answers, or record a voice note and send it along:</p><ol>${p.missed.map(q => `<li>${esc(q.ask!)}</li>`).join('')}</ol>`
@@ -433,7 +433,7 @@ async function mailReceipt(p: {
     (rec ? '' : `<p>One more thing that helps more than anything: a two-minute voice note walking me through a normal day. Reply to this mail with it attached, or go back to the page and record it there.</p>`) +
     `<p>What happens next: Rick reads the sheet and the recordings, then writes back with the first plan and the questions he still has. If a call is the faster way, he will say so.</p>` +
     `<p>AI Ninja<br>ricktew.com/aininja</p>` +
-    `<p style="color:#69707a;font-size:13px">(I am an AI. This receipt was written from your own sheet, nothing more. Rick reads every intake and follows up himself.)</p></div>`;
+    `<p style="color:#69707a;font-size:13px">(This receipt was written from your own sheet, nothing more. Rick picks it up from there.)</p></div>`;
   await resend({
     from, to: [oneLine(p.email, MAX.email)],
     ...(replyTo ? { reply_to: replyTo } : {}),

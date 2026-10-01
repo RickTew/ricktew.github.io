@@ -153,7 +153,7 @@
     {id:"answer-my-emails", q:"Can I use it to answer my emails?",
      alt:["answer my emails","answer my email","reply to my emails","reply to my email","do my emails","my emails","handle my inbox","handle my email","use it to answer","deal with my inbox","drowning in email","too many emails","draft replies","draft the replies","drafts replies","checks and sends","check and send","receptionist","patient messages","customer messages"],
      keys:"answer answers answering emails email mail inbox replies reply respond drafts draft drowning",
-     a:"<p>Yes. \"It\" ends up specific to your business, and I have built it several ways. At my gym, the desk reads every mail and drafts the reply from answers I wrote; a person presses send. At my spa, SabaiSen, the desk agent answers guests on the site in English and Thai from a written studio guide, turns a plain \"book me Tuesday at two\" email into a real booking, and replies in the owner's own wording, with two off switches the owner can flip. In my console, TewBeDo, I added a simple CRM, a few helper systems and an AI assistant I can ask questions. A coaching team's desk runs the same shape for one human press.</p><p>The rule is the same in every one: the AI drafts from what you wrote, it never sends on its own, and the hours come back anyway. Tell me what your inbox looks like and I will tell you which shape fits.</p>",
+     a:"<p>Yes. \"It\" ends up specific to your business, and I have built it several ways. At my gym, the desk reads every mail and drafts the reply from answers I wrote; a person presses send. At my spa, SabaiSen, the desk agent answers guests on the site in English and Thai from a written studio guide, turns a plain \"book me Tuesday at two\" email into a real booking, and replies in the owner's own wording, with two off switches the owner can flip. In my console, TewBeDo, I added a simple CRM, a few helper systems and an AI assistant I can ask questions. A coaching team's desk runs the same shape for one human press.</p><p>The rule is the same in every one: the AI drafts from what you wrote, it never sends on its own, and the hours come back anyway. Tell me what your inbox looks like, and the reply names the shape that fits.</p>",
      cta:{what:"The Front Desk", kind:"build", note:"Support replies drafted on auto. You press send."}},
 
     {id:"how-rick-uses", q:"How do you use AI yourself?",
@@ -169,7 +169,7 @@
     {id:"talks-to-customers", q:"Will an AI talk to my customers without me knowing?",
      alt:["without me knowing","talk to my customers","answer my customers","email my customers","send emails for me","send email","sends email","on its own","by itself"],
      keys:"customers customer talk talks reply replies answers send sends sending email emails post posts pay pays automatic automatically autopilot unsupervised approve approval",
-     a:"<p>Not without your say. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. By default nothing goes out without a press. Sending on its own is your choice, task by task, and only after it has been tested.</p><p>One exception, and it is mine: the mailbox on this page is answered first by my Ninja Agent, signed as the AI, from answers I wrote. That is the demo. In your Dojo nothing sends without your press unless you choose the same for a lane of your own.</p>"},
+     a:"<p>Not without your say. Every ninja starts at white belt: propose only. Drafts and filings pile up for your review, and a human presses every send, pay and post. By default nothing goes out without a press. Sending on its own is your choice, task by task, and only after it has been tested.</p><p>One exception, and it is mine: the mailbox on this page is answered first by my Ninja Agent, from answers I wrote. That is the demo. In your Dojo nothing sends without your press unless you choose the same for a lane of your own.</p>"},
 
     {id:"which-ai", q:"Which AI do you use?",
      alt:["which ai","what ai do you use","do you use","which model","what model","which llm","which company","which companies"],
@@ -179,12 +179,12 @@
     {id:"data-privacy", q:"Is my data safe? Who sees my customer information?",
      alt:["my data","customer data","our data","privacy","private","gdpr","confidential","confidentiality","see my clients","see my customers","read my clients","read my customers","clients emails","clients mail","customers emails","customers mail","who can read","who can see","hipaa","hipaa compliant","business associate","business associate agreement","sign a baa","baa","patient privacy","patient records","patient mail","patient data"],
      keys:"data privacy private confidential information info sees access secure secret records leak leaks",
-     a:"<p>Everything I build runs on my stack, the same one my own businesses run on, and what I see of your business stays confidential; it is written into the Terms, section 7. Who reads your customers' mail: only me, plus the AI that drafts the replies. For a health practice, I sign a HIPAA business associate agreement. Your domain, your content and your data stay yours. The ninjas' entire world is what you wrote down and verified. No agent touches money or the outside world without your press, and nothing sends itself. Every agent has a lane and never widens it on its own.</p><p>If your industry has a specific rule it must meet, say so in the mailbox and I will tell you straight whether the Dojo meets it.</p>"},
+     a:"<p>Everything I build runs on my stack, the same one my own businesses run on, and what I see of your business stays confidential; it is written into the Terms, section 7. Who reads your customers' mail: only me, plus the AI that drafts the replies. For a health practice, I sign a HIPAA business associate agreement. Your domain, your content and your data stay yours. The ninjas' entire world is what you wrote down and verified. No agent touches money or the outside world without your press, and nothing sends itself. Every agent has a lane and never widens it on its own.</p><p>If your industry has a specific rule it must meet, say so in the mailbox: the answer comes back as a straight yes or no.</p>"},
 
     {id:"need-to-understand", q:"Do I need to understand AI to use this?",
      alt:["understand ai","do i need to understand","need to be technical","not technical","hate computers","do not like computers","dont like computers","bad with computers","computer person","learn to code","who does the computer work","who does the tech","who does the work","computer work","do i have to learn","have to learn","learn anything","learn something","me or you","is it me","do i do it","who runs it"],
      keys:"understand learn learning technical tech nerd computers computer knowledge skill skills required prompt prompts prompting code coding who work works anything",
-     a:"<p>No, and that is the point. I do the computer work. You never log in, renew, fix or learn anything; when something needs changing, you tell me. If you ever want to see under the hood, I will show you. You never have to. The staff at my gym and my spa never touch the builder tools: they see a draft, a booking, a payment to confirm, and press.</p><p>The one thing that stays yours is the press: your team reads the draft and sends it. Want the day run for you too? That is a custom price, and we talk first.</p>"},
+     a:"<p>No, and that is the point. I do the computer work. You never log in, renew, fix or learn anything; when something needs changing, you tell me. If you ever want to see under the hood, just ask. You never have to. The staff at my gym and my spa never touch the builder tools: they see a draft, a booking, a payment to confirm, and press.</p><p>The one thing that stays yours is the press: your team reads the draft and sends it. Want the day run for you too? That is a custom price, and we talk first.</p>"},
 
     {id:"my-plate", q:"What stays on my plate after I pay?",
      alt:["what do i still have to do","still have to do","what do i have to do","on my plate","my plate","what is left for me","do myself","my part","what is my job","what do i do","what do you need from me","need from me"],
@@ -200,7 +200,7 @@
     {id:"no-business", q:"I do not have a business yet. Is there anything here for me?",
      alt:["no business","dont have a business","do not have a business","not have a business","have no business","not a business","i work a job","i have a job","work in a warehouse","just starting out","nothing yet","no company","four steps","the four steps","4 steps","start from nothing","from zero"],
      keys:"business job employee shift warehouse starting hustle nothing yet company none steps zero",
-     a:"<p>Then the four steps on the summit page are the whole of it, and I have nothing to sell you: one person with one problem, the answer written from public sources with the references, a short guide, put where those people already gather. They cost nothing but your hours, and the last one is the hard one. I build for businesses that already exist; if you start one, come back. The mailbox is free either way, and I read every message.</p>",
+     a:"<p>Then the four steps on the summit page are the whole of it, and I have nothing to sell you: one person with one problem, the answer written from public sources with the references, a short guide, put where those people already gather. They cost nothing but your hours, and the last one is the hard one. I build for businesses that already exist; if you start one, come back. Write to me through the mailbox.</p>",
      cta:{what:"nothing, I have a question", kind:"other", note:"No business yet.", label:"Ask Rick"},
      link:{href:"/aininja/side-hustle-summit/#free", label:"The four steps, at no cost"}},
 
@@ -298,7 +298,7 @@
      alt:["cost to make","cost to build","cost to have","much to build","much to make","much for a","much would a","much does a","much is a","price of a","cost of a","price for a","quote","estimate","how much for","app cost","website cost","site cost","form cost","box cost","like that cost","would an app","would a website","would a chat"],
      keys:"cost costs price prices quote quotes estimate charge make build built chat box app site website form feature bot",
      a:"<p>It depends on the size, and I tell you the number in writing before any work starts. A build sits outside the two monthly Dojo offers.</p><p>For scale, from my own shop: the box you are typing into and the mailbox at the bottom of this page each took an afternoon. The Answer Engine behind my spa's site, answering in two languages from a written guide and taking bookings from a plain email, was a bigger build over a few weeks. Tell me what you want it to answer and where it should live, and you get a real number, not a range.</p>",
-     cta:{what:"a quote for a build", kind:"build", note:"A chat box, a form or an app: tell me what it must do and I will price it.", label:"Get the number"}},
+     cta:{what:"a quote for a build", kind:"build", note:"A chat box, a form or an app: tell me what it must do, and the price comes back in writing.", label:"Get the number"}},
 
     {id:"tiers", q:"Which fits me, Your Dojo or R2 Hosting?",
      alt:["difference between","sensei runs it","your dojo","which tier","which plan","which one","two options","two offers","three offers","the two","the three","run it for me","run it for us","run it all for me","run the whole thing for me","do it all for me","bigger than"],
@@ -361,12 +361,12 @@
     {id:"how-long", q:"How long does it take?",
      alt:["how long","how fast can you","how fast can it","how fast to set up","how quickly can you","how soon","timeline","time frame","timeframe","when will it","up and running","start tonight","tonight","this month","this week","working this month","start date","when can we start","when can i start","how soon can we start"],
      keys:"long fast quick quickly timeline weeks week days months soon deliver delivery ready running live tonight date",
-     a:"<p>Days, for the first desk. The audit comes first, we map where your hours go. Then your first ninja takes the biggest task, usually the inbox, and it can be up and running within days, at white belt: it drafts, you press. It widens once it has proven itself, not on a calendar.</p><p>Tonight? The mailbox at the bottom of this page, and I reply myself, usually within a day.</p>"},
+     a:"<p>Days, for the first desk. The audit comes first, we map where your hours go. Then your first ninja takes the biggest task, usually the inbox, and it can be up and running within days, at white belt: it drafts, you press. It widens once it has proven itself, not on a calendar.</p><p>Tonight? The mailbox at the bottom of this page. I pick it up from there.</p>"},
 
     {id:"build-app", q:"Do you build apps and websites too?",
      alt:["build an app","build me an app","build my app","build a website","build my website","build me a website","make an app","make me an app","custom software","product development","need a developer","need an app","new website"],
      keys:"app apps website websites site sites software build builds building custom product products feature features developer development code game games backend",
-     a:"<p>Yes, and it is separate work. I have built the app that runs my gym, a spa app, a hostel app, my own POS backend, the console that runs everything and a game on the Apple App Store, all higher up this page.</p><p>Building a product you sell is scoped and agreed in writing before the clock starts; it is not inside the two monthly Dojo offers. Tell me what you want built and I will tell you straight what it would take.</p>",
+     a:"<p>Yes, and it is separate work. I have built the app that runs my gym, a spa app, a hostel app, my own POS backend, the console that runs everything and a game on the Apple App Store, all higher up this page.</p><p>Building a product you sell is scoped and agreed in writing before the clock starts; it is not inside the two monthly Dojo offers. Tell me what you want built, and what it would take comes back straight, in writing.</p>",
      cta:{what:"Something built", kind:"build", note:"An app, a site or a feature, scoped in writing first."}},
 
     {id:"who-for", q:"Who is this for? What kind of business?",
@@ -389,18 +389,18 @@
     {id:"contact", q:"How do I contact you? Can we talk on the phone?",
      alt:["contact you","mailbox","the mailbox","email address","your email","phone number","your phone","call you","a call","zoom","book a call","talk to you","get in touch","reach you","line id","talk on whatsapp","chat on whatsapp","whatsapp you","your whatsapp","speak to you","speak with you","talk to rick","free consultation","ring you","can i ring","telephone","on the phone","phone you"],
      keys:"contact email phone call calls zoom meeting meet talk chat reach whatsapp telegram number address consultation consult conversation",
-     a:"<p>Through my mailbox at the bottom of this page. My address is not written anywhere here for the crawlers to eat, and the mailbox does not open your mail app. Your message lands with my Ninja Agent, which writes back within a minute from what I wrote; I read every message and follow up myself, usually within a day.</p><p>The first conversation happens in writing. I stick to writing on purpose: everything we agree is on the record. A call is a custom step, for the builds that need one.</p>",
+     a:"<p>Through my mailbox at the bottom of this page. My address is not written anywhere here for the crawlers to eat, and the mailbox does not open your mail app. Your message lands with my Ninja Agent first, which writes back from what I wrote. I pick it up from there.</p><p>The first conversation happens in writing. I stick to writing on purpose: everything we agree is on the record. A call is a custom step, for the builds that need one.</p>",
      cta:{what:"a conversation", kind:"other", note:"Tell me what to call you about and when.", label:"Write to Rick"}},
 
     {id:"reply-time", q:"How fast do you reply?",
      alt:["how fast do you reply","reply time","response time","when will you reply","hear back","how soon will i hear","will you reply","do you reply"],
      keys:"reply replies respond response answer back hear wait waiting soon",
-     a:"<p>The ninja, within a minute; me, usually within a day. Your message lands with my Ninja Agent, an AI I built and trained in my Digital Dojo. It writes back from the answers I wrote, signed as the AI, and I read every message and follow up myself.</p>"},
+     a:"<p>Your message lands with my Ninja Agent first. It writes back by email, from the answers I wrote, and I pick it up from there.</p>"},
 
     {id:"email-the-ninja", q:"Can I try the ninja before I pay?",
      alt:["email the ninja","email your ninja","try it out","try the ninja","test the ninja","test it out","see what comes back","talk to the ninja","try it","try before","before i commit","before i pay","free trial","a trial","trial period","try it for"],
      keys:"email mail ninja agent try test demo see comes back write",
-     a:"<p>Yes. Drop a question in my mailbox at the bottom of this page and see what comes back. My Ninja Agent answers within a minute, from the same answers this box uses, signed as the AI, and it says so when it does not have one. I read every message and follow up myself.</p>",
+     a:"<p>Yes. Drop a question in my mailbox at the bottom of this page and see what comes back. My Ninja Agent answers by email, from the same answers this box uses, and it says so when it does not have one. I pick it up from there.</p>",
      cta:{what:"a conversation", kind:"other", note:"Or use the mailbox below.", label:"Write to Rick"}},
 
     {id:"who-is-rick", q:"Who is Rick Tew?",
@@ -456,12 +456,12 @@
     {id:"availability", q:"Do you have room for new clients right now?",
      alt:["room for","taking clients","taking on","taking new","are you available","waiting list","waitlist","seats left","how many clients","how many seats","fully booked","if it breaks","it breaks","goes down","stops working","on a saturday","on a sunday","at the weekend","on the weekend","who do i call"],
      keys:"room available availability taking clients client capacity seats seat waiting waitlist list full busy booked spots spot breaks broke broken down saturday sunday weekend call",
-     a:"<p>I take a limited number of clients at a time, because a sensei who takes every student teaches none of them. Whether there is room right now is a straight answer I give in the mailbox. Post the message and you will hear from me, usually within a day.</p><p>If something breaks, you tell me, whatever day it is; an alarm tells me when the mail stops before you do, and fixing it is mine, not yours.</p>"},
+     a:"<p>I take a limited number of clients at a time, because a sensei who takes every student teaches none of them. Whether there is room right now is a straight answer I give in the mailbox. Post the message and I pick it up from there.</p><p>If something breaks, you tell me, whatever day it is; an alarm tells me when the mail stops before you do, and fixing it is mine, not yours.</p>"},
 
     {id:"remote", q:"Do you work with businesses outside Thailand?",
      alt:["outside thailand","work remotely","remotely","remote","in europe","in the us","in the uk","in america","in australia","in canada","my country","time zone","timezone","time zones","other countries","overseas"],
      keys:"remote remotely outside thailand europe america usa canada australia country countries abroad international timezone zone zones location anywhere overseas worldwide",
-     a:"<p>The work happens in your own online accounts, which do not care where you are, and I have lived and taught all over the world. Say where you are and what you run in the mailbox and I will tell you straight whether I can take it on, time zones included.</p>"},
+     a:"<p>The work happens in your own online accounts, which do not care where you are, and I have lived and taught all over the world. Say where you are and what you run in the mailbox: whether I can take it on, time zones included, comes back straight.</p>"},
 
     {id:"teach-me", q:"Can you teach me to do this myself?",
      alt:["teach me","teach us","learn to do it myself","do it myself","train my team","train me","workshop","course on ai","learn ai"],
@@ -624,7 +624,7 @@
     "contact":"One line about where your hours go is a better first message than a polite hello.",
     "email-the-ninja":"Ask it the question you would ask me. The answer you get is the answer your customers would get from yours.",
     "who-is-rick":"A sensei's job is taking you from white belt to black without skipping the proving part. Same job here.",
-    "ownership":"Own the result, not the plumbing. If you want to own the plumbing too, say so up front and I will price it.",
+    "ownership":"Own the result, not the plumbing. If you want to own the plumbing too, say so up front and it gets priced in writing.",
     "existing-apps":"Count the hours an app costs you before you swap it. If the number is small, keep it.",
     "third-party":"The bill that surprises people is never the flat one. Ask any builder which meters are yours to watch. Here, none.",
     "helpings":"The small thing you have wanted for a year is usually an afternoon. Name it.",
@@ -651,7 +651,7 @@
     "answer-engine":"Twenty verified answers beat two hundred guessed ones.",
     "notebook":"An AI that learns without your veto learns your worst day too.",
     "quiz-funnel":"Never hold the result hostage for an email. People can tell.",
-    "video-room":"In testing means I will tell you when it is ready, not before."
+    "video-room":"In testing means it is not for sale until it is ready."
   };
 
   var api={answer:answer, search:search, tokens:tokens, norm:norm, LIBRARY:LIBRARY, STARTERS:STARTERS, HOURS:HOURS, TIPS:TIPS};
@@ -770,7 +770,7 @@
       misses.push(q);
       var b=bubble("n");
       var a=el("div","ask-a");
-      a.innerHTML="<p>I do not have that one, and I would rather say so than guess. Rick does: ask him directly. It lands with his Ninja Agent, and he replies himself, usually within a day.</p>";
+      a.innerHTML="<p>I do not have that one, and I would rather say so than guess. Rick does: ask him directly. It lands with his Ninja Agent first, and he picks it up from there.</p>";
       b.appendChild(a);
       var row=el("div","ask-act");
       var btn=el("button","ask-want"); btn.type="button";

@@ -105,7 +105,8 @@ const checks = [
   ['receipt: no foreign tags, no live script', receipt && foreign(receipt.html).length === 0 && !/<script/i.test(receipt.html)],
   ['receipt: business name escaped', receipt && receipt.html.includes('&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;Evil Co')],
   ['receipt: lists missed questions', receipt && /Which offer are you leaning towards/.test(receipt.text)],
-  ['receipt: says it is an AI', receipt && /I am an AI/.test(receipt.text)],
+  // Rick, 1 Oct 2026: no AI label on our mail and no promise that he reads every intake
+  ['receipt: no AI label, no read-every promise', receipt && !/I am an AI|reads every/i.test(receipt.text) && !/I am an AI|reads every/i.test(receipt.html || '')],
   ['receipt: Auto-Submitted header set', receipt && receipt.headers['Auto-Submitted'] === 'auto-generated'],
   ['receipt: reply_to from the secret', receipt && receipt.reply_to === 'agent-stub@example.com'],
 ];

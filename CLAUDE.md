@@ -349,6 +349,22 @@ band and the summit card.**
   - The mailbox subject `dojo` is labelled "Your Dojo or R2 Hosting" on the
     page AND in `ricktew-contact/index.ts` (redeployed 1 Oct; foreign
     origin still 403).
+  - **The no-promises pass is DONE (1 Oct, Rick's clicks, one per promise):**
+    no "I read every message / follow up myself" (now "I pick it up from
+    there."), no "within a minute", no "usually within a day", no "in the
+    next minute" (now "check your inbox for its reply / for the receipt"),
+    no "free forever", and the "I will ..." offers rewritten as plain
+    directions. Refusals ("I will not invent a quote") stay. Covered: the
+    /aininja/ mailbox band, small print and thank-you, the WebMCP tool
+    text, the FAQ, done-for-you, R2, the Intake page, the chat box, llms.txt
+    and the Intake RECEIPT mail (ricktew-intake redeployed 1 Oct).
+  - **AI labels, Rick's ruling the same day:** "AI Ninja", "Rick Tew, AI
+    version", messaging the AI Ninja and AI words for search are all fine.
+    What he does not want: telling anyone their workflow or emails will be
+    marked "sent by AI". So nothing says our mailbox replies are "signed as
+    the AI" or "an AI I built", and the Intake receipt no longer says "I am
+    an AI". The escaping test checks the receipt carries neither the label
+    nor the read-every promise.
 - **Second pass, same day, after round six** (ten personas,
   `playtest/reports/2026-10-01-r6-SUMMARY.md`; Rick's click answers):
   - **The story folds:** chapter 1 ("A gym full of kids") and chapter 7
