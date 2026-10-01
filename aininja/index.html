@@ -689,6 +689,18 @@ footer a:hover{text-decoration:underline}
 .sb-more summary::after{content:"+";font-weight:900;color:var(--blue)}
 .sb-more[open] summary::after{content:"\2212"}
 .sb-more p{margin:8px 0 0;max-width:760px}
+/* the first box arrives drawn (round seven, 1 Oct 2026: a scrolling reader saw an empty frame) */
+.sb-frame.sb-end .is [class*="-"]{animation-delay:-60s !important}
+.sb-wrap{margin-top:22px}
+.sb-wrap>summary{display:inline-block;cursor:pointer;list-style:none;font-weight:900;font-size:15px;color:var(--blue);border-bottom:2px solid currentColor;padding-bottom:1px}
+.sb-wrap>summary::-webkit-details-marker{display:none}
+.sb-wrap>summary::after{content:" +"}
+.sb-wrap[open]>summary::after{content:" \2212"}
+.dojo-more{margin-top:26px}
+.dojo-more>summary{display:block;width:max-content;max-width:100%;margin:0 auto;cursor:pointer;list-style:none;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:12px 22px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:15px}
+.dojo-more>summary::-webkit-details-marker{display:none}
+.dojo-more>summary::after{content:" +";color:var(--blue)}
+.dojo-more[open]>summary::after{content:" \2212"}
 /* the motion vocabulary inside every box: each class plays once, keeps its
    end frame, and reads the frame's --play so nothing runs off screen */
 .is [class*="-"]{transform-box:fill-box;transform-origin:center;animation-play-state:var(--play,running);animation-fill-mode:both}
@@ -1118,7 +1130,6 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     "@type": "ContactPoint",
     "contactType": "sales",
     "url": "https://ricktew.com/aininja/#opt-8c",
-    "email": "aininja@ricktew.com",
     "availableLanguage": "en"
    },
    "makesOffer": [
@@ -1279,7 +1290,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
      "name": "Is it safe to let an AI read my inbox?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops. Nothing leaves without a person's press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file. Whatever the AI companies change tomorrow, the press is still yours."
+      "text": "Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops. Nothing leaves without a person's press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file. Whatever the AI companies change tomorrow, the press is still yours. Who reads your customers' mail: only me, plus the AI that drafts the replies. For a health practice, I sign a HIPAA business associate agreement."
      }
     },
     {
@@ -1428,12 +1439,14 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
           <span class="tag">Full plan &middot; Your Dojo</span>
           <span class="amt">$2,222 a month<small>, flat</small></span>
           <p>All of that, plus your admin handled as a service. I manage the AI ninjas that draft every reply and file every payment. Your team checks it and presses send. Any number of people. The AI is in the price.</p>
+          <p class="way-more">The jobs it takes: customer replies drafted, bookings with reminders and reschedules, payments filed and invoices written, visitors turned into leads.</p>
           <p class="way-more">The audit first, free: where the hours go, mapped with you. Monthly, cancel anytime, effective at the end of the paid month.</p>
           <a class="want" href="#" data-want="Your Dojo, $2,222 a month" data-want-note="I build it, host it, and help you run it." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
         </div>
       </div>
       <p class="custom">Your team presses every send. Want the whole day run for you? That is a custom price, and we talk first. Smaller than that? One desk on its own, without the monthly plan, is quoted in writing after the free audit.</p>
-      <p class="custom">The &ldquo;I want this Tew&rdquo; button writes your pick into my mailbox at the bottom of this page. You add a line and send it. I stick to text on purpose: everything we agree is on the record. A call is a custom step.</p>
+      <p class="custom">The &ldquo;I want this Tew&rdquo; button writes your pick into my mailbox at the bottom of this page. You add a line and send it. I stick to writing on purpose: everything we agree is on the record. A call is a custom step.</p>
+      <p class="custom">Email first: that is where every desk I have built runs today. WhatsApp, LINE, Instagram or texts are a build, not a switch, scoped in writing before the clock starts.</p>
     <div class="hows">
       <div class="k">How it works</div>
       <ol class="how-steps">
@@ -1443,22 +1456,10 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
         <li><b>4</b><span>I manage all of it and report to you in writing.</span></li>
       </ol>
     </div>
-    <div class="you-faq" id="faq-first">
-      <span class="k">The first questions</span>
-      <details><summary>Do I need to understand AI to use this?</summary><p>No. That is the point. I build and train the Dojo; you run your business. If you ever want to see under the hood, I will show you. You never have to.</p></details>
-      <details><summary>What does it cost?</summary><p>Your Dojo is $2,222 a month: I build it, host it, and help you run it; your team presses every send. The audit that comes first is free. Monthly, cancel anytime, effective at the end of the paid month. Smaller need? R2 Hosting: I build your site or small app and host it on my stack, $222 to build, then $99 a month or $999 a year. Want the whole day run for you, or something bigger than one Dojo? That is a custom price, and we talk first. The AI is in the price: I run it on my accounts, and you never open an AI account or watch a meter. Not in the price: ad spend, software your business already pays for on its own, and building a product you sell, which is separate work agreed in writing first. The quiz says where I would start.</p></details>
-      <details><summary>Does it replace the apps I already pay for?</summary><p>Not by default. It works alongside what you already use, like your booking app or your till. The free audit maps what connects to them, and whether anything is worth replacing.</p></details>
-      <details><summary>Is it safe to let an AI read my inbox?</summary><p>Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops. Nothing leaves without a person's press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file. Whatever the AI companies change tomorrow, the press is still yours.</p></details>
-      <details><summary>What happens if you disappear?</summary><p>You lose the window, not the room. The build is the window: the desk, the forms, the site I made so you can see the work and press. The room is yours: your domain, your mail, your content, your videos, your customer records. They are yours in writing, they leave with you, and I keep no copy. What ends with me is the window and the hosting, and nothing is charged after.</p></details>
-      <details><summary>Do I have to manage any of the tech?</summary><p>No. Both plans are built on my stack and stay there: the hosting, the database, the mail plumbing, every setting that holds it together. It is the same stack my own businesses and my clients' run on, and it is why the price is flat. For you that means no dashboard, no console, no certificate to renew, no password to keep somewhere safe, and no bug that is yours to fix. When something needs changing, you tell me. Yours, always: your domain, your content and your data. Want it built inside your own accounts instead, as a thing you own outright? That is a custom job, quoted in writing, and it costs more, because every login and card approval on your side is an hour of the build.</p></details>
-      <details><summary>Can I cancel?</summary><p>Anytime. Cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack, so there is nothing to hand back or log out of. Your domain, your content and your data leave with you, and I do not keep a copy. The build and the hosting end with the subscription, and nothing is charged after.</p></details>
-    </div>
-    <div class="cta-row">
-      <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
-      <a class="btn btn-quiet" href="#quiz">Take the quiz</a>
-    </div>
-    <div class="sb" id="fiveWords" role="group" aria-label="The five words on this page, in five boxes">
-      <div class="k">Five words &middot; five boxes</div>
+    <details class="sb-wrap">
+      <summary>What do the words mean?</summary>
+    <div class="sb" id="fiveWords" role="group" aria-label="The four words on this page, in four boxes">
+      <div class="k">Four words &middot; four boxes</div>
       <div class="sb-frame" id="sbFrame"></div>
       <div class="sb-ctl">
         <div class="sb-dots" id="sbDots" aria-label="Which box"></div>
@@ -1471,10 +1472,26 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <p class="sb-cap" id="sbCap"></p>
       <p class="sb-body" id="sbBody"></p>
       <details class="sb-more">
-        <summary>Read the five in one paragraph</summary>
-        <p class="gloss" style="margin-top:8px">Five words carry this page. A Dojo is the setup I build for one business. A ninja is one AI worker in it, doing one job. A seat is a job a few ninjas fill together, like marketing or the books. A belt is how much a ninja has proven, white to black. The sensei is me.</p>
+        <summary>Read the four in one paragraph</summary>
+        <p class="gloss" style="margin-top:8px">Four words carry this page. A Dojo is the setup I build for one business. A ninja is one AI worker in it, doing one job. A belt is how much a ninja has proven, white to black. The sensei is me.</p>
       </details>
     </div>
+    </details>
+    <div class="you-faq" id="faq-first">
+      <span class="k">The first questions</span>
+      <details><summary>Do I need to understand AI to use this?</summary><p>No. That is the point. I build and train the Dojo; you run your business. If you ever want to see under the hood, I will show you. You never have to.</p></details>
+      <details><summary>What does it cost?</summary><p>Your Dojo is $2,222 a month: I build it, host it, and help you run it; your team presses every send. The audit that comes first is free. Monthly, cancel anytime, effective at the end of the paid month. Smaller need? R2 Hosting: I build your site or small app and host it on my stack, $222 to build, then $99 a month or $999 a year. Want the whole day run for you, or something bigger than one Dojo? That is a custom price, and we talk first. The AI is in the price: I run it on my accounts, and you never open an AI account or watch a meter. Not in the price: ad spend, software your business already pays for on its own, and building a product you sell, which is separate work agreed in writing first. The quiz says where I would start.</p></details>
+      <details><summary>Does it replace the apps I already pay for?</summary><p>Not by default. It works alongside what you already use, like your booking app or your till. The free audit maps what connects to them, and whether anything is worth replacing.</p></details>
+      <details><summary>Is it safe to let an AI read my inbox?</summary><p>Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops. Nothing leaves without a person's press. Its rules live in code, not in a prompt, so a clever mail cannot talk it into anything. Attachments are never opened. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file. Whatever the AI companies change tomorrow, the press is still yours. Who reads your customers' mail: only me, plus the AI that drafts the replies. For a health practice, I sign a HIPAA business associate agreement.</p></details>
+      <details><summary>What happens if you disappear?</summary><p>You lose the window, not the room. The build is the window: the desk, the forms, the site I made so you can see the work and press. The room is yours: your domain, your mail, your content, your videos, your customer records. They are yours in writing, they leave with you, and I keep no copy. What ends with me is the window and the hosting, and nothing is charged after.</p></details>
+      <details><summary>Do I have to manage any of the tech?</summary><p>No. Both plans are built on my stack and stay there: the hosting, the database, the mail plumbing, every setting that holds it together. It is the same stack my own businesses and my clients' run on, and it is why the price is flat. For you that means no dashboard, no console, no certificate to renew, no password to keep somewhere safe, and no bug that is yours to fix. When something needs changing, you tell me. Yours, always: your domain, your content and your data. Want it built inside your own accounts instead, as a thing you own outright? That is a custom job, quoted in writing, and it costs more, because every login and card approval on your side is an hour of the build.</p></details>
+      <details><summary>Can I cancel?</summary><p>Anytime. Cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack, so there is nothing to hand back or log out of. Your domain, your content and your data leave with you, and I do not keep a copy. The build and the hosting end with the subscription, and nothing is charged after.</p></details>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
+      <a class="btn btn-quiet" href="#quiz">Take the quiz</a>
+    </div>
+
   </div>
 </section>
 
@@ -1759,35 +1776,6 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   </div>
 
 </div>
-</details>
-
-<div class="timeline">
-  <div class="tl-rail" aria-hidden="true"></div>
-  <div class="tl-fill" id="tlFill4" aria-hidden="true"></div>
-
-  <!-- CH 7: the friend -->
-  <div class="chapter rv">
-    <div class="dot" aria-hidden="true"></div>
-    <div class="ch-text">
-      <div class="ch-date"><b>Summer 2026</b> &middot; the part that became the Dojo</div>
-      <h3>Friends asked about AI, then asked me to do it for them.</h3>
-      <div class="prose">
-        <p>One friend wanted his team taught. Six-plus hours in, the request changed to <b>"could you just do it for us?"</b> Now his support desk drafts a reply to every customer mail and a person presses send. Another had run a factory on paper since 1998; front office and back, it became one system. A third wanted his members turned into authors, with an AI coach that asks questions but never writes for them.</p>
-        <p>Those requests are why this page exists. You do not have time to learn this, and you should not have to. I call it AI to HI: I run the AI, you get your time back for Human Interaction. The handshakes, the classes, the customers. The rest of this page is what that looks like for you.</p>
-      </div>
-    </div>
-    <div class="ch-vis">
-      <div class="stats">
-        <div class="stat"><b><span data-count="6">0</span><span class="plus">+</span></b><span>hours of teaching, in person</span></div>
-        <div class="stat"><b>1</b><span>human press on every send</span></div>
-        <div class="stat"><b><span data-count="1900">0</span><span class="plus">+</span></b><span>rounds of changes, for them</span></div>
-        <div class="stat"><b>3</b><span>businesses, built front to back</span></div>
-      </div>
-      <p class="vis-cap" style="max-width:100%;text-align:left;margin-top:12px">The people stay unnamed on purpose.</p>
-    </div>
-  </div>
-</div>
-
 <!-- every app: the live screens first, the icons after -->
 <section class="appwall" id="apps">
   <div class="rv">
@@ -1856,6 +1844,35 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <div class="cta"><a class="btn btn-blue" href="#quiz">Find out where your engine is missing &middot; take the quiz</a></div>
   </div>
 </section>
+
+</details>
+
+<div class="timeline">
+  <div class="tl-rail" aria-hidden="true"></div>
+  <div class="tl-fill" id="tlFill4" aria-hidden="true"></div>
+
+  <!-- CH 7: the friend -->
+  <div class="chapter rv">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="ch-text">
+      <div class="ch-date"><b>Summer 2026</b> &middot; the part that became the Dojo</div>
+      <h3>Friends asked about AI, then asked me to do it for them.</h3>
+      <div class="prose">
+        <p>One friend wanted his team taught. Six-plus hours in, the request changed to <b>"could you just do it for us?"</b> Now his support desk drafts a reply to every customer mail and a person presses send. Another had run a factory on paper since 1998; front office and back, it became one system. A third wanted his members turned into authors, with an AI coach that asks questions but never writes for them.</p>
+        <p>Those requests are why this page exists. You do not have time to learn this, and you should not have to. I call it AI to HI: I run the AI, you get your time back for Human Interaction. The handshakes, the classes, the customers. The rest of this page is what that looks like for you.</p>
+      </div>
+    </div>
+    <div class="ch-vis">
+      <div class="stats">
+        <div class="stat"><b><span data-count="6">0</span><span class="plus">+</span></b><span>hours of teaching, in person</span></div>
+        <div class="stat"><b>1</b><span>human press on every send</span></div>
+        <div class="stat"><b><span data-count="1900">0</span><span class="plus">+</span></b><span>rounds of changes, for them</span></div>
+        <div class="stat"><b>3</b><span>businesses, built front to back</span></div>
+      </div>
+      <p class="vis-cap" style="max-width:100%;text-align:left;margin-top:12px">The people stay unnamed on purpose.</p>
+    </div>
+  </div>
+</div>
 
 <section class="dojo-sec" id="solutions">
   <div class="wrap rv">
@@ -2006,28 +2023,28 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <h2>Your own Digital Dojo. <span style="color:var(--blue)">Built by a sensei.</span></h2>
     <p class="sub">You will never need to touch the builder tools. Your strength is elsewhere. <b>I use the AI so you can do your HI,</b> the part only you can do. I build your Dojo, train your ninjas on your own work, and stay close, overseeing it. In the gym I am the Sensei. In your business, same job. It grows in three steps.</p>
 
+    <details class="dojo-more">
+      <summary>How it grows, step by step</summary>
     <div class="dojo-cards">
       <div class="dojo-card rv">
         <span class="belt-chip" style="background:var(--belt-w);border:1px solid var(--line)"></span>
         <h3>One ninja, one job</h3>
-        <p>Your first hire takes the one task that eats the most hours, usually the inbox. It drafts, it files, it proposes. A person presses every send. That rule never bends.</p>
-        <a class="want" href="#" data-want="One ninja, one job" data-want-note="Your first hire takes the one task that eats the most hours." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
+        <p>Your first hire takes the one task that eats the most hours, usually the inbox. It drafts, it files, it proposes. A person presses every send, until you choose otherwise for a task.</p>
       </div>
       <div class="dojo-card rv">
         <span class="belt-chip" style="background:var(--belt-g)"></span>
         <h3>A few desks, working together</h3>
         <p>Ninjas earn belts the way my gym kids do: by showing up and proving it. A trusted ninja gets more to do, and the desks start passing work to each other: support to bookings to money.</p>
-        <a class="want" href="#" data-want="A few desks, working together" data-want-note="Desks passing work to each other, support to bookings to money." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </div>
       <div class="dojo-card rv">
         <span class="belt-chip" style="background:var(--belt-k)"></span>
         <h3>The full dojo</h3>
         <p>A workforce with one view over all of it, and me overseeing it, reporting to you in writing. Every judgment call is still yours.</p>
-        <a class="want" href="#" data-want="The full dojo" data-want-note="A workforce with one view over all of it." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </div>
     </div>
 
-    <p class="dojo-honest">Give every AI hire a 2015 job title and you get a 2015 org chart. Mine start at white belt: propose only, prove it, earn the next belt. Nothing sends, pays or posts itself until it has.</p>
+    <p class="dojo-honest">Give every AI hire a 2015 job title and you get a 2015 org chart. Mine start at white belt: propose only, prove it, earn the next belt. Nothing sends, pays or posts on its own unless you choose that for a task, and only after it has been tested.</p>
+    </details>
 
     <p class="dojo-honest" style="margin-top:22px">It is me doing the building, on the same stack my own businesses and my clients' run on. Nothing for you to log into, renew or fix, and your domain, your content and your data stay yours. Once it stands, your team runs the daily work and I stay close, overseeing it, in writing. I help you run it; I do not run it for you, and I am not on your payroll. Want the whole day run for you, something bigger than one Dojo, or the build inside your own accounts? That is a custom price, and we talk first. I take a limited number of clients at a time, because a sensei who takes every student teaches none of them. <b>Already decided?</b> Skip the back and forth and <a href="/aininja/start/"><b>fill in The Intake</b></a>: 20 to 40 minutes, a voice note and a short video, and the build starts faster. <b>Smaller need?</b> <a href="/aininja/r2/"><b>R2 Hosting</b></a>: your site or small app, built and hosted by me, $222 to build, then $99 a month.</p>
 
@@ -2251,8 +2268,8 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <!-- ============ OPTION 8C: footer CTA band, THE MAILBOX ============ -->
 <section class="b8c" id="opt-8c">
   <div class="wrap rv">
-    <h2>One message. <span class="c">I read every one.</span></h2>
-    <p>Tell me where your hours go. This will not open your email app, and my own address is not written on this page for the crawlers to eat. Drop it in my mailbox. <b>Or try the ninja first: email aininja@ricktew.com and see what comes back.</b></p>
+    <h2>One message. <span class="c">It reaches me.</span></h2>
+    <p>Tell me where your hours go. This will not open your email app, and my own address is not written on this page for the crawlers to eat. Drop it in my mailbox. <b>Or try the ninja first: drop a question in and see what comes back.</b></p>
 
     <div class="slot" id="slot">
       <div class="slot-lid">
@@ -3234,11 +3251,10 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   var SCENES=[
     {key:"dojo",cap:"A Dojo is the setup I build for one business.",body:"Yours, on my stack. Nothing for you to log into, renew or fix.",sec:4.8,svg:"<svg viewBox=\"-60 -40 1320 780\" class=\"is\" role=\"img\" aria-label=\"A dojo building; the sign on it carries a business name\"><rect class=\"is-wide\" x=\"80\" y=\"600\" width=\"1040\" height=\"8\" rx=\"4\" fill=\"#101418\"/><rect class=\"is-grow\" style=\"animation-delay:.3s\" x=\"250\" y=\"300\" width=\"700\" height=\"300\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"8\"/><path class=\"is-in\" style=\"animation-delay:1s\" d=\"M 170 312 L 600 110 L 1030 312 Z\" fill=\"#f7f6f4\" stroke=\"#101418\" stroke-width=\"8\" stroke-linejoin=\"round\"/><g class=\"is-in\" style=\"animation-delay:1.7s\"><rect x=\"555\" y=\"452\" width=\"90\" height=\"148\" rx=\"6\" fill=\"#1e73bd\"/><circle cx=\"630\" cy=\"530\" r=\"7\" fill=\"#fff\"/></g><g class=\"is-pop\" style=\"animation-delay:2.1s\" fill=\"#101418\"><rect x=\"295\" y=\"540\" width=\"110\" height=\"12\" rx=\"4\"/><rect x=\"303\" y=\"550\" width=\"10\" height=\"50\"/><rect x=\"387\" y=\"550\" width=\"10\" height=\"50\"/><rect x=\"328\" y=\"496\" width=\"44\" height=\"30\" rx=\"4\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"5\"/><rect x=\"346\" y=\"528\" width=\"8\" height=\"10\"/></g><g class=\"is-pop\" style=\"animation-delay:2.3s\" fill=\"#101418\"><rect x=\"420\" y=\"540\" width=\"110\" height=\"12\" rx=\"4\"/><rect x=\"428\" y=\"550\" width=\"10\" height=\"50\"/><rect x=\"512\" y=\"550\" width=\"10\" height=\"50\"/><rect x=\"453\" y=\"496\" width=\"44\" height=\"30\" rx=\"4\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"5\"/><rect x=\"471\" y=\"528\" width=\"8\" height=\"10\"/></g><g class=\"is-pop\" style=\"animation-delay:2.5s\" fill=\"#101418\"><rect x=\"670\" y=\"540\" width=\"110\" height=\"12\" rx=\"4\"/><rect x=\"678\" y=\"550\" width=\"10\" height=\"50\"/><rect x=\"762\" y=\"550\" width=\"10\" height=\"50\"/><rect x=\"703\" y=\"496\" width=\"44\" height=\"30\" rx=\"4\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"5\"/><rect x=\"721\" y=\"528\" width=\"8\" height=\"10\"/></g><g class=\"is-pop\" style=\"animation-delay:2.7s\" fill=\"#101418\"><rect x=\"795\" y=\"540\" width=\"110\" height=\"12\" rx=\"4\"/><rect x=\"803\" y=\"550\" width=\"10\" height=\"50\"/><rect x=\"887\" y=\"550\" width=\"10\" height=\"50\"/><rect x=\"828\" y=\"496\" width=\"44\" height=\"30\" rx=\"4\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"5\"/><rect x=\"846\" y=\"528\" width=\"8\" height=\"10\"/></g><g class=\"is-pop\" style=\"animation-delay:3s\"><rect x=\"410\" y=\"340\" width=\"380\" height=\"84\" rx=\"14\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"6\"/></g><g font-size=\"42\" font-weight=\"800\" fill=\"#101418\" text-anchor=\"middle\"><text class=\"is-cycle is-cycle-first\" style=\"animation-delay:3.3s\" x=\"600\" y=\"398\">The bakery’s Dojo</text><text class=\"is-cycle\" style=\"animation-delay:4.8s\" x=\"600\" y=\"398\">The clinic’s Dojo</text><text class=\"is-cycle\" style=\"animation-delay:6.3s\" x=\"600\" y=\"398\">The salon’s Dojo</text></g></svg>"},
     {key:"ninja",cap:"A ninja is one AI worker in it, doing one job.",body:"It drafts, it files, it proposes. A person presses every send.",sec:5.2,svg:"<svg viewBox=\"-60 -40 1320 780\" class=\"is\" role=\"img\" aria-label=\"One ninja at one desk: mail comes in on the left, drafts wait in a tray on the right, the job on the desk plate\"><g transform=\"translate(-90 -70) scale(1.15)\"><g class=\"is-pop\" style=\"animation-delay:0.3s;color:#101418\"><g transform=\"translate(600 348) scale(1.2)\"><circle cx=\"0\" cy=\"-120\" r=\"44\" fill=\"currentColor\"/><rect x=\"-30\" y=\"-131\" width=\"60\" height=\"18\" rx=\"7\" fill=\"#efece4\"/><circle cx=\"-13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><circle cx=\"13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><path d=\"M -70 60 Q -70 -60 0 -60 Q 70 -60 70 60 Z\" fill=\"currentColor\"/><rect x=\"-70\" y=\"18\" width=\"140\" height=\"16\" fill=\"#efece4\"/></g></g><rect class=\"is-wide\" x=\"280\" y=\"420\" width=\"640\" height=\"20\" rx=\"6\" fill=\"#101418\"/><rect class=\"is-grow\" style=\"animation-delay:.2s\" x=\"304\" y=\"440\" width=\"18\" height=\"150\" fill=\"#101418\"/><rect class=\"is-grow\" style=\"animation-delay:.2s\" x=\"878\" y=\"440\" width=\"18\" height=\"150\" fill=\"#101418\"/><g class=\"is-pop\" style=\"animation-delay:.9s\"><rect x=\"490\" y=\"446\" width=\"220\" height=\"86\" rx=\"10\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"5\"/><text x=\"600\" y=\"474\" text-anchor=\"middle\" font-size=\"20\" font-weight=\"800\" letter-spacing=\"3\" fill=\"#69707a\">THE JOB</text></g><text class=\"is-in\" style=\"animation-delay:1.1s\" x=\"600\" y=\"514\" text-anchor=\"middle\" font-size=\"36\" font-weight=\"800\" fill=\"#1e73bd\">the inbox</text><g class=\"is-drop\" style=\"animation-delay:1.4s\"><g transform=\"translate(340 364)\"><rect width=\"76\" height=\"52\" rx=\"6\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"5\"/><path d=\"M 0 0 L 38 30 L 76 0\" fill=\"none\" stroke=\"#101418\" stroke-width=\"5\" stroke-linejoin=\"round\"/></g></g><g class=\"is-drop\" style=\"animation-delay:2.0s\"><g transform=\"translate(360 348)\"><rect width=\"76\" height=\"52\" rx=\"6\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"5\"/><path d=\"M 0 0 L 38 30 L 76 0\" fill=\"none\" stroke=\"#101418\" stroke-width=\"5\" stroke-linejoin=\"round\"/></g></g><g class=\"is-drop\" style=\"animation-delay:2.6s\"><g transform=\"translate(380 332)\"><rect width=\"76\" height=\"52\" rx=\"6\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"5\"/><path d=\"M 0 0 L 38 30 L 76 0\" fill=\"none\" stroke=\"#101418\" stroke-width=\"5\" stroke-linejoin=\"round\"/></g></g><text class=\"is-in\" style=\"animation-delay:1.5s\" x=\"400\" y=\"640\" text-anchor=\"middle\" font-size=\"38\" font-weight=\"700\" fill=\"#69707a\">mail in</text><rect class=\"is-in\" style=\"animation-delay:2.9s\" x=\"740\" y=\"398\" width=\"200\" height=\"22\" rx=\"6\" fill=\"#f7f6f4\" stroke=\"#101418\" stroke-width=\"5\"/><g class=\"is-show\" style=\"animation-delay:3.2s\"><g class=\"is-slide\" style=\"--fx:-230px;--fy:-40px;--tx:0px;--ty:0px;animation-delay:3.2s\"><g transform=\"translate(782 320)\"><rect width=\"56\" height=\"72\" rx=\"5\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"5\"/><path d=\"M 12 20 H 44 M 12 36 H 44 M 12 52 H 32\" stroke=\"#69707a\" stroke-width=\"5\" stroke-linecap=\"round\"/></g></g></g><g class=\"is-show\" style=\"animation-delay:3.7s\"><g class=\"is-slide\" style=\"--fx:-230px;--fy:-40px;--tx:0px;--ty:0px;animation-delay:3.7s\"><g transform=\"translate(802 310)\"><rect width=\"56\" height=\"72\" rx=\"5\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"5\"/><path d=\"M 12 20 H 44 M 12 36 H 44 M 12 52 H 32\" stroke=\"#69707a\" stroke-width=\"5\" stroke-linecap=\"round\"/></g></g></g><g class=\"is-show\" style=\"animation-delay:4.2s\"><g class=\"is-slide\" style=\"--fx:-230px;--fy:-40px;--tx:0px;--ty:0px;animation-delay:4.2s\"><g transform=\"translate(822 300)\"><rect width=\"56\" height=\"72\" rx=\"5\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"5\"/><path d=\"M 12 20 H 44 M 12 36 H 44 M 12 52 H 32\" stroke=\"#69707a\" stroke-width=\"5\" stroke-linecap=\"round\"/></g></g></g><text class=\"is-in\" style=\"animation-delay:3.6s\" x=\"820\" y=\"640\" text-anchor=\"middle\" font-size=\"38\" font-weight=\"700\" fill=\"#69707a\">drafts out, for you to press send</text></g></svg>"},
-    {key:"seat",cap:"A seat is a job a few ninjas fill together.",body:"Marketing, the books, customer care: one job, one number it is judged on.",sec:4.6,svg:"<svg viewBox=\"-60 -40 1320 780\" class=\"is\" role=\"img\" aria-label=\"One seat: a title plate with a chair on it, three ninjas under it, and the one number it is judged on\"><g class=\"is-pop\"><rect x=\"330\" y=\"40\" width=\"540\" height=\"100\" rx=\"18\" fill=\"#1e73bd\"/><g transform=\"translate(366 58)\" fill=\"#fff\"><rect x=\"6\" y=\"0\" width=\"52\" height=\"34\" rx=\"9\"/><rect x=\"0\" y=\"36\" width=\"64\" height=\"12\" rx=\"4\"/><rect x=\"6\" y=\"48\" width=\"10\" height=\"18\" rx=\"3\"/><rect x=\"48\" y=\"48\" width=\"10\" height=\"18\" rx=\"3\"/></g><text x=\"622\" y=\"110\" text-anchor=\"middle\" font-size=\"54\" font-weight=\"900\" fill=\"#fff\">Marketing</text></g><path class=\"is-draw\" style=\"animation-delay:0.6s\" pathLength=\"1\" d=\"M 600 140 L 380 300\" fill=\"none\" stroke=\"#c4dbf0\" stroke-width=\"6\" stroke-linecap=\"round\"/><path class=\"is-draw\" style=\"animation-delay:0.8s\" pathLength=\"1\" d=\"M 600 140 L 600 300\" fill=\"none\" stroke=\"#c4dbf0\" stroke-width=\"6\" stroke-linecap=\"round\"/><path class=\"is-draw\" style=\"animation-delay:1.0s\" pathLength=\"1\" d=\"M 600 140 L 820 300\" fill=\"none\" stroke=\"#c4dbf0\" stroke-width=\"6\" stroke-linecap=\"round\"/><g class=\"is-pop\" style=\"animation-delay:1.2s;color:#101418\"><g transform=\"translate(380 470) scale(1)\"><circle cx=\"0\" cy=\"-120\" r=\"44\" fill=\"currentColor\"/><rect x=\"-30\" y=\"-131\" width=\"60\" height=\"18\" rx=\"7\" fill=\"#efece4\"/><circle cx=\"-13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><circle cx=\"13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><path d=\"M -70 60 Q -70 -60 0 -60 Q 70 -60 70 60 Z\" fill=\"currentColor\"/><rect x=\"-70\" y=\"18\" width=\"140\" height=\"16\" fill=\"#efece4\"/></g></g><g class=\"is-pop\" style=\"animation-delay:1.5s;color:#101418\"><g transform=\"translate(600 470) scale(1)\"><circle cx=\"0\" cy=\"-120\" r=\"44\" fill=\"currentColor\"/><rect x=\"-30\" y=\"-131\" width=\"60\" height=\"18\" rx=\"7\" fill=\"#efece4\"/><circle cx=\"-13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><circle cx=\"13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><path d=\"M -70 60 Q -70 -60 0 -60 Q 70 -60 70 60 Z\" fill=\"currentColor\"/><rect x=\"-70\" y=\"18\" width=\"140\" height=\"16\" fill=\"#efece4\"/></g></g><g class=\"is-pop\" style=\"animation-delay:1.8s;color:#101418\"><g transform=\"translate(820 470) scale(1)\"><circle cx=\"0\" cy=\"-120\" r=\"44\" fill=\"currentColor\"/><rect x=\"-30\" y=\"-131\" width=\"60\" height=\"18\" rx=\"7\" fill=\"#efece4\"/><circle cx=\"-13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><circle cx=\"13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><path d=\"M -70 60 Q -70 -60 0 -60 Q 70 -60 70 60 Z\" fill=\"currentColor\"/><rect x=\"-70\" y=\"18\" width=\"140\" height=\"16\" fill=\"#efece4\"/></g></g><rect class=\"is-wide\" style=\"animation-delay:.6s\" x=\"160\" y=\"530\" width=\"880\" height=\"16\" rx=\"6\" fill=\"#101418\"/><text class=\"is-in\" style=\"animation-delay:2.4s\" x=\"600\" y=\"620\" text-anchor=\"middle\" font-size=\"38\" font-weight=\"700\" fill=\"#69707a\">judged on one number:</text><text class=\"is-in\" style=\"animation-delay:2.8s\" x=\"600\" y=\"674\" text-anchor=\"middle\" font-size=\"44\" font-weight=\"800\" fill=\"#101418\">more customers</text></svg>"},
-    {key:"belt",cap:"A belt is how much a ninja has proven, white to black.",body:"Every ninja starts at white belt: propose only. Prove it, earn the next, get more to do. The same way my gym kids earn theirs.",sec:5.0,svg:"<svg viewBox=\"-60 -40 1320 780\" class=\"is\" role=\"img\" aria-label=\"One ninja whose belt changes from white to black while a belt bar fills underneath\"><g class=\"is-pop\" style=\"color:#101418\"><g transform=\"translate(600 480) scale(1.6)\"><circle cx=\"0\" cy=\"-120\" r=\"44\" fill=\"currentColor\"/><rect x=\"-30\" y=\"-131\" width=\"60\" height=\"18\" rx=\"7\" fill=\"#efece4\"/><circle cx=\"-13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><circle cx=\"13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><path d=\"M -70 60 Q -70 -60 0 -60 Q 70 -60 70 60 Z\" fill=\"currentColor\"/><g class=\"is-show\" style=\"animation-delay:0.6s\"><rect x=\"-70\" y=\"18\" width=\"140\" height=\"18\" fill=\"#efece4\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"-14\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#efece4\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"4\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#efece4\" stroke=\"#fff\" stroke-width=\"4\"/></g><g class=\"is-show\" style=\"animation-delay:1.1s\"><rect x=\"-70\" y=\"18\" width=\"140\" height=\"18\" fill=\"#e3bf3c\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"-14\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#e3bf3c\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"4\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#e3bf3c\" stroke=\"#fff\" stroke-width=\"4\"/></g><g class=\"is-show\" style=\"animation-delay:1.6s\"><rect x=\"-70\" y=\"18\" width=\"140\" height=\"18\" fill=\"#e8731c\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"-14\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#e8731c\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"4\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#e8731c\" stroke=\"#fff\" stroke-width=\"4\"/></g><g class=\"is-show\" style=\"animation-delay:2.1s\"><rect x=\"-70\" y=\"18\" width=\"140\" height=\"18\" fill=\"#2e8b4f\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"-14\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#2e8b4f\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"4\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#2e8b4f\" stroke=\"#fff\" stroke-width=\"4\"/></g><g class=\"is-show\" style=\"animation-delay:2.6s\"><rect x=\"-70\" y=\"18\" width=\"140\" height=\"18\" fill=\"#22416b\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"-14\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#22416b\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"4\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#22416b\" stroke=\"#fff\" stroke-width=\"4\"/></g><g class=\"is-show\" style=\"animation-delay:3.1s\"><rect x=\"-70\" y=\"18\" width=\"140\" height=\"18\" fill=\"#6b4a2e\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"-14\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#6b4a2e\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"4\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#6b4a2e\" stroke=\"#fff\" stroke-width=\"4\"/></g><g class=\"is-show\" style=\"animation-delay:3.6s\"><rect x=\"-70\" y=\"18\" width=\"140\" height=\"18\" fill=\"#1b1b1b\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"-14\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#1b1b1b\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"4\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#1b1b1b\" stroke=\"#fff\" stroke-width=\"4\"/></g></g></g><text class=\"is-in\" style=\"animation-delay:.8s\" x=\"130\" y=\"320\" text-anchor=\"start\" font-size=\"40\" font-weight=\"800\" fill=\"#101418\">White belt</text><text class=\"is-in\" style=\"animation-delay:1.1s\" x=\"130\" y=\"370\" text-anchor=\"start\" font-size=\"38\" font-weight=\"700\" fill=\"#69707a\">propose only</text><text class=\"is-in\" style=\"animation-delay:3.6s\" x=\"1070\" y=\"320\" text-anchor=\"end\" font-size=\"40\" font-weight=\"800\" fill=\"#101418\">Black belt</text><text class=\"is-in\" style=\"animation-delay:3.9s\" x=\"1070\" y=\"370\" text-anchor=\"end\" font-size=\"38\" font-weight=\"700\" fill=\"#69707a\">trusted with more</text><rect class=\"is-wide\" style=\"animation-delay:0.6s\" x=\"180\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#efece4\" stroke=\"#101418\" stroke-width=\"3\"/><rect class=\"is-wide\" style=\"animation-delay:1.1s\" x=\"300\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#e3bf3c\" stroke=\"#101418\" stroke-width=\"3\"/><rect class=\"is-wide\" style=\"animation-delay:1.6s\" x=\"420\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#e8731c\" stroke=\"#101418\" stroke-width=\"3\"/><rect class=\"is-wide\" style=\"animation-delay:2.1s\" x=\"540\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#2e8b4f\" stroke=\"#101418\" stroke-width=\"3\"/><rect class=\"is-wide\" style=\"animation-delay:2.6s\" x=\"660\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#22416b\" stroke=\"#101418\" stroke-width=\"3\"/><rect class=\"is-wide\" style=\"animation-delay:3.1s\" x=\"780\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#6b4a2e\" stroke=\"#101418\" stroke-width=\"3\"/><rect class=\"is-wide\" style=\"animation-delay:3.6s\" x=\"900\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#1b1b1b\" stroke=\"#101418\" stroke-width=\"3\"/></svg>"},
+    {key:"belt",cap:"A belt is how much a ninja has proven, white to black.",body:"Every ninja starts at white belt: propose only. Prove it, earn the next, get more to do. The same way my gym kids earn theirs.",sec:5.0,svg:"<svg viewBox=\"-60 -40 1320 780\" class=\"is\" role=\"img\" aria-label=\"One ninja whose belt changes from white to black while a belt bar fills underneath\"><g class=\"is-pop\" style=\"color:#101418\"><g transform=\"translate(600 480) scale(1.6)\"><circle cx=\"0\" cy=\"-120\" r=\"44\" fill=\"currentColor\"/><rect x=\"-30\" y=\"-131\" width=\"60\" height=\"18\" rx=\"7\" fill=\"#efece4\"/><circle cx=\"-13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><circle cx=\"13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><path d=\"M -70 60 Q -70 -60 0 -60 Q 70 -60 70 60 Z\" fill=\"currentColor\"/><g class=\"is-show\" style=\"animation-delay:0.6s\"><rect x=\"-70\" y=\"18\" width=\"140\" height=\"18\" fill=\"#efece4\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"-14\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#efece4\" stroke=\"#fff\" stroke-width=\"4\"/><rect x=\"4\" y=\"30\" width=\"12\" height=\"30\" rx=\"3\" fill=\"#efece4\" stroke=\"#fff\" stroke-width=\"4\"/></g></g></g><text class=\"is-in\" style=\"animation-delay:.8s\" x=\"130\" y=\"320\" text-anchor=\"start\" font-size=\"40\" font-weight=\"800\" fill=\"#101418\">White belt</text><text class=\"is-in\" style=\"animation-delay:1.1s\" x=\"130\" y=\"370\" text-anchor=\"start\" font-size=\"38\" font-weight=\"700\" fill=\"#69707a\">propose only</text><text class=\"is-in\" style=\"animation-delay:3.6s\" x=\"1070\" y=\"320\" text-anchor=\"end\" font-size=\"40\" font-weight=\"800\" fill=\"#101418\">Black belt</text><text class=\"is-in\" style=\"animation-delay:3.9s\" x=\"1070\" y=\"370\" text-anchor=\"end\" font-size=\"38\" font-weight=\"700\" fill=\"#69707a\">trusted with more</text><rect class=\"is-wide\" style=\"animation-delay:0.6s\" x=\"180\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#efece4\" stroke=\"#101418\" stroke-width=\"3\"/><rect class=\"is-wide\" style=\"animation-delay:1.1s\" x=\"300\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#e3bf3c\" stroke=\"#101418\" stroke-width=\"3\"/><rect class=\"is-wide\" style=\"animation-delay:1.6s\" x=\"420\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#e8731c\" stroke=\"#101418\" stroke-width=\"3\"/><rect class=\"is-wide\" style=\"animation-delay:2.1s\" x=\"540\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#2e8b4f\" stroke=\"#101418\" stroke-width=\"3\"/><rect class=\"is-wide\" style=\"animation-delay:2.6s\" x=\"660\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#22416b\" stroke=\"#101418\" stroke-width=\"3\"/><rect class=\"is-wide\" style=\"animation-delay:3.1s\" x=\"780\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#6b4a2e\" stroke=\"#101418\" stroke-width=\"3\"/><rect class=\"is-wide\" style=\"animation-delay:3.6s\" x=\"900\" y=\"640\" width=\"112\" height=\"22\" rx=\"6\" fill=\"#1b1b1b\" stroke=\"#101418\" stroke-width=\"3\"/></svg>"},
     {key:"sensei",cap:"The sensei is me.",body:"I train the ninjas on your own work and stay close. You press one button and I think about the rest.",sec:5.6,svg:"<svg viewBox=\"-60 -40 1320 780\" class=\"is\" role=\"img\" aria-label=\"The sensei beside the dojo, the owner on the other side with one button: Send\"><rect class=\"is-wide\" x=\"100\" y=\"540\" width=\"1000\" height=\"8\" rx=\"4\" fill=\"#101418\"/><rect class=\"is-grow\" style=\"animation-delay:.2s\" x=\"110\" y=\"380\" width=\"260\" height=\"160\" fill=\"#fff\" stroke=\"#101418\" stroke-width=\"7\"/><path class=\"is-in\" style=\"animation-delay:.7s\" d=\"M 80 388 L 240 280 L 400 388 Z\" fill=\"#f7f6f4\" stroke=\"#101418\" stroke-width=\"7\" stroke-linejoin=\"round\"/><g class=\"is-pop\" style=\"animation-delay:1.1s;color:#101418\"><g transform=\"translate(170 515) scale(0.42)\"><circle cx=\"0\" cy=\"-120\" r=\"44\" fill=\"currentColor\"/><rect x=\"-30\" y=\"-131\" width=\"60\" height=\"18\" rx=\"7\" fill=\"#efece4\"/><circle cx=\"-13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><circle cx=\"13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><path d=\"M -70 60 Q -70 -60 0 -60 Q 70 -60 70 60 Z\" fill=\"currentColor\"/><rect x=\"-70\" y=\"18\" width=\"140\" height=\"16\" fill=\"#efece4\"/></g></g><g class=\"is-pop\" style=\"animation-delay:1.3s;color:#101418\"><g transform=\"translate(240 515) scale(0.42)\"><circle cx=\"0\" cy=\"-120\" r=\"44\" fill=\"currentColor\"/><rect x=\"-30\" y=\"-131\" width=\"60\" height=\"18\" rx=\"7\" fill=\"#efece4\"/><circle cx=\"-13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><circle cx=\"13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><path d=\"M -70 60 Q -70 -60 0 -60 Q 70 -60 70 60 Z\" fill=\"currentColor\"/><rect x=\"-70\" y=\"18\" width=\"140\" height=\"16\" fill=\"#efece4\"/></g></g><g class=\"is-pop\" style=\"animation-delay:1.5s;color:#101418\"><g transform=\"translate(310 515) scale(0.42)\"><circle cx=\"0\" cy=\"-120\" r=\"44\" fill=\"currentColor\"/><rect x=\"-30\" y=\"-131\" width=\"60\" height=\"18\" rx=\"7\" fill=\"#efece4\"/><circle cx=\"-13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><circle cx=\"13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><path d=\"M -70 60 Q -70 -60 0 -60 Q 70 -60 70 60 Z\" fill=\"currentColor\"/><rect x=\"-70\" y=\"18\" width=\"140\" height=\"16\" fill=\"#efece4\"/></g></g><g class=\"is-pop\" style=\"animation-delay:2.0s;color:#1e73bd\"><g transform=\"translate(540 471) scale(1.15)\"><circle cx=\"0\" cy=\"-120\" r=\"44\" fill=\"currentColor\"/><rect x=\"-30\" y=\"-131\" width=\"60\" height=\"18\" rx=\"7\" fill=\"#efece4\"/><circle cx=\"-13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><circle cx=\"13\" cy=\"-122\" r=\"5\" fill=\"currentColor\"/><path d=\"M -70 60 Q -70 -60 0 -60 Q 70 -60 70 60 Z\" fill=\"currentColor\"/><rect x=\"-70\" y=\"18\" width=\"140\" height=\"16\" fill=\"#1b1b1b\"/></g></g><text class=\"is-in\" style=\"animation-delay:2.3s\" x=\"540\" y=\"608\" text-anchor=\"middle\" font-size=\"36\" font-weight=\"800\" fill=\"#1e73bd\">the sensei</text><path class=\"is-draw\" style=\"animation-delay:2.6s\" pathLength=\"1\" d=\"M 480 340 Q 380 250 250 430\" fill=\"none\" stroke=\"#1e73bd\" stroke-width=\"6\" stroke-linecap=\"round\"/><circle class=\"is-pop\" style=\"animation-delay:3.6s\" cx=\"250\" cy=\"430\" r=\"10\" fill=\"#1e73bd\"/><g class=\"is-pop\" style=\"animation-delay:3.3s;color:#69707a\"><g transform=\"translate(960 480)\"><circle cx=\"0\" cy=\"-120\" r=\"44\" fill=\"currentColor\"/><path d=\"M -70 60 Q -70 -60 0 -60 Q 70 -60 70 60 Z\" fill=\"currentColor\"/></g></g><text class=\"is-in\" style=\"animation-delay:3.6s\" x=\"960\" y=\"608\" text-anchor=\"middle\" font-size=\"36\" font-weight=\"800\" fill=\"#69707a\">you</text><g class=\"is-pop\" style=\"animation-delay:4.1s\"><rect x=\"640\" y=\"440\" width=\"200\" height=\"80\" rx=\"40\" fill=\"#1e73bd\"/><text x=\"740\" y=\"495\" text-anchor=\"middle\" font-size=\"44\" font-weight=\"900\" fill=\"#fff\">Send</text></g><g class=\"is-wide\" style=\"animation-delay:4.5s;transform-origin:right center\"><rect x=\"820\" y=\"466\" width=\"90\" height=\"24\" rx=\"12\" fill=\"#69707a\"/><circle cx=\"822\" cy=\"478\" r=\"18\" fill=\"#69707a\"/></g></svg>"}
   ];
-  var HOLD=1.6, i=0, timer=null, inView=false;
+  var HOLD=1.6, i=0, timer=null, inView=false, firstDrawn=true;
   var still=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   SCENES.forEach(function(sc,k){
     var b=document.createElement("button"); b.type="button"; b.setAttribute("aria-label","Box "+(k+1));
@@ -3253,6 +3269,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   function render(){
     var sc=SCENES[i], last=i===SCENES.length-1;
     frame.innerHTML=sc.svg;
+    frame.classList.toggle("sb-end", firstDrawn && i===0);
     cap.textContent=sc.cap; body.textContent=sc.body;
     Array.prototype.forEach.call(dots.children,function(b,k){
       if(k===i) b.setAttribute("aria-current","step"); else b.removeAttribute("aria-current");
@@ -3263,9 +3280,9 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     next.textContent=last?"From the top":"Next \u2192";
     arm();
   }
-  function go(k){ i=Math.max(0,Math.min(k,SCENES.length-1)); render(); }
+  function go(k){ firstDrawn=false; i=Math.max(0,Math.min(k,SCENES.length-1)); render(); }
   back.addEventListener("click",function(){ go(i-1); });
-  replay.addEventListener("click",function(){ render(); });
+  replay.addEventListener("click",function(){ firstDrawn=false; render(); });
   next.addEventListener("click",function(){ go(i===SCENES.length-1?0:i+1); });
   document.addEventListener("visibilitychange",function(){ if(document.hidden) clearTimeout(timer); else arm(); });
   render();

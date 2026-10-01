@@ -184,7 +184,7 @@ ask.LIBRARY.filter(function(e){ return e.sol; }).forEach(function(e){
 console.log("4. hygiene");
 ask.LIBRARY.forEach(function(e){
   var t=text(e.a)+" "+e.q;
-  ok(!/@/.test(t.replace(/aininja@ricktew\.com/g,"")), e.id+": an address other than the ninja's in the answer");
+  ok(!/@/.test(t), e.id+": an address in the answer (none is published since 1 Oct 2026, Rick: never give out our email address)");
   ok(!/[–—]|--/.test(t), e.id+": a long dash in the answer");
   ok(!/\b(kata|shelf|receipts?)\b/i.test(t), e.id+": kata, shelf or receipts in public copy");
   ok(!/\b(claude|chatgpt|gemini|openai|anthropic|grok|xai)\b/i.test(t), e.id+": a company or model named in public copy");

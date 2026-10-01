@@ -136,7 +136,8 @@ async function walk(browser, label, ctxOpts) {
   rails.forEach(([id, run, n, ok]) => { if (!run) flag("rail", label + ": #" + id + " never started (.run missing)"); if (n === 0 || ok < n) flag("rail", label + ": #" + id + " images " + ok + "/" + n + " loaded"); });
   const hidden = await page.evaluate(() => [...document.querySelectorAll(".rv:not(.in)")].map(e => e.tagName + "." + e.className + " in #" + ((e.closest("[id]") || {}).id)));
   hidden.forEach(h => flag("reveal", label + ": still hidden after scrolling the whole page: " + h));
-  const rv0 = await page.evaluate(() => [...document.querySelectorAll(".rv.in")].filter(e => getComputedStyle(e).opacity === "0").length);
+  // blocks inside a closed fold (the story, the Dojo steps, since 1 Oct 2026) keep a stale style until opened; skip them
+  const rv0 = await page.evaluate(() => [...document.querySelectorAll(".rv.in")].filter(e => !e.closest("details:not([open])") && getComputedStyle(e).opacity === "0").length);
   if (rv0) flag("reveal", label + ": " + rv0 + " revealed blocks still at opacity 0");
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
   if (overflow > 2) flag("overflow", label + ": page is " + overflow + "px wider than the viewport");

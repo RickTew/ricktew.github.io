@@ -15,7 +15,7 @@ const ROOT = path.join(__dirname, ".."), BASE = "http://localhost:8765";
 const PAGES = ["/aininja/", "/aininja/done-for-you/", "/aininja/r2/", "/aininja/start/",
   "/aininja/shop/", "/aininja/shop/win-cmt-pam/", "/aininja/shop/ain-contact-form/", "/aininja/shop/ain-customer-inbox/", "/aininja/shop/thanks/", "/aininja/shop/thanks/?link=expired", "/aininja/shop/download/",
   "/aininja/side-hustle-summit/", "/aininja/legal/terms.html", "/aininja/legal/privacy.html", "/", "/hininja/"];
-const AGENT_ADDRESS = "aininja@ricktew.com"; // printed on purpose; Rick's own never is
+const AGENT_ADDRESS = null; // none printed since 1 Oct 2026 (Rick: "never give out our email address as we use message boxes")
 const PLACEHOLDERS = new Set(["you@yourcompany.com"]); // the mailbox field's example text
 // Vimeo puts a bot challenge in front of headless browsers (the HI page's intro
 // video answers 401 here and plays for people; its oEmbed says public). Noise.

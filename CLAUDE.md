@@ -311,6 +311,33 @@ band and the summit card.**
   #opt-e1, the solutions, #dojo's intro, steps and the paragraph with the
   Intake link, #claudeforce, the quiz, #opt-6b, the FAQ band, the mailbox.
 - Undo is one revert of the commit that says "less-is-more pass".
+- **Third pass, after round seven** (`playtest/reports/2026-10-01-r7-SUMMARY.md`;
+  Rick's click answers): the apps row and `#opt-e1` moved INSIDE the story
+  fold; `#dojo`'s three step cards and the "2015 org chart" line sit in
+  `<details class="dojo-more">` ("How it grows, step by step") without
+  their buy buttons; the intro and the paragraph with The Intake link stay
+  open. The five boxes are FOUR (no "seat"), sit behind "What do the words
+  mean?" under How it works, the first box arrives drawn (`.sb-end`, a
+  negative animation delay) and then plays on, and the belt box's ninja
+  keeps a white belt (the strip under it shows the climb). The Your Dojo
+  card names the jobs (only what the rows claim). Under the cards: the
+  channels line (email first; WhatsApp, LINE, Instagram or texts are a
+  build) and "I stick to writing on purpose". The mailbox headline is "One
+  message. It reaches me." (the first line of the no-promises pass).
+- **Rick's facts and rulings, 1 Oct 2026 (quote them, do not sharpen them):**
+  - Who reads a client's mail: "only me, plus the AI that drafts the
+    replies". He signs a HIPAA business associate agreement for health
+    practices. Both are in "Is it safe to let an AI read my inbox?" and the
+    chat box's `inbox-security` and `data-privacy` answers.
+  - Sending on its own: by default nothing goes out without a press;
+    automatic sending is the client's choice, task by task, and only after
+    it has been tested ("lean on No and all auto is their option for
+    different tasks"). Coded system replies are not AI, but nobody grasps
+    the difference, so the page does not explain it. Do not write a new
+    "that rule never bends" absolute. Five old ones remain ("does not bend at
+    any belt or any price" in the FAQ "Will an AI talk to my customers
+    without me knowing?", its done-for-you copy, and three chat answers),
+    put to Rick on 1 Oct; change them only on his word.
 - **Second pass, same day, after round six** (ten personas,
   `playtest/reports/2026-10-01-r6-SUMMARY.md`; Rick's click answers):
   - **The story folds:** chapter 1 ("A gym full of kids") and chapter 7
@@ -406,9 +433,16 @@ the deliberate exception to "a human presses every send", stated on the
 page in the FAQ and the mailbox blurb; the threads stay open for Rick's
 follow-up. **Because the library is the mail's only knowledge, every
 edit to `ask.js` is also an edit to what strangers get by email:** run the
-golden test. The page prints `aininja@ricktew.com` on purpose (the closing
-band, the chat box): it is the agent's address, not Rick's, and the no-address
-rule above still covers Rick's own.
+golden test. **No email address is published anywhere on the site, the
+ninja's included (Rick, 1 Oct 2026: "never give out our email address as we
+use message boxes").** The page used to print `aininja@ricktew.com` on
+purpose; it is gone from the mailbox band, the chat box (`contact`,
+`email-the-ninja`, which now asks "Can I try the ninja before I pay?" and
+points at the mailbox), the R2 page, llms.txt and the JSON-LD
+contactPoint. The golden test now fails on ANY at-sign in an answer, and
+`tests/aidoor-sweep.js` allows no address at all. The mailbox still lands
+with the Ninja Agent, which answers by email from that address; it is just
+never printed.
 
 **"I want this Tew" (2026-08-27).** Every thing on the page a visitor can
 ask for (the eleven solution rows, the six Master seats, the three Dojo

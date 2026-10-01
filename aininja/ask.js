@@ -179,7 +179,7 @@
     {id:"data-privacy", q:"Is my data safe? Who sees my customer information?",
      alt:["my data","customer data","our data","privacy","private","gdpr","confidential","confidentiality","see my clients","see my customers","read my clients","read my customers","clients emails","clients mail","customers emails","customers mail","who can read","who can see"],
      keys:"data privacy private confidential information info sees access secure secret records leak leaks",
-     a:"<p>Everything I build runs on my stack, the same one my own businesses run on, and what I see of your business stays confidential; it is written into the Terms, section 7. Your domain, your content and your data stay yours. The ninjas' entire world is what you wrote down and verified. No agent touches money or the outside world without your press, and nothing sends itself. Every agent has a lane and never widens it on its own.</p><p>If your industry has a specific rule it must meet, say so in the mailbox and I will tell you straight whether the Dojo meets it.</p>"},
+     a:"<p>Everything I build runs on my stack, the same one my own businesses run on, and what I see of your business stays confidential; it is written into the Terms, section 7. Who reads your customers' mail: only me, plus the AI that drafts the replies. For a health practice, I sign a HIPAA business associate agreement. Your domain, your content and your data stay yours. The ninjas' entire world is what you wrote down and verified. No agent touches money or the outside world without your press, and nothing sends itself. Every agent has a lane and never widens it on its own.</p><p>If your industry has a specific rule it must meet, say so in the mailbox and I will tell you straight whether the Dojo meets it.</p>"},
 
     {id:"need-to-understand", q:"Do I need to understand AI to use this?",
      alt:["understand ai","do i need to understand","need to be technical","not technical","hate computers","do not like computers","dont like computers","bad with computers","computer person","learn to code","who does the computer work","who does the tech","who does the work","computer work","do i have to learn","have to learn","learn anything","learn something","me or you","is it me","do i do it","who runs it"],
@@ -251,7 +251,7 @@
     {id:"inbox-security", q:"Is it safe to let an AI read my inbox?",
      alt:["read my inbox","reads my inbox","reading my inbox","read my email","read my emails","reads my email","reading my email","let an ai read","access to my inbox","access to my email","access my inbox","inbox safe","inbox security","secure inbox","security for the agent"],
      keys:"inbox safe safety secure security read reads reading access permission permissions",
-     a:"<p>Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops there. Nothing leaves without a human press. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file, so you can always see what it did and why. Whatever the AI companies change tomorrow, the press is still yours.</p>",
+     a:"<p>Safe the way I build it. The desk reads every message, sorts it, drafts the reply in your voice, and stops there. Nothing leaves without a human press. It ignores bounces and machine mail, it cannot touch money, and every draft it ever made stays on file, so you can always see what it did and why. Whatever the AI companies change tomorrow, the press is still yours. Who reads your customers' mail: only me, plus the AI that drafts the replies. For a health practice, I sign a HIPAA business associate agreement.</p>",
      cta:{what:"The Front Desk", kind:"build", note:"Support replies drafted on auto. You press send."}},
 
     {id:"tested-first", q:"Does anyone test it before my customers see it?",
@@ -389,7 +389,7 @@
     {id:"contact", q:"How do I contact you? Can we talk on the phone?",
      alt:["contact you","mailbox","the mailbox","email address","your email","phone number","your phone","call you","a call","zoom","book a call","talk to you","get in touch","reach you","line id","talk on whatsapp","chat on whatsapp","whatsapp you","your whatsapp","speak to you","speak with you","talk to rick","free consultation","ring you","can i ring","telephone","on the phone","phone you"],
      keys:"contact email phone call calls zoom meeting meet talk chat reach whatsapp telegram number address consultation consult conversation",
-     a:"<p>Through my mailbox at the bottom of this page. My address is not written anywhere here for the crawlers to eat, and the mailbox does not open your mail app. Your message lands with my Ninja Agent, which writes back within a minute from what I wrote; I read every message and follow up myself, usually within a day. Or email it straight: aininja@ricktew.com.</p><p>The first conversation happens in writing. I stick to text on purpose: everything we agree is on the record. A call is a custom step, for the builds that need one.</p>",
+     a:"<p>Through my mailbox at the bottom of this page. My address is not written anywhere here for the crawlers to eat, and the mailbox does not open your mail app. Your message lands with my Ninja Agent, which writes back within a minute from what I wrote; I read every message and follow up myself, usually within a day.</p><p>The first conversation happens in writing. I stick to writing on purpose: everything we agree is on the record. A call is a custom step, for the builds that need one.</p>",
      cta:{what:"a conversation", kind:"other", note:"Tell me what to call you about and when.", label:"Write to Rick"}},
 
     {id:"reply-time", q:"How fast do you reply?",
@@ -397,10 +397,10 @@
      keys:"reply replies respond response answer back hear wait waiting soon",
      a:"<p>The ninja, within a minute; me, usually within a day. Your message lands with my Ninja Agent, an AI I built and trained in my Digital Dojo. It writes back from the answers I wrote, signed as the AI, and I read every message and follow up myself.</p>"},
 
-    {id:"email-the-ninja", q:"Can I just email the ninja and see?",
-     alt:["email the ninja","email your ninja","email aininja","aininja","try it out","try the ninja","test the ninja","test it out","see what comes back","talk to the ninja","try it","try before","before i commit","before i pay","free trial","a trial","trial period","try it for"],
-     keys:"email mail ninja agent try test demo see comes back write aininja",
-     a:"<p>Yes. Write to aininja@ricktew.com and see what comes back. My Ninja Agent answers within a minute, from the same answers this box uses, signed as the AI, and it says so when it does not have one. I read every message and follow up myself.</p>",
+    {id:"email-the-ninja", q:"Can I try the ninja before I pay?",
+     alt:["email the ninja","email your ninja","try it out","try the ninja","test the ninja","test it out","see what comes back","talk to the ninja","try it","try before","before i commit","before i pay","free trial","a trial","trial period","try it for"],
+     keys:"email mail ninja agent try test demo see comes back write",
+     a:"<p>Yes. Drop a question in my mailbox at the bottom of this page and see what comes back. My Ninja Agent answers within a minute, from the same answers this box uses, signed as the AI, and it says so when it does not have one. I read every message and follow up myself.</p>",
      cta:{what:"a conversation", kind:"other", note:"Or use the mailbox below.", label:"Write to Rick"}},
 
     {id:"who-is-rick", q:"Who is Rick Tew?",
