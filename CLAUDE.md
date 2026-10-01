@@ -365,6 +365,19 @@ band and the summit card.**
     the AI" or "an AI I built", and the Intake receipt no longer says "I am
     an AI". The escaping test checks the receipt carries neither the label
     nor the read-every promise.
+  - **Clearing the list, same evening (Rick: "Don't leave things open"):**
+    the focus rings on every AI Ninja page are blue, not red (22 rules; the
+    27 Aug red ruling is retired). "The audit" is "the free look" everywhere
+    it names the free first step (Rick's pick; five owners read "audit" as
+    the taxman); "audit trail", the Quiz Funnel's "self-audit" and the
+    Terms' legal verb stay. "Does it replace the apps I already pay for?"
+    adds Rick's fact: guest messages from Booking.com, Agoda or Airbnb
+    arrive as email and the Front Desk drafts replies to them. "What happens
+    in the first month?" moved into The first questions. Dave's line sits
+    under the ticks: "I do the computer work. You never log in, renew, fix
+    or learn anything; when something needs changing, you tell me." Rick's
+    calendar holds two reminders: 25 Oct re-read Search Console, 10 Nov
+    renew the WebMCP token (expires 17 Nov).
 - **Second pass, same day, after round six** (ten personas,
   `playtest/reports/2026-10-01-r6-SUMMARY.md`; Rick's click answers):
   - **The story folds:** chapter 1 ("A gym full of kids") and chapter 7
@@ -799,9 +812,12 @@ the Dojo.
   `aininja/shop/download/` is where the download mail links:
   `#t=TOKEN&f=letter|a4&p=SKU`, with the token in the fragment so it never
   reaches a server log. It is noindex and no-referrer, starts the file once, and
-  a reload does not count again. As of 30 Sep nothing links to the shop and it is
-  not in the sitemap or llms.txt. The footer link, sitemap and llms.txt are
-  Rick's calls.
+  a reload does not count again. Since 1 Oct (Rick's click) the Shop is linked
+  from the /aininja/ footer ("The Shop"), the Shop and the ready product pages
+  are in the sitemap, and llms.txt has a Shop line (written by the build). The
+  Terms section 3 says Shop downloads are final once sent, and a file that does
+  not arrive or open gets a "write to me" (Rick's pick). Stripe Tax stays off
+  (Rick, 1 Oct: "Not now").
 - **Checkout and delivery are the DOJO's, not this repo's.** The Buy button is a
   Stripe Payment Link on Tew's Inc (PAM: `plink_1ULKLE24k28tlk41lQTOvSGM`).
   The delivery function `ricktew-shop` runs on tews-inc (`qegfhbseccinnxnzfhxw`),

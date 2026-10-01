@@ -81,6 +81,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://ricktew.com/aininja/shop/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ricktew.com/aininja/shop/win-cmt-pam/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ricktew.com/aininja/shop/win-cmt-brain-storms/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://ricktew.com/aininja/side-hustle-summit/</loc>
     <lastmod>2026-09-08</lastmod>
     <priority>0.7</priority>
