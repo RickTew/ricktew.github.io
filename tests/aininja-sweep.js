@@ -216,12 +216,16 @@ async function walk(browser, label, ctxOpts) {
   // ---- phone-only checks ----
   if (label === "phone") {
     await page.reload({ waitUntil: "load" }); await page.waitForTimeout(800);
+    // the bar hides while the quiz or the mailbox is on screen (1 Oct 2026), and a reload
+    // restores the old scroll, so check it from the top of the page
+    await page.evaluate(() => { document.documentElement.style.scrollBehavior = "auto"; scrollTo(0, 0); }); await page.waitForTimeout(400);
     const bar = await page.evaluate(() => { const m = document.getElementById("mbar"); const l = document.getElementById("askLaunch"); const mb = m && m.getBoundingClientRect(); const lb = l && l.getBoundingClientRect(); return { mbar: !!m && getComputedStyle(m).display !== "none", launchVisible: !!l && !l.hidden && getComputedStyle(l).display !== "none", overlap: mb && lb && !(lb.right < mb.left || lb.left > mb.right || lb.bottom < mb.top || lb.top > mb.bottom) }; });
     if (!bar.mbar) flag("phone", "quiz bar not shown on phone");
     if (bar.launchVisible && bar.overlap) flag("phone", "Ask pill overlaps the quiz bar");
     const askBtn = await page.$(".mbar .ask-mbar");
     if (!askBtn) flag("phone", "no Ask button in the quiz bar"); else { await askBtn.click(); await page.waitForTimeout(100); if (await page.evaluate(() => document.getElementById("askPanel").hidden)) flag("phone", "quiz bar Ask button did not open the chat"); await page.evaluate(() => window.rtAskClose()); }
-    await page.evaluate(() => { document.documentElement.style.scrollBehavior = "auto"; scrollTo(0, document.body.scrollHeight); }); await page.waitForTimeout(400);
+    // twice: from the top, content below grows after the first jump and the footer lands under the fold
+    for (let i = 0; i < 2; i++) { await page.evaluate(() => { document.documentElement.style.scrollBehavior = "auto"; scrollTo(0, document.body.scrollHeight); }); await page.waitForTimeout(400); }
     const covered = await page.evaluate(() => [...document.querySelectorAll("footer a")].map(a => { const r = a.getBoundingClientRect(); const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return [a.textContent.trim(), !!hit && (hit === a || a.contains(hit))]; }).filter(x => !x[1]).map(x => x[0]));
     covered.forEach(t => flag("phone", "footer link '" + t + "' is covered at the bottom of the page"));
   }

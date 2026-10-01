@@ -592,7 +592,7 @@ html,body{overflow-x:clip}
 .r-honest{margin-top:22px;font-size:13px}
 
 /* footer */
-footer{border-top:1px solid var(--line);padding:30px 0;font-size:13.5px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:30px 0 84px;font-size:13.5px;color:var(--muted)}
 footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 footer a{color:var(--ink);font-weight:800;text-decoration:none}
 footer a:hover{text-decoration:underline}
@@ -3007,7 +3007,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       +"\n\nWhat the quiz made of it\n"
       +"The number I want to move: "+(NUMBER[num]?NUMBER[num].name:"n/a")
       +"\nSolutions matched: "+(sols.length?sols.join(", "):"none")
-      +"\nSeat matched: "+(topSeat ? topSeat+(SEAT_TRAINING[topSeat]?" (in training)":"") : "none")
+      +(topSeat ? "\nSeat matched: "+topSeat+(SEAT_TRAINING[topSeat]?" (in training)":"") : "")
       +"\nEstimated draftable hours a week: "+draftable
       +((hours>2 && money) ? "\nEstimated value: USD "+monthly+" a month" : "")
       +(hours>2 ? (under ? "\nBy these numbers "+tier+" ("+price+") does not add up yet: a smaller start first, one desk scoped in writing or R2 Hosting."
@@ -3106,12 +3106,18 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       try{ sessionStorage.setItem("mbarOff","1"); }catch(e){}
       mb.remove();
     });
-    /* while the quiz itself is on screen the bar only covers the answers */
-    var qz=document.getElementById("quiz");
-    if(qz && "IntersectionObserver" in window){
-      new IntersectionObserver(function(es){
-        es.forEach(function(e){ mb.style.display = e.isIntersecting ? "none" : ""; });
-      }).observe(qz);
+    /* while the quiz or the mailbox is on screen the bar only covers them
+       (the mailbox's send button sat half under it on a phone: three
+       personas in round six, 1 Oct 2026) */
+    var qz=document.getElementById("quiz"), slot=document.getElementById("opt-8c");
+    if("IntersectionObserver" in window){
+      var onScreen={};
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(e){ onScreen[e.target.id]=e.isIntersecting; });
+        mb.style.display = (onScreen.quiz||onScreen["opt-8c"]) ? "none" : "";
+      });
+      if(qz) io.observe(qz);
+      if(slot) io.observe(slot);
     }
   }
 })();

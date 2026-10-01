@@ -379,7 +379,7 @@
     {id:"testimonials", q:"Do you have testimonials or references?",
      alt:["testimonials","testimonial","reviews","references","a reference","case studies","case study","any proof","social proof","who have you worked with","other clients","speak to one","talk to one","speak to a client","talk to a client","one of your clients","businesses paying you","call one"],
      keys:"testimonials review reviews reference references case studies study proof clients client results evidence worked track record speak talk call paying",
-     a:"<p>No testimonials yet, on purpose. Client names stay out of it, and I will not invent a quote to fill a box. What I can show is what was asked for and what shipped: the gym app with 1,000+ members, a client's support desk that drafts every reply for one human press, my own POS backend, and the whole front and back office of a 1998 factory. The proof wall on this page lists them.</p><p>When client quotes appear, they will be real, attributed with permission, and boring compared to the builds. That is how you will know they are true.</p>",
+     a:"<p>No testimonials yet, on purpose. Client names stay out of it, and I will not invent a quote to fill a box. What I can show is what was asked for and what shipped: the gym app with 1,000+ members, a client's support desk that drafts every reply for one human press, my own POS backend, and the whole front and back office of a 1998 factory. The story on this page shows each one.</p><p>When client quotes appear, they will be real, attributed with permission, and boring compared to the builds. That is how you will know they are true.</p>",
      link:{href:"#story", label:"See what got built"}},
 
     {id:"contact", q:"How do I contact you? Can we talk on the phone?",
