@@ -55,8 +55,8 @@ the conversation that attaches tiers 2 and 3.
   (five questions: size, programs, languages, who answers support, what
   hurts most; band shown ungated, details capture below it).
 - **Proof line:** "I run my own companies on it every day."
-- **CTA:** this site's rule stands: every contact action goes through The
-  Letter Slot (`/aininja/#opt-8c`), never a mailto and no email address in
+- **CTA:** this site's rule stands: every contact action goes through the
+  mailbox (`/aininja/#opt-8c`), never a mailto and no email address in
   page source. A sizing quiz on this site would need its own capture rail
   through the same edge function.
 

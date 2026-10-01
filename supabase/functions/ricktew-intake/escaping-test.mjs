@@ -35,6 +35,9 @@ globalThis.fetch = async (url, opts) => {
 await import('./fn.mjs');
 
 const ID = 'abcdefghij0123456789';
+// The endpoint files each intake under its UTC month (folder() in index.ts),
+// so the test reads the month it runs in, not a fixed one.
+const YM = new Date().toISOString().slice(0, 7);
 const post = (body, origin = 'https://ricktew.com') => handler(new Request('https://x/', {
   method: 'POST', headers: { 'Content-Type': 'application/json', Origin: origin }, body: JSON.stringify(body) }));
 
@@ -53,9 +56,9 @@ const hostile = {
     'name<script>': 'x',
   },
   files: [
-    { path: `intake/2026-09/${ID}/media/abc-voice-note-1.webm`, name: '<script>voice.webm', size: 123456, kind: 'audio', seconds: 42 },
-    { path: `intake/2026-09/${ID}/media/missing.webm`, name: 'gone.webm', size: 5, kind: 'video' },
-    { path: `intake/2026-09/zzzzzzzzzzzzzzzzzzzz/media/steal.webm`, name: 'other-intake.webm', size: 5, kind: 'audio' },
+    { path: `intake/${YM}/${ID}/media/abc-voice-note-1.webm`, name: '<script>voice.webm', size: 123456, kind: 'audio', seconds: 42 },
+    { path: `intake/${YM}/${ID}/media/missing.webm`, name: 'gone.webm', size: 5, kind: 'video' },
+    { path: `intake/${YM}/zzzzzzzzzzzzzzzzzzzz/media/steal.webm`, name: 'other-intake.webm', size: 5, kind: 'audio' },
     { path: `../../etc/passwd`, name: 'passwd', size: 5, kind: 'file' },
   ],
 };
@@ -63,7 +66,7 @@ const res = await post(hostile);
 origLog('visitor sees:', await res.text(), '(status', res.status + ')');
 const ninja = mails.find(m => m.subject.startsWith('AI Ninja Intake:'));
 const receipt = mails.find(m => m.subject.startsWith('AI Ninja Intake received'));
-const md = stored[`intake/2026-09/${ID}/intake.md`] || '';
+const md = stored[`intake/${YM}/${ID}/intake.md`] || '';
 
 const MINE = new Set(['div', 'p', 'b', 'ul', 'ol', 'li', 'a', 'hr', 'pre', 'br']);
 const foreign = (html) => [...new Set([...html.matchAll(/<\/?([a-zA-Z][a-zA-Z0-9]*)/g)].map(m => m[1].toLowerCase()))].filter(t => !MINE.has(t));
@@ -96,7 +99,7 @@ const checks = [
   ['md: missing object gets no link and says so', /gone\.webm.*upload did not finish/.test(md) && !/gone\.webm\]\(/.test(md)],
   ['md: present file is a labelled Markdown link with duration', /\[Voice note 1, script_voice\.webm, 123 KB, 42 s\]\(https:\/\/stub\.supabase\.co\/storage\/v1\/object\/sign\/aininja-intake\//.test(md)],
   ['md: missed questions listed', /## Missed questions \((\d+)\)/.test(md) && md.includes('Which offer are you leaning towards')],
-  ['storage: md and json stored under the intake folder', !!stored[`intake/2026-09/${ID}/intake.md`] && !!stored[`intake/2026-09/${ID}/intake.json`]],
+  ['storage: md and json stored under the intake folder', !!stored[`intake/${YM}/${ID}/intake.md`] && !!stored[`intake/${YM}/${ID}/intake.json`]],
   ['table: one row, key label stored, key itself not', rows.length === 1 && rows[0].key_label === 'roy' && !JSON.stringify(rows[0]).includes('goodkey123')],
   ['receipt: goes to the client, from the secret sender', receipt && JSON.stringify(receipt.to) === JSON.stringify([hostile.answers.email]) && receipt.from.includes('stub-sender')],
   ['receipt: no foreign tags, no live script', receipt && foreign(receipt.html).length === 0 && !/<script/i.test(receipt.html)],

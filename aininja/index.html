@@ -433,7 +433,7 @@ html,body{overflow-x:clip}
 .help-fine .sol-mail{margin-top:0}
 .sol-mail:hover{color:var(--blue-d)}
 /* "I want this Tew": the one button under every thing on this page a
-   visitor can ask for. It carries the thing's name into The Letter Slot,
+   visitor can ask for. It carries the thing's name into the mailbox,
    so the message arrives already saying what they want. */
 .want{display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#fff;color:var(--blue);border:2px solid var(--blue);border-radius:999px;padding:8px 16px 8px 12px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:14px;line-height:1;text-decoration:none;cursor:pointer;transition:transform .12s ease,background .12s ease,color .12s ease,box-shadow .12s ease}
 .want .g{font-size:18px;line-height:1;transition:transform .2s ease}
@@ -897,8 +897,8 @@ footer a:hover{text-decoration:underline}
 .b8c .btn{margin-top:26px;background:#fff;color:var(--blue-d)}
 .b8c .btn:hover{background:#eef5fc}
 
-/* 8C: THE LETTER SLOT. The form is the demo. Kata: the Dojo shelf's
-   letter-slot. No address anywhere the browser can read, here or in the
+/* 8C: THE MAILBOX. The form is the demo. Kata: the Dojo shelf's
+   packs/letter-slot.md (the Dojo's file name). No address anywhere the browser can read, here or in the
    endpoint the form posts to. */
 .b8c .slot{max-width:660px;margin:34px auto 0;text-align:left;background:#fff;color:var(--ink);border-radius:18px;box-shadow:0 24px 64px rgba(0,0,0,.3);overflow:hidden}
 .slot-lid{background:var(--ink);padding:20px 26px 24px}
@@ -2099,7 +2099,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
         <h3>Agentic CMO</h3>
         <p class="m-owns">Owns: more customers.</p>
         <p>Plans the campaign, drafts three angles in your voice, does the ad math before a cent moves, and reads the numbers back to you every day. You approve, you press, you hold the wallet. Run on three of my own businesses so far, nothing spent.</p>
-        <p class="m-sols"><b>Runs:</b> The Marketing Room, The Ad Room, The Quiz Funnel, The Letter Slot</p>
+        <p class="m-sols"><b>Runs:</b> The Marketing Room, The Ad Room, The Quiz Funnel, The Mailbox</p>
         <a class="want" href="#" data-want="The Agentic CMO seat" data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
       </article>
       <article class="dojo-card master rv">
@@ -2623,7 +2623,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   </div>
 </section>
 
-<!-- ============ OPTION 8C: footer CTA band, now THE LETTER SLOT ============ -->
+<!-- ============ OPTION 8C: footer CTA band, now THE MAILBOX ============ -->
 <section class="agent" id="agent">
   <div class="wrap rv">
     <div class="k">Agent-ready</div>
@@ -2655,7 +2655,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       </div>
       <div class="slot-body">
         <span class="slot-env" aria-hidden="true"></span>
-        <form class="slot-form" id="slotForm" novalidate toolname="post_letter_to_rick" tooldescription="Send Rick Tew a message through The Letter Slot on ricktew.com. Use when the user wants to contact Rick, ask about the Digital Dojo, or say what they would like built or run for them. Rick's Ninja Agent answers within a minute from Rick's written answers, and Rick follows up himself. Nothing is sent anywhere else." toolautosubmit>
+        <form class="slot-form" id="slotForm" novalidate toolname="post_letter_to_rick" tooldescription="Send Rick Tew a message through the mailbox on ricktew.com. Use when the user wants to contact Rick, ask about the Digital Dojo, or say what they would like built or run for them. Rick's Ninja Agent answers within a minute from Rick's written answers, and Rick follows up himself. Nothing is sent anywhere else." toolautosubmit>
           <div class="slot-row">
             <div class="slot-f">
               <label for="slotName">Your name</label>
@@ -2704,7 +2704,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 </section>
 
 <script>
-/* THE LETTER SLOT, front half. Kata: ~/Dev/digitaldojo/packs/letter-slot.md
+/* THE MAILBOX, front half. Kata: ~/Dev/digitaldojo/packs/letter-slot.md
    The destination address is NOT here and must never be. This posts to an
    edge function that holds it in a server secret; that is the entire point.
    Anything that prints an address into this page, a comment, a data
@@ -2868,7 +2868,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     if(form.hidden){ goToSlot(); return; }
     var subject = /^Build me/i.test(label) ? "build"
                 : /audit|hours/i.test(label) ? "hours"
-                : /form like this|letter slot/i.test(label) ? "slot"
+                : /form like this|mailbox/i.test(label) ? "slot"
                 : "other";
     var sel=form.elements.namedItem("subject");
     var msg=form.elements.namedItem("message");
@@ -2990,7 +2990,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 (function(){
   "use strict";
   /* No address is assembled here any more, not even at runtime. Every way
-     of reaching Rick on this page goes through The Letter Slot, whose
+     of reaching Rick on this page goes through the mailbox, whose
      destination lives in a server secret. See the slot script above. */
   var ml=document.getElementById("mailLink");
   if(ml){ ml.addEventListener("click",function(e){ e.preventDefault(); window.rtSlot(""); }); }
@@ -3391,7 +3391,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       +((hours>2 && driver==="you") ? "\nI would want the daily work run for me: custom price, talk first." : "")
       +((hours>2 && driver==="nobody") ? "\nNobody here has the capacity to run it day to day: custom price, talk first." : "")
       +(needsBuild ? "\nSome of this is a build, scoped and agreed in writing first." : "");
-    /* The quiz answers ride down to The Letter Slot instead of into a
+    /* The quiz answers ride down to the mailbox instead of into a
        mail client. Nothing here opens the visitor's email app. */
     document.getElementById("rBook").onclick=function(e){
       e.preventDefault();
@@ -3414,7 +3414,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <!-- ============ ASK THE NINJA: the chat box. Engine and answer library: ask.js ============
      Not an AI. A library of answers Rick wrote, matched by the words in the
      question; no match returns an honest "I do not have that one" and a button
-     that carries the question into The Letter Slot. Every answer ends in the
+     that carries the question into the mailbox. Every answer ends in the
      same want button as the nav, so a lead from here lands in the slot with
      the questions asked riding in the message. No server, no storage. -->
 <button class="ask-launch" id="askLaunch" type="button" aria-haspopup="dialog" aria-controls="askPanel"><span class="g" aria-hidden="true">&#129399;</span>Ask the ninja</button>

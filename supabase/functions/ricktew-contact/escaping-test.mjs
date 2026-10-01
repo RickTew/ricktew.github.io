@@ -1,4 +1,4 @@
-// Offline acceptance check for The Letter Slot's escaping.
+// Offline acceptance check for the mailbox's escaping.
 //
 // RUN IT:   ./run-escaping-test.sh          (from this folder)
 //
@@ -27,7 +27,7 @@ globalThis.Deno = {
   env: { get: (k) => ({
     RESEND_API_KEY: 're_stub_key',
     CONTACT_TO: 'stub-destination@example.com',
-    CONTACT_FROM: 'The Letter Slot <stub-sender@example.com>',
+    CONTACT_FROM: 'The mailbox <stub-sender@example.com>',
   })[k] }
 };
 

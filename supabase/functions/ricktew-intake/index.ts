@@ -1,5 +1,5 @@
 // ricktew.com client intake: the server half of "The Intake" at
-// ricktew.com/aininja/start/. Sister of ricktew-contact (The Letter Slot),
+// ricktew.com/aininja/start/. Sister of ricktew-contact (the mailbox),
 // same walls: the destination address lives in a server secret and appears
 // nowhere the browser can read; every drop is logged, never explained to the
 // caller; every client-written character is escaped at its point of use.
@@ -494,7 +494,7 @@ Deno.serve(async (req) => {
   const seen = { intake, name, email, business, key: key.status, answered: Object.keys(answers).length, files: files.length, sku: purchase?.sku ?? '' };
 
   // The client's own mistakes are told to them (the page checks first); the
-  // gauntlet's rejections are not. Same rule as the Letter Slot.
+  // gauntlet's rejections are not. Same rule as the mailbox.
   if (!name || !email) { logDrop('missing_required', seen); return json({ ok: true }, 200, origin); }
   if (!looksLikeEmail(email) || name.length > MAX.name || email.length > MAX.email) {
     logDrop('bad_contact', seen); return json({ ok: true }, 200, origin);

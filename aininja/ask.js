@@ -5,7 +5,7 @@
    wrote, matched to the visitor's question by the words in it, with the
    kata's one rule kept whole: return nothing rather than guess. A question
    the library does not cover gets an honest "I do not have that one" and a
-   button that carries the question into The Letter Slot, where a person
+   button that carries the question into the mailbox, where a person
    answers. Every answer ends in the same want button as the top of the
    page, so a lead that starts in this box lands in the mailbox with the
    questions asked riding along in the message.
@@ -531,7 +531,7 @@
     {id:"seat-cmo", q:"What does the Agentic CMO do?",
      alt:["agentic cmo do","cmo seat","the cmo","marketing seat"],
      keys:"cmo marketing seat owns customers campaign angles wallet",
-     a:"<p><b>Agentic CMO. Owns: more customers.</b> Plans the campaign, drafts three angles in your voice, does the ad math before a cent moves, and reads the numbers back to you every day. You approve, you press, you hold the wallet. It has already run on three of my own businesses: plans on the table, nothing spent. Runs The Marketing Room, The Ad Room, The Quiz Funnel and The Letter Slot.</p>",
+     a:"<p><b>Agentic CMO. Owns: more customers.</b> Plans the campaign, drafts three angles in your voice, does the ad math before a cent moves, and reads the numbers back to you every day. You approve, you press, you hold the wallet. It has already run on three of my own businesses: plans on the table, nothing spent. Runs The Marketing Room, The Ad Room, The Quiz Funnel and The Mailbox.</p>",
      cta:{what:"The Agentic CMO seat", kind:"dojo"}},
 
     {id:"seat-care", q:"What does the Agentic Head of Customer Care do?",

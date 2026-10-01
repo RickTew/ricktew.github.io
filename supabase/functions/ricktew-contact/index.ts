@@ -1,5 +1,5 @@
-// ricktew.com contact form. The server half of "The Letter Slot"
-// (~/Dev/digitaldojo/packs/letter-slot.md): the site shows a form, this
+// ricktew.com contact form. The server half of the mailbox on
+// /aininja/ (kata: ~/Dev/digitaldojo/packs/letter-slot.md): the site shows a form, this
 // holds the address.
 //
 // Why a server exists at all for a static GitHub Pages site: the whole

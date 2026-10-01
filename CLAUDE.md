@@ -47,7 +47,7 @@ sit here said to build the address from parts in JavaScript the way
 backwards: runtime assembly still hands the address to any crawler that runs
 scripts, and it still dumps the visitor into their mail client.
 
-Every way of reaching Rick on this site now goes through **The Letter Slot**,
+Every way of reaching Rick on this site now goes through **the mailbox**,
 the form in the closing band of `/aininja/` (`#opt-8c`). The destination lives
 in a server secret and appears nowhere the browser can read. Fetch any live
 page, grep the response for an at-sign address, and you get zero hits. Keep it
@@ -106,7 +106,7 @@ the decoy effect fails replication; a paid first call is a cliff), and said
   text; Rick has not given current numbers), and any consultation or paid
   call price. Rick floated a $2,222 consultation or a $200 call as an
   anchor; the research said no, and he went with the recommendation.
-  **A first contact on this site is free** (the quiz, the Letter Slot).
+  **A first contact on this site is free** (the quiz, the mailbox).
 
 The prices are the Dojo's facts: final and live in Stripe (Tew's Inc, USD).
 Change them there first, then here. The rule that CLAIMS on this page come
@@ -280,7 +280,23 @@ swap needs no copy check. The row label above the phones is the only text left.
 
 ---
 
-## Contact: The Letter Slot
+## Contact: the mailbox
+
+**The name is "the mailbox" (Rick, 1 Oct 2026): "Letter slot is a very odd
+name ... stop using letter slot for anything going forward."** The page has
+always said "My mailbox" and "Drop it in my mailbox"; "The Letter Slot" was
+only the Dojo kata's name, and it had leaked into the CMO seat's Runs line,
+the chat box and the WebMCP tool description (all now "the mailbox" or "The
+Mailbox"). Never write the old name in this repo again. The Dojo's files
+still carry it in their paths (`packs/letter-slot.md`,
+`kits/letter-slot/`), and `gauntlet.ts` here keeps its first line until the
+Dojo renames its kit and it is re-copied; the playtest reports are history.
+The display name inside the `CONTACT_FROM` secret was the old name as well
+(checked 1 Oct against the secret's digest). That is the sender on the
+mailbox mail AND on the Intake receipt every client gets. The rename to "AI
+Ninja" (matching the receipt's sign-off) is a secret write, which is Rick's
+to run. To check it without reading the secret, compare the digest that
+`supabase secrets list` shows with the sha256 of the expected value.
 
 Live since 2026-08-23, inline in the closing band of `/aininja/` (`#opt-8c`).
 The form is deliberately ON the page rather than on a contact page: the band
@@ -403,7 +419,7 @@ band links to it. It is a client-side fit of the Dojo's Retrieval Brain
 kata, word half only: a hand-written library Rick approved, matched by the
 words in the question, with the kata's wall kept whole: **return nothing
 rather than guess.** A miss says "I do not have that one" and offers "Ask
-Rick this", which drops the question into the Letter Slot. Every answer
+Rick this", which drops the question into the mailbox. Every answer
 ends in the same want button as the nav (`my hours back`, kind `hours`),
 and the hand-off writes the questions asked into the slot message, so a
 lead from the box arrives with context. No server, no storage, no model
@@ -671,7 +687,7 @@ the Dojo.
   own plus plain facts. **No promises of any kind:** not "I read every message",
   not "I will sort it out", not "within a minute", not "always", not "free".
   Give plain directions instead ("Didn't get it? Write to me with the email you
-  paid with."). Contact goes to the Letter Slot, never an address.
+  paid with."). Contact goes to the mailbox, never an address.
 - **Test:** `node tests/aidoor-sweep.js` covers every shop page.
 
 ---
@@ -695,7 +711,7 @@ open items); read it before changing the page. Canonical program docs:
   that NinjaGym removes GNS completely: its checkout, bookings table and
   images are gone, and ninjagym.com/gns, /gns/* and /gooffy-ninja 308 to
   ricktew.com/gns/. Until Rick rules on a checkout, every Enroll button goes
-  to the Letter Slot, `/aininja/?about=gns#opt-8c`, which arrives with the
+  to the mailbox, `/aininja/?about=gns#opt-8c`, which arrives with the
   HI Ninja subject and the request written in; the quiz's private-sessions
   button uses `?about=gns-private` and the footer Contact `?about=gns-ask`.
   Those three values are a fixed list in the slot script on `/aininja/`;
@@ -912,7 +928,7 @@ Format: `ricktew` on every platform (or however each platform renders it).
   first said "no contact form, use mailto: or social links", which was
   actively harmful. It was then corrected to "the pattern is on the Dojo
   shelf if a page ever needs one". As of 2026-08-23 the site HAS one, so:
-  **The Letter Slot is live** in the closing band of `/aininja/` (`#opt-8c`),
+  **The mailbox is live** in the closing band of `/aininja/` (`#opt-8c`),
   the third install of `~/Dev/digitaldojo/packs/letter-slot.md` after
   ninjagym.com and playtewgo.com. Anything on this site that needs a contact
   action links to it. See the Contact section below.

@@ -2,7 +2,7 @@
    Ported 28 Sep 2026 from the NinjaGym Next.js components (GnsLanding,
    GnsVault, GnsQuiz, GnsMotion). The words are theirs, unchanged.
    There is no GNS checkout (NinjaGym removed it 28 Sep 2026): Enroll and
-   contact go to the Letter Slot on /aininja/ with the request written in.
+   contact go to the mailbox on /aininja/ with the request written in.
    No long dashes anywhere (GNS rule and site rule). */
 (function () {
   "use strict";

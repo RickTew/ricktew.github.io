@@ -4,7 +4,7 @@
    Desktop and phone: 200, console and page errors, failed requests,
    sideways scroll, NaN / undefined / [object Object], long dashes, mailto
    links, stray addresses, links and anchors that go nowhere. Then the page's
-   own moving parts: every Enroll lands on the Letter Slot on /aininja/ with
+   own moving parts: every Enroll lands on the mailbox on /aininja/ with
    the GNS request written in (there is no GNS checkout since NinjaGym
    dropped it on 28 Sep 2026), the belt tabs, the vault (declassify, every tape
    tab, a tape plays, every world file opens, reseal), the quiz (every first
@@ -158,7 +158,7 @@ function rng(seed) { return () => (seed = (seed * 1103515245 + 12345) % 21474836
       await p.click(qz + " .qz-back"); // back on the first question for the next one
     }
 
-    // the three Letter Slot links arrive with the subject and the first line
+    // the three mailbox links arrive with the subject and the first line
     // written in; a value not on the list leaves the box alone
     const ABOUT = { "gns": "I want this Tew: a spot on Gooffy Ninja ShhT!!",
       "gns-private": "I want this Tew: private 1-on-1 sessions with Rick", "gns-ask": "About: Gooffy Ninja ShhT!!", "evil": "" };
