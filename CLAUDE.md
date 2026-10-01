@@ -339,6 +339,16 @@ band and the summit card.**
     chat answers) now read, on Rick's yes the same day: "By default nothing
     goes out without a press. Sending on its own is your choice, task by
     task, and only after it has been tested."
+  - R2 sends booking reminders by email (Rick, 1 Oct, after the quick
+    check): on the R2 card's line and in the chat's `r2-hosting` answer.
+  - The channels line under the cards, softened on his pick: "Your
+    customers text, WhatsApp or LINE you? Tell me which, and I set it up and
+    quote it in writing first."
+  - The FAQ "Will an AI talk to my customers without me knowing?" (landing,
+    done-for-you, chat) opens "Not without your say." (was "Never.").
+  - The mailbox subject `dojo` is labelled "Your Dojo or R2 Hosting" on the
+    page AND in `ricktew-contact/index.ts` (redeployed 1 Oct; foreign
+    origin still 403).
 - **Second pass, same day, after round six** (ten personas,
   `playtest/reports/2026-10-01-r6-SUMMARY.md`; Rick's click answers):
   - **The story folds:** chapter 1 ("A gym full of kids") and chapter 7
