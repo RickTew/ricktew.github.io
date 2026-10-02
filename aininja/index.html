@@ -711,6 +711,9 @@ footer a:hover{text-decoration:underline}
 .case-steps b{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:24px;line-height:1;color:var(--blue)}
 .case-steps i{font-style:normal;font-size:11.5px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 .case-body .chapter{padding:44px 24px}
+.case-end{text-align:center;padding:4px 24px 26px}
+.case-close{font:inherit;font-size:14px;font-weight:900;cursor:pointer;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:8px 18px;line-height:1.2}
+.case-close:hover{background:var(--ink);color:#fff}  /* a second Close at the end of a long case (Aisha, round nine: the only one was four phone screens up) */
 .case-body .chapter .dot{display:none}
 .case-body .chapter+.chapter{border-top:1px solid var(--line)}
 .case-body .e1,.case-body .charwall{border-bottom:0}
@@ -1712,6 +1715,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       </div>
     </div>
   </div>
+        <p class="case-end"><button type="button" class="case-close">Close case</button></p>
       </div>
     </details>
     <details class="case" id="case-spa">
@@ -1782,6 +1786,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <div class="cta"><a class="btn btn-blue" href="#quiz">Find out where your engine is missing &middot; take the quiz</a></div>
   </div>
 </section>
+        <p class="case-end"><button type="button" class="case-close">Close case</button></p>
       </div>
     </details>
     <details class="case" id="case-console">
@@ -1841,6 +1846,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     </div>
     </div>
   </div>
+        <p class="case-end"><button type="button" class="case-close">Close case</button></p>
       </div>
     </details>
     <details class="case" id="case-winjitsu">
@@ -1905,6 +1911,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <p class="vis-cap" style="max-width:100%;text-align:left">The books are finished. The app is live at winjitsu.com in its old clothes; this screen is its new look.</p>
     </div>
   </div>
+        <p class="case-end"><button type="button" class="case-close">Close case</button></p>
       </div>
     </details>
     <details class="case" id="case-game">
@@ -2009,6 +2016,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     </div>
   </div>
 </section>
+        <p class="case-end"><button type="button" class="case-close">Close case</button></p>
       </div>
     </details>
   </div>
@@ -2962,6 +2970,12 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       if(!d.open) return;
       var r=d.getBoundingClientRect();
       if(r.top<70||r.top>innerHeight*0.45) d.scrollIntoView({block:"start",behavior:reduce?"auto":"smooth"});
+    });
+  });
+  [].forEach.call(document.querySelectorAll("details.case .case-close"),function(b){
+    b.addEventListener("click",function(){
+      var d=b.closest("details.case"); d.open=false;
+      d.scrollIntoView({block:"start",behavior:reduce?"auto":"smooth"});
     });
   });
   function openCaseFor(hash){
