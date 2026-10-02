@@ -482,6 +482,17 @@ lines above about the story fold, the apps row and the How it works strip.
   every payment") stays as written. The five case asks stay until he sends
   his own wording.
 
+- **After persona round nine (2 Oct, `playtest/reports/2026-10-02-r9-SUMMARY.md`),
+  Rick's clicks:** the explainer's part two adds "or connected to the apps
+  you already use" (the FAQ said alongside, the picture said build); the
+  testing note left the How it works panel and the two short pages and
+  lives in the FAQ "Does anyone test it before my customers see it?" and
+  the chat (a burned owner read it as "I am the tester"); the live
+  screens row and its icons run business apps first (NinjaGym, SabaiSen,
+  EverCool, WinJitsu, TEWBEDO, SamuiKids, NerdHostel), the games after
+  (all three readers took the games for a hobby page). **One desk gets a
+  from-price, his pick; the number is his and is not on the page yet.**
+
 ### The search pages (2 Oct 2026, Rick's pick "More search pages", then "Open all three")
 
 Three short pages in the shape of done-for-you, each on a phrase Google's
