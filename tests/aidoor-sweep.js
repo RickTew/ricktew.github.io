@@ -12,7 +12,8 @@
 const fs = require("fs"), path = require("path");
 const { chromium, devices } = require("/Users/ricktew/Dev/Roy Martina/newnei-app/node_modules/playwright");
 const ROOT = path.join(__dirname, ".."), BASE = "http://localhost:8765";
-const PAGES = ["/aininja/", "/aininja/done-for-you/", "/aininja/r2/", "/aininja/start/",
+const SHORT = ["/aininja/ai-customer-service/", "/aininja/ai-agents/", "/aininja/booking-system/"]; // the search pages, 2 Oct 2026
+const PAGES = ["/aininja/", "/aininja/done-for-you/", ...SHORT, "/aininja/r2/", "/aininja/start/",
   "/aininja/shop/", "/aininja/shop/win-cmt-pam/", "/aininja/shop/win-cmt-brain-storms/", "/aininja/shop/ain-contact-form/", "/aininja/shop/ain-customer-inbox/", "/aininja/shop/thanks/", "/aininja/shop/thanks/?link=expired", "/aininja/shop/download/",
   "/aininja/side-hustle-summit/", "/aininja/legal/terms.html", "/aininja/legal/privacy.html", "/", "/hininja/"];
 const AGENT_ADDRESS = null; // none printed since 1 Oct 2026 (Rick: "never give out our email address as we use message boxes")
@@ -28,7 +29,7 @@ const RETIRED = [
   "instead of a person on a day rate", "is a build I price in writing",
   "Sensei runs it, $4,444", "$4,444", "on call"];
 const RETIRED_FILES = ["aininja/index.html", "aininja/ask.js", "aininja/done-for-you/index.html",
-  "aininja/r2/index.html", "llms.txt"];
+  ...SHORT.map(u => u.slice(1) + "index.html"), "aininja/r2/index.html", "llms.txt"];
 // Dollar figures a small page may print: the two plans, R2's three numbers,
 // and the Shop's prices (PAM, $2.99, since 30 Sep 2026; the helpers' $22 a
 // month, shown "Not open yet" for Rick's review on 30 Sep).
@@ -71,7 +72,7 @@ function flag(kind, msg) { (found[kind] = found[kind] || []).push(msg); }
         if (a !== AGENT_ADDRESS && !PLACEHOLDERS.has(a) && !/^\d|@\d|\.(png|jpg|webp|js|css)$/i.test(a)) flag("address", url + ": " + a);
       for (const j of await p.$$eval('script[type="application/ld+json"]', s => s.map(x => x.textContent)))
         try { JSON.parse(j); } catch (e) { flag("ld+json", url + ": " + e.message); }
-      if (url === "/aininja/done-for-you/" || url === "/aininja/r2/")
+      if (url === "/aininja/done-for-you/" || url === "/aininja/r2/" || SHORT.includes(url))
         for (const d of new Set(text.match(/\$[\d,]+(\.\d\d)?/g) || [])) if (!PRICES.has(d)) flag("price", url + ": " + d);
       const links = await p.$$eval("a[href]", a => a.map(x => x.getAttribute("href")));
       for (const h of new Set(links)) {

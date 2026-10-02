@@ -165,3 +165,49 @@ if os.path.exists(dfy):
     t=re.sub(r'<script type="application/ld\+json">.*?</script>',lambda m:dblock,t,count=1,flags=re.S)
     open(dfy,'w',encoding='utf-8').write(t)
     print("rebuilt: done-for-you ld+json (%d FAQ)"%len(df))
+
+# The short search pages (2 Oct 2026, Rick's pick "More search pages"): one
+# page per phrase Google suggests, same shape as done-for-you and a stricter
+# wall. Every step, tile, plan card and FAQ answer on them must be a sentence
+# Rick already approved: on the AI Ninja page, in the chat library (ask.js) or
+# on the R2 page. Headlines and ledes are the only new words. A page that is
+# missing is skipped.
+SHORT=[("ai-customer-service","AI customer service for small businesses"),
+       ("ai-agents","AI agents for small businesses"),
+       ("booking-system","Online booking system for small businesses")]
+if os.path.exists(dfy):
+    approved=lt+' '+vis(open(os.path.join(root,'aininja','r2','index.html'),encoding='utf-8').read())+' '+\
+        ' '.join(vis(a.replace('\\"','"')) for a in re.findall(r'\ba:"((?:[^"\\]|\\.)*)"',open(os.path.join(root,'aininja','ask.js'),encoding='utf-8').read()))
+    # The two plan cards are the done-for-you page's, word for word.
+    dfy_cards=vis(re.search(r'<div class="price-grid">(.*?)</section>',open(dfy,encoding='utf-8').read(),re.S).group(1))
+    for slug,stype in SHORT:
+        f=os.path.join(root,'aininja',slug,'index.html')
+        if not os.path.exists(f): continue
+        t=open(f,encoding='utf-8').read()
+        h1=txt(re.search(r'<h1>(.*?)</h1>',t,re.S).group(1))
+        desc=html.unescape(re.search(r'<meta name="description" content="(.*?)">',t).group(1))
+        sf=re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>',re.search(r'<section class="sec" id="faq">(.*?)</section>',t,re.S).group(1),re.S)
+        if len(sf)<4: sys.exit("%s page shape changed: %d FAQ"%(slug,len(sf)))
+        copied=[vis(x) for x in re.findall(r'<div>(?:<div class="n">\d+</div>)?<h3>.*?</h3><p>(.*?)</p></div>',t,re.S)]
+        copied+=[vis(x) for x in re.findall(r'<p>(.*?)</p>',re.search(r'<div class="price-grid">(.*?)</section>',t,re.S).group(1),re.S)]
+        copied+=[vis(x) for x in re.findall(r'<p class="honest">(.*?)</p>',t,re.S)]+[vis(a) for q,a in sf]
+        if len(copied)<20: sys.exit("%s page shape changed: %d copied paragraphs"%(slug,len(copied)))
+        miss=[]
+        for para in copied:
+            for sent in re.split(r'(?<=[.?!])\s+(?=[A-Z"])',para):
+                for a,b in ADAPT.items(): sent=sent.replace(a,b)
+                miss+=["price %s not in the landing cost answer"%d for d in re.findall(r'\$[\d,]+',sent) if d not in cost]
+                if sent not in approved and sent not in dfy_cards: miss.append(sent)
+        if miss: sys.exit("%s drifted from the approved copy, fix these:\n  "%slug+"\n  ".join(miss))
+        u="https://ricktew.com/aininja/%s/"%slug
+        sld={"@context":"https://schema.org","@graph":[
+         {"@type":"Service","@id":u+"#service","name":h1,"description":desc,"url":u,"serviceType":stype,
+          "provider":{"@type":"Person","@id":"https://ricktew.com/#rick","name":"Rick Tew","url":"https://ricktew.com/"},"areaServed":"Worldwide",
+          "offers":dld["@graph"][0]["offers"]},
+         {"@type":"FAQPage","@id":u+"#faq",
+          "mainEntity":[{"@type":"Question","name":txt(q),"acceptedAnswer":{"@type":"Answer","text":txt(a)}} for q,a in sf]}]}
+        sblock='<script type="application/ld+json">\n'+json.dumps(sld,ensure_ascii=False,indent=1)+'\n</script>'
+        if len(re.findall(r'<script type="application/ld\+json">.*?</script>',t,re.S))!=1: sys.exit("%s page: expected one ld+json block"%slug)
+        t=re.sub(r'<script type="application/ld\+json">.*?</script>',lambda m:sblock,t,count=1,flags=re.S)
+        open(f,'w',encoding='utf-8').write(t)
+        print("rebuilt: %s ld+json (%d FAQ, %d copied paragraphs checked)"%(slug,len(sf),len(copied)))
