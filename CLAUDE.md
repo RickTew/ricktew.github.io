@@ -447,23 +447,34 @@ lines above about the story fold, the apps row and the How it works strip.
   testing with hired people is an added cost. The same words are in the
   chat's `a-person` and `tested-first` answers, the FAQ "Does anyone test
   it before my customers see it?", and the steps on done-for-you and the
-  AI agents page. **Not changed, and still telling the older picture:** the
+  AI agents page.
+- **The How it works storyboard (`#howBoard`), the office telling.** Rick:
+  "maybe our explainer video shows we build them the dojo ... first we
+  build you an office (?) and then we attach the SYSTEM and the WAY to it.
+  Then we train the ai ninja who will work in your office all overseen by a
+  manager in the loop ... we can test out what works best." Both tellings
+  were drawn and read cold the same day (six fresh readers, pictures only,
+  three per telling): all six said the order back and would read on; boxes
+  they were sure of, office 7 of 12, Dojo 4 of 12, the whole gap in box 1
+  ("Dojo" read as a martial arts gym). His three picks: **"Office, and name
+  the Dojo once"** (box 1's caption is "First I build your office. I call
+  it your Dojo."), the sign says **"Your business"** and never changes
+  (the turning bakery / clinic / salon names told a baker it was for
+  clinics), and **THE WAY lists "your prices, your rules, your steps"**.
+  Four boxes above the three written steps: Rick builds your office; the
+  system and the way go in (that part runs without AI); AI ninjas, one job
+  each, nothing out without a press; Rick, a person, oversees it and writes
+  the report. The engine is one function, `rtBoard(rootId, prefix,
+  SCENES)`, called twice (the four words, then this). A scene is an SVG
+  string in the page; edit it there. The Dojo telling is in the history at
+  abafc7b. The plan is still called Your Dojo; "ninja office" as a product
+  name is NOT ruled.
+- **Same day, his pick "True up the page and chat, not the card":** the
+  done-for-you page's top paragraph, descriptions and "AI where it helps"
+  heading, and the chat's `masters` answer, follow the three steps. The
   Your Dojo card ("I manage the AI ninjas that draft every reply and file
-  every payment"), the done-for-you hero, and the chat's `masters` answer.
-  Those are Rick's to rule on.
-- **The How it works storyboard (`#howBoard`), the Dojo telling.** Rick:
-  "maybe our explainer video shows we build them the dojo ... then we
-  attach the SYSTEM and the WAY to it. Then we train the ai ninja who will
-  work in your office all overseen by a manager in the loop ... the example
-  video is dojo and then we make another one as the office if confusing but
-  we can test out what works best." Four boxes above the three written
-  steps: Rick builds your Dojo; the system and the way go in (that part
-  runs without AI); AI ninjas, one job each, nothing out without a press;
-  Rick, a person, oversees it and writes the report. The engine is one
-  function, `rtBoard(rootId, prefix, SCENES)`, called twice (the four words,
-  then this). A scene is an SVG string in the page; edit it there. The
-  **office telling is not built**; "ninja office" as a plainer name than
-  Dojo is his open idea, to be tested, not decided.
+  every payment") stays as written. The five case asks stay until he sends
+  his own wording.
 
 ### The search pages (2 Oct 2026, Rick's pick "More search pages", then "Open all three")
 
