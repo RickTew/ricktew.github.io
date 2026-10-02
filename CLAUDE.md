@@ -466,7 +466,11 @@ lines above about the story fold, the apps row and the How it works strip.
   each, nothing out without a press; Rick, a person, oversees it and writes
   the report. The engine is one function, `rtBoard(rootId, prefix,
   SCENES)`, called twice (the four words, then this). A scene is an SVG
-  string in the page; edit it there. The Dojo telling is in the history at
+  string in the page; edit it there. **It is one video with one Replay
+  button** (Rick: "just one replay button for the whole video we don't
+  need sections"): no dots, no Back, no Next; a board without those plays
+  through and its Replay starts again from the first box. The four-words
+  board keeps its dots and buttons. The Dojo telling is in the history at
   abafc7b. The plan is still called Your Dojo; "ninja office" as a product
   name is NOT ruled.
 - **Same day, his pick "True up the page and chat, not the card":** the
