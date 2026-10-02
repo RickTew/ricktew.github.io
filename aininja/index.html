@@ -589,6 +589,7 @@ html,body{overflow-x:clip}
 .r-form input[type=email]{flex:1;min-width:220px;font:inherit;padding:12px 14px;border:2px solid var(--line);border-radius:10px;background:var(--panel)}
 .r-form input[type=email]:focus-visible{outline:3px solid var(--blue);outline-offset:1px}
 .r-form .small{margin-top:10px;font-size:12.5px;color:var(--muted)}
+.r-form .r-need{color:var(--ink);font-size:14px;font-weight:800}
 .r-honest{margin-top:22px;font-size:13px}
 
 /* footer */
@@ -2382,12 +2383,13 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
           <div class="r-cta">
             <a class="btn btn-blue" id="rBook" href="#">Talk to me about it</a>
           </div>
-          <form class="r-form" id="rForm">
+          <form class="r-form" id="rForm" novalidate>
             <label for="rEmail">Want this as a one-page breakdown, move by move?</label>
             <div class="row">
               <input type="email" id="rEmail" name="email" required placeholder="you@yourcompany.com" autocomplete="email">
               <button class="btn btn-quiet" type="submit">Send me the breakdown</button>
             </div>
+            <p class="small r-need" id="rNeed" hidden>Type your email first, so the breakdown has somewhere to go.</p>
             <p class="small">One page. Press the button and your answers drop into my mailbox at the bottom of the page; read them there, drop them in, and the breakdown comes back to you by email. It is built from your answers, not a template.</p>
           </form>
           <p class="r-honest">Honest math: your number is the hours you reported, times a 60% draft-and-file share, times the hourly value you gave it. Estimates, clearly labeled as estimates, from your answers and nothing else.</p>
@@ -3224,7 +3226,13 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     };
     document.getElementById("rForm").onsubmit=function(e){
       e.preventDefault();
-      var email=document.getElementById("rEmail").value;
+      /* An empty or broken address used to stop here with only the
+         browser's own bubble, which a phone may not show: the button looked
+         dead (Aisha, round nine, 2 Oct 2026). Now the page says what to do. */
+      var input=document.getElementById("rEmail"), need=document.getElementById("rNeed");
+      if(!input.value.trim() || !input.checkValidity()){ need.hidden=false; input.focus(); return; }
+      need.hidden=true;
+      var email=input.value;
       window.rtSlotFill(summary,"hours",email,"One-page breakdown request. "+
         "Send it to the address above.");
     };

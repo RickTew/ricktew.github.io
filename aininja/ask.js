@@ -461,7 +461,7 @@
     {id:"remote", q:"Do you work with businesses outside Thailand?",
      alt:["outside thailand","work remotely","remotely","remote","in europe","in the us","in the uk","in america","in australia","in canada","my country","time zone","timezone","time zones","other countries","overseas"],
      keys:"remote remotely outside thailand europe america usa canada australia country countries abroad international timezone zone zones location anywhere overseas worldwide",
-     a:"<p>The work happens in your own online accounts, which do not care where you are, and I have lived and taught all over the world. Say where you are and what you run in the mailbox: whether I can take it on, time zones included, comes back straight.</p>"},
+     a:"<p>Everything I build runs online, on my stack, and it does not care where you are. I have lived and taught all over the world. Say where you are and what you run in the mailbox: whether I can take it on, time zones included, comes back straight.</p>"},
 
     {id:"teach-me", q:"Can you teach me to do this myself?",
      alt:["teach me","teach us","learn to do it myself","do it myself","train my team","train me","workshop","course on ai","learn ai"],
