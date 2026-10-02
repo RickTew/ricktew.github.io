@@ -473,8 +473,8 @@ html,body{overflow-x:clip}
 .vs .way .tag,.you .way .tag{font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--blue)}
 .vs .way .amt,.you .way .amt{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:26px;line-height:1.1;color:var(--ink)}
 .vs .way .amt small,.you .way .amt small{font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:700;color:var(--muted)}
-.vs .way p,.you .way p{font-size:14.5px;font-weight:600;color:#4b5563;line-height:1.55;flex:1;margin:0}
-.vs .way .want,.you .way .want{align-self:flex-start;margin-top:4px}
+.vs .way p,.you .way p{font-size:14.5px;font-weight:600;color:#4b5563;line-height:1.55;flex:0 0 auto;margin:0}  /* paragraphs keep one even gap; the spare height goes above the button (Rick, 2 Oct 2026: the spacing in the $222 card) */
+.vs .way .want,.you .way .want{align-self:flex-start;margin-top:auto}
 .vs .custom,.you .custom{margin-top:16px;font-weight:700;color:var(--muted);font-size:14.5px}
 .vs .honest{text-align:center;color:var(--muted);font-weight:700;margin:22px auto 0;max-width:60ch;font-size:14.5px}
 .vs .src{text-align:center;color:var(--muted);font-weight:600;margin:14px auto 0;max-width:70ch;font-size:12.5px}
@@ -655,7 +655,12 @@ footer a:hover{text-decoration:underline}
 .hows .how-board .sb-body{color:#4b5563;min-height:3.1em}  /* room for the longest caption, so the steps below do not jump as the boxes change */
 @media (max-width:520px){ .hows .how-board .sb-cap{min-height:2.7em;display:flex;align-items:flex-end} .hows .how-board .sb-body{min-height:6.2em} }
 .hows .how-board+.how-steps{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
-.hows .how-board .sb-ctl{justify-content:flex-end}  /* one button: Replay, for the whole video */
+/* the explainer plays by itself and also clicks through like slides: numbered parts, and one button that reads Next, then Replay on the last part */
+.sb-dots.sb-nums{gap:7px}
+.sb-dots.sb-nums button{width:32px;height:32px;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:14px;font-weight:900;line-height:1}
+.sb-dots.sb-nums button:hover{border-color:var(--blue);color:var(--blue)}
+.sb-dots.sb-nums button.done{background:#eaf3fb;border-color:#a9c8e6;color:var(--blue)}
+.sb-dots.sb-nums button[aria-current]{width:32px;background:var(--blue);border-color:var(--blue);color:#fff}
 .how-steps{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px 24px}
 .how-steps li{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700;color:var(--ink);line-height:1.45}
 .how-steps b{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:26px;line-height:1;color:var(--blue)}
@@ -1456,7 +1461,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <div class="hero-copy">
         <div class="k">Rick Tew &middot; The Digital Dojo</div>
         <h1>I'm not a marketing expert. <span class="c">I'm the person behind your AI ninjas.</span></h1>
-        <p class="lede">Not a pitch. One real business needed its owner's time back. Five months of building followed: the Dojo where my AI ninjas work. I build the same for your business, and either you run it yourself or I run it with you. See yourself in it? The quiz at the end says where I would start.</p>
+        <p class="lede">Not a pitch. One real business needed its owner's time back. Years of building followed: the Dojo where my AI ninjas work. I build the same for your business, and either you run it yourself or I run it with you. See yourself in it? The quiz at the end says where I would start.</p>
         <div class="cta-row">
           <a class="btn btn-blue" href="#" data-want="my hours back" data-want-kind="hours"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew!!</a>
           <a class="btn btn-quiet" href="#quiz">Take the quiz</a>
@@ -1494,7 +1499,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
           <span class="tag">Basic plan &middot; R2 Hosting</span>
           <span class="amt">$222 to build<small>, then $99 a month</small></span>
           <p>Your website or small app, with the forms that bring work in. Built, hosted and kept running by me. Nothing for you to log into. For a lot of small businesses, this is all the system they ever needed.</p>
-          <p class="way-more">R2 is me, Rick Tew. The $222 builds the first version of one thing: a website of a handful of pages with a contact or booking form, or a small app with one job. Booking reminders go out by email. First month included. Cancel anytime, effective at the end of the paid month or year. <a href="/aininja/r2/">See R2 Hosting</a></p>
+          <p class="way-more">R2 is me, Rick Tew. The $222 builds the first version of one thing: a website of a handful of pages with a contact or booking form, or a small app with one job. Booking reminders go out by email. First month included. Cancel anytime, effective at the end of the paid month or year.</p>
           <a class="want" href="#" data-want="R2 Hosting, $222 to build, then $99 a month" data-want-note="I build it, I host it, I keep it running." data-want-kind="build"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
         </div>
         <div class="way">
@@ -1512,11 +1517,12 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <div class="hows">
       <div class="k">How it works</div>
       <p class="how-lead">It is custom work, built for your workflow. Your business becomes AI native, with a person at the helm.</p>
-      <div class="sb how-board" id="howBoard" role="group" aria-label="How it works, a short animation in four parts">
+      <div class="sb how-board" id="howBoard" data-video role="group" aria-label="How it works, a short animation in four parts">
         <div class="sb-frame" id="hbFrame"></div>
         <div class="sb-ctl">
+          <div class="sb-dots sb-nums" id="hbDots" aria-label="Which part"></div>
           <div class="sb-btns">
-            <button type="button" class="sb-replay" id="hbReplay">Replay</button>
+            <button type="button" class="sb-next" id="hbNext">Next &rarr;</button>
           </div>
         </div>
         <p class="sb-cap" id="hbCap"></p>
@@ -3431,11 +3437,15 @@ function rtBoard(rootId,p,SCENES){
       back=document.getElementById(p+"Back"), replay=document.getElementById(p+"Replay"), next=document.getElementById(p+"Next");
   var HOLD=1.6, i=0, timer=null, inView=false, firstDrawn=true;
   var still=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  /* A board without dots, Back and Next is one video (How it works, Rick,
-     2 Oct 2026: "just one replay button for the whole video we don't need
-     sections"): it plays through, and Replay starts again from the first box. */
+  /* A board marked data-video (How it works) plays through by itself and
+     also clicks through like slides (Rick, 2 Oct 2026: "videos are easier
+     with 1, next, 2, next and 3 that they can just click through like a
+     slide as well"): its parts are numbered, and its one button reads Next,
+     then Replay on the last part. */
+  var video=root.hasAttribute("data-video"), nums=!!dots && dots.classList.contains("sb-nums");
   if(dots) SCENES.forEach(function(sc,k){
-    var b=document.createElement("button"); b.type="button"; b.setAttribute("aria-label","Box "+(k+1));
+    var b=document.createElement("button"); b.type="button"; b.setAttribute("aria-label",(video?"Part ":"Box ")+(k+1));
+    if(nums) b.textContent=k+1;
     b.addEventListener("click",function(){ go(k); });
     dots.appendChild(b);
   });
@@ -3457,12 +3467,12 @@ function rtBoard(rootId,p,SCENES){
       dots.setAttribute("aria-label","Box "+(i+1)+" of "+SCENES.length);
     }
     if(back) back.hidden=(i===0);
-    if(next) next.textContent=last?"From the top":"Next \u2192";
+    if(next) next.textContent=last?(video?"Replay":"From the top"):"Next \u2192";
     arm();
   }
   function go(k){ firstDrawn=false; i=Math.max(0,Math.min(k,SCENES.length-1)); render(); }
   if(back) back.addEventListener("click",function(){ go(i-1); });
-  replay.addEventListener("click",function(){ if(dots){ firstDrawn=false; render(); } else go(0); });
+  if(replay) replay.addEventListener("click",function(){ firstDrawn=false; render(); });
   if(next) next.addEventListener("click",function(){ go(i===SCENES.length-1?0:i+1); });
   document.addEventListener("visibilitychange",function(){ if(document.hidden) clearTimeout(timer); else arm(); });
   render();
