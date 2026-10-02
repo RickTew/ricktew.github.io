@@ -1408,7 +1408,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
      "name": "Can I get just one desk?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "A desk is one AI ninja on one job, like the Front Desk drafting your support replies. And yes: that is how every Dojo starts. The free look picks the one job that eats the most hours, usually the inbox, and one ninja takes it. More join once it has proven itself, and the price stays $2,222 a month, flat. One desk built on its own, without the monthly service, is a custom job, quoted in writing."
+      "text": "A desk is one AI ninja on one job, like the Front Desk drafting your support replies. And yes: that is how every Dojo starts. The free look picks the one job that eats the most hours, usually the inbox, and one ninja takes it. More join once it has proven itself, and the price stays $2,222 a month, flat."
      }
     },
     {
@@ -1515,7 +1515,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
           <a class="want" href="#" data-want="Your Dojo, $2,222 a month" data-want-note="I build it, host it, and help you run it." data-want-kind="dojo"><span class="g" aria-hidden="true">&#129399;</span>I want this Tew</a>
         </div>
       </div>
-      <p class="custom">Your team presses every send. Want the whole day run for you? That is a custom price, and we talk first. Smaller than that? One desk on its own, without the monthly plan, is quoted in writing after the free look.</p>
+      <p class="custom">Your team presses every send. Want the whole day run for you? That is a custom price, and we talk first.</p>
       <p class="custom">The &ldquo;I want this Tew&rdquo; button writes your pick into my mailbox at the bottom of this page. You add a line and send it. I stick to writing on purpose: everything we agree is on the record. A call is a custom step.</p>
       <p class="custom">Your customers text, WhatsApp or LINE you? Tell me which, and I set it up and quote it in writing first.</p>
     <div class="hows">
@@ -2431,7 +2431,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <h2>The questions <span class="c">that come up every time</span></h2>
     <div class="list">
       <details><summary>Will an AI talk to my customers without me knowing?</summary><p>Not without your say. Every ninja starts at white belt: propose only. Drafts pile up for your review, and a person presses every send, pay and post. By default nothing goes out without a press. Sending on its own is your choice, task by task, and only after it has been tested.</p><p>One exception, and it is mine: the mailbox on this page is answered first by my Ninja Agent, from answers I wrote, because that is the demo. In your Dojo nothing sends without your press unless you choose the same for a lane of your own.</p></details>
-      <details><summary>Can I get just one desk?</summary><p>A desk is one AI ninja on one job, like the Front Desk drafting your support replies. And yes: that is how every Dojo starts. The free look picks the one job that eats the most hours, usually the inbox, and one ninja takes it. More join once it has proven itself, and the price stays $2,222 a month, flat. One desk built on its own, without the monthly service, is a custom job, quoted in writing.</p></details>
+      <details><summary>Can I get just one desk?</summary><p>A desk is one AI ninja on one job, like the Front Desk drafting your support replies. And yes: that is how every Dojo starts. The free look picks the one job that eats the most hours, usually the inbox, and one ninja takes it. More join once it has proven itself, and the price stays $2,222 a month, flat.</p></details>
       <details><summary>Can somebody's AI assistant deal with you instead of them?</summary><p>Yes. The solutions list and both prices sit in a tool an assistant can read, and the mailbox is a tool it can call. What it posts lands where a person's message lands, and the reply goes to the person it was sent for, not to the robot. Your own website can do the same; that is one of the things I build.</p></details>
       <details><summary>Does anyone test it before my customers see it?</summary><p>Yes, and not by me clicking around. Simulated players go first: hundreds of rounds, every button pressed, looking for stalls, dead ends and bad sums. Then a second pass in character, people of different ages and patience, reporting where they got lost. It walked this page before the chat box shipped. Real-life testing is yours: nobody knows your business and your customers like you do. Testing with hired people is an added cost.</p></details>
       <details><summary>Why the belts?</summary><p>Because trust is earned by showing up and proving it, which is how I grade kids at the gym. A ninja that has proven itself gets more to do. One that has not, does not.</p></details>
@@ -3213,11 +3213,12 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     }
     /* Persona round one, both testers: the value and the price sat one line
        apart and the gap went unsaid. Now it is said, and R2 Hosting is the
-       honest smaller start (Rick's go, 6 Sep 2026). */
+       honest smaller start (Rick's go, 6 Sep 2026). Since 2 Oct 2026 it is
+       the only one: "we have only two services" (Rick), so no one-desk build. */
     var priceNum = 2222;
     var under = money && rateKnown && hours>2 && monthly < priceNum;
     if(under){
-      para("Worth saying out loud: by your own numbers that is about $"+monthly.toLocaleString("en-US")+" a month back against "+price+". It does not add up yet, and I would rather say so than sell it. Two smaller starts: one desk on its own, <b>"+(sols[0]||"the one that fits")+"</b>, as a build scoped and priced in writing first, or <b>R2 Hosting</b>, $222 to build your site or small app then $99 a month with me hosting it, if a site is the real need. Either grows into a Dojo the week the admin starts eating your hours.");
+      para("Worth saying out loud: by your own numbers that is about $"+monthly.toLocaleString("en-US")+" a month back against "+price+". It does not add up yet, and I would rather say so than sell it. The smaller start is <b>R2 Hosting</b>, $222 to build your site or small app then $99 a month with me hosting it. It grows into a Dojo the week the admin starts eating your hours.");
     }
     if(conflictUp){
       para("Worth saying out loud: you told me you would run it yourself, and also that you would rather not deal with computers. Those two answers fight. If the second one is the truer of the pair, say so in the message and we talk about me carrying more of the day, at a custom price, rather than you finding out three months in.");
@@ -3237,7 +3238,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       +(topSeat ? "\nSeat matched: "+topSeat+(SEAT_TRAINING[topSeat]?" (in training)":"") : "")
       +"\nEstimated draftable hours a week: "+draftable
       +((hours>2 && money && rateKnown) ? "\nEstimated value: USD "+monthly+" a month" : "")
-      +(hours>2 ? (under ? "\nBy these numbers "+tier+" ("+price+") does not add up yet: a smaller start first, one desk scoped in writing or R2 Hosting."
+      +(hours>2 ? (under ? "\nBy these numbers "+tier+" ("+price+") does not add up yet: the smaller start is R2 Hosting."
                          : "\nSuggested plan: "+tier+" ("+price+")") : "")
       +((hours>2 && driver==="you") ? "\nI would want the daily work run for me: custom price, talk first." : "")
       +((hours>2 && driver==="nobody") ? "\nNobody here has the capacity to run it day to day: custom price, talk first." : "")

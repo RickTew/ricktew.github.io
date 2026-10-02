@@ -490,8 +490,15 @@ lines above about the story fold, the apps row and the How it works strip.
   the chat (a burned owner read it as "I am the tester"); the live
   screens row and its icons run business apps first (NinjaGym, SabaiSen,
   EverCool, WinJitsu, TEWBEDO, SamuiKids, NerdHostel), the games after
-  (all three readers took the games for a hobby page). **One desk gets a
-  from-price, his pick; the number is his and is not on the page yet.**
+  (all three readers took the games for a hobby page).
+- **Two services only (Rick, 2 Oct 2026: "we have only two services, where
+  is this as a service?").** "One desk on its own ... quoted in writing"
+  is gone from under the cards, the FAQ "Can I get just one desk?" (all
+  three pages), the quiz's "does not add up yet" result and its mailbox
+  summary, and the chat's cost answer. Every Dojo still starts with one
+  desk at the flat $2,222; the smaller start is R2 Hosting. Never offer a
+  one-desk build, a desk price or any third plan without his word. The
+  whole day run for you stays a custom price, talked about first.
 
 ### The search pages (2 Oct 2026, Rick's pick "More search pages", then "Open all three")
 
