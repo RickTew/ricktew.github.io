@@ -408,6 +408,81 @@ band and the summit card.**
     one argued against the on-my-stack offer). The golden set gained seven
     regression lines.
 
+### 2 OCT 2026: the visuals are back, as case studies; How it works is three steps and a storyboard
+
+Rick, 2 Oct: "we took out the visuals (apps etc) so put those back in ...
+digital is very bad at judging what a human would see as relevant with a
+stranger (visual proof of product is bigger than text and now our landing
+page is only text)." **A persona round may say a section is "not needed";
+it does not get to remove the pictures.** This block supersedes the 1 Oct
+lines above about the story fold, the apps row and the How it works strip.
+
+- **The live screens (`#apps`) sit in the open, between `#you` and the
+  story.** They had been inside the story fold since 1 Oct.
+- **Case studies (`#cases`) replace the "More of what I built" fold.**
+  Rick: "bring it all back but now we will use them as case studies and
+  examples and they can click the OPEN CASE button to see the full story
+  ... 'I want to turn my board game into a real game' then we show the
+  steps ... unique to business, personal, hobby." Five `<details
+  class="case">` cards after chapter 1, each with its picture in the open,
+  a kind line, the ask in one sentence, three steps and the button:
+  `case-gym` and `case-spa` (business), `case-console` and `case-winjitsu`
+  (personal), `case-game` (hobby). The body of each is the old story
+  chapter word for word (chapters 2 to 6, the sprites, `#opt-e1` inside
+  the spa case). An opened case takes the whole row; a link to something
+  inside a closed case opens it. Chapter 7 (the friends) stays open below.
+  Every step line is a fact that was already on the page, in `ask.js` or on
+  the R2 page. The five asks are my wording from those facts; Rick offered
+  to give his own case for each, so expect them to change. A sixth case
+  (a client) needs his facts and his say on naming: the friends in chapter
+  7 are unnamed on purpose.
+- **How it works is Rick's three steps and his note,** because the old
+  four-step strip ("My AI ninjas do the legwork: the drafts, the filing,
+  the bookings") was, in his words, "not actually how it works ... what we
+  really do is more custom": 1 the foundation first, systems that work like
+  software and run without AI; 2 then AI where it helps, the ninjas trained
+  for that workflow in the Digital Dojo; 3 a person at the helm, overseeing
+  the builds, the finished work and the process. Note: real-life testing is
+  the client's ("we will never know their business or needs like they do");
+  testing with hired people is an added cost. The same words are in the
+  chat's `a-person` and `tested-first` answers, the FAQ "Does anyone test
+  it before my customers see it?", and the steps on done-for-you and the
+  AI agents page. **Not changed, and still telling the older picture:** the
+  Your Dojo card ("I manage the AI ninjas that draft every reply and file
+  every payment"), the done-for-you hero, and the chat's `masters` answer.
+  Those are Rick's to rule on.
+- **The How it works storyboard (`#howBoard`), the Dojo telling.** Rick:
+  "maybe our explainer video shows we build them the dojo ... then we
+  attach the SYSTEM and the WAY to it. Then we train the ai ninja who will
+  work in your office all overseen by a manager in the loop ... the example
+  video is dojo and then we make another one as the office if confusing but
+  we can test out what works best." Four boxes above the three written
+  steps: Rick builds your Dojo; the system and the way go in (that part
+  runs without AI); AI ninjas, one job each, nothing out without a press;
+  Rick, a person, oversees it and writes the report. The engine is one
+  function, `rtBoard(rootId, prefix, SCENES)`, called twice (the four words,
+  then this). A scene is an SVG string in the page; edit it there. The
+  **office telling is not built**; "ninja office" as a plainer name than
+  Dojo is his open idea, to be tested, not decided.
+
+### The search pages (2 Oct 2026, Rick's pick "More search pages", then "Open all three")
+
+Three short pages in the shape of done-for-you, each on a phrase Google's
+autocomplete suggests (checked 2 Oct): `/aininja/ai-customer-service/`
+("ai customer service for small business"), `/aininja/ai-agents/` ("ai
+agent for small business owners") and `/aininja/booking-system/` ("online
+booking system for small business", which sells R2 Hosting first). In the
+sitemap, in llms.txt, linked from the /aininja/ footer and from each other.
+**Nothing on them is new copy except the headlines and ledes.**
+`tests/agent-door-build.py` fails, naming the sentence, if any step, tile,
+plan card, note or FAQ answer on them is not already on the AI Ninja page,
+in `ask.js` or on the R2 page, or if a price is not in the landing cost
+answer; it also writes each page's ld+json. So a landing-page edit that
+breaks the build means: copy the new sentence onto the short page. A new
+search page goes in `SHORT` in that script and in `SHORT` in
+`tests/aidoor-sweep.js`. Search Console baseline before them: 5
+impressions in 28 days for /aininja/.
+
 ### The live row: no claim sentence any more (2026-08-28)
 
 The apps section used to promise every capture was "exactly as it loads for
