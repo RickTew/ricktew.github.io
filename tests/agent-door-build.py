@@ -62,6 +62,9 @@ L=["# Rick Tew","",
 "- Running the daily work for a client, a build inside the client's own accounts, or anything bigger than one Dojo, is a custom price talked about first; it is not a listed offer.",
 "- R2 Hosting: $%s to build a site or small app, then $%s a month or $999 a year for hosting, management and upkeep on Rick's stack. The entry offer: https://ricktew.com/aininja/r2/"%(r2.group(1),r2.group(2)),
 "- Done-for-you AI for small business owners, on one short page: how it works, the jobs it takes off an owner, the two plans and the common questions. https://ricktew.com/aininja/done-for-you/",
+"- AI customer service for a small business, by email: an AI drafts every reply from the owner's written answers and a person presses send. https://ricktew.com/aininja/ai-customer-service/",
+"- AI agents for small business owners: the system first, then AI ninjas where they help, with Rick at the helm. https://ricktew.com/aininja/ai-agents/",
+"- An online booking system for a small business, built and hosted on Rick's stack: no account to book, reminders by email. https://ricktew.com/aininja/booking-system/",
 "- The Shop: ready-made downloads, such as WinJitsu workbooks at $2.99 each, a printable PDF. https://ricktew.com/aininja/shop/",
 "- The Side Hustle Summit in plain words, dated and updated after each session: what the free YouTube event (6 to 13 September 2026) sells, what each day taught, and the four steps a viewer can do at no cost. Rick sells no course for it. https://ricktew.com/aininja/side-hustle-summit/","",
 "## Solutions (the things Rick builds)",""]
@@ -190,7 +193,7 @@ if os.path.exists(dfy):
         if len(sf)<4: sys.exit("%s page shape changed: %d FAQ"%(slug,len(sf)))
         copied=[vis(x) for x in re.findall(r'<div>(?:<div class="n">\d+</div>)?<h3>.*?</h3><p>(.*?)</p></div>',t,re.S)]
         copied+=[vis(x) for x in re.findall(r'<p>(.*?)</p>',re.search(r'<div class="price-grid">(.*?)</section>',t,re.S).group(1),re.S)]
-        copied+=[vis(x) for x in re.findall(r'<p class="honest">(.*?)</p>',t,re.S)]+[vis(a) for q,a in sf]
+        copied+=[vis(x) for x in re.findall(r'<p class="(?:honest|step-note)">(.*?)</p>',t,re.S)]+[vis(a) for q,a in sf]
         if len(copied)<20: sys.exit("%s page shape changed: %d copied paragraphs"%(slug,len(copied)))
         miss=[]
         for para in copied:

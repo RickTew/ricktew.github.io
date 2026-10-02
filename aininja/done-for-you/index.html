@@ -181,6 +181,9 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .steps{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 @media (max-width:760px){ .steps{grid-template-columns:1fr 1fr} }
 @media (max-width:420px){ .steps{grid-template-columns:1fr} }
+.steps.three{grid-template-columns:repeat(3,1fr)}
+@media (max-width:760px){ .steps.three{grid-template-columns:1fr} }
+.step-note{margin-top:16px;font-size:14.5px;font-weight:600;color:#4b5563;max-width:70ch}
 .steps > div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
 .steps .n{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:26px;color:var(--blue);line-height:1}
 .steps h3{font-size:15.5px;font-weight:900;margin-top:8px}
@@ -258,12 +261,12 @@ footer a:hover{color:var(--blue-d)}
   <div class="wrap">
     <div class="k">How it works</div>
     <h2>You press one button. <span class="c">I think about the rest.</span></h2>
-    <div class="steps">
-      <div><div class="n">1</div><h3>You tell me the job</h3><p>The free look comes first: where your hours go, mapped with you, in writing.</p></div>
-      <div><div class="n">2</div><h3>My AI ninjas do the legwork</h3><p>The drafts, the filing, the bookings. Each ninja has one job and works from your own written answers.</p></div>
-      <div><div class="n">3</div><h3>A person checks it</h3><p>Nothing goes out without a press. Every send, pay and post waits for your team.</p></div>
-      <div><div class="n">4</div><h3>I manage all of it</h3><p>It runs on my stack, and I report to you in writing. New ninjas join once the first has proven itself.</p></div>
+    <div class="steps three">
+      <div><div class="n">1</div><h3>The foundation first</h3><p>I build the foundation first: the systems your business runs on. They work like software you would buy, and they run without AI.</p></div>
+      <div><div class="n">2</div><h3>AI where it helps</h3><p>Then I find where AI can help, and train those ninjas for your workflow in my Digital Dojo.</p></div>
+      <div><div class="n">3</div><h3>A person at the helm</h3><p>A person stays at the helm. I oversee the builds, the finished work and the process, and report to you in writing.</p></div>
     </div>
+    <p class="step-note">Real-life testing is yours: nobody knows your business and your customers like you do. Testing with hired people is an added cost.</p>
   </div>
 </section>
 
@@ -351,7 +354,7 @@ footer a:hover{color:var(--blue-d)}
 <footer>
   <div class="wrap">
     <span>THE DIGITAL DOJO &middot; by Rick Tew</span>
-    <span><a href="/">Which ninja?</a> &middot; <a href="/aininja/">AI Ninja</a> &middot; <a href="/aininja/r2/">R2 Hosting</a> &middot; <a href="/aininja/legal/terms.html">Terms of Service</a> &middot; <a href="/aininja/legal/privacy.html">Privacy</a></span>
+    <span><a href="/">Which ninja?</a> &middot; <a href="/aininja/">AI Ninja</a> &middot; <a href="/aininja/ai-customer-service/">AI customer service</a> &middot; <a href="/aininja/ai-agents/">AI agents</a> &middot; <a href="/aininja/booking-system/">Online booking</a> &middot; <a href="/aininja/r2/">R2 Hosting</a> &middot; <a href="/aininja/legal/terms.html">Terms of Service</a> &middot; <a href="/aininja/legal/privacy.html">Privacy</a></span>
   </div>
 </footer>
 </body>

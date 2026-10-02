@@ -5,10 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Online booking system for small business, built and hosted for you | Rick Tew</title>
 <meta name="description" content="An online booking system for a small business, on your own domain. People book without an account, reminders go out by email, and I build it, host it and keep it running.">
-<!-- PREVIEW (2 Oct 2026): unlinked and noindex until Rick has read it on the
-     live site. Go-live = drop the next line, add the page to sitemap.xml, the
-     llms.txt list in tests/agent-door-build.py and the /aininja/ footer. -->
-<meta name="robots" content="noindex">
 <link rel="canonical" href="https://ricktew.com/aininja/booking-system/">
 <link rel="icon" href="/assets/images/favicon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
@@ -185,6 +181,9 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .steps{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 @media (max-width:760px){ .steps{grid-template-columns:1fr 1fr} }
 @media (max-width:420px){ .steps{grid-template-columns:1fr} }
+.steps.three{grid-template-columns:repeat(3,1fr)}
+@media (max-width:760px){ .steps.three{grid-template-columns:1fr} }
+.step-note{margin-top:16px;font-size:14.5px;font-weight:600;color:#4b5563;max-width:70ch}
 .steps > div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
 .steps .n{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:26px;color:var(--blue);line-height:1}
 .steps h3{font-size:15.5px;font-weight:900;margin-top:8px}
@@ -354,7 +353,7 @@ footer a:hover{color:var(--blue-d)}
 <footer>
   <div class="wrap">
     <span>THE DIGITAL DOJO &middot; by Rick Tew</span>
-    <span><a href="/">Which ninja?</a> &middot; <a href="/aininja/">AI Ninja</a> &middot; <a href="/aininja/done-for-you/">Done-for-you AI</a> &middot; <a href="/aininja/r2/">R2 Hosting</a> &middot; <a href="/aininja/legal/terms.html">Terms of Service</a> &middot; <a href="/aininja/legal/privacy.html">Privacy</a></span>
+    <span><a href="/">Which ninja?</a> &middot; <a href="/aininja/">AI Ninja</a> &middot; <a href="/aininja/done-for-you/">Done-for-you AI</a> &middot; <a href="/aininja/ai-customer-service/">AI customer service</a> &middot; <a href="/aininja/ai-agents/">AI agents</a> &middot; <a href="/aininja/r2/">R2 Hosting</a> &middot; <a href="/aininja/legal/terms.html">Terms of Service</a> &middot; <a href="/aininja/legal/privacy.html">Privacy</a></span>
   </div>
 </footer>
 </body>

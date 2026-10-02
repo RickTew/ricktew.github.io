@@ -594,7 +594,7 @@ html,body{overflow-x:clip}
 /* footer */
 footer{border-top:1px solid var(--line);padding:30px 0 84px;font-size:13.5px;color:var(--muted)}
 footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
-footer a{color:var(--ink);font-weight:800;text-decoration:none}
+footer a{color:var(--ink);font-weight:800;text-decoration:none;white-space:nowrap} /* a link name never breaks across two lines */
 footer a:hover{text-decoration:underline}
 
 /* Phones: lighter type and spacing. A "More" fold on long blocks was tried
@@ -638,12 +638,6 @@ footer a:hover{text-decoration:underline}
 .you-list li::before{content:"\2713";position:absolute;left:0;top:-1px;width:24px;height:24px;border-radius:6px;background:var(--blue);color:#fff;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center}
 .you-p{margin-top:22px;max-width:60ch;font-size:16.5px;font-weight:600;color:#3a4148;line-height:1.7}
 .you .cta-row{margin-top:26px}
-.tl-more{margin:0}
-.tl-more>summary{display:block;width:max-content;max-width:calc(100% - 32px);margin:6px auto 34px;cursor:pointer;list-style:none;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:12px 22px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:15px}
-.tl-more>summary::-webkit-details-marker{display:none}
-.tl-more>summary::after{content:" +";color:var(--blue)}
-.tl-more[open]>summary::after{content:" \2212"}
-.tl-more>summary:hover{background:var(--panel)}
 .you .way .way-more{margin-top:10px;font-size:13.5px;font-weight:600;color:var(--muted);line-height:1.6}
 .you .way .way-more a{color:var(--blue);font-weight:800}
 .you-faq{margin-top:30px}
@@ -653,13 +647,74 @@ footer a:hover{text-decoration:underline}
 .you-faq summary::-webkit-details-marker{display:none}
 .you-faq summary::after{content:"+";position:absolute;right:18px;top:11px;font-size:22px;font-weight:900;color:var(--blue)}
 .you-faq details[open] summary::after{content:"\2212"}
-/* How it works: four steps under the plan cards (Rick, 27 Sep: the service is a person running it, the ninjas do the legwork). Numbers are plain type, not badges: nothing here is pressable */
+/* How it works: three steps and a note under the plan cards (Rick, 2 Oct 2026: the foundation first, systems that run without AI; then AI where it helps; a person at the helm; real-life testing is the client's). Numbers are plain type, not badges: nothing here is pressable */
 .hows{margin-top:24px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px 20px}
-.how-steps{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px 20px}
+.hows .how-lead{margin-top:8px;font-size:15px;font-weight:700;color:var(--ink);line-height:1.45}
+.how-steps{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px 24px}
 .how-steps li{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700;color:var(--ink);line-height:1.45}
 .how-steps b{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:26px;line-height:1;color:var(--blue)}
-@media (max-width:760px){ .how-steps{grid-template-columns:1fr 1fr} }
-@media (max-width:460px){ .how-steps{grid-template-columns:1fr;gap:12px} .how-steps li{flex-direction:row;align-items:baseline;gap:12px} .how-steps b{font-size:22px;min-width:16px} }
+.hows .how-note{margin-top:14px;font-size:14px;font-weight:600;color:#4b5563;line-height:1.5}
+@media (max-width:760px){ .how-steps{grid-template-columns:1fr;gap:12px} .how-steps li{flex-direction:row;align-items:baseline;gap:12px} .how-steps b{font-size:22px;min-width:16px} }
+/* Case studies (Rick, 2 Oct 2026): the picture shows on the closed card; "Open case"
+   opens the full story across the whole row. The kind line is plain type and only
+   the button is a pill, because only the button is pressable-looking. */
+.cases{padding:74px 0 36px;border-top:1px solid var(--line)}
+.cases .wrap{text-align:center}
+.cases h2{font-size:clamp(26px,4vw,38px);font-weight:900;margin-top:8px}
+.cases .sub{color:var(--muted);font-weight:700;margin:10px auto 0;max-width:62ch}
+.case-grid{max-width:1088px;margin:34px auto 0;padding:0 24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;grid-auto-flow:dense}
+.case{background:#fff;border:2px solid var(--line);border-radius:18px;overflow:hidden;min-width:0;transition:border-color .15s ease,box-shadow .15s ease}
+.case:hover{border-color:var(--blue);box-shadow:0 14px 34px rgba(30,115,189,.14)}
+.case.wide{grid-column:span 2}
+.case[open]{grid-column:1/-1;border-color:var(--blue);box-shadow:none}
+.case>summary{display:flex;flex-direction:column;height:100%;cursor:pointer;list-style:none}
+.case>summary::-webkit-details-marker{display:none}
+.case>summary:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+.case-pic{display:flex;justify-content:center;align-items:flex-start;gap:16px;height:236px;padding:24px 16px 0;overflow:hidden;background:var(--panel);border-bottom:1px solid var(--line)}
+.case-pic .ph{flex:0 0 auto;width:150px;padding:6px 6px 0;border-radius:24px 24px 0 0;background:linear-gradient(160deg,#23252b,#0e0f12);box-shadow:0 18px 36px rgba(16,20,24,.24)}
+.case-pic .ph img{display:block;width:100%;border-radius:18px 18px 0 0}
+.case-pic.cover,.case-pic.duo{padding:0;gap:0}
+.case-pic.cover img,.case-pic.duo img{display:block;height:100%;object-fit:cover;object-position:center top}
+.case-pic.cover img{width:100%}
+.case-pic.duo img{width:50%}
+.case-pic.mix{justify-content:flex-start;padding:0 20px 0 0;gap:18px}
+.case-pic.mix>img{display:block;width:54%;height:100%;object-fit:cover}
+.case-pic.mix .ph{margin-top:24px;width:138px}
+.case-txt{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:18px 20px 20px;text-align:left;flex:1}
+.case-kind{font-size:11.5px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--blue)}
+.case-ask{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:21px;line-height:1.18;color:var(--ink)}
+.case-got{font-size:14.5px;font-weight:600;color:#4b5563;line-height:1.5;margin-bottom:8px}
+.case-open{margin-top:auto;display:inline-block;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:8px 18px;font-weight:900;font-size:14px;line-height:1.2}
+.case>summary:hover .case-open{background:var(--ink);color:#fff}
+.case .when-open,.case[open] .when-closed{display:none}
+.case[open] .when-open{display:inline}
+.case[open] .case-pic,.case[open] .case-got{display:none}
+.case[open]>summary{height:auto}
+.case[open] .case-txt{flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px 18px;padding:18px 24px}
+.case[open] .case-kind{flex:1 0 100%}
+.case[open] .case-ask{flex:1 1 300px;font-size:clamp(21px,2.6vw,27px)}
+.case[open] .case-open{margin:0}
+.case-steps{list-style:none;margin:0;padding:22px 24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 26px;background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.case-steps li{display:flex;flex-direction:column;gap:5px;font-size:15px;font-weight:700;color:var(--ink);line-height:1.45}
+.case-steps b{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:24px;line-height:1;color:var(--blue)}
+.case-steps i{font-style:normal;font-size:11.5px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.case-body .chapter{padding:44px 24px}
+.case-body .chapter .dot{display:none}
+.case-body .chapter+.chapter{border-top:1px solid var(--line)}
+.case-body .e1,.case-body .charwall{border-bottom:0}
+.case-body .e1{padding:56px 0 48px;border-top:0}
+@media (max-width:899px){
+  .case-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .case-body .chapter{padding:34px 20px}
+}
+@media (max-width:620px){
+  .case-grid{grid-template-columns:minmax(0,1fr);padding:0 16px}
+  .case.wide{grid-column:auto}
+  .case-pic.mix>img{width:46%}
+  .case-pic.mix .ph:last-child{display:none}
+  .case-steps{grid-template-columns:1fr;gap:14px;padding:20px}
+  .case[open] .case-txt{padding:16px 20px}
+}
 .you .gloss{margin-top:26px;max-width:760px;font-size:14.5px;line-height:1.6;color:var(--muted)}
 /* The five words as a storyboard (the Dojo's "show it, then say it" way,
    first run outside WinJitsu, 21 Sep 2026). Five boxes, one word each, one
@@ -1354,7 +1409,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
      "name": "Does anyone test it before my customers see it?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Yes, and not by me clicking around. Simulated players go first: hundreds of rounds, every button pressed, looking for stalls, dead ends and bad sums. Then a second pass in character, people of different ages and patience, reporting where they got lost. It walked this page before the chat box shipped."
+      "text": "Yes, and not by me clicking around. Simulated players go first: hundreds of rounds, every button pressed, looking for stalls, dead ends and bad sums. Then a second pass in character, people of different ages and patience, reporting where they got lost. It walked this page before the chat box shipped. Real-life testing is yours: nobody knows your business and your customers like you do. Testing with hired people is an added cost."
      }
     },
     {
@@ -1450,12 +1505,13 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <p class="custom">Your customers text, WhatsApp or LINE you? Tell me which, and I set it up and quote it in writing first.</p>
     <div class="hows">
       <div class="k">How it works</div>
+      <p class="how-lead">It is custom work, built for your workflow. Your business becomes AI native, with a person at the helm.</p>
       <ol class="how-steps">
-        <li><b>1</b><span>You tell me the job.</span></li>
-        <li><b>2</b><span>My AI ninjas do the legwork: the drafts, the filing, the bookings.</span></li>
-        <li><b>3</b><span>A person checks it. Nothing goes out without a press.</span></li>
-        <li><b>4</b><span>I manage all of it and report to you in writing.</span></li>
+        <li><b>1</b><span>I build the foundation first: the systems your business runs on. They work like software you would buy, and they run without AI.</span></li>
+        <li><b>2</b><span>Then I find where AI can help, and train those ninjas for your workflow in my Digital Dojo.</span></li>
+        <li><b>3</b><span>A person stays at the helm. I oversee the builds, the finished work and the process, and report to you in writing.</span></li>
       </ol>
+      <p class="how-note">Real-life testing is yours: nobody knows your business and your customers like you do. Testing with hired people is an added cost. <a href="#cases">See it on real builds</a></p>
     </div>
     <details class="sb-wrap">
       <summary>What do the words mean?</summary>
@@ -1556,14 +1612,34 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 
 </div>
 
-<!-- The hobby chapters fold behind one tap (Rick, 1 Oct 2026, after round six:
-     all ten personas left the page in these chapters). Nothing is deleted. -->
-<details class="tl-more">
-  <summary>More of what I built</summary>
-<div class="timeline">
-  <div class="tl-rail" aria-hidden="true"></div>
-  <div class="tl-fill" id="tlFill3" aria-hidden="true"></div>
-
+<!-- Case studies (Rick, 2 Oct 2026: "bring it all back but now we will use them
+     as case studies and examples and they can click the OPEN CASE button to see
+     the full story"). Each card shows its picture in the open; the body is the
+     old story chapter, word for word, under three steps. This replaces the
+     "More of what I built" fold of 1 Oct. -->
+<section class="cases" id="cases">
+  <div class="wrap rv">
+    <div class="k">Case studies</div>
+    <h2>It starts as one sentence. <span class="c">Then I build it.</span></h2>
+    <p class="sub">Business, personal, hobby. These five are my own, so I can show all of it. Open a case to see the steps.</p>
+  </div>
+  <div class="case-grid">
+    <details class="case wide" id="case-gym">
+      <summary>
+        <span class="case-pic mix" aria-hidden="true"><img src="assets/story/ninjagym/gym-venue-wide.webp" alt="" loading="lazy"><span class="ph"><img src="assets/story/ninjagym/app-home.webp" alt="" loading="lazy"></span><span class="ph"><img src="assets/story/ninjagym/app-events.webp" alt="" loading="lazy"></span></span>
+        <span class="case-txt">
+          <span class="case-kind">Business &middot; my gym</span>
+          <span class="case-ask">&ldquo;I want my gym to run while I teach the classes.&rdquo;</span>
+          <span class="case-got">One app keeps every booking, belt, payment and member in order.</span>
+          <span class="case-open"><span class="when-closed">Open case</span><span class="when-open">Close case</span></span>
+        </span>
+      </summary>
+      <div class="case-body">
+      <ol class="case-steps">
+        <li><b>1</b><i>The system first</i><span>A real app with a database behind it, installable on a phone: check-ins, memberships, bookings, the shop. Then my own till: PINs, named sales, inventory, the books. It runs without AI.</span></li>
+        <li><b>2</b><i>AI where it helps</i><span>The desk reads every mail and drafts the reply from answers I wrote. The flyers, the mascot and the gym's own songs were made with AI too.</span></li>
+        <li><b>3</b><i>At the helm</i><span>A person presses send. 685 rounds of changes later, it runs the gym, with 1,000+ members in the app.</span></li>
+      </ol>
   <!-- CH 2: the couch app -->
   <div class="chapter flip rv">
     <div class="dot" aria-hidden="true"></div>
@@ -1613,7 +1689,153 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       </div>
     </div>
   </div>
+      </div>
+    </details>
+    <details class="case" id="case-spa">
+      <summary>
+        <span class="case-pic" aria-hidden="true"><span class="ph"><img src="assets/story/apps/sabaisen.webp" alt="" loading="lazy"></span></span>
+        <span class="case-txt">
+          <span class="case-kind">Business &middot; my spa</span>
+          <span class="case-ask">&ldquo;I want my spa booked and run from one place.&rdquo;</span>
+          <span class="case-got">The website is the handle. The engine underneath does the work.</span>
+          <span class="case-open"><span class="when-closed">Open case</span><span class="when-open">Close case</span></span>
+        </span>
+      </summary>
+      <div class="case-body">
+      <ol class="case-steps">
+        <li><b>1</b><i>The system first</i><span>Online booking, POS, member cards, CRM, reports. One price table drives the website, the booking page and both tills. It runs without AI.</span></li>
+        <li><b>2</b><i>AI where it helps</i><span>A desk agent answers guests on the site in English and Thai from a written studio guide, and turns a plain "book me Tuesday at two" email into a real booking.</span></li>
+        <li><b>3</b><i>At the helm</i><span>Every booking it makes is labelled so a person can check it, and two off switches stay with the owner.</span></li>
+      </ol>
+<!-- ============ OPTION E1: the engine explainer ============ -->
+<section class="e1" id="opt-e1">
+  <div class="wrap rv">
+    <span class="k">What you never have to touch</span>
+    <h2>The website is not the machine. <span class="c">It is the handle.</span></h2>
+    <p class="sub">Take SabaiSen, my spa app, as the example.</p>
 
+    <div class="surface">
+      <div class="phone"><img src="assets/story/apps/sabaisen.webp" alt="The SabaiSen spa app as a customer sees it" loading="lazy"></div>
+      <div>
+        <h3>What everyone sees: a website.</h3>
+        <p>A customer opens it and sees treatments, prices and a booking button. If that were all it was, you could fairly say: my customers would rather call, we can do this by hand.</p>
+      </div>
+    </div>
+
+    <div class="waterline"><span>The waterline &middot; everything below runs whether customers use the app or not</span></div>
+
+    <div class="engine">
+      <h3>What the business actually runs on: the engine.</h3>
+      <div class="parts">
+        <span>Every booking, recorded</span>
+        <span>History you can search</span>
+        <span>Invoices that write themselves</span>
+        <span>The books, filing as you go</span>
+        <span>Inventory that counts itself</span>
+        <span>Staff, named on every transaction</span>
+        <span>Agents drafting the email</span>
+        <span>One bird's-eye view over all of it</span>
+      </div>
+      <p>None of that is a website feature. It is the engine underneath, and it records, checks and adds up on its own while you work the room.</p>
+    </div>
+
+    <div class="deeper">
+      <details>
+        <summary>"None of my customers want to use an app." Fine. The engine was never for them.</summary>
+        <p>Even when every booking still comes by phone, it lands in the engine instead of a notebook: searchable, invoiced, in the books, in the bird's-eye view. The front is for your customers. The engine is for you.</p>
+      </details>
+      <details>
+        <summary>What "we just do it by hand" actually costs.</summary>
+        <p>Slow, done twice when it goes wrong, and no record, so nobody can compare this March to last. Worst of all, you are the system, and the business cannot run a day without you.</p>
+      </details>
+      <details>
+        <summary>Shop two is turn-key.</summary>
+        <p>Once the engine exists, a second location is a copy of it, live on day one. By hand, a second shop doubles the chaos.</p>
+      </details>
+    </div>
+
+    <p class="dojo-honest">The website is the ten percent above the water. Buy only that and you bought a brochure. The engine underneath is where the time comes back, and running it is my job, not yours.</p>
+
+    <div class="cta"><a class="btn btn-blue" href="#quiz">Find out where your engine is missing &middot; take the quiz</a></div>
+  </div>
+</section>
+      </div>
+    </details>
+    <details class="case" id="case-console">
+      <summary>
+        <span class="case-pic" aria-hidden="true"><span class="ph"><img src="assets/story/apps/tewbedo.webp" alt="" loading="lazy"></span></span>
+        <span class="case-txt">
+          <span class="case-kind">Personal &middot; my console</span>
+          <span class="case-ask">&ldquo;I want one screen that runs my working life.&rdquo;</span>
+          <span class="case-got">Nobody sold one, so I built it. It is the one I use most.</span>
+          <span class="case-open"><span class="when-closed">Open case</span><span class="when-open">Close case</span></span>
+        </span>
+      </summary>
+      <div class="case-body">
+      <ol class="case-steps">
+        <li><b>1</b><i>The system first</i><span>Every project is a card. Today's missions sit in one list. One screen answers "is everything running?" straight, including "no".</span></li>
+        <li><b>2</b><i>AI where it helps</i><span>My AI staff sit at their desks: I type a mission, press GO and read what came back. A news radar scouts against my own projects.</span></li>
+        <li><b>3</b><i>At the helm</i><span>Me, from my phone, my iPad or the couch.</span></li>
+      </ol>
+  <!-- CH 5: TEWBEDO -->
+  <div class="chapter rv">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="ch-text">
+      <div class="ch-date"><b>June 2026</b> &middot; running it all from anywhere</div>
+      <h3>TewBeDo: the console nobody sold, so I built it</h3>
+      <div class="prose">
+        <p>One screen runs my working life, from my phone, my iPad or the couch. Every business, every build, every AI worker, in one place. Of everything I have built, this is the one I use most. Tap the buttons; they are real.</p>
+      </div>
+    </div>
+    <div class="ch-vis">
+    <div class="tb-mock rv" id="tbMock">
+      <div class="tb-bar">
+        <span class="tb-logo">TEWBEDO</span><span class="tb-day">Tuesday, any day</span>
+        <div class="tb-tabs" role="tablist">
+          <button class="tb-tab" data-tb="view">VIEW</button>
+          <button class="tb-tab active" data-tb="be">BE</button>
+          <button class="tb-tab" data-tb="do">DO</button>
+          <button class="tb-tab" data-tb="agents">AGENTS</button>
+          <button class="tb-tab" data-tb="intel">INTEL</button>
+          <button class="tb-tab" data-tb="trip">TRIP</button>
+        </div>
+        <span class="tb-ico" title="My own music, up in the header">&#9835;</span>
+      </div>
+      <div class="tb-stage">
+        <div class="tb-pane" data-tb="view"><h4>VIEW &middot; the overseer screen</h4><p>"Is everything running?" answered straight, including "no".</p></div>
+        <div class="tb-pane active" data-tb="be"><h4>BE &middot; build it into being</h4><p>Every project is a card. Drop an idea in, watch it get built.</p></div>
+        <div class="tb-pane" data-tb="do"><h4>DO &middot; today's missions</h4><p>The daily work that gets done because the builds exist.</p></div>
+        <div class="tb-pane" data-tb="agents"><h4>AGENTS &middot; my AI staff, at their desks</h4><p>Type a mission, press GO, read what came back.</p></div>
+        <div class="tb-pane" data-tb="intel"><h4>INTEL &middot; my own news radar</h4><p>News scouted against my projects, not an algorithm's guess.</p></div>
+        <div class="tb-pane" data-tb="trip"><h4>TRIP &middot; the travel desk</h4><p>Flights, routes and rules researched while I sleep.</p></div>
+      </div>
+      <div class="tb-extra">
+        <span>&#9835; my own music, one tap in the header</span>
+        <span>&#128737;&#65039; security sweep, one button</span>
+        <span>AGENTS GO &middot; one press clears every waiting mission</span>
+        <span>runs from the couch, the phone, the beach</span>
+      </div>
+    </div>
+    </div>
+  </div>
+      </div>
+    </details>
+    <details class="case" id="case-winjitsu">
+      <summary>
+        <span class="case-pic cover" aria-hidden="true"><img src="assets/story/winjitsu/winjitsu-books.webp" alt="" loading="lazy"></span>
+        <span class="case-txt">
+          <span class="case-kind">Personal &middot; an old goal</span>
+          <span class="case-ask">&ldquo;I want the books I wrote in my twenties finished.&rdquo;</span>
+          <span class="case-got">Five books became finished books, then an app.</span>
+          <span class="case-open"><span class="when-closed">Open case</span><span class="when-open">Close case</span></span>
+        </span>
+      </summary>
+      <div class="case-body">
+      <ol class="case-steps">
+        <li><b>1</b><i>Where it started</i><span>Small books I wrote for my students in my twenties: a five book system, a memory method and a vocabulary story. They sat unfinished for twenty years.</span></li>
+        <li><b>2</b><i>What changed</i><span>In April they started becoming finished things: real books, then working apps.</span></li>
+        <li><b>3</b><i>Where it is now</i><span>The five book system is an app: one idea a day, practice it, prove it, build a streak. It is live at winjitsu.com.</span></li>
+      </ol>
   <!-- CH 3: the books -->
   <div class="chapter flip rv">
     <div class="dot" aria-hidden="true"></div>
@@ -1631,6 +1853,53 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     </div>
   </div>
 
+  <!-- CH 6: WinJitsu -->
+  <div class="chapter flip rv">
+    <div class="dot" aria-hidden="true"></div>
+    <div class="ch-text">
+      <div class="ch-date"><b>June 2026</b> &middot; the method becomes an app</div>
+      <h3>WinJitsu: 20 years of teaching, two minutes a day</h3>
+      <div class="prose">
+        <p>The five book system I teach became an app: one idea a day, practice it, prove it, build a streak. The full ACE method is free inside it.</p>
+        <p>WinJitsu's core rule runs this page too: <b>your winning method must be your truth.</b> If building with AI is not your truth, do not fake it. Borrow mine.</p>
+      </div>
+    </div>
+    <div class="ch-vis">
+      <div class="becomes">
+        <figure class="becomes-books">
+          <img src="assets/story/winjitsu/winjitsu-books.webp" alt="The WinJitsu five book system: Be A Black Belt In What You Do, levels 1 to 5" loading="lazy">
+          <figcaption>Five books, 100 chapters, written in my twenties</figcaption>
+        </figure>
+        <div class="becomes-arrow" aria-hidden="true">
+          <span>becomes</span>
+          <svg width="34" height="14" viewBox="0 0 34 14"><path d="M0 7h28M22 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <figure class="becomes-app">
+          <div class="phone"><img src="assets/story/winjitsu/winjitsu-app.webp" alt="The WinJitsu app: the five methods ACE, MAK, MBS, NRG and CMT, today's move, the week's streak" loading="lazy"></div>
+          <figcaption>One move a day, and a streak that proves it</figcaption>
+        </figure>
+      </div>
+      <p class="vis-cap" style="max-width:100%;text-align:left">The books are finished. The app is live at winjitsu.com in its old clothes; this screen is its new look.</p>
+    </div>
+  </div>
+      </div>
+    </details>
+    <details class="case" id="case-game">
+      <summary>
+        <span class="case-pic duo" aria-hidden="true"><img src="assets/story/rick/childhood-game.webp" alt="" loading="lazy"><img src="assets/story/rick/arena-rpg.webp" alt="" loading="lazy"></span>
+        <span class="case-txt">
+          <span class="case-kind">Hobby &middot; a board game</span>
+          <span class="case-ask">&ldquo;I want to turn my board game into a real game.&rdquo;</span>
+          <span class="case-got">Drawn on paper as a kid. On a screen now.</span>
+          <span class="case-open"><span class="when-closed">Open case</span><span class="when-open">Close case</span></span>
+        </span>
+      </summary>
+      <div class="case-body">
+      <ol class="case-steps">
+        <li><b>1</b><i>Where it started</i><span>A board game I drew on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles.</span></li>
+        <li><b>2</b><i>What changed</i><span>Key art for the same game, and characters I built myself in a pixel look.</span></li>
+        <li><b>3</b><i>Where it is now</i><span>It is being built for real under my TewBit Games brand. One of my games made the App Store. The rest are in beta, which means not finished.</span></li>
+      </ol>
   <!-- CH 4: game season -->
   <div class="chapter rv">
     <div class="dot" aria-hidden="true"></div>
@@ -1703,7 +1972,6 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <p class="vis-cap" style="max-width:340px;margin-top:12px">On the Apple App Store. Five in a row, two to capture.</p>
     </div>
   </div>
-</div>
 
 <!-- the characters, with the games: no heading, just the sprites -->
 <section class="charwall chars" id="characters">
@@ -1718,139 +1986,10 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     </div>
   </div>
 </section>
-
-
-<div class="timeline">
-  <div class="tl-rail" aria-hidden="true"></div>
-  <div class="tl-fill" id="tlFill2" aria-hidden="true"></div>
-
-  <!-- CH 5: TEWBEDO -->
-  <div class="chapter rv">
-    <div class="dot" aria-hidden="true"></div>
-    <div class="ch-text">
-      <div class="ch-date"><b>June 2026</b> &middot; running it all from anywhere</div>
-      <h3>TewBeDo: the console nobody sold, so I built it</h3>
-      <div class="prose">
-        <p>One screen runs my working life, from my phone, my iPad or the couch. Every business, every build, every AI worker, in one place. Of everything I have built, this is the one I use most. Tap the buttons; they are real.</p>
       </div>
-    </div>
-    <div class="ch-vis">
-    <div class="tb-mock rv" id="tbMock">
-      <div class="tb-bar">
-        <span class="tb-logo">TEWBEDO</span><span class="tb-day">Tuesday, any day</span>
-        <div class="tb-tabs" role="tablist">
-          <button class="tb-tab" data-tb="view">VIEW</button>
-          <button class="tb-tab active" data-tb="be">BE</button>
-          <button class="tb-tab" data-tb="do">DO</button>
-          <button class="tb-tab" data-tb="agents">AGENTS</button>
-          <button class="tb-tab" data-tb="intel">INTEL</button>
-          <button class="tb-tab" data-tb="trip">TRIP</button>
-        </div>
-        <span class="tb-ico" title="My own music, up in the header">&#9835;</span>
-      </div>
-      <div class="tb-stage">
-        <div class="tb-pane" data-tb="view"><h4>VIEW &middot; the overseer screen</h4><p>"Is everything running?" answered straight, including "no".</p></div>
-        <div class="tb-pane active" data-tb="be"><h4>BE &middot; build it into being</h4><p>Every project is a card. Drop an idea in, watch it get built.</p></div>
-        <div class="tb-pane" data-tb="do"><h4>DO &middot; today's missions</h4><p>The daily work that gets done because the builds exist.</p></div>
-        <div class="tb-pane" data-tb="agents"><h4>AGENTS &middot; my AI staff, at their desks</h4><p>Type a mission, press GO, read what came back.</p></div>
-        <div class="tb-pane" data-tb="intel"><h4>INTEL &middot; my own news radar</h4><p>News scouted against my projects, not an algorithm's guess.</p></div>
-        <div class="tb-pane" data-tb="trip"><h4>TRIP &middot; the travel desk</h4><p>Flights, routes and rules researched while I sleep.</p></div>
-      </div>
-      <div class="tb-extra">
-        <span>&#9835; my own music, one tap in the header</span>
-        <span>&#128737;&#65039; security sweep, one button</span>
-        <span>AGENTS GO &middot; one press clears every waiting mission</span>
-        <span>runs from the couch, the phone, the beach</span>
-      </div>
-    </div>
-    </div>
-  </div>
-
-  <!-- CH 6: WinJitsu -->
-  <div class="chapter flip rv">
-    <div class="dot" aria-hidden="true"></div>
-    <div class="ch-text">
-      <div class="ch-date"><b>June 2026</b> &middot; the method becomes an app</div>
-      <h3>WinJitsu: 20 years of teaching, two minutes a day</h3>
-      <div class="prose">
-        <p>The five book system I teach became an app: one idea a day, practice it, prove it, build a streak. The full ACE method is free inside it.</p>
-        <p>WinJitsu's core rule runs this page too: <b>your winning method must be your truth.</b> If building with AI is not your truth, do not fake it. Borrow mine.</p>
-      </div>
-    </div>
-    <div class="ch-vis">
-      <div class="becomes">
-        <figure class="becomes-books">
-          <img src="assets/story/winjitsu/winjitsu-books.webp" alt="The WinJitsu five book system: Be A Black Belt In What You Do, levels 1 to 5" loading="lazy">
-          <figcaption>Five books, 100 chapters, written in my twenties</figcaption>
-        </figure>
-        <div class="becomes-arrow" aria-hidden="true">
-          <span>becomes</span>
-          <svg width="34" height="14" viewBox="0 0 34 14"><path d="M0 7h28M22 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <figure class="becomes-app">
-          <div class="phone"><img src="assets/story/winjitsu/winjitsu-app.webp" alt="The WinJitsu app: the five methods ACE, MAK, MBS, NRG and CMT, today's move, the week's streak" loading="lazy"></div>
-          <figcaption>One move a day, and a streak that proves it</figcaption>
-        </figure>
-      </div>
-      <p class="vis-cap" style="max-width:100%;text-align:left">The books are finished. The app is live at winjitsu.com in its old clothes; this screen is its new look.</p>
-    </div>
-  </div>
-
-</div>
-<!-- ============ OPTION E1: the engine explainer ============ -->
-<section class="e1" id="opt-e1">
-  <div class="wrap rv">
-    <span class="k">What you never have to touch</span>
-    <h2>The website is not the machine. <span class="c">It is the handle.</span></h2>
-    <p class="sub">Take SabaiSen, my spa app, as the example.</p>
-
-    <div class="surface">
-      <div class="phone"><img src="assets/story/apps/sabaisen.webp" alt="The SabaiSen spa app as a customer sees it" loading="lazy"></div>
-      <div>
-        <h3>What everyone sees: a website.</h3>
-        <p>A customer opens it and sees treatments, prices and a booking button. If that were all it was, you could fairly say: my customers would rather call, we can do this by hand.</p>
-      </div>
-    </div>
-
-    <div class="waterline"><span>The waterline &middot; everything below runs whether customers use the app or not</span></div>
-
-    <div class="engine">
-      <h3>What the business actually runs on: the engine.</h3>
-      <div class="parts">
-        <span>Every booking, recorded</span>
-        <span>History you can search</span>
-        <span>Invoices that write themselves</span>
-        <span>The books, filing as you go</span>
-        <span>Inventory that counts itself</span>
-        <span>Staff, named on every transaction</span>
-        <span>Agents drafting the email</span>
-        <span>One bird's-eye view over all of it</span>
-      </div>
-      <p>None of that is a website feature. It is the engine underneath, and it records, checks and adds up on its own while you work the room.</p>
-    </div>
-
-    <div class="deeper">
-      <details>
-        <summary>"None of my customers want to use an app." Fine. The engine was never for them.</summary>
-        <p>Even when every booking still comes by phone, it lands in the engine instead of a notebook: searchable, invoiced, in the books, in the bird's-eye view. The front is for your customers. The engine is for you.</p>
-      </details>
-      <details>
-        <summary>What "we just do it by hand" actually costs.</summary>
-        <p>Slow, done twice when it goes wrong, and no record, so nobody can compare this March to last. Worst of all, you are the system, and the business cannot run a day without you.</p>
-      </details>
-      <details>
-        <summary>Shop two is turn-key.</summary>
-        <p>Once the engine exists, a second location is a copy of it, live on day one. By hand, a second shop doubles the chaos.</p>
-      </details>
-    </div>
-
-    <p class="dojo-honest">The website is the ten percent above the water. Buy only that and you bought a brochure. The engine underneath is where the time comes back, and running it is my job, not yours.</p>
-
-    <div class="cta"><a class="btn btn-blue" href="#quiz">Find out where your engine is missing &middot; take the quiz</a></div>
+    </details>
   </div>
 </section>
-
-</details>
 
 <div class="timeline">
   <div class="tl-rail" aria-hidden="true"></div>
@@ -2262,7 +2401,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <details><summary>Will an AI talk to my customers without me knowing?</summary><p>Not without your say. Every ninja starts at white belt: propose only. Drafts pile up for your review, and a person presses every send, pay and post. By default nothing goes out without a press. Sending on its own is your choice, task by task, and only after it has been tested.</p><p>One exception, and it is mine: the mailbox on this page is answered first by my Ninja Agent, from answers I wrote, because that is the demo. In your Dojo nothing sends without your press unless you choose the same for a lane of your own.</p></details>
       <details><summary>Can I get just one desk?</summary><p>A desk is one AI ninja on one job, like the Front Desk drafting your support replies. And yes: that is how every Dojo starts. The free look picks the one job that eats the most hours, usually the inbox, and one ninja takes it. More join once it has proven itself, and the price stays $2,222 a month, flat. One desk built on its own, without the monthly service, is a custom job, quoted in writing.</p></details>
       <details><summary>Can somebody's AI assistant deal with you instead of them?</summary><p>Yes. The solutions list and both prices sit in a tool an assistant can read, and the mailbox is a tool it can call. What it posts lands where a person's message lands, and the reply goes to the person it was sent for, not to the robot. Your own website can do the same; that is one of the things I build.</p></details>
-      <details><summary>Does anyone test it before my customers see it?</summary><p>Yes, and not by me clicking around. Simulated players go first: hundreds of rounds, every button pressed, looking for stalls, dead ends and bad sums. Then a second pass in character, people of different ages and patience, reporting where they got lost. It walked this page before the chat box shipped.</p></details>
+      <details><summary>Does anyone test it before my customers see it?</summary><p>Yes, and not by me clicking around. Simulated players go first: hundreds of rounds, every button pressed, looking for stalls, dead ends and bad sums. Then a second pass in character, people of different ages and patience, reporting where they got lost. It walked this page before the chat box shipped. Real-life testing is yours: nobody knows your business and your customers like you do. Testing with hired people is an added cost.</p></details>
       <details><summary>Why the belts?</summary><p>Because trust is earned by showing up and proving it, which is how I grade kids at the gym. A ninja that has proven itself gets more to do. One that has not, does not.</p></details>
     </div>
     <p class="f8a-ask">Not in the list? <a href="#" data-ask-open>Ask the ninja</a>. It answers from what I wrote, and hands you to me when it cannot.</p>
@@ -2608,7 +2747,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <footer>
   <div class="wrap">
     <span>THE DIGITAL DOJO &middot; by Rick Tew</span>
-    <span><a href="/">Which ninja?</a> &middot; <a href="/hininja/">HI Ninja</a> &middot; <a href="done-for-you/">Done-for-you AI, in short</a> &middot; <a href="shop/">The Shop</a> &middot; <a href="legal/terms.html">Terms of Service</a> &middot; <a href="legal/privacy.html">Privacy</a> &middot; <a href="#" id="mailLink">Write to me</a></span>
+    <span><a href="/">Which ninja?</a> &middot; <a href="/hininja/">HI Ninja</a> &middot; <a href="done-for-you/">Done-for-you AI, in short</a> &middot; <a href="ai-customer-service/">AI customer service</a> &middot; <a href="ai-agents/">AI agents</a> &middot; <a href="booking-system/">Online booking</a> &middot; <a href="shop/">The Shop</a> &middot; <a href="legal/terms.html">Terms of Service</a> &middot; <a href="legal/privacy.html">Privacy</a> &middot; <a href="#" id="mailLink">Write to me</a></span>
   </div>
 </footer>
 
@@ -2790,7 +2929,24 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     }
     addEventListener("scroll",onScroll,{passive:true}); onScroll();
   }
-  wireFill("tlFill"); wireFill("tlFill2"); wireFill("tlFill3"); wireFill("tlFill4");
+  wireFill("tlFill"); wireFill("tlFill4");
+
+  /* Case studies: an opened case takes the whole row, so bring its top back
+     into view; and a link to something inside a closed case opens that case. */
+  [].forEach.call(document.querySelectorAll("details.case"),function(d){
+    d.addEventListener("toggle",function(){
+      if(!d.open) return;
+      var r=d.getBoundingClientRect();
+      if(r.top<70||r.top>innerHeight*0.45) d.scrollIntoView({block:"start",behavior:reduce?"auto":"smooth"});
+    });
+  });
+  function openCaseFor(hash){
+    var t=null; try{ t=hash&&document.getElementById(decodeURIComponent(hash.slice(1))); }catch(e){}
+    var c=t&&t.closest&&t.closest("details.case");
+    if(c&&c!==t&&!c.open){ c.open=true; t.scrollIntoView({block:"start"}); }
+  }
+  openCaseFor(location.hash);
+  addEventListener("hashchange",function(){ openCaseFor(location.hash); });
 
   /* quiz: twelve questions, because the job is working out how I can help,
      not qualifying anyone out. The belt bar fills across the whole set. */

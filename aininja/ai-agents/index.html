@@ -5,10 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI agents for small business owners, managed by a real person | Rick Tew</title>
 <meta name="description" content="AI agents for small business owners with no time for tech. Each one has one job and starts at white belt: propose only. I build them, host them and manage them. Your team presses send.">
-<!-- PREVIEW (2 Oct 2026): unlinked and noindex until Rick has read it on the
-     live site. Go-live = drop the next line, add the page to sitemap.xml, the
-     llms.txt list in tests/agent-door-build.py and the /aininja/ footer. -->
-<meta name="robots" content="noindex">
 <link rel="canonical" href="https://ricktew.com/aininja/ai-agents/">
 <link rel="icon" href="/assets/images/favicon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
@@ -185,6 +181,9 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .steps{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 @media (max-width:760px){ .steps{grid-template-columns:1fr 1fr} }
 @media (max-width:420px){ .steps{grid-template-columns:1fr} }
+.steps.three{grid-template-columns:repeat(3,1fr)}
+@media (max-width:760px){ .steps.three{grid-template-columns:1fr} }
+.step-note{margin-top:16px;font-size:14.5px;font-weight:600;color:#4b5563;max-width:70ch}
 .steps > div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
 .steps .n{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:26px;color:var(--blue);line-height:1}
 .steps h3{font-size:15.5px;font-weight:900;margin-top:8px}
@@ -261,13 +260,13 @@ footer a:hover{color:var(--blue-d)}
 <section class="sec" id="how">
   <div class="wrap">
     <div class="k">How it works</div>
-    <h2>One ninja, one job. <span class="c">I think about the rest.</span></h2>
-    <div class="steps">
-      <div><div class="n">1</div><h3>You tell me the job</h3><p>The free look first: we map where your hours go, together, in writing.</p></div>
-      <div><div class="n">2</div><h3>One ninja takes it</h3><p>Your first hire takes the one task that eats the most hours, usually the inbox. It drafts, it files, it proposes.</p></div>
-      <div><div class="n">3</div><h3>A person checks it</h3><p>Nothing goes out without a press.</p></div>
-      <div><div class="n">4</div><h3>I manage all of it</h3><p>I manage all of it and report to you in writing.</p></div>
+    <h2>The system first. <span class="c">Then AI where it helps.</span></h2>
+    <div class="steps three">
+      <div><div class="n">1</div><h3>The foundation first</h3><p>I build the foundation first: the systems your business runs on. They work like software you would buy, and they run without AI.</p></div>
+      <div><div class="n">2</div><h3>AI where it helps</h3><p>Then I find where AI can help, and train those ninjas for your workflow in my Digital Dojo.</p></div>
+      <div><div class="n">3</div><h3>A person at the helm</h3><p>A person stays at the helm. I oversee the builds, the finished work and the process, and report to you in writing.</p></div>
     </div>
+    <p class="step-note">Real-life testing is yours: nobody knows your business and your customers like you do. Testing with hired people is an added cost.</p>
   </div>
 </section>
 
@@ -355,7 +354,7 @@ footer a:hover{color:var(--blue-d)}
 <footer>
   <div class="wrap">
     <span>THE DIGITAL DOJO &middot; by Rick Tew</span>
-    <span><a href="/">Which ninja?</a> &middot; <a href="/aininja/">AI Ninja</a> &middot; <a href="/aininja/done-for-you/">Done-for-you AI</a> &middot; <a href="/aininja/r2/">R2 Hosting</a> &middot; <a href="/aininja/legal/terms.html">Terms of Service</a> &middot; <a href="/aininja/legal/privacy.html">Privacy</a></span>
+    <span><a href="/">Which ninja?</a> &middot; <a href="/aininja/">AI Ninja</a> &middot; <a href="/aininja/done-for-you/">Done-for-you AI</a> &middot; <a href="/aininja/ai-customer-service/">AI customer service</a> &middot; <a href="/aininja/booking-system/">Online booking</a> &middot; <a href="/aininja/r2/">R2 Hosting</a> &middot; <a href="/aininja/legal/terms.html">Terms of Service</a> &middot; <a href="/aininja/legal/privacy.html">Privacy</a></span>
   </div>
 </footer>
 </body>
