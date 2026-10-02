@@ -12,8 +12,13 @@
 <meta property="og:title" content="The Shop by Rick Tew">
 <meta property="og:description" content="Pre-made WinJitsu workbooks. Printable PDF, US Letter and A4.">
 <meta property="og:url" content="https://ricktew.com/aininja/shop/">
-<meta property="og:image" content="https://ricktew.com/aininja/shop/pam-map.png">
+<!-- Share card: a wide 1200 x 630 picture, so Facebook and LinkedIn show the title, not a slice of a tall cover (the Dojo's note, 2 Oct 2026). -->
+<meta property="og:image" content="https://ricktew.com/aininja/shop/share-shop.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ricktew">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
 <script type="application/ld+json">
@@ -283,5 +288,18 @@ footer a:hover{color:var(--blue-d)}
     <span><a href="/">Which ninja?</a> &middot; <a href="/aininja/">AI Ninja</a> &middot; <a href="/aininja/legal/terms.html">Terms of Service</a> &middot; <a href="/aininja/legal/privacy.html">Privacy</a></span>
   </div>
 </footer>
+<script>
+/* A post that links the Shop carries ?src=<platform>; the tiles pass it on to
+   the product page, whose Buy button hands it to Stripe (Rick's yes, 2 Oct
+   2026, through the Dojo). Nothing is stored in the browser. */
+(function(){
+  var v=""; try{ v=new URLSearchParams(location.search).get("src")||""; }catch(e){}
+  if(!/^[A-Za-z0-9_-]{1,200}$/.test(v)) return;
+  [].forEach.call(document.querySelectorAll('a[href^="/aininja/shop/"]'),function(a){
+    var h=a.getAttribute("href"), i=h.indexOf("#"), hash=i>-1?h.slice(i):"", base=i>-1?h.slice(0,i):h;
+    a.setAttribute("href",base+(base.indexOf("?")>-1?"&":"?")+"src="+encodeURIComponent(v)+hash);
+  });
+})();
+</script>
 </body>
 </html>

@@ -931,6 +931,17 @@ the Dojo.
   not "I will sort it out", not "within a minute", not "always", not "free".
   Give plain directions instead ("Didn't get it? Write to me with the email you
   paid with."). Contact goes to the mailbox, never an address.
+- **Share cards and where a buyer came from (2 Oct 2026, the Dojo's note
+  with Rick's yes).** Each shop page's og:image is a wide 1200 x 630 card
+  (`share-shop.jpg`, `share-pam.jpg`, `share-brain-storms.jpg`, rendered
+  from the covers; no price in the picture, so a price change never makes
+  it stale) with `twitter:card`. A new product needs its own card. The
+  posts link the shop with `?src=<platform>`: the Shop's tiles pass it to
+  the product page, and the product page's Buy button hands it to Stripe
+  as `client_reference_id` (letters, digits, dashes, underscores, up to
+  200; anything else is left off). The Dojo's `ricktew-shop` keeps it on
+  the order as `shop_orders.source`. Nothing is stored in the browser. A
+  new product page copies the script at the bottom of the PAM page.
 - **Test:** `node tests/aidoor-sweep.js` covers every shop page.
 
 ---
