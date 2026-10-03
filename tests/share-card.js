@@ -5,8 +5,8 @@
 //
 //   node tests/share-card.js <out.jpg> <cover image> "<dark title>" "<blue title>" ["<line under>"]
 //
-// e.g. node tests/share-card.js aininja/shop/share-positive-creativity.jpg \
-//        aininja/shop/positive-creativity-notebook.webp "Positive Creativity," "a WinJitsu workbook"
+// e.g. node tests/share-card.js aininja/shop/share-positive-creativity-red.jpg \
+//        aininja/shop/positive-creativity-red.webp "Positive Creativity," "a WinJitsu workbook"
 //
 // The cover may be a transparent notebook (the WinJitsu notebook covers since
 // 3 Oct 2026, <slug>-cover-clear.png) or a flat cover; pass --flat for a flat
