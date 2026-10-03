@@ -951,15 +951,26 @@ the Dojo.
   paid with."). Contact goes to the mailbox, never an address.
 - **Share cards and where a buyer came from (2 Oct 2026, the Dojo's note
   with Rick's yes).** Each shop page's og:image is a wide 1200 x 630 card
-  (`share-shop.jpg`, `share-pam.jpg`, `share-brain-storms.jpg`, rendered
-  from the covers; no price in the picture, so a price change never makes
-  it stale) with `twitter:card`. A new product needs its own card. The
+  (`share-<name>-red.jpg` since 3 Oct, rendered from the covers by
+  `node tests/share-card.js`; no price in the picture, so a price change
+  never makes it stale) with `twitter:card`. A new product needs its own
+  card, and a changed cover gets a card under a NEW file name, so Facebook
+  and LinkedIn fetch it fresh. The
   posts link the shop with `?src=<platform>`: the Shop's tiles pass it to
   the product page, and the product page's Buy button hands it to Stripe
   as `client_reference_id` (letters, digits, dashes, underscores, up to
   200; anything else is left off). The Dojo's `ricktew-shop` keeps it on
   the order as `shop_orders.source`. Nothing is stored in the browser. A
   new product page copies the script at the bottom of the PAM page.
+- **Workbook pictures are WinJitsu notebooks (3 Oct 2026, Rick).** Each
+  workbook's picture is its spiral notebook in its book's colour from the
+  2013 print covers (ACE yellow, MAK orange, MBS green, NRG blue, CMT red),
+  with the book's name and badge at the bottom. Use the transparent
+  `<slug>-cover-clear.png` from winjitsu-workbooks, as an 800 x 1200 WebP
+  (`<name>-red.webp` for the CMT books), on the tile, the product picture
+  and the Product JSON-LD. A cover change is PICTURES ONLY: the PDFs in the
+  bucket are never swapped for small changes. PAM's page keeps its map
+  below the card, under "The map sheet inside" (Rick's click).
 - **Test:** `node tests/aidoor-sweep.js` covers every shop page.
 
 ---

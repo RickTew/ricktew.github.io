@@ -10,13 +10,15 @@
 //
 // The cover may be a transparent notebook (the WinJitsu notebook covers since
 // 3 Oct 2026, <slug>-cover-clear.png) or a flat cover; pass --flat for a flat
-// one and it gets the white card and shadow the 2 Oct cards had.
+// one and it gets the white card and shadow the 2 Oct cards had. --kicker="..."
+// changes the small blue line over the title (default "The Shop · Rick Tew").
 const fs = require("fs"), path = require("path");
 const { chromium } = require("/Users/ricktew/Dev/Roy Martina/newnei-app/node_modules/playwright");
 
 const args = process.argv.slice(2);
 const flat = args.includes("--flat");
-const [out, cover, dark, blue, under = "Printable PDF, US Letter and A4."] = args.filter(a => a !== "--flat");
+const kick = (args.find(a => a.startsWith("--kicker=")) || "--kicker=The Shop \u00b7 Rick Tew").slice(9);
+const [out, cover, dark, blue, under = "Printable PDF, US Letter and A4."] = args.filter(a => !a.startsWith("--"));
 if (!out || !cover || !dark) { console.error("usage: share-card.js <out.jpg> <cover> <dark title> [blue title] [line under] [--flat]"); process.exit(1); }
 
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -30,7 +32,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
 *{margin:0;padding:0;box-sizing:border-box}
 body{width:1200px;height:630px;background:#f7f6f4;display:flex;align-items:center;font-family:Nunito,Arial,sans-serif;overflow:hidden}
 .pic{flex:0 0 520px;height:630px;display:flex;align-items:center;justify-content:center}
-.pic img{max-height:560px;max-width:440px;display:block;filter:drop-shadow(0 18px 28px rgba(16,20,24,.16))}
+.pic img{max-height:560px;max-width:460px;display:block;filter:drop-shadow(0 18px 28px rgba(16,20,24,.16))}
 .pic.flat img{background:#fff;border-radius:12px;padding:14px;max-height:540px;box-shadow:0 18px 40px rgba(16,20,24,.14);filter:none}
 .txt{flex:1;padding-right:70px;padding-left:48px}
 .k{font-size:19px;font-weight:800;letter-spacing:.2em;color:#1e73bd;text-transform:uppercase}
@@ -42,7 +44,7 @@ p{margin-top:26px;font-size:25px;font-weight:800;color:#4b5563;line-height:1.4}
 </style></head><body>
 <div class="pic${flat ? " flat" : ""}"><img src="${src}" alt=""></div>
 <div class="txt">
-  <div class="k">The Shop &middot; Rick Tew</div>
+  <div class="k">${esc(kick)}</div>
   <h1>${esc(dark)}${blue ? " <span>" + esc(blue) + "</span>" : ""}</h1>
   <p>${esc(under)}</p>
   <div class="site">RICKTEW<i>.</i>COM</div>
