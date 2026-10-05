@@ -322,8 +322,12 @@ band and the summit card.**
   keeps a white belt (the strip under it shows the climb). The Your Dojo
   card names the jobs (only what the rows claim). Under the cards: the
   channels line (email first; WhatsApp, LINE, Instagram or texts are a
-  build) and "I stick to writing on purpose". The mailbox headline is "One
-  message. It reaches me." (the first line of the no-promises pass).
+  build) and "I stick to writing on purpose". The mailbox headline was "One
+  message. It reaches me." until 5 Oct, when Rick read it as a promise
+  ("don't make a promise that it reaches me") and the band as messy: it is
+  now "Drop it in my mailbox." over one line, "Tell me where your hours go.
+  Or try the ninja first: drop a question in and see what comes back." (the
+  crawler and email-app sentence left with it).
 - **Rick's facts and rulings, 1 Oct 2026 (quote them, do not sharpen them):**
   - Who reads a client's mail: "only me, plus the AI that drafts the
     replies". He signs a HIPAA business associate agreement for health
