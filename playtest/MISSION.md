@@ -31,6 +31,17 @@ real visitor cannot. Your only sources are the screen and your persona's life.
 4. Say out loud, in character: what does this person sell, what does it cost,
    and what would happen next if I wrote to him? If you cannot answer any of
    those from the page alone, that is the biggest finding of the session.
+   **Then say WHY, plan by plan** (added 5 Oct 2026: a round passed the R2
+   card as "website hosting, $99" and nobody noticed the page never said why
+   it is worth $99). For each price card, tell a friend in your persona's own
+   words: what you get, why you would pay this instead of what you already
+   know (a cheap hosting company, Wix or Squarespace, your nephew, doing
+   nothing), and what happens the day a price needs changing, the email stops
+   or the site goes down. If your answer only repeats the page's own words
+   ("built, hosted and kept running"), or you cannot say why it beats the
+   cheap thing, write NOT UNDERSTOOD for that plan. That is a would-quit
+   finding even if you kept reading. Knowing WHAT is sold is not the same as
+   knowing WHY you would buy it.
 5. Roughly 20 to 40 minutes in character, then write the report.
 
 ## Hard limits
@@ -66,10 +77,20 @@ from being "fixed" away. Never drop this section.
 
 ## Words I did not understand
 Every term, label or line the persona would not know (Dojo, ninja, belt,
-seat, Sensei runs it, agent-ready, and anything else).
+seat, Sensei runs it, agent-ready, and anything else). Include the ordinary
+tech words your persona would never use themselves: hosting, managed,
+domain, app, form, stack, back office, AI native. For each, write what you
+THINK it means, in your persona's words. A wrong guess is a finding; so is a
+right guess the page never confirmed.
 
 ## Did I understand what is sold, what it costs, and what happens next?
 Three yes/no answers with the line on the page that told you, or the gap.
+
+## Why would I pay for each plan?
+One short paragraph per price card, in character: what I get, why it beats
+the cheap thing I know, what happens the day something breaks. Or NOT
+UNDERSTOOD, and the line where it lost me. The summary counts, per plan, how
+many readers could say why.
 
 ## The one change
 If Rick could change only one thing for this persona, what is it?
