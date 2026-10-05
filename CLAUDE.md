@@ -473,9 +473,16 @@ lines above about the story fold, the apps row and the How it works strip.
   from 1 to 2 to 3 and I can't even look at 1. That creates stress."): the
   parts are numbered 1 to 4, each draws itself in and then waits, and its
   one button reads Next, then From the top on the last part. A board marked
-  `data-video` behaves this way. The four-words board keeps its dots, Back
-  and Replay and still plays on by itself, but only until the visitor taps
-  it. The Dojo telling is in the history at
+  `data-video` behaves this way, and since 5 Oct BOTH boards are marked
+  so (Rick: "1234 like I requested and keep that for all of them going
+  forward"): the four words lost their dots, Back and Replay. Any new
+  storyboard gets `data-video` and `sb-nums`, never autoplay. The same day
+  the characters were made to match in all eight scenes (Rick: "the
+  consistency of the characters"): Rick is blue with a BLACK belt, every AI
+  ninja is black with a white belt, the owner ("you") is grey without a
+  mask, and the Dojo is always the flat-roofed office whose sign says "Your
+  business" (the four words' cycling bakery / clinic / salon sign is gone,
+  by the 2 Oct ruling). The Dojo telling is in the history at
   abafc7b. The plan is still called Your Dojo; "ninja office" as a product
   name is NOT ruled.
 - **Same day, his pick "True up the page and chat, not the card":** the
