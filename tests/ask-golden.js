@@ -12,6 +12,12 @@ function ok(cond, msg){ n++; if(!cond){ fails++; console.log("  FAIL  "+msg); } 
 
 /* ---- 1. questions that must land ---- */
 var GOLD=[
+  ["what is SI?", "si-pi"],
+  ["what does PI mean", "si-pi"],
+  ["is SI the same as AI", "si-pi"],
+  ["why do you still say AI and not SI", "si-pi"],
+  ["what is super intelligence", "si-pi"],
+  ["the government says no more AI, it is SI now", "si-pi"],
   ["what is ai?", "what-is-ai"],
   ["What's AI in one sentence", "what-is-ai"],
   ["nobody knows how AI works so isn't it dangerous", "nobody-understands"],

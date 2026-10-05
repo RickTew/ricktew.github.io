@@ -130,6 +130,14 @@
   var LIBRARY=[
 
     /* ---- AI, plainly ---- */
+    /* SI and PI (Rick, 5 Oct 2026, after the US order to say "Super
+       Intelligence": "we are losing the AI only wording". His pick: the box
+       answers it, the page keeps saying AI until SI catches on in search.) */
+    {id:"si-pi", q:"What is SI? What is PI?",
+     alt:["what is si","whats si","what does si mean","what is pi","whats pi","what does pi mean","si or ai","ai or si","si and ai","si instead","instead of ai","no more ai","super intelligence","superintelligence","private intelligence","same as ai","still say ai","not si"],
+     keys:"si pi super superintelligence superintelligent acronym acronyms rename renamed renaming",
+     a:"<p>Same tools, newer names. SI means super intelligence: since September the US government uses it in place of AI. PI is private: for the more secure areas of a business. The page still says AI because that is the word most people search for.</p>"},
+
     {id:"what-is-ai", q:"What is AI, in one line?",
      alt:["what is ai","whats ai","explain ai","define ai","shortest explanation","in one line","one sentence"],
      keys:"explain explanation definition define short simple prediction predict predicts model llm language model machine learning guess guesses",
@@ -582,6 +590,7 @@
      the next move. Kept apart from the answers so they can be edited as a
      set. An entry without a tip simply shows none. */
   var TIPS={
+    "si-pi":"Whatever it is called this month, ask the same question of it: which hours of your week does it give back?",
     "what-is-ai":"If a prediction machine can draft your inbox, the question is not whether it is clever. It is which of your tasks it takes first. The quiz finds that.",
     "nobody-understands":"You do not need to understand the engine to drive the car. You need a builder who tests the behaviour and keeps a hand on the brake. That is the whole Dojo.",
     "is-ai-safe":"Ask any AI vendor one question: what happens before a message goes out? If the answer is not \"a person presses\", keep walking.",
