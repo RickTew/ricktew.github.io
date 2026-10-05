@@ -981,7 +981,8 @@ the Dojo.
   2013 print covers (ACE yellow, MAK orange, MBS green, NRG blue, CMT red),
   with the book's name and badge at the bottom. Use the transparent
   `<slug>-cover-clear.png` from winjitsu-workbooks, as an 800 x 1200 WebP
-  (`<name>-red.webp` for the CMT books), on the tile, the product picture
+  (`<name>-red.webp` for the CMT books, `<name>-yellow.webp` for ACE, the
+  first of which, Achieving Combined Excellence, went in on 6 Oct), on the tile, the product picture
   and the Product JSON-LD. A cover change is PICTURES ONLY: the PDFs in the
   bucket are never swapped for small changes. PAM's page keeps its map
   below the card, under "The map sheet inside" (Rick's click).
