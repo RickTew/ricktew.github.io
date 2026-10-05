@@ -3459,10 +3459,13 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 /* The five words as a storyboard: the Digital Dojo's "show it, then say it"
    way, run here for the first time outside WinJitsu (21 Sep 2026). One box
    at a time. The first box waits until it is on screen, then the boxes play
-   through on their own, each holding a beat after its motion; any tap
-   restarts the clock from that box. A scene is re-inserted to play or to
-   replay, which restarts its CSS animations. Reduced motion shows the end
-   frames and does not autoplay. Nothing here talks to a server. */
+   through on their own, each holding a beat after its motion, until the
+   visitor taps anything on the board: from then on it only moves when they
+   do (Rick, 5 Oct 2026: "I pressed 1 to look at 1 and it went from 1 to 2 to
+   3 and I can't even look at 1. That creates stress."). A scene is
+   re-inserted to play or to replay, which restarts its CSS animations.
+   Reduced motion shows the end frames and does not autoplay. Nothing here
+   talks to a server. */
 function rtBoard(rootId,p,SCENES){
   var root=document.getElementById(rootId); if(!root) return;
   var frame=document.getElementById(p+"Frame"), dots=document.getElementById(p+"Dots"),
@@ -3470,12 +3473,14 @@ function rtBoard(rootId,p,SCENES){
       back=document.getElementById(p+"Back"), replay=document.getElementById(p+"Replay"), next=document.getElementById(p+"Next");
   var HOLD=1.6, i=0, timer=null, inView=false, firstDrawn=true;
   var still=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  /* A board marked data-video (How it works) plays through by itself and
-     also clicks through like slides (Rick, 2 Oct 2026: "videos are easier
-     with 1, next, 2, next and 3 that they can just click through like a
-     slide as well"): its parts are numbered, and its one button reads Next,
-     then Replay on the last part. */
+  /* A board marked data-video (How it works) clicks through like slides
+     (Rick, 2 Oct 2026: "videos are easier with 1, next, 2, next and 3 that
+     they can just click through like a slide as well"): its parts are
+     numbered, and its one button reads Next, then From the top on the last
+     part. Since 5 Oct 2026 it never moves on by itself (Rick: "stop this from
+     autoplay"): each part draws itself in, then waits for Next or a number. */
   var video=root.hasAttribute("data-video"), nums=!!dots && dots.classList.contains("sb-nums");
+  var held=video;
   if(dots) SCENES.forEach(function(sc,k){
     var b=document.createElement("button"); b.type="button"; b.setAttribute("aria-label",(video?"Part ":"Box ")+(k+1));
     if(nums) b.textContent=k+1;
@@ -3484,8 +3489,8 @@ function rtBoard(rootId,p,SCENES){
   });
   function arm(){
     clearTimeout(timer);
-    if(still || !inView || document.hidden || i===SCENES.length-1) return;
-    timer=setTimeout(function(){ go(i+1); },(SCENES[i].sec+HOLD)*1000);
+    if(held || still || !inView || document.hidden || i===SCENES.length-1) return;
+    timer=setTimeout(function(){ show(i+1); },(SCENES[i].sec+HOLD)*1000);
   }
   function render(){
     var sc=SCENES[i], last=i===SCENES.length-1;
@@ -3500,12 +3505,13 @@ function rtBoard(rootId,p,SCENES){
       dots.setAttribute("aria-label","Box "+(i+1)+" of "+SCENES.length);
     }
     if(back) back.hidden=(i===0);
-    if(next) next.textContent=last?(video?"Replay":"From the top"):"Next \u2192";
+    if(next) next.textContent=last?"From the top":"Next \u2192";
     arm();
   }
-  function go(k){ firstDrawn=false; i=Math.max(0,Math.min(k,SCENES.length-1)); render(); }
+  function show(k){ firstDrawn=false; i=Math.max(0,Math.min(k,SCENES.length-1)); render(); }
+  function go(k){ held=true; show(k); }
   if(back) back.addEventListener("click",function(){ go(i-1); });
-  if(replay) replay.addEventListener("click",function(){ firstDrawn=false; render(); });
+  if(replay) replay.addEventListener("click",function(){ held=true; firstDrawn=false; render(); });
   if(next) next.addEventListener("click",function(){ go(i===SCENES.length-1?0:i+1); });
   document.addEventListener("visibilitychange",function(){ if(document.hidden) clearTimeout(timer); else arm(); });
   render();

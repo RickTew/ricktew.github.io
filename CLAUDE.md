@@ -466,13 +466,16 @@ lines above about the story fold, the apps row and the How it works strip.
   each, nothing out without a press; Rick, a person, oversees it and writes
   the report. The engine is one function, `rtBoard(rootId, prefix,
   SCENES)`, called twice (the four words, then this). A scene is an SVG
-  string in the page; edit it there. **It plays by itself and also clicks
-  through like slides** (Rick, same day, two messages: "just one replay
-  button for the whole video we don't need sections", then "videos are
-  easier with 1, next, 2, next and 3 that they can just click through like
-  a slide as well"): the parts are numbered 1 to 4, and its one button
-  reads Next, then Replay on the last part. A board marked `data-video`
-  behaves this way. The four-words board keeps its dots, Back and Replay. The Dojo telling is in the history at
+  string in the page; edit it there. **It clicks through like slides and
+  never moves on by itself** (Rick, 2 Oct: "videos are easier with 1, next,
+  2, next and 3 that they can just click through like a slide as well";
+  5 Oct: "stop this from autoplay. I pressed 1 to look at 1 and it went
+  from 1 to 2 to 3 and I can't even look at 1. That creates stress."): the
+  parts are numbered 1 to 4, each draws itself in and then waits, and its
+  one button reads Next, then From the top on the last part. A board marked
+  `data-video` behaves this way. The four-words board keeps its dots, Back
+  and Replay and still plays on by itself, but only until the visitor taps
+  it. The Dojo telling is in the history at
   abafc7b. The plan is still called Your Dojo; "ninja office" as a product
   name is NOT ruled.
 - **Same day, his pick "True up the page and chat, not the card":** the
