@@ -933,14 +933,19 @@ tewtors.com is its own site, planned and built by the Tewtors chat in
   tewtors.com twins: canonical + meta refresh + `location.replace` that keeps
   `?src=`. They keep their og tags so posts already out still show a picture.
   Their covers and share cards stay in `aininja/shop/` (outside pages may use
-  them). They are out of the sitemap and the sweep.
-- **Still on ricktew.com and load-bearing:** `/aininja/shop/thanks/` (all five
-  Stripe Payment Links redirect there after payment, metadata `shop: aininja`)
-  and `/aininja/shop/download/` (the Dojo's `ricktew-shop` mails link it, and its
-  `EXPIRED` and `HELP_URL` point here too). Both now say "Tewtors" and link back
-  to tewtors.com. Do not move or delete them until the Payment Links and the
-  download mail point elsewhere, and then keep the download page at least 7 days
-  for links already mailed.
+  them). They are out of the sitemap and the sweep. Only their share cards
+  stay in `aininja/shop/`; the covers, the PAM map and the Tewtors logo files
+  were removed the same day (nothing loads them: the Dojo checked Gumroad,
+  which serves only its own CDN, and tewtors.com serves its own images).
+- **Still on ricktew.com and load-bearing:** `/aininja/shop/download/` STAYS
+  (the Dojo, 6 Oct: the download page stays here; `ricktew-shop` mails link it,
+  and its `EXPIRED` and `HELP_URL` point here too). `/aininja/shop/thanks/`
+  stays for the five old Payment Links, which still redirect here for posts
+  already out. New buys go through the Dojo's one checkout (Rick: "One
+  checkout for all"): tewtors.com's Buy buttons use `ricktew-shop`'s
+  `/buy?sku=&src=` and land on tewtors.com/thanks/. Both pages here say
+  "Tewtors" and link back to tewtors.com. Never move or delete either without
+  the Dojo; a download page that moves stays up 7 more days for links mailed.
 - Terms section 3 says "Workbook downloads ... sold at Tewtors".
 
 Rick, 30 Sep, in the Dojo chat: "Ricktew.com should have a shop under AI Ninja
