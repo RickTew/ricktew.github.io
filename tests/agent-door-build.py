@@ -65,7 +65,8 @@ L=["# Rick Tew","",
 "- AI customer service for a small business, by email: an AI drafts every reply from the owner's written answers and a person presses send. https://ricktew.com/aininja/ai-customer-service/",
 "- AI agents for small business owners: the system first, then AI ninjas where they help, with Rick at the helm. https://ricktew.com/aininja/ai-agents/",
 "- An online booking system for a small business, built and hosted on Rick's stack: no account to book, reminders by email. https://ricktew.com/aininja/booking-system/",
-"- The Shop: ready-made downloads, such as WinJitsu workbooks at $2.99 each, a printable PDF. https://ricktew.com/aininja/shop/",
+"- The Shop: ready-made helpers for a business, from AI Ninja (not open yet). https://ricktew.com/aininja/shop/",
+"- Tewtors: Rick Tew's self-help workbooks from WinJitsu, the mental martial art, $2.99 each, a printable PDF. Moved from the Shop on 6 Oct 2026. https://tewtors.com/",
 "- The Side Hustle Summit in plain words, dated and updated after each session: what the free YouTube event (6 to 13 September 2026) sells, what each day taught, and the four steps a viewer can do at no cost. Rick sells no course for it. https://ricktew.com/aininja/side-hustle-summit/","",
 "## Solutions (the things Rick builds)",""]
 L+=["- %s: %s"%(txt(n),txt(t)) for n,t in rows]

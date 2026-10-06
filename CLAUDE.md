@@ -919,6 +919,30 @@ findings this install sent back: `~/Dev/digitaldojo/private/proof-ledger.md`.
 
 ## The Shop: /aininja/shop/ (live 2026-09-30)
 
+**THE WORKBOOKS MOVED TO TEWTORS.COM ON 6 OCT 2026 (Rick's click, "Move now").
+This block supersedes the workbook lines below.** His plan: "ricktew.com/shop
+will change to aininja offers and [the Tewtors chat] will take the workbooks".
+tewtors.com is its own site, planned and built by the Tewtors chat in
+`~/Dev/Tewtors` (private repo RickTew/tewtors, Vercel). What that means here:
+
+- `/aininja/shop/` is AI Ninja's ready-made helpers (the two "Not open yet"
+  tiles), with one line pointing the workbooks to Tewtors. No Tewtors logo, no
+  workbook tiles, no Coming soon list (`tests/shop-build.py` is gone; the
+  Coming soon list is the Tewtors chat's now).
+- The five workbook pages (`win-cmt-pam/` and the rest) are FORWARDS to their
+  tewtors.com twins: canonical + meta refresh + `location.replace` that keeps
+  `?src=`. They keep their og tags so posts already out still show a picture.
+  Their covers and share cards stay in `aininja/shop/` (outside pages may use
+  them). They are out of the sitemap and the sweep.
+- **Still on ricktew.com and load-bearing:** `/aininja/shop/thanks/` (all five
+  Stripe Payment Links redirect there after payment, metadata `shop: aininja`)
+  and `/aininja/shop/download/` (the Dojo's `ricktew-shop` mails link it, and its
+  `EXPIRED` and `HELP_URL` point here too). Both now say "Tewtors" and link back
+  to tewtors.com. Do not move or delete them until the Payment Links and the
+  download mail point elsewhere, and then keep the download page at least 7 days
+  for links already mailed.
+- Terms section 3 says "Workbook downloads ... sold at Tewtors".
+
 Rick, 30 Sep, in the Dojo chat: "Ricktew.com should have a shop under AI Ninja
 too they can buy as pre-made products as well." This reverses his 9 Sep rule
 that the site says nothing about products. The first product is PAM, the
