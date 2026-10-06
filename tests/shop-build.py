@@ -7,7 +7,7 @@ The Dojo owns the products: every WinJitsu workbook has a catalogue entry
 with its title and SKU in ~/Dev/digitaldojo/private/products/catalogue/wj/.
 This script reads those entries and rewrites the block between the
 SHOP-SOON markers in aininja/shop/index.html. It groups the workbooks by
-area and leaves out any SKU that already has a "Ready now" tile
+method and leaves out any SKU that already has a "Ready now" tile
 (data-sku="..."). Bundles and the everything pack wait for their final names.
 Run it whenever the Dojo adds, renames or retires a workbook, and whenever a
 product moves up to "Ready now". Never hand-edit the block. tests/ is
@@ -47,9 +47,12 @@ if not areas:
     sys.exit("catalogue read gave no workbooks; the Dojo's format may have changed")
 
 total = sum(len(v) for v in areas.values())
+# The five are "the five methods", in the app's order (Rick, 6 Oct 2026, through
+# the Dojo: "the five methods, as the app says, never levels").
+ORDER = ["ACE", "MAK", "MBS", "NRG", "CMT"]
 out = ['<!-- SHOP-SOON:START (written by tests/shop-build.py from the Dojo\'s catalogue; do not hand-edit) -->',
-       '    <p class="sub">%d more WinJitsu workbooks, by area. Tap an area to see them.</p>' % total]
-for (name, code), items in sorted(areas.items()):
+       '    <p class="sub">%d more WinJitsu workbooks, by method. Tap a method to see them.</p>' % total]
+for (name, code), items in sorted(areas.items(), key=lambda kv: (ORDER.index(kv[0][1]) if kv[0][1] in ORDER else len(ORDER), kv[0][0])):
     word = "workbook" if len(items) == 1 else "workbooks"
     out.append('    <details><summary>%s <span>&middot; %d %s</span></summary><ul>' % (html.escape(name), len(items), word))
     for title, sku in items:
@@ -61,4 +64,4 @@ new, n = re.subn(r"<!-- SHOP-SOON:START.*?<!-- SHOP-SOON:END -->", lambda _: "\n
 if n != 1:
     sys.exit("SHOP-SOON markers not found exactly once")
 open(page, "w", encoding="utf-8").write(new)
-print("coming soon: %d workbooks in %d areas; ready now: %s" % (total, len(areas), ", ".join(sorted(ready))))
+print("coming soon: %d workbooks in %d methods; ready now: %s" % (total, len(areas), ", ".join(sorted(ready))))

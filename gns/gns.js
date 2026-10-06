@@ -132,14 +132,14 @@
     { id: "europe", code: "File 02", title: "Europe", tag: "Magazine covers, TV and universities",
       text: [
         "At 21 Rick moved to Holland and stayed for over 6 years: Amsterdam, Rotterdam, Delft and the Naarden-Bussum area he still calls a second home. He got quite popular there. Magazine covers, in the news, on TV, and he was even offered a role in a Dutch film (he declined, students come first).",
-        "He lectured at universities like TU Delft and spoke at companies like HP. Holland is also where he first introduced level one of Winjitsu, the mental martial art that later became 5 books."
+        "He lectured at universities like TU Delft and spoke at companies like HP. Holland is also where he first introduced WinJitsu, the mental martial art that later became 5 books."
       ],
       photos: [
         ["eu-holland-banner", "NinjaGym Holland. A second home"],
         ["eu-speaking", "On stage in Holland: talks, demos and the TV years"],
         ["eu-lectures", "Public speaking and seminars, from universities to company events"],
         ["eu-press", "Magazine features from the European years"],
-        ["winjitsu-books", "Winjitsu level one was born in Holland. It grew into 5 books"]
+        ["winjitsu-books", "WinJitsu was born in Holland. It grew into 5 books"]
       ] },
     { id: "asia", code: "File 03", title: "Asia", tag: "NinjaGym: the center, the app, the island",
       text: [
@@ -242,7 +242,7 @@
     O("🎯", "1-on-1 with Rick", "Full attention, nowhere to hide", "one"),
     O("🤝", "A small group of 2 to 6", "Intimate, but with witnesses", "small"),
     O("🔥", "Full group energy", "The room does half the work", "group")]);
-  var Q_WAREA = Q("warea", "Winjitsu has 5 areas. Which one is calling?", "The mental martial art: 5 books, 20 chapters each. 100 skills, one finger at a time.", [
+  var Q_WAREA = Q("warea", "WinJitsu has 5 methods. Which one is calling?", "The mental martial art: 5 books, 20 chapters each. 100 skills, one finger at a time.", [
     O("🃏", "ACE", "Achieving Combined Excellence: positive thinking and synergy", "ace"),
     O("⚡", "MAK", "Motivation, Action, Knowledge: the engine of achievement", "mak"),
     O("☯️", "MBS", "Mind, Body, Spirit: get all three of you on one team", "mbs"),
@@ -297,7 +297,7 @@
 
   var Q_BLEND = Q("blend", "What are we actually training?", "GNS runs both channels. You pick the mix.", [
     O("🦵", "Body first, kicks and skills", null, "body"),
-    O("🧠", "Mind first, Winjitsu and coaching", null, "mind"),
+    O("🧠", "Mind first, WinJitsu and coaching", null, "mind"),
     O("🥷", "Both. The full ninja", null, "both")]);
   var Q_SOCIAL = Q("social", "Introvert, extrovert, or somewhere in between?", "Ninjas come in all three. The training adjusts.", [
     O("🌑", "Introvert", "Recharge alone, small doses of people", "intro"),
@@ -349,7 +349,7 @@
   /* result content */
   var PATHS = {
     skills: { noun: "Strategist", line: "You are here for the real deal. We build your skills level by level, no fluff." },
-    coach: { noun: "Mind Ninja", line: "You want the Winjitsu side: mindset, life strategy and coaching from a certified Strategic Intervention coach (yes, the Tony Robbins school). The kicks are a bonus." },
+    coach: { noun: "Mind Ninja", line: "You want the WinJitsu side: mindset, life strategy and coaching from a certified Strategic Intervention coach (yes, the Tony Robbins school). The kicks are a bonus." },
     fun: { noun: "Grinner", line: "You want skills AND a laugh. Perfect, that is the whole point of Gooffy Ninja ShhT." },
     gamer: { noun: "Gamer Ninja", line: "Train by day, game by night. The mat and the game room are both calling your name." },
     reset: { noun: "Resetter", line: "Skills, sun, and a proper reset. Koh Samui plus ninja training is exactly your kind of escape." },
@@ -379,7 +379,7 @@
     ambi: "You run both modes: social when it is good, solo when you need it. A small live-in crew with optional everything is exactly your shape."
   };
   var LEARN_TICK = {
-    visual: "You learn with your eyes, so demos come first and words second. Bonus: Winjitsu's CMT book is literally built on thinking in pictures and mind movies. You will feel at home.",
+    visual: "You learn with your eyes, so demos come first and words second. Bonus: WinJitsu's CMT book is literally built on thinking in pictures and mind movies. You will feel at home.",
     audio: "You learn through talk: the why before the what. Good news, Rick teaches through stories and never runs out of them. The evening reviews will be your favorite class.",
     hands: "You learn by doing and falling forward (which is a real MAK chapter, by the way). The mat does not judge; it just gives feedback."
   };
@@ -461,7 +461,7 @@
   };
   var RFOCUS_MIX = {
     bodyr: "Reset target: the body. Two weeks of movement, sun and actual sleep will do things a spa weekend only promises.",
-    mindr: "Reset target: the head. Winjitsu was built to throw down the five mental demons: fear, doubt, negativity, stress and laziness. Stress is demon number four; consider it booked for a match.",
+    mindr: "Reset target: the head. WinJitsu was built to throw down the five mental demons: fear, doubt, negativity, stress and laziness. Stress is demon number four; consider it booked for a match.",
     direction: "Reset target: direction. This is exactly what Strategic Intervention coaching is for, and the beach is a better office than your kitchen table.",
     all: "Reset target: everything. Good. The program was literally designed as a full mind-body-spirit reboot, so you are not overasking."
   };
@@ -479,17 +479,17 @@
   var BLEND_LABEL = { body: "Body first", mind: "Mind first", both: "Mind + body" };
   var BLEND_MIX = {
     body: "Blend: body first. Mornings on the mat carry the program, and the mind training rides along quietly in the background.",
-    mind: "Blend: mind first. Winjitsu sessions and coaching conversations lead; the kicks keep the blood moving between ideas.",
+    mind: "Blend: mind first. WinJitsu sessions and coaching conversations lead; the kicks keep the blood moving between ideas.",
     both: "Blend: the full ninja. Body in the morning, mind in the evening review. This is the mix the program was actually designed around."
   };
 
   /* per-path "perks unlocked": teach them something real on the way out.
-     The Winjitsu app perk is for everyone (GNS students get full app use
+     The WinJitsu app perk is for everyone (GNS students get full app use
      for their whole stay). */
   function perks(a) {
-    var out = ["Your GNS stay includes full use of the Winjitsu app (the 5 books, drills, quizzes and belt tests, gamified), plus a free month to take home after. Train the mind between kicks."];
-    if (a.pull === "coach" || a.blend === "mind") out.push("Winjitsu is 5 books, 20 chapters each: 100 skills mapped like a martial art. You just previewed the syllabus.");
-    if (a.warea || a.rfocus === "mindr") out.push("Winjitsu names 5 mental demons: fear, doubt, negativity, stress and laziness. Naming yours is step one.");
+    var out = ["Your GNS stay includes full use of the WinJitsu app (the 5 books, drills, quizzes and belt tests, gamified), plus a free month to take home after. Train the mind between kicks."];
+    if (a.pull === "coach" || a.blend === "mind") out.push("WinJitsu is 5 books, 20 chapters each: 100 skills mapped like a martial art. You just previewed the syllabus.");
+    if (a.warea || a.rfocus === "mindr") out.push("WinJitsu names 5 mental demons: fear, doubt, negativity, stress and laziness. Naming yours is step one.");
     if (a.flavor === "menu" || a.pull === "skills" || a.ewhy === "routine") out.push("The Ninja Menu is real: NinjaGym keeps a technique menu for every belt, and at GNS you can order from it session by session.");
     if (a.pull === "coach" || a.rfocus === "direction") out.push("Rick is a certified Strategic Intervention Coach (Robbins-Madanes Training, the Tony Robbins school). The coaching is not a side dish.");
     if (a.pull === "escape" || a.pull === "reset") out.push("Rick has built a life from zero in the USA, Holland, Singapore, the Philippines and Thailand. Living-abroad questions are very welcome.");
@@ -529,7 +529,7 @@
 
   function focusLabel(a) {
     if (a.pull === "skills" || a.pull === "gamer") return FLAVOR_LABEL[a.flavor] || "Ninja training";
-    if (a.pull === "coach") return WAREA_LABEL[a.warea] || "Winjitsu coaching";
+    if (a.pull === "coach") return WAREA_LABEL[a.warea] || "WinJitsu coaching";
     if (a.pull === "fun") return "Goofy first, skills anyway";
     if (a.pull === "reset") return "The full reset";
     if (a.pull === "escape") return "A new chapter, tested live";
@@ -698,7 +698,7 @@
       res.appendChild(btn("qz-link", "Or enroll when you're ready", enroll));
     }
     if (a.pull === "coach") {
-      var wj = el("a", "qz-link", "Peek at Winjitsu, the mental martial art");
+      var wj = el("a", "qz-link", "Peek at WinJitsu, the mental martial art");
       wj.href = "https://www.winjitsu.com"; wj.target = "_blank"; wj.rel = "noopener noreferrer";
       res.appendChild(wj);
     }
