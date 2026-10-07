@@ -947,6 +947,28 @@ tewtors.com is its own site, planned and built by the Tewtors chat in
   "Tewtors" and link back to tewtors.com. Never move or delete either without
   the Dojo; a download page that moves stays up 7 more days for links mailed.
 - Terms section 3 says "Workbook downloads ... sold at Tewtors".
+- The workbook links (Shop line, run-out page, download footer, Terms, llms.txt)
+  point at `https://tewtors.com/workbooks/`, never the bare domain: after the
+  WinJitsu app switch, tewtors.com/ opens the app (the Tewtors chat, 7 Oct).
+
+**THE SHOP'S FIRST ROW IS APPS I BUILT (7 Oct 2026, Rick's ruling).** His words:
+"we will take our case studies and turn them into a quick 222 product ... the
+mamamia app ... if they want one too, it is 222. So the apps or other projects
+replace the workbooks." His clicks the same day:
+
+- **The $222 is R2 Hosting** ("222 includes first month then 99"): $222 to build,
+  month one included, then $99 a month or $999 a year. A shop app is an R2
+  build, not a third plan.
+- **One project at a time, on his word.** MamaMia first (`AIN-MAMAMIA`,
+  `/aininja/shop/ain-mamamia/`, the baby page app in `~/Dev/MamaMia`). Each next
+  one needs his yes on which project and what its $222 covers.
+- **The two helpers stay** as they are, "Not open yet", below the apps row.
+- **The button is a Stripe Buy button, which the Dojo makes.** Until its Payment
+  Link arrives the page says "Not open yet" and is noindex, like the helpers.
+- **Every fact on an app page comes from that app's README; every picture is
+  its demo,** never a real customer's page (MamaMia's demo baby is Luna, drawn).
+  The pictures are phone shots taken with the app's own Playwright; its share
+  card is the app's own `og.png`.
 
 Rick, 30 Sep, in the Dojo chat: "Ricktew.com should have a shop under AI Ninja
 too they can buy as pre-made products as well." This reverses his 9 Sep rule
