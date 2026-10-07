@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MamaMia (AIN-MAMAMIA), your baby's own page | The Shop | Rick Tew</title>
 <meta name="description" content="MamaMia, an app I built: one little page for every little first. Mama fills it in on her phone, and the whole family opens it from one link. Your own, on R2 Hosting: $222 to build, then $99 a month.">
-<!-- noindex while it is not open: the Payment Link is the Dojo's to make (Rick, 7 Oct 2026: "Stripe Buy button") -->
-<meta name="robots" content="noindex">
 <link rel="canonical" href="https://ricktew.com/aininja/shop/ain-mamamia/">
 <link rel="icon" href="/assets/images/favicon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
@@ -20,6 +18,9 @@
 <meta property="og:type" content="product">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ricktew">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Product","name":"MamaMia","sku":"AIN-MAMAMIA","description":"One little page for every little first. An app Rick Tew built: Mama fills it in on her phone, and the whole family opens it from one link. Your own, on R2 Hosting: $222 to build, first month included, then $99 a month.","image":"https://ricktew.com/aininja/shop/share-mamamia.jpg","brand":{"@type":"Brand","name":"AI Ninja"},"url":"https://ricktew.com/aininja/shop/ain-mamamia/","offers":{"@type":"Offer","price":"222","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ricktew.com/aininja/shop/ain-mamamia/"}}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -111,6 +112,7 @@ footer a:hover{color:var(--blue-d)}
 .facts li{position:relative;padding-left:24px;font-size:16px;font-weight:600;color:var(--ink2)}
 .facts li::before{content:"";position:absolute;left:4px;top:.6em;width:9px;height:9px;border-radius:50%;background:var(--blue)}
 .plan .note{margin-top:8px}
+.plan .buy{margin-top:16px}
 .see{padding:0 0 64px}
 .see h2{font-size:clamp(22px,3vw,28px);font-weight:900}
 .see .lede2{margin-top:8px;font-size:16px;font-weight:600;color:#4b5563;max-width:60ch}
@@ -173,7 +175,6 @@ footer a:hover{color:var(--blue-d)}
           <li>Letters sealed until a birthday, and cards for the sitter that only Mama and the sitter see.</li>
           <li>A secret link, and a family code if you want one.</li>
         </ul>
-        <p class="shut">Not open yet.</p>
         <div class="plans">
           <div class="plan">
             <span class="tag">R2 Hosting</span>
@@ -181,6 +182,11 @@ footer a:hover{color:var(--blue-d)}
             <div class="amount">$222 <small>to build</small></div>
             <p>First month included. Then $99 a month.</p>
             <p class="note">Cancel anytime, effective at the end of the paid month. Your photos and words come with you.</p>
+            <!-- Stripe Payment Link on Tew's Inc, plink_1UNsbL24k28tlk41EJkKFam1 (the Dojo, 7 Oct 2026, on Rick's
+                 "Stripe Buy button" and "Monthly only, for now"): MamaMia's own product, $222 one-time plus
+                 $99 a month on a 30-day trial, "Baby's first name" asked on the link, sku AIN-MAMAMIA.
+                 After paying Stripe sends the buyer to /aininja/shop/ain-mamamia/thanks/. -->
+            <a class="btn btn-blue buy" id="buyMamaMia" href="https://buy.stripe.com/fZu28kaH3fe0dGteyGg3606">Buy MamaMia</a>
           </div>
         </div>
         <p class="after">At checkout you add the baby&rsquo;s first name. Mama gets her own link and her own code.</p>

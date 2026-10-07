@@ -964,8 +964,11 @@ replace the workbooks." His clicks the same day:
   `/aininja/shop/ain-mamamia/`, the baby page app in `~/Dev/MamaMia`). Each next
   one needs his yes on which project and what its $222 covers.
 - **The two helpers stay** as they are, "Not open yet", below the apps row.
-- **The button is a Stripe Buy button, which the Dojo makes.** Until its Payment
-  Link arrives the page says "Not open yet" and is noindex, like the helpers.
+- **The button is a Stripe Buy button, which the Dojo makes.** MamaMia's went
+  live 7 Oct: `plink_1UNsbL24k28tlk41EJkKFam1`, MamaMia's OWN Stripe product (the
+  R2 product's description promises company email and a back office, which does
+  not fit a baby's page). The page is indexed, in the sitemap and in llms.txt.
+  The next app stays "Not open yet" and noindex until its own link arrives.
   One link: the $222 build (one-time) plus $99 monthly with a 30-day trial, the
   baby's first name asked on the link. The buyer lands on the app's own thanks
   page, `/aininja/shop/ain-mamamia/thanks/` (noindex; no download, Rick sends
