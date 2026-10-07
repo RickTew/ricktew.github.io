@@ -353,7 +353,7 @@
     {id:"cancel", q:"Can I cancel?",
      alt:["cancel","lock in","locked in","commitment","minimum term","tied in","how long am i","get out of it","get out","how do i leave","stop paying","if i stop paying","walk away"],
      keys:"cancel cancelling cancellation contract contracts lock locked commit commitment minimum term terms subscription quit stop leave leaving refund refunds notice",
-     a:"<p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. Everything runs on my stack by design, so there is nothing to hand back or log out of: your domain, your content and your data leave with you, and I do not keep a copy; the build and the hosting end with the subscription. Nothing is charged after.</p>"},
+     a:"<p>Anytime. It is a monthly subscription, and cancelling takes effect at the end of the paid month, or on a yearly R2 Hosting plan at the end of the paid year. All sales are final, so nothing already paid is refunded. Everything runs on my stack by design, so there is nothing to hand back or log out of: your domain, your content and your data leave with you, and I do not keep a copy; the build and the hosting end with the subscription. Nothing is charged after.</p>"},
 
     {id:"how-to-start", q:"How do I start? Is there a call, or do I just pay?",
      alt:["how do i start","how do we start","how to start","where do we start","where do i start","get started","getting started","do i just pay","just pay","start now","ready to start","sign up","signup","sign me up","the intake","fill in the intake","invite link","start today"],
