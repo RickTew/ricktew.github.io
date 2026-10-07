@@ -182,11 +182,13 @@ footer a:hover{color:var(--blue-d)}
             <div class="amount">$222 <small>to build</small></div>
             <p>First month included. Then $99 a month.</p>
             <p class="note">Cancel anytime, effective at the end of the paid month. Your photos and words come with you.</p>
-            <!-- Stripe Payment Link on Tew's Inc, plink_1UNsbL24k28tlk41EJkKFam1 (the Dojo, 7 Oct 2026, on Rick's
-                 "Stripe Buy button" and "Monthly only, for now"): MamaMia's own product, $222 one-time plus
-                 $99 a month on a 30-day trial, "Baby's first name" asked on the link, sku AIN-MAMAMIA.
-                 After paying Stripe sends the buyer to /aininja/shop/ain-mamamia/thanks/. -->
-            <a class="btn btn-blue buy" id="buyMamaMia" href="https://buy.stripe.com/fZu28kaH3fe0dGteyGg3606">Buy MamaMia</a>
+            <!-- The Dojo's one checkout (Rick, 7 Oct 2026: "these will be the same as the workbooks where we
+                 only need one and the price is the same and they just choose the one they want so we don't
+                 need 100 stripe links for each app"). ricktew-shop's /buy makes a Stripe page for the SKU:
+                 $222 today, $99 a month after a 30-day trial, "Baby's first name" asked there. After paying
+                 the buyer lands on /aininja/shop/ain-mamamia/thanks/. The next app at the same price is the
+                 same address with its own SKU. -->
+            <a class="btn btn-blue buy" id="buyMamaMia" href="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy?sku=AIN-MAMAMIA">Buy MamaMia</a>
           </div>
         </div>
         <p class="after">At checkout you add the baby&rsquo;s first name. Mama gets her own link and her own code.</p>
@@ -218,15 +220,15 @@ footer a:hover{color:var(--blue-d)}
 </footer>
 <script>
 /* Where a buyer came from (Rick's yes, 2 Oct 2026, through the Dojo): a
-   post's link carries ?src=<platform>, and the Buy button hands it to Stripe
-   as client_reference_id. Stripe takes letters, digits, dashes and
-   underscores up to 200; anything else is left off. Nothing is stored in the
-   browser. Idle until the Buy button arrives. */
+   post's link carries ?src=<platform>, and the Buy button hands it to the
+   one checkout as &src=, the same as tewtors.com's buttons (letters, digits,
+   dashes and underscores; anything else is left off and the sale says
+   "Source: none"). Nothing is stored in the browser. */
 (function(){
   var v=""; try{ v=new URLSearchParams(location.search).get("src")||""; }catch(e){}
   if(!/^[A-Za-z0-9_-]{1,200}$/.test(v)) return;
-  [].forEach.call(document.querySelectorAll('a[href^="https://buy.stripe.com/"]'),function(a){
-    a.href=a.href+(a.href.indexOf("?")>-1?"&":"?")+"client_reference_id="+encodeURIComponent(v);
+  [].forEach.call(document.querySelectorAll('a[href^="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy?"]'),function(a){
+    a.href=a.href+"&src="+encodeURIComponent(v);
   });
 })();
 </script>

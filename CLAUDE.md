@@ -964,11 +964,16 @@ replace the workbooks." His clicks the same day:
   `/aininja/shop/ain-mamamia/`, the baby page app in `~/Dev/MamaMia`). Each next
   one needs his yes on which project and what its $222 covers.
 - **The two helpers stay** as they are, "Not open yet", below the apps row.
-- **The button is a Stripe Buy button, which the Dojo makes.** MamaMia's went
-  live 7 Oct: `plink_1UNsbL24k28tlk41EJkKFam1`, MamaMia's OWN Stripe product (the
-  R2 product's description promises company email and a back office, which does
-  not fit a baby's page). The page is indexed, in the sitemap and in llms.txt.
-  The next app stays "Not open yet" and noindex until its own link arrives.
+- **The button is the Dojo's ONE checkout, not a Payment Link per app** (Rick,
+  7 Oct: "these will be the same as the workbooks where we only need one and the
+  price is the same and they just choose the one they want so we don't need 100
+  stripe links for each app"). The Buy href is
+  `https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy?sku=<SKU>`;
+  the page script appends `&src=<source>` (not client_reference_id). MamaMia's
+  first link (`plink_1UNsbL24k28tlk41EJkKFam1`) is retired by the Dojo once this
+  is live. A new app at the same price is one line in the Dojo's shop code plus
+  its page here; it stays "Not open yet" and noindex until the Dojo says its SKU
+  sells. MamaMia is indexed, in the sitemap and in llms.txt.
   One link: the $222 build (one-time) plus $99 monthly with a 30-day trial, the
   baby's first name asked on the link. The buyer lands on the app's own thanks
   page, `/aininja/shop/ain-mamamia/thanks/` (noindex; no download, Rick sends
