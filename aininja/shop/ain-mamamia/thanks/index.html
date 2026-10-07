@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thank you: MamaMia, your baby's page | Rick Tew</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/images/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<meta name="theme-color" content="#1e73bd">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Archivo:wght@800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --ink:#101418; --ink2:#20262c; --muted:#69707a;
+  --blue:#1e73bd; --blue-d:#175a94; --red:#d61f26;
+  --line:#e8e6e2; --panel:#f7f6f4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.6}
+a{color:var(--blue-d)}
+h1{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink);line-height:1.08}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+@media (max-width:700px){ .wrap{padding:0 16px} }
+.k{font-size:12px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:inherit;font-weight:900;font-size:16px;border-radius:12px;padding:14px 26px;text-decoration:none;border:2px solid transparent;transition:transform .12s ease,background .12s ease;line-height:1.2;text-align:center}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 8px 22px rgba(30,115,189,.28)}
+.btn-blue:hover{background:var(--blue-d)}
+.btn-quiet{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn-quiet:hover{border-color:var(--blue)}
+
+.doorbar{background:var(--ink);color:#aab2bc;font-size:12.5px;line-height:1.4}
+.doorbar-in{max-width:960px;margin:0 auto;padding:9px 24px;display:flex;align-items:center;gap:6px 20px;flex-wrap:wrap}
+.doorbar a{color:#fff;text-decoration:none;font-weight:800}
+.doorbar a:hover{text-decoration:underline}
+.doorbar .db-here{margin:0 auto;text-transform:uppercase;letter-spacing:1.2px;font-size:11.5px;font-weight:700}
+.doorbar .db-here b{color:#6db3f0;font-weight:800}
+.doorbar .db-other{color:#ff7a7e}
+@media (max-width:700px){ .doorbar-in{justify-content:space-between;text-align:center;gap:4px 14px;padding:7px 16px;flex-wrap:nowrap} .doorbar .db-here{display:none} }
+
+.nav{border-bottom:1px solid var(--line)}
+.nav-inner{max-width:960px;margin:0 auto;padding:12px 24px}
+.wordmark{font-weight:900;letter-spacing:.2em;font-size:15px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.wordmark .dot{color:var(--red)}
+@media (max-width:700px){ .nav-inner{padding:12px 16px} }
+
+main{padding:64px 0 80px}
+main h1{font-size:clamp(32px,5.4vw,50px);font-weight:900;margin-top:12px;max-width:18ch}
+main h1 .c{color:var(--blue)}
+main p{margin-top:16px;font-size:18px;font-weight:600;color:var(--ink2);max-width:56ch}
+main .help{margin-top:30px;padding-top:22px;border-top:1px solid var(--line);font-size:16px;color:#4b5563}
+.cta{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+
+footer{padding:26px 0 40px;font-size:13px;font-weight:700;color:var(--muted);border-top:1px solid var(--line)}
+footer .wrap{max-width:960px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--blue-d)}
+</style>
+<meta name="referrer" content="no-referrer">
+</head>
+<body>
+<div class="doorbar"><div class="doorbar-in">
+  <a href="/">Which ninja?</a>
+  <span class="db-here">You are in the <b>AI Ninja</b> door</span>
+  <a class="db-other" href="/hininja/">Take the HI Ninja door</a>
+</div></div>
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner"><a class="wordmark" href="/aininja/">DIGITAL DOJO<span class="dot">.</span></a></div>
+</nav>
+<!-- Where Stripe sends a MamaMia buyer after paying (AIN-MAMAMIA, 7 Oct 2026).
+     No download: Stripe mails the receipt, the Dojo's webhook tells Rick the
+     baby's first name (asked at checkout), and Rick makes the page and sends
+     Mama's link and code himself. No promise of when. -->
+<main>
+  <div class="wrap">
+    <div class="k">The Shop &middot; MamaMia</div>
+    <h1>Thank you. <span class="c">Your baby&rsquo;s page is next.</span></h1>
+    <p>Your receipt comes to the email you paid with.</p>
+    <p>I make the page with the name you gave at checkout. Mama&rsquo;s link and her code come to that same email.</p>
+    <p class="help">Something to add, like a second Mama phone or a family code? Write to me with the email you paid with.</p>
+    <div class="cta">
+      <a class="btn btn-blue" href="/aininja/#opt-8c">Write to me</a>
+      <a class="btn btn-quiet" href="https://mamamiababy.vercel.app/demo" target="_blank" rel="noopener">Play with the demo</a>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <span>THE DIGITAL DOJO &middot; by Rick Tew</span>
+    <span><a href="/">Which ninja?</a> &middot; <a href="/aininja/">AI Ninja</a> &middot; <a href="/aininja/shop/">The Shop</a> &middot; <a href="/aininja/legal/terms.html">Terms of Service</a> &middot; <a href="/aininja/legal/privacy.html">Privacy</a></span>
+  </div>
+</footer>
+</body>
+</html>

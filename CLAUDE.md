@@ -957,14 +957,20 @@ mamamia app ... if they want one too, it is 222. So the apps or other projects
 replace the workbooks." His clicks the same day:
 
 - **The $222 is R2 Hosting** ("222 includes first month then 99"): $222 to build,
-  month one included, then $99 a month or $999 a year. A shop app is an R2
-  build, not a third plan.
+  month one included, then $99 a month. Monthly only for now (his pick, same
+  day, through the Dojo: "Monthly only, for now"); yearly can be a second link
+  later. A shop app is an R2 build, not a third plan.
 - **One project at a time, on his word.** MamaMia first (`AIN-MAMAMIA`,
   `/aininja/shop/ain-mamamia/`, the baby page app in `~/Dev/MamaMia`). Each next
   one needs his yes on which project and what its $222 covers.
 - **The two helpers stay** as they are, "Not open yet", below the apps row.
 - **The button is a Stripe Buy button, which the Dojo makes.** Until its Payment
   Link arrives the page says "Not open yet" and is noindex, like the helpers.
+  One link: the $222 build (one-time) plus $99 monthly with a 30-day trial, the
+  baby's first name asked on the link. The buyer lands on the app's own thanks
+  page, `/aininja/shop/ain-mamamia/thanks/` (noindex; no download, Rick sends
+  Mama's link and code himself). The Dojo's webhook saves the order and sends
+  the sale notice; there is no download and no mail of ours to the buyer.
 - **Every fact on an app page comes from that app's README; every picture is
   its demo,** never a real customer's page (MamaMia's demo baby is Luna, drawn).
   The pictures are phone shots taken with the app's own Playwright; its share
