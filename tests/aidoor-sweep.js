@@ -15,7 +15,7 @@ const ROOT = path.join(__dirname, ".."), BASE = "http://localhost:8765";
 const SHORT = ["/aininja/ai-customer-service/", "/aininja/ai-agents/", "/aininja/booking-system/"]; // the search pages, 2 Oct 2026
 const PAGES = ["/aininja/", "/aininja/done-for-you/", ...SHORT, "/aininja/r2/", "/aininja/start/",
   "/aininja/shop/", "/aininja/shop/ain-mamamia/", "/aininja/shop/ain-mamamia/thanks/", "/aininja/shop/ain-contact-form/", "/aininja/shop/ain-customer-inbox/", "/aininja/shop/thanks/", "/aininja/shop/thanks/?link=expired", "/aininja/shop/download/",
-  "/aininja/side-hustle-summit/", "/aininja/legal/terms.html", "/aininja/legal/privacy.html", "/", "/hininja/"];
+  "/aininja/side-hustle-summit/", "/aininja/legal/terms.html", "/aininja/legal/privacy.html", "/", "/hininja/", "/hsp/"];
 const AGENT_ADDRESS = null; // none printed since 1 Oct 2026 (Rick: "never give out our email address as we use message boxes")
 const PLACEHOLDERS = new Set(["you@yourcompany.com"]); // the mailbox field's example text
 // Vimeo puts a bot challenge in front of headless browsers (the HI page's intro
