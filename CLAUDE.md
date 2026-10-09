@@ -972,9 +972,10 @@ replace the workbooks." His clicks the same day:
   and the bookings list (confirmed, done, no-show, cancelled). Member cards and
   PINs, packs, the till, events and tax invoices are quoted in writing. Pictures
   are phone shots of the live sabaisen.com "as it is" (his pick, therapists'
-  names showing). "Not open yet", noindex, out of the sitemap and llms.txt, no
-  Buy button, until the Dojo's one checkout carries the SKU; then the button is
-  `ricktew-shop/buy?sku=AIN-SPA-BOOKING` and the page opens like MamaMia.
+  names showing). OPEN since 9 Oct (dc4e702, his "Open it now", after the
+  Dojo's 3c1a962): Buy button `ricktew-shop/buy?sku=AIN-SPA-BOOKING`, "Studio
+  name" asked at checkout, indexed, in the sitemap and llms.txt. No Stripe
+  product of its own: since the one-checkout ruling every app is named inline.
 - **The two helpers stay** as they are, "Not open yet", below the apps row.
 - **The button is the Dojo's ONE checkout, not a Payment Link per app** (Rick,
   7 Oct: "these will be the same as the workbooks where we only need one and the
@@ -1186,9 +1187,12 @@ RickTew/
 │   └── assets/     #   ~195 files, its own images and audio
 ├── about/  camps/  contact/  home/  ninjagym/  tours/  winjitsu/  rtms/
 │                   # the older Google Sites pages, still live at their URLs
-├── redesign/       # parked exploration. OFTEN HAS UNTRACKED FILES. Do not
-│                   # sweep these into a commit; the repo is public. Its
-│                   # addresses were stripped 2026-08-23; it IS served live.
+├── redesign/       # REVIEWED 9 Oct 2026 on Rick's clicks: the August
+│                   # whole-site redesign and five of six "Who is Rick Tew"
+│                   # designs DELETED. Left: who-i-am-e.html (The Map, the
+│                   # winner, to become the new /about/ after a fact check)
+│                   # + js/rick-quiz.js, and universe-graph.html (a parked
+│                   # piece from "AI to HI"). All noindex, linked from nowhere.
 ├── supabase/       # the contact endpoint's source. NOT a page. Excluded
 │                   # from the Pages build by _config.yml.
 ├── _config.yml     # exists only to keep supabase/ off the live site
