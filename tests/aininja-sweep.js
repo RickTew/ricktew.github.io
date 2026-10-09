@@ -28,7 +28,10 @@ async function checkExternal(urls) {
       let r = await fetch(u, { method: "HEAD", redirect: "follow", signal: ctl.signal }).catch(() => null);
       if (!r || r.status === 405 || r.status === 403) r = await fetch(u, { method: "GET", redirect: "follow", signal: ctl.signal }).catch(() => null);
       clearTimeout(t);
-      if (!r) out.push([u, "no response"]); else if (r.status >= 400) out.push([u, r.status]);
+      // tewtors.com (and winjitsu.com, which forwards there) answers 429 to anything
+      // that is not a real browser since 8 Oct 2026 (its bot wall); people get the page.
+      const botWall = r && r.status === 429 && /(^|\.)(tewtors|winjitsu)\.com$/.test(new URL(r.url || u).hostname);
+      if (!r) out.push([u, "no response"]); else if (r.status >= 400 && !botWall) out.push([u, r.status]);
     } catch (e) { out.push([u, String(e.message || e)]); }
   }
   return out;
