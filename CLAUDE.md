@@ -8,7 +8,20 @@ places:
 
 - **`/hininja/` HI Ninja** — Human Interaction. In-person martial arts,
   life-coaching, the mental martial arts. This is Rick's thirty years of
-  teaching.
+  teaching. **Since 9 Oct 2026 `/hininja/` is ONE landing page that sells GNS**
+  (Rick: "one page landing page on HI like AI but with links for details"):
+  the realistic version, light, red only on the buttons, words only until Rick
+  sends today's photos, a "Buy 2 weeks, $2,222" button (SKU `HIN-GNS-2W` in the
+  Dojo's one checkout, through `/hininja/buy/`; arrival date asked; "All sales
+  are final; your dates can move to another two weeks"; thanks page
+  `/hininja/thanks/`) and its own enrol form on the mailbox (subject `hininja`).
+  Rick and a NinjaGym Guide take turns teaching (Rick at least 2 classes a
+  week); shared dorms, a women's dorm on request. `/gns/` is the FUN version of
+  the same program and stays as he designed it: both pages run for real, and
+  ~6 months of ads and data compare them. Never restyle one toward the other;
+  in questions name them by address, never "test A/B". The old HI home is word
+  for word at `/hininja/history/`. Reader round and rulings:
+  `playtest/reports/2026-10-09-hi-SUMMARY.md`, memory `project_hi_landing_plan`.
 - **`/aininja/` AI Ninja** — the digital work. Building with AI for businesses.
 
 Both are live. The honest reason for the split, in Rick's words: the hardcore
