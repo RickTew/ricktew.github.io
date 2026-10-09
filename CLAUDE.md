@@ -963,6 +963,18 @@ replace the workbooks." His clicks the same day:
 - **One project at a time, on his word.** MamaMia first (`AIN-MAMAMIA`,
   `/aininja/shop/ain-mamamia/`, the baby page app in `~/Dev/MamaMia`). Each next
   one needs his yes on which project and what its $222 covers.
+- **Second app: Spa booking site (AIN-SPA-BOOKING), Rick's clicks 9 Oct 2026.**
+  `/aininja/shop/ain-spa-booking/` + `thanks/`: the booking site built for
+  SabaiSen. His $222 scope, "Yes, as written": a studio site of a few pages plus
+  online booking (treatment, day and open time, therapist or no preference,
+  guests; a taken time cannot be booked twice; pay at the desk or PromptPay; a
+  "booking received" email, NO reminders, the app sends none for treatments)
+  and the bookings list (confirmed, done, no-show, cancelled). Member cards and
+  PINs, packs, the till, events and tax invoices are quoted in writing. Pictures
+  are phone shots of the live sabaisen.com "as it is" (his pick, therapists'
+  names showing). "Not open yet", noindex, out of the sitemap and llms.txt, no
+  Buy button, until the Dojo's one checkout carries the SKU; then the button is
+  `ricktew-shop/buy?sku=AIN-SPA-BOOKING` and the page opens like MamaMia.
 - **The two helpers stay** as they are, "Not open yet", below the apps row.
 - **The button is the Dojo's ONE checkout, not a Payment Link per app** (Rick,
   7 Oct: "these will be the same as the workbooks where we only need one and the
