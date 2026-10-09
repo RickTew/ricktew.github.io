@@ -67,6 +67,7 @@ L=["# Rick Tew","",
 "- An online booking system for a small business, built and hosted on Rick's stack: no account to book, reminders by email. https://ricktew.com/aininja/booking-system/",
 "- The Shop: apps Rick Tew built that you can have too, each an R2 Hosting build, and ready-made helpers for a business (not open yet), from AI Ninja. https://ricktew.com/aininja/shop/",
 "- MamaMia: one little page for every little first, a baby's own page that Mama fills in on her phone and the family opens from one link. $222 to build, first month included, then $99 a month. https://ricktew.com/aininja/shop/ain-mamamia/",
+"- Spa booking site: a spa or massage studio's website with booking built in, the one Rick built for SabaiSen on Koh Samui. Customers pick a treatment, a day and an open time, a therapist, and pay at the desk or by PromptPay. $222 to build, first month included, then $99 a month. https://ricktew.com/aininja/shop/ain-spa-booking/",
 "- Tewtors: Rick Tew's self-help workbooks from WinJitsu, the mental martial art, $2.99 each, a printable PDF. Moved from the Shop on 6 Oct 2026. https://tewtors.com/workbooks/",
 "- The Side Hustle Summit in plain words, dated and updated after each session: what the free YouTube event (6 to 13 September 2026) sells, what each day taught, and the four steps a viewer can do at no cost. Rick sells no course for it. https://ricktew.com/aininja/side-hustle-summit/","",
 "## Solutions (the things Rick builds)",""]

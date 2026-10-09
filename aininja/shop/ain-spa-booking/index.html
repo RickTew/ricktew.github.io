@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spa booking site (AIN-SPA-BOOKING) | The Shop | Rick Tew</title>
 <meta name="description" content="A spa or massage studio's website, with booking built in, the one I built for SabaiSen on Koh Samui. Your own, on R2 Hosting: $222 to build, then $99 a month.">
-<!-- Not open yet: noindex and out of the sitemap until the Dojo's one checkout carries AIN-SPA-BOOKING. -->
-<meta name="robots" content="noindex">
 <link rel="canonical" href="https://ricktew.com/aininja/shop/ain-spa-booking/">
 <link rel="icon" href="/assets/images/favicon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
@@ -21,7 +19,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ricktew">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":"Spa booking site","sku":"AIN-SPA-BOOKING","description":"A spa or massage studio's website, with booking built in. Built by Rick Tew for SabaiSen on Koh Samui. Your own, on R2 Hosting: $222 to build, first month included, then $99 a month.","image":"https://ricktew.com/aininja/shop/share-spa-booking.jpg","brand":{"@type":"Brand","name":"AI Ninja"},"url":"https://ricktew.com/aininja/shop/ain-spa-booking/","offers":{"@type":"Offer","price":"222","priceCurrency":"USD","availability":"https://schema.org/PreOrder","url":"https://ricktew.com/aininja/shop/ain-spa-booking/"}}
+{"@context":"https://schema.org","@type":"Product","name":"Spa booking site","sku":"AIN-SPA-BOOKING","description":"A spa or massage studio's website, with booking built in. Built by Rick Tew for SabaiSen on Koh Samui. Your own, on R2 Hosting: $222 to build, first month included, then $99 a month.","image":"https://ricktew.com/aininja/shop/share-spa-booking.jpg","brand":{"@type":"Brand","name":"AI Ninja"},"url":"https://ricktew.com/aininja/shop/ain-spa-booking/","offers":{"@type":"Offer","price":"222","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ricktew.com/aininja/shop/ain-spa-booking/"}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
@@ -153,9 +151,9 @@ footer a:hover{color:var(--blue-d)}
      SabaiSen app does today (~/Dev/SabaiSen/app: [lang]/book, api/bookings,
      admin/bookings, sendBookingReceived in lib/email.ts). Treatment bookings send a
      "booking received" email and no reminders, so the page promises no reminders.
-     Not open yet: no Buy button until the Dojo's one checkout carries
-     AIN-SPA-BOOKING; then the button is ricktew-shop/buy?sku=AIN-SPA-BOOKING,
-     like MamaMia's, and the page leaves noindex. -->
+     Open 9 Oct 2026, on Rick's click "Open it now", after the Dojo put the SKU in
+     its one checkout (digitaldojo 3c1a962): $222 today, $99 a month after a 30-day
+     trial, "Studio name" asked at checkout. -->
 <section class="item" id="ain-spa-booking">
   <div class="wrap">
     <div class="item-card">
@@ -185,9 +183,12 @@ footer a:hover{color:var(--blue-d)}
             <p class="note">Not in the $222, quoted in writing first: member cards and PINs, treatment packs, the till, events, tax invoices.</p>
             <p class="note">Cancel anytime, effective at the end of the paid month. Your domain, your content and your data come with you.</p>
             <p class="note">All sales are final. No refunds.</p>
-            <span class="shut">Not open yet</span>
+            <!-- The Dojo's one checkout, the same address as MamaMia's with this SKU. After
+                 paying the buyer lands on /aininja/shop/ain-spa-booking/thanks/. -->
+            <a class="btn btn-blue buy" id="buySpaBooking" href="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy?sku=AIN-SPA-BOOKING">Buy the Spa booking site</a>
           </div>
         </div>
+        <p class="after">At checkout you add your studio&rsquo;s name.</p>
         <p class="ask"><a href="/aininja/#opt-8c">A question first? Write to me.</a></p>
       </div>
     </div>
