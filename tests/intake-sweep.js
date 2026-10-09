@@ -8,7 +8,11 @@
    gap links, the send validation, a file upload against a MOCKED endpoint and a
    MOCKED storage PUT (nothing leaves this machine), the submit payload shape,
    and the done panel. Also asserts the endpoint's catalog copy is identical to
-   the page's. Exit 1 on any finding. */
+   the page's. Exit 1 on any finding.
+   Since 9 Oct 2026 the page opens on the quick start (name, email, talk or
+   type) with the long sheet folded below: the walk opens the fold, checks the
+   paired boxes line up, and quickWalk sends a voice note (Chrome's fake
+   microphone playing AUDIO, a wav file), a typed note, and an empty send. */
 "use strict";
 const fs = require("fs");
 const path = require("path");
@@ -59,6 +63,17 @@ async function walk(browser, label, ctxOpts) {
   const bought = await page.textContent("#bought");
   if (bought !== "This sheet is for your order: Contact Form, We run it (SKU AIN-CONTACT-FORM).") flag("purchase", label + ": order line reads " + JSON.stringify(bought));
   await page.waitForTimeout(600);
+  const folded = await page.evaluate(() => !document.getElementById("full").open);
+  if (!folded) flag("quick", label + ": the long sheet is not folded on a fresh visit");
+  await page.evaluate(() => { document.getElementById("full").open = true; });
+  await page.waitForTimeout(300);
+  if (label === "desktop") {
+    const off = await page.evaluate(() => [...document.querySelectorAll("#form .row2")].map(r => {
+      const i = [...r.querySelectorAll("input")].map(x => Math.round(x.getBoundingClientRect().top));
+      return i.length === 2 && Math.abs(i[0] - i[1]) > 2 ? r.querySelector(".q").id + " " + i.join("/") : null;
+    }).filter(Boolean));
+    off.forEach(o => flag("layout", label + ": paired boxes not level: " + o));
+  }
 
   // ---- text shape ----
   const text = await page.evaluate(() => {
@@ -212,13 +227,84 @@ async function walk(browser, label, ctxOpts) {
   await ctx.close();
 }
 
+async function quickWalk(browser, label, ctxOpts, mode) {
+  const ctx = await browser.newContext({ ...ctxOpts, permissions: ["microphone"] });
+  const page = await ctx.newPage();
+  const errs = [];
+  page.on("pageerror", e => errs.push(String(e)));
+  page.on("console", m => { if (m.type() === "error") errs.push(m.text()); });
+  const posts = [];
+  await page.route(ENDPOINT, async route => {
+    const body = route.request().postDataJSON(); posts.push(body);
+    if (body.action === "upload-url") {
+      const p = `intake/2026-10/${body.intake}/media/t-${body.name}`;
+      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, url: `https://stub.supabase.co/storage/v1/object/upload/sign/aininja-intake/${p}?token=T`, path: p }) });
+    }
+    return route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
+  });
+  let putBytes = 0;
+  await page.route(STORAGE_PUT, async route => { putBytes = (route.request().postDataBuffer() || Buffer.alloc(0)).length; await route.fulfill({ status: 200, contentType: "application/json", body: '{"Key":"x"}' }); });
+  await page.goto(BASE, { waitUntil: "load" });
+  await page.fill("#qs-name", "Quick " + label);
+  await page.fill("#qs-email", "quick@example.com");
+  const tag = label + " " + mode;
+  if (mode === "empty") {
+    await page.click("#qSend"); await page.waitForTimeout(300);
+    const msg = await page.textContent("#qErr");
+    if (!/Tap to talk, or type/.test(msg)) flag("quick", tag + ": an empty send was not stopped: " + JSON.stringify(msg));
+    if (posts.some(p => p.action === "submit")) flag("quick", tag + ": an empty send posted");
+  } else {
+    if (mode === "voice") {
+      await page.click('[data-rec="voice"][data-act="start"]');
+      await page.waitForTimeout(3200);
+      const live = await page.evaluate(() => document.querySelector('[data-timer="voice"]').textContent);
+      const stopOk = await page.waitForSelector('[data-rec="voice"][data-act="stop"]', { state: "visible", timeout: 3000 }).then(() => true, () => false);
+      if (!stopOk) {
+        const why = await page.evaluate(() => ({ err: document.querySelector('[data-err="voice"]').textContent, url: location.href, secure: isSecureContext }));
+        flag("quick", tag + ": recording did not start: " + JSON.stringify(why) + " timer " + live);
+        await ctx.close(); return;
+      }
+      await page.click('[data-rec="voice"][data-act="stop"]');
+      await page.waitForFunction(() => /Voice note added/.test(document.getElementById("qVoice").textContent), null, { timeout: 8000 }).catch(() => {});
+      const said = await page.textContent("#qVoice");
+      if (!/Voice note added, 0:0[2-4]/.test(said)) flag("quick", tag + ": voice note not shown as added (timer read " + live + "): " + JSON.stringify(said));
+      if (putBytes < 5000) flag("quick", tag + ": the recording uploaded only " + putBytes + " bytes");
+      const up = posts.find(p => p.action === "upload-url");
+      if (!up || up.kind !== "audio" || up.company_url !== "") flag("quick", tag + ": upload-url body wrong: " + JSON.stringify(up));
+    } else {
+      await page.fill("#f-quick", "Answer my booking messages for me.");
+    }
+    await page.click("#qSend"); await page.waitForTimeout(600);
+    const sub = posts.find(p => p.action === "submit");
+    if (!sub) flag("quick", tag + ": no submit posted");
+    else {
+      const keys = Object.keys(sub.answers).sort().join(",");
+      const want = mode === "voice" ? "email,name" : "email,name,quick";
+      if (keys !== want) flag("quick", tag + ": answers posted " + keys + ", expected " + want);
+      if (mode === "voice" && !(sub.files.length === 1 && sub.files[0].kind === "audio" && sub.files[0].seconds >= 2)) flag("quick", tag + ": files posted " + JSON.stringify(sub.files));
+      if (mode === "type" && sub.files.length) flag("quick", tag + ": a typed note posted files");
+    }
+    const done = await page.evaluate(() => document.getElementById("qDone").classList.contains("on") && document.getElementById("qForm").hidden);
+    if (!done) flag("quick", tag + ": the Got it panel did not show");
+  }
+  errs.forEach(e => flag("console-error", tag + ": " + e.slice(0, 200)));
+  await ctx.close();
+}
+
 (async () => {
   const browser = await chromium.launch();
   await walk(browser, "desktop", { viewport: { width: 1280, height: 900 } });
   await walk(browser, "phone", { ...devices["iPhone 13"] });
   await browser.close();
+  // The quick start, with Chrome's fake microphone playing a real audio file
+  // (Rick, 9 Oct 2026: "To test the audio just grab a song or audio file").
+  const AUDIO = process.env.AUDIO;
+  const mic = await chromium.launch({ args: ["--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream", ...(AUDIO ? ["--use-file-for-fake-audio-capture=" + AUDIO] : [])] });
+  for (const [label, opts] of [["desktop", { viewport: { width: 1280, height: 900 } }], ["phone", { ...devices["iPhone 13"] }]])
+    for (const mode of ["voice", "type", "empty"]) await quickWalk(mic, label, opts, mode);
+  await mic.close();
   const kinds = Object.keys(findings);
-  if (!kinds.length) { console.log("intake sweep: clean (desktop + phone, " + QS.length + " questions, catalog copies identical)"); process.exit(0); }
+  if (!kinds.length) { console.log("intake sweep: clean (desktop + phone, " + QS.length + " questions, catalog copies identical; quick start: voice, typed and empty, desktop + phone)"); process.exit(0); }
   for (const k of kinds) { console.log("\n== " + k + " (" + findings[k].length + ")"); findings[k].slice(0, 20).forEach(d => console.log("  - " + d)); }
   process.exit(1);
 })();

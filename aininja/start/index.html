@@ -65,6 +65,49 @@ p b,li b{font-weight:800}
 .invite.on{display:block}
 .honest{margin-top:16px;font-size:14.5px;font-weight:700;color:var(--muted);max-width:62ch}
 
+/* the quick start (Rick, 9 Oct 2026: "shorten to ONLY what we need to start
+   work ... they can just hit record and GO") */
+.quick{padding:6px 0 40px}
+.qbox{background:#fff;border:2px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 16px 44px rgba(16,20,24,.08)}
+@media (max-width:640px){ .qbox{padding:20px 16px} }
+.qbox .row2{margin-top:0}
+.qbox .row2 .q{margin-top:0}
+@media (max-width:640px){ .qbox .row2 .q+.q{margin-top:22px} .q-hint:empty{display:none} }
+@media (max-width:420px){ .saved{display:none} }
+.qsteps{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.qsteps li{display:flex;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14px;font-weight:700;color:var(--ink2);line-height:1.35}
+.qsteps svg{flex:0 0 34px;width:34px;height:34px}
+@media (max-width:640px){ .qsteps{grid-template-columns:1fr} }
+.talk{margin-top:18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.talk-btn{display:inline-flex;align-items:center;gap:12px;font:inherit;font-weight:900;font-size:19px;color:#fff;background:var(--red);border:none;border-radius:999px;padding:16px 28px 16px 18px;cursor:pointer;box-shadow:0 10px 26px rgba(214,31,38,.32)}
+.talk-btn:hover{background:var(--red-d)}
+.talk-btn:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.talk-btn .mic{display:inline-flex;width:40px;height:40px;border-radius:50%;background:#fff;align-items:center;justify-content:center}
+.talk-btn.live{background:#101418;box-shadow:0 0 0 6px rgba(214,31,38,.25)}
+.talk-btn.live .mic{animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(.86)}}
+@media (prefers-reduced-motion:reduce){ .talk-btn.live .mic{animation:none} }
+.talk .timer{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:22px;color:var(--muted);min-width:3.2em}
+.talk .timer.live{color:var(--red)}
+.qvoice{display:none;margin-top:12px;font-size:15px;font-weight:800;color:var(--green)}
+.qvoice.on{display:block}
+.qvoice button{margin-left:10px;font:inherit;font-size:13px;font-weight:800;color:var(--muted);background:none;border:none;text-decoration:underline;cursor:pointer}
+.qtype{margin-top:22px}
+.qsend{margin-top:22px;width:100%;font-size:18px;padding:16px 26px}
+.qnote{margin-top:12px;font-size:13.5px;font-weight:700;color:var(--muted)}
+.qdone{display:none;text-align:center;padding:8px 4px}
+.qdone.on{display:block}
+.qdone h2{font-size:30px;font-weight:900;margin-top:12px}
+.qdone p{margin:10px auto 0;max-width:48ch;font-weight:600;color:var(--ink2)}
+/* the long sheet, folded */
+.full{border-top:1px solid var(--line)}
+.full>summary{list-style:none;cursor:pointer;max-width:900px;margin:0 auto;padding:26px 24px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:20px;color:var(--ink);display:flex;align-items:center;gap:12px}
+.full>summary::-webkit-details-marker{display:none}
+.full>summary .plus{flex:0 0 30px;width:30px;height:30px;border-radius:50%;border:2px solid var(--blue);color:var(--blue);display:inline-flex;align-items:center;justify-content:center;font-size:20px;line-height:1;transition:transform .2s ease}
+.full[open]>summary .plus{transform:rotate(45deg)}
+.full>summary small{display:block;font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:700;color:var(--muted);margin-top:2px}
+.full>summary:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+
 /* how it works */
 .how{padding:26px 0 8px}
 .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
@@ -139,7 +182,7 @@ p b,li b{font-weight:800}
 .count{text-align:right;font-size:12px;font-weight:700;color:var(--muted);margin-top:4px}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
 .row2 .q{display:grid;grid-template-rows:subgrid;grid-row:span 3;align-content:end}
-.row2 .q .q-hint{align-self:end}
+.row2 .q .q-hint{align-self:start;margin-top:5px}
 @media (max-width:640px){ .row2{grid-template-columns:1fr} .row2 .q{display:block} }
 
 /* recordings */
@@ -168,8 +211,10 @@ p b,li b{font-weight:800}
 .preview video,.preview audio{display:block;width:100%;border-radius:10px;background:#000}
 .preview audio{background:transparent}
 .preview video{max-height:320px}
-.live{margin-top:14px;display:none;width:100%;max-height:320px;border-radius:10px;background:#000}
-.live.on{display:block}
+/* video.live only: the timers and the quick start's Stop button carry .live
+   too, and an unscoped rule hid them while recording (found 9 Oct 2026) */
+video.live{margin-top:14px;display:none;width:100%;max-height:320px;border-radius:10px;background:#000}
+video.live.on{display:block}
 .rec-note{margin-top:10px;font-size:13px;font-weight:700;color:var(--muted)}
 .rec-err{display:none;margin-top:10px;font-size:14px;font-weight:800;color:var(--red-d)}
 .rec-err.on{display:block}
@@ -243,14 +288,53 @@ footer a:hover{color:var(--blue-d)}
 <header class="hero">
   <div class="wrap">
     <div class="k">The Intake &middot; Rick Tew's Digital Dojo</div>
-    <h1>Let's build your Dojo. <span class="c">First, tell me everything.</span></h1>
-    <p class="lede">This asks more of your time up front, 20 to 40 minutes, and it is exactly what gets your build going faster. The more you give me here, the less we go back and forth, and the sooner the first ninja is working for you. Skip anything you cannot answer. Your receipt will list what you skipped, so you can send it later.</p>
-    <p class="skip">Short on time, or not a typist? <a href="#recordings">Skip the buttons and record it instead.</a> There is a script to follow.</p>
+    <h1>Ready when you are. <span class="c">Tell me what you want done.</span></h1>
+    <p class="lede">Your name, your email, then talk or type. That is all I need to start.</p>
     <p class="invite" id="invite">You arrived by an invite link. This sheet files under your name.</p>
     <p class="invite" id="bought"></p>
-    <p class="honest">Honestly: I would rather sit in your office and watch the work happen. When that is not possible, this sheet plus a voice note and a short video is the next best thing. If we do meet, we still start from what you write here.</p>
   </div>
 </header>
+
+<!-- The quick start (Rick, 9 Oct 2026). Name and email feed the same answers
+     as the long sheet's two boxes; the note is the catalog's QUICK box; the
+     voice note uploads like any recording. One Send for the lot. -->
+<section class="quick" id="quick">
+  <div class="wrap">
+    <div class="qbox">
+      <div id="qForm">
+        <div class="row2">
+          <div class="q"><label class="q-label" for="qs-name">Your name<span class="req" aria-hidden="true">*</span></label><p class="q-hint"></p><div class="field"><input id="qs-name" type="text" autocomplete="name" maxlength="300" required></div></div>
+          <div class="q"><label class="q-label" for="qs-email">Your email<span class="req" aria-hidden="true">*</span></label><p class="q-hint">Where the receipt and my reply go.</p><div class="field"><input id="qs-email" type="email" autocomplete="email" maxlength="300" required></div></div>
+        </div>
+        <ol class="qsteps" aria-label="How to send a voice note">
+          <li><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="#d61f26"/><rect x="13.5" y="8" width="7" height="12" rx="3.5" fill="#fff"/><path d="M10.5 16.5a6.5 6.5 0 0 0 13 0M17 23v3.5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span>1. Tap the red button.</span></li>
+          <li><svg viewBox="0 0 34 34" aria-hidden="true"><path d="M5 8h24a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H14l-6 5v-5H5a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z" fill="#1e73bd"/><path d="M9 14h16M9 18h11" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span>2. Say what you want done. Ramble: the tidying is my side.</span></li>
+          <li><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="#1f9d55"/><path d="M10 17.5l5 5 9-10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3. Tap stop, then Send.</span></li>
+        </ol>
+        <div class="talk">
+          <button class="talk-btn" type="button" data-rec="voice" data-act="start"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="8.5" y="3" width="7" height="12" rx="3.5" fill="#d61f26"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3" stroke="#d61f26" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span>Tap to talk</button>
+          <button class="talk-btn live" type="button" data-rec="voice" data-act="stop" hidden><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><rect x="6" y="6" width="12" height="12" rx="2" fill="#d61f26"/></svg></span>Stop</button>
+          <span class="timer" data-timer="voice" aria-live="off">0:00</span>
+        </div>
+        <div data-preview="voice" hidden></div><div data-after="voice" hidden></div>
+        <p class="qvoice" id="qVoice" aria-live="polite"></p>
+        <p class="rec-err" data-err="voice" role="alert"></p>
+        <div class="qtype q" id="q-quick"><label class="q-label" for="f-quick">What do you want done?</label><p class="q-hint">Rather type than talk? A few lines is plenty.</p><div class="field"><textarea id="f-quick" rows="4" maxlength="5000"></textarea></div></div>
+        <button class="btn btn-blue qsend" id="qSend" type="button"><span aria-hidden="true">&#129399;</span> Send it to Rick</button>
+        <p class="send-err" id="qErr" role="alert"></p>
+        <p class="qnote">Stored privately and used to plan your build, nothing else. Check your inbox for the receipt after you send.</p>
+      </div>
+      <div class="qdone" id="qDone" tabindex="-1">
+        <span class="tick" aria-hidden="true">&#10003;</span>
+        <h2>Got it.</h2>
+        <p>Check your inbox for the receipt. Want to give me more while you are here? The full sheet is just below.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<details class="full" id="full">
+<summary><span class="plus" aria-hidden="true">+</span><span>Want to give me more now? Open the full sheet.<small>Nine short sections, recordings and files. 20 to 40 minutes, and the more you give, the less we go back and forth.</small></span></summary>
 
 <section class="how">
   <div class="wrap">
@@ -258,7 +342,7 @@ footer a:hover{color:var(--blue-d)}
       <div class="how-card"><div class="n">1</div><h3>Tap the buttons</h3><p>Nine short sections. Most answers are one tap. About ten minutes.</p></div>
       <div class="how-card"><div class="n">2</div><h3>Type what the buttons missed</h3><p>A normal day, what goes wrong, what done looks like. Write like you talk.</p></div>
       <div class="how-card"><div class="n">3</div><h3>Record it</h3><p>A voice note, a video of the desk, a screen recording of the work.</p></div>
-      <div class="how-card"><div class="n">4</div><h3>Press send</h3><p>A receipt lands in your inbox in a minute. Rick reads the whole thing himself.</p></div>
+      <div class="how-card"><div class="n">4</div><h3>Press send</h3><p>Check your inbox for the receipt. It lists what landed and what you skipped.</p></div>
     </div>
   </div>
 </section>
@@ -379,7 +463,7 @@ footer a:hover{color:var(--blue-d)}
 <section class="send-sec" id="send">
   <div class="wrap">
     <h2>One press. <span class="c">Then I get to work.</span></h2>
-    <p class="p">Everything above goes to me as one sheet: the buttons, your words, the recordings. A receipt lands in your inbox in a minute listing what arrived and what you skipped. Rick reads every intake himself.</p>
+    <p class="p">Everything above goes to me as one sheet: the buttons, your words, the recordings. Check your inbox for the receipt: it lists what arrived and what you skipped.</p>
     <div class="send-box">
       <div id="sendForm">
         <div class="sum">
@@ -388,7 +472,7 @@ footer a:hover{color:var(--blue-d)}
           <div><b id="sumF">0</b><span>files</span></div>
         </div>
         <p class="gaps" id="gaps"></p>
-        <p class="consent">What happens to this: the sheet and the recordings are stored privately, in a folder only Rick's Dojo can open, and are used for one thing: planning and building your system. Rick reads them; his review agent drafts the follow-up questions, and a human presses every send. Ask for it deleted at any time by replying to your receipt. Nothing here is a contract: that comes later, in writing, after we have talked.</p>
+        <p class="consent">What happens to this: the sheet and the recordings are stored privately, in a folder only Rick's Dojo can open, and are used for one thing: planning and building your system. A review agent drafts the follow-up questions, and a person presses every send. Ask for it deleted at any time by replying to your receipt. Nothing here is a contract: that comes later, in writing, after we have talked.</p>
         <button class="btn btn-blue send-btn" id="sendBtn" type="button"><span aria-hidden="true">&#129399;</span> Send my intake to Rick</button>
         <p class="send-err" id="sendErr" role="alert"></p>
       </div>
@@ -402,6 +486,8 @@ footer a:hover{color:var(--blue-d)}
     </div>
   </div>
 </section>
+
+</details>
 
 <!-- The trap. Off-screen, hidden from assistive tech and tab order. A person
      never fills it; a bot fills every field it finds. Named company_url and
@@ -489,6 +575,9 @@ footer a:hover{color:var(--blue-d)}
       var lab=el("label","q-label",txt(q.label)+(q.required?'<span class="req" aria-hidden="true">*</span>':''));
       box.appendChild(lab);
       if(q.hint) box.appendChild(el("p","q-hint",txt(q.hint)));
+      /* a field without a hint still gets an empty slot, so the two boxes of a
+         desktop pair sit on the same line (the "messy" rows, 9 Oct 2026) */
+      else if(q.type!=="long"&&q.type!=="single"&&q.type!=="multi") box.appendChild(el("p","q-hint"));
       if(q.explain){
         var d=el("details","explain"); d.innerHTML="<summary>"+txt(q.explain.title)+"</summary>";
         var dl=el("dl"); q.explain.items.forEach(function(it){ dl.appendChild(el("dt",null,txt(it[0]))); dl.appendChild(el("dd",null,txt(it[1]))); });
@@ -575,6 +664,34 @@ footer a:hover{color:var(--blue-d)}
     progress(); saveSoon();
   });
 
+  /* ---- the quick start: its name and email ARE the sheet's, both ways ---- */
+  var qName=document.getElementById("qs-name"), qEmail=document.getElementById("qs-email"), qText=document.getElementById("f-quick");
+  function syncQuick(){ qName.value=state.answers.name||""; qEmail.value=state.answers.email||""; qText.value=state.answers.quick||""; }
+  syncQuick();
+  [[qName,"name"],[qEmail,"email"],[qText,"quick"]].forEach(function(pair){
+    pair[0].addEventListener("input",function(){
+      var v=pair[0].value.trim(); if(v) state.answers[pair[1]]=v; else delete state.answers[pair[1]];
+      var twin=document.getElementById("f-"+pair[1]); if(twin&&twin!==pair[0]) twin.value=pair[0].value;
+      pair[0].closest(".field").classList.remove("bad"); saveSoon();
+    });
+  });
+  main.addEventListener("input",function(e){ var id=e.target.dataset&&e.target.dataset.q; if(id==="name") qName.value=e.target.value; if(id==="email") qEmail.value=e.target.value; });
+  /* someone who already started the long sheet finds it open */
+  if(Object.keys(state.answers).some(function(k){ return ["name","email","quick"].indexOf(k)===-1; })) document.getElementById("full").open=true;
+  var qVoice=document.getElementById("qVoice");
+  function showVoice(){
+    var v=state.files.filter(function(f){ return f.quick; });
+    if(!v.length){ qVoice.classList.remove("on"); qVoice.innerHTML=""; return; }
+    var secs=v.reduce(function(a,f){ return a+(f.seconds||0); },0);
+    qVoice.innerHTML="&#10003; "+(v.length===1?"Voice note":v.length+" voice notes")+" added, "+fmt(secs)+'. Tap to talk again to add more.<button type="button" id="qVoiceX">Remove</button>';
+    qVoice.classList.add("on");
+    document.getElementById("qVoiceX").addEventListener("click",function(){
+      state.files=state.files.filter(function(f){ return !f.quick; });
+      [].slice.call(list.querySelectorAll("li")).forEach(function(li){ if(v.some(function(f){ return f.path===li.dataset.path; })) li.remove(); });
+      renderEmpty(); progress(); save(); showVoice();
+    });
+  }
+
   /* ---- progress ---- */
   var barFill=document.getElementById("barFill"), cntEl=document.getElementById("cnt");
   function answeredCount(){ var n=0; QS.forEach(function(q){ if(state.answers[q.id]!==undefined) n++; }); return n; }
@@ -614,14 +731,14 @@ footer a:hover{color:var(--blue-d)}
   function showErr(kind,msg){ var e=document.querySelector('[data-err="'+kind+'"]'); e.textContent=msg||""; e.classList.toggle("on",!!msg); }
   function fmt(s){ var m=Math.floor(s/60), r=s%60; return m+":"+(r<10?"0":"")+r; }
   function ctl(kind,act){ return document.querySelector('[data-rec="'+kind+'"][data-act="'+act+'"]'); }
-  var MAXSEC={audio:3600,video:300,screen:300};
+  var MAXSEC={audio:3600,voice:1800,video:300,screen:300};
   /* the storage cap is 50 MB a file: stop a recording just short of it */
   var MAXBYTES=46*1024*1024;
 
   function start(kind){
     showErr(kind,"");
     var get;
-    if(kind==="audio") get=navigator.mediaDevices.getUserMedia({audio:true});
+    if(kind==="audio"||kind==="voice") get=navigator.mediaDevices.getUserMedia({audio:true});
     else if(kind==="video") get=navigator.mediaDevices.getUserMedia({video:{facingMode:"environment",width:{ideal:1280}},audio:true});
     else get=navigator.mediaDevices.getDisplayMedia({video:true,audio:true}).then(function(disp){
       return navigator.mediaDevices.getUserMedia({audio:true}).then(function(mic){
@@ -639,8 +756,9 @@ footer a:hover{color:var(--blue-d)}
       },function(){ return disp; });
     });
     get.then(function(stream){
-      var mime=pickMime(kind==="audio"?"audio":"video");
-      var opts=kind==="audio"?{audioBitsPerSecond:64000}:{videoBitsPerSecond:1000000,audioBitsPerSecond:64000};
+      var aud=kind==="audio"||kind==="voice";
+      var mime=pickMime(aud?"audio":"video");
+      var opts=aud?{audioBitsPerSecond:64000}:{videoBitsPerSecond:1000000,audioBitsPerSecond:64000};
       if(mime) opts.mimeType=mime;
       var mr; try{ mr=new MediaRecorder(stream,opts); }catch(e){ try{ mr=new MediaRecorder(stream,mime?{mimeType:mime}:{}); }catch(e2){ mr=new MediaRecorder(stream); } }
       var chunks=[], t0=Date.now(), timer=document.querySelector('[data-timer="'+kind+'"]');
@@ -651,11 +769,17 @@ footer a:hover{color:var(--blue-d)}
         clearInterval(r.tick); timer.classList.remove("live");
         stopTracks(stream);
         var live=document.querySelector('[data-live="'+kind+'"]'); if(live){ live.srcObject=null; live.classList.remove("on"); }
-        var type=mr.mimeType||mime||(kind==="audio"?"audio/webm":"video/webm");
+        var type=mr.mimeType||mime||(aud?"audio/webm":"video/webm");
         var blob=new Blob(chunks,{type:type});
         r.blob=blob; r.seconds=Math.round((Date.now()-t0)/1000);
+        /* the quick start keeps its voice note on Stop: no preview, no extra press */
+        if(kind==="voice"){
+          ctl(kind,"start").hidden=false; ctl(kind,"stop").hidden=true;
+          if(blob.size<1000){ showErr(kind,"That recording came out empty. Check the microphone permission and try again."); return; }
+          keep(kind); return;
+        }
         var pv=document.querySelector('[data-preview="'+kind+'"]'); pv.innerHTML="";
-        var media=document.createElement(kind==="audio"?"audio":"video"); media.controls=true; media.src=URL.createObjectURL(blob); if(kind!=="audio") media.setAttribute("playsinline","");
+        var media=document.createElement(aud?"audio":"video"); media.controls=true; media.src=URL.createObjectURL(blob); if(kind!=="audio") media.setAttribute("playsinline","");
         pv.appendChild(media); pv.classList.add("on");
         document.querySelector('[data-after="'+kind+'"]').hidden=false;
         ctl(kind,"start").hidden=false; ctl(kind,"stop").hidden=true;
@@ -670,6 +794,7 @@ footer a:hover{color:var(--blue-d)}
       ctl(kind,"start").hidden=true; ctl(kind,"stop").hidden=false;
       document.querySelector('[data-after="'+kind+'"]').hidden=true;
       document.querySelector('[data-preview="'+kind+'"]').classList.remove("on");
+      if(kind==="voice") qVoice.classList.remove("on");
     }).catch(function(err){
       var msg=/NotAllowed|Permission|denied/i.test(String(err))?"The browser did not get permission. Allow the microphone (and camera) when it asks, then press record again.":"Could not start recording here ("+String(err&&err.name||err)+"). Record with your phone's own app and upload the file under Files.";
       showErr(kind,msg);
@@ -682,13 +807,16 @@ footer a:hover{color:var(--blue-d)}
     var pv=document.querySelector('[data-preview="'+kind+'"]'); pv.innerHTML=""; pv.classList.remove("on");
     document.querySelector('[data-after="'+kind+'"]').hidden=true;
     document.querySelector('[data-timer="'+kind+'"]').textContent="0:00";
+    if(kind==="voice") showVoice();
   }
   function keep(kind){
     var r=recs[kind]; if(!r||!r.blob) return;
-    var counts=state.files.filter(function(f){return f.kind===kind;}).length+1;
-    var name=(kind==="audio"?"voice-note-":kind==="video"?"video-":"screen-")+counts+"."+ext(r.blob.type);
-    upload(r.blob,name,kind,r.seconds);
+    var upKind=kind==="voice"?"audio":kind;
+    var counts=state.files.filter(function(f){return f.kind===upKind;}).length+1;
+    var name=(upKind==="audio"?"voice-note-":upKind==="video"?"video-":"screen-")+counts+"."+ext(r.blob.type);
+    var blob=r.blob, secs=r.seconds;
     discard(kind);
+    upload(blob,name,upKind,secs,kind==="voice");
   }
   document.addEventListener("click",function(e){
     var b=e.target.closest("[data-rec]"); if(!b) return;
@@ -714,14 +842,16 @@ footer a:hover{color:var(--blue-d)}
   state.files.forEach(function(f){ var li=row(f); li.querySelector(".fp").classList.add("ok"); });
   renderEmpty();
 
-  function upload(blob,name,kind,seconds){
-    showErr(kind==="screen"||kind==="video"||kind==="audio"?kind:"file","");
-    if(blob.size>C.LIMITS.fileBytes){ showErr(kind,"That one is over 50 MB. Trim it, split it, or paste a link to it in the Links box above."); return; }
-    if(state.files.length>=C.LIMITS.files){ showErr(kind,"That is the limit of "+C.LIMITS.files+" files on one sheet. Send the rest by reply to your receipt."); return; }
-    var f={name:name,size:blob.size,kind:kind,seconds:seconds||0,path:"",pending:true};
+  function upload(blob,name,kind,seconds,quick){
+    var ek=quick?"voice":(kind==="screen"||kind==="video"||kind==="audio"?kind:"file");
+    showErr(ek,"");
+    if(blob.size>C.LIMITS.fileBytes){ showErr(ek,"That one is over 50 MB. Trim it, split it, or paste a link to it in the Links box above."); return; }
+    if(state.files.length>=C.LIMITS.files){ showErr(ek,"That is the limit of "+C.LIMITS.files+" files on one sheet. Send the rest by reply to your receipt."); return; }
+    var f={name:name,size:blob.size,kind:kind,seconds:seconds||0,path:"",pending:true,quick:!!quick};
+    if(quick){ qVoice.textContent="Adding your voice note..."; qVoice.classList.add("on"); }
     var li=row(f), bar=li.querySelector(".fp"), fill=bar.querySelector("i"); renderEmpty();
-    fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"upload-url",intake:state.intake,kind:kind,name:name,size:blob.size,mime:blob.type})})
-    .then(function(res){ if(res.status===413) throw new Error("too_big"); if(!res.ok) throw new Error("endpoint "+res.status); return res.json(); })
+    fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"upload-url",intake:state.intake,kind:kind,name:name,size:blob.size,mime:blob.type,company_url:document.getElementById("company_url").value})})
+    .then(function(res){ if(res.status===413) throw new Error("too_big"); if(res.status===429) throw new Error("busy"); if(!res.ok) throw new Error("endpoint "+res.status); return res.json(); })
     .then(function(d){
       if(!d||!d.url||!d.path) throw new Error("no url");
       f.path=d.path; li.dataset.path=d.path;
@@ -738,15 +868,16 @@ footer a:hover{color:var(--blue-d)}
     })
     .then(function(){
       f.pending=false; delete f.xhr; bar.classList.add("ok");
-      state.files.push({name:f.name,size:f.size,kind:f.kind,seconds:f.seconds,path:f.path});
-      progress(); save();
+      state.files.push({name:f.name,size:f.size,kind:f.kind,seconds:f.seconds,path:f.path,quick:f.quick||undefined});
+      progress(); save(); if(f.quick) showVoice();
     })
     .catch(function(err){
       if(String(err.message)==="aborted") return;
       bar.classList.add("bad");
-      var m=/too_big/.test(err.message)?"That file is over the 50 MB limit. Trim it, split it, or paste a link to it in the Links box above.":"That upload did not finish. Check your connection and add it again.";
+      var m=/too_big/.test(err.message)?"That file is over the 50 MB limit. Trim it, split it, or paste a link to it in the Links box above.":/busy/.test(err.message)?"Too many uploads from here in the last hour. Type it in the box instead, or try again later.":"That upload did not finish. Check your connection and add it again.";
       li.querySelector(".fm").textContent=m; li.querySelector(".fm").style.color="#a91218";
-      showErr(kind,m);
+      if(f.quick) showVoice();
+      showErr(ek,m);
     });
   }
   var fileInput=document.getElementById("fileInput"), drop=document.getElementById("drop");
@@ -759,19 +890,24 @@ footer a:hover{color:var(--blue-d)}
   /* ---- send ---- */
   var sendBtn=document.getElementById("sendBtn"), sendErr=document.getElementById("sendErr");
   function fail(m){ sendErr.textContent=m; sendErr.classList.add("on"); }
-  sendBtn.addEventListener("click",function(){
-    sendErr.classList.remove("on");
+  var qSend=document.getElementById("qSend"), qErr=document.getElementById("qErr");
+  function send(fromQuick){
+    var btn=fromQuick?qSend:sendBtn, errEl=fromQuick?qErr:sendErr;
+    function bounce(m){ errEl.textContent=m; errEl.classList.add("on"); }
+    errEl.classList.remove("on");
     var name=(state.answers.name||"").trim(), email=(state.answers.email||"").trim();
     var bad=null;
     if(!name) bad="name"; else if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) bad="email";
     if(bad){
-      var fld=document.getElementById("f-"+bad); fld.closest(".field").classList.add("bad");
-      fail(bad==="name"?"Your name, so I know who I am writing to.":"An email address that works, or the receipt and the plan have nowhere to go.");
+      var fld=fromQuick?(bad==="name"?qName:qEmail):document.getElementById("f-"+bad); fld.closest(".field").classList.add("bad");
+      bounce(bad==="name"?"Your name, so I know who I am writing to.":"An email address that works, or the receipt and the plan have nowhere to go.");
       fld.scrollIntoView({block:"center"}); setTimeout(function(){ fld.focus({preventScroll:true}); },300); return;
     }
+    var onlyQuick=Object.keys(state.answers).every(function(k){ return ["name","email","quick"].indexOf(k)!==-1; });
+    if(onlyQuick&&!state.answers.quick&&!state.files.length){ bounce("Tap to talk, or type a few lines, so I know what you want done."); return; }
     var pending=state.files.filter(function(f){return f.pending;}).length||list.querySelectorAll(".fp:not(.ok):not(.bad)").length;
-    if(pending){ fail("A recording is still uploading. Give it a moment, then press send again."); return; }
-    sendBtn.disabled=true; sendBtn.textContent="Sending...";
+    if(pending){ bounce("A recording is still uploading. Give it a moment, then press send again."); return; }
+    btn.disabled=true; btn.textContent="Sending...";
     var payload={action:"submit",intake:state.intake,key:KEY,elapsedMs:Date.now()-shownAt,company_url:document.getElementById("company_url").value,
       answers:state.answers,files:state.files.map(function(f){ return {path:f.path,name:f.name,size:f.size,kind:f.kind,seconds:f.seconds||0}; }),source:"page",
       purchase:state.purchase||null};
@@ -781,15 +917,21 @@ footer a:hover{color:var(--blue-d)}
       var rec=state.files.filter(function(f){return f.kind!=="file";}).length, docs=state.files.length-rec;
       document.getElementById("doneFiles").textContent=(rec?rec+" recording"+(rec===1?"":"s"):"no recordings")+(docs?" and "+docs+" file"+(docs===1?"":"s"):"");
       document.getElementById("sendForm").hidden=true;
-      var d=document.getElementById("done"); d.classList.add("on"); d.focus();
+      document.getElementById("qForm").hidden=true;
+      document.getElementById("done").classList.add("on");
+      var qd=document.getElementById("qDone"); qd.classList.add("on");
+      (fromQuick?qd:document.getElementById("done")).focus();
       try{ localStorage.removeItem(STORE); }catch(e){}
       savedEl.textContent="Sent";
     })
     .catch(function(){
-      sendBtn.disabled=false; sendBtn.innerHTML='<span aria-hidden="true">&#129399;</span> Send my intake to Rick';
-      fail("That did not go through. Your answers are still saved on this device. Check your connection and press send again.");
+      btn.disabled=false; btn.innerHTML=fromQuick?'<span aria-hidden="true">&#129399;</span> Send it to Rick':'<span aria-hidden="true">&#129399;</span> Send my intake to Rick';
+      bounce("That did not go through. Your answers are still saved on this device. Check your connection and press send again.");
     });
-  });
+  }
+  sendBtn.addEventListener("click",function(){ send(false); });
+  qSend.addEventListener("click",function(){ send(true); });
+  showVoice();
 
   /* the rail's chips and the gap links are far jumps: instant, not smooth */
   document.addEventListener("click",function(e){

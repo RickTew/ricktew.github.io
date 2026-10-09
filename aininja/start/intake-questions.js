@@ -287,6 +287,12 @@
     }
   ];
 
+  /* The quick start (Rick, 9 Oct 2026: "shorten to ONLY what we need to start
+     work as most people HATE filling out forms and just want to GO GO GO").
+     Name and email, then this box or a voice note. It sits outside SECTIONS so
+     the long sheet does not show it twice; the endpoint reads it beside them. */
+  var QUICK = { id: "quick", label: "What do you want done?", hint: "Rather type than talk? A few lines is plenty.", type: "long" };
+
   /* Recording kinds the page offers and the endpoint accepts. */
   var MEDIA = {
     audio:  { label: "Voice note", accept: "audio/*" },
@@ -306,5 +312,5 @@
     return out;
   }
 
-  return { SECTIONS: SECTIONS, SEATS: SEATS, MEDIA: MEDIA, LIMITS: LIMITS, allQuestions: allQuestions };
+  return { SECTIONS: SECTIONS, SEATS: SEATS, QUICK: QUICK, MEDIA: MEDIA, LIMITS: LIMITS, allQuestions: allQuestions };
 });
