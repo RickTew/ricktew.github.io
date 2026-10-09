@@ -2,15 +2,14 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<!-- Parked draft, hidden from search (Rick, 9 Oct 2026); opens by its link for review. -->
+<!-- A parked piece, hidden from search. Rick, 9 Oct 2026, in the /redesign/ review:
+     keep the clickable "Rick Tew universe" graph from the July "AI to HI" page
+     (work-with-me.html, deleted the same day) as a piece for a later page. Lifted
+     whole: its styles, the section and its script. The node texts are July's and
+     need a fact check before this goes on any live page. -->
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Work with Rick Tew: AI to HI</title>
-<meta name="description" content="Rick Tew builds apps, tools, and systems with AI so your team can do more human interaction. AI to HI. From Rick, Tew you.">
-<meta property="og:title" content="Work with Rick Tew: AI to HI">
-<meta property="og:description" content="I use AI to build what your business needs, fast, so your people can do more of what only people can do.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://ricktew.com/work-with-me.html">
+<title>The Rick Tew universe (parked piece)</title>
 <style>
 /* ============ TOKENS: dark = black + blue/white/red, light = white + blue/black/red ============ */
 :root{
@@ -176,76 +175,14 @@ footer{border-top:1px solid var(--border);background:var(--surface)}
 
 <header class="nav">
   <div class="nav-in">
-    <a class="brand" href="/">Rick<span>.</span>Tew <span class="f">/ AI to HI</span></a>
+    <a class="brand" href="/">Rick<span>.</span>Tew <span class="f">/ parked piece</span></a>
     <div class="nav-actions">
-      <a href="/">Home</a>
-      <a href="/work/">Work</a>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">◐</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">&#9680;</button>
     </div>
   </div>
 </header>
 
 <main>
-
-  <!-- ============ HERO: THE IMAGE MAP ============ -->
-  <section class="map">
-    <div class="wrap" style="display:flex;flex-direction:column;flex:1;position:relative">
-      <div class="map-head">
-        <div>
-          <p class="eyebrow">AI to HI</p>
-          <h1>Your AI, so your team can do more <em>Human Interaction</em>.</h1>
-        </div>
-        <p class="hint"><b>Tap a node</b> to jump to it. Six questions, one page. From Rick, Tew you.</p>
-      </div>
-
-      <nav class="constellation" aria-label="Page map">
-        <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <line x1="50" y1="50" x2="18" y2="20"></line>
-          <line x1="50" y1="50" x2="50" y2="12"></line>
-          <line x1="50" y1="50" x2="82" y2="20"></line>
-          <line x1="50" y1="50" x2="82" y2="80"></line>
-          <line x1="50" y1="50" x2="50" y2="88"></line>
-          <line x1="50" y1="50" x2="18" y2="80"></line>
-        </svg>
-
-        <a class="mnode center n-c" href="#universe">
-          <span class="rt">RICK <b>TEW</b></span>
-          <span class="lbl">AI Ninja · Explore the universe</span>
-        </a>
-        <a class="mnode n-1" href="#who" style="--nc:var(--yellow)">
-          <span class="num">01 · WHO</span>
-          <span class="t">A ninja who ships</span>
-          <span class="d">30 years teaching, now building with AI</span>
-        </a>
-        <a class="mnode n-2" href="#what" style="--nc:var(--orange)">
-          <span class="num">02 · WHAT</span>
-          <span class="t">What I build</span>
-          <span class="d">Apps, games, AI systems, content</span>
-        </a>
-        <a class="mnode n-3" href="#when" style="--nc:var(--green)">
-          <span class="num">03 · WHEN</span>
-          <span class="t">Honest timelines</span>
-          <span class="d">Days to demo, months to done</span>
-        </a>
-        <a class="mnode n-4" href="#where" style="--nc:var(--purple)">
-          <span class="num">04 · WHERE</span>
-          <span class="t">Anywhere you are</span>
-          <span class="d">American builder, worldwide reach</span>
-        </a>
-        <a class="mnode n-5" href="#why" style="--nc:var(--red)">
-          <span class="num">05 · WHY</span>
-          <span class="t">AI to HI</span>
-          <span class="d">More human interaction, by design</span>
-        </a>
-        <a class="mnode n-6" href="#how" style="--nc:var(--cyan)">
-          <span class="num">06 · HOW</span>
-          <span class="t">Start with one email</span>
-          <span class="d">One problem, one first version</span>
-        </a>
-      </nav>
-    </div>
-  </section>
-
   <!-- ============ UNIVERSE GRAPH ============ -->
   <section class="uni" id="universe">
     <div class="wrap">
@@ -266,139 +203,7 @@ footer{border-top:1px solid var(--border);background:var(--surface)}
       <p class="uni-hint">Drag nodes to play. Click the colored chips to filter a branch. This map grows every month.</p>
     </div>
   </section>
-
-  <!-- ============ WHO ============ -->
-  <section class="section" id="who">
-    <div class="wrap">
-      <div class="sec-top">
-        <div><p class="w-tag" style="--sc:var(--yellow)">01 · Who</p><h2>A ninja who ships software.</h2></div>
-        <a class="back" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">↑ Map</a>
-      </div>
-      <p>I'm Rick Tew. I've taught martial arts for 30+ years, founded NinjaGym in Thailand, wrote the five-book "Be a Black Belt in What You Do" series, and created WinJitsu, a mental martial art for getting things done. I've been building my own websites, videos, and courses that whole time, because when you run camps on four continents, you learn to do everything yourself.</p>
-      <p>Then AI changed the math. The nerd half of the ninja nerd took over. In the past two years I've shipped <strong>a gym management system with payments, a hostel booking platform, two mobile apps, five games, a personal AI command center, and the 200-page illustrated book that goes with my curriculum</strong>. Working products with real users and real payments.</p>
-      <p>The discipline came from the dojo. The speed comes from AI.</p>
-    </div>
-  </section>
-
-  <!-- ============ WHAT ============ -->
-  <section class="section" id="what">
-    <div class="wrap">
-      <div class="sec-top">
-        <div><p class="w-tag" style="--sc:var(--orange)">02 · What</p><h2>The kind of work you can hand me.</h2></div>
-        <a class="back" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">↑ Map</a>
-      </div>
-      <p>Everything below is something I have built and shipped for real users.</p>
-      <div class="cols">
-        <div class="card" style="--cc:var(--purple)">
-          <h3>Web apps and PWAs</h3>
-          <p>Full products with accounts, databases, and payments. Booking systems, member portals, dashboards, internal tools.</p>
-          <span class="proof">Proof: NinjaGym front desk system, nerdhostel.com bookings, both taking real payments (Stripe and Thai PromptPay).</span>
-        </div>
-        <div class="card" style="--cc:var(--orange)">
-          <h3>Mobile apps</h3>
-          <p>iOS and Android apps, from learning apps to games, built and pushed to stores.</p>
-          <span class="proof">Proof: The Adroit Swordsman vocabulary app, Tew's Total Recall memory app.</span>
-        </div>
-        <div class="card" style="--cc:var(--red)">
-          <h3>Websites and landing pages</h3>
-          <p>Fast, modern, secure sites. Marketing pages, proposals, bilingual content, the page you're reading right now.</p>
-          <span class="proof">Proof: ricktew.com, hand-built, no template.</span>
-        </div>
-        <div class="card" style="--cc:var(--cyan)">
-          <h3>AI inside your business</h3>
-          <p>Practical AI workflows: content pipelines, automated dispatch of tasks from notes, AI-generated art and books, custom assistants for your team.</p>
-          <span class="proof">Proof: my own AI command center processes my notes into finished work overnight.</span>
-        </div>
-        <div class="card" style="--cc:var(--green)">
-          <h3>Games and interactive content</h3>
-          <p>Web, desktop, and iOS games. Also great for gamified training, quizzes, and courses.</p>
-          <span class="proof">Proof: dungeonhole.com plus four more in development, one headed to Steam.</span>
-        </div>
-        <div class="card" style="--cc:var(--yellow)">
-          <h3>Books, courses, and content</h3>
-          <p>Illustrated books, curriculum, video content, and the systems that turn one piece of content into many.</p>
-          <span class="proof">Proof: five published books, a 200-page illustrated martial science guide, 30 years of course material.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ WHEN ============ -->
-  <section class="section" id="when">
-    <div class="wrap">
-      <div class="sec-top">
-        <div><p class="w-tag" style="--sc:var(--green)">03 · When</p><h2>Honest timelines. Fast starts, real finishes.</h2></div>
-        <a class="back" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">↑ Map</a>
-      </div>
-      <p>AI makes the first version shockingly fast. It does not make the last ten percent free, and anyone who tells you otherwise is selling something. The pattern from my own projects:</p>
-      <dl class="timeline">
-        <div class="tl"><dt>A day or two</dt><dd>A working app, landing page, or prototype you can click through and show your team. People react to something real instead of debating a spec.</dd></div>
-        <div class="tl"><dt>1 to 2 weeks</dt><dd>A polished tool or site, ready for real people: accounts, content, mobile-friendly, deployed.</dd></div>
-        <div class="tl"><dt>1 to 3 months</dt><dd>A full product with backend, payments, and edge cases handled. Most of the work hides here.</dd></div>
-        <div class="tl"><dt>Ongoing</dt><dd>The mode that works best: I embed with your team like a part-time technical partner, shipping every week. This is what I do now for the NEWNEI team.</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <!-- ============ WHERE ============ -->
-  <section class="section" id="where">
-    <div class="wrap">
-      <div class="sec-top">
-        <div><p class="w-tag" style="--sc:var(--purple)">04 · Where</p><h2>Wherever you are. I've worked that way for decades.</h2></div>
-        <a class="back" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">↑ Map</a>
-      </div>
-      <p>I'm an American, born and raised in California, and I work with people everywhere. I've run programs across the US, Latin America, Europe, and Asia, and I own a business in Thailand, so remote, async, and across time zones is how I've always worked. You get updates you can click, live links instead of status reports, and everything I build for you belongs to you.</p>
-    </div>
-  </section>
-
-  <!-- ============ WHY ============ -->
-  <section class="section" id="why">
-    <div class="wrap">
-      <div class="sec-top">
-        <div><p class="w-tag" style="--sc:var(--red)">05 · Why</p><h2>AI to HI: use the machine so your people can be human.</h2></div>
-        <a class="back" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">↑ Map</a>
-      </div>
-      <p>Consultants keep pitching AI as a way to replace people. I think that's backwards. The businesses I want to work with win on <strong>human interaction</strong>: coaching, healing, teaching, hospitality, community. For them, an hour spent fighting software is an hour stolen from the thing customers pay for.</p>
-      <p>That's the deal I offer. <strong>I'm your AI, so your team can do more HI.</strong> I take the technical weight: the app, the automation, the content pipeline, the booking system. Your people get their hours back and spend them face to face with the humans they serve.</p>
-      <ul class="why-list">
-        <li><strong>You skip the hiring problem.</strong> One person who has already shipped, instead of recruiting a dev team or gambling on an agency.</li>
-        <li><strong>You see it before you commit.</strong> First working version in days. If it misses, you've risked days instead of quarters.</li>
-        <li><strong>You get a builder who has run businesses.</strong> I've done payroll, leases, marketing, and customer complaints. I build for the owner, because I've been one.</li>
-        <li><strong>You keep your soul.</strong> Each tool I build aims at one target: more time with your customers.</li>
-        <li><strong>You get the discipline.</strong> Thirty years of martial arts means I show up, finish, and don't drop things. Ask the team I already do this for.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============ HOW / CTA ============ -->
-  <section class="cta" id="how">
-    <div class="wrap">
-      <p class="w-tag" style="--sc:var(--cyan)">06 · How</p>
-      <h2>Start small. Start now.</h2>
-      <p>Send me one problem that eats your team's time, or one idea you've been sitting on. I'll tell you straight what AI can do about it and show you a first version fast. If it's a fit, we set up a simple ongoing arrangement. If not, you've spent one email.</p>
-      <div class="cta-actions">
-        <a href="/aininja/#opt-8c" class="btn btn-blue">Email Rick</a>
-        <a href="https://linkedin.com/in/ricktew" target="_blank" rel="noopener" class="btn btn-line">Connect on LinkedIn</a>
-      </div>
-      <p class="signoff">From Rick, <em>Tew you</em>.</p>
-    </div>
-  </section>
-
 </main>
-
-<footer>
-  <div class="foot-in">
-    <b>Rick Tew</b>
-    <nav class="foot-social" aria-label="Social media links">
-      <a href="https://x.com/ricktew" target="_blank" rel="noopener">X</a>
-      <a href="https://instagram.com/ricktew" target="_blank" rel="noopener">IG</a>
-      <a href="https://facebook.com/ricktew" target="_blank" rel="noopener">FB</a>
-      <a href="https://linkedin.com/in/ricktew" target="_blank" rel="noopener">LI</a>
-      <a href="https://youtube.com/@ricktew" target="_blank" rel="noopener">YT</a>
-    </nav>
-    <span class="foot-copy">© 2026 Rick Tew</span>
-  </div>
-</footer>
 
 <script>
 /* ============ THEME ============ */
@@ -461,7 +266,7 @@ footer{border-top:1px solid var(--border);background:var(--surface)}
     {id:'asbooks',cat:'books',label:'Adroit Swordsman Books',r:10,parent:'books',wow:'Four print vocabulary books that pair with the app. Kids read them, then play them.'},
 
     {id:'aitohi',cat:'aitohi',label:'AI to HI',r:14,parent:'rick',wow:'The offer: Rick embeds with your team as your AI builder, so your people spend their hours on Human Interaction. Already running with the NEWNEI team.',link:'/aininja/#opt-8c'},
-    {id:'you',cat:'aitohi',label:'Your Company?',r:11,parent:'aitohi',wow:'This node is open. One message through the letter slot starts it. From Rick, Tew you.',link:'/aininja/#opt-8c'}
+    {id:'you',cat:'aitohi',label:'Your Company?',r:11,parent:'aitohi',wow:'This node is open. One message through the mailbox starts it. From Rick, Tew you.',link:'/aininja/#opt-8c'}
   ];
 
   var canvas=document.getElementById('uniCanvas'),ctx=canvas.getContext('2d');
