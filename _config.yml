@@ -17,3 +17,8 @@ exclude:
   - tests
   # Persona playtest brief and reports. Not pages.
   - playtest
+  # The parked redesign's working notes (Rick, 9 Oct 2026: hide the parked
+  # pages from Google; the notes are not pages at all). The pages themselves
+  # stay served, noindex, for his review.
+  - redesign/AUDIT.md
+  - redesign/CONTENT.md

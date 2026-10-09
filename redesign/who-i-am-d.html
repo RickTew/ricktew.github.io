@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<!-- Parked draft, hidden from search (Rick, 9 Oct 2026); opens by its link for review. -->
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rick Tew, The Life's Work</title>
+<meta name="description" content="Rick Tew: martial scientist and mindset strategist. Thirty years teaching, RTMS, WinJitsu, and the Camp of Martial Science. A grounded, premium profile of a life's work.">
+<meta property="og:title" content="Rick Tew, The Life's Work">
+<meta property="og:description" content="I turned movement into a science and mindset into a martial art. RTMS, WinJitsu, NinjaGym, and a career taught around the world.">
+<meta property="og:type" content="website">
+
+<!-- DESIGN READ: A life's-work / authority page for a martial-arts and
+     peak-performance audience, premium and grounded, leaning dark charcoal
+     with a single locked gold accent, sans-serif display, restrained motion.
+
+     Built by applying the taste-skill anti-slop discipline:
+       . ONE locked accent (Rick gold #f5a100) on a true-charcoal base.
+       . Sans-serif display (Space Grotesk) + grotesk body (Hanken Grotesk).
+         Serif is banned. Emphasis = italic of the SAME font.
+       . Hero fits 100dvh, asymmetric split, max 4 text elements, both CTAs up top.
+       . Eyebrow restraint: at most one uppercase label per three sections.
+       . One radius scale, one shadow scale, shadows tinted to the bg hue.
+       . Motion is motivated only: scroll-reveal, CTA hover-lift, stat count-up.
+       . Signature moves: horizontal scroll-snap timeline, count-up stat band,
+         one inverted solid-gold climax panel for the flagship offer.
+       . Dark-first; light variant keeps the SAME single-accent discipline
+         (never inverts a section into a warm-paper band). -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+<!-- set theme before paint (same localStorage key as the rest of the site) -->
+<script>(function(){var s=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})();</script>
+<!-- gate scroll-reveal on JS so no-JS users see the final state -->
+<script>document.documentElement.classList.add('js');</script>
+
+<style>
+/* =========================================================================
+   RICK TEW . THE LIFE'S WORK
+   One accent (gold #f5a100), locked. Charcoal base. Space Grotesk display.
+   :root = dark (default). [data-theme="light"] = coherent light variant.
+   ========================================================================= */
+
+:root,
+[data-theme="dark"]{
+  --bg:#090d15;
+  --surface:#0f1622;
+  --surface-2:#12151d;
+  --elevated:#141c2b;
+  --border:#1f2d45;
+  --hairline:rgba(232,234,244,.09);
+  --text:#e8eaf4;
+  --muted:#9096b8;
+  --accent:#f5a100;          /* the one locked accent */
+  --accent-ink:#141000;      /* dark ink for text on gold */
+  --gold-text:#f5a100;       /* gold reads fine as text on charcoal */
+  --scrim:rgba(9,13,21,.86); /* method-band scrim keeps section within theme */
+  --shadow:0 22px 54px -26px rgba(3,6,14,.82);
+  --shadow-sm:0 10px 26px -18px rgba(3,6,14,.8);
+
+  /* one radius scale */
+  --r-sm:10px;
+  --r:16px;
+  --r-lg:24px;
+
+  /* the inverted climax panel (gold in both themes) */
+  --climax:#f5a100;
+  --climax-ink:#141000;
+  --climax-line:rgba(20,16,0,.22);
+
+  /* ---- RickQuiz modal theming ---- */
+  --rq-font:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --rq-accent:#f5a100;   --rq-on-accent:#141000;
+  --rq-accent2:#f5a100;  --rq-on-accent2:#141000;
+  --rq-ink:#e8eaf4;      --rq-muted:#9096b8;
+  --rq-card:#0f1622;     --rq-panel:#12151d;
+  --rq-line:#1f2d45;     --rq-optbg:#12151d;
+  --rq-badge-bg:rgba(245,161,0,.14);
+  --rq-radius:16px;
+}
+
+[data-theme="light"]{
+  --bg:#f7f7f3;
+  --surface:#ffffff;
+  --surface-2:#f2f1ec;
+  --elevated:#ffffff;
+  --border:#d7d5cc;
+  --hairline:rgba(20,22,31,.10);
+  --text:#14161f;
+  --muted:#585a70;
+  --accent:#f5a100;
+  --accent-ink:#141000;
+  --gold-text:#8a5a00;        /* darker gold so gold TEXT passes AA on light */
+  --scrim:rgba(247,247,243,.9);
+  --shadow:0 22px 54px -26px rgba(60,55,40,.26);
+  --shadow-sm:0 10px 26px -18px rgba(60,55,40,.22);
+
+  --climax:#f5a100;
+  --climax-ink:#141000;
+  --climax-line:rgba(20,16,0,.22);
+
+  --rq-font:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --rq-accent:#f5a100;   --rq-on-accent:#141000;
+  --rq-accent2:#f5a100;  --rq-on-accent2:#141000;
+  --rq-ink:#14161f;      --rq-muted:#585a70;
+  --rq-card:#ffffff;     --rq-panel:#f2f1ec;
+  --rq-line:#d7d5cc;     --rq-optbg:#faf9f5;
+  --rq-badge-bg:rgba(245,161,0,.16);
+  --rq-radius:16px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+h1,h2,h3,.display{
+  font-family:"Space Grotesk","Helvetica Neue",Arial,sans-serif;
+  font-weight:700;
+  line-height:1.05;
+  letter-spacing:-0.02em;
+  margin:0;
+}
+em{font-style:italic}           /* emphasis = italic of the SAME font */
+p{margin:0}
+a{color:inherit}
+
+.wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+
+/* accessibility */
+.skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--accent-ink);
+  padding:10px 16px;border-radius:0 0 var(--r-sm) 0;font-weight:700;z-index:200}
+.skip:focus{left:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.eyebrow{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold-text);margin:0 0 18px;
+}
+
+/* ---- buttons: one label, one line, AA contrast ---- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:15.5px;
+  line-height:1;white-space:nowrap;padding:15px 26px;border-radius:var(--r-sm);
+  border:1.5px solid transparent;cursor:pointer;text-decoration:none;
+  transition:transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
+}
+.btn-primary{background:var(--accent);color:var(--accent-ink);box-shadow:var(--shadow-sm)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--border)}
+.btn-ghost:hover{transform:translateY(-2px);border-color:var(--accent)}
+@media (prefers-reduced-motion: reduce){ .btn:hover{transform:none} }
+
+/* ================= NAV ================= */
+.nav{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);
+  background:color-mix(in srgb, var(--bg) 82%, transparent);
+  border-bottom:1px solid var(--hairline);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+.wordmark{
+  font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:.14em;
+  font-size:16px;text-decoration:none;color:var(--text);
+}
+.wordmark b{color:var(--gold-text);font-weight:700}
+.nav-right{display:flex;align-items:center;gap:8px}
+.nav-link{
+  font-size:14px;font-weight:600;text-decoration:none;color:var(--muted);
+  padding:9px 12px;border-radius:var(--r-sm);transition:color .15s ease,background-color .15s ease;
+}
+.nav-link:hover{color:var(--text);background:var(--surface)}
+.theme-toggle{
+  width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--border);border-radius:50%;background:var(--surface);
+  color:var(--text);cursor:pointer;font-size:18px;line-height:1;transition:border-color .15s ease}
+.theme-toggle:hover{border-color:var(--accent)}
+
+/* ================= HERO ================= */
+.hero{
+  min-height:100dvh;display:grid;align-items:center;
+  padding:clamp(18px,4vh,40px) 0 clamp(28px,5vh,52px);
+  position:relative;overflow:hidden;
+}
+.hero::before{ /* one restrained gold glow, tinted, subtle */
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(56% 60% at 78% 18%, rgba(245,161,0,.14), transparent 60%);
+}
+[data-theme="light"] .hero::before{background:radial-gradient(56% 60% at 78% 18%, rgba(245,161,0,.16), transparent 62%)}
+.hero-grid{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(28px,4vw,64px);align-items:center;
+}
+.hero-copy{max-width:40ch}
+.hero h1{
+  font-size:clamp(2rem,4.4vw,3.4rem);
+  line-height:1.05;letter-spacing:-.02em;
+  margin:12px 0 22px;
+}
+.hero h1 em{color:var(--gold-text);font-style:italic}
+.hero-sub{
+  color:var(--muted);font-size:clamp(1.02rem,2.1vw,1.2rem);line-height:1.5;
+  max-width:32ch;margin-bottom:32px;
+}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px}
+
+/* portrait: museum plate placeholder */
+.portrait{position:relative;justify-self:end;width:100%;max-width:400px}
+.portrait-frame{
+  aspect-ratio:4/5;border-radius:var(--r-lg);
+  background:
+    linear-gradient(180deg, var(--surface), var(--surface-2));
+  border:1px solid var(--border);box-shadow:var(--shadow);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  position:relative;overflow:hidden;
+}
+.portrait-frame::after{ /* inner hairline reveal, no elevation gimmick */
+  content:"";position:absolute;inset:12px;border:1px solid var(--hairline);border-radius:calc(var(--r-lg) - 10px);pointer-events:none;
+}
+.portrait-initials{
+  font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(3rem,8vw,4.6rem);
+  letter-spacing:.04em;color:var(--gold-text);
+}
+.portrait-mark{
+  width:46px;height:2px;background:var(--accent);opacity:.75;
+}
+.portrait-frame small{color:var(--muted);font-size:12.5px;letter-spacing:.02em}
+.plate{
+  margin-top:14px;display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  padding:12px 16px;border:1px solid var(--border);border-radius:var(--r-sm);background:var(--surface);
+}
+.plate b{font-family:"Space Grotesk",sans-serif;font-size:13px;letter-spacing:.03em}
+.plate span{color:var(--muted);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
+
+/* ================= SECTION RHYTHM ================= */
+section{position:relative}
+.band{padding:clamp(64px,10vh,120px) 0}
+.section-head{max-width:40ch;margin-bottom:clamp(30px,5vh,54px)}
+.section-head h2{font-size:clamp(1.8rem,4.2vw,2.8rem)}
+.section-head p{color:var(--muted);margin-top:16px;font-size:1.06rem}
+.divider{height:1px;background:var(--hairline);border:0;margin:0}
+
+/* ================= STAT BAND (count-up) ================= */
+.stats{border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);background:var(--surface)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);padding:clamp(44px,7vh,72px) 0 clamp(30px,5vh,44px)}
+.stat{border-left:2px solid var(--border);padding-left:20px}
+.stat-num{
+  font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:-.02em;
+  font-size:clamp(2.6rem,6vw,3.7rem);line-height:1;color:var(--text);
+}
+.stat-num .plus{color:var(--gold-text)}
+.stat-label{color:var(--muted);margin-top:12px;font-size:.98rem;line-height:1.35;max-width:20ch}
+.stats-note{padding:0 0 clamp(40px,6vh,60px);color:var(--muted);font-size:.95rem}
+.stats-note b{color:var(--gold-text);font-weight:600}
+
+/* ================= STORY ================= */
+.story-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.story-lede{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.3rem,2.6vw,1.7rem);line-height:1.28;font-weight:500}
+.story-lede em{color:var(--gold-text)}
+.story-body p{color:var(--muted);margin-bottom:20px;font-size:1.08rem}
+.story-body p:last-child{margin-bottom:0}
+.story-body strong{color:var(--text);font-weight:600}
+
+/* ================= TIMELINE (horizontal scroll-snap) ================= */
+.rail-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.rail-hint{
+  font-family:"Space Grotesk",sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold-text);white-space:nowrap;
+}
+.rail{
+  display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:8px 0 22px;margin-top:28px;
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent;
+}
+.rail::-webkit-scrollbar{height:8px}
+.rail::-webkit-scrollbar-track{background:transparent}
+.rail::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px}
+.chapter{
+  scroll-snap-align:start;flex:0 0 auto;
+  width:clamp(240px,74vw,320px);
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:26px 24px;display:flex;flex-direction:column;gap:12px;
+}
+.chapter .age{
+  font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:13px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold-text);
+}
+.chapter h3{font-size:1.35rem}
+.chapter p{color:var(--muted);font-size:1rem;line-height:1.5}
+.chapter .node{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--border);color:var(--gold-text);font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:13px}
+
+/* ================= METHOD (photographic band, stays within theme) ================= */
+.method{
+  background-image:linear-gradient(var(--scrim),var(--scrim)),url("https://picsum.photos/seed/rick-tew-training-hall-shadow/1600/900");
+  background-size:cover;background-position:center;
+  border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
+}
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);margin-top:8px}
+.method-quote{
+  margin:clamp(30px,5vh,52px) 0 0;padding:34px clamp(24px,4vw,44px);
+  border-left:3px solid var(--accent);background:color-mix(in srgb, var(--surface) 78%, transparent);
+  border-radius:0 var(--r) var(--r) 0;
+}
+.method-quote q{
+  font-family:"Space Grotesk",sans-serif;font-weight:600;quotes:none;
+  font-size:clamp(1.5rem,3.6vw,2.3rem);line-height:1.2;display:block;
+}
+.method-quote q em{color:var(--gold-text)}
+.method-quote cite{display:block;margin-top:16px;font-style:normal;color:var(--muted);font-size:.95rem;letter-spacing:.02em}
+.mcard h3{font-size:1.45rem;margin-bottom:6px}
+.mcard .kicker{color:var(--gold-text);font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.04em;margin-bottom:10px}
+.mcard p{color:var(--muted);font-size:1.05rem}
+
+/* ================= BODY OF WORK ================= */
+.fist-line{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.15rem,2.4vw,1.5rem);line-height:1.3;font-weight:500;max-width:44ch;margin-bottom:34px}
+.fist-line em{color:var(--gold-text)}
+.books{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.book{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:22px 18px;display:flex;flex-direction:column;gap:8px;min-width:0;
+}
+.book .abbr{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:1.75rem;color:var(--gold-text);letter-spacing:.02em}
+.book h4{font-family:"Space Grotesk",sans-serif;font-size:.98rem;font-weight:600;margin:0;line-height:1.25}
+.book p{color:var(--muted);font-size:.9rem;line-height:1.4;margin:0}
+.book .num{margin-top:auto;color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-family:"Space Grotesk",sans-serif}
+
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.offer{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:26px 24px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.offer:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:var(--shadow-sm)}
+@media (prefers-reduced-motion: reduce){ .offer:hover{transform:none} }
+.offer h3{font-size:1.3rem}
+.offer p{color:var(--muted);font-size:1rem}
+.offer .go{margin-top:auto;color:var(--gold-text);font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:.92rem;letter-spacing:.02em}
+
+/* ================= FLAGSHIP CLIMAX (inverted gold) ================= */
+.climax{background:var(--climax);color:var(--climax-ink)}
+.climax .wrap{padding-top:clamp(64px,10vh,120px);padding-bottom:clamp(64px,10vh,120px)}
+.climax .eyebrow{color:rgba(20,16,0,.62)}
+.climax h2{font-size:clamp(2rem,5.4vw,3.4rem);color:var(--climax-ink);max-width:20ch}
+.climax-lead{font-size:clamp(1.1rem,2.4vw,1.35rem);line-height:1.45;max-width:52ch;margin:22px 0 12px;color:rgba(20,16,0,.86)}
+.climax-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:30px 0 34px}
+.cfact{border-top:2px solid var(--climax-line);padding-top:14px}
+.cfact b{font-family:"Space Grotesk",sans-serif;display:block;font-size:1.15rem;letter-spacing:-.01em}
+.cfact span{font-size:.92rem;color:rgba(20,16,0,.72)}
+.btn-onclimax{background:var(--climax-ink);color:var(--climax);border-color:var(--climax-ink)}
+.btn-onclimax:hover{transform:translateY(-2px);box-shadow:0 18px 40px -22px rgba(20,16,0,.5)}
+
+/* ================= QUIZ MODULE ================= */
+.quiz-band{background:var(--surface)}
+.quiz-inner{
+  display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,48px);align-items:center;
+  border:1px solid var(--border);border-radius:var(--r-lg);padding:clamp(30px,5vw,52px);
+  background:var(--elevated);box-shadow:var(--shadow-sm);
+}
+.quiz-inner h2{font-size:clamp(1.7rem,3.6vw,2.5rem)}
+.quiz-inner p{color:var(--muted);margin-top:14px;font-size:1.06rem;max-width:40ch}
+.quiz-cta-wrap{justify-self:end}
+
+/* ================= CLOSING MISSION ================= */
+.mission{text-align:center}
+.mission .wrap{max-width:900px}
+.mission h2{font-size:clamp(2rem,5vw,3.4rem);line-height:1.12}
+.mission h2 em{color:var(--gold-text)}
+.mission p{color:var(--muted);font-size:1.1rem;margin:24px auto 34px;max-width:52ch}
+
+/* ================= FOOTER ================= */
+.footer{border-top:1px solid var(--hairline);background:var(--surface)}
+.footer .wrap{padding-top:52px;padding-bottom:44px}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:28px;flex-wrap:wrap}
+.footer-brand .wordmark{font-size:18px;display:inline-block;margin-bottom:10px}
+.footer-brand p{color:var(--muted);font-size:.98rem;max-width:34ch}
+.socials{display:flex;flex-wrap:wrap;gap:10px}
+.social{
+  font-size:14px;font-weight:600;text-decoration:none;color:var(--muted);
+  padding:9px 15px;border:1px solid var(--border);border-radius:99px;transition:color .15s ease,border-color .15s ease;
+}
+.social:hover{color:var(--text);border-color:var(--accent)}
+.footer-bottom{margin-top:38px;padding-top:22px;border-top:1px solid var(--hairline);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:13.5px}
+
+/* ================= SCROLL REVEAL (gated on .js) ================= */
+.js .reveal{opacity:0;transform:translateY(20px);
+  transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .js .reveal{opacity:1;transform:none;transition:none}
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:26px}
+  .portrait{justify-self:start;max-width:300px;order:-1}
+  .portrait-frame{aspect-ratio:16/10}
+  .story-grid,.method-grid{grid-template-columns:1fr;gap:24px}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:26px 20px}
+  .offers{grid-template-columns:1fr 1fr}
+  .quiz-inner{grid-template-columns:1fr}
+  .quiz-cta-wrap{justify-self:start}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .hero{min-height:100dvh}
+  .hero h1{font-size:clamp(2.1rem,10vw,2.9rem)}
+  .portrait{max-width:220px}
+  .books{grid-template-columns:1fr 1fr}
+  .offers{grid-template-columns:1fr}
+  .climax-facts{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column}
+}
+@media (max-width:380px){
+  .wrap{padding:0 18px}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:22px 16px}
+  .books{grid-template-columns:1fr}
+  .nav-link{padding:8px 8px}
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#story">Skip to content</a>
+
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="wordmark" href="/">RICK <b>TEW</b></a>
+    <nav class="nav-right" aria-label="Primary">
+      <a class="nav-link" href="https://ninjagym.com">NinjaGym</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode"><span class="theme-icon" aria-hidden="true">&#9680;</span></button>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Martial Scientist &middot; Mindset Strategist</p>
+      <h1>Movement into a <em>science</em>. Mindset into a <em>martial art</em>.</h1>
+      <p class="hero-sub">Thirty years teaching. First dojo at nineteen. Four continents of students. RTMS, WinJitsu, and NinjaGym all grew from one idea.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#work">See the life's work</a>
+        <button class="btn btn-ghost" type="button" onclick="RickQuiz.open()">Find your path with Rick</button>
+      </div>
+    </div>
+
+    <div class="portrait">
+      <figure class="portrait-frame" role="img" aria-label="Portrait placeholder for Rick Tew, a photograph will be placed here">
+        <span class="portrait-initials">RT</span>
+        <span class="portrait-mark" aria-hidden="true"></span>
+        <small>Portrait plate</small>
+      </figure>
+      <div class="plate">
+        <b>Rick Tew</b>
+        <span>Photo to be placed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STAT BAND (count-up) ================= -->
+<section class="stats" aria-label="Rick Tew at a glance">
+  <div class="wrap">
+    <div class="stats-grid" id="statBand">
+      <div class="stat">
+        <div class="stat-num"><span data-count="30">0</span><span class="plus">+</span></div>
+        <div class="stat-label">Years teaching students worldwide</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span data-count="19">0</span></div>
+        <div class="stat-label">Age when he opened his first dojo</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span data-count="4">0</span><span class="plus">+</span></div>
+        <div class="stat-label">Continents he has taught across</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span data-count="5">0</span></div>
+        <div class="stat-label">Books in the Black Belt series</div>
+      </div>
+    </div>
+    <p class="stats-note reveal"><b>Tony Robbins Certified</b> Strategic Intervention Coach, Robbins Madanes Training Center. Featured in Black Belt magazine. Spoke at HP, TU Delft, and the University of Rotterdam.</p>
+  </div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section class="band" id="story">
+  <div class="wrap story-grid">
+    <p class="story-lede reveal">The short version. I have spent my life teaching people how to <em>move</em>, and how to <em>win</em>.</p>
+    <div class="story-body reveal">
+      <p>I ran away to California at eight years old. The Boy Scouts gave me the rest, goal systems, the outdoors, and my first taste of leading people.</p>
+      <p>I fell in love with ninjitsu at fourteen. By fifteen I was on television for it. At sixteen I was teaching. At nineteen I opened my first <strong>dojo</strong>.</p>
+      <p>At twenty one I moved to Europe to build RTMS. Six plus years based in Holland, then Spain, then the world, California, Thailand, Latin America, the Philippines. Along the way I built <strong>martialartsupply.com</strong> into a real business and founded <strong>NinjaGym</strong> in Thailand.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ================= TIMELINE (horizontal scroll-snap) ================= -->
+<section class="band">
+  <div class="wrap">
+    <div class="rail-head reveal">
+      <div class="section-head" style="margin-bottom:0">
+        <h2>The chapters</h2>
+        <p>One life, told in moves. Flick through the years.</p>
+      </div>
+      <span class="rail-hint" aria-hidden="true">Scroll the years &rsaquo;</span>
+    </div>
+
+    <div class="rail" tabindex="0" role="region" aria-label="Career timeline, scroll horizontally">
+      <article class="chapter">
+        <div class="node">1</div>
+        <span class="age">Age 8</span>
+        <h3>Running to California</h3>
+        <p>I ran to the far edge of the map. Boy Scouts handed me goal systems, the outdoors, and leadership.</p>
+      </article>
+      <article class="chapter">
+        <div class="node">2</div>
+        <span class="age">Age 14</span>
+        <h3>In love with ninjitsu</h3>
+        <p>The art found me. On television at fifteen. Teaching by sixteen.</p>
+      </article>
+      <article class="chapter">
+        <div class="node">3</div>
+        <span class="age">Age 19</span>
+        <h3>My first dojo</h3>
+        <p>I opened the doors and started running the room I had only ever trained in.</p>
+      </article>
+      <article class="chapter">
+        <div class="node">4</div>
+        <span class="age">Age 21</span>
+        <h3>Europe, and RTMS</h3>
+        <p>I moved to build a martial science, not a style. Six plus years based in Holland.</p>
+      </article>
+      <article class="chapter">
+        <div class="node">5</div>
+        <span class="age">Then</span>
+        <h3>Spain, then everywhere</h3>
+        <p>Spain next, then teaching across California, Thailand, Latin America, and the Philippines.</p>
+      </article>
+      <article class="chapter">
+        <div class="node">6</div>
+        <span class="age">Certified</span>
+        <h3>Robbins Madanes</h3>
+        <p>Tony Robbins Certified Strategic Intervention Coach. Mind and martial arts, one practice.</p>
+      </article>
+      <article class="chapter">
+        <div class="node">7</div>
+        <span class="age">Now</span>
+        <h3>Thirty years in</h3>
+        <p>Thirty plus years teaching, martialartsupply.com built, and NinjaGym founded in Samui.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= METHOD (photographic band) ================= -->
+<section class="band method">
+  <div class="wrap">
+    <p class="eyebrow reveal">The method</p>
+    <div class="method-grid">
+      <div class="mcard reveal">
+        <div class="kicker">RTMS</div>
+        <h3>The martial science</h3>
+        <p>Rick Tew's Martial Science is a science, not a style. Modern American Ninjitsu plus MMA, five ranking levels to instructor. It teaches movement, not moves. The student is self powered. The system changes daily.</p>
+      </div>
+      <div class="mcard reveal">
+        <div class="kicker">WinJitsu</div>
+        <h3>The mental martial art</h3>
+        <p>Win plus Jitsu equals the True Art of Winning. It trains the mind to beat the negative Ninja, fear, doubt, negativity, stress, and laziness. Life is an obstacle course. WinJitsu is how you run it.</p>
+      </div>
+    </div>
+
+    <blockquote class="method-quote reveal">
+      <q>Get a Black Belt in <em>what you do</em>.</q>
+      <cite>Rick Tew</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ================= BODY OF WORK ================= -->
+<section class="band" id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>The body of work</h2>
+    </div>
+
+    <p class="fist-line reveal">Five books. One per finger of the hand. Together a <em>fist</em> to break through, a <em>grip</em> to hang on. The Be a Black Belt in What You Do series.</p>
+
+    <div class="books reveal">
+      <article class="book">
+        <div class="abbr">ACE</div>
+        <h4>Achieving Combined Excellence</h4>
+        <p>Taking control of your attitude.</p>
+        <div class="num">Book 1</div>
+      </article>
+      <article class="book">
+        <div class="abbr">MAK</div>
+        <h4>Motivation, Action, Knowledge</h4>
+        <p>Make it happen.</p>
+        <div class="num">Book 2</div>
+      </article>
+      <article class="book">
+        <div class="abbr">MBS</div>
+        <h4>Mind, Body, Spirit</h4>
+        <p>The synergy for success.</p>
+        <div class="num">Book 3</div>
+      </article>
+      <article class="book">
+        <div class="abbr">NRG</div>
+        <h4>Neuro Reasons for Growth</h4>
+        <p>Internal power for achievement.</p>
+        <div class="num">Book 4</div>
+      </article>
+      <article class="book">
+        <div class="abbr">CMT</div>
+        <h4>Creative Mental Training</h4>
+        <p>The magic of visualization.</p>
+        <div class="num">Book 5</div>
+      </article>
+    </div>
+
+    <div class="offers reveal">
+      <a class="offer" href="/winjitsu/">
+        <h3>BLAST Workshop</h3>
+        <p>Edutainment. Comedy, martial arts, and mental arts. WinJitsu summarized in one live hit.</p>
+        <span class="go">Make Life a BLAST &rsaquo;</span>
+      </a>
+      <a class="offer" href="https://ninjagym.com">
+        <h3>NinjaGym</h3>
+        <p>A physical gym in Samui, Thailand. Ninja training, obstacle courses, climbing, parkour, kids and adult programs.</p>
+        <span class="go">Visit ninjagym.com &rsaquo;</span>
+      </a>
+      <a class="offer" href="/tours/">
+        <h3>BLAST Tours</h3>
+        <p>Two week martial arts and adventure travel tours. Disconnect to reconnect.</p>
+        <span class="go">See the tours &rsaquo;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FLAGSHIP CLIMAX (inverted gold) ================= -->
+<section class="climax" aria-label="The Camp of Martial Science">
+  <div class="wrap">
+    <p class="eyebrow reveal">The flagship</p>
+    <h2 class="reveal">The Camp of Martial Science</h2>
+    <p class="climax-lead reveal">Live in, train hard, come out different. 5X training programs in one immersion, Success, Physical, Adventure, Self-Defense, and Martial Arts skills.</p>
+
+    <div class="climax-facts reveal">
+      <div class="cfact">
+        <b>From $2,222</b>
+        <span>All inclusive. Two week VIP or two month.</span>
+      </div>
+      <div class="cfact">
+        <b>Samui, Thailand</b>
+        <span>The original ninja training ground.</span>
+      </div>
+      <div class="cfact">
+        <b>California</b>
+        <span>Near Yosemite, in the wild.</span>
+      </div>
+    </div>
+
+    <a class="btn btn-onclimax reveal" href="/camps/">Enter the Camp</a>
+  </div>
+</section>
+
+<!-- ================= QUIZ MODULE ================= -->
+<section class="band quiz-band">
+  <div class="wrap">
+    <div class="quiz-inner reveal">
+      <div>
+        <h2>Not sure where you fit?</h2>
+        <p>Rick trains people for the body, the mind, or both. Four quick taps point you at the right path.</p>
+      </div>
+      <div class="quiz-cta-wrap">
+        <button class="btn btn-primary" type="button" onclick="RickQuiz.open()">Find your path with Rick</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLOSING MISSION ================= -->
+<section class="band mission">
+  <div class="wrap">
+    <h2 class="reveal">Just because you have a job doesn't mean you have a <em>life</em>.</h2>
+    <p class="reveal">I teach people to be a Ninja in what they do, and to make life a BLAST. Body, mind, and the grit to run the obstacle course.</p>
+    <a class="btn btn-primary reveal" href="/aininja/#opt-8c">Message Rick</a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="wordmark" href="/">RICK <b>TEW</b></a>
+        <p>Get a Black Belt in what you do. Give a BLAST to have a BLAST.</p>
+      </div>
+      <nav class="socials" aria-label="Social links">
+        <a class="social" href="https://x.com/ricktew">X</a>
+        <a class="social" href="https://instagram.com/ricktew">Instagram</a>
+        <a class="social" href="https://youtube.com/@ricktew">YouTube</a>
+        <a class="social" href="https://facebook.com/ricktew">Facebook</a>
+        <a class="social" href="https://linkedin.com/in/ricktew">LinkedIn</a>
+        <a class="social" href="https://ninjagym.com">NinjaGym</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; Rick Tew. Martial science, mindset, and the True Art of Winning.</span>
+      <span>Be a Ninja in what you DO.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= THEME TOGGLE WIRING ================= -->
+<script>(function(){var h=document.documentElement,b=document.getElementById('themeToggle'),i=b&&b.querySelector('.theme-icon');function s(t){if(i)i.textContent=t==='dark'?'◐':'◑';}s(h.getAttribute('data-theme'));if(b)b.addEventListener('click',function(){var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('theme',n);s(n);});})();</script>
+
+<!-- ================= MOTION: reveal + count-up (respects reduced motion) ================= -->
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // scroll reveal
+  var revs = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    revs.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    revs.forEach(function(el){ io.observe(el); });
+  }
+
+  // count-up
+  var nums = document.querySelectorAll('[data-count]');
+  function setFinal(el){ el.textContent = el.getAttribute('data-count'); }
+  function run(el){
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    var start = null, dur = 1100;
+    function step(ts){
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased);
+      if (p < 1) requestAnimationFrame(step); else el.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+  var band = document.getElementById('statBand');
+  if (reduce || !('IntersectionObserver' in window)) {
+    nums.forEach(setFinal);
+  } else if (band) {
+    var bo = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ nums.forEach(run); bo.disconnect(); }
+      });
+    }, { threshold: 0.4 });
+    bo.observe(band);
+  } else {
+    nums.forEach(setFinal);
+  }
+})();
+</script>
+
+<!-- ================= QUIZ (last) ================= -->
+<script src="js/rick-quiz.js"></script>
+</body>
+</html>

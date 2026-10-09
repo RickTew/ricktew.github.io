@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<!-- Parked draft, hidden from search (Rick, 9 Oct 2026); opens by its link for review. -->
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rick Tew, The Field Manual</title>
+<meta name="description" content="Rick Tew: the martial artist who turned movement into a science and mindset into a martial art. The field manual of one life in motion, from a first dojo at nineteen to camps on four continents.">
+<meta property="og:title" content="Rick Tew, The Field Manual">
+<meta property="og:description" content="The martial artist who turned movement into a science. RTMS, WinJitsu, NinjaGym, and a life taught around the world.">
+<meta property="og:type" content="website">
+
+<!-- WINNER A: reproduces the "Vital Signs / Case File" formula (a reference page).
+     The ECG spine is re-read as a movement / combat-rhythm line, which maps to
+     RTMS: movement, not moves. Dark by default, with a matching light variant so
+     Rick's site-wide dark/light toggle keeps working. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- set theme before paint (same localStorage key as the rest of the site) -->
+<script>
+(function(){
+  var saved = localStorage.getItem('theme');
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+})();
+</script>
+
+<style>
+/* =========================================================================
+   THE FIELD MANUAL  -  Rick Tew authority page (winner A)
+   Formula from: a "Vital Signs / Case File" reference.
+   Palette re-mapped to Rick's brand: near-black navy + gold, with an ember
+   "strike" accent quarantined to the one flagship section (as page-1 quarantined
+   its gold). Signature: a movement / combat-rhythm line that draws on scroll and
+   threads the life chapters, holding still under reduced motion.
+   ========================================================================= */
+
+:root{
+  /* dark (default) */
+  --ink:#090d15; --panel:#0f1622; --deep:#0b1019;
+  --bone:#e8eaf4; --sage:#9096b8;
+  --gold:#f5a100;            /* the brand accent + the movement line */
+  --gold-text:#f5a100;       /* gold used as text (readable on dark) */
+  --ember:#ff5a36;           /* the one hot accent: the flagship section */
+  --ember-text:#ff6f4d;
+  --line:#1f2d45;
+  --glow:rgba(245,161,0,.5);
+
+  --serif:"Spectral", Georgia, "Times New Roman", serif;
+  --sans:"IBM Plex Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --rail:clamp(66px, 8vw, 112px);
+  --gutter:clamp(46px, 6.2vw, 88px);
+  --wrap:1140px;
+
+  /* --- quiz modal theming (RickQuiz reads these off :root) --- */
+  --rq-font:var(--sans);
+  --rq-accent:#f5a100;      --rq-on-accent:#141000;
+  --rq-accent2:#ff5a36;     --rq-on-accent2:#180600;
+  --rq-ink:#e8eaf4;         --rq-muted:#9096b8;
+  --rq-card:#0f1622;        --rq-panel:#0b1019;
+  --rq-line:#1f2d45;        --rq-optbg:#0b1019;
+  --rq-badge-bg:rgba(245,161,0,.14);
+  --rq-radius:14px;
+}
+
+[data-theme="light"]{
+  --ink:#f4f3ee; --panel:#ffffff; --deep:#ecebe3;
+  --bone:#14161f; --sage:#585a70;
+  --gold:#f5a100;
+  --gold-text:#8a5a00;       /* darker gold reads as text on paper */
+  --ember:#e5471f;
+  --ember-text:#c23a18;
+  --line:#d7d5cc;
+  --glow:rgba(245,161,0,.35);
+
+  --rq-ink:#14161f;         --rq-muted:#585a70;
+  --rq-card:#ffffff;        --rq-panel:#f1efe8;
+  --rq-line:#d7d5cc;        --rq-optbg:#faf9f5;
+  --rq-badge-bg:rgba(245,161,0,.16);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--ink); color:var(--bone);
+  font-family:var(--sans); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+a{color:inherit}
+img{max-width:100%}
+::selection{background:var(--glow); color:#fff}
+
+/* focus */
+a:focus-visible, button:focus-visible{
+  outline:2px solid var(--gold); outline-offset:3px; border-radius:6px;
+}
+
+/* ---------- layout helpers ---------- */
+.wrap{max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,5vw,48px)}
+.section{padding:clamp(64px,9vw,124px) 0}
+.eyebrow{
+  font-family:var(--mono); font-size:12px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-text); margin:0 0 20px;
+  display:flex; align-items:center; gap:11px;
+}
+.eyebrow::before{content:""; width:22px; height:1px; background:var(--gold); opacity:.8}
+.eyebrow .n{color:var(--sage)}
+h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em; margin:0}
+.lead{color:var(--sage)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  font-family:var(--sans); font-weight:600; font-size:16px; line-height:1;
+  padding:16px 26px; border-radius:11px; border:1px solid transparent;
+  cursor:pointer; text-decoration:none; transition:transform .15s ease, filter .15s ease, background .15s ease, border-color .15s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--gold); color:#141000}
+.btn-primary:hover{filter:brightness(1.06)}
+.btn-ghost{background:transparent; color:var(--bone); border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--sage)}
+.btn-ember{background:var(--ember); color:#fff}
+.btn-ember:hover{filter:brightness(1.05)}
+.btn .arw{font-family:var(--mono); font-size:15px}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky; top:0; z-index:50;
+  background:color-mix(in srgb, var(--ink) 80%, transparent);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{
+  max-width:var(--wrap); margin:0 auto; padding:14px clamp(20px,5vw,48px);
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+}
+.brand{display:flex; align-items:baseline; gap:12px; min-width:0; text-decoration:none}
+.brand b{
+  font-family:var(--sans); font-weight:600; letter-spacing:.22em; font-size:14px;
+  text-transform:uppercase; white-space:nowrap; color:var(--bone);
+}
+.brand .file{
+  font-family:var(--mono); font-size:11px; color:var(--sage); letter-spacing:.08em;
+  white-space:nowrap;
+}
+.nav-actions{display:flex; align-items:center; gap:12px}
+.nav a.ext{
+  font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--sage); text-decoration:none; padding:8px 12px; border:1px solid var(--line);
+  border-radius:999px; white-space:nowrap; transition:.15s;
+}
+.nav a.ext:hover{color:var(--bone); border-color:var(--sage)}
+.theme-toggle{
+  width:38px; height:38px; border-radius:50%; border:1px solid var(--line);
+  background:transparent; color:var(--sage); cursor:pointer; font-size:16px; line-height:1;
+  display:inline-flex; align-items:center; justify-content:center; transition:.15s; flex:none;
+}
+.theme-toggle:hover{color:var(--bone); border-color:var(--sage)}
+@media(max-width:520px){ .brand .file{display:none} .nav a.ext{display:none} }
+
+/* ---------- hero ---------- */
+.hero{position:relative; overflow:hidden}
+.hero::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(60% 55% at 78% 12%, var(--glow), transparent 60%),
+    radial-gradient(50% 40% at 8% 85%, rgba(245,161,0,.08), transparent 60%);
+  opacity:.4;
+}
+.hero-in{
+  position:relative; display:grid; gap:clamp(34px,5vw,64px);
+  grid-template-columns:1.15fr .85fr; align-items:center;
+  padding:clamp(56px,8vw,104px) 0 clamp(48px,7vw,90px);
+}
+.hero h1{
+  font-size:clamp(38px,6.2vw,68px); line-height:1.04; margin:14px 0 0;
+  max-width:14ch;
+}
+.hero h1 em{font-style:italic; color:var(--gold-text)}
+.hero .sub{
+  margin:26px 0 0; font-size:clamp(17px,2vw,20px); line-height:1.62; color:var(--sage);
+  max-width:48ch;
+}
+.hero .cta-row{display:flex; flex-wrap:wrap; gap:14px; margin-top:34px}
+.hero .status{
+  margin-top:26px; font-family:var(--mono); font-size:12px; letter-spacing:.08em;
+  color:var(--sage); display:flex; align-items:center; gap:9px; flex-wrap:wrap;
+}
+.pulse-dot{
+  width:9px; height:9px; border-radius:50%; background:var(--gold);
+  box-shadow:0 0 0 0 var(--glow); animation:beat 2.4s ease-out infinite; flex:none;
+}
+@keyframes beat{
+  0%{box-shadow:0 0 0 0 var(--glow)}
+  60%,100%{box-shadow:0 0 0 10px rgba(245,161,0,0)}
+}
+
+/* portrait placeholder */
+.portrait{position:relative; justify-self:center; width:min(360px,100%)}
+.frame{
+  position:relative; aspect-ratio:4/5; border-radius:16px;
+  background:
+    radial-gradient(120% 90% at 50% 8%, var(--glow), transparent 55%),
+    linear-gradient(180deg, var(--panel), var(--deep));
+  border:1px solid var(--line); overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.frame svg.sil{position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:82%; height:auto; opacity:.9}
+.frame .mono-mark{
+  position:relative; font-family:var(--serif); font-size:clamp(66px,12vw,104px);
+  font-weight:500; letter-spacing:.02em; color:var(--bone);
+  text-shadow:0 2px 30px rgba(0,0,0,.5);
+}
+.frame .tag{
+  position:absolute; top:14px; left:14px; font-family:var(--mono); font-size:10px;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--sage);
+  border:1px solid var(--line); border-radius:5px; padding:5px 8px;
+  background:color-mix(in srgb, var(--ink) 55%, transparent);
+}
+/* corner brackets */
+.frame i.crn{position:absolute; width:20px; height:20px; border:2px solid var(--gold); opacity:.8}
+.frame i.tl{top:10px; left:10px; border-right:none; border-bottom:none}
+.frame i.tr{top:10px; right:10px; border-left:none; border-bottom:none}
+.frame i.bl{bottom:10px; left:10px; border-right:none; border-top:none}
+.frame i.br{bottom:10px; right:10px; border-left:none; border-top:none}
+.frame .blip{position:absolute; bottom:16px; left:16px; right:16px; height:22px; opacity:.6}
+.portrait .cap{
+  margin-top:14px; font-family:var(--mono); font-size:11px; letter-spacing:.05em;
+  color:var(--sage); text-align:center; line-height:1.6;
+}
+.portrait .cap b{color:var(--bone); font-weight:500}
+.portrait .cap .note{display:block; color:var(--sage); opacity:.75; margin-top:3px}
+
+/* ---------- vitals strip ---------- */
+.vitals{border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+.vgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line)}
+.vcell{background:var(--ink); padding:clamp(26px,4vw,44px) clamp(18px,2.4vw,30px)}
+.vcell .num{font-family:var(--serif); font-size:clamp(38px,5.6vw,60px); line-height:1; letter-spacing:-.02em}
+.vcell .num small{font-size:.5em; color:var(--gold-text); vertical-align:.35em; margin-left:2px}
+.vcell .lab{
+  margin-top:14px; font-family:var(--mono); font-size:11.5px; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--sage); line-height:1.5;
+}
+@media(max-width:720px){ .vgrid{grid-template-columns:repeat(2,1fr)} }
+
+/* ---------- chronicle (the spine lives here) ---------- */
+.chronicle{position:relative}
+.chronicle .wrap{position:relative}
+.ecg{
+  position:absolute; top:0; left:calc(var(--rail) - 2px); width:var(--gutter); height:100%;
+  z-index:0; pointer-events:none; overflow:visible;
+}
+.ecg-track{fill:none; stroke:var(--gold); stroke-opacity:.16; stroke-width:2;
+  vector-effect:non-scaling-stroke; stroke-linecap:round; stroke-linejoin:round}
+.ecg-line{fill:none; stroke:var(--gold); stroke-width:2.2;
+  vector-effect:non-scaling-stroke; stroke-linecap:round; stroke-linejoin:round;
+  filter:drop-shadow(0 0 4px var(--glow))}
+.ecg-pulse{fill:var(--gold); filter:drop-shadow(0 0 7px var(--glow)); opacity:0}
+
+.chapter-head{position:relative; z-index:1; padding-bottom:clamp(20px,4vw,44px);
+  padding-left:calc(var(--rail) + var(--gutter))}
+.chapter-head h2{font-size:clamp(28px,4.4vw,44px); line-height:1.08; max-width:22ch}
+.chapter-head .lead{margin-top:18px; max-width:52ch; font-size:18px}
+
+.entry{
+  position:relative; z-index:1;
+  display:grid; grid-template-columns:var(--rail) var(--gutter) minmax(0,1fr);
+  align-items:start; padding:clamp(22px,3.4vw,40px) 0;
+}
+.entry + .entry{border-top:1px solid var(--line)}
+.entry .rail{grid-column:1; padding-top:4px}
+.entry .rail .ts{
+  display:block; font-family:var(--mono); font-size:15px; font-weight:500;
+  letter-spacing:.02em; color:var(--bone);
+}
+.entry .rail .loc{
+  display:block; margin-top:6px; font-family:var(--mono); font-size:10.5px;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--sage);
+}
+.entry .body{grid-column:3}
+.entry .body p{margin:0; font-size:18px; line-height:1.66}
+.entry .body p + p{margin-top:16px}
+.entry .body .h{font-family:var(--serif); font-size:22px; line-height:1.25; margin:0 0 8px; color:var(--bone)}
+.entry .body .h em{font-style:italic; color:var(--gold-text)}
+
+/* case log gets a heavier year */
+.entry.log .rail .ts{font-size:20px; color:var(--gold-text)}
+.entry.log .body p{font-size:17px; color:var(--sage)}
+.entry.log .body b{color:var(--bone); font-weight:500}
+
+/* method = full-width quote entry */
+.entry.assess .body{grid-column:2 / -1}
+.quote{
+  font-family:var(--serif); font-style:italic; font-weight:400;
+  font-size:clamp(24px,3.6vw,40px); line-height:1.28; letter-spacing:-.01em;
+  color:var(--bone); margin:0; max-width:20ch;
+}
+.quote .k{color:var(--gold-text); font-style:normal}
+.attr{margin-top:22px; font-family:var(--mono); font-size:12px; letter-spacing:.08em;
+  color:var(--sage); text-transform:uppercase}
+.quote-2{margin-top:30px; font-size:19px; line-height:1.6; color:var(--sage); max-width:56ch; font-style:italic; font-family:var(--serif)}
+.quote-2 b{color:var(--bone); font-weight:500; font-style:normal}
+
+/* divider label inside chronicle */
+.subhead{
+  position:relative; z-index:1; margin:clamp(30px,5vw,60px) 0 4px;
+  grid-column:1 / -1; padding-left:calc(var(--rail) + var(--gutter));
+}
+
+/* ---------- references / books ---------- */
+.books-in{display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(30px,5vw,70px); align-items:start}
+.books h2{font-size:clamp(28px,4vw,40px); line-height:1.1}
+.books .lead{margin-top:18px; max-width:42ch}
+.reflist{list-style:none; margin:0; padding:0; border-top:1px solid var(--line)}
+.reflist li{
+  display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:baseline;
+  padding:16px 0; border-bottom:1px solid var(--line);
+}
+.reflist .ix{font-family:var(--mono); font-size:12px; color:var(--gold-text); letter-spacing:.08em}
+.reflist .ti{font-family:var(--serif); font-size:20px; line-height:1.3}
+.reflist .me{display:block; font-family:var(--sans); font-size:13.5px; color:var(--sage); margin-top:4px; letter-spacing:.01em}
+.books .foot{margin-top:20px; font-family:var(--mono); font-size:12px; letter-spacing:.05em; color:var(--sage)}
+
+/* ---------- flagship (the one hot section) ---------- */
+.flagship{position:relative; overflow:hidden}
+.flagship::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(65% 70% at 50% 0%, rgba(255,90,54,.14), transparent 62%);
+}
+.fpanel{
+  position:relative; border:1px solid rgba(255,90,54,.34); border-radius:20px;
+  background:linear-gradient(180deg, rgba(255,90,54,.06), color-mix(in srgb, var(--panel) 60%, transparent));
+  padding:clamp(34px,5.4vw,68px); text-align:center;
+}
+.flagship .eyebrow{color:var(--ember-text); justify-content:center}
+.flagship .eyebrow::before{background:var(--ember)}
+.fpanel h2{font-size:clamp(34px,6vw,60px); line-height:1.02; margin:0}
+.fpanel h2 .amp{color:var(--ember-text)}
+.fpanel .desc{margin:22px auto 0; max-width:58ch; font-size:18px; line-height:1.66; color:var(--sage)}
+.fpanel .desc b{color:var(--bone); font-weight:500}
+.fpanel .subline{margin:22px auto 0; font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ember-text); max-width:44ch}
+.fpanel .cta-row{margin-top:32px; display:flex; gap:14px 26px; flex-wrap:wrap; justify-content:center; align-items:center}
+.fpanel .quiet{font-family:var(--mono); font-size:12.5px; letter-spacing:.06em; color:var(--sage); text-decoration:none; text-transform:uppercase}
+.fpanel .quiet:hover{color:var(--bone)}
+.gline{display:block; margin:0 auto 26px; width:min(220px,60%); height:34px; opacity:.9}
+
+/* ---------- quiz section ---------- */
+.quiz{text-align:center}
+.quiz .box{max-width:640px; margin:0 auto}
+.quiz h2{font-size:clamp(30px,4.6vw,48px); line-height:1.06}
+.quiz .lead{margin:20px auto 0; max-width:50ch; font-size:18px}
+.quiz .btn{margin-top:30px}
+
+/* ---------- closing ---------- */
+.close-s{border-top:1px solid var(--line)}
+.close-in{max-width:760px; margin:0 auto; text-align:center}
+.close-in h2{font-size:clamp(30px,5vw,54px); line-height:1.08; max-width:22ch; margin:0 auto}
+.close-in .lead{margin:24px auto 0; max-width:52ch; font-size:18px}
+.close-in .cta-row{margin-top:32px; display:flex; gap:14px; flex-wrap:wrap; justify-content:center}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line); background:var(--deep)}
+.foot-in{max-width:var(--wrap); margin:0 auto; padding:clamp(44px,6vw,72px) clamp(20px,5vw,48px)}
+.foot-top{display:flex; flex-wrap:wrap; gap:24px 40px; justify-content:space-between; align-items:flex-start}
+.foot-brand b{font-family:var(--sans); font-weight:600; letter-spacing:.22em; font-size:15px; text-transform:uppercase; color:var(--bone)}
+.foot-brand .file{display:block; margin-top:8px; font-family:var(--mono); font-size:11px; color:var(--sage); letter-spacing:.06em}
+.social{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,auto); gap:10px 34px}
+.social a{
+  font-family:var(--mono); font-size:12.5px; letter-spacing:.06em; text-decoration:none;
+  color:var(--sage); display:inline-flex; gap:8px; align-items:center; transition:.15s;
+}
+.social a:hover{color:var(--bone)}
+.social a .arw{color:var(--gold-text)}
+.legal{
+  margin-top:clamp(34px,5vw,54px); padding-top:22px; border-top:1px solid var(--line);
+  font-size:13px; color:var(--sage); line-height:1.65; max-width:72ch;
+}
+.legal b{color:var(--bone); font-weight:500}
+
+/* ---------- responsive ---------- */
+@media(max-width:860px){
+  .hero-in{grid-template-columns:1fr; padding-top:clamp(40px,8vw,60px)}
+  .portrait{order:-1; width:min(300px,80%)}
+  .books-in{grid-template-columns:1fr; gap:28px}
+}
+@media(max-width:640px){
+  :root{ --rail:0px; --gutter:30px; }
+  .ecg{left:0}
+  .entry{grid-template-columns:var(--gutter) minmax(0,1fr)}
+  .entry .rail{grid-column:2; display:flex; align-items:baseline; gap:12px; padding-top:0; margin-bottom:12px}
+  .entry .rail .ts{font-size:14px}
+  .entry .rail .loc{margin-top:0}
+  .entry .body{grid-column:2}
+  .entry.log .rail{gap:14px}
+  .entry.assess .body{grid-column:2}
+  .social{grid-template-columns:1fr}
+}
+@media(max-width:380px){
+  body{font-size:16px}
+  .hero .cta-row .btn{width:100%}
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{transition:none !important; animation:none !important}
+  .pulse-dot{box-shadow:0 0 0 3px rgba(245,161,0,.2)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/">
+      <b>Rick Tew</b>
+      <span class="file">FIELD MANUAL / RT</span>
+    </a>
+    <div class="nav-actions">
+      <a class="ext" href="https://ninjagym.com" target="_blank" rel="noopener">NinjaGym <span aria-hidden="true">&#8599;</span></a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">
+        <span class="theme-icon" aria-hidden="true">&#9680;</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="n">00</span> Field manual // a life in motion</p>
+        <h1>The martial artist who turned <em>movement into a science.</em></h1>
+        <p class="sub">Rick Tew has spent thirty years teaching people to move better and think sharper. From a first dojo at nineteen to gyms and camps on four continents, this is the file on how, and why.</p>
+        <div class="cta-row">
+          <button class="btn btn-primary" onclick="RickQuiz.open()">Find your path with Rick</button>
+          <a class="btn btn-ghost" href="#history">Read the field manual <span class="arw" aria-hidden="true">&#8595;</span></a>
+        </div>
+        <p class="status"><span class="pulse-dot" aria-hidden="true"></span> STATUS: TEACHING &middot; 30+ YEARS &middot; INDIANA &#8594; THE WORLD</p>
+      </div>
+
+      <figure class="portrait">
+        <div class="frame">
+          <span class="tag">Portrait / pending</span>
+          <i class="crn tl"></i><i class="crn tr"></i><i class="crn bl"></i><i class="crn br"></i>
+          <svg class="sil" viewBox="0 0 200 190" aria-hidden="true">
+            <defs>
+              <linearGradient id="silg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#9096b8" stop-opacity=".34"/>
+                <stop offset="1" stop-color="#9096b8" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <circle cx="100" cy="58" r="38" fill="url(#silg)"/>
+            <path d="M18 190 C22 128 55 104 100 104 C145 104 178 128 182 190 Z" fill="url(#silg)"/>
+          </svg>
+          <span class="mono-mark">RT</span>
+          <svg class="blip" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 12 H120 l7 -9 5 18 6 -20 6 20 5 -9 H300" fill="none" stroke="#f5a100" stroke-width="1.6"/>
+          </svg>
+        </div>
+        <figcaption class="cap">
+          <b>RICK TEW</b> &middot; founder of RTMS and WinJitsu
+          <span class="note">Portrait placeholder. The real photograph drops in later.</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- VITALS / AT A GLANCE -->
+  <section class="vitals" aria-label="At a glance">
+    <div class="vgrid">
+      <div class="vcell">
+        <div class="num">30<small>+</small></div>
+        <div class="lab">Years teaching<br>students worldwide</div>
+      </div>
+      <div class="vcell">
+        <div class="num">19</div>
+        <div class="lab">Age he opened<br>his first dojo</div>
+      </div>
+      <div class="vcell">
+        <div class="num">4<small>+</small></div>
+        <div class="lab">Continents<br>taught across</div>
+      </div>
+      <div class="vcell">
+        <div class="num" style="font-size:clamp(28px,4.2vw,44px)">Robbins</div>
+        <div class="lab">Certified Strategic<br>Intervention Coach</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHRONICLE: the movement line runs through the whole life story -->
+  <section class="chronicle section" id="history">
+    <div class="wrap">
+
+      <!-- the spine -->
+      <svg class="ecg" id="ecg" preserveAspectRatio="none" aria-hidden="true">
+        <path class="ecg-track" id="ecg-track" d=""></path>
+        <path class="ecg-line" id="ecg-line" d=""></path>
+        <circle class="ecg-pulse" id="ecg-pulse" r="4" cx="0" cy="0"></circle>
+      </svg>
+
+      <div class="chapter-head">
+        <p class="eyebrow"><span class="n">01</span> Presenting history</p>
+        <h2>One life, read the way he teaches a body: movement first, then meaning, back to the root.</h2>
+        <p class="lead">RTMS teaches movement, not moves. So does this file. Here is the arc that made the method, in his own order.</p>
+      </div>
+
+      <div class="entry">
+        <div class="rail"><span class="ts">age 8</span><span class="loc">USA</span></div>
+        <div class="body">
+          <p>At eight, Rick Tew ran away to California, chasing a bigger world than the one he was handed. The Boy Scouts gave him his first taste of goal systems, the outdoors and leadership, the raw material of nearly everything he built later.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="rail"><span class="ts">at 14</span><span class="loc">The hook</span></div>
+        <div class="body">
+          <p class="h">At fourteen he fell in love with <em>ninjitsu.</em></p>
+          <p>Not the costume, the craft: the idea that a person could train the body and the mind as one instrument. At fifteen he was on television for his martial arts skills. By sixteen he was already teaching.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="rail"><span class="ts">at 19</span><span class="loc">First dojo</span></div>
+        <div class="body">
+          <p>By nineteen he had opened his first dojo. While other people were still deciding what to do with their lives, Rick was already handing his to students. Teaching was not a job he found. It was the one he built.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="rail"><span class="ts">at 21</span><span class="loc">Europe / RTMS</span></div>
+        <div class="body">
+          <p>At twenty-one he moved to Europe to build his own system. Over six years based in Holland, and later in Spain, he developed <b>RTMS, Rick Tew's Martial Science</b>: an open, multi-art approach, Modern American Ninjitsu crossed with MMA, that teaches movement, not moves, so the system changes daily and the student stays self-powered.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="rail"><span class="ts">the mind</span><span class="loc">WinJitsu</span></div>
+        <div class="body">
+          <p>Out of the training came a second art, a mental one. <b>WinJitsu</b>, the True Art of Winning. Where RTMS trains the body, WinJitsu trains the mind to beat its own negative Ninja: the fear, doubt, stress and laziness that stop most people. He wrote it down as a five-book series, one book per finger of the hand.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="rail"><span class="ts">today</span><span class="loc">NinjaGym</span></div>
+        <div class="body">
+          <p>Today Rick teaches globally: Holland, Spain, California, Thailand, Latin America, the Philippines. He runs <b>NinjaGym</b> in Samui, leads live-in camps and BLAST training tours, and coaches as a Tony Robbins Certified Strategic Intervention Coach. The mission has not changed since the first dojo: help you get a Black Belt in what you do.</p>
+        </div>
+      </div>
+
+      <!-- CASE LOG -->
+      <div class="subhead">
+        <p class="eyebrow"><span class="n">02</span> Case log // the chapters</p>
+      </div>
+
+      <div class="entry log">
+        <div class="rail"><span class="ts">age 8</span></div>
+        <div class="body"><p>Ran away to <b>California</b>, and never really stopped moving.</p></div>
+      </div>
+      <div class="entry log">
+        <div class="rail"><span class="ts">at 14</span></div>
+        <div class="body"><p>Fell for <b>ninjitsu</b>. On national <b>television</b> at fifteen for his skills.</p></div>
+      </div>
+      <div class="entry log">
+        <div class="rail"><span class="ts">at 16</span></div>
+        <div class="body"><p>Started <b>teaching</b> martial arts.</p></div>
+      </div>
+      <div class="entry log">
+        <div class="rail"><span class="ts">at 19</span></div>
+        <div class="body"><p>Opened his <b>first dojo</b>.</p></div>
+      </div>
+      <div class="entry log">
+        <div class="rail"><span class="ts">at 21</span></div>
+        <div class="body"><p>Moved to <b>Europe</b> and developed <b>RTMS</b>, his own martial science.</p></div>
+      </div>
+      <div class="entry log">
+        <div class="rail"><span class="ts">the books</span></div>
+        <div class="body"><p>Wrote <b>WinJitsu</b>, the five-book "Be a Black Belt in What You Do" series.</p></div>
+      </div>
+      <div class="entry log">
+        <div class="rail"><span class="ts">certified</span></div>
+        <div class="body"><p>Became a <b>Tony Robbins Certified</b> Strategic Intervention Coach.</p></div>
+      </div>
+      <div class="entry log">
+        <div class="rail"><span class="ts">today</span></div>
+        <div class="body"><p><b>NinjaGym</b> in Samui, live-in camps, BLAST tours, and coaching worldwide.</p></div>
+      </div>
+
+      <!-- THE METHOD -->
+      <div class="subhead">
+        <p class="eyebrow"><span class="n">03</span> The method // principle</p>
+      </div>
+
+      <div class="entry assess">
+        <div class="rail"><span class="ts">RTMS</span><span class="loc">principle</span></div>
+        <div class="body">
+          <blockquote class="quote">
+            <span class="k">&ldquo;</span>Get a Black Belt in what you do.<span class="k">&rdquo;</span>
+          </blockquote>
+          <p class="attr">Rick Tew, in his own words</p>
+          <p class="quote-2"><b>RTMS is a martial science, not a style.</b> It teaches movement, not moves, so the system stays alive and the student is self-powered, not a copy of the master. WinJitsu turns that same discipline on the mind. Life is an obstacle course. This is how you learn to run it.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REFERENCES / THE BOOKS -->
+  <section class="books section">
+    <div class="wrap books-in">
+      <div>
+        <p class="eyebrow"><span class="n">04</span> The work</p>
+        <h2>Five books. Five fingers. One fist.</h2>
+        <p class="lead">WinJitsu is written as the "Be a Black Belt in What You Do" series. Each book is one finger of the hand. Together they close into a fist to break through, and a grip to hang on.</p>
+        <p class="foot">All figures are Rick's own, from ricktew.com.</p>
+      </div>
+      <ol class="reflist">
+        <li>
+          <span class="ix">01</span>
+          <span><span class="ti">ACE, Achieving Combined Excellence</span><span class="me">Taking control of your attitude</span></span>
+        </li>
+        <li>
+          <span class="ix">02</span>
+          <span><span class="ti">MAK, Motivation, Action, Knowledge</span><span class="me">Make it happen</span></span>
+        </li>
+        <li>
+          <span class="ix">03</span>
+          <span><span class="ti">MBS, Mind, Body, Spirit</span><span class="me">The synergy for success</span></span>
+        </li>
+        <li>
+          <span class="ix">04</span>
+          <span><span class="ti">NRG, Neuro Reasons for Growth</span><span class="me">Internal power for achievement</span></span>
+        </li>
+        <li>
+          <span class="ix">05</span>
+          <span><span class="ti">CMT, Creative Mental Training</span><span class="me">The magic of visualization</span></span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- FLAGSHIP: the one section with a stronger CTA -->
+  <section class="flagship section">
+    <div class="wrap">
+      <div class="fpanel">
+        <svg class="gline" viewBox="0 0 300 34" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 17 H108 l8 -13 6 26 8 -30 7 30 6 -13 H300" fill="none" stroke="#ff5a36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p class="eyebrow">The immersion</p>
+        <h2>The Camp of <span class="amp">Martial Science</span></h2>
+        <p class="desc">The live-in camp is the fullest version of the work: <b>ninja-MMA, self-defense, adventure and WinJitsu coaching</b> in one immersion. Five training programs, one ranked five-level system, run in Samui and near Yosemite. You live in, you train hard, you come out different.</p>
+        <p class="subline">Two weeks or two months. From $2,222, all in.</p>
+        <div class="cta-row">
+          <a class="btn btn-ember" href="/camps/">See the camp <span class="arw" aria-hidden="true">&#8594;</span></a>
+          <a class="quiet" href="https://ninjagym.com" target="_blank" rel="noopener">or train at NinjaGym <span aria-hidden="true">&#8599;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="quiz section">
+    <div class="wrap">
+      <div class="box">
+        <p class="eyebrow" style="justify-content:center">Find your path</p>
+        <h2>What kind of warrior are you?</h2>
+        <p class="lead">A short, honest quiz. Four taps. It reads where you are and points you at the right path with Rick: the body, the mind, the camp, or coaching.</p>
+        <button class="btn btn-primary" onclick="RickQuiz.open()">Find your path with Rick</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING / MISSION -->
+  <section class="close-s section">
+    <div class="wrap close-in">
+      <p class="eyebrow" style="justify-content:center">The mission</p>
+      <h2>To help as many people as possible get a Black Belt in what they do.</h2>
+      <p class="lead">That is the whole of it. Train the body with RTMS, train the mind with WinJitsu, and go be a Ninja in what you DO. Give a BLAST to have a BLAST.</p>
+      <div class="cta-row">
+        <button class="btn btn-primary" onclick="RickQuiz.open()">Find your path with Rick</button>
+        <a class="btn btn-ghost" href="https://ninjagym.com" target="_blank" rel="noopener">Train at NinjaGym <span class="arw" aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-in">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <b>Rick Tew</b>
+        <span class="file">FIELD MANUAL / RT &middot; a life in motion</span>
+      </div>
+      <ul class="social">
+        <li><a href="https://x.com/ricktew" target="_blank" rel="noopener">X <span class="arw" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://instagram.com/ricktew" target="_blank" rel="noopener">Instagram <span class="arw" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://youtube.com/@ricktew" target="_blank" rel="noopener">YouTube <span class="arw" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://facebook.com/ricktew" target="_blank" rel="noopener">Facebook <span class="arw" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://linkedin.com/in/ricktew" target="_blank" rel="noopener">LinkedIn <span class="arw" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://ninjagym.com" target="_blank" rel="noopener">NinjaGym <span class="arw" aria-hidden="true">&#8599;</span></a></li>
+      </ul>
+    </div>
+    <p class="legal">
+      <b>RTMS and WinJitsu are Rick Tew's own systems. NinjaGym is a registered trademark.</b> Get a Black Belt in what you do.
+    </p>
+  </div>
+</footer>
+
+<!-- theme toggle (same behavior and storage key as the rest of the site) -->
+<script>
+(function(){
+  var html = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var icon = btn && btn.querySelector('.theme-icon');
+  function setIcon(t){ if(icon) icon.textContent = (t === 'dark') ? '◐' : '◑'; }
+  setIcon(html.getAttribute('data-theme'));
+  if(btn) btn.addEventListener('click', function(){
+    var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    setIcon(next);
+  });
+})();
+</script>
+
+<!-- movement / combat-rhythm spine: draws on scroll, holds still under reduced motion -->
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var wrap = document.querySelector('.chronicle .wrap');
+  var svg = document.getElementById('ecg');
+  var track = document.getElementById('ecg-track');
+  var line = document.getElementById('ecg-line');
+  var pulse = document.getElementById('ecg-pulse');
+  if(!wrap || !svg || !line) return;
+
+  var totalLen = 0, W = 88, H = 0;
+
+  function ecgPath(w, h){
+    var cx = w * 0.5, A = w * 0.30;
+    var seg = 150;
+    var n = Math.max(4, Math.round((h - 90) / seg));
+    var step = (h - 90) / n;
+    var d = 'M ' + cx.toFixed(1) + ' 0';
+    var y = 50;
+    function L(x, yy){ d += ' L ' + x.toFixed(1) + ' ' + yy.toFixed(1); }
+    for(var i = 0; i < n; i++){
+      var b = y + step * 0.5;
+      L(cx, b - 26);
+      L(cx + A*0.20, b - 17);
+      L(cx, b - 9);
+      L(cx - A*0.28, b - 2);
+      L(cx + A, b + 6);
+      L(cx - A*0.42, b + 15);
+      L(cx, b + 21);
+      L(cx + A*0.26, b + 31);
+      L(cx, b + 39);
+      y += step;
+    }
+    L(cx, h);
+    return d;
+  }
+
+  function build(){
+    H = wrap.offsetHeight;
+    W = svg.clientWidth || 88;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var d = ecgPath(W, H);
+    track.setAttribute('d', d);
+    line.setAttribute('d', d);
+    totalLen = line.getTotalLength();
+    line.style.strokeDasharray = totalLen;
+    if(reduce){
+      line.style.strokeDashoffset = 0;
+      if(pulse) pulse.style.display = 'none';
+    } else {
+      update();
+    }
+  }
+
+  var ticking = false;
+  function onScroll(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ update(); ticking = false; });
+  }
+
+  function update(){
+    if(!totalLen) return;
+    var rect = wrap.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var readLine = vh * 0.56;
+    var prog = (readLine - rect.top) / (rect.height || 1);
+    prog = Math.max(0, Math.min(1, prog));
+    line.style.strokeDashoffset = totalLen * (1 - prog);
+    if(pulse){
+      if(prog > 0.001 && prog < 0.999){
+        var pt = line.getPointAtLength(totalLen * prog);
+        pulse.setAttribute('cx', pt.x);
+        pulse.setAttribute('cy', pt.y);
+        pulse.style.opacity = 1;
+      } else {
+        pulse.style.opacity = 0;
+      }
+    }
+  }
+
+  build();
+  window.addEventListener('load', build);
+  window.addEventListener('resize', build);
+  if(!reduce) window.addEventListener('scroll', onScroll, {passive:true});
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(build); }
+})();
+</script>
+
+<script src="js/rick-quiz.js"></script>
+</body>
+</html>

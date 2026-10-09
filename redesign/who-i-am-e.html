@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<!-- Parked draft, hidden from search (Rick, 9 Oct 2026); opens by its link for review. -->
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rick Tew, The Map</title>
+<meta name="description" content="Rick Tew at a glance: a clickable map of the whole world of Rick Tew. See every path at the top, tap where you want to go, then scroll for the detail.">
+<meta property="og:title" content="Rick Tew, The Map">
+<meta property="og:description" content="A clickable map of Rick Tew's work. See every path, tap where you want to go.">
+<meta property="og:type" content="website">
+
+<!-- NEW IDEA: "The Map". A quick-find image-map style navigator. The top is a
+     clickable constellation of the paths through Rick's world, so you see where
+     to click before you scroll. Each node jumps to its detail section below.
+     Reflows to a tappable vertical trail on phones. Dark + gold, site toggle. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script>(function(){var s=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})();</script>
+
+<style>
+:root{
+  --bg:#090d15; --surface:#0f1622; --raised:#162030; --border:#1f2d45;
+  --accent:#f5a100; --accent-text:#f5a100; --accent-dim:rgba(245,161,0,.12);
+  --text:#e8eaf4; --muted:#9096b8;
+  --line-svg:rgba(245,161,0,.28);
+  --font:"Space Grotesk", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r:16px;
+  --shadow:0 20px 50px -24px rgba(0,0,0,.7);
+
+  --rq-font:var(--font);
+  --rq-accent:#f5a100; --rq-on-accent:#141000; --rq-accent2:#f5a100; --rq-on-accent2:#141000;
+  --rq-ink:#e8eaf4; --rq-muted:#9096b8; --rq-card:#0f1622; --rq-panel:#162030;
+  --rq-line:#1f2d45; --rq-optbg:#0b1019; --rq-badge-bg:rgba(245,161,0,.14); --rq-radius:14px;
+}
+[data-theme="light"]{
+  --bg:#f4f3ee; --surface:#ffffff; --raised:#f0eee6; --border:#d7d5cc;
+  --accent:#f5a100; --accent-text:#8a5a00; --accent-dim:rgba(245,161,0,.14);
+  --text:#14161f; --muted:#585a70;
+  --line-svg:rgba(180,120,0,.4);
+  --shadow:0 20px 50px -28px rgba(20,17,10,.35);
+
+  --rq-ink:#14161f; --rq-muted:#585a70; --rq-card:#ffffff; --rq-panel:#f1efe8;
+  --rq-line:#d7d5cc; --rq-optbg:#faf9f5; --rq-badge-bg:rgba(245,161,0,.16);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+
+.wrap{max-width:1140px;margin:0 auto;padding:0 clamp(20px,5vw,44px)}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent-text);display:inline-flex;align-items:center;gap:10px;margin:0}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--accent)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-in{max-width:1140px;margin:0 auto;padding:12px clamp(20px,5vw,44px);
+  display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:baseline;gap:11px;text-decoration:none}
+.brand b{font-weight:700;letter-spacing:.2em;font-size:14px;text-transform:uppercase;color:var(--text)}
+.brand .f{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav .ext{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;padding:8px 12px;border:1px solid var(--border);border-radius:999px}
+.nav .ext:hover{color:var(--text);border-color:var(--muted)}
+.theme-toggle{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:transparent;
+  color:var(--muted);cursor:pointer;font-size:16px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.theme-toggle:hover{color:var(--text);border-color:var(--muted)}
+@media(max-width:540px){.brand .f{display:none}.nav .ext{display:none}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);
+  font-weight:600;font-size:15.5px;padding:14px 22px;border-radius:12px;border:1px solid transparent;
+  cursor:pointer;text-decoration:none;transition:transform .14s,filter .14s,border-color .14s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--accent);color:#141000}
+.btn-primary:hover{filter:brightness(1.06)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--border)}
+.btn-ghost:hover{border-color:var(--muted)}
+
+/* ===================== THE MAP (quick-find hero) ===================== */
+.map{min-height:calc(100dvh - 61px);display:flex;flex-direction:column;
+  padding:clamp(18px,3vw,30px) 0 clamp(24px,3vw,36px)}
+.map-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 24px;margin-bottom:clamp(14px,2.4vw,26px)}
+.map-head h1{font-size:clamp(28px,4.4vw,46px);line-height:1.05;margin:10px 0 0;max-width:16ch;font-weight:600}
+.map-head h1 em{font-style:normal;color:var(--accent-text)}
+.map-head .hint{font-family:var(--mono);font-size:12.5px;color:var(--muted);letter-spacing:.03em;max-width:30ch;line-height:1.5}
+.map-head .hint b{color:var(--text);font-weight:500}
+
+.constellation{position:relative;flex:1;min-height:clamp(420px,60vh,600px);
+  border:1px solid var(--border);border-radius:var(--r);background:
+    radial-gradient(60% 60% at 50% 50%, var(--accent-dim), transparent 70%),
+    var(--surface);overflow:hidden}
+.constellation svg.links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.constellation svg.links line{stroke:var(--line-svg);stroke-width:1;stroke-dasharray:3 6}
+
+/* nodes */
+.node{position:absolute;transform:translate(-50%,-50%);width:clamp(128px,15vw,176px);
+  text-decoration:none;text-align:left;background:var(--raised);border:1px solid var(--border);
+  border-radius:14px;padding:13px 14px;transition:transform .16s,border-color .16s,box-shadow .16s;
+  box-shadow:var(--shadow);color:var(--text)}
+.node:hover,.node:focus-visible{border-color:var(--accent);transform:translate(-50%,-50%) translateY(-3px)}
+.node .num{font-family:var(--mono);font-size:11px;color:var(--accent-text);letter-spacing:.1em}
+.node .t{display:block;font-weight:600;font-size:16px;line-height:1.2;margin-top:5px}
+.node .d{display:block;font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.35}
+.node.center{width:clamp(150px,17vw,196px);background:var(--bg);border:1.5px solid var(--accent);text-align:center;
+  box-shadow:0 0 0 6px var(--accent-dim), var(--shadow)}
+.node.center .rt{font-size:clamp(30px,4vw,42px);font-weight:700;letter-spacing:.04em;line-height:1}
+.node.center .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:6px;display:block}
+.node.center:hover{transform:translate(-50%,-50%)}
+
+/* node placement (desktop hexagon around the center) */
+.n-c{left:50%;top:50%}
+.n-1{left:19%;top:23%}
+.n-2{left:50%;top:15%}
+.n-3{left:81%;top:23%}
+.n-4{left:81%;top:77%}
+.n-5{left:50%;top:85%}
+.n-6{left:19%;top:77%}
+
+.map-foot{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-top:clamp(14px,2vw,22px)}
+.map-foot .q{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+
+/* stacked "trail" on small screens */
+@media(max-width:760px){
+  .constellation{display:flex;flex-direction:column;gap:10px;padding:14px;min-height:0;background:var(--surface)}
+  .constellation svg.links{display:none}
+  .node{position:static;transform:none;width:100%;box-shadow:none}
+  .node:hover,.node:focus-visible{transform:none}
+  .node.center{order:-1;box-shadow:0 0 0 4px var(--accent-dim)}
+  .node.center:hover{transform:none}
+}
+
+/* ===================== detail sections ===================== */
+.section{padding:clamp(48px,7vw,84px) 0;border-top:1px solid var(--border)}
+.section h2{font-size:clamp(24px,3.4vw,36px);line-height:1.1;margin:12px 0 0;font-weight:600}
+.section .lead{color:var(--muted);max-width:60ch;margin:16px 0 0;font-size:18px}
+.section p{max-width:64ch}
+.back{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--accent-text)}
+.sec-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:26px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px}
+.card h3{margin:0;font-size:17px;font-weight:600}
+.card p{margin:8px 0 0;font-size:15px;color:var(--muted);line-height:1.55}
+.card .k{font-family:var(--mono);font-size:11px;color:var(--accent-text);letter-spacing:.1em}
+.booklist{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--border)}
+.booklist li{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);align-items:baseline}
+.booklist .ix{font-family:var(--mono);font-size:12px;color:var(--accent-text)}
+.booklist .ti{font-weight:600}
+.booklist .me{display:block;color:var(--muted);font-size:14px;margin-top:2px}
+.flag{background:var(--accent);color:#141000;border-radius:var(--r);padding:clamp(28px,4vw,48px);margin-top:8px}
+.flag h2{color:#141000;margin:0}
+.flag p{color:#3a2a00;max-width:56ch;margin:14px 0 0}
+.flag .btn-dark{background:#141000;color:var(--accent);margin-top:22px}
+.flag .btn-dark:hover{filter:brightness(1.25)}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+
+/* footer */
+footer{border-top:1px solid var(--border);background:var(--surface)}
+.foot-in{max-width:1140px;margin:0 auto;padding:clamp(40px,5vw,64px) clamp(20px,5vw,44px)}
+.foot-top{display:flex;flex-wrap:wrap;gap:20px 40px;justify-content:space-between}
+.foot-brand b{font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.foot-brand span{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px}
+.social{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,auto);gap:9px 30px}
+.social a{font-family:var(--mono);font-size:12.5px;color:var(--muted);text-decoration:none}
+.social a:hover{color:var(--text)}
+.legal{margin-top:30px;padding-top:20px;border-top:1px solid var(--border);font-size:13px;color:var(--muted);max-width:70ch}
+.legal b{color:var(--text);font-weight:500}
+@media(max-width:600px){.social{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/"><b>Rick Tew</b><span class="f">THE MAP</span></a>
+    <div class="nav-actions">
+      <a class="ext" href="https://ninjagym.com" target="_blank" rel="noopener">NinjaGym &#8599;</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode"><span class="theme-icon" aria-hidden="true">&#9680;</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- THE MAP -->
+  <section class="map">
+    <div class="wrap" style="display:flex;flex-direction:column;flex:1">
+      <div class="map-head">
+        <div>
+          <p class="eyebrow">The map</p>
+          <h1>The whole world of <em>Rick Tew</em>, in one look.</h1>
+        </div>
+        <p class="hint"><b>Tap a node</b> to jump straight to it. Not sure where to start? Take the quiz.</p>
+      </div>
+
+      <nav class="constellation" aria-label="Site map of Rick Tew">
+        <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="50" y1="50" x2="19" y2="23"></line>
+          <line x1="50" y1="50" x2="50" y2="15"></line>
+          <line x1="50" y1="50" x2="81" y2="23"></line>
+          <line x1="50" y1="50" x2="81" y2="77"></line>
+          <line x1="50" y1="50" x2="50" y2="85"></line>
+          <line x1="50" y1="50" x2="19" y2="77"></line>
+        </svg>
+
+        <div class="node center n-c">
+          <div class="rt">RICK TEW</div>
+          <span class="lbl">Start here</span>
+        </div>
+
+        <a class="node n-1" href="#about">
+          <span class="num">01</span><span class="t">Who he is</span><span class="d">California to the world, in 30+ years.</span>
+        </a>
+        <a class="node n-2" href="#rtms">
+          <span class="num">02</span><span class="t">RTMS</span><span class="d">Train the body. Movement, not moves.</span>
+        </a>
+        <a class="node n-3" href="#winjitsu">
+          <span class="num">03</span><span class="t">WinJitsu</span><span class="d">Train the mind. The True Art of Winning.</span>
+        </a>
+        <a class="node n-4" href="#camps">
+          <span class="num">04</span><span class="t">Camps &amp; Tours</span><span class="d">Live in. Train hard. Travel with it.</span>
+        </a>
+        <a class="node n-5" href="#ninjagym">
+          <span class="num">05</span><span class="t">NinjaGym</span><span class="d">Train in Samui, Thailand.</span>
+        </a>
+        <a class="node n-6" href="#coaching">
+          <span class="num">06</span><span class="t">Coaching</span><span class="d">Get results. Robbins certified.</span>
+        </a>
+      </nav>
+
+      <div class="map-foot">
+        <button class="btn btn-primary" onclick="RickQuiz.open()">Find your path with Rick</button>
+        <span class="q">Four taps. It points you at the right node.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAIL: WHO HE IS -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="sec-top"><p class="eyebrow">01 // Who he is</p><a class="back" href="#top">Back to map &#8593;</a></div>
+      <h2>The martial artist who turned movement into a science.</h2>
+      <p class="lead">Rick Tew ran away to California at eight. He fell for ninjitsu at fourteen, was on television at fifteen, and opened his first dojo at nineteen. At twenty-one he moved to Europe to build his own system, and has taught since across Holland, Spain, California, Thailand, Latin America and the Philippines. Thirty years in, the mission is still simple: help you get a Black Belt in what you do.</p>
+    </div>
+  </section>
+
+  <!-- DETAIL: RTMS -->
+  <section class="section" id="rtms">
+    <div class="wrap">
+      <div class="sec-top"><p class="eyebrow">02 // Train the body</p><a class="back" href="#top">Back to map &#8593;</a></div>
+      <h2>RTMS, Rick Tew's Martial Science.</h2>
+      <p class="lead">A martial science, not a style. Modern American Ninjitsu crossed with MMA, built to teach movement, not moves. The system changes daily and the student stays self-powered, never just a copy of the master.</p>
+      <div class="cols">
+        <div class="card"><span class="k">THE SYSTEM</span><h3>5 ranking levels</h3><p>A complete, ranked path to instructor status.</p></div>
+        <div class="card"><span class="k">THE IDEA</span><h3>Movement, not moves</h3><p>Train the movement and the skill outlives the technique.</p></div>
+        <div class="card"><span class="k">SELF-DEFENSE</span><h3>The Personal Security Course</h3><p>Mind, body, technique. In that order.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAIL: WINJITSU -->
+  <section class="section" id="winjitsu">
+    <div class="wrap">
+      <div class="sec-top"><p class="eyebrow">03 // Train the mind</p><a class="back" href="#top">Back to map &#8593;</a></div>
+      <h2>WinJitsu, the mental martial art.</h2>
+      <p class="lead">"Win" plus "Jitsu" is the True Art of Winning. It trains the mind to beat its own negative Ninja: fear, doubt, stress and laziness. Written down as the five-book "Be a Black Belt in What You Do" series, one book per finger of the hand. Together they make a fist to break through, and a grip to hang on.</p>
+      <ul class="booklist">
+        <li><span class="ix">01</span><span><span class="ti">ACE, Achieving Combined Excellence</span><span class="me">Taking control of your attitude</span></span></li>
+        <li><span class="ix">02</span><span><span class="ti">MAK, Motivation, Action, Knowledge</span><span class="me">Make it happen</span></span></li>
+        <li><span class="ix">03</span><span><span class="ti">MBS, Mind, Body, Spirit</span><span class="me">The synergy for success</span></span></li>
+        <li><span class="ix">04</span><span><span class="ti">NRG, Neuro Reasons for Growth</span><span class="me">Internal power for achievement</span></span></li>
+        <li><span class="ix">05</span><span><span class="ti">CMT, Creative Mental Training</span><span class="me">The magic of visualization</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DETAIL: CAMPS & TOURS -->
+  <section class="section" id="camps">
+    <div class="wrap">
+      <div class="sec-top"><p class="eyebrow">04 // Go all in</p><a class="back" href="#top">Back to map &#8593;</a></div>
+      <div class="flag">
+        <h2>The Camp of Martial Science.</h2>
+        <p>The live-in camp is the fullest version of the work: ninja-MMA, self-defense, adventure and WinJitsu coaching in one immersion. Five training programs, one ranked five-level system, run in Samui and near Yosemite. Two weeks or two months. From $2,222, all inclusive. The BLAST tours take the same spirit on the road: two weeks of martial arts and adventure travel, disconnect to reconnect.</p>
+        <a class="btn btn-dark" href="/camps/">See the camp &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAIL: NINJAGYM -->
+  <section class="section" id="ninjagym">
+    <div class="wrap">
+      <div class="sec-top"><p class="eyebrow">05 // Train in Samui</p><a class="back" href="#top">Back to map &#8593;</a></div>
+      <h2>NinjaGym.</h2>
+      <p class="lead">Founded by Rick, NinjaGym is a physical gym in Samui, Thailand: ninja training, obstacle courses, climbing, parkour, and kids and adult programs. It is where you can walk in and train with the work directly.</p>
+      <div class="cta-row"><a class="btn btn-primary" href="https://ninjagym.com" target="_blank" rel="noopener">Visit NinjaGym &#8599;</a></div>
+    </div>
+  </section>
+
+  <!-- DETAIL: COACHING -->
+  <section class="section" id="coaching">
+    <div class="wrap">
+      <div class="sec-top"><p class="eyebrow">06 // Get results</p><a class="back" href="#top">Back to map &#8593;</a></div>
+      <h2>Coaching and the BLAST workshop.</h2>
+      <p class="lead">Rick is a Tony Robbins Certified Strategic Intervention Coach. The BLAST workshop is edutainment, comedy plus martial arts plus mental arts, that summarizes the WinJitsu system. He has spoken at HP, TU Delft, the University of Rotterdam and more. For every paid event, one person from a local charity attends free: give a BLAST to have a BLAST.</p>
+      <div class="cta-row"><button class="btn btn-primary" onclick="RickQuiz.open()">Find your path with Rick</button><a class="btn btn-ghost" href="/solutions/">See coaching</a></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot-in">
+    <div class="foot-top">
+      <div class="foot-brand"><b>Rick Tew</b><span>THE MAP &middot; a clickable guide to the work</span></div>
+      <ul class="social">
+        <li><a href="https://x.com/ricktew" target="_blank" rel="noopener">X &#8599;</a></li>
+        <li><a href="https://instagram.com/ricktew" target="_blank" rel="noopener">Instagram &#8599;</a></li>
+        <li><a href="https://youtube.com/@ricktew" target="_blank" rel="noopener">YouTube &#8599;</a></li>
+        <li><a href="https://facebook.com/ricktew" target="_blank" rel="noopener">Facebook &#8599;</a></li>
+        <li><a href="https://linkedin.com/in/ricktew" target="_blank" rel="noopener">LinkedIn &#8599;</a></li>
+        <li><a href="https://ninjagym.com" target="_blank" rel="noopener">NinjaGym &#8599;</a></li>
+      </ul>
+    </div>
+    <p class="legal"><b>RTMS and WinJitsu are Rick Tew's own systems. NinjaGym is a registered trademark.</b> Get a Black Belt in what you do.</p>
+  </div>
+</footer>
+
+<script>(function(){var h=document.documentElement,b=document.getElementById('themeToggle'),i=b&&b.querySelector('.theme-icon');function s(t){if(i)i.textContent=t==='dark'?'◐':'◑';}s(h.getAttribute('data-theme'));if(b)b.addEventListener('click',function(){var n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('theme',n);s(n);});})();</script>
+<script src="js/rick-quiz.js"></script>
+</body>
+</html>
