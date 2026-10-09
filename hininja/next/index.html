@@ -200,14 +200,16 @@ footer a:hover{color:var(--red)}
       <div class="k">HI Ninja &middot; Rick Tew</div>
       <h1>Two weeks on Koh Samui. <span>Train with Rick Tew.</span></h1>
       <p class="lede">Live-in ninja martial arts training with Rick Tew in Koh Samui, Thailand. Morning class, evening club session, the island in between.</p>
+      <p class="lede">It is relaxed: visit, see Samui, and get in about 2 hours of training a day with an old-school ninja guide. Not crazy serious like the camps of the old days.</p>
       <div class="cta">
-        <a class="btn btn-red" href="#enrol">Enrol</a>
+        <a class="btn btn-red" href="#price">Enrol</a>
         <a class="btn btn-quiet" href="#day">See a day</a>
+        <a class="btn btn-quiet" href="/gns/">Our Gooffy version</a>
       </div>
     </div>
     <figure>
-      <img src="/aininja/assets/story/ninja/world/asia-island.webp" alt="Training on Koh Samui: drills on the beach, the ring, the jungle and the sea" width="640" height="335">
-      <figcaption>Koh Samui: beach, jungle, and the mats at NinjaGym.</figcaption>
+      <img src="/aininja/assets/story/ninja/world/asia-founder.webp" alt="Rick Tew stretching on the red mats at NinjaGym" width="640" height="308">
+      <figcaption>Rick Tew, founder of NinjaGym, on the mats.</figcaption>
     </figure>
   </div>
 </header>
@@ -218,7 +220,7 @@ footer a:hover{color:var(--red)}
     <h2>Real ninja skills. Zero seriousness.</h2>
     <p class="lead">A live-in martial arts program at Rick Tew's NinjaGym in Koh Samui. It teaches a genuine, structured ninja skill set, stances, rolls, falls, strikes, kicks, self-defense, Ninja Tools, and mental focus, wrapped in a deliberately silly delivery. The training is legit. The vibe is fun.</p>
     <p class="lead">Train by day, game by night, and walk away with real skills to take home without giving up your holiday.</p>
-    <p class="note" style="margin-top:16px">Its name is Gooffy Ninja ShhT!!: the misspelling is part of the identity, not a typo. The full, silly version, with the vault of old tapes and the quiz, is at <a href="/gns/">ricktew.com/gns</a>.</p>
+    <p class="note" style="margin-top:16px">Its name is Gooffy Ninja ShhT!!: the misspelling is part of the identity, not a typo. Want it silly? <a href="/gns/">See our Gooffy version</a>, with the vault of old tapes and the quiz.</p>
   </div>
 </section>
 
@@ -250,8 +252,12 @@ footer a:hover{color:var(--red)}
           <li><b>2</b><span><strong>2-hour evening review</strong>Club-style practice with the group, where the real learning happens.</span></li>
           <li><b>2</b><span><strong>2 weeks</strong>Your stay on the island. Extend later if you want more.</span></li>
         </ul>
-        <p class="longer">Stay longer, the 222 stays: 3 weeks is $3,222, 4 weeks is $4,222. A flat $1,000 per extra week.</p>
-        <a class="btn btn-red" href="#enrol">Enrol</a>
+        <p class="longer">Stay longer, the 222 stays: 3 weeks is $3,222, 4 weeks is $4,222. A flat $1,000 per extra week: <a href="#enrol">write to me</a> for a longer stay.</p>
+        <!-- The Dojo's one checkout through the ricktew.com step, like the Shop's
+             Buy buttons. Rick's clicks, 9 Oct 2026: one button, 2 weeks at $2,222;
+             the checkout asks for the arrival date; all sales final, dates can move. -->
+        <a class="btn btn-red buy" id="buyGns" href="/aininja/shop/buy/?sku=HIN-GNS-2W">Buy 2 weeks, $2,222</a>
+        <p class="longer">At checkout you add your arrival date. All sales are final; your dates can move to another two weeks.</p>
       </div>
       <table class="incl">
         <caption class="k" style="text-align:left;padding:0 0 10px">What's included</caption>
@@ -284,7 +290,8 @@ footer a:hover{color:var(--red)}
         <div class="tape"><video controls preload="none" playsinline poster="/aininja/assets/story/ninja/tapes/strikes-poster.webp" src="/aininja/assets/story/ninja/tapes/strikes-intro.mp4"></video><p>The opening of the Strikes &amp; Kicks tape. A great form to learn while you are here.</p></div>
       </div>
     </div>
-    <div class="photos">
+    <p class="note" style="margin-top:26px">From the old camps, for the record. Today it is relaxed.</p>
+    <div class="photos" style="margin-top:10px">
       <img src="/aininja/assets/story/ninja/world/us-camp-crew.webp" alt="A camp crew on the rocks in California" width="572" height="428" loading="lazy">
       <img src="/aininja/assets/story/ninja/world/us-camp-spar.webp" alt="Sparring on a mountain ledge at a US camp" width="310" height="233" loading="lazy">
       <img src="/aininja/assets/story/ninja/world/eu-lectures.webp" alt="Rick teaching and lecturing in Europe" width="640" height="335" loading="lazy">
@@ -305,7 +312,7 @@ footer a:hover{color:var(--red)}
     <h2>Not on the island?</h2>
     <div class="also">
       <div><h3>Pocket Dojo</h3><p>Train at home with Tew's Martial Arts Home Study.</p><a class="go" href="/hsp/">See Pocket Dojo &#8594;</a></div>
-      <div><h3>WinJitsu</h3><p>The mental martial art, in the Tewtors app.</p><a class="go" href="https://tewtors.com/">Open Tewtors &#8594;</a></div>
+      <div><h3>WinJitsu</h3><p>The mental martial art, Rick Tew's system for training the mind.</p><a class="go" href="https://winjitsu.com/">Open WinJitsu &#8594;</a></div>
       <div><h3>Coaching</h3><p>Rick is a Certified Strategic Intervention Coach.</p><a class="go" href="#enrol" data-topic="coaching">Ask about coaching &#8594;</a></div>
     </div>
   </div>
@@ -374,6 +381,10 @@ footer a:hover{color:var(--red)}
   "use strict";
   var ENDPOINT="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact";
   var shownAt=Date.now();
+  /* ?src= from a post rides on to the checkout, as on the Shop's product pages */
+  (function(){ var v=""; try{ v=new URLSearchParams(location.search).get("src")||""; }catch(e){}
+    if(!/^[A-Za-z0-9_-]{1,200}$/.test(v)) return;
+    [].forEach.call(document.querySelectorAll('a[href^="/aininja/shop/buy/?"]'),function(a){ a.href=a.href+"&src="+encodeURIComponent(v); }); })();
   var form=document.getElementById("enrolForm"), topic=document.getElementById("eTopic"), msg=document.getElementById("eMsg"), err=document.getElementById("eErr"), send=document.getElementById("eSend");
   /* the first line of the message per topic: the AI page's GNS presets, word for word */
   var LINES={
