@@ -180,11 +180,11 @@ footer a:hover{color:var(--blue-d)}
             <div class="amount">$222 <small>to build</small></div>
             <p>The first month included, then $99 a month.</p>
             <p class="note">Not in the $222, quoted in writing first: member cards and PINs, treatment packs, the till, events, tax invoices.</p>
-            <p class="note">Cancel anytime, effective at the end of the paid month. Your domain, your content and your data come with you.</p>
+            <p class="note">Renews automatically at $99 a month after the first 30 days, until you cancel. Cancel anytime with the link in your order email. Your domain, your content and your data come with you.</p>
             <p class="note">All sales are final. No refunds.</p>
             <!-- The Dojo's one checkout, the same address as MamaMia's with this SKU. After
                  paying the buyer lands on /aininja/shop/ain-spa-booking/thanks/. -->
-            <a class="btn btn-blue buy" id="buySpaBooking" href="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy?sku=AIN-SPA-BOOKING">Buy the Spa booking site</a>
+            <a class="btn btn-blue buy" id="buySpaBooking" href="/aininja/shop/buy/?sku=AIN-SPA-BOOKING">Buy the Spa booking site</a>
           </div>
         </div>
         <p class="after">At checkout you add your studio&rsquo;s name.</p>
@@ -223,7 +223,7 @@ footer a:hover{color:var(--blue-d)}
 (function(){
   var v=""; try{ v=new URLSearchParams(location.search).get("src")||""; }catch(e){}
   if(!/^[A-Za-z0-9_-]{1,200}$/.test(v)) return;
-  [].forEach.call(document.querySelectorAll('a[href^="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy?"]'),function(a){
+  [].forEach.call(document.querySelectorAll('a[href^="/aininja/shop/buy/?"]'),function(a){
     a.href=a.href+"&src="+encodeURIComponent(v);
   });
 })();

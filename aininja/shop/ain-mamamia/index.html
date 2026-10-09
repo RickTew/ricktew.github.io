@@ -180,7 +180,7 @@ footer a:hover{color:var(--blue-d)}
             <h2>Your baby&rsquo;s own page, built and hosted by me</h2>
             <div class="amount">$222 <small>to build</small></div>
             <p>First month included. Then $99 a month.</p>
-            <p class="note">Cancel anytime, effective at the end of the paid month. Your photos and words come with you.</p>
+            <p class="note">Renews automatically at $99 a month after the first 30 days, until you cancel. Cancel anytime with the link in your order email. Your photos and words come with you.</p>
             <!-- Rick, 7 Oct 2026: "no refunds for this work as I can not get that time back", and for the
                  wording: "no refunds but you can reword my words to what would be normal to see or say".
                  The same line sits under Stripe's Pay button and in Terms section 3. -->
@@ -191,7 +191,7 @@ footer a:hover{color:var(--blue-d)}
                  $222 today, $99 a month after a 30-day trial, "Baby's first name" asked there. After paying
                  the buyer lands on /aininja/shop/ain-mamamia/thanks/. The next app at the same price is the
                  same address with its own SKU. -->
-            <a class="btn btn-blue buy" id="buyMamaMia" href="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy?sku=AIN-MAMAMIA">Buy MamaMia</a>
+            <a class="btn btn-blue buy" id="buyMamaMia" href="/aininja/shop/buy/?sku=AIN-MAMAMIA">Buy MamaMia</a>
           </div>
         </div>
         <p class="after">At checkout you add the baby&rsquo;s first name. Mama gets her own link and her own code.</p>
@@ -230,7 +230,7 @@ footer a:hover{color:var(--blue-d)}
 (function(){
   var v=""; try{ v=new URLSearchParams(location.search).get("src")||""; }catch(e){}
   if(!/^[A-Za-z0-9_-]{1,200}$/.test(v)) return;
-  [].forEach.call(document.querySelectorAll('a[href^="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy?"]'),function(a){
+  [].forEach.call(document.querySelectorAll('a[href^="/aininja/shop/buy/?"]'),function(a){
     a.href=a.href+"&src="+encodeURIComponent(v);
   });
 })();

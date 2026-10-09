@@ -997,9 +997,15 @@ replace the workbooks." His clicks the same day:
 - **The button is the Dojo's ONE checkout, not a Payment Link per app** (Rick,
   7 Oct: "these will be the same as the workbooks where we only need one and the
   price is the same and they just choose the one they want so we don't need 100
-  stripe links for each app"). The Buy href is
-  `https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy?sku=<SKU>`;
-  the page script appends `&src=<source>` (not client_reference_id). MamaMia's
+  stripe links for each app"). The Buy href is `/aininja/shop/buy/?sku=<SKU>`
+  (since 9 Oct, the Dojo's legal floor: hovering a Buy button must not show the
+  provider's address); that noindex page checks the SKU and `src` against a fixed
+  shape and `location.replace`s to the Dojo's
+  `https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy?sku=<SKU>`.
+  The product page script appends `&src=<source>` (not client_reference_id).
+  Next to the button, as California's renewal law asks: "Renews automatically at
+  $99 a month after the first 30 days, until you cancel. Cancel anytime with the
+  link in your order email." (the Dojo's checkout says the same, live 9 Oct). MamaMia's
   first link (`plink_1UNsbL24k28tlk41EJkKFam1`) is retired by the Dojo once this
   is live. A new app at the same price is one line in the Dojo's shop code plus
   its page here; it stays "Not open yet" and noindex until the Dojo says its SKU
