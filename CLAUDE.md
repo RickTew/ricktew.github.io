@@ -1107,7 +1107,9 @@ open items); read it before changing the page. Canonical program docs:
   vault, 40 quiz walks.
 - In the sitemap and in llms.txt (HI door section, via
   `tests/agent-door-build.py`). Not linked from `/hininja/` or the front
-  page; on NinjaGym it was not in the nav either.
+  page; on NinjaGym it was not in the nav either. Since 9 Oct 2026 the new
+  `/about/` (The Map) sends its live-in camp section and the quiz's camp
+  answer here, on Rick's pick "GNS", in the GNS page's own words.
 
 ---
 
@@ -1189,10 +1191,10 @@ RickTew/
 │                   # the older Google Sites pages, still live at their URLs
 ├── redesign/       # REVIEWED 9 Oct 2026 on Rick's clicks: the August
 │                   # whole-site redesign and five of six "Who is Rick Tew"
-│                   # designs DELETED. Left: who-i-am-e.html (The Map, the
-│                   # winner, to become the new /about/ after a fact check)
-│                   # + js/rick-quiz.js, and universe-graph.html (a parked
-│                   # piece from "AI to HI"). All noindex, linked from nowhere.
+│                   # designs DELETED. The winner, The Map, IS /about/ now
+│                   # (its quiz at /js/rick-quiz.js). Left here only
+│                   # universe-graph.html, a parked piece from "AI to HI",
+│                   # noindex, linked from nowhere.
 ├── supabase/       # the contact endpoint's source. NOT a page. Excluded
 │                   # from the Pages build by _config.yml.
 ├── _config.yml     # exists only to keep supabase/ off the live site

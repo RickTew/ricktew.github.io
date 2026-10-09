@@ -2,7 +2,7 @@
    RickQuiz - self-contained "Find your path with Rick" quiz.
    Opens as an inline modal ON the current page (never navigates away).
    Adapted from a quiz-engine pattern, rewritten for Rick Tew:
-   a "What kind of warrior are you" quiz that maps to RTMS, Winjitsu, a live-in
+   a "What kind of warrior are you" quiz that maps to RTMS, WinJitsu, a live-in
    camp, or coaching.
 
    USAGE on a host page:
@@ -24,12 +24,14 @@
   var LINKS = {
     rtms: "/rtms/",
     winjitsu: "/winjitsu/",
-    camp: "/camps/",
-    coaching: "/solutions/",
+    camp: "/gns/",
+    coaching: "/aininja/#opt-8c",
     ninjagym: "https://ninjagym.com",
     contact: "/aininja/#opt-8c",
   };
 
+  // 9 Oct 2026, as the About page went live: the step that asked for a first name
+  // and email is gone. It sent them nowhere, yet said Rick or his team would reply.
   var QUIZ = {
     brand: { initial: "RT", name: "Rick Tew", tag: "find your path" },
     hook: {
@@ -67,19 +69,13 @@
     ],
     paths: {
       rtms: { name: "RTMS, the Martial Science", line: "Rick Tew's Martial Science. Movement, not moves. A self-powered, five-level ninja-MMA system you make your own." },
-      winjitsu: { name: "Winjitsu, the mental martial art", line: "The True Art of Winning. Train the mind to beat the negative Ninja: fear, doubt, stress, and the voice that says quit." },
-      camp: { name: "the Camp of Martial Science", line: "Live in, train hard, come out different. Ninja-MMA, self-defense, adventure, and Winjitsu in one immersion." },
+      winjitsu: { name: "WinJitsu, the mental martial art", line: "The True Art of Winning. Train the mind to beat the negative Ninja: fear, doubt, stress, and the voice that says quit." },
+      camp: { name: "Gooffy Ninja ShhT!!, the live-in camp", line: "Live-in ninja martial arts training with Rick Tew in Koh Samui, Thailand. Morning class, evening club session, the island in between. 2 weeks, $2,222, all in." },
       coaching: { name: "coaching with Rick", line: "Get a Black Belt in what you DO. Strategy, action, and the BLAST workshop to turn what you know into what you ship." },
     },
     pathKey: function (a) { return a.goal; },
     qualify: function (a) { return a.invest === "ready" || (a.timeline === "asap" && a.invest !== "explore"); },
     calcMsgs: ["Reading your answers...", "Mapping your path...", "Almost there..."],
-    contact: {
-      h: "Your path is locked in.",
-      sub: "Where should Rick send it, with your suggested first step?",
-      button: "Show my path",
-      fine: "Private. Rick or his team reply personally, and you can opt out any time.",
-    },
     summary: function (a) {
       return [
         ["Focus", { rtms: "Body / martial skill", winjitsu: "Mind / mental game", camp: "Full reset", coaching: "Results / execution" }[a.goal] || "-"],
@@ -94,9 +90,8 @@
         return {
           badge: "You are ready. Let's train.",
           ctas: [
-            { label: "See how to start", go: go },
-            { label: "Or message Rick directly", go: LINKS.contact },
-          ],
+            { label: go === LINKS.contact ? "Message Rick" : "See how to start", go: go },
+          ].concat(go === LINKS.contact ? [] : [{ label: "Or message Rick directly", go: LINKS.contact }]),
         };
       }
       return {
@@ -247,17 +242,8 @@
       p += Math.random() * 16 + 8; if (p > 100) p = 100; bar.style.width = p + "%";
       if (p > 33 && m < 1) { m = 1; msg.textContent = QUIZ.calcMsgs[1]; }
       if (p > 72 && m < 2) { m = 2; msg.textContent = QUIZ.calcMsgs[2]; }
-      if (p >= 100) { clearInterval(t); setTimeout(showContact, 360); }
+      if (p >= 100) { clearInterval(t); setTimeout(showResults, 360); }
     }, 300);
-  }
-
-  function showContact() {
-    var c = QUIZ.contact;
-    shell('<div class="rq-q">' + esc(c.h) + '</div><p class="rq-sub">' + esc(c.sub) + '</p>' +
-      '<input class="rq-field" id="rq-nm" placeholder="First name" autocomplete="given-name">' +
-      '<input class="rq-field" id="rq-em" type="email" placeholder="Email address" autocomplete="email">' +
-      '<button class="rq-cta alt" onclick="RickQuiz._finish()">' + esc(c.button) + '</button>' +
-      '<p class="rq-tiny">' + esc(c.fine) + '</p>', false);
   }
 
   function showResults() {
@@ -268,7 +254,7 @@
     var res = QUIZ.ctaFor(key, ok);
     var rows = QUIZ.summary(a);
     shell('<div class="rq-badge">' + esc(res.badge) + '</div>' +
-      '<div class="rq-path">' + (state.name ? esc(state.name) + ", " : "") + esc(path.name) + '</div>' +
+      '<div class="rq-path">' + esc(path.name) + '</div>' +
       '<p class="rq-sub">' + esc(path.line) + '</p>' +
       '<div class="rq-answers">' + rows.map(function (r) {
         return '<div><span>' + esc(r[0]) + '</span><b>' + esc(r[1]) + '</b></div>';
@@ -286,7 +272,7 @@
     open: function () {
       ensureStyle();
       lastFocus = document.activeElement;
-      state = { step: 0, answers: {}, phase: undefined, name: "" };
+      state = { step: 0, answers: {}, phase: undefined };
       root = document.createElement("div");
       root.className = "rq-root";
       root.setAttribute("role", "dialog");
@@ -317,11 +303,6 @@
       state.step++;
       if (state.step < QUIZ.questions.length) return showQuestion();
       state.phase = "calc"; return showCalc();
-    },
-    _finish: function () {
-      var nm = document.getElementById("rq-nm");
-      state.name = (nm && nm.value ? nm.value.trim() : "");
-      showResults();
     },
     _go: function (go) {
       if (/^https?:/.test(go)) window.open(go, "_blank", "noopener");

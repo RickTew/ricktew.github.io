@@ -1,16 +1,222 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About Rick Tew: Master Instructor and creator of WinJitsu</title>
-<meta name="description" content="Who Rick Tew is: a lifetime teaching martial arts and the WinJitsu mindset around the world, and a Master to Student way of training.">
+<meta name="description" content="Who Rick Tew is, in one look: RTMS for the body, WinJitsu for the mind, the live-in camp, NinjaGym and coaching. Tap a path and go straight to it.">
+<meta property="og:title" content="About Rick Tew">
+<meta property="og:description" content="A clickable map of Rick Tew's work. See every path, tap where you want to go.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ricktew.com/about/">
 <link rel="canonical" href="https://ricktew.com/about/">
 <link rel="icon" href="/assets/images/favicon.png">
+
+<!-- The About page since 9 Oct 2026: "The Map", design E of the six "Who is Rick
+     Tew" tests, Rick's pick in the /redesign/ review, after a fact check against
+     the live HI pages. A clickable constellation of the paths through Rick's
+     world; each node jumps to its section below; a tappable trail on phones.
+     Light only, like every page on the site (the draft's dark mode and switch
+     are gone). The camp section is GNS in its own page's words (his pick). -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/site.css">
-<script src="/js/site.js" defer></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+
+<style>
+:root{
+  --bg:#090d15; --surface:#0f1622; --raised:#162030; --border:#1f2d45;
+  --accent:#f5a100; --accent-text:#f5a100; --accent-dim:rgba(245,161,0,.12);
+  --text:#e8eaf4; --muted:#9096b8;
+  --line-svg:rgba(245,161,0,.28);
+  --font:"Space Grotesk", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r:16px;
+  --shadow:0 20px 50px -24px rgba(0,0,0,.7);
+
+  --rq-font:var(--font);
+  --rq-accent:#f5a100; --rq-on-accent:#141000; --rq-accent2:#f5a100; --rq-on-accent2:#141000;
+  --rq-ink:#e8eaf4; --rq-muted:#9096b8; --rq-card:#0f1622; --rq-panel:#162030;
+  --rq-line:#1f2d45; --rq-optbg:#0b1019; --rq-badge-bg:rgba(245,161,0,.14); --rq-radius:14px;
+}
+[data-theme="light"]{
+  --bg:#f4f3ee; --surface:#ffffff; --raised:#f0eee6; --border:#d7d5cc;
+  --accent:#f5a100; --accent-text:#8a5a00; --accent-dim:rgba(245,161,0,.14);
+  --text:#14161f; --muted:#585a70;
+  --line-svg:rgba(180,120,0,.4);
+  --shadow:0 20px 50px -28px rgba(20,17,10,.35);
+
+  --rq-ink:#14161f; --rq-muted:#585a70; --rq-card:#ffffff; --rq-panel:#f1efe8;
+  --rq-line:#d7d5cc; --rq-optbg:#faf9f5; --rq-badge-bg:rgba(245,161,0,.16);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+
+.wrap{max-width:1140px;margin:0 auto;padding:0 clamp(20px,5vw,44px)}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent-text);display:inline-flex;align-items:center;gap:10px;margin:0}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--accent)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-in{max-width:1140px;margin:0 auto;padding:12px clamp(20px,5vw,44px);
+  display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:baseline;gap:11px;text-decoration:none}
+.brand b{font-weight:700;letter-spacing:.2em;font-size:14px;text-transform:uppercase;color:var(--text)}
+.brand .f{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav .ext{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;padding:8px 12px;border:1px solid var(--border);border-radius:999px}
+.nav .ext:hover{color:var(--text);border-color:var(--muted)}
+.theme-toggle{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:transparent;
+  color:var(--muted);cursor:pointer;font-size:16px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.theme-toggle:hover{color:var(--text);border-color:var(--muted)}
+@media(max-width:540px){.brand .f{display:none}.nav .ext{display:none}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);
+  font-weight:600;font-size:15.5px;padding:14px 22px;border-radius:12px;border:1px solid transparent;
+  cursor:pointer;text-decoration:none;transition:transform .14s,filter .14s,border-color .14s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--accent);color:#141000}
+.btn-primary:hover{filter:brightness(1.06)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--border)}
+.btn-ghost:hover{border-color:var(--muted)}
+
+/* ===================== THE MAP (quick-find hero) ===================== */
+.map{min-height:calc(100dvh - 61px);display:flex;flex-direction:column;
+  padding:clamp(18px,3vw,30px) 0 clamp(24px,3vw,36px)}
+.map-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 24px;margin-bottom:clamp(14px,2.4vw,26px)}
+.map-head h1{font-size:clamp(28px,4.4vw,46px);line-height:1.05;margin:10px 0 0;max-width:16ch;font-weight:600}
+.map-head h1 em{font-style:normal;color:var(--accent-text)}
+.map-head .hint{font-family:var(--mono);font-size:12.5px;color:var(--muted);letter-spacing:.03em;max-width:30ch;line-height:1.5}
+.map-head .hint b{color:var(--text);font-weight:500}
+
+.constellation{position:relative;flex:1;min-height:clamp(420px,60vh,600px);
+  border:1px solid var(--border);border-radius:var(--r);background:
+    radial-gradient(60% 60% at 50% 50%, var(--accent-dim), transparent 70%),
+    var(--surface);overflow:hidden}
+.constellation svg.links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.constellation svg.links line{stroke:var(--line-svg);stroke-width:1;stroke-dasharray:3 6}
+
+/* nodes */
+.node{position:absolute;transform:translate(-50%,-50%);width:clamp(128px,15vw,176px);
+  text-decoration:none;text-align:left;background:var(--raised);border:1px solid var(--border);
+  border-radius:14px;padding:13px 14px;transition:transform .16s,border-color .16s,box-shadow .16s;
+  box-shadow:var(--shadow);color:var(--text)}
+.node:hover,.node:focus-visible{border-color:var(--accent);transform:translate(-50%,-50%) translateY(-3px)}
+.node .num{font-family:var(--mono);font-size:11px;color:var(--accent-text);letter-spacing:.1em}
+.node .t{display:block;font-weight:600;font-size:16px;line-height:1.2;margin-top:5px}
+.node .d{display:block;font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.35}
+.node.center{width:clamp(150px,17vw,196px);background:var(--bg);border:1.5px solid var(--accent);text-align:center;
+  box-shadow:0 0 0 6px var(--accent-dim), var(--shadow)}
+.node.center .rt{font-size:clamp(30px,4vw,42px);font-weight:700;letter-spacing:.04em;line-height:1}
+.node.center .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:6px;display:block}
+.node.center:hover{transform:translate(-50%,-50%)}
+
+/* node placement (desktop hexagon around the center) */
+.n-c{left:50%;top:50%}
+.n-1{left:19%;top:23%}
+.n-2{left:50%;top:15%}
+.n-3{left:81%;top:23%}
+.n-4{left:81%;top:77%}
+.n-5{left:50%;top:85%}
+.n-6{left:19%;top:77%}
+
+.map-foot{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-top:clamp(14px,2vw,22px)}
+.map-foot .q{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+
+/* stacked "trail" on small screens */
+@media(max-width:760px){
+  .constellation{display:flex;flex-direction:column;gap:10px;padding:14px;min-height:0;background:var(--surface)}
+  .constellation svg.links{display:none}
+  .node{position:static;transform:none;width:100%;box-shadow:none}
+  .node:hover,.node:focus-visible{transform:none}
+  .node.center{order:-1;box-shadow:0 0 0 4px var(--accent-dim)}
+  .node.center:hover{transform:none}
+}
+
+/* ===================== detail sections ===================== */
+.section{padding:clamp(48px,7vw,84px) 0;border-top:1px solid var(--border)}
+.section h2{font-size:clamp(24px,3.4vw,36px);line-height:1.1;margin:12px 0 0;font-weight:600}
+.section .lead{color:var(--muted);max-width:60ch;margin:16px 0 0;font-size:18px}
+.section p{max-width:64ch}
+.back{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--accent-text)}
+.sec-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:26px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px}
+.card h3{margin:0;font-size:17px;font-weight:600}
+.card p{margin:8px 0 0;font-size:15px;color:var(--muted);line-height:1.55}
+.card .k{font-family:var(--mono);font-size:11px;color:var(--accent-text);letter-spacing:.1em}
+.booklist{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--border)}
+.booklist li{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);align-items:baseline}
+.booklist .ix{font-family:var(--mono);font-size:12px;color:var(--accent-text)}
+.booklist .ti{font-weight:600}
+.booklist .me{display:block;color:var(--muted);font-size:14px;margin-top:2px}
+.flag{background:var(--accent);color:#141000;border-radius:var(--r);padding:clamp(28px,4vw,48px);margin-top:8px}
+.flag h2{color:#141000;margin:0}
+.flag p{color:#3a2a00;max-width:56ch;margin:14px 0 0}
+.flag .btn-dark{background:#141000;color:var(--accent);margin-top:22px}
+.flag .btn-dark:hover{filter:brightness(1.25)}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+
+/* footer */
+footer{border-top:1px solid var(--border);background:var(--surface)}
+.foot-in{max-width:1140px;margin:0 auto;padding:clamp(40px,5vw,64px) clamp(20px,5vw,44px)}
+.foot-top{display:flex;flex-wrap:wrap;gap:20px 40px;justify-content:space-between}
+.foot-brand b{font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.foot-brand span{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px}
+.social{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,auto);gap:9px 30px}
+.social a{font-family:var(--mono);font-size:12.5px;color:var(--muted);text-decoration:none}
+.social a:hover{color:var(--text)}
+.legal{margin-top:30px;padding-top:20px;border-top:1px solid var(--border);font-size:13px;color:var(--muted);max-width:70ch}
+.legal b{color:var(--text);font-weight:500}
+@media(max-width:600px){.social{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+/* The HI door bar, as on every HI page (its rules copied from css/site.css). */
+.doorbar {
+  background: #101418;
+  color: #aab2bc;
+  font-family: inherit;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+.doorbar-in {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 9px 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px 20px;
+  flex-wrap: wrap;
+}
+.doorbar a { color: #fff; text-decoration: none; font-weight: 700; }
+.doorbar a:hover { text-decoration: underline; }
+.doorbar .db-here {
+  margin: 0 auto;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-size: 11.5px;
+}
+.doorbar .db-here b { color: #ff7a7e; font-weight: 700; }
+.doorbar .db-other { color: #6db3f0; }
+@media (max-width: 700px) {
+  .doorbar-in { justify-content: center; text-align: center; gap: 4px 14px; padding: 8px 14px; }
+  .doorbar .db-here { margin: 0; }
+}
+.foot-doors{margin-top:10px;font-size:13px}
+.foot-doors a{color:inherit}
+</style>
 </head>
 <body>
 
@@ -20,470 +226,161 @@
   <a class="db-other" href="/aininja/">Take the AI Ninja door &#8594;</a>
 </div></div>
 
-<div class="sticky-top">
-<div class="announce">
-  <span>Samui Thailand KIDS Martial Arts at NinjaGym</span>
-  <a class="announce-btn" href="/ninjagym/">Big C Bophut 10am-7pm</a>
-</div>
-
-<header class="site-header">
-  <div class="header-inner">
-    <a class="brand" href="/hininja/">
-      <img src="/assets/images/logo.png" alt="Rick Tew">
-      <span class="brand-sub">Martial Arts Adventure</span>
-    </a>
-    <button class="nav-toggle" aria-label="Menu">&#9776;</button>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="/hininja/">Home</a></li>
-        <li><a href="/about/" class="active">About</a></li>
-        <li class="has-sub">
-          <a href="/ninjagym/">NinjaGym<span class="caret"></span></a>
-          <ul class="sub">
-            <li><a href="/ninjagym/event-schedule/">Event Schedule</a></li>
-            <li><a href="/ninjagym/ninja-day-camp/">Ninja Day Camp</a></li>
-            <li><a href="/ninjagym/rules-agreements/">Rules &amp; Agreements</a></li>
-          </ul>
-        </li>
-        <li><a href="/camps/">Camps</a></li>
-        <li><a href="/tours/">Tours</a></li>
-        <li><a href="/rtms/">RTMS</a></li>
-        <li><a href="/winjitsu/">WinJitsu</a></li>
-        <li><a href="/contact/">Contact</a></li>
-      </ul>
-    </nav>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/hininja/"><b>Rick Tew</b><span class="f">ABOUT</span></a>
+    <div class="nav-actions">
+      <a class="ext" href="https://ninjagym.com" target="_blank" rel="noopener">NinjaGym &#8599;</a>
+    </div>
   </div>
 </header>
-</div>
 
 <main>
 
-  <div class="pagehead">
-    <h1>About Rick Tew</h1>
-    <div class="title-bar"></div>
-    <div class="subtitle">A lifetime of teaching his martial arts and the WinJitsu mindset around the world</div>
-  </div>
+  <!-- THE MAP -->
+  <section class="map">
+    <div class="wrap" style="display:flex;flex-direction:column;flex:1">
+      <div class="map-head">
+        <div>
+          <p class="eyebrow">The map</p>
+          <h1>The whole world of <em>Rick Tew</em>, in one look.</h1>
+        </div>
+        <p class="hint"><b>Tap a node</b> to jump straight to it. Not sure where to start? Take the quiz.</p>
+      </div>
 
-  <div class="wrap">
-    <figure class="fig"><img src="/assets/images/0c7887b6ac.png" alt="Rick Tew teaching and speaking collage"></figure>
-  </div>
+      <nav class="constellation" aria-label="Site map of Rick Tew">
+        <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="50" y1="50" x2="19" y2="23"></line>
+          <line x1="50" y1="50" x2="50" y2="15"></line>
+          <line x1="50" y1="50" x2="81" y2="23"></line>
+          <line x1="50" y1="50" x2="81" y2="77"></line>
+          <line x1="50" y1="50" x2="50" y2="85"></line>
+          <line x1="50" y1="50" x2="19" y2="77"></line>
+        </svg>
 
-  <div class="band">
-    <h1>Focused on Martial Arts and Ninja mindset Training, Rick offers top-notch multi-martial arts training and a Master to Student relationship</h1>
-  </div>
+        <div class="node center n-c">
+          <div class="rt">RICK TEW</div>
+          <span class="lbl">Start here</span>
+        </div>
 
-  <div class="wrap">
-    <div class="row">
-      <div class="col-img"><img src="/assets/images/af52d2deab.png" alt="Rick Tew climbing"></div>
-      <div>
-        <p class="italic">&ldquo;Hi, I&rsquo;m Rick Tew and even though my last name says otherwise, there is only one of me. But&hellip;I do have a split personality.</p>
-        <p class="italic">In fact, it is my belief that we all have split personalities, and the combination of these traits is what makes us who we are as a whole.</p>
-        <p class="italic">It is my passion and focus to help others find their key strengths so that they too can combine them together to achieve a greater level of fulfillment in life.&rdquo;</p>
+        <a class="node n-1" href="#about">
+          <span class="num">01</span><span class="t">Who he is</span><span class="d">California to the world, in 30+ years.</span>
+        </a>
+        <a class="node n-2" href="#rtms">
+          <span class="num">02</span><span class="t">RTMS</span><span class="d">Train the body. Movement, not moves.</span>
+        </a>
+        <a class="node n-3" href="#winjitsu">
+          <span class="num">03</span><span class="t">WinJitsu</span><span class="d">Train the mind. The True Art of Winning.</span>
+        </a>
+        <a class="node n-4" href="#camps">
+          <span class="num">04</span><span class="t">Live-in camp</span><span class="d">Two weeks on Koh Samui.</span>
+        </a>
+        <a class="node n-5" href="#ninjagym">
+          <span class="num">05</span><span class="t">NinjaGym</span><span class="d">Train in Samui, Thailand.</span>
+        </a>
+        <a class="node n-6" href="#coaching">
+          <span class="num">06</span><span class="t">Coaching</span><span class="d">Get results. Robbins certified.</span>
+        </a>
+      </nav>
+
+      <div class="map-foot">
+        <button class="btn btn-primary" onclick="RickQuiz.open()">Find your path with Rick</button>
+        <span class="q">Four taps. It points you at the right node.</span>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="band">
-    <h1>Master Instructor Rick Tew</h1>
-  </div>
-
-  <div class="wrap">
-    <h2 class="plain-head">Rick Tew is an educator on martial arts, BEing your best, finding fulfillment and how to DO the most with your life</h2>
-    <figure class="fig small"><img src="/assets/images/848643405f.png" alt="Rick Tew high kick"></figure>
-  </div>
-
-  <div class="band">
-    <h1>A Summary of Rick Tew</h1>
-  </div>
-
-  <div class="wrap">
-    <div class="prose">
-      <p>Rick has been teaching, sharing and operating Mixed Martial Art programs, classes, seminars, workshops and even Ninja Training Camps for more than 20 years. Rick began to teach officially when he was 16-17 and embarked on opening his own dojo (martial art training school) at 19 before moving to Europe at 21. While living in Europe, Rick devoted all his time towards the development of his own system of martial arts geared around a personal growth as opposed to just punches and kicks. Though there were many names, it eventually became known as RTMS, Rick Tew&rsquo;s Martial Science. But not only that&hellip;</p>
-      <p>Rick Tew is a leader in the martial arts business and the first in the martial art industry to provide live-in Ninja Training Camps and programs that equally combined the mind, body, and spirit as part of the Martial Art system. Most martial arts offer the mental training as a by-product of the physical skills. This is a great benefit from any workout routine. However, what separates Rick Tew&rsquo;s Martial Science is that the mental training is its own unique system in and of itself. The programs also offer Students the ability to train in unique and exotic locations outside. If you review the history of Rick Tew&rsquo;s Martial Science programs you will see many photos of students training outside in amazing locations in Europe, the USA and ASIA.</p>
-      <p>Rick Tew now teaches students from all backgrounds how to take advantage of his real life experiences and proven tactics for enhancing one&rsquo;s lifestyle by balancing mind, body, and spirit. In fact, these life proven concepts were so effective, Rick wrote 5 books on his experiences and created an easy to follow system for life-improvement called WinJitsu, the mental martial arts. Rick has been in the shadows where he was forced to test his metal against the roadblocks that appeared before him. He started from zero in many scenarios and uses that history to teach others that are going through rough new beginnings.</p>
-      <p>Rick Tew has been life-hacking, leading the path, starting over in new locations and constantly striving to discover that new challenge. He has taught and shared principles all over the world. He has managed martial art schools, taught various seminars, guided students through rigorous Ninja camps and strives to provide unique locations for his live-in martial arts programs for over 20 years in the US, Latin America, Europe and Asia.</p>
-    </div>
-  </div>
-
-  <div class="band">
-    <h1>Learn more about Rick Tew</h1>
-  </div>
-
-  <div class="gray-card">
+  <!-- DETAIL: WHO HE IS -->
+  <section class="section" id="about">
     <div class="wrap">
-      <div class="title">Fun and serious</div>
-      <div class="quote">He doesn&rsquo;t let his Sensei title keep him from having fun with the students, but also doesn&rsquo;t miss an opportunity for an important and serious lesson. Most people feel they have to be all fun or all serious instead of balanced.</div>
-      <div class="name">Ross K. &ndash; Virginia &ndash; USA</div>
+      <div class="sec-top"><p class="eyebrow">01 // Who he is</p><a class="back" href="#top">Back to map &#8593;</a></div>
+      <h2>The martial artist who turned movement into a science.</h2>
+      <p class="lead">Rick Tew ran away to California at eight. He fell for ninjitsu at fourteen, was on television at fifteen, and opened his first dojo at nineteen. At twenty-one he moved to Europe to build his own system, and has run live-in martial arts programs for over 20 years in the US, Latin America, Europe and Asia. Thirty years in, the mission is still simple: help you get a Black Belt in what you do.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="wrap">
-    <figure class="fig"><img src="/assets/images/43a6f283e6.png" alt="Rick Tew training photos"></figure>
-    <div class="prose">
-      <p class="lead-bold">Who is Rick Tew?</p>
-      <p>As the creator of NinjaGym&reg; and author of WINJITSU, the Mental Martial Art, Rick Tew is the best person to help you kick-start your martial arts adventure. Rick has been teaching martial arts and speaking on personal growth globally for more than 2 decades.</p>
-    </div>
-  </div>
-
-  <div class="gray-card">
+  <!-- DETAIL: RTMS -->
+  <section class="section" id="rtms">
     <div class="wrap">
-      <div class="title">He's unpredictable</div>
-      <div class="quote">Let&rsquo;s see, well he&rsquo;s unpredictable so you can never really expect to know what will happen. So combine that with Easy going and no fortune teller in the world will figure out where the hell he&rsquo;ll be a week from now. His method of teaching is awesome, very clear and simple. The way his classes are organized are also fun since they are not repetitive. He&rsquo;s also an overall fun guy, does pretty much everything with the students. He LAN parties (computer gaming) with us (more like we LAN party with him).</div>
-      <div class="name">-Cedric C.</div>
+      <div class="sec-top"><p class="eyebrow">02 // Train the body</p><a class="back" href="#top">Back to map &#8593;</a></div>
+      <h2>RTMS, Rick Tew's Martial Science.</h2>
+      <p class="lead">A martial science, not a style. Modern American Ninjitsu crossed with MMA, built to teach movement, not moves. The system changes daily and the student stays self-powered, never just a copy of the master.</p>
+      <div class="cols">
+        <div class="card"><span class="k">THE SYSTEM</span><h3>5 ranking levels</h3><p>A complete, ranked path to instructor status.</p></div>
+        <div class="card"><span class="k">THE IDEA</span><h3>Movement, not moves</h3><p>Train the movement and the skill outlives the technique.</p></div>
+        <div class="card"><span class="k">SELF-DEFENSE</span><h3>The Personal Security Course</h3><p>Mind, body, technique. In that order.</p></div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="wrap">
-    <figure class="fig"><img src="/assets/images/daebbbaa85.png" alt="Rick Tew training collage"></figure>
-    <div class="prose">
-      <p class="lead-bold">Martial Arts as a way of life</p>
-      <p>He has created an entire martial art system to help students to follow a step-by-step course that also still allows the flexibility to be creative.</p>
-      <p>Rick used the martial arts as a gateway for personal excellence and you will quickly discover that he has far more to teach than punches and kicks. His courses are for everyone who wants to integrate mind, body, and spirit to access his or her true potential.</p>
-      <p>Rick Tew constantly updates his principles to stay on the sharper edge of personal growth helping students in these two core areas:</p>
-      <ul>
-        <li><strong>Finding balance and fulfillment</strong></li>
-        <li><strong>Taking action for proper execution</strong></li>
-      </ul>
-      <p>Rick will share effective and easy to apply principles that can be integrated immediately into your life.</p>
-    </div>
-  </div>
-
-  <div class="gray-card">
+  <!-- DETAIL: WINJITSU -->
+  <section class="section" id="winjitsu">
     <div class="wrap">
-      <div class="title">He's Unique</div>
-      <div class="quote">Rick Tew is a unique man to say the least. He walks a path tread by few. He is someone who enjoys his life to the fullest of his desires and lives by his code of freedom in his personal choices. He is not one to have an idea and fear to try and make it happen and as the saying &ldquo;carpe diem&rdquo; goes&hellip; he truly does seize his day. Use a keen eye, an open ear and a filed down tongue and you can find out how as well.</div>
-      <div class="quote">His way of thought and development is something that I have never experienced before meeting him. His strategies may be hard for most, but stick to it and it will work.</div>
-      <div class="quote">If you have the will, then he helps you find your way. I had always been looking for more out of what I was doing with my life, but was not sure where to find it. Rick Tew is the one man, who thanks to his direct and indirect influence has put me on a path to something greater than what I can I can put into words.</div>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <figure class="fig"><img src="/assets/images/0c06ca00b4.png" alt="Rick Tew photos"></figure>
-    <div class="prose">
-      <p class="lead-bold">A brief background and history</p>
-      <p>Rick Tew has been teaching and running Multi-Martial Art programs and Martial Art Training Camps for more than 20 years. Rick started officially teaching martial arts school at 17, started his first dojo at 19 and moved to Europe at 21 to develop his own system of martial arts, Rick Tew&rsquo;s Martial Science. But not only that&hellip;</p>
-      <p>Rick Tew is a leader in this industry and other similar programs and camps you find on the Internet in his market, have simply copied and continue to copy his programs and teachings.</p>
-      <p>Rick Tew teaches people from all walks of life to take advantage of his proven strategies for enhancing one&rsquo;s mind, body and spirit. In fact, these strategies were so effective, Rick wrote 5 books on the subject and created an entirely new system for life-enhancement called WinJitsu, the mental martial arts.</p>
-      <p>Rick Tew&rsquo;s system of martial art is fun, effective and is the ultimate foundation for improving any martial artists skill in the martial arts. It doesn&rsquo;t matter what system or background you have, his program will give you the edge you need and are looking for.</p>
-      <p>Rick Tew is teaching all over the world. He has run martial art schools, seminars, Ninja camps and live-in martial arts programs for the last 20 years in the US, Latin America, Europe and Asia.</p>
-      <p>Almost every student has a story to share about how Rick has changed their life, thanks to the strategies he has packed into his &ldquo;Martial Arts &amp; Fitness Camps&rdquo; and courses.</p>
-      <p>Rick Tew&rsquo;s history as a martial arts instructor is an open book. His skills and programs are available on videos at <a href="https://www.youtube.com/ricktew">www.YouTube.com/ricktew</a> and social media like <a href="https://www.facebook.com/rick.tew">www.facebook.com/rick.tew</a>. Photos are available showing Him training in countries all over the world. Rick&rsquo;s books are available online.</p>
-      <p>&hellip; Rick Tew has real, concrete proof that He can not only teach you the skills required to improve your martial arts but also to improve your LIFE with his help, regardless of your personal situation&hellip;</p>
-    </div>
-  </div>
-
-  <div class="gray-card">
-    <div class="wrap">
-      <div class="title">Rick Tew is unlike any other</div>
-      <div class="quote">Rick is unlike any other Martial arts instructor you&rsquo;ll meet. In the classroom he is tough, but fair. You will receive no special treatment whatsoever. In the beginning you think he is being rude or unjust, but you soon learn (although you may not understand his motives) he knows best. So if you&rsquo;re doing a hundred push ups for saying, &ldquo;um&rdquo; don&rsquo;t be surprised! But when we&rsquo;re not training he&rsquo;s just one of the guys &ndash; we go out for pizza (he&rsquo;ll eat rabbit food) watch a film or even play a few hours of Half Life multiplayer! Rick is a sound advisor he&rsquo;s been there done that and mass produced the T-shirt, so use listen to his advice well.</div>
-      <div class="name">Mark W. &ndash; Portsmouth &ndash; England</div>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <figure class="fig"><img src="/assets/images/ad17ec3774.png" alt="Rick Tew's Martial Science logo"></figure>
-    <div class="prose">
-      <p class="lead-bold">What you should know</p>
-      <p>Here&rsquo;s something else you should know from Rick Tew&hellip;</p>
-      <p>I&rsquo;m interested in working with people who are committed to success! So if you&rsquo;re serious about living a life that you are in charge of, then I want to work with you.</p>
-      <p>And that&rsquo;s why I&rsquo;ve decided to put a very reasonable price on this program for those interested in martial arts, fitness or just a major life change.&rdquo;</p>
-    </div>
-  </div>
-
-  <div class="gray-card">
-    <div class="wrap">
-      <div class="title">Gets you interested</div>
-      <div class="quote">The way he teaches his system, he helps you get interested in many aspects of the martial training. He is one of the only adults I know that is in better shape than many younger people who also exercise often.</div>
-      <div class="name">Carlos P. &ndash; Durango &ndash; Mexico</div>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <figure class="fig"><img src="/assets/images/c8691d5f44.png" alt="Rick Tew testimonial"></figure>
-    <div class="prose">
-      <p class="lead-bold">Rick's commitment to you</p>
-      <p>Through the College of Martial Science and all of my programs, I am motivated to help students improve their level of happiness, freedom, and adventure.</p>
-      <p>I look forward to sharing with you the adventures and joys of a lifetime and welcome you to the organization dedicated to giving you the best!</p>
-    </div>
-  </div>
-
-  <div class="gray-card">
-    <div class="wrap">
-      <div class="title">A friend and a teacher</div>
-      <div class="quote">The better question would be- what is not unique about Rick? Training with Rick is not like training with a normal Sensei in a normal dojo. You give Rick respect not because he demands it or because its protocol but because he has earned it. He is just as much a friend to his students as he is a teacher, and he is always looking out for the student&rsquo;s best.</div>
-      <div class="name">Josiah L. &ndash; Chattanooga, Tennessee &ndash; USA</div>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <figure class="fig"><img src="/assets/images/7861663c30.png" alt="Rick Tew training"></figure>
-  </div>
-
-  <div class="gray-card">
-    <div class="wrap">
-      <div class="title">An eagerness to improve</div>
-      <div class="quote">To try to put Sensei into a clearly defined box that would sum up his entire being is probably impossible. He&rsquo;s a good guy once you get to know him, and understand what he&rsquo;s trying to accomplish. While some people might think that he can be a little too sporadic at times, I view it as just an overall eagerness to keep things always improving. He is a very focused man who knows what he would like to get out of life, and then strives to achieve it.</div>
-      <div class="name">Richard N. &ndash; Galveston, Texas &ndash; USA</div>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <figure class="fig"><img src="/assets/images/ee6d47c766.png" alt="Rick Tew"></figure>
-  </div>
-
-  <div class="band">
-    <h1>Teaching for a living gave me a life</h1>
-  </div>
-
-  <div class="wrap">
-    <h2 class="plain-head">&ldquo;By sharing my unique style of Martial Arts and giving motivational edutainment lectures, I have been able to travel the world, meet amazing people, and do what I love, each and every day. I want to teach you how to do the same.&rdquo;</h2>
-    <figure class="fig"><img src="/assets/images/58e661ba3b.png" alt="Rick Tew speaking"></figure>
-  </div>
-
-  <div class="band">
-    <h1>Public Speaker - Personal Coach - Master Instructor</h1>
-  </div>
-
-  <div class="wrap">
-    <div class="prose">
-      <ul>
-        <li>Training All Types In Martial Arts And Personal Growth. With Decades Of Failures And Successes, Rick Has Something To Teach You.</li>
-        <li>Teaching and Living All Over The World &ndash; Rick Is Available For Private Lessons, Speaking Events, and Group Leadership Training</li>
-        <li>Created A Unique System For Life-Enhancement Called WinJitsu Supported By 5 Books And His New BLAST Experience</li>
-        <li>As Seen In Black Belt, KO Karate, Fighting Spirit Zendokan, Fighting Sports, And International Lifestyle Magazines</li>
-        <li>Spoke At Companies And Universities Like HP, Dutch Art &amp; Design, Humaniversity, TU Delft, And The University Of Rotterdam</li>
-        <li>Certified Strategic Intervention Coach by Anthony Robbins and Cloe Madanes at the Robbins-Madanes Training Center.</li>
+      <div class="sec-top"><p class="eyebrow">03 // Train the mind</p><a class="back" href="#top">Back to map &#8593;</a></div>
+      <h2>WinJitsu, the mental martial art.</h2>
+      <p class="lead">"Win" plus "Jitsu" is the True Art of Winning. It trains the mind to beat its own negative Ninja: fear, doubt, stress and laziness. Written down as the five-book "Be a Black Belt in What You Do" series, one book per finger of the hand. Together they make a fist to break through, and a grip to hang on.</p>
+      <ul class="booklist">
+        <li><span class="ix">01</span><span><span class="ti">ACE, Achieving Combined Excellence</span><span class="me">Taking control of your attitude</span></span></li>
+        <li><span class="ix">02</span><span><span class="ti">MAK, Motivation, Action, Knowledge</span><span class="me">Make it happen</span></span></li>
+        <li><span class="ix">03</span><span><span class="ti">MBS, Mind, Body, Spirit</span><span class="me">The synergy for success</span></span></li>
+        <li><span class="ix">04</span><span><span class="ti">NRG, Neuro Reasons for Growth</span><span class="me">Internal power for achievement</span></span></li>
+        <li><span class="ix">05</span><span><span class="ti">CMT, Creative Mental Training</span><span class="me">The magic of visualization</span></span></li>
       </ul>
     </div>
+  </section>
 
-    <h2 class="plain-head">Tew Ways to Coach You</h2>
-    <div class="prose">
-      <p>As a Master of the Mind and the Martial Arts, his concepts are on the cutting edge of personal development. Rick Tew will give you simple principles that can be applied immediately in your life and work. Rick Tew constantly updates his training to stay on the sharper edge of personal growth helping students in these two core areas:</p>
-      <ul>
-        <li><strong>Finding Balance, Emotional Control and Fulfillment to Live the Life of Your Dreams</strong></li>
-        <li><strong>Staying Motivated and Taking Action on Your Ideas to Master Execution</strong></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="band">
-    <h1>Creator of the WinJitsu System</h1>
-  </div>
-
-  <div class="wrap">
-    <div class="prose">
-      <p>Rick Tew is the author of WinJitsu (a 5-Book Mental Martial Art System), certified Strategic Intervention Coach, and just the person to add a little kick to your life. He has been teaching martial arts and speaking to private audiences for more than 25 years. Mr. Tew delivers dynamic principles on motivation, excellence, and self-management. Rick Tew is focused on providing edutainment (a form of entertainment designed to educate as well as to amuse) by combining his martial arts with his mental arts to form his system of Martial Arts Therapy called, WinJitsu. His performances are truly a unique approach to personal excellence. Rick Tew realizes the power of personal achievement. He believes it is through the combination of specific parts that make a stronger whole, whether it is an inner or outer team.</p>
-    </div>
-    <figure class="fig"><img src="/assets/images/947e3fd437.png" alt="Rick Tew workshop"></figure>
-    <div class="prose">
-      <p>Rick wrote much of what he learned along the way in his books on WinJitsu, what he calls the Mental Martial Arts. He teaches these concepts in a simplified workshop called the BLAST experience. This workshop summarizes his system of WinJitsu for individuals to maximize their personal power by learning to target their strengths and combine their unique abilities, to make them whole again. This process of Synergy by Rick Tew is designed to help everyone BE more so the can DO more. All Students walk away with the tools for improving the following two areas for personal success:</p>
-      <ul>
-        <li>Be and Feel fulfilled by focusing on your dreams</li>
-        <li>Be and Do more in life by taking action in your life</li>
-      </ul>
-      <p>The above areas are what Rick focuses on most and believes that the connection between fulfillment and execution is what makes all of us HAPPY!</p>
-    </div>
-    <figure class="fig"><img src="/assets/images/ab51d34dc2.png" alt="WinJitsu training"></figure>
-  </div>
-
-  <div class="band">
-    <h1>How WinJitsu Can Help You</h1>
-  </div>
-
-  <div class="wrap">
-    <div class="prose">
-      <p>In the martial arts, we have learned that there is a mind-body connection. It is why Rick wrote the book series WinJitsu, The Mental Martial Art. This is also what we stand behind on in WinJitsu. The programs are not only about building a stronger body, a flexible body, a stable body or a body that can endure. The focus behind WinJitsu is to provide you a place where we come together to also build a Stronger Mind, a more Flexible Mind, a more Stable Mind and a Mentality to Endure. Improving both your body and mind while connecting with great people from around the world.</p>
-      <p>At WinJitsu, we follow the Mind and Body approach for overall student success. Although physical training in the Martial Science already offers feelings of joy and adventure, we also need routine and focused mental development. We provide this growth through a mental system Rick Tew has developed a mental martial art called, WINJITSU. This training in already integrated into all of our other programs. If you are looking for life-coaching or to only learn WinJitsu, then consider the BLAST program or contact us for a custom workshop or training program.</p>
-      <p>With martial arts training, you might learn self-defense and how to be prepared for a physical situation required for survival. But in modern times, with our challenges being more mental than physical, your mind is most likely what needs to be managed and trained. Your mind power will take you a lot further than your physical power. With the system of WinJitsu, we to teach you How to Be a Black Belt in what you do.</p>
-    </div>
-    <figure class="fig"><img src="/assets/images/21a51e2d3b.jpg" alt="WinJitsu books"></figure>
-  </div>
-
-  <div class="band">
-    <h1>Be a Black Belt in What You Do Books</h1>
-  </div>
-
-  <div class="wrap">
-    <div class="prose">
-      <p>Through this book series, WinJitsu Books 1-5, I am going to teach you how to maximize the power within yourself, and with practical, proven, success principles, how to reach your full potential and get a Black Belt in what you do.</p>
-      <p class="italic">I call this mental martial art and system for success, &ldquo;WinJitsu.&rdquo; What is WinJitsu?</p>
-      <p class="italic">In the physical martial arts, you learn self-defense to help prepare you for a situation that might be required for survival. It is a basic human need to feel protected. But in today&rsquo;s world, our challenges are more mental than physical, and you are indeed often your own worst enemy. Today, your mental skills will take you a lot further than your physical skills. And this is the philosophy that I am going to share in this books. -Rick Tew</p>
-    </div>
-  </div>
-
-  <div class="gray-card">
+  <!-- DETAIL: THE LIVE-IN CAMP (GNS, Rick's pick 9 Oct 2026; the words are the /gns/ page's own) -->
+  <section class="section" id="camps">
     <div class="wrap">
-      <div class="title">COMPELLINGLY CAPTIVATING!</div>
-      <div class="quote">"Rick Tew&rsquo;s WinJitsu is compellingly captivating from the onset of a young run-a-way child to the exploration investigation of self. Although the Jitsu in WinJitsu would suggest this book to be solely the interest of those involved in the Martial Arts the &ldquo;WIN&rdquo; makes it for absolutely everyone! WinJitsu is empowering. WinJitsu is the type of book that should be included in every school and home library. You read it once but reference to it daily. WinJitsu is a gift from Rick Tew to anyone willing to accept it and to those that do, the journey is forever changed."</div>
-      <div class="name">-Trinity Ann Mcleod</div>
+      <div class="sec-top"><p class="eyebrow">04 // Go all in</p><a class="back" href="#top">Back to map &#8593;</a></div>
+      <div class="flag">
+        <h2>Gooffy Ninja ShhT!!</h2>
+        <p>Real ninja skills, zero seriousness. Live-in ninja martial arts training with Rick Tew in Koh Samui, Thailand. Morning class, evening club session, the island in between. 2 weeks, $2,222, all in.</p>
+        <a class="btn btn-dark" href="/gns/">See the camp &#8594;</a>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="band">
-    <h1>Strategic Intervention and WinJitsu</h1>
-  </div>
+  <!-- DETAIL: NINJAGYM -->
+  <section class="section" id="ninjagym">
+    <div class="wrap">
+      <div class="sec-top"><p class="eyebrow">05 // Train in Samui</p><a class="back" href="#top">Back to map &#8593;</a></div>
+      <h2>NinjaGym.</h2>
+      <p class="lead">Founded by Rick, NinjaGym is a physical gym in Samui, Thailand: ninja training, obstacle courses, climbing, parkour, and kids and adult programs. It is where you can walk in and train with the work directly.</p>
+      <div class="cta-row"><a class="btn btn-primary" href="https://ninjagym.com" target="_blank" rel="noopener">Visit NinjaGym &#8599;</a></div>
+    </div>
+  </section>
 
-  <div class="wrap">
-    <div class="prose">
-      <p>Rick Tew is also a certified Strategic Intervention Coach through the Tony Robbins program and implements this into his coaching. Rick Tew&rsquo;s complete program for mental training uses modern strategies available today that will help you become the best you can be.</p>
-      <p>Everyone has challenges from time to time and many have these mental shadows sneaking up on them on a daily basis. You need a system for defeating these negative Ninja and master your mental domain.</p>
-      <p>Mr. Tew suggests you learn to control your mind through life-balance, use of your physiology, and the understanding basic neuroscience. All of which can help you to learn:</p>
-      <ul>
-        <li>How to improve Self-confidence</li>
-        <li>How to improve Self-esteem</li>
-        <li>How to improve Self-discipline</li>
-        <li>How to improve Self-power</li>
-        <li>How to improve Self-control</li>
-        <li>How to improve Self-image</li>
-        <li>How to overcome Fear</li>
-        <li>How to overcome Doubt</li>
-        <li>How to overcome Negativity</li>
-        <li>How to overcome Stress</li>
-        <li>How to overcome Laziness</li>
-        <li>How to overcome Loss</li>
-      </ul>
+  <!-- DETAIL: COACHING -->
+  <section class="section" id="coaching">
+    <div class="wrap">
+      <div class="sec-top"><p class="eyebrow">06 // Get results</p><a class="back" href="#top">Back to map &#8593;</a></div>
+      <h2>Coaching and the BLAST workshop.</h2>
+      <p class="lead">Rick is a Tony Robbins Certified Strategic Intervention Coach. The BLAST workshop is edutainment, comedy plus martial arts plus mental arts, that summarizes the WinJitsu system. He has spoken at HP, TU Delft, the University of Rotterdam and more. For every paid event, one person from a local charity attends free: give a BLAST to have a BLAST.</p>
+      <div class="cta-row"><button class="btn btn-primary" onclick="RickQuiz.open()">Find your path with Rick</button><a class="btn btn-ghost" href="/aininja/#opt-8c">Ask Rick about coaching</a></div>
     </div>
-
-    <h2 class="plain-head">Martial Arts Sensei</h2>
-    <div class="prose">
-      <p>Rick Tew is also an internationally acclaimed Sensei or teacher in the martial arts. He has created an entire martial art system to help students follow a step-by-step course that still allows the flexibility to be creative. Rick uses the martial arts as a gateway for personal excellence and you will quickly discover that he has far more to teach than punches and kicks. His courses are for everyone who wants to integrate mind, body, and spirit to access his or her true potential.</p>
-    </div>
-
-    <h2 class="plain-head">It Is In The Doing</h2>
-    <div class="prose">
-      <p>Rick Tew has been following the above Motto his whole life. While others talk, he tries to walk. This walk began at 8 years old when he ran away from home in Indiana to be in California. It worked and a new journey began. As an early teen, he was introduced to the Boy Scouts and this is what started his love for organized trips to the outdoors and a systematized approach for goal setting. For anyone that has been on the path of a Scout, they might remember the scout handbook, the skill awards and the merit badges.</p>
-      <p class="lead-bold">IT STARTED WHEN I WAS A BOY SCOUT</p>
-      <p class="italic">&ldquo;I still remember working with my Dad to complete the required number of sit-ups to earn another award for my belt. This is also what inspired me to be a good swimmer, hiker, camper and led me into learning about group activities and leadership skills. All of which I continue to implement to this day.&rdquo;</p>
-      <p>-Rick Tew</p>
-    </div>
-
-    <h2 class="plain-head">From the Dojo to the Great Outdoors</h2>
-    <div class="prose">
-      <p>The ranking in the Boy Scouts is similar to the martial arts while allowing the participate to grow as they so desired without losing sight of the real purpose of the membership, for Rick, this was getting into the great outdoors and why he has taken Students to amazing places around the world like Yosemite National Park.</p>
-    </div>
-
-    <h2 class="plain-head">Like a Ninja</h2>
-    <div class="prose">
-      <p>As a youth, Rick connected with TV shows like Godzilla and how a perceived bad guy was often the good guy. This opened up his mind on how the world is perceived and how the underdog is often misunderstood but can endure and prevail. This is a fight worth fighting for. This development was exactly how he saw the world of the Ninja and what drew him into that mysterious world of the martial arts. Originally, the Ninja were the bad guys and now the word Ninja is synonymous with the word expert and seen as good or high quality.</p>
-    </div>
-
-    <h2 class="plain-head">I Was a Teenage Ninja</h2>
-    <div class="prose">
-      <p>At about 14, he fell in love with the martial arts and mainly the Ninja Art of Ninjitsu. At 15 he was already on TV for his skills as they filmed Rick in action in his backyard throwing stars, climbing ropes and going through his obstacle course. From this point forward, Rick has been teaching, sharing and living the martial arts.</p>
-    </div>
-    <figure class="fig medium"><img src="/assets/images/1a57dd212f.png" alt="Young Rick Tew ninja training"></figure>
-    <div class="prose">
-      <p>Goals were simple at first:</p>
-      <ul>
-        <li>Get the splits &ndash; done &ndash; done and done</li>
-        <li>Be a BLACK BELT in the martial arts and master the concepts of Ninjitsu</li>
-        <li>Open a martial arts training dojo or center</li>
-      </ul>
-      <p>After a break to study more martial arts and join stunt school, Rick expanded his goals with a new dream to move and live in Europe.</p>
-    </div>
-    <figure class="fig medium"><img src="/assets/images/7dcdc6b3c7.png" alt="Rick Tew in Europe"></figure>
-  </div>
-
-  <div class="wrap">
-    <h2 class="plain-head">A Ninja in the Netherlands</h2>
-    <div class="prose">
-      <p>Rick moved to Holland at 21 and started teaching and sharing his unique system of Martial Arts. To say the least, as a complete foreigner, he made a name for himself in Holland. He appeared in magazines on TV, taught seminars across the country, took students to the outdoors and was even offered a part in the most popular Dutch film at the time. He turned it down to spend time with Students while living in Spain. Rick taught management consulting to companies as speaker.</p>
-    </div>
-    <figure class="fig"><img src="/assets/images/c9845d5ba5.jpg" alt="Rick Tew in Holland"></figure>
-    <div class="prose">
-      <p>Rick has considered Holland a second home ever since. This is where he first started to preach the WinJitsu way of life.</p>
-      <p>Rick has spent more than 6 years in and out of the Netherlands. He has lived in <em>Amsterdam</em>, <em>Rotterdam</em>, and <em>Delft</em> among a few others on his quest to spread his Martial Arts training and American Ninjitsu. But most of his time was spent living in the Naarden Bussum area.</p>
-      <p>Holland has a special place in his heart and why he enjoys spending time there helping others to grow and see more of the world. His tour concept was first conceived in Holland with the first group to attend his tour around California was a group of Dutch Ninja Students.</p>
-    </div>
-    <div class="imgrow">
-      <img src="/assets/images/20ca1e48a4.png" alt="Dutch magazine features">
-      <img src="/assets/images/b0ababfa15.jpg" alt="Training in Holland">
-    </div>
-    <div class="prose">
-      <p>In our system of Martial Arts, we do most of our training outside. One of my favorite locations to train in Holland is called Naarden Vesting. It is an old war fortress with a lot of grass and places to jump around. This was a regular area for us to train at when in the Netherlands. When I lived there, I would do my morning runs around trails in the area. If you are close, I suggest that you check it out - even for a nice stroll through the small town or the nature hikes.</p>
-    </div>
-    <figure class="fig"><img src="/assets/images/f12d20b9ce.png" alt="Naarden Vesting"></figure>
-  </div>
-
-  <div class="wrap">
-    <h2 class="plain-head">CMS - College of Martial Science</h2>
-    <div class="prose">
-      <p>From Europe, he started to think more about his dream to run and operate a Live-in Multi-Martial Arts Ninja Training Camp. This is when Rick created the CMS; the College of Martial Science program to teach students that wanted to learn what he himself had learned after all these years. CMS was born and Rick started the program near Yosemite National Park. Another Dream was accomplished.</p>
-    </div>
-
-    <h2 class="plain-head">Business Isn't Usual</h2>
-    <div class="prose">
-      <p>Along the way, Rick has started various business ventures and explored a plethora of life-hacking strategies. All of which are taught to Students and shared for an improved life. He created martialartsupply.com from the ground up to a lucrative business which many people copied. After accomplishing his dream in the States, he set new goals for running a program in Asia and decided on Thailand.</p>
-      <p>One of the quotes he feels is important to learn is:</p>
-    </div>
-    <h2 class="plain-head" style="font-style:italic">&ldquo;Just because you have a job doesn&rsquo;t mean you have a life!&rdquo;</h2>
-    <figure class="fig"><img src="/assets/images/bf64c63eda.jpg" alt="Rick Tew adventure"></figure>
-    <div class="imgrow">
-      <img src="/assets/images/6a62bb7c89.jpg" alt="Books and magazine features">
-      <img src="/assets/images/43c4187c30.jpg" alt="Training adventures">
-    </div>
-  </div>
-
-  <div class="wrap">
-    <h2 class="plain-head">Life Is an Adventure</h2>
-    <div class="imgrow">
-      <img src="/assets/images/8e2b44eb09.jpg" alt="Rick Tew beach training">
-      <img src="/assets/images/a52311d0d9.jpg" alt="Rick Tew climbing">
-    </div>
-    <div class="prose">
-      <p>Rick has lived an adventurous life. He believes in change. He feels that for anyone to truly find themselves, they must leave home. There are many trolls online that have a lot to say about what they feel is important to the world. Rick still feel that people can be separated into 2 groups:</p>
-      <ul>
-        <li>Those that TALK</li>
-        <li>Those that DO</li>
-      </ul>
-      <p>Rick has been on the path when it was tough when he had to sleep in a tool shed, live in a car, struggle through the risks and challenges of starting over. He has courageously started over, over and over and over again. Zero to hero while often times feeling as what might imagine Godzilla felt like. Still, rising up each time to take on the challenge, heal from his wounds and start fresh.</p>
-      <p>This re-birth strategy has created the opportunities for life that has been a BLAST. Though Rick has been many places, from just moving to the Philippines to starting a business related to outsourcing, he has always stuck to the path of teaching and sharing the strategies for personal growth his entire adult life.</p>
-    </div>
-    <figure class="fig"><img src="/assets/images/87fd29d776.png" alt="Rick Tew journey"></figure>
-  </div>
-
-  <div class="wrap">
-    <h2 class="plain-head">Sharing Is Caring</h2>
-    <div class="prose">
-      <p>Most students have a story to share about how Rick has changed their life, thanks to the concepts he has packed into his camps and courses. Rick Tew&rsquo;s history as a martial arts instructor is an open book. His skills and programs are available on video and social media. Photos are available showing him training in countries all over the world. Rick&rsquo;s books are available online.</p>
-    </div>
-    <figure class="fig"><img src="/assets/images/97a5aab5ab.png" alt="Rick Tew with students"></figure>
-    <div class="imgrow">
-      <img src="/assets/images/66d60e5f7c.jpg" alt="Magazine spread">
-      <img src="/assets/images/87fb58b78e.jpg" alt="Magazine spread">
-    </div>
-    <div class="imgrow">
-      <img src="/assets/images/531bbf1239.jpg" alt="Magazine spread">
-      <img src="/assets/images/2038262013.jpg" alt="Magazine spread">
-    </div>
-    <div class="prose">
-      <p class="lead-bold">A NOTE FROM RICK</p>
-      <p class="italic">&ldquo;When I was a teenager I developed an interest in the martial arts. I was also interested in traveling, the outdoors and adventure (new experiences). Although being a &ldquo;typical&rdquo; martial arts instructor, running a dojo was exciting, it was only part of my dream.</p>
-      <p class="italic">As I grew older and started to take students training at the beach, in the mountains and on every type of terrain from the grass to the mud. I also took students with me to rock climb, camp and to unique locations out of the city. I began to realize I wasn&rsquo;t the only one who enjoyed a complete mind, body and spirit training concept. I have since been doing this for over 20 years and have created a system that is not just a martial art, it truly is a way of life.</p>
-      <p class="italic">This is what led me to take my experience as a martial artist and combine them into a system that included what makes life exciting and how to live a dream. I decided not to just have a martial arts style, but instead, to have a lifestyle. And now I teach others how to do the same.</p>
-      <p class="italic">Here&rsquo;s something else you should know about me&hellip;</p>
-      <p class="italic">I&rsquo;m interested in working with people who are committed to success! So if you&rsquo;re serious about living a life that you are in charge of, then I want to work with you. I am motivated to help students improve their level of happiness, freedom, and adventure. I look forward to sharing with you the adventures and joys of a lifetime and welcome you to the organization dedicated to giving you the best!&rdquo;</p>
-      <p>-Rick Tew</p>
-    </div>
-  </div>
-
-  <div class="band">
-    <h1>Help Others Make Life a BLAST</h1>
-  </div>
-
-  <div class="wrap">
-    <div class="prose">
-      <p>In the Martial Arts there is a training concept called &ldquo;give &amp; take&rdquo;. This is when you train together with a partner to practice a new self defense technique, a kicking &amp; punching sequence, or a round of sparring practice. One is the &ldquo;giver&rdquo; (executing the technique or sequence), the other the &ldquo;taker&rdquo; (being on the receiving end of the technique or sequence). Both roles are necessary, and teach the students valuable lessons. They depend on each other, and both benefit.</p>
-      <p>In order to MAKE LIFE A BLAST, we have extended this &ldquo;give &amp; take&rdquo; concept to outside of the dojo. Through our programs we reach a lot of fortunate people and organizations that can afford to invest in making their life a BLAST. Either through participating in one of our programs, or any other way. For some people though, life is NOT a BLAST, and they can not afford to invest in participating in expensive programs. Think young adults from a challenging neighborhood or family, school or college dropouts, people that got totally of track in life.</p>
-      <p>The GIVE A BLAST TO HAVE A BLAST program is designed to create the opportunity for those people to participate in one of our programs or retreats. How it works is that for every (paid) event that Rick Tew is hired for, we reinvest back into the community, and invite one person whose life is NOT a BLAST to one of our programs, free of charge. We work together with local charity organizations to identify the right candidates for this. Give &amp; Take in real life action and benefiting all parties involved. TO GIVE IS TO RECEIVE!</p>
-    </div>
-    <figure class="fig"><img src="/assets/images/2731eabc6d.png" alt="Give a BLAST program"></figure>
-  </div>
+  </section>
 
 </main>
 
-<footer class="site-footer">Copyright &copy; 2026 Rick Tew
-<span class="doors"><a href="/">Which ninja?</a> &middot; <a href="/aininja/">AI Ninja</a></span></footer>
+<footer>
+  <div class="foot-in">
+    <div class="foot-top">
+      <div class="foot-brand"><b>Rick Tew</b><span>THE MAP &middot; a clickable guide to the work</span></div>
+      <ul class="social">
+        <li><a href="https://x.com/ricktew" target="_blank" rel="noopener">X &#8599;</a></li>
+        <li><a href="https://instagram.com/ricktew" target="_blank" rel="noopener">Instagram &#8599;</a></li>
+        <li><a href="https://youtube.com/@ricktew" target="_blank" rel="noopener">YouTube &#8599;</a></li>
+        <li><a href="https://facebook.com/ricktew" target="_blank" rel="noopener">Facebook &#8599;</a></li>
+        <li><a href="https://linkedin.com/in/ricktew" target="_blank" rel="noopener">LinkedIn &#8599;</a></li>
+        <li><a href="https://ninjagym.com" target="_blank" rel="noopener">NinjaGym &#8599;</a></li>
+      </ul>
+    </div>
+    <p class="legal"><b>RTMS and WinJitsu are Rick Tew's own systems. NinjaGym is a registered trademark.</b> Get a Black Belt in what you do.</p>
+    <p class="legal foot-doors"><a href="/">Which ninja?</a> &middot; <a href="/hininja/">HI Ninja</a> &middot; <a href="/aininja/">AI Ninja</a></p>
+  </div>
+</footer>
 
+<script src="/js/rick-quiz.js"></script>
 </body>
 </html>
