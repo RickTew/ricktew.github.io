@@ -745,6 +745,23 @@ The page is `noindex` and is NOT in the sitemap; the only links to it are the
 paragraph after the three steps in `#dojo` on `/aininja/` (it sat under the
 full price cards until those left on 1 Oct 2026), `llms.txt`, and invite links.
 
+- **THE QUICK START, since 9 Oct 2026 (96b1575, Rick: "shorten to ONLY what
+  we need to start work ... just hit record and GO (make sure bots can not get
+  it)").** The page opens on name, email, then ONE red "Tap to talk" button
+  (the voice note is kept on Stop and uploaded) or the catalog's `QUICK` box
+  ("What do you want done?"), then "Send it to Rick". The 56-question sheet,
+  recordings and its own Send are folded in `<details id="full">` ("Want to
+  give me more now?"). The endpoint calls it a quick start when the answers are
+  only name, email and `quick`: 8 seconds minimum (not 20), no nine empty
+  sections in the Markdown, no skipped-questions list in the receipt, and name
+  plus email with nothing to say is a silent drop. **The upload door has walls:**
+  Origin required, the trap field rides along, and `public.aininja_intake_gate`
+  (RLS on, no policies) caps 30 addresses an hour per visitor (a keyed hash,
+  never the IP), 24 per sheet, 300 a day; if the table is unreadable the upload
+  goes ahead and logs `gate_unavailable`. First live run the same day: intake
+  `o8faxgimwcqqbbm9p5lc`, a 6-second voice note (a song from Rick's Downloads
+  through Chrome's fake microphone), both mails sent. The sweep takes
+  `AUDIO=<wav>` for that fake microphone.
 - **One catalog, two copies.** Every question, option and limit lives in
   `aininja/start/intake-questions.js`. The page builds its form from it; the
   endpoint accepts ONLY ids and option values from it, so a stranger can never
