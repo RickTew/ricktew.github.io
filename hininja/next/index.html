@@ -189,7 +189,7 @@ footer a:hover{color:var(--red)}
       <a href="#price">Price</a>
       <a href="#rick">Who teaches it</a>
       <a href="#faq">FAQ</a>
-      <a class="btn btn-red" href="#enrol">Enrol</a>
+      <a class="btn btn-red" href="#price">Enrol</a>
     </div>
   </div>
 </nav>
@@ -249,18 +249,19 @@ footer a:hover{color:var(--red)}
         <ul class="twos">
           <li><b>2</b><span><strong>2 arts</strong>Ninjitsu (the body) and WinJitsu (the mind), two martial arts in one.</span></li>
           <li><b>2</b><span><strong>2-hour morning class</strong>Daily instruction, 8am to 10am. Rick teaches the new material.</span></li>
-          <li><b>2</b><span><strong>2-hour evening review</strong>Club-style practice with the group, where the real learning happens.</span></li>
+          <li><b>2</b><span><strong>2-hour evening review</strong>Optional, club-style practice with the group.</span></li>
           <li><b>2</b><span><strong>2 weeks</strong>Your stay on the island. Extend later if you want more.</span></li>
         </ul>
         <p class="longer">Stay longer, the 222 stays: 3 weeks is $3,222, 4 weeks is $4,222. A flat $1,000 per extra week: <a href="#enrol">write to me</a> for a longer stay.</p>
         <!-- The Dojo's one checkout through the ricktew.com step, like the Shop's
              Buy buttons. Rick's clicks, 9 Oct 2026: one button, 2 weeks at $2,222;
              the checkout asks for the arrival date; all sales final, dates can move. -->
-        <a class="btn btn-red buy" id="buyGns" href="/aininja/shop/buy/?sku=HIN-GNS-2W">Buy 2 weeks, $2,222</a>
+        <a class="btn btn-red buy" id="buyGns" href="/hininja/buy/?sku=HIN-GNS-2W">Buy 2 weeks, $2,222</a>
         <p class="longer">At checkout you add your arrival date. All sales are final; your dates can move to another two weeks.</p>
       </div>
+      <div>
+      <div class="k" style="margin-bottom:10px">What's included</div>
       <table class="incl">
-        <caption class="k" style="text-align:left;padding:0 0 10px">What's included</caption>
         <tr><th scope="row">Duration</th><td>2 weeks, extendable</td></tr>
         <tr><th scope="row">Schedule</th><td>Morning class + evening club, Mon to Fri</td></tr>
         <tr><th scope="row">Stay</th><td>Hostel-style bunks, basic and comfy</td></tr>
@@ -268,6 +269,7 @@ footer a:hover{color:var(--red)}
         <tr><th scope="row">Location</th><td>NinjaGym, Big C Mall, Koh Samui</td></tr>
         <tr><th scope="row">Who</th><td>Beginners to experienced, solo or with friends</td></tr>
       </table>
+      </div>
     </div>
   </div>
 </section>
@@ -301,7 +303,7 @@ footer a:hover{color:var(--red)}
       <a href="/about/"><span>Who he is</span><b>About Rick</b></a>
       <a href="/rtms/"><span>Train the body</span><b>RTMS</b></a>
       <a href="/winjitsu/"><span>Train the mind</span><b>WinJitsu</b></a>
-      <a href="/hininja/history/"><span>The record</span><b>30 years</b></a>
+      <a href="/hininja/history/"><span>The record</span><b>The history</b></a>
     </div>
   </div>
 </section>
@@ -384,7 +386,7 @@ footer a:hover{color:var(--red)}
   /* ?src= from a post rides on to the checkout, as on the Shop's product pages */
   (function(){ var v=""; try{ v=new URLSearchParams(location.search).get("src")||""; }catch(e){}
     if(!/^[A-Za-z0-9_-]{1,200}$/.test(v)) return;
-    [].forEach.call(document.querySelectorAll('a[href^="/aininja/shop/buy/?"]'),function(a){ a.href=a.href+"&src="+encodeURIComponent(v); }); })();
+    [].forEach.call(document.querySelectorAll('a[href^="/hininja/buy/?"]'),function(a){ a.href=a.href+"&src="+encodeURIComponent(v); }); })();
   var form=document.getElementById("enrolForm"), topic=document.getElementById("eTopic"), msg=document.getElementById("eMsg"), err=document.getElementById("eErr"), send=document.getElementById("eSend");
   /* the first line of the message per topic: the AI page's GNS presets, word for word */
   var LINES={
