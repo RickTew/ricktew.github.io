@@ -489,7 +489,7 @@ async function mailReceipt(p: {
     `Your intake${p.business ? ' for ' + p.business : ''} landed: ${landed}. It is stored privately, and Rick picks it up from there.\n\n` +
     (p.purchase ? `It is filed with your order: ${purchaseLine(p.purchase)}.\n\n` : '') +
     (missedText + noRec ? missedText + noRec + `\n\n` : '') +
-    `What happens next: Rick reads the sheet and the recordings, then writes back with the first plan and the questions he still has. If a call is the faster way, he will say so.\n\n` +
+    `What happens next: Rick reads the sheet and the recordings, then writes back with the first plan and the questions he still has.\n\n` +
     `AI Ninja\nricktew.com/aininja\n\n(This receipt was written from your own sheet, nothing more. Rick picks it up from there.)`;
   const html =
     `<div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.55;color:#101418">` +
@@ -500,7 +500,7 @@ async function mailReceipt(p: {
       ? `<p>A few questions on the sheet are still open. Reply to this mail with the answers, or record a voice note and send it along:</p><ol>${p.missed.map(q => `<li>${esc(q.ask!)}</li>`).join('')}</ol>`
       : `<p>You answered every essential question. Thank you for the care.</p>`) +
     ((rec || p.quick) ? '' : `<p>One more thing that helps more than anything: a two-minute voice note walking me through a normal day. Reply to this mail with it attached, or go back to the page and record it there.</p>`) +
-    `<p>What happens next: Rick reads the sheet and the recordings, then writes back with the first plan and the questions he still has. If a call is the faster way, he will say so.</p>` +
+    `<p>What happens next: Rick reads the sheet and the recordings, then writes back with the first plan and the questions he still has.</p>` +
     `<p>AI Ninja<br>ricktew.com/aininja</p>` +
     `<p style="color:#69707a;font-size:13px">(This receipt was written from your own sheet, nothing more. Rick picks it up from there.)</p></div>`;
   await resend({
