@@ -214,6 +214,23 @@ footer{border-top:1px solid var(--border);background:var(--surface)}
 }
 .foot-doors{margin-top:10px;font-size:13px}
 .foot-doors a{color:inherit}
+
+/* ============ THE UNIVERSE (#universe): the parked July graph, fact-checked 10 Oct 2026 ============ */
+.uni-box{position:relative;margin-top:26px;background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden}
+#uniCanvas{display:block;width:100%;height:min(72vh,640px);cursor:grab;touch-action:pan-y}
+@media (max-width:640px){ #uniCanvas{height:min(78vh,620px)} }
+.uni-legend{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px;border-top:1px solid var(--border)}
+.chip{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;border:1px solid var(--border);border-radius:999px;padding:4px 12px;background:var(--bg);color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:opacity .2s}
+.chip .dot{width:9px;height:9px;border-radius:50%;background:var(--ch)}
+.chip.off{opacity:.35}
+.uni-pop{position:absolute;z-index:5;width:min(320px,86%);background:var(--surface);border:1.5px solid var(--pc,var(--accent));border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);display:none}
+.uni-pop.show{display:block}
+.uni-pop .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.uni-pop h3{font-size:17px;margin:5px 0 7px}
+.uni-pop p{font-size:14px;color:var(--muted);line-height:1.55;margin:0}
+.uni-pop a{color:var(--text);font-family:var(--mono);font-size:12px;display:inline-block;margin-top:10px;word-break:break-all}
+.uni-pop .x{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer}
+.uni-hint{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:12px}
 </style>
 </head>
 <body>
@@ -284,6 +301,7 @@ footer{border-top:1px solid var(--border);background:var(--surface)}
       <div class="map-foot">
         <button class="btn btn-primary" onclick="RickQuiz.open()">Find your path with Rick</button>
         <span class="q">Four taps. It points you at the right node.</span>
+        <a class="btn btn-ghost" href="#universe">See everything he built</a>
       </div>
     </div>
   </section>
@@ -359,6 +377,33 @@ footer{border-top:1px solid var(--border);background:var(--surface)}
     </div>
   </section>
 
+  <!-- THE UNIVERSE: the clickable graph from the July "AI to HI" page, parked in
+       /redesign/ on 9 Oct and put here on Rick's pick of 10 Oct 2026 ("Fact-check
+       it, put on About"). Every node text was checked that day against this page,
+       /aininja/ (the live screens and the cases), /hsp/, /gns/, /hininja/history/,
+       CLAUDE.md's inventory and the live sites. Left out until Rick gives the
+       words: The Adroit Swordsman, Tew's Total Recall, Ninja Defense (its name
+       differs between the inventory and /aininja/), Ninja Village. -->
+  <section class="section" id="universe">
+    <div class="wrap">
+      <div class="sec-top"><p class="eyebrow">07 // The proof, mapped</p><a class="back" href="#top">Back to map &#8593;</a></div>
+      <h2>The Rick Tew universe. Tap anything.</h2>
+      <p class="lead">Thirty years of teaching, five books, and the apps and games he builds now. Tap a node for the story.</p>
+      <div class="uni-box">
+        <canvas id="uniCanvas" role="img" aria-label="A map of Rick Tew's work: martial arts, the mind, AI Ninja, apps and games. The same paths are written out in the sections above."></canvas>
+        <div class="uni-pop" id="uniPop" role="dialog" aria-live="polite">
+          <button class="x" id="uniPopX" aria-label="Close">&#10005;</button>
+          <span class="k" id="popK"></span>
+          <h3 id="popT"></h3>
+          <p id="popD"></p>
+          <a id="popL" style="display:none"></a>
+        </div>
+        <div class="uni-legend" id="uniLegend"></div>
+      </div>
+      <p class="uni-hint">Drag a node to move it. Tap the colored chips to show or hide a branch.</p>
+    </div>
+  </section>
+
 </main>
 
 <footer>
@@ -380,5 +425,188 @@ footer{border-top:1px solid var(--border);background:var(--surface)}
 </footer>
 
 <script src="/js/rick-quiz.js"></script>
+<script>
+/* The universe graph. Light only, like the page. Red carries HI, blue carries AI,
+   amber is Rick (the page's accent). Node texts: see the note on #universe. */
+(function(){
+  var canvas=document.getElementById('uniCanvas'); if(!canvas||!canvas.getContext) return;
+  var CATS={
+    core:   {label:'Rick Tew',     c:'#f5a100'},
+    martial:{label:'Martial Arts', c:'#d61f26'},
+    mind:   {label:'Mind',         c:'#7c3aed'},
+    ai:     {label:'AI Ninja',     c:'#1e73bd'},
+    apps:   {label:'Apps',         c:'#0891b2'},
+    games:  {label:'Games',        c:'#059669'}
+  };
+  var NODES=[
+    {id:'rick',cat:'core',label:'Rick Tew',r:24,wow:'California to the world, in 30+ years: martial artist, author and builder. The mission: help you get a Black Belt in what you do.'},
+
+    {id:'martial',cat:'martial',label:'Martial Arts',r:16,parent:'rick',wow:'Thirty years of teaching, and live-in programs run for over 20 years in the US, Latin America, Europe and Asia.'},
+    {id:'rtms',cat:'martial',label:'RTMS',r:11,parent:'martial',wow:'A martial science, not a style: Modern American Ninjitsu crossed with MMA, built to teach movement, not moves. 5 ranking levels to instructor status.',link:'/rtms/'},
+    {id:'pocket',cat:'martial',label:'Pocket Dojo',r:10,parent:'rtms',wow:'Rick Tew’s Martial Science, belt by belt, on your phone. Five belts, Yellow to Red, and 90 lessons.',link:'/hsp/'},
+    {id:'gns',cat:'martial',label:'Gooffy Ninja ShhT!!',r:11,parent:'martial',wow:'Live-in ninja martial arts training with Rick Tew in Koh Samui, Thailand. Morning class, evening club session, the island in between. 2 weeks, all in.',link:'/gns/'},
+    {id:'history',cat:'martial',label:'The camps and tours',r:10,parent:'martial',wow:'The hardcore live-in camps and training tours of the old days, in the USA, Europe and Asia. Rick was the first in the martial arts industry to run live-in Ninja Training Camps.',link:'/hininja/history/'},
+    {id:'ninjagym',cat:'martial',label:'NinjaGym',r:11,parent:'martial',wow:'Founded by Rick: a gym on Koh Samui for ninja training, obstacle courses, climbing and parkour, with kids and adult programs.',link:'https://ninjagym.com'},
+
+    {id:'mind',cat:'mind',label:'Mind',r:16,parent:'rick',wow:'The mental side. Training the mind to beat its own negative Ninja: fear, doubt, stress and laziness.'},
+    {id:'winjitsu',cat:'mind',label:'WinJitsu',r:11,parent:'mind',wow:'“Win” plus “Jitsu”: the True Art of Winning. The five books became an app: one idea a day, practice it, prove it, build a streak.',link:'https://winjitsu.com'},
+    {id:'books',cat:'mind',label:'Be a Black Belt in What You Do',r:10,parent:'mind',wow:'Five books, one per finger of the hand: ACE, MAK, MBS, NRG and CMT. Written in his twenties for his students, finished in 2026.'},
+    {id:'coaching',cat:'mind',label:'Coaching and BLAST',r:10,parent:'mind',wow:'A Tony Robbins Certified Strategic Intervention Coach. He has spoken at HP, TU Delft and the University of Rotterdam.',link:'/aininja/#opt-8c'},
+
+    {id:'aininja',cat:'ai',label:'AI Ninja',r:16,parent:'rick',wow:'Done-for-you AI for small business, managed by a real person: Rick. Two plans, R2 Hosting and Your Dojo.',link:'/aininja/'},
+    {id:'shop',cat:'ai',label:'The Shop',r:10,parent:'aininja',wow:'Apps Rick built that you can have too, like MamaMia and a spa booking site, each on R2 Hosting.',link:'/aininja/shop/'},
+    {id:'you',cat:'ai',label:'Your business?',r:10,parent:'aininja',wow:'This node is open. Tell Rick where your hours go: drop it in his mailbox.',link:'/aininja/#opt-8c'},
+
+    {id:'apps',cat:'apps',label:'Apps',r:16,parent:'rick',wow:'Apps for his own businesses, for friends’ businesses and for fun, built with AI.'},
+    {id:'ngapp',cat:'apps',label:'NinjaGym app',r:10,parent:'apps',wow:'An app on a phone that runs the gym: check-ins, memberships, bookings, the shop, plus his own till.'},
+    {id:'sabaisen',cat:'apps',label:'SabaiSen',r:10,parent:'apps',wow:'His spa on Koh Samui: online booking, the till, member cards, reports, and a desk agent that answers guests in English and Thai.',link:'https://sabaisen.com'},
+    {id:'evercool',cat:'apps',label:'EverCool',r:10,parent:'apps',wow:'An air conditioning firm’s site and back office: a shared inbox, staff accounts, equipment tracking. On R2 Hosting since June 2026.',link:'https://evercoolthailand.com'},
+    {id:'samuikids',cat:'apps',label:'SamuiKids',r:10,parent:'apps',wow:'The drop-off guide for supervised kid activities on Koh Samui.',link:'https://samuikids.com'},
+    {id:'nerdhostel',cat:'apps',label:'NerdHostel',r:10,parent:'apps',wow:'A gamer hostel with Guild Hall co-working for digital nomads on Koh Samui, across the street from NinjaGym.',link:'https://nerdhostel.com'},
+    {id:'tewbedo',cat:'apps',label:'TEWBEDO',r:10,parent:'apps',wow:'The console nobody sold, so he built it: one screen that runs his working life. Of all he has built, it is the one he uses most.'},
+
+    {id:'games',cat:'games',label:'Games',r:16,parent:'rick',wow:'His hobby, under his TewBit Games brand. One made the App Store; the rest are in beta.'},
+    {id:'tewgo',cat:'games',label:'TEWGO',r:10,parent:'games',wow:'A strategy board game for iPhone and iPad: five in a row, or two to capture. Live on the App Store.',link:'https://apps.apple.com/us/app/tewgo/id6763025917'},
+    {id:'dungeonhole',cat:'games',label:'Dungeon Hole',r:10,parent:'games',wow:'1v1 dungeon strategy: one side builds the dungeon and defends the treasure, the other raids it. In beta.',link:'https://dungeonhole.com'},
+    {id:'astrohold',cat:'games',label:'AstroHold',r:10,parent:'games',wow:'Turn-based space strategy on a grid: defend the Power Core or lead the cyborg attack. In beta, in your browser.',link:'https://www.astrohold.com'}
+  ];
+
+  var ctx=canvas.getContext('2d');
+  var pop=document.getElementById('uniPop'),popK=document.getElementById('popK'),popT=document.getElementById('popT'),popD=document.getElementById('popD'),popL=document.getElementById('popL');
+  var hidden={},W=0,H=0,DPR=1;
+  function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+  function small(){return W<560;}
+
+  function resize(){
+    DPR=window.devicePixelRatio||1;
+    W=canvas.clientWidth;H=canvas.clientHeight;
+    canvas.width=W*DPR;canvas.height=H*DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+
+  NODES.forEach(function(n,i){
+    if(n.id==='rick'){n.x=0.5;n.y=0.5;}
+    else{var a=(i/NODES.length)*Math.PI*2;n.x=0.5+Math.cos(a)*0.35;n.y=0.5+Math.sin(a)*0.35;}
+    n.vx=0;n.vy=0;
+  });
+  var byId={};NODES.forEach(function(n){byId[n.id]=n;});
+  var EDGES=NODES.filter(function(n){return n.parent;}).map(function(n){return [byId[n.parent],n];});
+  function visible(n){return !hidden[n.cat]||n.id==='rick';}
+  function rad(n){return small()?Math.max(7,n.r*0.8):n.r;}
+
+  var alpha=1,drag=null,selected=null,moved=false;
+  function step(){
+    if(alpha<0.005)return;
+    alpha*=0.995;
+    var act=NODES.filter(visible),k=small()?1500:2600;
+    for(var i=0;i<act.length;i++)for(var j=i+1;j<act.length;j++){
+      var a=act[i],b=act[j],dx=(b.x-a.x)*W,dy=(b.y-a.y)*H,d2=dx*dx+dy*dy+40,d=Math.sqrt(d2);
+      var f=k/d2,fx=dx/d*f,fy=dy/d*f;
+      a.vx-=fx;a.vy-=fy;b.vx+=fx;b.vy+=fy;
+    }
+    EDGES.forEach(function(e){
+      var a=e[0],b=e[1];if(!visible(a)||!visible(b))return;
+      var dx=(b.x-a.x)*W,dy=(b.y-a.y)*H,d=Math.sqrt(dx*dx+dy*dy)||1;
+      var rest=(a.id==='rick')?(small()?95:150):(small()?62:95);
+      var f=(d-rest)*0.012,fx=dx/d*f,fy=dy/d*f;
+      a.vx+=fx;a.vy+=fy;b.vx-=fx;b.vy-=fy;
+    });
+    act.forEach(function(n){
+      if(n===drag)return;
+      n.vx+=(0.5-n.x)*W*0.0018;n.vy+=(0.5-n.y)*H*0.0018;
+      n.vx*=0.86;n.vy*=0.86;
+      n.x+=n.vx*alpha/W;n.y+=n.vy*alpha/H;
+      var m=0.06;n.x=Math.max(m,Math.min(1-m,n.x));n.y=Math.max(m,Math.min(1-m,n.y));
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    EDGES.forEach(function(e){
+      if(!visible(e[0])||!visible(e[1]))return;
+      ctx.strokeStyle=CATS[e[1].cat].c;ctx.globalAlpha=0.35;ctx.lineWidth=1.2;
+      ctx.beginPath();ctx.moveTo(e[0].x*W,e[0].y*H);ctx.lineTo(e[1].x*W,e[1].y*H);ctx.stroke();
+    });
+    ctx.globalAlpha=1;
+    var ink=css('--text')||'#14161f';
+    NODES.forEach(function(n){
+      if(!visible(n))return;
+      var x=n.x*W,y=n.y*H,c=CATS[n.cat].c,r=rad(n);
+      ctx.beginPath();ctx.arc(x,y,r+6,0,7);ctx.fillStyle=c;ctx.globalAlpha=0.14;ctx.fill();ctx.globalAlpha=1;
+      ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fillStyle=c;ctx.fill();
+      if(n===selected){ctx.strokeStyle=ink;ctx.lineWidth=2.5;ctx.stroke();}
+      ctx.font=(n.id==='rick'?'700 14px':(small()?'500 11px':'500 12px'))+' "Space Grotesk",system-ui,sans-serif';
+      ctx.fillStyle=ink;ctx.textAlign='center';
+      var tw=ctx.measureText(n.label).width,lx=Math.max(tw/2+4,Math.min(W-tw/2-4,x));
+      ctx.fillText(n.label,lx,y+r+15);
+    });
+  }
+
+  function pick(mx,my){
+    for(var i=NODES.length-1;i>=0;i--){
+      var n=NODES[i];if(!visible(n))continue;
+      var dx=mx-n.x*W,dy=my-n.y*H,r=rad(n)+10;
+      if(dx*dx+dy*dy<r*r)return n;
+    }
+    return null;
+  }
+  function pos(ev){
+    var r=canvas.getBoundingClientRect(),p=ev.touches?ev.touches[0]:(ev.changedTouches?ev.changedTouches[0]:ev);
+    return {x:p.clientX-r.left,y:p.clientY-r.top};
+  }
+  function down(ev){var p=pos(ev);drag=pick(p.x,p.y);moved=false;if(drag){alpha=Math.max(alpha,0.4);ev.preventDefault();}}
+  function move(ev){
+    var p=pos(ev);
+    if(drag){drag.x=p.x/W;drag.y=p.y/H;drag.vx=0;drag.vy=0;moved=true;ev.preventDefault();}
+    else if(!ev.touches){canvas.style.cursor=pick(p.x,p.y)?'pointer':'grab';}
+  }
+  function up(){
+    if(drag&&!moved)select(drag);
+    drag=null;
+  }
+  canvas.addEventListener('mousedown',down);canvas.addEventListener('mousemove',move);window.addEventListener('mouseup',up);
+  canvas.addEventListener('touchstart',down,{passive:false});canvas.addEventListener('touchmove',move,{passive:false});canvas.addEventListener('touchend',up);
+  canvas.addEventListener('click',function(ev){var p=pos(ev);if(!pick(p.x,p.y))hidePop();});
+
+  function linkText(u){return u.charAt(0)==='/'?'ricktew.com'+u:u.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'');}
+  function select(n){
+    selected=n;
+    pop.style.setProperty('--pc',CATS[n.cat].c);
+    popK.textContent=CATS[n.cat].label;popT.textContent=n.label;popD.textContent=n.wow;
+    if(n.link){
+      popL.href=n.link;popL.textContent=linkText(n.link);popL.style.display='inline-block';
+      if(n.link.charAt(0)==='/'){popL.removeAttribute('target');popL.removeAttribute('rel');}
+      else{popL.target='_blank';popL.rel='noopener';}
+    } else popL.style.display='none';
+    pop.classList.add('show');
+    var x=n.x*W,y=n.y*H,r=rad(n),pw=pop.offsetWidth,ph=pop.offsetHeight;
+    var left=Math.max(10,Math.min(W-pw-10,x-pw/2));
+    var top=y-r-ph-14;if(top<10)top=y+r+14;if(top+ph>H-10)top=Math.max(10,H-ph-10);
+    pop.style.left=left+'px';pop.style.top=top+'px';
+  }
+  function hidePop(){pop.classList.remove('show');selected=null;}
+  document.getElementById('uniPopX').addEventListener('click',hidePop);
+
+  var legend=document.getElementById('uniLegend');
+  Object.keys(CATS).forEach(function(k){
+    if(k==='core')return;
+    var b=document.createElement('button');
+    b.type='button';b.className='chip';b.style.setProperty('--ch',CATS[k].c);
+    b.setAttribute('aria-pressed','true');
+    b.innerHTML='<span class="dot"></span>'+CATS[k].label;
+    b.addEventListener('click',function(){hidden[k]=!hidden[k];b.classList.toggle('off',hidden[k]);b.setAttribute('aria-pressed',hidden[k]?'false':'true');hidePop();alpha=Math.max(alpha,0.5);});
+    legend.appendChild(b);
+  });
+
+  var running=false;
+  function loop(){step();draw();if(running)requestAnimationFrame(loop);}
+  resize();window.addEventListener('resize',function(){resize();alpha=Math.max(alpha,0.3);});
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting&&!running){running=true;loop();} else if(!e.isIntersecting){running=false;}
+    });}).observe(canvas);
+  } else {running=true;loop();}
+})();
+</script>
 </body>
 </html>
