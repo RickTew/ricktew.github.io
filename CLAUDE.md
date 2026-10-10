@@ -13,7 +13,8 @@ places:
   the realistic version, light, red only on the buttons, words only until Rick
   sends today's photos, a "Buy 2 weeks, $2,222" button (SKU `HIN-GNS-2W` in the
   Dojo's one checkout, through `/hininja/buy/`; arrival date asked; "All sales
-  are final; your dates can move to another two weeks"; thanks page
+  are final; your dates can move to another two weeks, within a year of buying"
+  (the year is Rick's click of 10 Oct); thanks page
   `/hininja/thanks/`) and its own enrol form on the mailbox (subject `hininja`).
   Rick and a NinjaGym Guide take turns teaching (Rick at least 2 classes a
   week); shared dorms, a women's dorm on request. `/gns/` is the FUN version of
