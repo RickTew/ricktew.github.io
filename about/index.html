@@ -218,7 +218,7 @@ footer{border-top:1px solid var(--border);background:var(--surface)}
 /* ============ THE UNIVERSE (#universe): the parked July graph, fact-checked 10 Oct 2026 ============ */
 .uni-box{position:relative;margin-top:26px;background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden}
 #uniCanvas{display:block;width:100%;height:min(72vh,640px);cursor:grab;touch-action:pan-y}
-@media (max-width:640px){ #uniCanvas{height:min(78vh,620px)} }
+@media (max-width:640px){ #uniCanvas{height:min(92vh,740px)} }
 .uni-legend{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px;border-top:1px solid var(--border)}
 .chip{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;border:1px solid var(--border);border-radius:999px;padding:4px 12px;background:var(--bg);color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:opacity .2s}
 .chip .dot{width:9px;height:9px;border-radius:50%;background:var(--ch)}
@@ -381,9 +381,12 @@ footer{border-top:1px solid var(--border);background:var(--surface)}
        /redesign/ on 9 Oct and put here on Rick's pick of 10 Oct 2026 ("Fact-check
        it, put on About"). Every node text was checked that day against this page,
        /aininja/ (the live screens and the cases), /hsp/, /gns/, /hininja/history/,
-       CLAUDE.md's inventory and the live sites. Left out until Rick gives the
-       words: The Adroit Swordsman, Tew's Total Recall, Ninja Defense (its name
-       differs between the inventory and /aininja/), Ninja Village. -->
+       CLAUDE.md's inventory and the live sites. Same day, his picks: Ninja Ninja
+       Defense (his spelling), Ninja Village and Arena RPG added (words from each
+       game's own repo and the /aininja/ board-game case; no link where /aininja/
+       gives none: Ninja Ninja Defense is a private build, Arena RPG's play page
+       is noindex, so it links its case). Still off: The Adroit Swordsman,
+       Tew's Total Recall. -->
   <section class="section" id="universe">
     <div class="wrap">
       <div class="sec-top"><p class="eyebrow">07 // The proof, mapped</p><a class="back" href="#top">Back to map &#8593;</a></div>
@@ -468,7 +471,10 @@ footer{border-top:1px solid var(--border);background:var(--surface)}
     {id:'games',cat:'games',label:'Games',r:16,parent:'rick',wow:'His hobby, under his TewBit Games brand. One made the App Store; the rest are in beta.'},
     {id:'tewgo',cat:'games',label:'TEWGO',r:10,parent:'games',wow:'A strategy board game for iPhone and iPad: five in a row, or two to capture. Live on the App Store.',link:'https://apps.apple.com/us/app/tewgo/id6763025917'},
     {id:'dungeonhole',cat:'games',label:'Dungeon Hole',r:10,parent:'games',wow:'1v1 dungeon strategy: one side builds the dungeon and defends the treasure, the other raids it. In beta.',link:'https://dungeonhole.com'},
-    {id:'astrohold',cat:'games',label:'AstroHold',r:10,parent:'games',wow:'Turn-based space strategy on a grid: defend the Power Core or lead the cyborg attack. In beta, in your browser.',link:'https://www.astrohold.com'}
+    {id:'astrohold',cat:'games',label:'AstroHold',r:10,parent:'games',wow:'Turn-based space strategy on a grid: defend the Power Core or lead the cyborg attack. In beta, in your browser.',link:'https://www.astrohold.com'},
+    {id:'ninjavillage',cat:'games',label:'Ninja Village',r:10,parent:'games',wow:'A strategy game about building a legendary ninja clan from a raided village.'},
+    {id:'ninjadefense',cat:'games',label:'Ninja Ninja Defense',r:10,parent:'games',wow:'A story-driven tower defense game. A private build for now.'},
+    {id:'arena',cat:'games',label:'Arena RPG',r:10,parent:'games',wow:'A board game Rick drew on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles. Being built for real now.',link:'/aininja/#case-game'}
   ];
 
   var ctx=canvas.getContext('2d');
@@ -498,7 +504,7 @@ footer{border-top:1px solid var(--border);background:var(--surface)}
   function step(){
     if(alpha<0.005)return;
     alpha*=0.995;
-    var act=NODES.filter(visible),k=small()?1500:2600;
+    var act=NODES.filter(visible),k=small()?2000:2600;
     for(var i=0;i<act.length;i++)for(var j=i+1;j<act.length;j++){
       var a=act[i],b=act[j],dx=(b.x-a.x)*W,dy=(b.y-a.y)*H,d2=dx*dx+dy*dy+40,d=Math.sqrt(d2);
       var f=k/d2,fx=dx/d*f,fy=dy/d*f;
@@ -516,7 +522,7 @@ footer{border-top:1px solid var(--border);background:var(--surface)}
       n.vx+=(0.5-n.x)*W*0.0018;n.vy+=(0.5-n.y)*H*0.0018;
       n.vx*=0.86;n.vy*=0.86;
       n.x+=n.vx*alpha/W;n.y+=n.vy*alpha/H;
-      var m=0.06;n.x=Math.max(m,Math.min(1-m,n.x));n.y=Math.max(m,Math.min(1-m,n.y));
+      var m=0.06,rr=rad(n);n.x=Math.max(m,Math.min(1-m,n.x));n.y=Math.max((rr+10)/H,Math.min(1-(rr+46)/H,n.y));
     });
   }
 
@@ -537,8 +543,16 @@ footer{border-top:1px solid var(--border);background:var(--surface)}
       if(n===selected){ctx.strokeStyle=ink;ctx.lineWidth=2.5;ctx.stroke();}
       ctx.font=(n.id==='rick'?'700 14px':(small()?'500 11px':'500 12px'))+' "Space Grotesk",system-ui,sans-serif';
       ctx.fillStyle=ink;ctx.textAlign='center';
-      var tw=ctx.measureText(n.label).width,lx=Math.max(tw/2+4,Math.min(W-tw/2-4,x));
-      ctx.fillText(n.label,lx,y+r+15);
+      var lines=[n.label];
+      if(ctx.measureText(n.label).width>(small()?90:150)){
+        var w=n.label.split(' '),best=1,bd=1e9;
+        for(var q=1;q<w.length;q++){var dd=Math.abs(ctx.measureText(w.slice(0,q).join(' ')).width-ctx.measureText(w.slice(q).join(' ')).width);if(dd<bd){bd=dd;best=q;}}
+        lines=[w.slice(0,best).join(' '),w.slice(best).join(' ')];
+      }
+      lines.forEach(function(t,li){
+        var tw=ctx.measureText(t).width,lx=Math.max(tw/2+4,Math.min(W-tw/2-4,x));
+        ctx.fillText(t,lx,y+r+15+li*(small()?13:14));
+      });
     });
   }
 

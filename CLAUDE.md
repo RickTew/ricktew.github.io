@@ -40,8 +40,8 @@ blue carries AI. Its CSS is in `css/site.css` for the HI side and inline for
 The old Google Sites pages are all still live at their original URLs, styled by
 `css/site.css` + `js/site.js`. The one that moved is the old front page: it is
 now `/hininja/` word for word, and their nav "Home" and logo point there. Their
-footers carry a link back to the two doors. `/redesign/` holds parked
-exploration and is not live.
+footers carry a link back to the two doors. `/redesign/` is gone (emptied
+9 and 10 Oct 2026 on Rick's clicks).
 
 ---
 
@@ -1226,12 +1226,10 @@ RickTew/
 │   └── assets/     #   ~195 files, its own images and audio
 ├── about/  camps/  contact/  home/  ninjagym/  tours/  winjitsu/  rtms/
 │                   # the older Google Sites pages, still live at their URLs
-├── redesign/       # REVIEWED 9 Oct 2026 on Rick's clicks: the August
-│                   # whole-site redesign and five of six "Who is Rick Tew"
-│                   # designs DELETED. The winner, The Map, IS /about/ now
-│                   # (its quiz at /js/rick-quiz.js). Left here only
-│                   # universe-graph.html, a parked piece from "AI to HI",
-│                   # noindex, linked from nowhere.
+│                   # (/redesign/ is GONE: the August redesign and five
+│                   # "Who is Rick Tew" designs deleted 9 Oct; The Map IS
+│                   # /about/; its universe graph is /about/#universe since
+│                   # 10 Oct and the parked copy was deleted that day.)
 ├── supabase/       # the contact endpoint's source. NOT a page. Excluded
 │                   # from the Pages build by _config.yml.
 ├── _config.yml     # exists only to keep supabase/ off the live site
@@ -1270,7 +1268,7 @@ Verify a status with a real request before repeating it on the site.**
 | Dungeon Hole | Web (Phaser 4 + Next.js) | **Live** at dungeonhole.com, also dungeon-hole.vercel.app (verified 2026-09-13) | 1v1 asymmetric dungeon strategy. Renamed from Dungeon King 2026-07-12; the old dungeon-king.vercel.app 308s to the new address. Repo: `~/Dev/DungeonHole/` (flat, no `Phaser/` subfolder since June 2026). **Two words, Rick's ruling 13 Sep 2026.** `/aininja/` still writes DungeonHole, one word (story paragraph and the `alt`s); fix that with the next edit to that page, not as its own push. |
 | Dungeon King (Godot) | PC/Mac | **Does not exist** | Was listed here as in dev. No Godot folder or `project.godot` was ever tracked in the DungeonHole repo (checked 2026-09-13); Dungeon King is only the big game's old name. Never list it as a product. |
 | TEWGO | iOS | **Live on the App Store** (verified 2026-08-21) | Pente-variant, SwiftUI + SpriteKit. apps.apple.com/us/app/tewgo/id6763025917 |
-| Ninja Ninja Defense | PC (Unity) | Soon | Tower defense with on-device AI |
+| Ninja Ninja Defense | Web (Phaser 4), PC via Electron for Steam later | Private build | Narrative tower defense. Repo `~/Dev/NinjaDefense/`. Rick confirmed the name "Ninja Ninja Defense" 10 Oct 2026; /aininja/ and /about/ use it. |
 | NinjaCampBuilder | PC (Unity 2D, Steam) | Stalled | Omit for now |
 
 ### Brands / Businesses
