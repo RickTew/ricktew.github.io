@@ -1144,11 +1144,17 @@ open items); read it before changing the page. Canonical program docs:
   fighters" became "Built for beginners. Trained before? Welcome too."; "Not a
   fight camp. No sparring unless you ask." (GNS "All welcome" panel and FAQ,
   HI FAQ); and the date fact: arrive any day, classes run all year, the next
-  group is 22 January 2027. Not ruled (asked or still to ask): the "TRMS 2000"
-  tape title, 25 vs 30 years, a class-only line for people with their own place
-  (the quiz's housing note is the only answer), "ninjutsu" as a search word
-  (Rick's spelling Ninjitsu stays), a no-smoking / no-steroids line (he did
-  not pick it).
+  group is 22 January 2027. Second batch, same day: the GNS evening review
+  reads "Optional, club-style practice with the group." (as on the HI page);
+  the GNS Stay row adds "A women's dorm on request."; the tape is "RTMS 2000"
+  (was TRMS); both pages' FAQ gained "Already have a place on Samui?" in the
+  quiz's words; both "What is it" paragraphs say "The art is Rick's own system,
+  Modern American Ninjitsu (most people spell it ninjutsu)." (his spelling
+  stays; the word is there for search). Years stay "more than 25" (Rick: "don't
+  give away my age so plus 25 years is okay"). Not picked, do not re-ask: a
+  no-smoking / no-steroids line, swapping the Muay Thai banner photo. Photos:
+  no current adult shots of the center were found on the external drive or in
+  the NinjaGym gallery (kids only); the slot waits for his.
 - **The vault's tapes and world photos are not copied:** the page plays the
   same files `/aininja/` serves from `aininja/assets/story/ninja/`. Moving
   those breaks both pages.
