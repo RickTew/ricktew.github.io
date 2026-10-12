@@ -1127,7 +1127,9 @@ open items); read it before changing the page. Canonical program docs:
   the Dojo's one checkout. `src=gns` tags the order as this page's for the
   6-month comparison; `gns.js` turns a post's `?src=instagram` into
   `gns-instagram`. The all-sales line sits under the price-section Enroll, as
-  under the HI page's Buy. NinjaGym removed GNS on 28 Sep (its checkout,
+  under the HI page's Buy. A buyer who cancels at checkout returns to /gns/
+  when src is "gns" or starts "gns-" (the Dojo's checkout, beae04a, 12 Oct);
+  any other src returns to /hininja/. Success lands on /hininja/thanks/. NinjaGym removed GNS on 28 Sep (its checkout,
   bookings table and images are gone; ninjagym.com/gns, /gns/* and
   /gooffy-ninja 308 here). Contact still goes to the mailbox: the quiz's
   private-sessions button `?about=gns-private`, the footer Contact
