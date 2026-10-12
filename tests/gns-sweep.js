@@ -4,16 +4,17 @@
    Desktop and phone: 200, console and page errors, failed requests,
    sideways scroll, NaN / undefined / [object Object], long dashes, mailto
    links, stray addresses, links and anchors that go nowhere. Then the page's
-   own moving parts: every Enroll lands on the mailbox on /aininja/ with
-   the GNS request written in (there is no GNS checkout since NinjaGym
-   dropped it on 28 Sep 2026), the belt tabs, the vault (declassify, every tape
+   own moving parts: every Enroll goes to the checkout through the HI page's
+   Buy step, tagged src=gns (Rick's click, 12 Oct 2026; a post's ?src= rides
+   on as gns-<src>, a bad one is dropped), the quiz's enroll button too, the
+   three mailbox prefills, the belt tabs, the vault (declassify, every tape
    tab, a tape plays, every world file opens, reseal), the quiz (every first
    answer, then 40 seeded random walks to a result, Back, Retake, and "See
    the full program" going back to the top). Exit 1 on any finding. */
 "use strict";
 const { chromium, devices } = require("/Users/ricktew/Dev/Roy Martina/newnei-app/node_modules/playwright");
 const BASE = "http://localhost:8765", URL_ = "/gns/";
-const ENROLL = BASE + "/aininja/?about=gns#opt-8c";
+const ENROLL = BASE + "/hininja/buy/?sku=HIN-GNS-2W&src=gns";
 const found = {};
 function flag(kind, msg) { (found[kind] = found[kind] || []).push(msg); }
 
@@ -173,6 +174,47 @@ function rng(seed) { return () => (seed = (seed * 1103515245 + 12345) % 21474836
         if (!inView) flag("slot prefill", at + " " + k + ": the mailbox is not on screen");
       }
       await q.close();
+    }
+
+    // Enroll with a post's ?src=, a bad ?src=, and the quiz's enroll button.
+    // The buy step is stubbed: it would hand off to the real checkout.
+    {
+      // Its own context with service workers blocked: /aininja/ (opened above
+      // for the prefills) registers /sw.js, and a page served by the worker
+      // skips page.route, so the stub below never fired and the real buy step
+      // ran (12 Oct 2026: two live checkout sessions opened, unpaid, expired).
+      const ec = await b.newContext({ ...opts, serviceWorkers: "block" });
+      const q = await ec.newPage();
+      q.on("pageerror", e => errs.push("enroll: " + e.message));
+      let bought = "";
+      // never past the buy step: abort anything bound for the checkout, then
+      // stub the step itself.
+      await q.route(/supabase\.co|stripe\.com/, r => r.abort());
+      await q.route(/\/hininja\/buy\//, r => { bought = r.request().url(); r.fulfill({ status: 200, contentType: "text/html", body: "<p>buy stub</p>" }); });
+      for (const [src, want] of [["instagram", ENROLL + "-instagram"], ["no%20good", ENROLL]]) {
+        await q.goto(BASE + URL_ + "?src=" + src, { waitUntil: "load" });
+        const hs = await q.$$eval("a", a => a.filter(x => /enroll/i.test(x.textContent)).map(x => x.href));
+        if (hs.length < 4) flag("enroll", at + " ?src=" + src + ": only " + hs.length + " Enroll links");
+        hs.forEach(h => { if (h !== want) flag("enroll", at + " ?src=" + src + ": " + h); });
+      }
+      await q.goto(BASE + URL_, { waitUntil: "load" });
+      await q.evaluate(() => { document.getElementById("qz").scrollIntoView(); });
+      for (let i = 0; i < 30; i++) {
+        const o = await q.$(qz + " .qz-opt");
+        if (o) { await o.click(); continue; }
+        const yes = await q.$(qz + " >> text=Yes, reveal my ninja");
+        if (yes) { await yes.click(); continue; }
+        break;
+      }
+      await q.waitForSelector(qz + " .qz-type", { timeout: 9000 }).catch(() => {});
+      const go = await q.$(qz + " button >> text=/Claim your 2-week spot|enroll/i");
+      if (!go) flag("enroll", at + ": the quiz result has no enroll button");
+      else {
+        await go.click();
+        await q.waitForURL(/\/hininja\/buy\//, { timeout: 9000 }).catch(() => {});
+        if (bought !== ENROLL) flag("enroll", at + ": the quiz's enroll went to " + (bought || q.url()));
+      }
+      await ec.close();
     }
 
     errs.forEach(e => flag("console", at + ": " + e.slice(0, 160)));

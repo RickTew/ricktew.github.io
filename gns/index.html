@@ -25,12 +25,16 @@
   #e23b2e, Bangers / Nunito / Fredoka. No long dashes anywhere (GNS rule and
   site rule). The behaviour is in gns.js beside this file.
 
-  THERE IS NO CHECKOUT FOR GNS ANYWHERE (since 28 Sep 2026). NinjaGym
-  removed GNS completely by Rick's ruling, checkout included, and
-  ninjagym.com/gns/* now redirects here. Until Rick rules on a checkout,
-  every Enroll and contact button goes to the mailbox on /aininja/ with
-  the request already written in (?about=gns, gns-private, gns-ask: a fixed
-  list in the slot script there). Do not build a checkout without his word.
+  ENROLL GOES TO THE CHECKOUT (Rick's click, 12 Oct 2026, after the GNS
+  persona round: 7 of 7 readers were put off when Enroll landed on the blue
+  AI page). Every Enroll Now, and the quiz's enroll buttons, go to
+  /hininja/buy/?sku=HIN-GNS-2W&src=gns, the HI page's own Buy step into the
+  Dojo's one checkout. src=gns tags the order as this page's (gns.js turns a
+  post's ?src=instagram into gns-instagram), for the 6-month comparison of
+  the two pages. Contact and private sessions still go to the mailbox on
+  /aininja/ (?about=gns-private, gns-ask; ?about=gns is kept there for old
+  links). NinjaGym removed GNS on 28 Sep 2026 and ninjagym.com/gns/*
+  redirects here.
 
   The vault tapes and the world photos are NOT copied: they are the same
   files /aininja/ already serves from /aininja/assets/story/ninja/. Moving
@@ -102,6 +106,11 @@ img,video{max-width:100%;height:auto}
 
 /* sections */
 .gt-sec{ padding:clamp(3.5rem,8vw,6rem) 0; position:relative; }
+/* the one real photo in the open (Rick, 12 Oct 2026) and the all-sales line under the price Enroll */
+.gt-proof{ max-width:40rem; margin:clamp(2rem,5vw,3rem) auto 0; }
+.gt-proof img{ width:100%; height:auto; display:block; border-radius:14px; border:1.5px solid var(--edge); background:#000; box-shadow:5px 6px 0 -1px rgba(226,59,46,.32); }
+.gt-proof figcaption{ margin-top:.65rem; font-size:.9rem; line-height:1.45; color:rgba(245,233,216,.72); text-align:center; }
+.gt-buy-note{ max-width:34rem; margin:.9rem auto 0; font-size:.85rem; line-height:1.5; color:rgba(245,233,216,.72); }
 .gt-sec-alt{ background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.14)); border-top:1px solid var(--edge); border-bottom:1px solid var(--edge); }
 /* the classified vault gets its own full band so it never feels tacked on */
 .gt-sec-vault{ padding:clamp(5rem,11vw,8.5rem) 0; background:linear-gradient(180deg, rgba(0,0,0,.4), rgba(226,59,46,.05) 50%, rgba(0,0,0,.3)); border-top:1px solid rgba(240,193,75,.25); border-bottom:1px solid rgba(240,193,75,.25); }
@@ -692,7 +701,7 @@ img,video{max-width:100%;height:auto}
       <h1 class="gt-hero-el gt-h1 mt-2" style="animation-delay:240ms">Real Ninja Skills.<br><span class="gt-h1-red">Zero Seriousness.</span></h1>
       <p class="gt-hero-el gt-lede mt-6" style="animation-delay:360ms">Live-in ninja martial arts training with Rick Tew in Koh Samui, Thailand. Morning class, evening club session, the island in between. 2 weeks.</p>
       <div class="gt-hero-el gt-hero-ctas" style="animation-delay:460ms">
-        <a href="/aininja/?about=gns#opt-8c" class="gt-cta gt-cta-fill">Enroll Now</a>
+        <a href="/hininja/buy/?sku=HIN-GNS-2W&amp;src=gns" class="gt-cta gt-cta-fill">Enroll Now</a>
         <a href="#quiz" class="gt-cta gt-cta-ghost">Take the 2-minute quiz</a>
       </div>
       <div class="gt-hero-el gt-pricechip mt-8" style="animation-delay:560ms">
@@ -733,6 +742,17 @@ img,video{max-width:100%;height:auto}
         <p>A live-in martial arts program at Rick Tew's NinjaGym in Koh Samui. It teaches a genuine, structured ninja skill set, stances, rolls, falls, strikes, kicks, self-defense, Ninja Tools, and mental focus, wrapped in a deliberately silly delivery. The training is legit. The vibe is fun.</p>
         <p>The whole brand runs on a playful secrecy joke. The misspelling, "Gooffy," "ShhT," is part of the identity, not a typo. <b class="gt-ink-orange">Serious skill, silly delivery.</b> Train by day, game by night, and walk away with real skills to take home without giving up your holiday.</p>
       </div>
+    </div>
+    <!-- Rick's click, 12 Oct 2026, after the GNS persona round: all 7 readers
+         were UNSURE the training was real until the sealed file, because the
+         open page showed no real person. So one photo from the Asia file sits
+         out here, in the open, with the caption it has in the file. The file
+         keeps it too. -->
+    <div class="shell">
+      <figure class="gt-reveal gt-proof">
+        <img src="/aininja/assets/story/ninja/world/asia-ninjagym.webp" alt="Adults, men and women, training on red mats inside NinjaGym on Koh Samui" width="640" height="335" loading="lazy">
+        <figcaption>Inside NinjaGym on Koh Samui: red mats, real training</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -848,9 +868,12 @@ img,video{max-width:100%;height:auto}
         </div>
       </div>
 
-      <!-- Rick, 10 Oct 2026: the next start, the same fact as /hininja/. -->
-      <p class="gt-eyebrow gt-reveal mt-9">Next start: 22 January 2027</p>
-      <a href="/aininja/?about=gns#opt-8c" class="gt-cta gt-cta-fill gt-reveal mt-4">Enroll Now</a>
+      <!-- Rick, 10 Oct 2026: the next group; 12 Oct: arrive any day, classes run
+           all year. The same facts as /hininja/. The all-sales line sits under
+           the button, as under the HI page's Buy (Rick's click, 12 Oct). -->
+      <p class="gt-eyebrow gt-reveal mt-9">Arrive any day: classes run all year. Next group: 22 January 2027.</p>
+      <a href="/hininja/buy/?sku=HIN-GNS-2W&amp;src=gns" class="gt-cta gt-cta-fill gt-reveal mt-4">Enroll Now</a>
+      <p class="gt-buy-note gt-reveal">At checkout you add your arrival date. All sales are final; your dates can move to another two weeks, within a year of buying.</p>
     </div>
   </section>
 
@@ -1044,7 +1067,7 @@ img,video{max-width:100%;height:auto}
         <div class="gt-reveal gt-panel"><p class="gt-panel-title">Rick Tew</p><p class="gt-panel-line">The American Ninja, more than 25 years of experience, serious technique with a grin.</p></div>
         <div class="gt-reveal gt-panel" style="transition-delay:60ms"><p class="gt-panel-title">Tropical paradise</p><p class="gt-panel-line">Beaches, jungle, and a relaxed island vibe that pairs hard training with real downtime.</p></div>
         <div class="gt-reveal gt-panel" style="transition-delay:120ms"><p class="gt-panel-title">Game by night</p><p class="gt-panel-line">A game room at the center and the hostel. Train hard, then replay your favorites.</p></div>
-        <div class="gt-reveal gt-panel" style="transition-delay:180ms"><p class="gt-panel-title">All welcome</p><p class="gt-panel-line">Beginners to seasoned fighters, come solo or with friends. Bringing family? Book your own stay nearby and the kids can train at our NinjaGym Kids center.</p></div>
+        <div class="gt-reveal gt-panel" style="transition-delay:180ms"><p class="gt-panel-title">All welcome</p><p class="gt-panel-line">Built for beginners. Trained before? Welcome too. Not a fight camp. No sparring unless you ask. Come solo or with friends. Bringing family? Book your own stay nearby and the kids can train at our NinjaGym Kids center.</p></div>
       </div>
     </div>
   </section>
@@ -1071,7 +1094,7 @@ img,video{max-width:100%;height:auto}
         <h2 class="gt-h2">Shh, the FAQ</h2>
       </div>
       <div class="gt-faqs mt-8">
-        <details class="gt-reveal gt-faq"><summary>Do I need experience?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>No. Beginners are welcome, and so are seasoned fighters. Everyone trains at their level.</p></details>
+        <details class="gt-reveal gt-faq"><summary>Do I need experience?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>No. It is built for beginners. Trained before? Welcome too. Everyone trains at their level. Not a fight camp. No sparring unless you ask.</p></details>
         <details class="gt-reveal gt-faq"><summary>What if I am not a morning person?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>No worries. Just show up to the evening review sessions, where we go over what we did that morning. Mr. Tew rotates teaching mornings and evenings, so both types get at least 2 classes a week with Mr. Tew.</p></details>
         <details class="gt-reveal gt-faq"><summary>Can I bring my family or kids?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>The live-in program stays in hostel-style bunks built for solo travelers, so it is not set up for families to lodge together. You are welcome to book your own accommodation nearby, and the kids can train at our NinjaGym Kids center while you are in the program.</p></details>
         <details class="gt-reveal gt-faq"><summary>Can I stay longer?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>Yes, a flat $1,000 per extra week. So 3 weeks is $3,222, 4 weeks is $4,222. The 222 tail stays.</p></details>
@@ -1087,7 +1110,7 @@ img,video{max-width:100%;height:auto}
     <div class="shell gt-final-in">
       <h2 class="gt-reveal gt-final-h">Kick, Laugh, Live.</h2>
       <p class="gt-reveal gt-final-p">Lock in your spot. Shh, keep it secret, keep it fun.</p>
-      <a href="/aininja/?about=gns#opt-8c" class="gt-cta gt-cta-fill gt-reveal mt-7">Enroll Now</a>
+      <a href="/hininja/buy/?sku=HIN-GNS-2W&amp;src=gns" class="gt-cta gt-cta-fill gt-reveal mt-7">Enroll Now</a>
       <div class="gt-foot gt-reveal">
         <a href="/">RickTew.com</a>
         <a href="https://www.ninjagym.com" target="_blank" rel="noopener noreferrer">NinjaGym.com</a>
@@ -1105,7 +1128,7 @@ img,video{max-width:100%;height:auto}
         <p class="gt-sticky-num">$2,222</p>
         <p class="gt-sticky-sub">2 weeks, all in</p>
       </div>
-      <a href="/aininja/?about=gns#opt-8c" class="gt-cta gt-cta-fill gt-cta-sm">Enroll Now</a>
+      <a href="/hininja/buy/?sku=HIN-GNS-2W&amp;src=gns" class="gt-cta gt-cta-fill gt-cta-sm">Enroll Now</a>
     </div>
   </div>
 

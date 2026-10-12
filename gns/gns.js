@@ -1,13 +1,23 @@
 /* Gooffy Ninja ShhT!! (/gns/): the page's behaviour, in plain JS.
    Ported 28 Sep 2026 from the NinjaGym Next.js components (GnsLanding,
    GnsVault, GnsQuiz, GnsMotion). The words are theirs, unchanged.
-   There is no GNS checkout (NinjaGym removed it 28 Sep 2026): Enroll and
-   contact go to the mailbox on /aininja/ with the request written in.
+   Enroll goes to the checkout (Rick's click, 12 Oct 2026) through the HI
+   page's Buy step, tagged src=gns; contact still goes to the mailbox on
+   /aininja/ with the request written in.
    No long dashes anywhere (GNS rule and site rule). */
 (function () {
   "use strict";
 
-  var ENROLL = "/aininja/?about=gns#opt-8c";
+  /* Enroll: the Dojo's one checkout through /hininja/buy/, tagged as this
+     page's order (src=gns). A post's ?src=instagram rides on as gns-instagram,
+     the same shape check as /hininja/buy/ (letters, digits, _ and -, up to 200). */
+  var SRC = "gns";
+  try {
+    var postSrc = new URLSearchParams(location.search).get("src") || "";
+    if (/^[A-Za-z0-9_-]{1,196}$/.test(postSrc)) SRC = "gns-" + postSrc;
+  } catch (e) {}
+  var ENROLL = "/hininja/buy/?sku=HIN-GNS-2W&src=" + SRC;
+  [].forEach.call(document.querySelectorAll('a[href^="/hininja/buy/?"]'), function (a) { a.setAttribute("href", ENROLL); });
   var CONTACT = "/aininja/?about=gns-private#opt-8c";
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var clamp01 = function (n) { return n < 0 ? 0 : n > 1 ? 1 : n; };

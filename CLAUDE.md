@@ -1120,19 +1120,35 @@ open items); read it before changing the page. Canonical program docs:
   motion). The GNS look lives only on GNS pages: dark "ninja night",
   orange `#ff7a1a`, red `#e23b2e`, Bangers / Nunito / Fredoka. It is its
   own sub-brand, so the light-page and door-bar rules do not apply to it.
-- **There is no GNS checkout anywhere (since later on 28 Sep).** Rick ruled
-  that NinjaGym removes GNS completely: its checkout, bookings table and
-  images are gone, and ninjagym.com/gns, /gns/* and /gooffy-ninja 308 to
-  ricktew.com/gns/. Until Rick rules on a checkout, every Enroll button goes
-  to the mailbox, `/aininja/?about=gns#opt-8c`, which arrives with the
-  HI Ninja subject and the request written in; the quiz's private-sessions
-  button uses `?about=gns-private` and the footer Contact `?about=gns-ask`.
-  Those three values are a fixed list in the slot script on `/aininja/`;
-  any other value does nothing. The Ninja Agent's auto-reply answers them
-  from the chat box's `hininja` entry, then Rick follows up. A card
-  checkout (a Stripe Payment Link on Tew's Inc, or more) is his call and,
-  by the lane ruling, not built from this session without his word. Never
-  edit anything in `~/Dev/NinjaGym`.
+- **Enroll goes to the checkout (since 12 Oct 2026, Rick's click after the
+  GNS persona round: 7 of 7 readers were put off when Enroll landed on the
+  blue AI page).** The four Enroll Now buttons and the quiz's enroll buttons
+  go to `/hininja/buy/?sku=HIN-GNS-2W&src=gns`, the HI page's Buy step into
+  the Dojo's one checkout. `src=gns` tags the order as this page's for the
+  6-month comparison; `gns.js` turns a post's `?src=instagram` into
+  `gns-instagram`. The all-sales line sits under the price-section Enroll, as
+  under the HI page's Buy. NinjaGym removed GNS on 28 Sep (its checkout,
+  bookings table and images are gone; ninjagym.com/gns, /gns/* and
+  /gooffy-ninja 308 here). Contact still goes to the mailbox: the quiz's
+  private-sessions button `?about=gns-private`, the footer Contact
+  `?about=gns-ask`; `?about=gns` stays in the slot script's fixed list for
+  old links. The Ninja Agent's auto-reply answers them from the chat box's
+  `hininja` entry, then Rick follows up. Never edit anything in
+  `~/Dev/NinjaGym`.
+- **The GNS round of 12 Oct 2026** (`playtest/reports/2026-10-12-gns-SUMMARY.md`,
+  7 readers in Rick's audience plus the find-them research). All 7 were UNSURE
+  the training was real until the sealed file, because the open page showed no
+  real person. Rick's clicks, the same day, on BOTH pages unless named: the
+  Asia file's "Inside NinjaGym on Koh Samui" photo sits in the open after
+  "What is it" (GNS page; the file keeps it too); "Beginners to seasoned
+  fighters" became "Built for beginners. Trained before? Welcome too."; "Not a
+  fight camp. No sparring unless you ask." (GNS "All welcome" panel and FAQ,
+  HI FAQ); and the date fact: arrive any day, classes run all year, the next
+  group is 22 January 2027. Not ruled (asked or still to ask): the "TRMS 2000"
+  tape title, 25 vs 30 years, a class-only line for people with their own place
+  (the quiz's housing note is the only answer), "ninjutsu" as a search word
+  (Rick's spelling Ninjitsu stays), a no-smoking / no-steroids line (he did
+  not pick it).
 - **The vault's tapes and world photos are not copied:** the page plays the
   same files `/aininja/` serves from `aininja/assets/story/ninja/`. Moving
   those breaks both pages.
@@ -1140,7 +1156,8 @@ open items); read it before changing the page. Canonical program docs:
   root has `overflow-x:hidden`). Switching them on puts the enroll bar over
   the hero's Enroll button on a phone and a 900px laptop; Rick's call.
 - **Test:** `node tests/gns-sweep.js` (serve the repo on 8765): desktop and
-  phone, links, every Enroll target, the three slot prefills, belts, the
+  phone, links, every Enroll target (checkout, with and without a post's
+  ?src=, and the quiz's enroll button), the three slot prefills, belts, the
   vault, 40 quiz walks.
 - In the sitemap and in llms.txt (HI door section, via
   `tests/agent-door-build.py`). Not linked from `/hininja/` or the front
