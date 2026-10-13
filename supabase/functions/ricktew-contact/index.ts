@@ -86,6 +86,7 @@ const SOURCES: Record<string, string> = {
   facebook: 'Facebook',
   instagram: 'Instagram',
   youtube: 'YouTube',
+  contra: 'Contra',
   direct: 'Direct, no source on the link',
 };
 
