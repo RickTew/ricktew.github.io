@@ -75,7 +75,7 @@ p b,li b{font-weight:800}
 .pc.hot{border-color:var(--blue)}
 .pc .tag{font-size:11.5px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 .pc.hot .tag{color:var(--red)}
-.pc h3{font-size:20px;font-weight:900;margin-top:8px}
+.pc h2{font-size:20px;font-weight:900;margin-top:8px}
 .pc .amount{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:40px;margin-top:12px}
 .pc .amount small{font-size:15px;font-weight:800;color:var(--muted)}
 .pc p{margin-top:10px;font-size:14.5px;font-weight:600;color:#4b5563;flex:1}
@@ -106,6 +106,7 @@ p b,li b{font-weight:800}
 .live b{display:block;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:17px}
 .live span{display:block;margin-top:4px;font-size:14px;font-weight:600;color:#4b5563}
 .cmp{margin-top:26px;overflow-x:auto}
+.cmp:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .cmp table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}
 .cmp th,.cmp td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-weight:600;color:#4b5563}
 .cmp th{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;color:var(--ink);font-size:14px}
@@ -124,7 +125,7 @@ p b,li b{font-weight:800}
 .start{padding:64px 0 76px;background:var(--blue);color:#fff;text-align:center}
 .start h2{color:#fff;font-size:clamp(26px,4.4vw,42px);font-weight:900;max-width:22ch;margin:0 auto}
 .start h2 .c{color:#bfe0ff}
-.start p{margin:14px auto 0;max-width:54ch;font-weight:700;color:#dcebf9}
+.start p{margin:14px auto 0;max-width:54ch;font-weight:700;color:#f0f6fc}
 .start .cta{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .start .btn-blue{background:#fff;color:var(--blue-d);box-shadow:none}
 .start .btn-blue:hover{background:#eef5fc}
@@ -174,21 +175,21 @@ footer a:hover{color:var(--blue-d)}
     <div class="price-grid">
       <div class="pc">
         <span class="tag">Once</span>
-        <h3>The build</h3>
+        <h2>The build</h2>
         <div class="amount">$222</div>
         <p>The first version of your site or small app, built from parts that already run in my own businesses. Scoped on one page, in writing, before I start. Anything beyond that page is quoted, never a surprise.</p>
         <p class="note">Paid once, when the scope is agreed. It includes your first month of hosting.</p>
       </div>
       <div class="pc hot">
         <span class="tag">Monthly</span>
-        <h3>Hosting and upkeep</h3>
+        <h2>Hosting and upkeep</h2>
         <div class="amount">$99<small> / month</small></div>
         <p>Hosting on a global edge network, your domain and DNS, SSL, firewall, spam defense, daily backups, monitoring and updates. Somebody watching it who built it.</p>
         <p class="note">Starts the month after the build. Cancel any time, effective at the end of the paid month. All sales are final. No refunds.</p>
       </div>
       <div class="pc">
         <span class="tag">Yearly</span>
-        <h3>The same, paid once a year</h3>
+        <h2>The same, paid once a year</h2>
         <div class="amount">$999<small> / year</small></div>
         <p>Twelve months of hosting and upkeep for the price of about ten. One invoice, one payment, no monthly card charge to think about.</p>
         <p class="note">Saves $189 against twelve monthly payments.</p>
@@ -258,11 +259,11 @@ footer a:hover{color:var(--blue-d)}
 <section class="sec" id="compare">
   <div class="wrap">
     <div class="k">Which door</div>
-    <h2>R2 Hosting or Your Dojo.</h2>
+    <h2 id="cmpHead">R2 Hosting or Your Dojo.</h2>
     <p class="sub">Same builder, two sizes. R2 Hosting is the site or app and the hosting. Your Dojo is the AI workforce underneath a business: I build it, host it and help you run it, and your team presses every send.</p>
-    <div class="cmp">
+    <div class="cmp" tabindex="0" role="region" aria-labelledby="cmpHead">
       <table>
-        <thead><tr><th></th><th class="me">R2 Hosting</th><th>Your Dojo</th></tr></thead>
+        <thead><tr><td></td><th class="me">R2 Hosting</th><th>Your Dojo</th></tr></thead>
         <tbody>
           <tr><td>Price</td><td>$222 once, then $99 a month or $999 a year</td><td>$2,222 a month</td></tr>
           <tr><td>What you get</td><td>A website or small app, hosted, managed, kept up to date</td><td>Your command center and trained AI ninjas, built and hosted for you, with me overseeing it</td></tr>

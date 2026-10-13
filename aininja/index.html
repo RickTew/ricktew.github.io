@@ -372,7 +372,10 @@ h2 .c{color:var(--blue)}
    inside a rail whose transform is already animating: a cold first load
    showed an empty row while the second load was fine. */
 .app-rail:not(.run),.shelf-rail:not(.run){animation-play-state:paused}
-@media (prefers-reduced-motion:reduce){ .app-rail{animation:none;flex-wrap:wrap;width:auto;justify-content:center;max-width:1040px;margin-left:auto;margin-right:auto} }
+@media (prefers-reduced-motion:reduce){ .app-rail{animation:none;flex-wrap:wrap;width:auto;justify-content:center;max-width:1040px;margin-left:auto;margin-right:auto} .app-rail .dup{display:none} }
+/* keyboard focus inside the strip (.kb, added by script): the same still layout */
+.app-rail.kb{animation:none;flex-wrap:wrap;width:auto;justify-content:center;max-width:1040px;margin-left:auto;margin-right:auto}
+.app-rail.kb .dup{display:none}
 .app-card{flex:none;width:158px;text-align:center}
 a.app-card{color:inherit;text-decoration:none}
 a.app-card:hover .phone{box-shadow:0 0 0 3px var(--blue)}
@@ -425,7 +428,7 @@ html,body{overflow-x:clip}
 .helpings .bd > p{font-size:14.5px;color:#4b5563;font-weight:600}
 .help-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 28px;margin-top:16px}
 @media (max-width:700px){ .help-grid{grid-template-columns:1fr} }
-.help-grid h4{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.help-grid h3{font-family:inherit;line-height:inherit;font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
 .help-grid ul{margin:0;padding-left:18px}
 .help-grid li{font-size:13.5px;color:#4b5563;font-weight:600;margin:5px 0;line-height:1.5}
 .help-fine{margin-top:16px;font-size:14px;color:#4b5563;font-weight:700}
@@ -988,7 +991,7 @@ footer a:hover{text-decoration:underline}
 /* 8C: footer CTA band */
 .b8c{background:var(--blue);color:#fff;padding:64px 0;text-align:center}
 .b8c h2{color:#fff;font-size:clamp(26px,4.4vw,42px);font-weight:900;max-width:22ch;margin:0 auto}
-.b8c p{margin:14px auto 0;max-width:52ch;font-weight:700;color:#dcebf9}
+.b8c p{margin:14px auto 0;max-width:52ch;font-weight:700;color:#f0f6fc}
 .b8c .btn{margin-top:26px;background:#fff;color:var(--blue-d)}
 .b8c .btn:hover{background:#eef5fc}
 
@@ -1585,7 +1588,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     <p class="sub">Some for a business, some for a friend's, some for fun: games, a spa, a hostel, a gym, a console and a method.</p>
 
     <div class="row-label"><b>Live captures</b></div>
-    <div class="app-rail" id="appRail" aria-hidden="true"></div>
+    <div class="app-rail" id="appRail"></div>
 
     <div class="row-label">And the icons they open from</div>
     <div class="shelf-rail" id="shelf2" aria-hidden="true"></div>
@@ -2114,63 +2117,63 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
         <p>Most of what I build is the thing somebody asked for on a Tuesday: "could you make it so..." A few of them, from my gym, my studio and some unnamed clients. Every one runs today.</p>
         <div class="help-grid">
           <section>
-            <h4>Answering people</h4>
+            <h3>Answering people</h3>
             <ul>
               <li>A guest who writes at midnight has a draft waiting by morning, in their own language.</li>
               <li>An answer library that grows from the questions it could not answer, in two languages.</li>
             </ul>
           </section>
           <section>
-            <h4>Bookings</h4>
+            <h3>Bookings</h3>
             <ul>
               <li>A guest emails "book me Tuesday at two" and it becomes a real booking, labelled so a person can check it.</li>
               <li>Birthday parties and school groups with a deposit, an approval step and a confirmation mail.</li>
             </ul>
           </section>
           <section>
-            <h4>Money</h4>
+            <h3>Money</h3>
             <ul>
               <li>Change a price by typing it once: the website, the booking page and both tills follow.</li>
               <li>Bank-transfer slips checked in the app before staff see them.</li>
             </ul>
           </section>
           <section>
-            <h4>Getting found</h4>
+            <h3>Getting found</h3>
             <ul>
               <li>Every booking says which ad it came from, so you can see what a booking costs.</li>
               <li>Email journeys that follow what people do, with a test send to yourself first.</li>
             </ul>
           </section>
           <section>
-            <h4>Design and print</h4>
+            <h3>Design and print</h3>
             <ul>
               <li>Flyers, business cards and a rack card whose price menu reads from the live catalog, so print cannot drift from the till.</li>
               <li>Shopfront signs made to fit measured spots, in files the printer can use.</li>
             </ul>
           </section>
           <section>
-            <h4>Words, sound and language</h4>
+            <h3>Words, sound and language</h3>
             <ul>
               <li>A gym app in every language its families speak, and Thai answers for Thai guests.</li>
               <li>Old DVD footage turned into per-lesson clips inside the lessons.</li>
             </ul>
           </section>
           <section>
-            <h4>Running the shop</h4>
+            <h3>Running the shop</h3>
             <ul>
               <li>Staff mail the build desk; requests are filed and shown on a live board.</li>
               <li>An alarm when the mail stops, because an outage once went unnoticed for days.</li>
             </ul>
           </section>
           <section>
-            <h4>The small fixes that eat a day</h4>
+            <h3>The small fixes that eat a day</h3>
             <ul>
               <li>Bold that survives the send.</li>
               <li>Contact details behind a tap, so the address stops being scraped.</li>
             </ul>
           </section>
           <section>
-            <h4>Keeping it honest</h4>
+            <h3>Keeping it honest</h3>
             <ul>
               <li>A decision register, so a later session cannot quietly undo what the owner decided.</li>
               <li>One switch that pauses every AI call.</li>
@@ -2871,13 +2874,27 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
     var el=document.getElementById(id); if(!el) return;
     /* a card with a public door is a link (persona round one: the row had
        nothing to open); the private builds stay plain */
-    var one=list.map(function(a){
-      var inner='<div class="phone"><img src="assets/story/apps/'+a[0]+'.webp" alt=""></div><span>'+a[1]+'<br>'+a[2]+'</span>';
-      return a[3] ? '<a class="app-card" href="'+a[3]+'" target="_blank" rel="noopener" aria-label="Open '+a[1]+'">'+inner+'</a>'
-                  : '<div class="app-card">'+inner+'</div>';
-    }).join("");
-    var half=new Array(reps(list.length,180)+1).join(one);
-    el.innerHTML=half+half;
+    /* Only the first set is real to a keyboard or a screen reader. The
+       copies that make the loop seamless are hidden from both, so Tab
+       meets each app once (the Dojo's axe run, 13 Oct 2026: links inside
+       an aria-hidden strip could still take focus). */
+    function set(copy){
+      return list.map(function(a){
+        var inner='<div class="phone"><img src="assets/story/apps/'+a[0]+'.webp" alt=""></div><span>'+a[1]+'<br>'+a[2]+'</span>';
+        var cls=copy?'app-card dup':'app-card', hide=copy?' aria-hidden="true"':'';
+        return a[3] ? '<a class="'+cls+'" href="'+a[3]+'" target="_blank" rel="noopener"'+(copy?hide+' tabindex="-1"':' aria-label="Open '+a[1]+'"')+'>'+inner+'</a>'
+                    : '<div class="'+cls+'"'+hide+'>'+inner+'</div>';
+      }).join("");
+    }
+    el.innerHTML=set(false)+new Array(2*reps(list.length,180)).join(set(true));
+    /* A visitor who tabs in gets the strip standing still, one card per
+       app, as reduced motion does; nothing slides away while it has focus. */
+    el.addEventListener("focusin", function(e){
+      var kb=true; try{ kb=e.target.matches(":focus-visible"); }catch(err){}
+      if(!kb || el.classList.contains("kb")) return;
+      el.classList.add("kb");
+      var wall=el.closest(".appwall"); if(wall) wall.scrollLeft=0;
+    });
     runWhenLoaded(el);
   }
   liveRail("appRail", LIVE);
