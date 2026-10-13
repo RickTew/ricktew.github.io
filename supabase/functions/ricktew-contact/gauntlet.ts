@@ -70,6 +70,19 @@ function caseSwitches(s: string): number {
   return (s.match(/[a-z][A-Z]/g) || []).length;
 }
 
+/** Thai, Lao, Burmese, Khmer, Chinese and Japanese put no space between
+ *  words, so a whole sentence splits as ONE word. Counted as letters, a
+ *  plain Thai line scored long_word + very_long_word + one_word_message = 3
+ *  and was dropped: the first real applicant on a NinjaGym jobs form, 13 Oct
+ *  2026. The bot strings these tells were built for are Latin, so these
+ *  letters are not counted in a word's length. */
+const UNSPACED = /[\p{Script=Thai}\p{Script=Lao}\p{Script=Myanmar}\p{Script=Khmer}\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/gu;
+
+/** A word's length without the letters of those scripts. */
+function wordLength(w: string): number {
+  return w.replace(UNSPACED, '').length;
+}
+
 export function gauntletScore(sub: Submission): Verdict {
   const name = (sub.name || '').trim();
   const email = (sub.email || '').trim();
@@ -98,7 +111,7 @@ export function gauntletScore(sub: Submission): Verdict {
 
   // The message, short ones only.
   const words = m.split(/\s+/).filter(Boolean);
-  const longestWord = words.reduce((max, w) => Math.max(max, w.length), 0);
+  const longestWord = words.reduce((max, w) => Math.max(max, wordLength(w)), 0);
   if (longestWord >= 25) { score += 1; tells.push('long_word'); }
   if (longestWord >= 40) { score += 1; tells.push('very_long_word'); }
 
@@ -108,7 +121,7 @@ export function gauntletScore(sub: Submission): Verdict {
 
   const isLink = /^https?:\/\//i.test(m) || /^www\./i.test(m);
   const isAddress = m.includes('@');
-  if (words.length === 1 && m.length >= 12 && !isLink && !isAddress) {
+  if (words.length === 1 && wordLength(m) >= 12 && !isLink && !isAddress) {
     score += 1;
     tells.push('one_word_message');
   }
