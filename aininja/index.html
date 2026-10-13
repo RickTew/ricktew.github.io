@@ -1444,11 +1444,11 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 </head>
 <body>
 
-<div class="doorbar"><div class="doorbar-in">
+<nav class="doorbar" aria-label="Which ninja"><div class="doorbar-in">
   <a class="db-home" href="/">&#8592; Which ninja?</a>
   <span class="db-here">You are in the <b>AI Ninja</b> door</span>
   <a class="db-other" href="/hininja/">Take the HI Ninja door &#8594;</a>
-</div></div>
+</div></nav>
 
 <nav class="nav" aria-label="Main">
   <div class="nav-inner">
@@ -1460,6 +1460,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
   </div>
 </nav>
 
+<main id="main">
 <header class="hero" id="top">
   <div class="wrap">
     <div class="hero-grid">
@@ -2774,6 +2775,7 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 })();
 </script>
 
+</main>
 <footer>
   <div class="wrap">
     <span>THE DIGITAL DOJO &middot; by Rick Tew</span>
@@ -3303,11 +3305,11 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
 <script src="ask.js" defer></script>
 
 <!-- ============ OPTION M1: sticky mobile CTA bar (shows under 700px only) ============ -->
-<div class="mbar" id="mbar">
+<nav class="mbar" id="mbar" aria-label="Quick links">
   <a class="btn btn-blue" href="#quiz">Take the quiz</a>
   <button class="btn ask-mbar" type="button" data-ask-open aria-label="Ask the ninja"><span class="g" aria-hidden="true">&#129399;</span>Ask</button>
   <button class="x" id="mbarX" aria-label="Dismiss">&times;</button>
-</div>
+</nav>
 
 <script>
 (function(){

@@ -555,6 +555,28 @@ unneeded; the intro is now one line ("Some I built for a business, some as a
 hobby..."). Nothing on the page describes the captures any more, so a tile
 swap needs no copy check. The row label above the phones is the only text left.
 
+### Accessibility on the AI Ninja pages (13 Oct 2026, from the Dojo's axe run)
+
+axe (WCAG A, AA and best-practice) is clean on the eight AI Ninja pages
+(`/aininja/`, done-for-you, ai-agents, ai-customer-service, booking-system,
+side-hustle-summit, r2, start), desktop and phone. Keep it that way on a new page:
+
+- **Landmarks:** the door bar is `<nav class="doorbar" aria-label="Which ninja">`,
+  everything from the hero to the last section sits in `<main id="main">`, and the
+  phone's bottom bar on `/aininja/` is `<nav class="mbar" aria-label="Quick links">`.
+  On the Intake the form's mount is `<div id="form">` (it was an empty `<main>`
+  that sat hidden in the fold).
+- **The app strip (`#appRail`):** `liveRail()` builds one real set of cards,
+  reachable by keyboard and screen reader, then the loop copies with class `dup`,
+  `aria-hidden` and `tabindex="-1"`. Tabbing into it adds class `kb`, which stops
+  the strip and wraps it; reduced motion hides the copies. A new tile goes in the
+  real set only.
+- **Light text on the blue bands** is `#f0f6fc` (4.55:1), never `#dcebf9`.
+- **A wide table** that scrolls sideways gets `tabindex="0" role="region"
+  aria-labelledby` its heading and a blue `:focus-visible` outline (R2, summit).
+- The 11.5px label size (price tags, case labels, the captions under the phones)
+  is the page's look since launch and passes contrast; changing it is Rick's call.
+
 ---
 
 ## Contact: the mailbox

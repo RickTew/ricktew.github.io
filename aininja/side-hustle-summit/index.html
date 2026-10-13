@@ -199,6 +199,7 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .sec .body{margin-top:16px;font-weight:600;color:#3a4148;max-width:66ch}
 
 .cmp{margin-top:26px;overflow-x:auto}
+.cmp:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .cmp table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}
 .cmp th,.cmp td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-weight:600;color:#4b5563}
 .cmp th{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;color:var(--ink);font-size:14px}
@@ -257,11 +258,11 @@ footer a:hover{color:var(--blue-d)}
 </head>
 <body>
 
-<div class="doorbar"><div class="doorbar-in">
+<nav class="doorbar" aria-label="Which ninja"><div class="doorbar-in">
   <a href="/">Which ninja?</a>
   <span class="db-here">You are in the <b>AI Ninja</b> door</span>
   <a class="db-other" href="/hininja/">Take the HI Ninja door</a>
-</div></div>
+</div></nav>
 
 <nav class="nav" aria-label="Main">
   <div class="nav-inner">
@@ -276,6 +277,7 @@ footer a:hover{color:var(--blue-d)}
   </div>
 </nav>
 
+<main id="main">
 <header class="hero">
   <div class="wrap">
     <div class="k">A note for the summit crowd &middot; written after all five days &middot; updated <time id="updated" datetime="2026-09-14">14 September 2026</time></div>
@@ -292,9 +294,9 @@ footer a:hover{color:var(--blue-d)}
 <section class="sec" id="sells">
   <div class="wrap">
     <div class="k">The price list, as they said it</div>
-    <h2>Free to watch. <span class="c">$1,995 to join.</span></h2>
+    <h2 id="cmpHead">Free to watch. <span class="c">$1,995 to join.</span></h2>
     <p class="sub">Nothing wrong with a free week that sells a program. The host said on day one that the paid offer is what pays for the event. That is allowed. It is also worth knowing before you hand over a WhatsApp number for a workbook.</p>
-    <div class="cmp">
+    <div class="cmp" tabindex="0" role="region" aria-labelledby="cmpHead">
       <table>
         <thead><tr><th>The step</th><th>What it is</th><th>What it costs</th></tr></thead>
         <tbody>
@@ -448,6 +450,7 @@ footer a:hover{color:var(--blue-d)}
   </div>
 </section>
 
+</main>
 <footer>
   <div class="wrap">
     <span>THE DIGITAL DOJO &middot; by Rick Tew</span>
