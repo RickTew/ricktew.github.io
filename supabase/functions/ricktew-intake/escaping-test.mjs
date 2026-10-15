@@ -116,7 +116,8 @@ const checks = [
   ['table: one row, key label stored, key itself not', rows.length === 1 && rows[0].key_label === 'roy' && !JSON.stringify(rows[0]).includes('goodkey123')],
   ['receipt: goes to the client, from the secret sender', receipt && JSON.stringify(receipt.to) === JSON.stringify([hostile.answers.email]) && receipt.from.includes('stub-sender')],
   ['receipt: no foreign tags, no live script', receipt && foreign(receipt.html).length === 0 && !/<script/i.test(receipt.html)],
-  ['receipt: business name escaped', receipt && receipt.html.includes('&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;Evil Co')],
+  ['receipt: the typed business is never echoed to the typed address', receipt && !/Evil Co/.test(receipt.html + receipt.text + receipt.subject)],
+  ['receipt: fixed subject, greets "Hi there" when the name is not plainly a name', receipt && receipt.subject === 'AI Ninja Intake received' && receipt.text.startsWith('Hi there,')],
   ['receipt: lists missed questions', receipt && /Which offer are you leaning towards/.test(receipt.text)],
   // Rick, 1 Oct 2026: no AI label on our mail and no promise that he reads every intake
   ['receipt: no AI label, no read-every promise', receipt && !/I am an AI|reads every/i.test(receipt.text) && !/I am an AI|reads every/i.test(receipt.html || '')],
@@ -154,6 +155,45 @@ await dropCase('bad email', b => { b.answers.email = 'not-an-address'; }, 'bad_c
   checks.push(['upload-url: path stays inside the intake folder, name sanitised', r3.status === 200 && new RegExp(`^intake/\\d{4}-\\d{2}/${ID}/media/[a-z0-9]+-x_y\\.webm$`).test(d3.path)]);
   const r4 = await post({ action: 'upload-url', intake: ID, kind: 'video', name: 'big.mp4', size: 600 * 1024 * 1024 });
   checks.push(['upload-url: over the cap is a 413 the browser can act on', r4.status === 413]);
+}
+
+// ---- link echo (15 Oct 2026): the receipt goes to an address a stranger
+// typed, from our own sender, so nothing they typed may ride along as a link ----
+{
+  let before = mails.length; drops = [];
+  const lure = JSON.parse(JSON.stringify(hostile));
+  lure.answers.name = 'https://evil.example/login Bob';
+  lure.answers.email = 'victim@example.org';
+  lure.answers.business = 'Your account is locked. Restore it at www.evil.example/restore';
+  await post(lure);
+  const lr = mails.slice(before).find(m => m.subject.startsWith('AI Ninja Intake received'));
+  checks.push(['link echo: a URL in the name or business never reaches the receipt', lr && !/evil\.example|https?:|www\./i.test(lr.subject + lr.text + lr.html) && lr.text.startsWith('Hi there,')]);
+
+  before = mails.length;
+  const dom = JSON.parse(JSON.stringify(hostile));
+  dom.answers.name = 'evil.example/free-prize'; dom.answers.email = 'victim@example.org'; dom.answers.business = '';
+  await post(dom);
+  const dr = mails.slice(before).find(m => m.subject.startsWith('AI Ninja Intake received'));
+  checks.push(['link echo: a bare domain as the name gets "Hi there"', dr && !/evil\.example/i.test(dr.subject + dr.text + dr.html) && dr.text.startsWith('Hi there,')]);
+
+  before = mails.length;
+  const crlf = JSON.parse(JSON.stringify(hostile));
+  crlf.answers.name = 'Bob\r\nBcc: victim@example.com';
+  crlf.answers.business = 'Acme\r\nBcc: victim@example.com\nX-Evil: 1';
+  await post(crlf);
+  const cm = mails.slice(before);
+  checks.push(['subjects: CR or LF in the name and business never reach either subject', cm.length === 2 && cm.every(m => !/[\r\n]/.test(m.subject) && m.subject.length <= 180)]);
+
+  before = mails.length;
+  const real = JSON.parse(JSON.stringify(hostile));
+  real.answers.name = 'José María'; real.answers.business = 'Casa Bonita';
+  await post(real);
+  const rr = mails.slice(before).find(m => m.subject.startsWith('AI Ninja Intake received'));
+  checks.push(['receipt: a real first name, accents and all, is still used', rr && rr.text.startsWith('Hi José,') && rr.html.includes('Hi José,')]);
+
+  before = mails.length; drops = [];
+  const r = await post(hostile, '');
+  checks.push(['submit with no Origin answers ok:true and sends nothing', r.status === 200 && (await r.text()) === '{"ok":true}' && mails.length === before && drops.some(d => d.includes('"reason":"no_origin"'))]);
 }
 
 // ---- the upload gate (9 Oct 2026): Rick, "make sure bots can not get it" ----

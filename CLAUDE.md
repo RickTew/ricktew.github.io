@@ -824,6 +824,13 @@ full price cards until those left on 1 Oct 2026), `llms.txt`, and invite links.
   sign-off that reads right whether he or an agent answers). Same walls as the Letter
   Slot: always `{ok:true}`, drops logged under `ricktew-intake drop`, every
   client character escaped at its point of use, no address in the page.
+  **The receipt echoes nothing a stranger typed (15 Oct 2026, after TEWBEDO's
+  link-echo find on another install):** it goes to the typed address from our
+  own sender, so its subject is fixed (`AI Ninja Intake received`), the business
+  is not repeated, and the greeting uses the first name only when it is plainly
+  a name (letters, `'`, `.`, `-`, no link or domain), else "Hi there". A submit
+  with no Origin header is dropped like an acceptance (`no_origin`), as on the
+  mailbox. The mail to Rick is unchanged.
 - **Secrets on the project, not in the repo:** the three shared with
   ricktew-contact, plus `INTAKE_KEYS` (`label:key,label:key`; a matching
   `?key=` on the link marks the intake as that client's, no match is
@@ -897,7 +904,7 @@ full price cards until those left on 1 Oct 2026), `llms.txt`, and invite links.
   puts the same line in the receipt. The subject prefix and `X-Intake-Id` are
   untouched.
 - **Tests, run both after any change:**
-  `./supabase/functions/ricktew-intake/run-escaping-test.sh` (44 offline
+  `./supabase/functions/ricktew-intake/run-escaping-test.sh` (74 offline
   checks: hostile submission, both mails, the Markdown, the gauntlet, paths
   from another intake refused) and `node tests/intake-sweep.js` (Playwright,
   serve the repo on 8765: every option tapped, autosave across a reload, a

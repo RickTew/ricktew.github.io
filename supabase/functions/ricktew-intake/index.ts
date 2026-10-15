@@ -430,6 +430,17 @@ async function resend(body: Record<string, unknown>) {
 function subjectName(s: string) {
   return s.replace(/[<>&"'`]/g, ' ').replace(/\s+/g, ' ').trim();
 }
+/** The receipt goes to an address a stranger typed, from our own sender, so
+ *  it echoes nothing they typed except a first name that is plainly a name:
+ *  letters, an apostrophe, a dot or a dash, no link, no domain. Anything else
+ *  gets "Hi there" (15 Oct 2026, after a link-echo probe: a script could have
+ *  used the receipt to deliver its own link to any inbox). */
+function receiptFirstName(name: string) {
+  const w = name.trim().split(/\s+/)[0] || '';
+  if (!/^\p{L}[\p{L}'.-]{0,29}$/u.test(w)) return '';
+  if (/https?:|www\.|\.\p{L}{2,}/iu.test(w)) return '';
+  return w;
+}
 
 async function mailToNinja(p: {
   intake: string; name: string; email: string; business: string; key: KeyCheck; md: string;
@@ -464,13 +475,13 @@ async function mailToNinja(p: {
 }
 
 async function mailReceipt(p: {
-  name: string; email: string; business: string; answered: number; files: FileRef[]; missed: Q[];
+  name: string; email: string; answered: number; files: FileRef[]; missed: Q[];
   purchase: Purchase | null; quick: boolean;
 }) {
   const from = Deno.env.get('CONTACT_FROM');
   if (!from) throw new Error('mail_not_configured');
   const replyTo = Deno.env.get('INTAKE_REPLY_TO') || '';
-  const first = (p.name.trim().split(/\s+/)[0] || '').replace(/[<>&"'`]/g, '');
+  const first = receiptFirstName(p.name);
   const rec = p.files.filter(f => f.kind !== 'file').length, docs = p.files.length - rec;
   const landed = [
     p.quick ? (p.answered ? 'your note' : '') : `${p.answered} answer${p.answered === 1 ? '' : 's'} on the sheet`,
@@ -486,7 +497,7 @@ async function mailReceipt(p: {
   const noRec = (rec || p.quick) ? '' : `\n\nOne more thing that helps more than anything: a two-minute voice note walking me through a normal day. Reply to this mail with it attached, or go back to the page and record it there.`;
   const text =
     `Hi ${first || 'there'},\n\n` +
-    `Your intake${p.business ? ' for ' + p.business : ''} landed: ${landed}. It is stored privately, and Rick picks it up from there.\n\n` +
+    `Your intake landed: ${landed}. It is stored privately, and Rick picks it up from there.\n\n` +
     (p.purchase ? `It is filed with your order: ${purchaseLine(p.purchase)}.\n\n` : '') +
     (missedText + noRec ? missedText + noRec + `\n\n` : '') +
     `What happens next: Rick reads the sheet and the recordings, then writes back with the first plan and the questions he still has.\n\n` +
@@ -494,7 +505,7 @@ async function mailReceipt(p: {
   const html =
     `<div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.55;color:#101418">` +
     `<p>Hi ${esc(first || 'there')},</p>` +
-    `<p>Your intake${p.business ? ` for <b>${esc(p.business)}</b>` : ''} landed: ${esc(landed)}. It is stored privately, and Rick picks it up from there.</p>` +
+    `<p>Your intake landed: ${esc(landed)}. It is stored privately, and Rick picks it up from there.</p>` +
     (p.purchase ? `<p>It is filed with your order: ${esc(purchaseLine(p.purchase))}.</p>` : '') +
     (p.quick ? '' : p.missed.length
       ? `<p>A few questions on the sheet are still open. Reply to this mail with the answers, or record a voice note and send it along:</p><ol>${p.missed.map(q => `<li>${esc(q.ask!)}</li>`).join('')}</ol>`
@@ -506,7 +517,7 @@ async function mailReceipt(p: {
   await resend({
     from, to: [oneLine(p.email, MAX.email)],
     ...(replyTo ? { reply_to: replyTo } : {}),
-    subject: oneLine(`AI Ninja Intake received: ${subjectName(p.business) || subjectName(p.name) || 'your sheet'}`, 180),
+    subject: 'AI Ninja Intake received',
     headers: { 'Auto-Submitted': 'auto-generated' },
     html, text,
   });
@@ -575,6 +586,10 @@ Deno.serve(async (req) => {
   const purchase = readPurchase(p.purchase);
   const seen = { intake, name, email, business, key: key.status, answered: Object.keys(answers).length, files: files.length, sku: purchase?.sku ?? '' };
 
+  // Every browser sends Origin on this cross-site POST, the page's own form
+  // included; a script that leaves it out is not the page. Dropped like an
+  // acceptance, the mailbox's rule since 12 Sep (15 Oct 2026).
+  if (!origin) { logDrop('no_origin', seen); return json({ ok: true }, 200, origin); }
   // The client's own mistakes are told to them (the page checks first); the
   // gauntlet's rejections are not. Same rule as the mailbox.
   if (!name || !email) { logDrop('missing_required', seen); return json({ ok: true }, 200, origin); }
@@ -625,7 +640,7 @@ Deno.serve(async (req) => {
   }
   try {
     const answered = Object.keys(answers).filter(k => !k.endsWith('_more') && !['name', 'email'].includes(k)).length;
-    await mailReceipt({ name, email, business, answered, files, missed, purchase, quick });
+    await mailReceipt({ name, email, answered, files, missed, purchase, quick });
   } catch (e) {
     logDrop('unsent_receipt', { ...seen, error: e instanceof Error ? e.message : String(e) });
   }
