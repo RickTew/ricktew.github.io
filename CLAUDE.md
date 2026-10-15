@@ -1273,10 +1273,11 @@ RickTew/
 ├── sitemap.xml
 ├── hininja/        # DOOR 1: the in-person work
 ├── gns/            # Gooffy Ninja ShhT!!, moved from ninjagym.com 2026-09-28
-├── record/         # Rick's record page (15 Oct 2026): the link for job
-│                   # applications. noindex, NOT in the sitemap, linked from
-│                   # no menu. No prices, no buy buttons, no email (contact is
-│                   # LinkedIn). Its list of milestones is meant to grow.
+├── record/         # Rick's record page (15 Oct 2026), WORK IN PROGRESS: not
+│                   # shared anywhere until he says it is ready ("it is putting
+│                   # HUGE focus on just the gym app"). noindex, NOT in the
+│                   # sitemap, no menu links, no prices, no email; contact is
+│                   # the mailbox, never "message me on LinkedIn".
 ├── aininja/        # DOOR 2: the digital work. DOJO-OWNED, see above.
 │   ├── index.html  #   the landing page itself
 │   ├── legal/      #   terms + privacy
