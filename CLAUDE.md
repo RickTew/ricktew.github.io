@@ -1246,6 +1246,16 @@ open items); read it before changing the page. Canonical program docs:
 
 - Repo: `RickTew/ricktew.github.io`, **public**, branch `main`, root.
 - `CNAME` contains `ricktew.com`. DNS on **Squarespace**.
+- **ricktew.com is verified with GitHub (16 Oct 2026, Rick's click after the
+  Dojo's Poli pass):** the TXT record `_github-pages-challenge-RickTew` stays
+  in Squarespace for good (deleting it un-verifies the domain), and
+  github.com/settings/pages shows it Verified, so no other GitHub user can
+  serve a page on any name under ricktew.com. The same day the three dead
+  names were deleted: `mail` and `ftp` (CNAMEs to ricktew.com that Pages
+  answered with a 404) and `cpanel` (an A record to an old SiteGround
+  server). Mail delivery never used them; it runs on the MX records.
+- Pages cannot send security headers (HSTS, CSP, frame and referrer
+  policies); that is a limit of the host, not an oversight.
 - **Nothing is live until it is PUSHED.** Pages serves the remote, not your
   working copy, and Rick's standing rule is to push every solid change without
   being asked, because he reviews from the remote while away from the desk.
