@@ -22,7 +22,9 @@
 //          public.aininja_intake, one mail carries the Markdown to the Ninja
 //          Agent's mailbox (CONTACT_TO, which TEWBEDO files as a ticket), and
 //          one receipt goes to the client listing what landed and the
-//          essential questions they skipped.
+//          essential questions they skipped. Since 16 Oct 2026 one visitor
+//          gets three sends an hour and the whole site fifty a day; over that
+//          is a silent drop like every other wall.
 //
 // The question catalog is intake-questions.js beside this file, a COPY of
 // aininja/start/intake-questions.js made by deploy.sh. The endpoint accepts
@@ -73,6 +75,10 @@ const GATE = 'aininja_intake_gate';
 // Upload walls (9 Oct 2026). A real sheet carries at most LIMITS.files files;
 // a person retrying a bad connection stays far under the hourly line.
 const UPLOADS = { perVisitorHour: 30, perDay: 300 };
+// Send walls (16 Oct 2026, Rick's click after the Dojo's security pass): every
+// accepted sheet writes two files and a row and sends two mails, one of them to
+// the address typed. A real client sends once, twice with the quick start.
+const SUBMITS = { perVisitorHour: 3, perDay: 50 };
 const MAX = { name: 100, email: 200, key: 80, fileName: 120, files: CATALOG.LIMITS.files };
 
 const ALLOWED_ORIGINS = [
@@ -205,6 +211,9 @@ async function insertRow(row: Record<string, unknown>) {
 // One row per upload address handed out: a hashed visitor, the intake, the
 // time. Never the raw IP: the hash is keyed with the service key, so the table
 // cannot be turned back into addresses. Rows older than two days are deleted.
+// Since 16 Oct 2026 the table has a door column: 'upload' here, 'submit' for
+// an accepted sheet, 'mailbox' for ricktew-contact's send cap. Each door
+// counts only its own rows.
 async function visitorHash(req: Request) {
   const ip = (req.headers.get('cf-connecting-ip') || req.headers.get('x-real-ip') ||
     (req.headers.get('x-forwarded-for') || '').split(',')[0] || '').trim() || 'unknown';
@@ -224,16 +233,17 @@ async function gateCount(filter: string) {
   return n;
 }
 type GateResult = 'ok' | 'visitor' | 'sheet' | 'day';
-async function passGate(visitor: string, intake: string): Promise<GateResult> {
+async function passGate(door: 'upload' | 'submit', visitor: string, intake: string): Promise<GateResult> {
   const now = Date.now();
   const hourAgo = new Date(now - 3600e3).toISOString(), dayAgo = new Date(now - 86400e3).toISOString();
-  if (await gateCount(`ip_hash=eq.${visitor}&at=gt.${hourAgo}`) >= UPLOADS.perVisitorHour) return 'visitor';
-  if (await gateCount(`intake=eq.${intake}`) >= CATALOG.LIMITS.files) return 'sheet';
-  if (await gateCount(`at=gt.${dayAgo}`) >= UPLOADS.perDay) return 'day';
+  const lim = door === 'upload' ? UPLOADS : SUBMITS, d = `door=eq.${door}`;
+  if (await gateCount(`${d}&ip_hash=eq.${visitor}&at=gt.${hourAgo}`) >= lim.perVisitorHour) return 'visitor';
+  if (door === 'upload' && await gateCount(`${d}&intake=eq.${intake}`) >= CATALOG.LIMITS.files) return 'sheet';
+  if (await gateCount(`${d}&at=gt.${dayAgo}`) >= lim.perDay) return 'day';
   const s = sb();
   const ins = await fetch(`${s.url}/rest/v1/${GATE}`, {
     method: 'POST', headers: { ...s.headers, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-    body: JSON.stringify({ ip_hash: visitor, intake }),
+    body: JSON.stringify({ door, ip_hash: visitor, intake }),
   });
   if (!ins.ok) throw new Error(`gate insert ${ins.status}`);
   // Housekeeping, best effort: nothing older than two days is kept.
@@ -552,7 +562,7 @@ Deno.serve(async (req) => {
       return json({ error: 'too_big', max: CATALOG.LIMITS.fileBytes }, 413, origin);
     }
     try {
-      const gate = await passGate(await visitorHash(req), intake);
+      const gate = await passGate('upload', await visitorHash(req), intake);
       if (gate !== 'ok') { logDrop('upload_limit', { intake, gate }); return json({ error: 'busy', gate }, 429, origin); }
     } catch (e) {
       // The gate is a wall against abuse, not a reason to lose a real client's
@@ -600,6 +610,17 @@ Deno.serve(async (req) => {
   const quick = isQuick(answers);
   if (quick && !answers.quick && !files.length) { logDrop('quick_empty', seen); return json({ ok: true }, 200, origin); }
   if (elapsedMs >= 0 && elapsedMs < (quick ? MIN_QUICK_MS : MIN_FILL_MS)) { logDrop('too_fast', { ...seen, elapsedMs, quick }); return json({ ok: true }, 200, origin); }
+
+  // The send cap, counted only after every wall above, so rejected junk never
+  // uses up a real client's allowance. The drop line carries the answers, so a
+  // real sheet caught here can still be read. If the table cannot be read, the
+  // sheet goes ahead and the log says so.
+  try {
+    const gate = await passGate('submit', await visitorHash(req), intake);
+    if (gate !== 'ok') { logDrop(gate === 'visitor' ? 'rate_visitor' : 'rate_day', { ...seen, answers }); return json({ ok: true }, 200, origin); }
+  } catch (e) {
+    logDrop('gate_unavailable', { ...seen, door: 'submit', error: e instanceof Error ? e.message : String(e) });
+  }
 
   const when = new Date();
   const dir = folder(intake, when);

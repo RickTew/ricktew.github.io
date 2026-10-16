@@ -30,6 +30,9 @@
 //   CONTACT_TO       where mail lands: the Ninja Agent's mailbox
 //   CONTACT_FROM     a verified no-reply sender on the site's own domain
 //
+// SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are provided by the runtime;
+// the send cap below uses them to count messages in the gate table.
+//
 // NONE of those three values is written down in this repo, which is PUBLIC
 // and is served by GitHub Pages. Naming the destination in a comment here
 // would hand it to exactly the harvesters this whole pattern exists to
@@ -142,6 +145,53 @@ function looksLikeEmail(s: string) {
  *  real person the gauntlet ate can still be answered. */
 function logDrop(reason: string, fields: Record<string, unknown>) {
   console.log('ricktew-contact drop', JSON.stringify({ reason, ...fields }));
+}
+
+// ---- The send cap (16 Oct 2026, Rick's click after the Dojo's security pass) ----
+// Every accepted message draws the Ninja Agent's reply to the address typed,
+// so a script that got past the gauntlet could aim our own mail at any inbox.
+// One visitor gets five messages an hour, the whole site a hundred a day. The
+// counts live in the Intake's gate table under door 'mailbox': one row per
+// accepted message, a hashed visitor and the time. Never the raw IP: the hash
+// is keyed with the service key, so the table cannot be turned back into
+// addresses. The Intake's housekeeping deletes rows older than two days.
+const GATE = 'aininja_intake_gate';
+const CAP = { perVisitorHour: 5, perDay: 100 };
+
+function sb() {
+  const url = Deno.env.get('SUPABASE_URL');
+  const key = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+  if (!url || !key) throw new Error('gate_not_configured');
+  return { url: url.replace(/\/$/, ''), headers: { Authorization: `Bearer ${key}`, apikey: key } };
+}
+async function visitorHash(req: Request) {
+  const ip = (req.headers.get('cf-connecting-ip') || req.headers.get('x-real-ip') ||
+    (req.headers.get('x-forwarded-for') || '').split(',')[0] || '').trim() || 'unknown';
+  const pepper = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || 'ricktew-contact';
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`${pepper}|${ip}`));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 32);
+}
+async function gateCount(filter: string) {
+  const s = sb();
+  const res = await fetch(`${s.url}/rest/v1/${GATE}?select=id&door=eq.mailbox&${filter}&limit=1`, {
+    headers: { ...s.headers, Prefer: 'count=exact' },
+  });
+  if (!res.ok) throw new Error(`gate count ${res.status}`);
+  const n = Number((res.headers.get('content-range') || '').split('/')[1]);
+  if (!Number.isFinite(n)) throw new Error('gate count unreadable');
+  return n;
+}
+async function passCap(visitor: string): Promise<'ok' | 'visitor' | 'day'> {
+  const now = Date.now();
+  if (await gateCount(`ip_hash=eq.${visitor}&at=gt.${new Date(now - 3600e3).toISOString()}`) >= CAP.perVisitorHour) return 'visitor';
+  if (await gateCount(`at=gt.${new Date(now - 86400e3).toISOString()}`) >= CAP.perDay) return 'day';
+  const s = sb();
+  const ins = await fetch(`${s.url}/rest/v1/${GATE}`, {
+    method: 'POST', headers: { ...s.headers, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+    body: JSON.stringify({ door: 'mailbox', ip_hash: visitor, intake: '' }),
+  });
+  if (!ins.ok) throw new Error(`gate insert ${ins.status}`);
+  return 'ok';
 }
 
 async function sendMail(f: {
@@ -284,6 +334,20 @@ Deno.serve(async (req) => {
   if (verdict.drop) {
     logDrop('nonsense', { ...seen, score: verdict.score, tells: verdict.tells });
     return json({ ok: true }, 200, origin);
+  }
+
+  // The cap counts only messages that passed every wall above, so a bot's
+  // rejected junk never uses up a real person's allowance. If the table
+  // cannot be read, the message goes ahead and the log says so: the cap is a
+  // wall against abuse, not a reason to lose a real lead.
+  try {
+    const cap = await passCap(await visitorHash(req));
+    if (cap !== 'ok') {
+      logDrop(cap === 'visitor' ? 'rate_visitor' : 'rate_day', seen);
+      return json({ ok: true }, 200, origin);
+    }
+  } catch (e) {
+    logDrop('gate_unavailable', { name, email, error: e instanceof Error ? e.message : String(e) });
   }
 
   try {

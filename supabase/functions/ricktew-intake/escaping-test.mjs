@@ -37,6 +37,7 @@ globalThis.fetch = async (url, opts) => {
     if (method === 'POST') { gate.push({ ...JSON.parse(opts.body), at: new Date().toISOString() }); return { ok: true, status: 201, text: async () => '' }; }
     if (method === 'DELETE') return { ok: true, status: 204, text: async () => '' };
     const q = new URL(u).searchParams; let list = gate;
+    if (q.get('door')) list = list.filter(r => 'eq.' + r.door === q.get('door'));
     if (q.get('ip_hash')) list = list.filter(r => 'eq.' + r.ip_hash === q.get('ip_hash'));
     if (q.get('intake')) list = list.filter(r => 'eq.' + r.intake === q.get('intake'));
     if (q.get('at')) list = list.filter(r => r.at > q.get('at').slice(3));
@@ -51,7 +52,10 @@ const ID = 'abcdefghij0123456789';
 // The endpoint files each intake under its UTC month (folder() in index.ts),
 // so the test reads the month it runs in, not a fixed one.
 const YM = new Date().toISOString().slice(0, 7);
-const post = (body, origin = 'https://ricktew.com', ip = '') => handler(new Request('https://x/', {
+// Each post comes from its own visitor unless a test names one, so the send
+// cap (three an hour per visitor) only bites where a test means it to.
+let ipN = 0;
+const post = (body, origin = 'https://ricktew.com', ip = '172.16.' + Math.floor(++ipN / 250) + '.' + (ipN % 250)) => handler(new Request('https://x/', {
   method: 'POST', headers: { 'Content-Type': 'application/json', ...(origin ? { Origin: origin } : {}), ...(ip ? { 'x-forwarded-for': ip } : {}) }, body: JSON.stringify(body) }));
 
 const hostile = {
@@ -218,6 +222,33 @@ await dropCase('bad email', b => { b.answers.email = 'not-an-address'; }, 'bad_c
   gateDown = true; drops = [];
   const c = await post(up('gatedown000000000000'), 'https://ricktew.com', '8.8.8.8');
   checks.push(['gate: if the table is down, a real upload still gets its address, and the log says so', c.status === 200 && drops.some(d => d.includes('gate_unavailable'))]);
+  gateDown = false;
+}
+
+// ---- the send cap (16 Oct 2026): three sends an hour per visitor, fifty a day ----
+{
+  const SID = 'sendcap0000000000001';
+  const sheet = { action: 'submit', intake: SID, key: '', elapsedMs: 9000, company_url: '', source: 'page',
+    answers: { name: 'Sam', email: 'sam@example.com', quick: 'Answer my bookings.' }, files: [] };
+  const submits = () => gate.filter(r => r.door === 'submit').length;
+  let n0 = submits(); drops = [];
+  await post({ ...sheet, company_url: 'http://spam' }, 'https://ricktew.com', '11.11.11.11');
+  checks.push(['cap: a dropped sheet writes no gate row', submits() === n0]);
+  let before = mails.length; drops = [];
+  const sent = [];
+  for (let i = 0; i < 4; i++) { const m0 = mails.length; await post(sheet, 'https://ricktew.com', '11.11.11.11'); sent.push(mails.length - m0); }
+  checks.push(['cap: one visitor, three sends in an hour each send both mails', sent.slice(0, 3).every(n => n === 2)]);
+  checks.push(['cap: the fourth is dropped like an acceptance, nothing sent, answers in the drop line', sent[3] === 0 && drops.some(d => d.includes('"reason":"rate_visitor"') && d.includes('Answer my bookings.'))]);
+  checks.push(['cap: submit rows carry door submit and a hash, never the raw IP', gate.filter(r => r.door === 'submit').every(r => /^[0-9a-f]{32}$/.test(r.ip_hash)) && !JSON.stringify(gate).includes('11.11.11.11')]);
+  checks.push(['cap: upload rows do not count against sends (55+ upload rows already in the table)', gate.filter(r => r.door === 'upload').length > 50 && sent[0] === 2]);
+  before = mails.length; drops = [];
+  while (submits() < 50) gate.push({ door: 'submit', ip_hash: 'f'.repeat(32), intake: 'x', at: new Date().toISOString() });
+  const late = await post(sheet, 'https://ricktew.com', '12.12.12.12');
+  checks.push(['cap: the 51st send of the day is dropped like an acceptance', late.status === 200 && (await late.text()) === '{"ok":true}' && mails.length === before && drops.some(d => d.includes('"reason":"rate_day"'))]);
+  for (let i = gate.length - 1; i >= 0; i--) if (gate[i].door === 'submit') gate.splice(i, 1);
+  gateDown = true; before = mails.length; drops = [];
+  await post(sheet, 'https://ricktew.com', '13.13.13.13');
+  checks.push(['cap: gate table down, the sheet still goes through (both mails) and the log says so', mails.length === before + 2 && drops.some(d => d.includes('gate_unavailable') && d.includes('"door":"submit"'))]);
   gateDown = false;
 }
 

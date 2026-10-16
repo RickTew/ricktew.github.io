@@ -21,6 +21,8 @@
 
 let handler = null;
 let sent = null;
+const gate = [];      // the gate table the send cap counts in (16 Oct 2026)
+let gateDown = false;
 
 globalThis.Deno = {
   serve: (h) => { handler = h; },
@@ -28,6 +30,7 @@ globalThis.Deno = {
     RESEND_API_KEY: 're_stub_key',
     CONTACT_TO: 'stub-destination@example.com',
     CONTACT_FROM: 'The mailbox <stub-sender@example.com>',
+    SUPABASE_URL: 'https://stub.supabase.co', SUPABASE_SERVICE_ROLE_KEY: 'service-stub',
   })[k] }
 };
 
@@ -36,6 +39,14 @@ globalThis.fetch = async (url, opts) => {
   if (String(url).includes('api.resend.com')) {
     sent = JSON.parse(opts.body);
     return { ok: true, status: 200, text: async () => 'stubbed' };
+  }
+  if (String(url).includes('/rest/v1/aininja_intake_gate')) {
+    if (gateDown) return { ok: false, status: 500, headers: new Headers(), text: async () => 'down' };
+    if (opts && opts.method === 'POST') { gate.push({ ...JSON.parse(opts.body), at: new Date().toISOString() }); return { ok: true, status: 201, text: async () => '' }; }
+    const q = new URL(String(url)).searchParams; let list = gate;
+    for (const col of ['door', 'ip_hash']) if (q.get(col)) list = list.filter(r => 'eq.' + r[col] === q.get(col));
+    if (q.get('at')) list = list.filter(r => r.at > q.get('at').slice(3));
+    return { ok: true, status: 200, headers: new Headers({ 'content-range': `0-0/${list.length}` }), text: async () => '[]' };
   }
   return realFetch(url, opts);
 };
@@ -129,13 +140,14 @@ const people = [
   ['McDonald', 'r.mcdonald@gmail.com', 'Call me please'],
 ];
 const realLog = console.log;
-async function post(name, email, message) {
+let ipN = 0;
+async function post(name, email, message, ip = '172.16.0.' + (++ipN)) {
   sent = null;
   const drops = [];
   console.log = (...a) => { if (String(a[0]).startsWith('ricktew-contact drop')) drops.push(a.join(' ')); else realLog(...a); };
   const r = await handler(new Request('https://x/', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', Origin: 'https://ricktew.com' },
+    headers: { 'Content-Type': 'application/json', Origin: 'https://ricktew.com', 'x-forwarded-for': ip },
     body: JSON.stringify({ name, email, subject: 'hours', message, website: '', elapsedMs: 30000, source: '' }),
   }));
   console.log = realLog;
@@ -169,6 +181,43 @@ for (const [name, email, message] of people) {
   const ok = r.status === 200 && body === '{"ok":true}' && !sent && drops.length === 1 && drops[0].includes('"reason":"no_origin"');
   console.log((ok ? '  PASS  ' : '  FAIL  ') + 'no Origin header: dropped like an acceptance, no mail, one drop line');
   if (!ok) { bad++; console.log('          got', JSON.stringify({ status: r.status, body, mailed: !!sent, drops })); }
+}
+
+// ---- The send cap (16 Oct 2026): five an hour per visitor, a hundred a day ----
+console.log('');
+console.log('-- the send cap, through the real handler');
+{
+  const say = (ok, label, got) => { console.log((ok ? '  PASS  ' : '  FAIL  ') + label); if (!ok) { bad++; console.log('          got', JSON.stringify(got)); } };
+  // Junk the gauntlet drops never reaches the gate, so it costs a person nothing.
+  const n0 = gate.length;
+  await post(...probes[0], '7.7.7.7');
+  say(gate.length === n0, 'a dropped probe writes no gate row', gate.length - n0);
+
+  const runs = [];
+  for (let i = 0; i < 6; i++) runs.push(await post(...people[0], '7.7.7.7'));
+  say(runs.slice(0, 5).every(r => r.mailed && r.drops.length === 0), 'one visitor: five messages in an hour are mailed', runs.slice(0, 5));
+  const sixth = runs[5];
+  say(sixth.status === 200 && sixth.body === '{"ok":true}' && !sixth.mailed && sixth.drops.length === 1 && sixth.drops[0].includes('"reason":"rate_visitor"') && sixth.drops[0].includes('Interested'),
+    'the sixth is dropped like an acceptance, no mail, the whole message in the drop line', sixth);
+  say(gate.every(r => r.door === 'mailbox' && /^[0-9a-f]{32}$/.test(r.ip_hash)) && !JSON.stringify(gate).includes('7.7.7.7'),
+    'gate rows: door mailbox, a 32-character hash, never the raw IP', gate.slice(0, 2));
+  const other = await post(...people[1], '6.6.6.6');
+  say(other.mailed && other.drops.length === 0, 'another visitor in the same hour is still mailed', other);
+
+  // A busy day: a hundred messages already in, from anyone.
+  while (gate.length < 100) gate.push({ door: 'mailbox', ip_hash: 'f'.repeat(32), intake: '', at: new Date().toISOString() });
+  const late = await post(...people[0], '5.5.5.5');
+  say(!late.mailed && late.drops.length === 1 && late.drops[0].includes('"reason":"rate_day"'), 'the 101st message of the day is dropped like an acceptance', late);
+  // Rows from another door never count against the mailbox.
+  gate.length = 0;
+  for (let i = 0; i < 120; i++) gate.push({ door: 'upload', ip_hash: 'e'.repeat(32), intake: 'x', at: new Date().toISOString() });
+  const mixed = await post(...people[0], '4.4.4.4');
+  say(mixed.mailed && mixed.drops.length === 0, 'upload rows in the same table do not count against the mailbox', mixed);
+
+  gateDown = true;
+  const down = await post(...people[0], '3.3.3.3');
+  say(down.mailed && down.drops.length === 1 && down.drops[0].includes('"reason":"gate_unavailable"'), 'gate table down: the message is still mailed, and the log says so', down);
+  gateDown = false;
 }
 
 console.log('');

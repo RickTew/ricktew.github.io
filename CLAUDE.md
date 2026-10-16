@@ -803,7 +803,15 @@ full price cards until those left on 1 Oct 2026), `llms.txt`, and invite links.
   Origin required, the trap field rides along, and `public.aininja_intake_gate`
   (RLS on, no policies) caps 30 addresses an hour per visitor (a keyed hash,
   never the IP), 24 per sheet, 300 a day; if the table is unreadable the upload
-  goes ahead and logs `gate_unavailable`. First live run the same day: intake
+  goes ahead and logs `gate_unavailable`. **The Send has a cap too (16 Oct
+  2026, Rick's click):** 3 accepted sheets an hour per visitor and 50 a day,
+  door `submit` in the same table (it has a `door` column since that day:
+  `upload`, `submit`, `mailbox`; each door counts only its own rows), checked
+  after every other wall and before anything is stored or mailed; over it is a
+  silent drop (`rate_visitor`, `rate_day`, the answers in the line). The
+  bucket's own size limit is 50 MB since the same day (it was 500 MB), the
+  same as the catalog. ricktew-intake v23; the escaping test is 81 checks.
+  First live run the same day: intake
   `o8faxgimwcqqbbm9p5lc`, a 6-second voice note (a song from Rick's Downloads
   through Chrome's fake microphone), both mails sent. The sweep takes
   `AUDIO=<wav>` for that fake microphone.
@@ -969,6 +977,16 @@ wall costs nothing and catches only the careless script. The page's `fetch`
 at the `ENDPOINT` line is the endpoint's only legitimate caller, and
 `llms.txt` points assistants at the tool, not the URL. Keep it that way: a
 new caller that posts from outside a browser is dropped silently.
+
+**The send cap (16 Oct 2026, Rick's click after the Dojo's security pass).**
+Every accepted message draws the Ninja Agent's reply to the address typed,
+so one visitor gets 5 messages an hour and the whole site 100 a day,
+counted in `public.aininja_intake_gate` under door `mailbox` (a keyed hash,
+never the IP) and only AFTER every other wall, so a bot's junk never uses up
+a person's allowance. Over the cap is a silent drop (`rate_visitor`,
+`rate_day`, the whole message in the line); if the table is unreadable the
+message goes ahead and logs `gate_unavailable`. ricktew-contact v26; the
+escaping test is 29 checks.
 
 **Read the drop log monthly for the first quarter.** Supabase logs, filter
 `event_message like '%ricktew-contact drop%'`. A rejected submission is
