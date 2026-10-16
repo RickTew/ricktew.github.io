@@ -622,9 +622,8 @@ is selling contact forms, so the demo and the product are the same object.
 2026-08-28, Rick's ruling).** To the Ninja Agent's mailbox
 `aininja@ricktew.com`, which TEWBEDO files as a ticket. Since 28 Aug the
 Ninja Agent ANSWERS BY ITSELF, within about five seconds, every message that
-arrives at that address: it fetches the chat box's library live from
-`https://ricktew.com/aininja/ask.js` (ten-minute cache, so mail and chat
-box can never disagree), answers only on a strong match, sends the honest
+arrives at that address: it answers from the chat box's library (since
+16 Oct 2026 a copy committed in TEWBEDO, see below), answers only on a strong match, sends the honest
 miss otherwise ("I do not have that one written down. Rick reads every
 message and follows up himself."), signs as the AI, adds the Tew Tip as a
 P.S., and never replies to machine mail, bounces or auto-responders. One
@@ -633,7 +632,17 @@ the deliberate exception to "a human presses every send", stated on the
 page in the FAQ and the mailbox blurb; the threads stay open for Rick's
 follow-up. **Because the library is the mail's only knowledge, every
 edit to `ask.js` is also an edit to what strangers get by email:** run the
-golden test. **No email address is published anywhere on the site, the
+golden test, push, then tell the TEWBEDO session in one line, "ask.js
+changed". **Since 16 Oct 2026 the mail does not read the live file**
+(TEWBEDO 6624aae, the Dojo's security pass: running a file downloaded from
+this public repo on TEWBEDO's server put every TEWBEDO secret one commit
+away). It runs a copy committed in TEWBEDO
+(`lib/support/ninja/ask-library.generated.ts`); TEWBEDO runs
+`scripts/ninja-library-sync.mjs`, reads the diff and commits. Until it does,
+the mail answers from the older copy while the chat box uses the new file.
+The same day, on Rick's click, `main` here got a ruleset, "main: no
+rewrites" (id 25219319): no force push, no deleting the branch. Normal
+pushes are unchanged. **No email address is published anywhere on the site, the
 ninja's included (Rick, 1 Oct 2026: "never give out our email address as we
 use message boxes").** The page used to print `aininja@ricktew.com` on
 purpose; it is gone from the mailbox band, the chat box (`contact`,
