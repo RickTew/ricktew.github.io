@@ -17,3 +17,7 @@ exclude:
   - tests
   # Persona playtest brief and reports. Not pages.
   - playtest
+  # The working brief for agents in this repo (16 Oct 2026, the Dojo's Poli
+  # pass found both served, raw and as .html). Not pages.
+  - CLAUDE.md
+  - AGENTS.md
