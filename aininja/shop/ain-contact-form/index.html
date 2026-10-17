@@ -61,7 +61,7 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .hero .lede{margin-top:18px;font-size:19px;font-weight:600;color:var(--ink2);max-width:56ch}
 
 .crumb{padding-top:26px;font-size:13.5px;font-weight:800;color:var(--muted)}
-.crumb a{color:var(--blue-d);text-decoration:none}
+.crumb a{color:var(--blue-d);text-decoration:underline;text-underline-offset:2px}
 .crumb a:hover{text-decoration:underline}
 .item{padding:18px 0 64px}
 .item-card{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:40px;align-items:start;border:2px solid var(--line);border-radius:22px;padding:34px;box-shadow:0 16px 40px rgba(16,20,24,.08)}
@@ -93,11 +93,11 @@ footer a:hover{color:var(--blue-d)}
 </head>
 <body>
 
-<div class="doorbar"><div class="doorbar-in">
+<nav class="doorbar" aria-label="Which ninja"><div class="doorbar-in">
   <a href="/">Which ninja?</a>
   <span class="db-here">You are in the <b>AI Ninja</b> door</span>
   <a class="db-other" href="/hininja/">Take the HI Ninja door</a>
-</div></div>
+</div></nav>
 
 <nav class="nav" aria-label="Main">
   <div class="nav-inner">
@@ -108,6 +108,8 @@ footer a:hover{color:var(--blue-d)}
     </div>
   </div>
 </nav>
+
+<main id="main">
 
 <p class="crumb wrap"><a href="/aininja/shop/">The Shop</a> <span aria-hidden="true">/</span> AIN-CONTACT-FORM</p>
 
@@ -139,6 +141,8 @@ footer a:hover{color:var(--blue-d)}
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap">

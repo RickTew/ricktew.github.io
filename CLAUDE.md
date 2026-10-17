@@ -576,6 +576,13 @@ side-hustle-summit, r2, start), desktop and phone. Keep it that way on a new pag
   aria-labelledby` its heading and a blue `:focus-visible` outline (R2, summit).
 - The 11.5px label size (price tags, case labels, the captions under the phones)
   is the page's look since launch and passes contrast; changing it is Rick's call.
+- **Since 17 Oct 2026 (Rick's click "Fix them now") the Shop is clean too:** the
+  Shop index, the four product pages, the three thanks pages, /hininja/ and its
+  thanks page, and the two PromptPay cards (English and Thai). Same landmarks
+  (door bar a `nav`, content in `main`), the breadcrumb link underlined, and a
+  phone's sideways screenshot strip (`.shots`) is `tabindex="0"` labelled by its
+  heading. The two buy relay pages are left with axe's best-practice "no h1":
+  they hop to the checkout at once.
 
 ---
 

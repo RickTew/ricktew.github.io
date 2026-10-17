@@ -71,7 +71,7 @@ h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--ink
 .hero .lede{margin-top:18px;font-size:19px;font-weight:600;color:var(--ink2);max-width:56ch}
 
 .crumb{padding-top:26px;font-size:13.5px;font-weight:800;color:var(--muted)}
-.crumb a{color:var(--blue-d);text-decoration:none}
+.crumb a{color:var(--blue-d);text-decoration:underline;text-underline-offset:2px}
 .crumb a:hover{text-decoration:underline}
 .item{padding:18px 0 64px}
 .item-card{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:40px;align-items:start;border:2px solid var(--line);border-radius:22px;padding:34px;box-shadow:0 16px 40px rgba(16,20,24,.08)}
@@ -116,6 +116,7 @@ footer a:hover{color:var(--blue-d)}
 .see{padding:0 0 64px}
 .see h2{font-size:clamp(22px,3vw,28px);font-weight:900}
 .see .lede2{margin-top:8px;font-size:16px;font-weight:600;color:#4b5563;max-width:60ch}
+.shots:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
 .shots{list-style:none;margin-top:18px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
 .shot span{display:block;margin-top:10px;font-size:14px;font-weight:800;color:var(--ink2);text-align:center}
 @media (max-width:760px){
@@ -127,11 +128,11 @@ footer a:hover{color:var(--blue-d)}
 </head>
 <body>
 
-<div class="doorbar"><div class="doorbar-in">
+<nav class="doorbar" aria-label="Which ninja"><div class="doorbar-in">
   <a href="/">Which ninja?</a>
   <span class="db-here">You are in the <b>AI Ninja</b> door</span>
   <a class="db-other" href="/hininja/">Take the HI Ninja door</a>
-</div></div>
+</div></nav>
 
 <nav class="nav" aria-label="Main">
   <div class="nav-inner">
@@ -142,6 +143,8 @@ footer a:hover{color:var(--blue-d)}
     </div>
   </div>
 </nav>
+
+<main id="main">
 
 <p class="crumb wrap"><a href="/aininja/shop/">The Shop</a> <span aria-hidden="true">/</span> AIN-SPA-BOOKING</p>
 
@@ -203,9 +206,9 @@ footer a:hover{color:var(--blue-d)}
 
 <section class="see" id="see-it">
   <div class="wrap">
-    <h2>See it on a phone</h2>
+    <h2 id="see-h">See it on a phone</h2>
     <p class="lede2">These are phone shots of sabaisen.com, the live site. A booking made there is a real booking at the studio.</p>
-    <ul class="shots">
+    <ul class="shots" tabindex="0" aria-labelledby="see-h">
       <li class="shot"><img src="/aininja/shop/spa-menu.webp" alt="Book a Treatment: the treatment list with prices in baht, Day Sabai, Night Sabai, Thai Massage, Foot Massage, Oil Massage" width="540" height="900" loading="lazy"><span>Pick a treatment</span></li>
       <li class="shot"><img src="/aininja/shop/spa-treatment.webp" alt="Thai Massage picked: a short description and three lengths, 60, 90 and 120 minutes, each with its price" width="540" height="900" loading="lazy"><span>Pick the length</span></li>
       <li class="shot"><img src="/aininja/shop/spa-therapist.webp" alt="Guests 1 to 4, and the therapist: no preference, or one of five names" width="540" height="900" loading="lazy"><span>Guests and therapist</span></li>
@@ -214,6 +217,8 @@ footer a:hover{color:var(--blue-d)}
     <a class="btn btn-quiet" href="https://sabaisen.com/en" target="_blank" rel="noopener">Open the live site</a>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap">
