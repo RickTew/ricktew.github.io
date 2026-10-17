@@ -109,6 +109,7 @@ h1,h2,h3{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:700;li
 .twos strong{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:17px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
 .longer{margin-top:18px;font-size:15px;color:var(--ink2)}
 .card .btn{margin-top:20px;width:100%}
+.card .pp{margin-top:10px;font-size:15px;padding:11px 16px}
 .incl{width:100%;border-collapse:collapse;background:#fff;border:2px solid var(--line);border-radius:20px;overflow:hidden}
 .incl th,.incl td{text-align:left;padding:13px 18px;border-top:1px solid var(--line);font-size:15.5px;vertical-align:top}
 .incl tr:first-child th,.incl tr:first-child td{border-top:none}
@@ -276,6 +277,11 @@ footer a:hover{color:var(--ink)}
              Buy buttons. Rick's clicks, 9 Oct 2026: one button, 2 weeks at $2,222;
              the checkout asks for the arrival date; all sales final, dates can move (within a year, Rick 10 Oct). -->
         <a class="btn btn-red buy" id="buyGns" href="/hininja/buy/?sku=HIN-GNS-2W">Buy 2 weeks, $2,222</a>
+        <!-- PromptPay for payers in Thailand (17 Oct 2026, Rick: "I am allowing our promptpay option for
+             those living in thailand to buy our services"), paid to Rick Tew Co., Ltd. (his pick, through
+             the Dojo). The card and the baht price are in /hininja/promptpay/ and /assets/promptpay.js. -->
+        <a class="btn btn-quiet pp" id="ppGns" href="/hininja/promptpay/?sku=HIN-GNS-2W">In Thailand? Pay with PromptPay</a>
+        <p class="longer">Paying with a Thai card? Ask your bank first to allow international (US dollar) payments on it.</p>
         <p class="longer">At checkout you add your arrival date. All sales are final; your dates can move to another two weeks, within a year of buying.</p>
       </div>
       <div>

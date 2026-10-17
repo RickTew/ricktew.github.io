@@ -9,7 +9,7 @@
 // in a function secret and only here.
 //
 // One action, one function:
-//   POST {name, email, subject, message, website, elapsedMs, source} -> {ok:true}
+//   POST {name, email, subject, message, website, elapsedMs, source, sku?} -> {ok:true}
 //
 // It ALWAYS answers {ok:true}. A dropped submission looks exactly like an
 // accepted one, because telling a bot which check tripped is telling its
@@ -71,8 +71,20 @@ const SUBJECTS: Record<string, string> = {
   dojo: 'Your Dojo or R2 Hosting',
   slot: 'A mailbox or an answer box like this',
   hininja: 'The HI Ninja side',
+  paid: 'Paid by PromptPay',
   other: 'Something else',
 };
+
+/** The PromptPay Paid press (17 Oct 2026, Rick: "I am allowing our promptpay
+ *  option for those living in thailand to buy our services"; the Dojo's kit,
+ *  kits/promptpay/). The card pages /aininja/shop/promptpay/ and
+ *  /hininja/promptpay/ post subject "paid" with one of these SKUs, and the
+ *  mail's subject reads "Paid PromptPay <SKU>: <name>" so it sorts as a
+ *  payment to check at the bank, not a question. Fixed list, same reason as
+ *  SUBJECTS: a "paid" with any other SKU is an ordinary "Something else".
+ *  The SKUs and their baht prices live in /assets/promptpay.js; a new one
+ *  goes in both. */
+const PAID_SKUS = ['AIN-MAMAMIA', 'AIN-SPA-BOOKING', 'HIN-GNS-2W'];
 
 /** Where the visitor came from, carried by ?src=<key> on the link they
  *  clicked (play zero, item 3: a source on the record a message creates,
@@ -90,6 +102,7 @@ const SOURCES: Record<string, string> = {
   instagram: 'Instagram',
   youtube: 'YouTube',
   contra: 'Contra',
+  gns: 'The GNS page',
   direct: 'Direct, no source on the link',
 };
 
@@ -195,7 +208,7 @@ async function passCap(visitor: string): Promise<'ok' | 'visitor' | 'day'> {
 }
 
 async function sendMail(f: {
-  name: string; email: string; subjectLabel: string; message: string; sourceLabel: string;
+  name: string; email: string; subjectLabel: string; message: string; sourceLabel: string; sku: string;
 }) {
   const key = Deno.env.get('RESEND_API_KEY');
   const to = Deno.env.get('CONTACT_TO');
@@ -218,7 +231,7 @@ async function sendMail(f: {
     row('From', esc(f.name)) +
     row('Email', esc(f.email)) +
     row('About', esc(f.subjectLabel)) +
-    row('Via', 'the mailbox on ricktew.com/aininja/') +
+    row('Via', f.sku ? 'the PromptPay card on ricktew.com' : 'the mailbox on ricktew.com/aininja/') +
     row('Source', esc(f.sourceLabel)) +
     `</table>` +
     `<hr style="border:none;border-top:1px solid #ddd;margin:16px 0">` +
@@ -228,7 +241,7 @@ async function sendMail(f: {
 
   const text =
     `From: ${f.name}\nEmail: ${f.email}\nAbout: ${f.subjectLabel}\n` +
-    `Via: the mailbox on ricktew.com/aininja/\nSource: ${f.sourceLabel}\n\n${f.message}\n`;
+    `Via: ${f.sku ? 'the PromptPay card on ricktew.com' : 'the mailbox on ricktew.com/aininja/'}\nSource: ${f.sourceLabel}\n\n${f.message}\n`;
 
   // The subject label comes from a fixed list, so it can never carry
   // attacker-chosen text. The NAME can, and the subject is the one place
@@ -247,9 +260,15 @@ async function sendMail(f: {
       // Reply-to is the visitor. TEWBEDO reads this to set the ticket
       // contact, so The Ninja Agent's reply reaches the person who wrote in.
       reply_to: oneLine(f.email, MAX.email),
-      subject: oneLine(`AI Ninja ${f.subjectLabel}: ${subjectName}`, 180),
+      subject: oneLine(f.sku ? `Paid PromptPay ${f.sku}: ${subjectName}` : `AI Ninja ${f.subjectLabel}: ${subjectName}`, 180),
       html,
       text,
+      // A Paid notice is for Rick to check at the bank, not for the Ninja
+      // Agent to answer: Auto-Submitted is the standard "do not auto-reply"
+      // mark (RFC 3834), the one the Intake's mail carries, which TEWBEDO's
+      // auto-reply guard already treats as "do not answer"; the subject's
+      // "Paid PromptPay" prefix is its second signal.
+      ...(f.sku ? { headers: { 'Auto-Submitted': 'auto-generated', 'X-PromptPay-Sku': f.sku } } : {}),
     }),
   });
   if (!res.ok) {
@@ -292,15 +311,17 @@ Deno.serve(async (req) => {
   const str = (v: unknown) => (typeof v === 'string' ? v : '');
   const name = str(p.name).trim();
   const email = str(p.email).trim();
-  const subjectKey = SUBJECTS[str(p.subject)] ? str(p.subject) : 'other';
+  const sku = PAID_SKUS.includes(str(p.sku)) ? str(p.sku) : '';
+  const subjectKey = SUBJECTS[str(p.subject)] && (str(p.subject) !== 'paid' || sku) ? str(p.subject) : 'other';
   const subjectLabel = SUBJECTS[subjectKey];
+  const paidSku = subjectKey === 'paid' ? sku : '';
   const sourceKey = SOURCES[str(p.source)] ? str(p.source) : 'direct';
   const sourceLabel = SOURCES[sourceKey];
   const message = str(p.message).trim();
   const trap = str(p.website).trim();
   const elapsedMs = typeof p.elapsedMs === 'number' ? p.elapsedMs : -1;
 
-  const seen = { name, email, subject: subjectKey, source: sourceKey, message };
+  const seen = { name, email, subject: subjectKey, source: sourceKey, message, ...(paidSku ? { sku: paidSku } : {}) };
 
   // Browser validation is a courtesy to humans; the endpoint is what is
   // actually exposed, so required is re-checked here.
@@ -351,7 +372,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    await sendMail({ name, email, subjectLabel, message, sourceLabel });
+    await sendMail({ name, email, subjectLabel, message, sourceLabel, sku: paidSku });
   } catch (e) {
     // The mail pipe being down must never reach the visitor. They get the
     // same confirmation and the message survives in the log. Note the SDK

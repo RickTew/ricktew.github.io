@@ -220,6 +220,40 @@ console.log('-- the send cap, through the real handler');
   gateDown = false;
 }
 
+// ---- The PromptPay Paid press (17 Oct 2026) ----
+// The card posts subject "paid" with a SKU. The SKU reaches the mail's
+// subject, so it must come from the fixed list; a "paid" without a known SKU
+// is an ordinary message; only a Paid notice is marked "do not auto-reply".
+console.log('');
+console.log('-- the PromptPay Paid press, through the real handler');
+{
+  const say = (ok, label, got) => { console.log((ok ? '  PASS  ' : '  FAIL  ') + label); if (!ok) { bad++; console.log('          got', JSON.stringify(got)); } };
+  gate.length = 0;
+  const paid = async (body, ip) => {
+    sent = null;
+    const r = await handler(new Request('https://x/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Origin: 'https://ricktew.com', 'x-forwarded-for': ip },
+      body: JSON.stringify({ name: 'Somchai', email: 'somchai.p@gmail.com', website: '', elapsedMs: 30000, source: '',
+        message: 'Paid by PromptPay: MamaMia, ฿6,999 to build, first month included. Then ฿19,997 a year for the hosting.\nBaby\'s first name: Luna', ...body }),
+    }));
+    return { status: r.status, body: await r.text(), mail: sent };
+  };
+  const ok = await paid({ subject: 'paid', sku: 'AIN-MAMAMIA', source: 'gns' }, '9.9.9.1');
+  say(ok.mail && ok.mail.subject === 'Paid PromptPay AIN-MAMAMIA: Somchai', 'a Paid press with a listed SKU: subject "Paid PromptPay <SKU>: <name>"', ok.mail && ok.mail.subject);
+  say(ok.mail && ok.mail.headers && ok.mail.headers['Auto-Submitted'] === 'auto-generated' && ok.mail.headers['X-PromptPay-Sku'] === 'AIN-MAMAMIA',
+    'a Paid notice is marked Auto-Submitted, so the Ninja Agent does not answer it', ok.mail && ok.mail.headers);
+  say(ok.mail && ok.mail.text.includes('About: Paid by PromptPay') && ok.mail.text.includes('Via: the PromptPay card on ricktew.com') && ok.mail.text.includes('Source: The GNS page') && ok.mail.text.includes('฿6,999'),
+    'the Paid mail says what it is, where it came from, and carries the baht amount', ok.mail && ok.mail.text);
+  const forged = await paid({ subject: 'paid', sku: '<b>X</b> FREE MONEY' }, '9.9.9.2');
+  say(forged.mail && forged.mail.subject.startsWith('AI Ninja Something else:') && !forged.mail.headers && !/FREE MONEY|<b>/.test(forged.mail.subject),
+    'a "paid" with a SKU off the list is an ordinary message, the SKU nowhere in the subject', forged.mail && forged.mail.subject);
+  const plain = await paid({ subject: 'hours', sku: 'AIN-MAMAMIA' }, '9.9.9.3');
+  say(plain.mail && plain.mail.subject.startsWith('AI Ninja Hours back') && !plain.mail.headers,
+    'a SKU on any other subject changes nothing: no Paid subject, no auto-reply mark', plain.mail && plain.mail.subject);
+  gate.length = 0;
+}
+
 console.log('');
 console.log(bad === 0 ? 'ALL ESCAPING AND GAUNTLET CHECKS PASSED' : bad + ' CHECK(S) FAILED');
 process.exit(bad === 0 ? 0 : 1);

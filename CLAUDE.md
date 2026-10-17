@@ -1161,6 +1161,51 @@ the Dojo.
 
 ---
 
+## PromptPay for payers in Thailand (17 Oct 2026)
+
+Rick, in this chat: "I am allowing our promptpay option for those living in
+thailand to buy our services ... (Rick Tew Co. LTD)". The same option the
+Dojo put on EverCool, SabaiSen and PreferClinic that day (its kit,
+`~/Dev/digitaldojo/kits/promptpay/`): NinjaGym's Bangkok Bank merchant QR for
+Rick Tew Co., Ltd., used as issued (the payer's bank shows RICK TEW NINJA GYM,
+PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
+
+- **Prices, Rick's picks 17 Oct (his clicks here and in the Dojo):** the $222
+  app build ฿6,999 with the first month; GNS ฿69,999; hosting by PromptPay is
+  the YEAR only, ฿19,997 ("we DO NOT WANT to chase them monthlhy"; the card
+  stays $99 a month); Your Dojo ฿69,999 a month (his pick, shown on no page;
+  it goes on the client's own bill). **Every baht price on the site is in
+  `ITEMS` in `assets/promptpay.js` and nowhere else** (they moved once the
+  same afternoon); `tests/promptpay-sweep.js` fails on a ฿ figure anywhere
+  else on the doors or in llms.txt.
+- **Where:** under each Buy button a same-size quiet button, "In Thailand? Pay
+  with PromptPay", plus the client sites' card note cut short ("Paying with a
+  Thai card? Ask your bank first to allow international (US dollar) payments
+  on it."): MamaMia, the Spa booking site, /hininja/ and /gns/ (gns.js tags it
+  src=gns like Enroll). One line under the /aininja/ plan cards, one in the R2
+  FAQ "How do I pay?", one in Terms section 3 (dated 17 October 2026). No
+  baht figure on those lines.
+- **The cards:** `/aininja/shop/promptpay/?sku=` (payee "R2 Hosting Thailand ·
+  Rick Tew Co., Ltd.", blue) and `/hininja/promptpay/?sku=` (payee "Rick Tew
+  Co., Ltd.", red press only), both noindex, both run by `assets/promptpay.js`,
+  SKU held to its fixed list per door. Drawn from the kit, not copied verbatim,
+  because a stranger has no bill: the Paid press carries name, email and the
+  checkout's own field (baby's first name, studio name, arrival date). English
+  and Thai; the added Thai lines are a draft for a Thai reader. The QR is the
+  kit's `rick-promptpay.png` byte for byte (`assets/images/promptpay-rick-tew-co.png`,
+  decoded with the macOS Vision framework to NinjaGym's payload, CRC 4363).
+- **The Paid press** posts to the mailbox (ricktew-contact v28): subject key
+  `paid` plus a SKU from `PAID_SKUS` (a new item goes in both places, or its
+  press arrives as "Something else"). The mail reads `Paid PromptPay <SKU>:
+  <name>`, Via the PromptPay card, Source `gns` from the GNS page, and carries
+  `Auto-Submitted: auto-generated` + `X-PromptPay-Sku`, so the Ninja Agent
+  does not answer it. Rick checks the bank and starts the order by hand; the
+  Dojo records it in its open payments. Live proof 17 Oct: a TEST press
+  delivered to the Ninja Agent's mailbox, no auto-reply sent. Escaping test
+  34 checks.
+
+---
+
 ## /gns/: Gooffy Ninja ShhT!! (moved from NinjaGym 2026-09-28)
 
 Rick's live-in 2-week ninja program on Koh Samui ($2,222, +$1,000 a week).

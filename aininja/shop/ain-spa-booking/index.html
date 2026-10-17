@@ -112,6 +112,7 @@ footer a:hover{color:var(--blue-d)}
 .facts li::before{content:"";position:absolute;left:4px;top:.6em;width:9px;height:9px;border-radius:50%;background:var(--blue)}
 .plan .note{margin-top:8px}
 .plan .buy{margin-top:16px}
+.plan .pp{margin-top:16px}
 .see{padding:0 0 64px}
 .see h2{font-size:clamp(22px,3vw,28px);font-weight:900}
 .see .lede2{margin-top:8px;font-size:16px;font-weight:600;color:#4b5563;max-width:60ch}
@@ -185,6 +186,12 @@ footer a:hover{color:var(--blue-d)}
             <!-- The Dojo's one checkout, the same address as MamaMia's with this SKU. After
                  paying the buyer lands on /aininja/shop/ain-spa-booking/thanks/. -->
             <a class="btn btn-blue buy" id="buySpaBooking" href="/aininja/shop/buy/?sku=AIN-SPA-BOOKING">Buy the Spa booking site</a>
+            <!-- PromptPay for payers in Thailand (17 Oct 2026, Rick: "I am allowing our promptpay option for
+                 those living in thailand to buy our services"; the Dojo's kit, as on the client sites'
+                 bills). The card and every baht price are in /aininja/shop/promptpay/ and
+                 /assets/promptpay.js. The note under it is the client sites' card note, cut short. -->
+            <a class="btn btn-quiet pp" id="ppSpaBooking" href="/aininja/shop/promptpay/?sku=AIN-SPA-BOOKING">In Thailand? Pay with PromptPay</a>
+            <p class="note">Paying with a Thai card? Ask your bank first to allow international (US dollar) payments on it.</p>
           </div>
         </div>
         <p class="after">At checkout you add your studio&rsquo;s name.</p>
@@ -217,13 +224,14 @@ footer a:hover{color:var(--blue-d)}
 <script>
 /* Where a buyer came from (Rick's yes, 2 Oct 2026, through the Dojo): a
    post's link carries ?src=<platform>, and the Buy button hands it to the
-   one checkout as &src=, the same as tewtors.com's buttons (letters, digits,
+   one checkout as &src=, the same as tewtors.com's buttons, and the PromptPay
+   button hands it to the card, whose Paid mail names it (letters, digits,
    dashes and underscores; anything else is left off and the sale says
    "Source: none"). Nothing is stored in the browser. */
 (function(){
   var v=""; try{ v=new URLSearchParams(location.search).get("src")||""; }catch(e){}
   if(!/^[A-Za-z0-9_-]{1,200}$/.test(v)) return;
-  [].forEach.call(document.querySelectorAll('a[href^="/aininja/shop/buy/?"]'),function(a){
+  [].forEach.call(document.querySelectorAll('a[href^="/aininja/shop/buy/?"], a[href^="/aininja/shop/promptpay/?"]'),function(a){
     a.href=a.href+"&src="+encodeURIComponent(v);
   });
 })();

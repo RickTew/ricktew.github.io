@@ -148,6 +148,7 @@ img,video{max-width:100%;height:auto}
 .gt-cta-fill:hover{ transform:translate(-2px,-2px); box-shadow:6px 7px 0 var(--red); }
 .gt-cta-ghost{ color:var(--paper); border:2px solid rgba(245,233,216,.28); }
 .gt-cta-ghost:hover{ border-color:var(--orange); color:var(--gold); }
+.gt-pp{ font-size:1.15rem; padding:.55rem 1.6rem; }
 
 /* price chip */
 .gt-pricechip{ display:inline-flex; align-items:baseline; gap:.6rem; border:1px solid var(--edge); background:rgba(0,0,0,.25); border-radius:999px; padding:.5rem 1.3rem; }
@@ -874,6 +875,11 @@ img,video{max-width:100%;height:auto}
       <p class="gt-eyebrow gt-reveal mt-9">Arrive any day: classes run all year. Next group: 22 January 2027.</p>
       <a href="/hininja/buy/?sku=HIN-GNS-2W&amp;src=gns" class="gt-cta gt-cta-fill gt-reveal mt-4">Enroll Now</a>
       <p class="gt-buy-note gt-reveal">At checkout you add your arrival date. All sales are final; your dates can move to another two weeks, within a year of buying.</p>
+      <!-- PromptPay for payers in Thailand (17 Oct 2026, Rick: "I am allowing our promptpay option for
+           those living in thailand to buy our services"): the HI door's card, paid to Rick Tew Co., Ltd.;
+           gns.js tags it src=gns like the Enroll buttons, so the Paid mail names this page. -->
+      <a href="/hininja/promptpay/?sku=HIN-GNS-2W&amp;src=gns" class="gt-cta gt-cta-ghost gt-pp gt-reveal mt-4">In Thailand? Pay with PromptPay</a>
+      <p class="gt-buy-note gt-reveal">Paying with a Thai card? Ask your bank first to allow international (US dollar) payments on it.</p>
     </div>
   </section>
 

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pay with PromptPay | HI Ninja | Rick Tew</title>
+<link rel="icon" href="/assets/images/favicon.png">
+<!-- PromptPay for payers in Thailand, the HI door (17 Oct 2026, Rick: "I am allowing
+     our promptpay option for those living in thailand to buy our services"). The
+     same card as the AI door's /aininja/shop/promptpay/, so a GNS buyer never
+     crosses doors to pay (the HI round of 9 Oct); the prices, the items and the
+     Paid press are in /assets/promptpay.js. The HI rule: light, red only on the
+     buttons. Never Rick's address on this page. -->
+<style>
+  :root {
+    --ground: #eef1f5;   /* the page behind the card */
+    --paper:  #ffffff;   /* the card; keep white, a QR scans off white */
+    --ink:    #14213d;
+    --muted:  #5b6472;
+    --accent: #1e73bd;   /* focus rings, as on /hininja/ */
+    --amount: #14213d;   /* the amount: ink, red is for buttons only */
+    --press:  #d61f26;   /* the Paid press: HI Ninja red */
+    --rule:   #d9dee6;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { color-scheme: light; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto,
+          "Noto Sans Thai", Thonburi, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 24px 16px 48px;
+  }
+  main { max-width: 440px; margin: 0 auto; }
+
+  .payee {
+    margin: 0 0 6px;
+    font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  h1 { margin: 0; font-size: 28px; line-height: 1.15; letter-spacing: -.01em; }
+  .lang { appearance: none; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); border-radius: 999px; padding: 4px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+  .lang:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .item { margin: 8px 0 0; font-size: 17px; font-weight: 700; }
+
+  /* the counter card */
+  .card {
+    margin-top: 20px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 18px;
+    padding: 22px 22px 20px;
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(20,33,61,.05), 0 12px 32px -16px rgba(20,33,61,.25);
+  }
+  .card .mark {
+    margin: 0 0 14px;
+    font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .qr {
+    display: block; width: 240px; max-width: 100%; height: auto; margin: 0 auto;
+    image-rendering: pixelated; image-rendering: crisp-edges;
+    -webkit-touch-callout: default;   /* press and hold saves the image on a phone */
+  }
+  @media (min-width: 400px) { .qr { width: 264px; } }
+  .who {
+    margin: 16px 0 0;
+    font-size: 15px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .num {
+    margin: 6px 0 0;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 17px; font-variant-numeric: tabular-nums; letter-spacing: .04em;
+  }
+  .copy {
+    appearance: none; border: 1px solid var(--rule); background: var(--paper); color: var(--ink);
+    border-radius: 999px; padding: 3px 11px; font: inherit; font-size: 12px; cursor: pointer;
+  }
+  .copy:hover { background: var(--ground); }
+  .copy:focus-visible, .back a:focus-visible, .gone a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .amount-block { margin: 18px -22px 0; padding: 16px 22px 0; border-top: 1px dashed var(--rule); }
+  .amount { margin: 0; font-size: 22px; font-weight: 700; color: var(--amount); font-variant-numeric: tabular-nums; }
+  .amount-block .line { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+
+  .do { margin: 22px 0 10px; font-size: 20px; font-weight: 700; text-align: center; }
+  .paid { margin: 0; }
+  .fld { margin: 0 0 12px; }
+  .fld label { display: block; margin: 0 0 4px; font-size: 14px; font-weight: 600; }
+  .fld input { width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; padding: 10px 12px; }
+  .fld input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+  .paid-btn { display: block; width: 100%; appearance: none; border: 0; background: var(--press); color: #fff; font: inherit; font-size: 17px; font-weight: 700; padding: 13px 22px; border-radius: 12px; cursor: pointer; margin-top: 4px; }
+  .paid-btn:hover { opacity: .92; }
+  .paid-btn:disabled { opacity: .6; cursor: progress; }
+  .paid-btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+  .err { min-height: 1.4em; margin: 8px 0 0; color: #a91218; font-size: 14px; font-weight: 600; text-align: center; }
+  .posted { margin: 22px 0 0; padding: 16px 18px; background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; font-size: 16px; font-weight: 600; text-align: center; }
+  .posted:focus { outline: none; }
+  .small { text-align: center; margin: 14px 0 0; color: var(--muted); font-size: 13px; }
+  .back { margin: 24px 0 0; font-size: 14px; color: var(--muted); }
+  .back a, .gone a { color: #175a94; }
+  .gone { margin-top: 24px; font-size: 16px; }
+  .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .copy { transition: background .15s; }
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .card { box-shadow: none; border-color: #000; }
+    .do, .paid, .small, .back, .lang { display: none; }
+  }
+</style>
+</head>
+<body data-door="hi">
+<main id="main">
+  <p class="payee" id="payee"></p>
+  <div class="head">
+    <h1 id="t-title">Pay with PromptPay</h1>
+    <button type="button" class="lang" id="lang" aria-label="Switch language">ไทย</button>
+  </div>
+
+  <div id="pay">
+    <p class="item" id="item"></p>
+    <section class="card" id="card" aria-label="PromptPay counter card">
+      <p class="mark">PromptPay · Thai QR Payment</p>
+      <img class="qr" id="qr" alt="PromptPay QR code" width="552" height="552" src="/assets/images/promptpay-rick-tew-co.png">
+      <p class="who" id="who"></p>
+      <p class="num">
+        <span id="mobile"></span>
+        <button class="copy" type="button" id="copy" aria-label="Copy the PromptPay number">Copy</button>
+      </p>
+      <div class="amount-block">
+        <p class="amount" id="amount"></p>
+        <p class="line" id="then"></p>
+      </div>
+    </section>
+
+    <p class="do" id="t-do">Scan and pay this. Then press Paid.</p>
+    <form class="paid" id="ppForm" novalidate>
+      <div class="fld"><label for="ppName" id="l-name">Your name</label><input id="ppName" name="name" type="text" autocomplete="name" maxlength="100" required></div>
+      <div class="fld"><label for="ppEmail" id="l-email">Your email</label><input id="ppEmail" name="email" type="email" autocomplete="email" maxlength="200" required></div>
+      <div class="fld"><label for="ppField" id="l-field"></label><input id="ppField" name="field" type="text" maxlength="200" required></div>
+      <button type="submit" class="paid-btn" id="ppSend">Paid</button>
+      <p class="err" id="ppErr" role="alert"></p>
+    </form>
+    <p class="posted" id="posted" tabindex="-1" role="status" hidden></p>
+    <p class="line small" id="t-phone">On your phone? Press and hold the QR to save it, then scan it from your photos in your bank app.</p>
+
+    <p class="back" id="back"><span id="t-back-q">Prefer to pay by card?</span> <a id="back-link" href="/hininja/#price">Back to the card option</a>.</p>
+  </div>
+
+  <p class="gone" id="gone" hidden><span id="t-missing">That link is missing its product.</span> <a id="home" href="/hininja/">Back to the site</a>.</p>
+</main>
+<!-- The trap sits OUTSIDE the form, as on the mailbox: a person never sees it. -->
+<div class="trap" aria-hidden="true"><label for="ppWebsite">Leave this empty</label><input id="ppWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<script src="/assets/promptpay.js"></script>
+</body>
+</html>

@@ -18,6 +18,8 @@
   } catch (e) {}
   var ENROLL = "/hininja/buy/?sku=HIN-GNS-2W&src=" + SRC;
   [].forEach.call(document.querySelectorAll('a[href^="/hininja/buy/?"]'), function (a) { a.setAttribute("href", ENROLL); });
+  /* PromptPay for payers in Thailand (17 Oct 2026): the HI door's card, with the same tag. */
+  [].forEach.call(document.querySelectorAll('a[href^="/hininja/promptpay/?"]'), function (a) { a.setAttribute("href", "/hininja/promptpay/?sku=HIN-GNS-2W&src=" + SRC); });
   var CONTACT = "/aininja/?about=gns-private#opt-8c";
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var clamp01 = function (n) { return n < 0 ? 0 : n > 1 ? 1 : n; };
