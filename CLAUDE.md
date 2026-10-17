@@ -1210,6 +1210,16 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   Dojo records it in its open payments. Live proof 17 Oct: a TEST press
   delivered to the Ninja Agent's mailbox, no auto-reply sent. Escaping test
   34 checks.
+- **Pocket Dojo (HSP, $2,222 once): built, ON HOLD.** Rick, 17 Oct: PromptPay
+  "inside the app" at ฿69,999, and "pocket dojo is not on or part of tewtors so
+  ricktew chat should be handling that". Its code is in the app repo
+  `~/Dev/Winjitsu` (shared with Tewtors): branch `promptpay-hsp` (d18d4bc,
+  e788fec; worktree `~/Dev/Winjitsu-promptpay-hsp`), a person approves every
+  slip, its own line apart from Tewtors; migration 0063 applied (additive,
+  unused until merge); its test 19/19, Tewtors' 31/31. Held on his click
+  ("Hold it, keep it ready") after he told NinjaGym "None now". On his go:
+  NinjaGym adds kind `hsp` to its slip hub, then merge, push, read live.
+  /hsp/ on this site is unchanged.
 
 ---
 
