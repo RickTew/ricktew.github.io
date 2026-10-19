@@ -92,9 +92,16 @@ with google set up and ads. So they are account level."
   buttons, `ricktew-shop` (the Stripe page, the sale email, the field labels),
   its tests and test payments, and the site side of Google and ads. The move
   of `ricktew-shop` from `~/Dev/digitaldojo/shop/` into this repo's `supabase/`
-  (beside ricktew-contact and ricktew-intake) is the next session's work, handed
-  over by the Digital Dojo chat. That code also delivers the Tewtors workbooks, so
-  tell the Tewtors chat first.
+  (beside ricktew-contact and ricktew-intake) is **ON HOLD (Rick, 19 Oct 2026,
+  evening)**: this repo is public, so the code stays in the Digital Dojo's
+  private folder, running, with no edits and no deploys, until "the full move"
+  (his words: "let's wait, make a note and do the move when we do the full
+  move ... as long as it is working"). The full move is his open question,
+  ricktew.com as a full app (Pocket Dojo's lessons and videos with it) or
+  simple pages plus the checkout; this chat researches it and brings ONE
+  recommendation once the TEWBEDO and Digital Dojo Vercel vs Cloudflare
+  comparison is in. Never copy the shop code here before that. That code also
+  delivers the Tewtors workbooks, so tell the Tewtors chat first.
 - **Apps** (MamaMia and the rest) are built in their own folders and chats;
   this chat sells and links them.
 - **The TEWBEDO chat owns accounts:** the Stripe accounts and keys, Google and
@@ -1155,7 +1162,7 @@ the Dojo.
   not arrive or open got a "write to me" (Rick's pick; the line left on 19 Oct
   2026 when tewtors.com/terms took the workbooks over). Stripe Tax stays off
   (Rick, 1 Oct: "Not now").
-- **Checkout and delivery: THIS CHAT's since 19 Oct 2026 (Rick's ruling above; the code moves here next session).** Until the move, the history below stands: the Buy button is a
+- **Checkout and delivery: THIS CHAT's since 19 Oct 2026 (Rick's ruling above; the code moves here at "the full move", on hold).** Until the move, the history below stands: the Buy button is a
   Stripe Payment Link on Tew's Inc (PAM: `plink_1ULKLE24k28tlk41lQTOvSGM`).
   The delivery function `ricktew-shop` runs on tews-inc (`qegfhbseccinnxnzfhxw`),
   but its source lives in the private Dojo repo at
@@ -1259,7 +1266,19 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   unused until merge); its test 19/19, Tewtors' 31/31. Held on his click
   ("Hold it, keep it ready") after he told NinjaGym "None now". On his go:
   NinjaGym adds kind `hsp` to its slip hub, then merge, push, read live.
-  /hsp/ on this site is unchanged.
+- **The new `/hsp/` (19 Oct 2026, Rick's click "Replace /hsp/ now"):** title
+  and heading "Pocket Dojo" and "The Home Study Program", built in the GNS
+  page's shape (belt tabs with every lesson title except inside Ninja Tools,
+  how a lesson works in five steps, four app screens, two ways in, FAQ) in the
+  HI door look: red only on buttons, the app's blue only inside screenshots.
+  Facts come from the app's code: no lesson video plays today, no belt test
+  exists (demo only). The $2,222 card says "Personal feedback from Rick on
+  every technique: text, audio, and video." (Rick, the same evening: the
+  Home Study Program includes all three; Direct Connect is the one with
+  audio and video priced on top). Not linked from `/hininja/`, so the six
+  month comparison with `/gns/` stays clean. Still to build and test, in
+  the app, before the full move: the $2,222's audio and video reply path,
+  one end-to-end test purchase, the lesson videos, belt tests.
 
 ---
 
@@ -1458,7 +1477,7 @@ Verify a status with a real request before repeating it on the site.**
 |------|----------------|--------|-------|
 | Tew's Total Recall | Vercel + App Stores | Very Soon | Memory/recall curriculum app |
 | The Adroit Swordsman | adroit-swordsman.vercel.app | Very Soon | Vocabulary app, 4 age groups, comedic voice |
-| Home Study Program (HSP) | Inside the WinJitsu app | Live as a $2,222 one-off inside the app (per the WinJitsu session, 2026-09-09) | "Rick Tew's Martial Science: The Ultimate Visual Guide." 200-page illustrated book (5 belt levels, 18 lessons each) + companion web app. Repo: `/Users/ricktew/Dev/HSP/`. Not sold on this site: the books are not sold separately (Rick's ruling 2026-09-09). |
+| Home Study Program (HSP) | Pocket Dojo, pocketdojo.ricktew.com; its door is ricktew.com/hsp/ | Free start live; the $2,222 one-off is on the page, never yet bought, test or real (19 Oct 2026) | "Rick Tew's Martial Science: The Ultimate Visual Guide." 200-page illustrated book (5 belt levels, 18 lessons each) + companion web app. Repo: `/Users/ricktew/Dev/HSP/`. Not sold on this site: the books are not sold separately (Rick's ruling 2026-09-09). |
 
 ### Games
 | Name | Platform | Status | Notes |
