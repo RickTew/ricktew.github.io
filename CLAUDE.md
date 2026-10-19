@@ -1193,13 +1193,28 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   `ITEMS` in `assets/promptpay.js` and nowhere else** (they moved once the
   same afternoon); `tests/promptpay-sweep.js` fails on a ฿ figure anywhere
   else on the doors or in llms.txt.
-- **Where:** under each Buy button a same-size quiet button, "In Thailand? Pay
-  with PromptPay", plus the client sites' card note cut short ("Paying with a
-  Thai card? Ask your bank first to allow international (US dollar) payments
-  on it."): MamaMia, the Spa booking site, /hininja/ and /gns/ (gns.js tags it
-  src=gns like Enroll). One line under the /aininja/ plan cards, one in the R2
-  FAQ "How do I pay?", one in Terms section 3 (dated 17 October 2026). No
-  baht figure on those lines.
+- **Where:** under each Buy button a same-size quiet button, "Pay in baht:
+  card or PromptPay": MamaMia, the Spa booking site, /hininja/ and /gns/
+  (gns.js tags it src=gns like Enroll). One line under the /aininja/ plan
+  cards, one in the R2 FAQ "How do I pay?", one in Terms section 3. No baht
+  figure on those lines.
+- **The card in baht (19 Oct 2026): the BUYER PICKS.** Rick: "the buyer should
+  choose because there are many people from other countries in thailand that
+  will pay with their home country credit card or choose to pay with their
+  thailand options ... because we have to show in THB we have to just let them
+  pick", and ricktew.com matches tewtors.com. So no country guess: the Buy
+  button is the US dollar card to Tew's Inc as before ($222 then $99 a month;
+  $2,222), and the quiet button opens the baht page: the price in baht, "Pay
+  ฿X by card" (the Digital Dojo's one checkout with `cur=thb`, a card payment in
+  baht to Rick Tew Co., Ltd., once, nothing renews: the apps are build only,
+  the hosting after month one is the PromptPay year line, Rick's click), then
+  "Or pay with PromptPay". The relay pages pass `cur=thb` through. Never "Thai
+  card" (Rick: most who use it "will be from around the globe"); the old card
+  note ("Paying with a Thai card? ... US dollar") is gone. Terms section 3
+  reads "Paying in Thai baht". `cur=thb` only charges baht while the Digital
+  Dojo's `SHOP_TH_LIVE` is on (off, it falls back to dollars), so the pages go
+  live in the same hour as that switch, after it. For card price, fees and
+  the like, follow NinjaGym's answer (Rick: "follow ninjagym"); never ask him.
 - **The cards:** `/aininja/shop/promptpay/?sku=` (payee "R2 Hosting Thailand ·
   Rick Tew Co., Ltd.", blue) and `/hininja/promptpay/?sku=` (payee "Rick Tew
   Co., Ltd.", red press only), both noindex, both run by `assets/promptpay.js`,

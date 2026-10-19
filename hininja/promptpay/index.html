@@ -49,8 +49,12 @@
   .item { margin: 8px 0 0; font-size: 17px; font-weight: 700; }
 
   /* the counter card */
+  .card-btn { display: block; margin: 18px 0 0; text-align: center; text-decoration: none; background: var(--press); color: #fff; font-size: 17px; font-weight: 700; padding: 13px 22px; border-radius: 12px; }
+  .card-btn:hover { opacity: .92; }
+  .card-btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+  .or { margin: 26px 0 0; text-align: center; font-size: 14px; font-weight: 700; letter-spacing: .04em; color: var(--muted); }
   .card {
-    margin-top: 20px;
+    margin-top: 10px;
     background: var(--paper);
     border: 1px solid var(--rule);
     border-radius: 18px;
@@ -114,7 +118,7 @@
   @media print {
     body { background: #fff; padding: 0; }
     .card { box-shadow: none; border-color: #000; }
-    .do, .paid, .small, .back, .lang { display: none; }
+    .do, .paid, .small, .back, .lang, .card-btn, .or { display: none; }
   }
 </style>
 </head>
@@ -122,12 +126,16 @@
 <main id="main">
   <p class="payee" id="payee"></p>
   <div class="head">
-    <h1 id="t-title">Pay with PromptPay</h1>
+    <h1 id="t-title">Pay in baht</h1>
     <button type="button" class="lang" id="lang" aria-label="Switch language">ไทย</button>
   </div>
 
   <div id="pay">
     <p class="item" id="item"></p>
+    <!-- The card in baht (19 Oct 2026): the Digital Dojo's one checkout with cur=thb, a card
+         payment in baht to Rick Tew Co., Ltd. The script writes the price and the address. -->
+    <a class="card-btn" id="cardBuy" href="/hininja/">Pay by card</a>
+    <p class="or" id="t-or">Or pay with PromptPay</p>
     <section class="card" id="card" aria-label="PromptPay counter card">
       <p class="mark">PromptPay · Thai QR Payment</p>
       <img class="qr" id="qr" alt="PromptPay QR code" width="552" height="552" src="/assets/images/promptpay-rick-tew-co.png">

@@ -2,8 +2,9 @@
    end. Serve the repo on 8765 first:
      python3 -m http.server 8765   then   node tests/promptpay-sweep.js
    The mailbox endpoint is mocked: nothing is sent. Desktop and phone:
-   - every Buy page's PromptPay button reaches its card with the right SKU,
-     and a post's ?src= rides along (the GNS page tags it gns);
+   - every Buy page's "Pay in baht: card or PromptPay" button reaches the baht
+     page with the right SKU, and a post's ?src= rides along (the GNS page tags it
+     gns); that page's card in baht goes to the one checkout with cur=thb;
    - each card shows its payee, the receiver, the number, its baht price as
      text, the QR (the kit's file), and switches to Thai and back;
    - Paid with empty boxes or a bad email posts nothing; Paid filled in posts
@@ -46,7 +47,8 @@ const flag = m => found.push(m);
   const b = await chromium.launch();
   for (const [dev, opts] of [["desktop", { viewport: { width: 1280, height: 900 } }], ["phone", devices["iPhone 13"]]]) {
     const ctx = await b.newContext({ ...opts, locale: "en-US" });
-    let posts = [];
+    let posts = [], checkout = [];
+    await ctx.route("**/functions/v1/ricktew-shop/buy**", r => { checkout.push(r.request().url()); r.fulfill({ status: 200, contentType: "text/html", body: "<p>checkout</p>" }); });
     await ctx.route(ENDPOINT, r => { posts.push(JSON.parse(r.request().postData() || "{}")); r.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}', headers: { "Access-Control-Allow-Origin": "*" } }); });
     const watch = (p, at) => {
       p.on("pageerror", e => flag(at + " page error: " + e.message));
@@ -62,7 +64,9 @@ const flag = m => found.push(m);
       const href = await p.getAttribute(c.btn, "href").catch(() => null);
       const want = c.door + "?sku=" + c.sku + (src ? "&src=instagram" : "");
       if (!href || !href.endsWith(want)) flag(at + ": the PromptPay button goes to " + href + ", not " + want);
-      if (!(await p.isVisible(c.btn).catch(() => false))) flag(at + ": the PromptPay button is not visible");
+      if (!(await p.isVisible(c.btn).catch(() => false))) flag(at + ": the baht button is not visible");
+      if ((await p.textContent(c.btn).catch(() => "")).trim() !== "Pay in baht: card or PromptPay") flag(at + ": the baht button reads " + JSON.stringify(await p.textContent(c.btn).catch(() => "")));
+      if (/Thai card/.test(await p.evaluate(() => document.body.innerText))) flag(at + ": the page still says Thai card");
       await p.click(c.btn);
       await p.waitForLoadState("load");
       if (!p.url().includes(c.door + "?sku=" + c.sku)) flag(at + ": clicking it landed on " + p.url());
@@ -74,6 +78,11 @@ const flag = m => found.push(m);
       if ((await t("#amount")) !== c.amount) flag(at + ": amount reads " + JSON.stringify(await t("#amount")));
       if ((await t("#then")) !== c.then) flag(at + ": then-line reads " + JSON.stringify(await t("#then")));
       if ((await t("#l-field")) !== c.field) flag(at + ": the field reads " + JSON.stringify(await t("#l-field")));
+      // The card in baht: the price on the button, the one checkout with cur=thb and the post's tag.
+      if ((await t("#t-title")) !== "Pay in baht") flag(at + ": the title reads " + JSON.stringify(await t("#t-title")));
+      if ((await t("#cardBuy")) !== "Pay " + c.amount.split(" ")[0] + " by card") flag(at + ": the card button reads " + JSON.stringify(await t("#cardBuy")));
+      const cardWant = (c.door === "/hininja/promptpay/" ? "/hininja/buy/" : "/aininja/shop/buy/") + "?sku=" + c.sku + "&cur=thb" + (src ? "&src=instagram" : "");
+      if ((await p.getAttribute("#cardBuy", "href")) !== cardWant) flag(at + ": the card button goes to " + (await p.getAttribute("#cardBuy", "href")) + ", not " + cardWant);
       const qr = await p.$eval("#qr", i => ({ w: i.naturalWidth, src: i.getAttribute("src") }));
       if (qr.w !== 552 || qr.src !== "/assets/images/promptpay-rick-tew-co.png") flag(at + ": the QR did not load: " + JSON.stringify(qr));
       const ov = await p.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
@@ -85,8 +94,9 @@ const flag = m => found.push(m);
 
       // Thai and back.
       await p.click("#lang");
-      if ((await p.getAttribute("html", "lang")) !== "th" || !/ชำระด้วยพร้อมเพย์/.test(await t("#t-title"))) flag(at + ": the Thai switch did not switch");
+      if ((await p.getAttribute("html", "lang")) !== "th" || !/ชำระเป็นเงินบาท/.test(await t("#t-title"))) flag(at + ": the Thai switch did not switch");
       if (!/฿/.test(await t("#amount"))) flag(at + ": the Thai amount lost its price");
+      if (!/฿/.test(await t("#cardBuy"))) flag(at + ": the Thai card button lost its price");
       await p.click("#lang");
       if ((await p.getAttribute("html", "lang")) !== "en") flag(at + ": the switch did not come back to English");
 
@@ -114,6 +124,12 @@ const flag = m => found.push(m);
       if (d.source !== (src ? "instagram" : "")) flag(at + ": source " + JSON.stringify(d.source));
       if (!(await t("#posted")).includes(c.amount.split(" ")[0])) flag(at + ": the posted line does not name the amount");
       if (await p.isVisible("#ppForm")) flag(at + ": the form is still showing after Paid");
+      // The card button through the relay page reaches the checkout in baht.
+      checkout = [];
+      await p.click("#cardBuy");
+      await p.waitForTimeout(800);
+      const u = checkout[0] || "";
+      if (!u.includes("sku=" + c.sku) || !/[?&]cur=thb/.test(u) || (src && !/[?&]src=instagram/.test(u))) flag(at + ": the card in baht reached the checkout as " + JSON.stringify(u));
       await p.close();
     }
 
@@ -126,6 +142,7 @@ const flag = m => found.push(m);
       if (href !== "/hininja/promptpay/?sku=HIN-GNS-2W&src=gns-instagram") flag(at + ": the PromptPay button goes to " + href);
       await p.goto(BASE + href, { waitUntil: "load" });
       if ((await p.getAttribute("#back-link", "href")) !== "/gns/") flag(at + ": the card's back link does not return to /gns/");
+      if ((await p.getAttribute("#cardBuy", "href")) !== "/hininja/buy/?sku=HIN-GNS-2W&cur=thb&src=gns-instagram") flag(at + ": the card in baht goes to " + (await p.getAttribute("#cardBuy", "href")));
       posts = [];
       await p.fill("#ppName", "Somchai Test"); await p.fill("#ppEmail", "somchai.test@example.com"); await p.fill("#ppField", "2027-01-22");
       await p.waitForTimeout(3100); await p.click("#ppSend"); await p.waitForTimeout(400);
@@ -144,5 +161,5 @@ const flag = m => found.push(m);
   }
   await b.close();
   if (found.length) { console.log(found.length + " finding(s):"); found.forEach(f => console.log("  " + f)); process.exit(1); }
-  console.log("PromptPay sweep clean: 3 cards, the GNS page, 4 bad links, desktop and phone, the one-place wall.");
+  console.log("PromptPay sweep clean: 3 baht pages (card in baht + PromptPay), the GNS page, 4 bad links, desktop and phone, the one-place wall.");
 })().catch(e => { console.error(e); process.exit(1); });

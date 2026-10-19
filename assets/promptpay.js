@@ -22,7 +22,17 @@
    is the YEAR only, ฿19,997 ("we DO NOT WANT to chase them monthlhy"; by card
    it stays $99 a month). A new item needs its SKU in PAID_SKUS in
    supabase/functions/ricktew-contact/index.ts as well, or its press arrives as
-   an ordinary message. */
+   an ordinary message.
+
+   THE CARD IN BAHT (19 Oct 2026). Rick: "the buyer should choose because there
+   are many people from other countries in thailand that will pay with their
+   home country credit card or choose to pay with their thailand options ...
+   because we have to show in THB we have to just let them pick". So every Buy
+   page keeps its US dollar card (Tew's Inc) and its second button reads "Pay in
+   baht: card or PromptPay". This page is that baht page: the price in baht, a
+   card button to the Digital Dojo's one checkout with cur=thb (a card payment
+   in baht to Rick Tew Co., Ltd., once, build only: the hosting after month one
+   is the year line below, as by PromptPay, Rick's click), then PromptPay. */
 (function () {
   "use strict";
 
@@ -51,7 +61,7 @@
     },
     "HIN-GNS-2W": {
       door: "hi", thb: 69999, kind: "weeks",
-      name: { en: "Gooffy Ninja ShhT!!, 2 weeks on Koh Samui", th: "Gooffy Ninja ShhT!! 2 สัปดาห์ที่เกาะสมุย" },
+      name: { en: "Gooffy Ninja ShhT!!, 2 weeks", th: "Gooffy Ninja ShhT!! 2 สัปดาห์" }, /* no place in a payment name (Rick, 19 Oct 2026) */
       field: { en: "Arrival date", th: "วันที่มาถึง" }, type: "date",
       back: "/hininja/#price"
     }
@@ -63,18 +73,20 @@
      (the posted line names the payment and stops). */
   var WORDS = {
     en: {
-      title: "Pay with PromptPay", lang: "ไทย", copy: "Copy", copied: "Copied",
+      title: "Pay in baht", lang: "ไทย", copy: "Copy", copied: "Copied",
+      card: "Pay {thb} by card", or: "Or pay with PromptPay",
       build: "to build, first month included", then: "Then {thb} a year for the hosting: about {mo} a month, paid once for the year.", weeks: "for 2 weeks, all in",
       doIt: "Scan and pay this. Then press Paid.", name: "Your name", email: "Your email", paid: "Paid {thb}",
       phone: "On your phone? Press and hold the QR to save it, then scan it from your photos in your bank app.",
-      backQ: "Prefer to pay by card?", back: "Back to the card option",
+      backQ: "Paying in US dollars?", back: "Back to the US dollar card",
       need: "Fill in all three boxes, then press Paid.", badEmail: "That email does not look right.",
       failed: "That did not go through. Press Paid again.",
       posted: "Posted: paid {thb} by PromptPay for {item}. Payments are checked at the bank by hand.",
       missing: "That link is missing its product.", home: "Back to the site"
     },
     th: {
-      title: "ชำระด้วยพร้อมเพย์", lang: "EN",
+      title: "ชำระเป็นเงินบาท", lang: "EN",
+      card: "ชำระ {thb} ด้วยบัตร", or: "หรือชำระด้วยพร้อมเพย์",
       copy: "คัดลอก", copied: "คัดลอกแล้ว",
       build: "ค่าจัดทำ รวมค่าโฮสติ้งเดือนแรกแล้ว",
       then: "จากนั้นค่าโฮสติ้ง {thb} ต่อปี เฉลี่ยประมาณ {mo} ต่อเดือน จ่ายครั้งเดียวทั้งปี",
@@ -83,7 +95,7 @@
       name: "ชื่อของคุณ", email: "อีเมลของคุณ",
       paid: "จ่ายแล้ว {thb}",
       phone: "เปิดบนมือถือ? กดค้างที่ QR เพื่อบันทึกรูป แล้วเลือกสแกนจากรูปภาพในแอปธนาคาร",
-      backQ: "ต้องการจ่ายด้วยบัตร?", back: "กลับไปที่ตัวเลือกบัตร",
+      backQ: "ต้องการจ่ายเป็นดอลลาร์สหรัฐ?", back: "ย้อนกลับ",
       need: "กรอกให้ครบทั้งสามช่อง แล้วกด จ่ายแล้ว",
       badEmail: "อีเมลนี้ดูไม่ถูกต้อง",
       failed: "ยังส่งไม่สำเร็จ กด จ่ายแล้ว อีกครั้ง",
@@ -105,6 +117,8 @@
      for anything from the GNS page (it tags its checkout gns or gns-<post>). */
   var src = (q && q.get("src")) || "";
   if (!/^[A-Za-z0-9_-]{1,200}$/.test(src)) src = "";
+  /* The card keeps the post's own tag (gns-instagram), as the GNS page's Enroll does. */
+  var cardSrc = src;
   if (/^gns(-|$)/.test(src)) src = "gns";
 
   var lang = "en";
@@ -131,6 +145,9 @@
     $("amount").textContent = thb(item.thb) + " " + (item.kind === "build" ? w.build : w.weeks);
     $("then").textContent = item.year ? yearLine(w, item.year) : "";
     $("then").hidden = !item.year;
+    $("cardBuy").textContent = w.card.replace("{thb}", thb(item.thb));
+    $("cardBuy").href = (door === "hi" ? "/hininja/buy/" : "/aininja/shop/buy/") + "?sku=" + sku + "&cur=thb" + (cardSrc ? "&src=" + cardSrc : "");
+    $("t-or").textContent = w.or;
     $("t-do").textContent = w.doIt;
     $("l-name").textContent = w.name;
     $("l-email").textContent = w.email;
