@@ -1020,7 +1020,9 @@ tewtors.com is its own site, planned and built by the Tewtors chat in
 `~/Dev/Tewtors` (private repo RickTew/tewtors, Vercel). What that means here:
 
 - `/aininja/shop/` is AI Ninja's ready-made helpers (the two "Not open yet"
-  tiles), with one line pointing the workbooks to Tewtors. No Tewtors logo, no
+  tiles). Since 19 Oct 2026 it says nothing about the workbooks (Rick:
+  "tewtors workbooks are not on ricktew", his pick "Remove the mentions": the
+  Shop line and the llms.txt line are gone). No Tewtors logo, no
   workbook tiles, no Coming soon list (`tests/shop-build.py` is gone; the
   Coming soon list is the Tewtors chat's now).
 - The five workbook pages (`win-cmt-pam/` and the rest) are FORWARDS to their
@@ -1041,9 +1043,12 @@ tewtors.com is its own site, planned and built by the Tewtors chat in
   "Tewtors" and link back to tewtors.com. Never move or delete either without
   the Dojo; a download page that moves stays up 7 more days for links mailed.
 - Terms section 3 says "Workbook downloads ... sold at Tewtors".
-- The workbook links (Shop line, run-out page, download footer, Terms, llms.txt)
-  point at `https://tewtors.com/workbooks/`, never the bare domain: after the
-  WinJitsu app switch, tewtors.com/ opens the app (the Tewtors chat, 7 Oct).
+- The workbook links left (run-out page, download footer, Terms) point at
+  `https://tewtors.com/workbooks/`, never the bare domain: after the WinJitsu
+  app switch, tewtors.com/ opens the app (the Tewtors chat, 7 Oct). The Terms
+  line ("Workbook downloads ... sold at Tewtors") goes too once Tewtors' own
+  terms say downloads are final once sent (asked of the Tewtors chat 19 Oct);
+  the forward, thanks and download pages stay until the Dojo moves them.
 
 **THE SHOP'S FIRST ROW IS APPS I BUILT (7 Oct 2026, Rick's ruling).** His words:
 "we will take our case studies and turn them into a quick 222 product ... the
