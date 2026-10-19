@@ -72,6 +72,34 @@ that way: a new page that needs a contact action links to
 
 ## Who owns which part of this site
 
+**RICK'S RULING, 19 Oct 2026 (it supersedes the lines below where they differ).**
+"we call everything the digital dojo on the ricktew.com pages but in CHAT and the
+folder it is something else and everyone is confusing the two of them as one."
+So, two different things with one name:
+- **"The Digital Dojo" on the pages** is the AI Ninja service's brand, words
+  on ricktew.com.
+- **The Digital Dojo chat and its folder `~/Dev/digitaldojo`** is the
+  organizer: it keeps the foundational code as katas and hands it to the chats as
+  needed, and it checks that things work. It does not run ricktew.com.
+
+His words on who does what: "ricktew manages its own pages (no it does not build
+the apps themselves) ... the checkout itself is on ricktew.com and so everything
+for ricktew.com is handled by ricktew chat and assisted by digital dojo that
+checks it is all working. Stripe accounts are handled by tewbedo but the actual
+test and connection is on ricktew chat if it will be on ricktew.com. The same
+with google set up and ads. So they are account level."
+- **This chat owns everything on ricktew.com, the checkout included:** the Buy
+  buttons, `ricktew-shop` (the Stripe page, the sale email, the field labels),
+  its tests and test payments, and the site side of Google and ads. The move
+  of `ricktew-shop` from `~/Dev/digitaldojo/shop/` into this repo's `supabase/`
+  (beside ricktew-contact and ricktew-intake) is the next session's work, handed
+  over by the Digital Dojo chat. That code also delivers the Tewtors workbooks, so
+  tell the Tewtors chat first.
+- **Apps** (MamaMia and the rest) are built in their own folders and chats;
+  this chat sells and links them.
+- **The TEWBEDO chat owns accounts:** the Stripe accounts and keys, Google and
+  ad accounts. Their connection and test on ricktew.com are this chat's.
+
 The site is the shop window. The workshop is a SEPARATE, PRIVATE repo at
 `~/Dev/digitaldojo` (the Digital Dojo), which holds Rick's product inventory,
 his AI workforce, his proof ledger and his rates. **It stays private and it
@@ -1127,7 +1155,7 @@ the Dojo.
   not arrive or open got a "write to me" (Rick's pick; the line left on 19 Oct
   2026 when tewtors.com/terms took the workbooks over). Stripe Tax stays off
   (Rick, 1 Oct: "Not now").
-- **Checkout and delivery are the DOJO's, not this repo's.** The Buy button is a
+- **Checkout and delivery: THIS CHAT's since 19 Oct 2026 (Rick's ruling above; the code moves here next session).** Until the move, the history below stands: the Buy button is a
   Stripe Payment Link on Tew's Inc (PAM: `plink_1ULKLE24k28tlk41lQTOvSGM`).
   The delivery function `ricktew-shop` runs on tews-inc (`qegfhbseccinnxnzfhxw`),
   but its source lives in the private Dojo repo at
