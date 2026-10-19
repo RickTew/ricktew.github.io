@@ -1181,7 +1181,8 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   app build ฿6,999 with the first month; GNS ฿69,999; hosting by PromptPay is
   the YEAR only, ฿19,997 ("we DO NOT WANT to chase them monthlhy"; the card
   stays $99 a month); Your Dojo ฿69,999 a month (his pick, shown on no page;
-  it goes on the client's own bill). **Every baht price on the site is in
+  it goes on the client's own bill; MONTHLY, not the year-only rule, his click
+  of 19 Oct: a Your Dojo client is worked with every month anyway). **Every baht price on the site is in
   `ITEMS` in `assets/promptpay.js` and nowhere else** (they moved once the
   same afternoon); `tests/promptpay-sweep.js` fails on a ฿ figure anywhere
   else on the doors or in llms.txt.
@@ -1198,7 +1199,11 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   SKU held to its fixed list per door. Drawn from the kit, not copied verbatim,
   because a stranger has no bill: the Paid press carries name, email and the
   checkout's own field (baby's first name, studio name, arrival date). English
-  and Thai; the added Thai lines are a draft for a Thai reader. The QR is the
+  and Thai. No Thai reader round: Rick, 19 Oct, "Keep it simple for Thai if
+  you do not trust that it is correct". The kit's Thai (live on the three
+  client sites) stays; the lines this page adds are short and plain (the
+  build line reads ค่าจัดทำ, the posted line names the payment and stops).
+  A new Thai line follows the same rule. The QR is the
   kit's `rick-promptpay.png` byte for byte (`assets/images/promptpay-rick-tew-co.png`,
   decoded with the macOS Vision framework to NinjaGym's payload, CRC 4363).
 - **The Paid press** posts to the mailbox (ricktew-contact v28): subject key

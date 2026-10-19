@@ -57,8 +57,10 @@
     }
   };
 
-  /* Both languages. The kit's lines are the Dojo's Thai draft (14 Sep 2026);
-     the lines this page adds are a draft too, to be read over by a Thai reader. */
+  /* Both languages. The kit's lines are the Dojo's Thai, live on the three
+     client sites. Rick, 19 Oct 2026: "Keep it simple for Thai if you do not
+     trust that it is correct", so the lines this page adds stay short and plain
+     (the posted line names the payment and stops). */
   var WORDS = {
     en: {
       title: "Pay with PromptPay", lang: "ไทย", copy: "Copy", copied: "Copied",
@@ -74,7 +76,7 @@
     th: {
       title: "ชำระด้วยพร้อมเพย์", lang: "EN",
       copy: "คัดลอก", copied: "คัดลอกแล้ว",
-      build: "ค่าสร้าง รวมเดือนแรกแล้ว",
+      build: "ค่าจัดทำ รวมค่าโฮสติ้งเดือนแรกแล้ว",
       then: "จากนั้นค่าโฮสติ้ง {thb} ต่อปี เฉลี่ยประมาณ {mo} ต่อเดือน จ่ายครั้งเดียวทั้งปี",
       weeks: "สำหรับ 2 สัปดาห์ รวมทุกอย่าง",
       doIt: "สแกนจ่ายตามนี้ แล้วกด จ่ายแล้ว",
@@ -85,7 +87,7 @@
       need: "กรอกให้ครบทั้งสามช่อง แล้วกด จ่ายแล้ว",
       badEmail: "อีเมลนี้ดูไม่ถูกต้อง",
       failed: "ยังส่งไม่สำเร็จ กด จ่ายแล้ว อีกครั้ง",
-      posted: "ส่งแล้ว: จ่ายแล้ว {thb} ทางพร้อมเพย์ สำหรับ {item} ยอดชำระจะถูกตรวจสอบกับบัญชีธนาคารทีละรายการ",
+      posted: "ส่งแล้ว: จ่ายแล้ว {thb} ทางพร้อมเพย์ สำหรับ {item}",
       missing: "ลิงก์นี้ไม่มีชื่อสินค้า", home: "กลับไปที่เว็บไซต์"
     }
   };
