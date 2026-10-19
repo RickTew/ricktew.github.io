@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pocket Dojo: The Home Study Program | Rick Tew</title>
+<meta name="description" content="Pocket Dojo, Rick Tew's Home Study Program: five belts, nine areas in each, 90 lessons on your phone. Yellow Belt Stance and Roll are open free.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/images/favicon.png">
+<link href="/assets/fonts/oswald-opensans-48e45d.css" rel="stylesheet">
+<!-- PREVIEW of the new /hsp/ (Rick, 19 Oct 2026: "something the gns page is good
+     for the hsp page too and change around the names and show off the app and how
+     they can learn"; "the title and heading are pocket dojo and home study program").
+     noindex, unlinked, not in the sitemap. On his go it replaces /hsp/index.html.
+     The shape is the GNS page's (belt tabs, how it works, the offer, FAQ); the look
+     is the HI door's (light, red only on what you press) because the app's own blue
+     reads as the AI door here; the belts keep their colours. Every fact is the app's
+     own, read from ~/Dev/Winjitsu main 2e30a62 (content/hsp/manifest.json and the
+     lesson, offer and sign-up components). No weapon words: that area is "Ninja
+     Tools" only. No video and no belt test are claimed: neither runs today. -->
+<style>
+:root{
+  --bg:#ffffff; --ink:#101418; --muted:#5f6670; --line:#e8e6e2; --panel:#f7f6f4;
+  --red:#d61f26; --red-dark:#b0181e;
+  --yellow:#eab308; --orange:#f97316; --green:#22c55e; --blue:#3b82f6; --beltred:#ef4444;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Open Sans",Arial,sans-serif;font-size:17px;line-height:1.6}
+img{max-width:100%}
+a{color:var(--ink)}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+/* door bar: the same as every HI page (css/site.css) */
+.doorbar{background:#101418;color:#aab2bc;font-family:"Open Sans",Arial,sans-serif;font-size:12.5px;line-height:1.4}
+.doorbar-in{max-width:1180px;margin:0 auto;padding:9px 20px;display:flex;align-items:center;gap:6px 20px;flex-wrap:wrap}
+.doorbar a{color:#fff;text-decoration:none;font-weight:700}
+.doorbar a:hover{text-decoration:underline}
+.doorbar .db-here{margin:0 auto;text-transform:uppercase;letter-spacing:1.2px;font-size:11.5px}
+.doorbar .db-here b{color:#ff7a7e;font-weight:700}
+.doorbar .db-other{color:#6db3f0}
+@media (max-width:700px){
+  .doorbar-in{justify-content:center;text-align:center;gap:4px 14px;padding:8px 14px}
+  .doorbar .db-here{margin:0}
+}
+
+.shell{max-width:1080px;margin:0 auto;padding:0 20px}
+@media (max-width:600px){ .shell{padding:0 16px} }
+
+/* the slim header */
+.pd-head{border-bottom:1px solid var(--line)}
+.pd-head .shell{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;padding-bottom:14px}
+.pd-mark{text-decoration:none;color:var(--ink);line-height:1.15}
+.pd-mark b{display:block;font-family:"Oswald",sans-serif;font-weight:700;font-size:22px;letter-spacing:1px}
+.pd-mark span{display:block;font-size:13px;color:var(--muted)}
+
+.btn{display:inline-block;font-family:"Oswald",sans-serif;font-weight:600;font-size:18px;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;border-radius:999px;padding:12px 28px;border:2px solid var(--red);background:var(--red);color:#fff;line-height:1.2}
+.btn:hover{background:var(--red-dark);border-color:var(--red-dark)}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{background:var(--panel);border-color:#cfccc6}
+.btn-sm{font-size:15px;padding:8px 18px}
+
+/* hero */
+.pd-hero{padding:48px 0 40px}
+.pd-hero .shell{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:40px;align-items:center}
+.eyebrow{font-family:"Oswald",sans-serif;font-weight:600;font-size:14px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin:0}
+.pd-hero h1{font-family:"Oswald",sans-serif;font-weight:700;font-size:clamp(46px,8vw,84px);line-height:1;margin:10px 0 4px;text-transform:uppercase}
+.pd-hero .sub{font-family:"Oswald",sans-serif;font-weight:500;font-size:clamp(22px,3vw,30px);margin:0 0 18px}
+.pd-hero p.lede{font-size:19px;margin:0 0 10px;max-width:560px}
+.pd-hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.pd-hero .free-note{font-size:15px;color:var(--muted);margin:12px 0 0}
+.phone{display:block;width:100%;height:auto;border:9px solid var(--ink);border-radius:30px;box-shadow:0 14px 34px rgba(16,20,24,.16);background:#f3f6fa}
+.pd-hero .phone{max-width:300px;margin-left:auto}
+@media (max-width:760px){
+  .pd-hero{padding:32px 0 28px}
+  .pd-hero .shell{grid-template-columns:1fr;gap:28px}
+  .pd-hero .phone{max-width:240px;margin:0 auto}
+}
+
+/* the numbers */
+.pd-nums{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pd-nums ul{list-style:none;margin:0 auto;padding:22px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;text-align:center}
+.pd-nums b{display:block;font-family:"Oswald",sans-serif;font-size:40px;font-weight:700;line-height:1.1}
+.pd-nums span{font-size:15px;color:var(--muted)}
+@media (max-width:600px){ .pd-nums ul{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px} }
+
+/* sections */
+.sec{padding:56px 0}
+.sec-alt{background:var(--panel)}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 28px}
+.sec-head h2{font-family:"Oswald",sans-serif;font-weight:700;font-size:clamp(30px,4.4vw,42px);line-height:1.1;margin:6px 0 0;text-transform:uppercase}
+.sec-head p{margin:12px 0 0;color:var(--muted)}
+@media (max-width:600px){ .sec{padding:40px 0} }
+
+/* how a lesson works */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;counter-reset:s}
+.steps li{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 16px 20px;counter-increment:s}
+.steps li::before{content:counter(s);display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-family:"Oswald",sans-serif;font-weight:700;font-size:17px;margin-bottom:10px}
+.steps h3{font-family:"Oswald",sans-serif;font-weight:600;font-size:20px;margin:0 0 4px}
+.steps p{margin:0;font-size:15.5px;line-height:1.5}
+.steps-note{text-align:center;margin:22px auto 0;max-width:620px}
+@media (max-width:900px){ .steps{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:520px){ .steps{grid-template-columns:1fr} }
+
+/* the app on a phone */
+.shots{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.shots span{display:block;margin-top:10px;font-weight:700;font-size:15px;text-align:center}
+@media (max-width:760px){
+  .shots{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:8px}
+  .shots li{flex:0 0 62%;scroll-snap-align:start}
+}
+
+/* the belts */
+.belts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 0 18px}
+.belt{display:flex;align-items:center;gap:10px;border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 18px 8px 10px;font:inherit;font-weight:700;font-size:16px;color:var(--ink);cursor:pointer}
+.belt i{display:block;width:30px;height:12px;border-radius:3px;background:var(--belt)}
+.belt[aria-selected="true"]{border-color:var(--belt);box-shadow:0 0 0 3px color-mix(in srgb,var(--belt) 22%,transparent)}
+.beltcard{background:#fff;border:2px solid var(--belt);border-radius:18px;padding:24px 24px 26px;max-width:860px;margin:0 auto}
+.beltcard-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px;margin-bottom:14px}
+.beltcard-head h3{font-family:"Oswald",sans-serif;font-weight:700;font-size:28px;margin:0}
+.beltcard-head span{color:var(--muted);font-size:15px}
+.areas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 28px}
+.areas li{padding:8px 0;border-top:1px solid var(--line);font-size:16px;line-height:1.45}
+.areas b{display:block;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;color:#14532d;background:#dcfce7;border-radius:6px;padding:1px 7px;margin-left:6px;vertical-align:1px}
+@media (max-width:600px){ .areas{grid-template-columns:1fr} .beltcard{padding:18px 16px 20px} }
+
+/* two ways in */
+.ways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:860px;margin:0 auto}
+.way{background:#fff;border:2px solid var(--line);border-radius:18px;padding:24px 24px 26px;display:flex;flex-direction:column}
+.way h3{font-family:"Oswald",sans-serif;font-weight:600;font-size:26px;margin:4px 0 0}
+.way .amt{font-family:"Oswald",sans-serif;font-weight:700;font-size:36px;margin-top:4px}
+.way .amt small{font-size:17px;font-weight:500;color:var(--muted)}
+.way p{margin:10px 0 0;font-size:16px;line-height:1.55}
+.way .btn{margin-top:auto;align-self:flex-start}
+.way .gap{height:18px;flex:none}
+@media (max-width:760px){ .ways{grid-template-columns:1fr} }
+
+/* questions */
+.faq{max-width:760px;margin:0 auto}
+.faq details{border-top:1px solid var(--line);padding:4px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font-weight:700;font-size:17.5px;padding:12px 0;list-style-position:outside}
+.faq details p{margin:0 0 14px}
+
+/* the close */
+.final{text-align:center;padding:56px 0 64px}
+.final h2{font-family:"Oswald",sans-serif;font-weight:700;font-size:clamp(34px,5vw,52px);text-transform:uppercase;margin:0 0 18px}
+.final p{margin:16px 0 0;color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding:22px 0;font-size:14px;color:var(--muted);text-align:center}
+footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav class="doorbar" aria-label="Which ninja"><div class="doorbar-in">
+  <a class="db-home" href="/">&#8592; Which ninja?</a>
+  <span class="db-here">You are in the <b>HI Ninja</b> door</span>
+  <a class="db-other" href="/aininja/">Take the AI Ninja door &#8594;</a>
+</div></nav>
+
+<header class="pd-head"><div class="shell">
+  <a class="pd-mark" href="/hsp/"><b>POCKET DOJO</b><span>The Home Study Program</span></a>
+  <a class="btn btn-sm" href="https://pocketdojo.ricktew.com/signup">Start free</a>
+</div></header>
+
+<main id="main">
+
+  <section class="pd-hero"><div class="shell">
+    <div>
+      <p class="eyebrow">Rick Tew's martial arts, at home</p>
+      <h1>Pocket Dojo</h1>
+      <p class="sub">The Home Study Program</p>
+      <p class="lede">My home study program: Rick Tew's Martial Science, belt by belt, on your phone. Start at Yellow and train at home.</p>
+      <p class="lede">Five belts, nine areas in each, 90 lessons in all. Work an area, then move to the next.</p>
+      <div class="cta">
+        <a class="btn" href="https://pocketdojo.ricktew.com/signup">Start free</a>
+        <a class="btn btn-ghost" href="#belts">See the five belts</a>
+      </div>
+      <p class="free-note">Four lessons are open free: Yellow Belt Stance and Roll.</p>
+    </div>
+    <img class="phone" src="/hsp/pocketdojo-belts.webp" alt="Pocket Dojo on a phone: the five belts, Yellow to Red, 18 lessons in each" width="540" height="900">
+  </div></section>
+
+  <div class="pd-nums"><div class="shell">
+    <ul>
+      <li><b>5</b><span>belts, Yellow to Red</span></li>
+      <li><b>9</b><span>areas in every belt</span></li>
+      <li><b>90</b><span>lessons</span></li>
+      <li><b>4</b><span>open free</span></li>
+    </ul>
+  </div></div>
+
+  <section class="sec" aria-labelledby="how-h"><div class="shell">
+    <div class="sec-head">
+      <p class="eyebrow">Learn it, then train it</p>
+      <h2 id="how-h">How a lesson works</h2>
+    </div>
+    <ol class="steps">
+      <li><h3>The method</h3><p>What it is, and why you train it.</p></li>
+      <li><h3>The applications</h3><p>Tap each one to reveal it.</p></li>
+      <li><h3>How to perform</h3><p>Step by step, then the safety points.</p></li>
+      <li><h3>Train it for real</h3><p>Then mark the lesson practiced and watch your count grow.</p></li>
+      <li><h3>Ask Sensei Tew</h3><p>Stuck on a technique? Ask a question and Sensei Tew answers it right there on the lesson.</p></li>
+    </ol>
+    <p class="steps-note">Reading is the method; practice makes it yours.</p>
+  </div></section>
+
+  <section class="sec sec-alt" aria-labelledby="shots-h"><div class="shell">
+    <div class="sec-head">
+      <p class="eyebrow">The app</p>
+      <h2 id="shots-h">See it on a phone</h2>
+    </div>
+    <ul class="shots" tabindex="0" aria-labelledby="shots-h">
+      <li><img class="phone" src="/hsp/pocketdojo-belts.webp" alt="The five belts, Yellow to Red, Level 1 to 5, 18 lessons in each" width="540" height="900" loading="lazy"><span>The five belts</span></li>
+      <li><img class="phone" src="/hsp/pocketdojo-stance.webp" alt="The Horse Stance lesson: foot placement from above, 50 percent on each foot" width="540" height="900" loading="lazy"><span>A lesson</span></li>
+      <li><img class="phone" src="/hsp/pocketdojo-apps.webp" alt="Applications for the Horse Stance: tap each one to reveal it" width="540" height="900" loading="lazy"><span>The applications</span></li>
+      <li><img class="phone" src="/hsp/pocketdojo-ask.webp" alt="Mark as practiced, and Ask Sensei Tew a question about the technique" width="540" height="900" loading="lazy"><span>Practice and ask</span></li>
+    </ul>
+  </div></section>
+
+  <section class="sec" id="belts" aria-labelledby="belts-h"><div class="shell">
+    <div class="sec-head">
+      <p class="eyebrow">The whole path</p>
+      <h2 id="belts-h">Five belts. Nine areas in each.</h2>
+      <p>Stance, Roll, Fall, Strike, Kick, Body Movement, Knowledge, Combat and Ninja Tools. Two lessons in every area.</p>
+    </div>
+
+    <div class="belts" role="tablist" aria-label="Belt levels" id="beltTabs">
+      <button type="button" role="tab" class="belt" id="tab-1" aria-selected="true" aria-controls="belt-1" style="--belt:var(--yellow)"><i></i>Yellow</button>
+      <button type="button" role="tab" class="belt" id="tab-2" aria-selected="false" aria-controls="belt-2" tabindex="-1" style="--belt:var(--orange)"><i></i>Orange</button>
+      <button type="button" role="tab" class="belt" id="tab-3" aria-selected="false" aria-controls="belt-3" tabindex="-1" style="--belt:var(--green)"><i></i>Green</button>
+      <button type="button" role="tab" class="belt" id="tab-4" aria-selected="false" aria-controls="belt-4" tabindex="-1" style="--belt:var(--blue)"><i></i>Blue</button>
+      <button type="button" role="tab" class="belt" id="tab-5" aria-selected="false" aria-controls="belt-5" tabindex="-1" style="--belt:var(--beltred)"><i></i>Red</button>
+    </div>
+
+    <div class="beltcard" id="belt-1" role="tabpanel" aria-labelledby="tab-1" tabindex="0" style="--belt:var(--yellow)">
+      <div class="beltcard-head"><h3>Yellow Belt</h3><span>Level 1 · 18 lessons</span></div>
+      <ul class="areas">
+        <li><b>Stance</b>Horse Stance, Cat Stance <span class="tag">Open free</span></li>
+        <li><b>Roll</b>Forward Roll, Reverse Roll <span class="tag">Open free</span></li>
+        <li><b>Fall</b>Flat Fall Forward, Flat Fall Back</li>
+        <li><b>Strike</b>Fist Strikes, Palm Heel Strike</li>
+        <li><b>Kick</b>Front Kicks, Low Sweep Kick</li>
+        <li><b>Body Movement</b>Duck, Jump</li>
+        <li><b>Knowledge</b>RTMS Book, Stretching</li>
+        <li><b>Combat</b>Natural Reactions, Combat Reality</li>
+        <li><b>Ninja Tools</b>Open after you accept a waiver</li>
+      </ul>
+    </div>
+    <div class="beltcard" id="belt-2" role="tabpanel" aria-labelledby="tab-2" tabindex="0" style="--belt:var(--orange)" hidden>
+      <div class="beltcard-head"><h3>Orange Belt</h3><span>Level 2 · 18 lessons</span></div>
+      <ul class="areas">
+        <li><b>Stance</b>Defensive Stance, Power Stance</li>
+        <li><b>Roll</b>Side Roll, Diving Roll</li>
+        <li><b>Fall</b>Flat Fall Side, Rolling Fall</li>
+        <li><b>Strike</b>Knife Hand Strike; Jab, Cross, Hook &amp; Uppercut</li>
+        <li><b>Kick</b>Back Kicks, Round Kicks</li>
+        <li><b>Body Movement</b>Pivot, Shuffle, Shift &amp; Step; Cartwheel</li>
+        <li><b>Knowledge</b>WinJitsu ACE, WinJitsu MAK</li>
+        <li><b>Combat</b>Triangulation, Inside &amp; Outside Defense</li>
+        <li><b>Ninja Tools</b>Open after you accept a waiver</li>
+      </ul>
+    </div>
+    <div class="beltcard" id="belt-3" role="tabpanel" aria-labelledby="tab-3" tabindex="0" style="--belt:var(--green)" hidden>
+      <div class="beltcard-head"><h3>Green Belt</h3><span>Level 3 · 18 lessons</span></div>
+      <ul class="areas">
+        <li><b>Stance</b>Fighting Stance, Low Defensive Stance</li>
+        <li><b>Roll</b>Dropping Roll, Superman Roll</li>
+        <li><b>Fall</b>Air Fall, Offensive Falls</li>
+        <li><b>Strike</b>Finger Strikes, Bent Wrist</li>
+        <li><b>Kick</b>Side Kicks, Crescent Kicks</li>
+        <li><b>Body Movement</b>Kip, Hand Springs</li>
+        <li><b>Knowledge</b>WinJitsu MBS, WinJitsu NRG</li>
+        <li><b>Combat</b>Jam, Block &amp; Run; Phases of Combat</li>
+        <li><b>Ninja Tools</b>Open after you accept a waiver</li>
+      </ul>
+    </div>
+    <div class="beltcard" id="belt-4" role="tabpanel" aria-labelledby="tab-4" tabindex="0" style="--belt:var(--blue)" hidden>
+      <div class="beltcard-head"><h3>Blue Belt</h3><span>Level 4 · 18 lessons</span></div>
+      <ul class="areas">
+        <li><b>Stance</b>Open / Bow Stance, Blade Stance</li>
+        <li><b>Roll</b>Table Roll, Rolling with Objects</li>
+        <li><b>Fall</b>Defensive Falls, Falling with Objects</li>
+        <li><b>Strike</b>Forearm Strikes, Elbow</li>
+        <li><b>Kick</b>Knee, Reverse Heel Kick</li>
+        <li><b>Body Movement</b>Stealthing, Climbing</li>
+        <li><b>Knowledge</b>WinJitsu CMT, Elemental Meditation</li>
+        <li><b>Combat</b>Grappling, Sparring</li>
+        <li><b>Ninja Tools</b>Open after you accept a waiver</li>
+      </ul>
+    </div>
+    <div class="beltcard" id="belt-5" role="tabpanel" aria-labelledby="tab-5" tabindex="0" style="--belt:var(--beltred)" hidden>
+      <div class="beltcard-head"><h3>Red Belt</h3><span>Level 5 · 18 lessons</span></div>
+      <ul class="areas">
+        <li><b>Stance</b>Reactive Stance, Combat Stance</li>
+        <li><b>Roll</b>Rolling Attack, Rolls Form</li>
+        <li><b>Fall</b>Stunt Falls, Falls Form</li>
+        <li><b>Strike</b>Ridge Hand, Knuckle Fist</li>
+        <li><b>Kick</b>Advanced Kicks; Dropping Heel Kick, coming soon</li>
+        <li><b>Body Movement</b>Strikes &amp; Kicks Form, 1-40 Form</li>
+        <li><b>Knowledge</b>Diet, Tic Toc</li>
+        <li><b>Combat</b>Magnificent 7's, Personal Security Course</li>
+        <li><b>Ninja Tools</b>Open after you accept a waiver</li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section class="sec sec-alt" id="ways" aria-labelledby="ways-h"><div class="shell">
+    <div class="sec-head">
+      <h2 id="ways-h">Two ways in</h2>
+    </div>
+    <div class="ways">
+      <div class="way">
+        <p class="eyebrow">A free account</p>
+        <h3>Start free</h3>
+        <div class="amt">Four lessons</div>
+        <p>Yellow Belt Stance and Roll are open free: Horse Stance, Cat Stance, Forward Roll and Reverse Roll. Every other lesson is listed, so you see the whole path.</p>
+        <p>On the free lessons you can mark them practiced and ask Sensei Tew too.</p>
+        <div class="gap"></div>
+        <a class="btn" href="https://pocketdojo.ricktew.com/signup">Start free</a>
+      </div>
+      <div class="way">
+        <p class="eyebrow">The Home Study Program</p>
+        <h3>Own the whole dojo</h3>
+        <div class="amt">$2,222 <small>once</small></div>
+        <p>The complete martial arts home study, belt by belt.</p>
+        <p>Personal feedback from Rick on every technique: text, audio, and video.</p>
+        <div class="gap"></div>
+        <a class="btn" href="https://pocketdojo.ricktew.com/">Open Pocket Dojo</a>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sec" aria-labelledby="faq-h"><div class="shell">
+    <div class="sec-head">
+      <h2 id="faq-h">Questions</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>What can I see before I pay?</summary>
+        <p>Every lesson in all five belts is listed. Four are open free: Horse Stance, Cat Stance, Forward Roll and Reverse Roll.</p>
+      </details>
+      <details>
+        <summary>Are the lessons on video?</summary>
+        <p>Not today. Each lesson is the written method, the applications and the steps, with a step-by-step guide; the stances come with footprint diagrams.</p>
+      </details>
+      <details>
+        <summary>How do I ask Rick a question?</summary>
+        <p>On any lesson you can open, press Ask Sensei Tew. The answer comes back right there on the lesson.</p>
+      </details>
+      <details>
+        <summary>Can my kids use it?</summary>
+        <p>Sign-up is for adults, 18 and over. It is built for training with a parent, never for kids alone.</p>
+      </details>
+      <details>
+        <summary>What are the Ninja Tools lessons?</summary>
+        <p>The ninth area of every belt. Those lessons open after you accept a waiver.</p>
+      </details>
+      <details>
+        <summary>What is the system behind it?</summary>
+        <p><a href="/rtms/">Rick Tew's Martial Science</a>, the system I teach.</p>
+      </details>
+      <details>
+        <summary>Rather train with me in person?</summary>
+        <p>That is <a href="/hininja/">GNS</a>, the two-week live-in program on Koh Samui.</p>
+      </details>
+    </div>
+  </div></section>
+
+  <section class="final sec-alt"><div class="shell">
+    <h2>Start at Yellow.</h2>
+    <a class="btn" href="https://pocketdojo.ricktew.com/signup">Start free</a>
+    <p>Pocket Dojo runs at pocketdojo.ricktew.com. A question first? <a href="/aininja/#opt-8c">Write to me.</a></p>
+  </div></section>
+
+</main>
+
+<footer><div class="shell">Copyright &copy; 2026 Rick Tew · <a href="/">Which ninja?</a> · <a href="/hininja/">HI Ninja</a> · <a href="/aininja/">AI Ninja</a></div></footer>
+
+<script>
+/* belt tabs: click or arrow keys, one panel open */
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('#beltTabs [role="tab"]'));
+  function show(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { show(tab, false); });
+    tab.addEventListener('keydown', function (e) {
+      var n = null;
+      if (e.key === 'ArrowRight') n = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') n = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') n = tabs[0];
+      else if (e.key === 'End') n = tabs[tabs.length - 1];
+      if (n) { e.preventDefault(); show(n, true); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
