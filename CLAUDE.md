@@ -1042,13 +1042,14 @@ tewtors.com is its own site, planned and built by the Tewtors chat in
   `/buy?sku=&src=` and land on tewtors.com/thanks/. Both pages here say
   "Tewtors" and link back to tewtors.com. Never move or delete either without
   the Dojo; a download page that moves stays up 7 more days for links mailed.
-- Terms section 3 says "Workbook downloads ... sold at Tewtors".
-- The workbook links left (run-out page, download footer, Terms) point at
+- Terms section 3 no longer mentions the workbooks (19 Oct 2026); tewtors.com/terms covers them.
+- The workbook links left (run-out page, download footer) point at
   `https://tewtors.com/workbooks/`, never the bare domain: after the WinJitsu
   app switch, tewtors.com/ opens the app (the Tewtors chat, 7 Oct). The Terms
-  line ("Workbook downloads ... sold at Tewtors") goes too once Tewtors' own
-  terms say downloads are final once sent (asked of the Tewtors chat 19 Oct);
-  the forward, thanks and download pages stay until the Dojo moves them.
+  workbook line left on 19 Oct 2026, the day tewtors.com/terms took it over
+  (Tewtors 29ac379, Rick's click "Add it as written"); the Terms are dated
+  19 October 2026. The forward, thanks and download pages stay until the Dojo
+  moves them.
 
 **THE SHOP'S FIRST ROW IS APPS I BUILT (7 Oct 2026, Rick's ruling).** His words:
 "we will take our case studies and turn them into a quick 222 product ... the
@@ -1122,8 +1123,9 @@ the Dojo.
   a reload does not count again. Since 1 Oct (Rick's click) the Shop is linked
   from the /aininja/ footer ("The Shop"), the Shop and the ready product pages
   are in the sitemap, and llms.txt has a Shop line (written by the build). The
-  Terms section 3 says Shop downloads are final once sent, and a file that does
-  not arrive or open gets a "write to me" (Rick's pick). Stripe Tax stays off
+  Terms section 3 said Shop downloads are final once sent, and a file that did
+  not arrive or open got a "write to me" (Rick's pick; the line left on 19 Oct
+  2026 when tewtors.com/terms took the workbooks over). Stripe Tax stays off
   (Rick, 1 Oct: "Not now").
 - **Checkout and delivery are the DOJO's, not this repo's.** The Buy button is a
   Stripe Payment Link on Tew's Inc (PAM: `plink_1ULKLE24k28tlk41lQTOvSGM`).
