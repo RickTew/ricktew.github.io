@@ -1272,6 +1272,18 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   "Paying in Thai baht". **It needs `SHOP_TH_LIVE=on`** on tews-inc: if
   the switch is ever off, a `cur=thb` Buy quietly gets the US dollar
   checkout, so turn it off only together with taking the pick off the pages.
+  Read live 20 Oct from Thailand, nothing paid: the four "Pay ฿X by card"
+  reach Stripe as Rick Tew Co., Ltd. in THB (6,999 and 69,999) with the
+  right question; the dollar Buys reach Tews Inc.
+- **Stripe's Adaptive Pricing stays ON on Tew's Inc (Rick, 20 Oct 2026).**
+  A visitor in Thailand on a dollar Buy sees Stripe offer THB at its exchange
+  rate, with a toggle back to US dollars. His words: "if stripe suggest it a
+  certain way then keep it that way is fine we are not strict to limit a
+  customer we are just aware that a person in the united states has no idea
+  what a baht is and will be confused ... this is just about helping the
+  customers." His currency rules are about not confusing a buyer, never
+  about limiting one. Do not raise it again. PromptPay is Thailand's own
+  payment system, so Thailand-only is a given, not a question.
 - **The cards:** `/aininja/shop/promptpay/?sku=` (payee "R2 Hosting Thailand ·
   Rick Tew Co., Ltd.", blue) and `/hininja/promptpay/?sku=` (payee "Rick Tew
   Co., Ltd.", red press only), both noindex, both run by `assets/promptpay.js`,
