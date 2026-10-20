@@ -1235,6 +1235,23 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   src=gns like Enroll). One line under the /aininja/ plan cards, one in the R2
   FAQ "How do I pay?", one in Terms section 3 (dated 17 October 2026). No
   baht figure on those lines.
+- **Only a visit from Thailand sees them (20 Oct 2026).** Rick's rule of
+  19 Oct on tewtors.com: "a person OUTSIDE of thailand will have no idea why
+  you are saying 'in thailand' ... it is a red flag. They also will not know
+  what THB means." Every one of those lines except the Terms (the contract,
+  for everyone) carries `data-th hidden`, and `/assets/th.js` opens them only
+  when **`ricktew-geo`** (this repo, `supabase/functions/ricktew-geo/`, on
+  tews-inc, `--no-verify-jwt`) answers `{"th":true}`. No answer, no line.
+  The function cannot read a country: Supabase logs Cloudflare's
+  `cf-ipcountry` at its gateway but passes only `cf-connecting-ip` inside
+  (probed 20 Oct), so it looks the address up in Thailand's blocks from
+  APNIC's public registry, baked into `th-ranges.ts` by `th-ranges.py`. No
+  third-party geo service, nothing kept, nothing logged. `?th=1` or `?th=0`
+  on a page previews either view. A new Thailand line gets `data-th hidden`
+  plus the th.js script tag, and its page goes in `TH_PAGES` in
+  `tests/promptpay-sweep.js`, which walks all three views (Thailand,
+  elsewhere, no answer). Test: `deno test supabase/functions/ricktew-geo/geo_test.ts`.
+  Refresh the blocks once in a while: run `th-ranges.py`, the test, deploy.
 - **The cards:** `/aininja/shop/promptpay/?sku=` (payee "R2 Hosting Thailand ·
   Rick Tew Co., Ltd.", blue) and `/hininja/promptpay/?sku=` (payee "Rick Tew
   Co., Ltd.", red press only), both noindex, both run by `assets/promptpay.js`,

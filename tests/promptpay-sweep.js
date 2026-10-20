@@ -10,13 +10,19 @@
      subject "paid", the SKU, the baht amount and the checkout field, once;
    - a SKU off the list, or from the other door, shows the missing line;
    - no sideways scroll, no console errors, no address of Rick's;
-   - every baht price on the door lives in assets/promptpay.js, nowhere else.
+   - every baht price on the door lives in assets/promptpay.js, nowhere else;
+   - the lines about paying from Thailand (data-th) show only when
+     ricktew-geo answers th:true (mocked here), and a visit from anywhere
+     else, or with no answer, sees none of them (Rick, 19 Oct 2026).
    Exit 1 on any finding. */
 "use strict";
 const fs = require("fs"), path = require("path");
 const { chromium, devices } = require("/Users/ricktew/Dev/Roy Martina/newnei-app/node_modules/playwright");
 const ROOT = path.join(__dirname, ".."), BASE = "http://localhost:8765";
 const ENDPOINT = "https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact";
+const GEO = "https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-geo";
+// Every page with a data-th line.
+const TH_PAGES = ["/aininja/shop/ain-mamamia/", "/aininja/shop/ain-spa-booking/", "/hininja/", "/gns/", "/aininja/", "/aininja/r2/"];
 
 const CASES = [
   { from: "/aininja/shop/ain-mamamia/", btn: "#ppMamaMia", sku: "AIN-MAMAMIA", door: "/aininja/shop/promptpay/",
@@ -47,6 +53,8 @@ const flag = m => found.push(m);
   for (const [dev, opts] of [["desktop", { viewport: { width: 1280, height: 900 } }], ["phone", devices["iPhone 13"]]]) {
     const ctx = await b.newContext({ ...opts, locale: "en-US" });
     let posts = [];
+    // A visit from Thailand, for the walk below.
+    await ctx.route(GEO, r => r.fulfill({ status: 200, contentType: "application/json", body: '{"th":true}', headers: { "Access-Control-Allow-Origin": "*" } }));
     await ctx.route(ENDPOINT, r => { posts.push(JSON.parse(r.request().postData() || "{}")); r.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}', headers: { "Access-Control-Allow-Origin": "*" } }); });
     const watch = (p, at) => {
       p.on("pageerror", e => flag(at + " page error: " + e.message));
@@ -62,7 +70,7 @@ const flag = m => found.push(m);
       const href = await p.getAttribute(c.btn, "href").catch(() => null);
       const want = c.door + "?sku=" + c.sku + (src ? "&src=instagram" : "");
       if (!href || !href.endsWith(want)) flag(at + ": the PromptPay button goes to " + href + ", not " + want);
-      if (!(await p.isVisible(c.btn).catch(() => false))) flag(at + ": the PromptPay button is not visible");
+      await p.waitForSelector(c.btn, { state: "visible", timeout: 3000 }).catch(() => flag(at + ": the PromptPay button is not visible from Thailand"));
       await p.click(c.btn);
       await p.waitForLoadState("load");
       if (!p.url().includes(c.door + "?sku=" + c.sku)) flag(at + ": clicking it landed on " + p.url());
@@ -140,9 +148,35 @@ const flag = m => found.push(m);
       if (!(await p.isVisible("#gone")) || (await p.isVisible("#pay"))) flag(dev + " " + u + ": did not show the missing line");
       await p.close();
     }
+    // Every data-th line opens from Thailand (the R2 one sits in a closed FAQ).
+    for (const u of TH_PAGES) {
+      const p = await ctx.newPage(); watch(p, dev + " " + u);
+      await p.goto(BASE + u, { waitUntil: "networkidle" });
+      const shut = await p.$$eval("[data-th]", els => els.length ? els.filter(e => e.hidden).length : -1);
+      if (shut) flag(dev + " " + u + (shut < 0 ? ": no data-th line on the page" : ": " + shut + " Thailand line(s) still hidden from Thailand"));
+      await p.close();
+    }
     await ctx.close();
+
+    // From anywhere else, or with no answer at all: nothing about Thailand.
+    for (const [why, answer] of [["outside Thailand", r => r.fulfill({ status: 200, contentType: "application/json", body: '{"th":false}', headers: { "Access-Control-Allow-Origin": "*" } })], ["no answer", r => r.abort()]]) {
+      const out = await b.newContext({ ...opts, locale: "en-US" });
+      await out.route(GEO, answer);
+      for (const u of TH_PAGES) {
+        const at = dev + " " + u + " " + why;
+        const p = await out.newPage();
+        p.on("pageerror", e => flag(at + " page error: " + e.message));
+        await p.goto(BASE + u, { waitUntil: "networkidle" });
+        const open = await p.$$eval("[data-th]", els => els.filter(e => !e.hidden).length);
+        if (open) flag(at + ": " + open + " Thailand line(s) showing");
+        const seen = (await p.evaluate(() => document.body.innerText)).match(/in thailand|thai card|in baht/gi);
+        if (seen) flag(at + ": the page says " + seen.join(", "));
+        await p.close();
+      }
+      await out.close();
+    }
   }
   await b.close();
   if (found.length) { console.log(found.length + " finding(s):"); found.forEach(f => console.log("  " + f)); process.exit(1); }
-  console.log("PromptPay sweep clean: 3 cards, the GNS page, 4 bad links, desktop and phone, the one-place wall.");
+  console.log("PromptPay sweep clean: 3 cards, the GNS page, 4 bad links, the Thailand-only lines on " + TH_PAGES.length + " pages (from Thailand, from elsewhere, no answer), desktop and phone, the one-place wall.");
 })().catch(e => { console.error(e); process.exit(1); });

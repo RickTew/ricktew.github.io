@@ -478,6 +478,7 @@ html,body{overflow-x:clip}
 .vs .way p,.you .way p{font-size:14.5px;font-weight:600;color:#4b5563;line-height:1.55;flex:0 0 auto;margin:0}  /* paragraphs keep one even gap; the spare height goes above the button (Rick, 2 Oct 2026: the spacing in the $222 card) */
 .vs .way .want,.you .way .want{align-self:flex-start;margin-top:auto}
 .vs .custom,.you .custom{margin-top:16px;font-weight:700;color:var(--muted);font-size:14.5px}
+[data-th][hidden]{display:none}
 .vs .honest{text-align:center;color:var(--muted);font-weight:700;margin:22px auto 0;max-width:60ch;font-size:14.5px}
 .vs .src{text-align:center;color:var(--muted);font-weight:600;margin:14px auto 0;max-width:70ch;font-size:12.5px}
 .vs .src a{color:var(--blue-d);font-weight:800}
@@ -1521,8 +1522,9 @@ form:tool-form-active{outline:2px dashed var(--blue);outline-offset:6px;border-r
       <!-- PromptPay for payers in Thailand (17 Oct 2026, Rick: "I am allowing our promptpay option for those
            living in thailand to buy our services"; his pick: Your Dojo too). The baht prices are not printed
            here on purpose: they live in /assets/promptpay.js and on each client's own bill (the Dojo's kit),
-           and they moved once already (hosting by PromptPay became the year only, the same afternoon). -->
-      <p class="custom">In Thailand? You can pay by PromptPay instead, in baht, to R2 Hosting Thailand, Rick Tew Co., Ltd.</p>
+           and they moved once already (hosting by PromptPay became the year only, the same afternoon).
+           It shows only on a visit from Thailand (data-th, /assets/th.js; Rick, 19 Oct). -->
+      <p class="custom" data-th hidden>In Thailand? You can pay by PromptPay instead, in baht, to R2 Hosting Thailand, Rick Tew Co., Ltd.</p>
       <p class="custom">The &ldquo;I want this Tew&rdquo; button writes your pick into my mailbox at the bottom of this page. You add a line and send it. I stick to writing on purpose: everything we agree is on the record. A call is a custom step.</p>
       <p class="custom">Your customers text, WhatsApp or LINE you? Tell me which, and I set it up and quote it in writing first.</p>
     <div class="hows">
@@ -3584,5 +3586,6 @@ if("serviceWorker" in navigator){ window.addEventListener("load",function(){ nav
   setTimeout(stop,4000);
 })();
 </script>
+<script src="/assets/th.js" defer></script>
 </body>
 </html>
