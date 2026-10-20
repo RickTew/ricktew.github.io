@@ -1220,9 +1220,14 @@ Rick Tew Co., Ltd., used as issued (the payer's bank shows RICK TEW NINJA GYM,
 PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
 
 - **Prices, Rick's picks 17 Oct (his clicks here and in the Dojo):** the $222
-  app build ฿6,999 with the first month; GNS ฿69,999; hosting by PromptPay is
-  the YEAR only, ฿19,997 ("we DO NOT WANT to chase them monthlhy"; the card
-  stays $99 a month); Your Dojo ฿69,999 a month (his pick, shown on no page;
+  app build ฿6,999 with the first month; GNS ฿69,999; hosting in baht is
+  ฿1,997 a month or ฿19,997 for the year, by PromptPay or card (it was the
+  YEAR only from 17 Oct, "we DO NOT WANT to chase them monthlhy"; Rick gave
+  the three R2 Hosting clients month or year on 19 Oct in the TEWBEDO chat,
+  "they can pay month or year (and save) and the same with prompt pay or
+  credit card", and clicked "Match: month or year" here on 20 Oct: the
+  buy pages' baht line, the PromptPay card, the R2 FAQ and Terms section 3
+  say so; the dollar card stays $99 a month); Your Dojo ฿69,999 a month (his pick, shown on no page;
   it goes on the client's own bill; MONTHLY, not the year-only rule, his click
   of 19 Oct: a Your Dojo client is worked with every month anyway). **Every baht price on the site is in
   `ITEMS` in `assets/promptpay.js` and nowhere else** (they moved once the

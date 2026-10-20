@@ -18,9 +18,13 @@
 
    EVERY BAHT PRICE ON THE SITE IS IN ITEMS, AND NOWHERE ELSE. Rick's picks,
    17 Oct 2026, in this chat and in the Dojo: the $222 app build ฿6,999 with
-   the first month; GNS ฿69,999; and, the same afternoon, hosting by PromptPay
-   is the YEAR only, ฿19,997 ("we DO NOT WANT to chase them monthlhy"; by card
-   it stays $99 a month). A new item needs its SKU in PAID_SKUS in
+   the first month; GNS ฿69,999. Hosting in baht was the year only, ฿19,997,
+   from 17 Oct ("we DO NOT WANT to chase them monthlhy"); since 20 Oct it is
+   ฿1,997 a month or ฿19,997 for the year, as on the three R2 Hosting clients'
+   bills (Rick, 19 Oct, in the TEWBEDO chat: "they can pay month or year (and
+   save) and the same with prompt pay or credit card"; his click here, 20 Oct,
+   "Match: month or year"). By card in dollars it stays $99 a month. A new
+   item needs its SKU in PAID_SKUS in
    supabase/functions/ricktew-contact/index.ts as well, or its press arrives as
    an ordinary message.
 
@@ -48,13 +52,13 @@
 
   var ITEMS = {
     "AIN-MAMAMIA": {
-      door: "ai", thb: 6999, year: 19997, kind: "build",
+      door: "ai", thb: 6999, month: 1997, year: 19997, kind: "build",
       name: { en: "MamaMia", th: "MamaMia" },
       field: { en: "Baby's first name", th: "ชื่อของลูก" }, type: "text",
       back: "/aininja/shop/ain-mamamia/#ain-mamamia"
     },
     "AIN-SPA-BOOKING": {
-      door: "ai", thb: 6999, year: 19997, kind: "build",
+      door: "ai", thb: 6999, month: 1997, year: 19997, kind: "build",
       name: { en: "Spa booking site", th: "เว็บไซต์จองสปา" },
       field: { en: "Studio name", th: "ชื่อร้าน" }, type: "text",
       back: "/aininja/shop/ain-spa-booking/#ain-spa-booking"
@@ -75,7 +79,7 @@
     en: {
       title: "Pay with PromptPay", lang: "ไทย", copy: "Copy", copied: "Copied",
       card: "Pay {thb} by card", pp: "Pay {thb} with PromptPay",
-      build: "to build, first month included", then: "Then {thb} a year for the hosting: about {mo} a month, paid once for the year.", weeks: "for 2 weeks, all in",
+      build: "to build, first month included", then: "Then {month} a month for the hosting, or {year} for the year.", weeks: "for 2 weeks, all in",
       doIt: "Scan and pay this. Then press Paid.", name: "Your name", email: "Your email", paid: "Paid {thb}",
       phone: "On your phone? Press and hold the QR to save it, then scan it from your photos in your bank app.",
       backQ: "Prefer to pay by card?", back: "Back to the card option",
@@ -88,7 +92,7 @@
       title: "ชำระด้วยพร้อมเพย์", lang: "EN",
       copy: "คัดลอก", copied: "คัดลอกแล้ว",
       build: "ค่าจัดทำ รวมค่าโฮสติ้งเดือนแรกแล้ว",
-      then: "จากนั้นค่าโฮสติ้ง {thb} ต่อปี เฉลี่ยประมาณ {mo} ต่อเดือน จ่ายครั้งเดียวทั้งปี",
+      then: "จากนั้นค่าโฮสติ้ง {month} ต่อเดือน หรือ {year} ต่อปี",
       weeks: "สำหรับ 2 สัปดาห์ รวมทุกอย่าง",
       doIt: "สแกนจ่ายตามนี้ แล้วกด จ่ายแล้ว",
       name: "ชื่อของคุณ", email: "อีเมลของคุณ",
@@ -105,8 +109,8 @@
 
   var $ = function (id) { return document.getElementById(id); };
   var thb = function (n) { return "฿" + n.toLocaleString("en-US"); };
-  /* The year with what it comes to a month, as the kit prints it (no saving claimed). */
-  var yearLine = function (w, y) { return w.then.replace("{thb}", thb(y)).replace("{mo}", thb(Math.floor(y / 12))); };
+  /* The hosting after the build: the month or the year (no saving claimed). */
+  var yearLine = function (w, it) { return w.then.replace("{month}", thb(it.month)).replace("{year}", thb(it.year)); };
 
   /* A Buy page: write the baht way's figures (English, like the page) and stop. */
   if (!$("pay")) {
@@ -118,7 +122,7 @@
       el.textContent =
         c.contains("thb-amt") ? thb(it.thb) :
         c.contains("thb-what") ? (it.kind === "build" ? w.build : w.weeks) :
-        c.contains("thb-then") ? (it.year ? yearLine(w, it.year) : "") :
+        c.contains("thb-then") ? (it.year ? yearLine(w, it) : "") :
         (c.contains("thb-card") ? w.card : w.pp).replace("{thb}", thb(it.thb));
     });
     return;
@@ -156,7 +160,7 @@
     $("mobile").textContent = MOBILE;
     $("copy").textContent = w.copy;
     $("amount").textContent = thb(item.thb) + " " + (item.kind === "build" ? w.build : w.weeks);
-    $("then").textContent = item.year ? yearLine(w, item.year) : "";
+    $("then").textContent = item.year ? yearLine(w, item) : "";
     $("then").hidden = !item.year;
     $("t-do").textContent = w.doIt;
     $("l-name").textContent = w.name;
@@ -200,7 +204,7 @@
     var en = WORDS.en;
     var message =
       "Paid by PromptPay: " + item.name.en + ", " + thb(item.thb) + " " + (item.kind === "build" ? en.build : en.weeks) + "." +
-      (item.year ? " " + yearLine(en, item.year) : "") + "\n" +
+      (item.year ? " " + yearLine(en, item) : "") + "\n" +
       "Paid to: " + PAYEE[door].replace(" · ", ", ") + " (" + RECIPIENT + ", PromptPay " + MOBILE + ").\n" +
       item.field.en + ": " + field + "\n" +
       "SKU: " + sku + "\n" +

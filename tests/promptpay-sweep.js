@@ -32,10 +32,10 @@ const TH_PAGES = ["/aininja/shop/ain-mamamia/", "/aininja/shop/ain-spa-booking/"
 const CASES = [
   { from: "/aininja/shop/ain-mamamia/", btn: "#ppMamaMia", sku: "AIN-MAMAMIA", door: "/aininja/shop/promptpay/",
     buy: "#buyMamaMia", card: "#cardMamaMia", relay: "/aininja/shop/buy/",
-    payee: "R2 Hosting Thailand · Rick Tew Co., Ltd.", amount: "฿6,999 to build, first month included", then: "Then ฿19,997 a year for the hosting: about ฿1,666 a month, paid once for the year.", field: "Baby's first name", value: "Luna" },
+    payee: "R2 Hosting Thailand · Rick Tew Co., Ltd.", amount: "฿6,999 to build, first month included", then: "Then ฿1,997 a month for the hosting, or ฿19,997 for the year.", field: "Baby's first name", value: "Luna" },
   { from: "/aininja/shop/ain-spa-booking/", btn: "#ppSpaBooking", sku: "AIN-SPA-BOOKING", door: "/aininja/shop/promptpay/",
     buy: "#buySpaBooking", card: "#cardSpaBooking", relay: "/aininja/shop/buy/",
-    payee: "R2 Hosting Thailand · Rick Tew Co., Ltd.", amount: "฿6,999 to build, first month included", then: "Then ฿19,997 a year for the hosting: about ฿1,666 a month, paid once for the year.", field: "Studio name", value: "Sabai Test Studio" },
+    payee: "R2 Hosting Thailand · Rick Tew Co., Ltd.", amount: "฿6,999 to build, first month included", then: "Then ฿1,997 a month for the hosting, or ฿19,997 for the year.", field: "Studio name", value: "Sabai Test Studio" },
   { from: "/hininja/", btn: "#ppGns", sku: "HIN-GNS-2W", door: "/hininja/promptpay/",
     buy: "#buyGns", card: "#cardGns", relay: "/hininja/buy/",
     payee: "Rick Tew Co., Ltd.", amount: "฿69,999 for 2 weeks, all in", then: "", field: "Arrival date", value: "2027-01-22" },
