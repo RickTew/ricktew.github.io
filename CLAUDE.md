@@ -1271,7 +1271,10 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   Stripe's own PromptPay left out) and "Pay ฿X with PromptPay" (`.thb-pp`, the
   card). `/assets/promptpay.js` writes the baht figures (`.thb-amt`,
   `.thb-what`, `.thb-then`) from ITEMS, so the one-place wall holds; th.js runs
-  the pick. /hininja/'s big price swaps too; /gns/'s big number and ladder stay
+  the pick. /hininja/'s big price swaps too, and so do its two longer-stay
+  lines (price box and the FAQ "Can I stay longer?"): in baht they read
+  "Write to me for a longer stay" with no dollar figures (Rick's click,
+  20 Oct, on his read of the page); /gns/'s big number and ladder stay
   in dollars (his design), and gns.js keeps `cur=thb` when it tags src=gns.
   The old "Paying with a Thai card?" note is gone. Terms section 3 reads
   "Paying in Thai baht". **It needs `SHOP_TH_LIVE=on`** on tews-inc: if
