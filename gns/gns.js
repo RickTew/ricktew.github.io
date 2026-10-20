@@ -17,7 +17,10 @@
     if (/^[A-Za-z0-9_-]{1,196}$/.test(postSrc)) SRC = "gns-" + postSrc;
   } catch (e) {}
   var ENROLL = "/hininja/buy/?sku=HIN-GNS-2W&src=" + SRC;
-  [].forEach.call(document.querySelectorAll('a[href^="/hininja/buy/?"]'), function (a) { a.setAttribute("href", ENROLL); });
+  /* The card in baht (staged 20 Oct 2026) is the same Buy with cur=thb, kept. */
+  [].forEach.call(document.querySelectorAll('a[href^="/hininja/buy/?"]'), function (a) {
+    a.setAttribute("href", ENROLL + (/[?&]cur=thb(&|$)/.test(a.getAttribute("href")) ? "&cur=thb" : ""));
+  });
   /* PromptPay for payers in Thailand (17 Oct 2026): the HI door's card, with the same tag. */
   [].forEach.call(document.querySelectorAll('a[href^="/hininja/promptpay/?"]'), function (a) { a.setAttribute("href", "/hininja/promptpay/?sku=HIN-GNS-2W&src=" + SRC); });
   var CONTACT = "/aininja/?about=gns-private#opt-8c";

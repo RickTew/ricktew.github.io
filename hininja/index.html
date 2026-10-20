@@ -110,6 +110,12 @@ h1,h2,h3{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:700;li
 .longer{margin-top:18px;font-size:15px;color:var(--ink2)}
 .card .btn{margin-top:20px;width:100%}
 .card .pp{margin-top:10px;font-size:15px;padding:11px 16px}
+/* The "Pay in" pick, only on a visit from Thailand (/assets/th.js; Rick, 19 Oct 2026). */
+.card .pick{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:20px;font-size:14px;font-weight:700;color:var(--muted)}
+.pick span{display:inline-flex;padding:2px;border-radius:10px;border:1px solid var(--line)}
+.pick button{font:inherit;font-weight:700;border:0;background:none;color:var(--ink);padding:5px 12px;border-radius:8px;cursor:pointer}
+.pick button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.pick button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .incl{width:100%;border-collapse:collapse;background:#fff;border:2px solid var(--line);border-radius:20px;overflow:hidden}
 .incl th,.incl td{text-align:left;padding:13px 18px;border-top:1px solid var(--line);font-size:15.5px;vertical-align:top}
 .incl tr:first-child th,.incl tr:first-child td{border-top:none}
@@ -263,7 +269,7 @@ footer a:hover{color:var(--ink)}
     <h2>Four 2s, four reasons.</h2>
     <div class="price-grid">
       <div class="card">
-        <div class="amt">$2,222</div>
+        <div class="amt"><span data-way="usd">$2,222</span><span class="thb-amt" data-way="thb" data-sku="HIN-GNS-2W" hidden></span></div>
         <div class="per">2 weeks, all in</div>
         <div class="per">Arrive any day, all year</div>
         <div class="per">Next group: 22 January 2027</div>
@@ -278,13 +284,20 @@ footer a:hover{color:var(--ink)}
         <!-- The Dojo's one checkout through the ricktew.com step, like the Shop's
              Buy buttons. Rick's clicks, 9 Oct 2026: one button, 2 weeks at $2,222;
              the checkout asks for the arrival date; all sales final, dates can move (within a year, Rick 10 Oct). -->
-        <a class="btn btn-red buy" id="buyGns" href="/hininja/buy/?sku=HIN-GNS-2W">Buy 2 weeks, $2,222</a>
-        <!-- PromptPay for payers in Thailand (17 Oct 2026, Rick: "I am allowing our promptpay option for
-             those living in thailand to buy our services"), paid to Rick Tew Co., Ltd. (his pick, through
-             the Dojo). The card and the baht price are in /hininja/promptpay/ and /assets/promptpay.js.
-             Both lines show only on a visit from Thailand (data-th, /assets/th.js; Rick, 19 Oct). -->
-        <a class="btn btn-quiet pp" id="ppGns" href="/hininja/promptpay/?sku=HIN-GNS-2W" data-th hidden>In Thailand? Pay with PromptPay</a>
-        <p class="longer" data-th hidden>Paying with a Thai card? Ask your bank first to allow international (US dollar) payments on it.</p>
+        <!-- The card in baht (staged 20 Oct 2026; Rick, 19 Oct, as on tewtors.com: a visit from Thailand
+             "will CHOOSE how they want to pay", baht first). /assets/th.js shows the pick only on a visit
+             from Thailand and switches the ways (the price above too); everyone else sees the US dollar
+             Buy and nothing about Thailand. The baht figures come from /assets/promptpay.js. The card in
+             baht is the Digital Dojo's one checkout with cur=thb: one payment in baht to Rick Tew Co., Ltd.;
+             PromptPay is the HI door's card, paid to the same company. -->
+        <p class="pick" data-th hidden>Pay in: <span role="group" aria-label="Pay in"><button type="button" data-cur="thb" aria-pressed="false">฿ Baht</button><button type="button" data-cur="usd" aria-pressed="true">$ US dollars</button></span></p>
+        <div data-way="usd">
+          <a class="btn btn-red buy" id="buyGns" href="/hininja/buy/?sku=HIN-GNS-2W">Buy 2 weeks, $2,222</a>
+        </div>
+        <div data-way="thb" data-sku="HIN-GNS-2W" hidden>
+          <a class="btn btn-red buy thb-card" id="cardGns" href="/hininja/buy/?sku=HIN-GNS-2W&amp;cur=thb">Pay by card</a>
+          <a class="btn btn-quiet pp thb-pp" id="ppGns" href="/hininja/promptpay/?sku=HIN-GNS-2W">Pay with PromptPay</a>
+        </div>
         <p class="longer">At checkout you add your arrival date. All sales are final; your dates can move to another two weeks, within a year of buying.</p>
       </div>
       <div>
@@ -441,6 +454,7 @@ footer a:hover{color:var(--ink)}
   });
 })();
 </script>
+<script src="/assets/promptpay.js" defer></script>
 <script src="/assets/th.js" defer></script>
 </body>
 </html>

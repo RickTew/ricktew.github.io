@@ -1252,6 +1252,27 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   `tests/promptpay-sweep.js`, which walks all three views (Thailand,
   elsewhere, no answer). Test: `deno test supabase/functions/ricktew-geo/geo_test.ts`.
   Refresh the blocks once in a while: run `th-ranges.py`, the test, deploy.
+- **The card in baht, the buyer's pick (staged 20 Oct 2026 on branch
+  `baht-pick`, Rick's click "Rework it now, live on your go"; it supersedes
+  the branch `baht-card`).** The shape of tewtors.com's workbook pages, by
+  Rick's 19 Oct rule: a visit from Thailand "will CHOOSE how they want to
+  pay", baht first ("Baht first, like the app"). On MamaMia, the Spa booking
+  site, /hininja/ and /gns/ a `p.pick` ("Pay in: ฿ Baht | $ US dollars",
+  `data-th hidden`) sits over two `[data-way]` blocks: `usd` is the US dollar
+  Buy as before (everyone else sees only this), `thb` (`data-sku`) holds "Pay
+  ฿X by card" (`.thb-card`, the relay with `cur=thb`, which the relays pass on
+  to ricktew-shop: one payment in baht to Rick Tew Co., Ltd., nothing renews,
+  Stripe's own PromptPay left out) and "Pay ฿X with PromptPay" (`.thb-pp`, the
+  card). `/assets/promptpay.js` writes the baht figures (`.thb-amt`,
+  `.thb-what`, `.thb-then`) from ITEMS, so the one-place wall holds; th.js runs
+  the pick. /hininja/'s big price swaps too; /gns/'s big number and ladder stay
+  in dollars (his design), and gns.js keeps `cur=thb` when it tags src=gns.
+  The old "Paying with a Thai card?" note is gone. Terms section 3 reads
+  "Paying in Thai baht". **Goes live only together with the Digital Dojo's
+  `SHOP_TH_LIVE=on`:** while it is off, a `cur=thb` Buy still gets the US
+  dollar checkout. Order: Rick's go, the switch on, merge, push, then one
+  click per Buy page read live (Stripe's page shows Rick Tew Co., Ltd., THB,
+  the amount and the question), and the plain Buy still Tew's Inc USD.
 - **The cards:** `/aininja/shop/promptpay/?sku=` (payee "R2 Hosting Thailand ·
   Rick Tew Co., Ltd.", blue) and `/hininja/promptpay/?sku=` (payee "Rick Tew
   Co., Ltd.", red press only), both noindex, both run by `assets/promptpay.js`,

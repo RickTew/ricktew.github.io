@@ -113,6 +113,12 @@ footer a:hover{color:var(--blue-d)}
 .plan .note{margin-top:8px}
 .plan .buy{margin-top:16px}
 .plan .pp{margin-top:16px}
+/* The "Pay in" pick, only on a visit from Thailand (/assets/th.js; Rick, 19 Oct 2026). */
+.plan .pick{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px;font-size:14px;font-weight:700;color:var(--muted)}
+.pick span{display:inline-flex;padding:2px;border-radius:10px;border:1px solid var(--line)}
+.pick button{font:inherit;font-weight:800;border:0;background:none;color:var(--ink);padding:5px 12px;border-radius:8px;cursor:pointer}
+.pick button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.pick button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .see{padding:0 0 64px}
 .see h2{font-size:clamp(22px,3vw,28px);font-weight:900}
 .see .lede2{margin-top:8px;font-size:16px;font-weight:600;color:#4b5563;max-width:60ch}
@@ -181,21 +187,30 @@ footer a:hover{color:var(--blue-d)}
           <div class="plan">
             <span class="tag">R2 Hosting</span>
             <h2>Your studio&rsquo;s booking site, built and hosted by me</h2>
-            <div class="amount">$222 <small>to build</small></div>
-            <p>The first month included, then $99 a month.</p>
-            <p class="note">Not in the $222, quoted in writing first: member cards and PINs, treatment packs, the till, events, tax invoices.</p>
-            <p class="note">Renews automatically at $99 a month after the first 30 days, until you cancel. Cancel anytime with the link in your order email. Your domain, your content and your data come with you.</p>
-            <p class="note">All sales are final. No refunds.</p>
-            <!-- The Dojo's one checkout, the same address as MamaMia's with this SKU. After
-                 paying the buyer lands on /aininja/shop/ain-spa-booking/thanks/. -->
-            <a class="btn btn-blue buy" id="buySpaBooking" href="/aininja/shop/buy/?sku=AIN-SPA-BOOKING">Buy the Spa booking site</a>
-            <!-- PromptPay for payers in Thailand (17 Oct 2026, Rick: "I am allowing our promptpay option for
-                 those living in thailand to buy our services"; the Dojo's kit, as on the client sites'
-                 bills). The card and every baht price are in /aininja/shop/promptpay/ and
-                 /assets/promptpay.js. The note under it is the client sites' card note, cut short.
-                 Both show only on a visit from Thailand (data-th, /assets/th.js; Rick, 19 Oct). -->
-            <a class="btn btn-quiet pp" id="ppSpaBooking" href="/aininja/shop/promptpay/?sku=AIN-SPA-BOOKING" data-th hidden>In Thailand? Pay with PromptPay</a>
-            <p class="note" data-th hidden>Paying with a Thai card? Ask your bank first to allow international (US dollar) payments on it.</p>
+            <!-- The card in baht (staged 20 Oct 2026; Rick, 19 Oct, as on tewtors.com: a visit from Thailand
+                 "will CHOOSE how they want to pay", baht first). /assets/th.js shows the pick only on a visit
+                 from Thailand and switches the two ways; everyone else sees the US dollar way and nothing about
+                 Thailand. The baht way's figures come from /assets/promptpay.js. The card in baht is the Digital
+                 Dojo's one checkout with cur=thb: one payment in baht to Rick Tew Co., Ltd., nothing renews. -->
+            <p class="pick" data-th hidden>Pay in: <span role="group" aria-label="Pay in"><button type="button" data-cur="thb" aria-pressed="false">฿ Baht</button><button type="button" data-cur="usd" aria-pressed="true">$ US dollars</button></span></p>
+            <div data-way="usd">
+              <div class="amount">$222 <small>to build</small></div>
+              <p>The first month included, then $99 a month.</p>
+              <p class="note">Not in the $222, quoted in writing first: member cards and PINs, treatment packs, the till, events, tax invoices.</p>
+              <p class="note">Renews automatically at $99 a month after the first 30 days, until you cancel. Cancel anytime with the link in your order email. Your domain, your content and your data come with you.</p>
+              <p class="note">All sales are final. No refunds.</p>
+              <!-- The Dojo's one checkout, the same address as MamaMia's with this SKU. After
+                   paying the buyer lands on /aininja/shop/ain-spa-booking/thanks/. -->
+              <a class="btn btn-blue buy" id="buySpaBooking" href="/aininja/shop/buy/?sku=AIN-SPA-BOOKING">Buy the Spa booking site</a>
+            </div>
+            <div data-way="thb" data-sku="AIN-SPA-BOOKING" hidden>
+              <div class="amount"><span class="thb-amt"></span> <small class="thb-what"></small></div>
+              <p class="thb-then"></p>
+              <p class="note">Not in the build price, quoted in writing first: member cards and PINs, treatment packs, the till, events, tax invoices.</p>
+              <p class="note">All sales are final. No refunds.</p>
+              <a class="btn btn-blue buy thb-card" id="cardSpaBooking" href="/aininja/shop/buy/?sku=AIN-SPA-BOOKING&amp;cur=thb">Pay by card</a>
+              <a class="btn btn-quiet pp thb-pp" id="ppSpaBooking" href="/aininja/shop/promptpay/?sku=AIN-SPA-BOOKING">Pay with PromptPay</a>
+            </div>
           </div>
         </div>
         <p class="after">At checkout you add your studio&rsquo;s name.</p>
@@ -242,6 +257,7 @@ footer a:hover{color:var(--blue-d)}
   });
 })();
 </script>
+<script src="/assets/promptpay.js" defer></script>
 <script src="/assets/th.js" defer></script>
 </body>
 </html>

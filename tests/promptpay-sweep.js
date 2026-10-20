@@ -13,7 +13,11 @@
    - every baht price on the door lives in assets/promptpay.js, nowhere else;
    - the lines about paying from Thailand (data-th) show only when
      ricktew-geo answers th:true (mocked here), and a visit from anywhere
-     else, or with no answer, sees none of them (Rick, 19 Oct 2026).
+     else, or with no answer, sees none of them (Rick, 19 Oct 2026);
+   - the card in baht (staged 20 Oct 2026): from Thailand each Buy page opens
+     on the baht way, its card button goes through the relay to the Digital
+     Dojo's checkout with cur=thb (mocked: nothing is bought), and the pick
+     switches to US dollars and back; from anywhere else no ฿ shows at all.
    Exit 1 on any finding. */
 "use strict";
 const fs = require("fs"), path = require("path");
@@ -21,15 +25,19 @@ const { chromium, devices } = require("/Users/ricktew/Dev/Roy Martina/newnei-app
 const ROOT = path.join(__dirname, ".."), BASE = "http://localhost:8765";
 const ENDPOINT = "https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact";
 const GEO = "https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-geo";
+const CHECKOUT = "https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy";
 // Every page with a data-th line.
 const TH_PAGES = ["/aininja/shop/ain-mamamia/", "/aininja/shop/ain-spa-booking/", "/hininja/", "/gns/", "/aininja/", "/aininja/r2/"];
 
 const CASES = [
   { from: "/aininja/shop/ain-mamamia/", btn: "#ppMamaMia", sku: "AIN-MAMAMIA", door: "/aininja/shop/promptpay/",
+    buy: "#buyMamaMia", card: "#cardMamaMia", relay: "/aininja/shop/buy/",
     payee: "R2 Hosting Thailand · Rick Tew Co., Ltd.", amount: "฿6,999 to build, first month included", then: "Then ฿19,997 a year for the hosting: about ฿1,666 a month, paid once for the year.", field: "Baby's first name", value: "Luna" },
   { from: "/aininja/shop/ain-spa-booking/", btn: "#ppSpaBooking", sku: "AIN-SPA-BOOKING", door: "/aininja/shop/promptpay/",
+    buy: "#buySpaBooking", card: "#cardSpaBooking", relay: "/aininja/shop/buy/",
     payee: "R2 Hosting Thailand · Rick Tew Co., Ltd.", amount: "฿6,999 to build, first month included", then: "Then ฿19,997 a year for the hosting: about ฿1,666 a month, paid once for the year.", field: "Studio name", value: "Sabai Test Studio" },
   { from: "/hininja/", btn: "#ppGns", sku: "HIN-GNS-2W", door: "/hininja/promptpay/",
+    buy: "#buyGns", card: "#cardGns", relay: "/hininja/buy/",
     payee: "Rick Tew Co., Ltd.", amount: "฿69,999 for 2 weeks, all in", then: "", field: "Arrival date", value: "2027-01-22" },
 ];
 
@@ -55,6 +63,9 @@ const flag = m => found.push(m);
     let posts = [];
     // A visit from Thailand, for the walk below.
     await ctx.route(GEO, r => r.fulfill({ status: 200, contentType: "application/json", body: '{"th":true}', headers: { "Access-Control-Allow-Origin": "*" } }));
+    // The checkout the card buttons reach, mocked: nothing is bought.
+    let checkout = null;
+    await ctx.route(u => u.href.startsWith(CHECKOUT), r => { checkout = r.request().url(); r.fulfill({ status: 200, contentType: "text/html", body: "<p>checkout</p>" }); });
     await ctx.route(ENDPOINT, r => { posts.push(JSON.parse(r.request().postData() || "{}")); r.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}', headers: { "Access-Control-Allow-Origin": "*" } }); });
     const watch = (p, at) => {
       p.on("pageerror", e => flag(at + " page error: " + e.message));
@@ -71,6 +82,28 @@ const flag = m => found.push(m);
       const want = c.door + "?sku=" + c.sku + (src ? "&src=instagram" : "");
       if (!href || !href.endsWith(want)) flag(at + ": the PromptPay button goes to " + href + ", not " + want);
       await p.waitForSelector(c.btn, { state: "visible", timeout: 3000 }).catch(() => flag(at + ": the PromptPay button is not visible from Thailand"));
+
+      // The pick: baht first from Thailand, then dollars and back.
+      const price = c.amount.split(" ")[0];
+      if (!(await p.isVisible(c.card)) || (await p.isVisible(c.buy))) flag(at + ": the baht way is not the one showing first from Thailand");
+      if ((await p.innerText(c.card).catch(() => "")).trim().toLowerCase() !== ("Pay " + price + " by card").toLowerCase()) flag(at + ": the card in baht reads " + JSON.stringify(await p.innerText(c.card).catch(() => "")));
+      if (c.sku === "HIN-GNS-2W" && (await p.innerText(".price-grid .amt")).trim() !== price) flag(at + ": the price at the top does not show " + price);
+      await p.click('.pick button[data-cur="usd"]');
+      if (!(await p.isVisible(c.buy)) || (await p.isVisible(c.card)) || (await p.isVisible(c.btn))) flag(at + ": the $ US dollars pick did not switch");
+      if ((await p.getAttribute('.pick button[data-cur="usd"]', "aria-pressed")) !== "true") flag(at + ": the $ US dollars pick is not marked pressed");
+      await p.click('.pick button[data-cur="thb"]');
+      if (!(await p.isVisible(c.card))) flag(at + ": the ฿ Baht pick did not switch back");
+      // The card in baht, through the relay to the checkout with cur=thb.
+      const cardHref = await p.getAttribute(c.card, "href");
+      const cardWant = c.relay + "?sku=" + c.sku + "&cur=thb" + (src ? "&src=instagram" : "");
+      if (!cardHref || !cardHref.endsWith(cardWant)) flag(at + ": the card in baht goes to " + cardHref + ", not " + cardWant);
+      checkout = null;
+      const cp = await ctx.newPage(); watch(cp, at + " card");
+      await cp.goto(new URL(cardHref, BASE).href);
+      await cp.waitForURL(u => u.href.startsWith(CHECKOUT), { timeout: 5000 }).catch(() => {});
+      const fnWant = CHECKOUT + "?sku=" + c.sku + (src ? "&src=instagram" : "") + "&cur=thb";
+      if (checkout !== fnWant) flag(at + ": the card in baht reached " + checkout + ", not " + fnWant);
+      await cp.close();
       await p.click(c.btn);
       await p.waitForLoadState("load");
       if (!p.url().includes(c.door + "?sku=" + c.sku)) flag(at + ": clicking it landed on " + p.url());
@@ -132,6 +165,9 @@ const flag = m => found.push(m);
       await p.goto(BASE + "/gns/?src=instagram", { waitUntil: "load" });
       const href = await p.$eval('a[href^="/hininja/promptpay/?"]', a => a.getAttribute("href")).catch(() => null);
       if (href !== "/hininja/promptpay/?sku=HIN-GNS-2W&src=gns-instagram") flag(at + ": the PromptPay button goes to " + href);
+      const buys = await p.$$eval('a[href^="/hininja/buy/?"]', as => as.map(a => (a.classList.contains("thb-card") ? "card " : "") + a.getAttribute("href")));
+      if (!buys.includes("card /hininja/buy/?sku=HIN-GNS-2W&src=gns-instagram&cur=thb")) flag(at + ": the card in baht lost its tag or cur=thb: " + JSON.stringify(buys));
+      if (buys.filter(h => !h.startsWith("card ")).some(h => h !== "/hininja/buy/?sku=HIN-GNS-2W&src=gns-instagram")) flag(at + ": an Enroll button is not the plain dollar Buy: " + JSON.stringify(buys));
       await p.goto(BASE + href, { waitUntil: "load" });
       if ((await p.getAttribute("#back-link", "href")) !== "/gns/") flag(at + ": the card's back link does not return to /gns/");
       posts = [];
@@ -169,7 +205,9 @@ const flag = m => found.push(m);
         await p.goto(BASE + u, { waitUntil: "networkidle" });
         const open = await p.$$eval("[data-th]", els => els.filter(e => !e.hidden).length);
         if (open) flag(at + ": " + open + " Thailand line(s) showing");
-        const seen = (await p.evaluate(() => document.body.innerText)).match(/in thailand|thai card|in baht/gi);
+        const ways = await p.$$eval("[data-way]", els => els.filter(e => e.hidden !== (e.getAttribute("data-way") === "thb")).length);
+        if (ways) flag(at + ": " + ways + " pay way(s) not on US dollars");
+        const seen = (await p.evaluate(() => document.body.innerText)).match(/in thailand|thai card|in baht|฿/gi);
         if (seen) flag(at + ": the page says " + seen.join(", "));
         await p.close();
       }

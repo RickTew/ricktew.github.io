@@ -148,6 +148,12 @@ img,video{max-width:100%;height:auto}
 .gt-cta-fill:hover{ transform:translate(-2px,-2px); box-shadow:6px 7px 0 var(--red); }
 .gt-cta-ghost{ color:var(--paper); border:2px solid rgba(245,233,216,.28); }
 .gt-cta-ghost:hover{ border-color:var(--orange); color:var(--gold); }
+/* The "Pay in" pick, only on a visit from Thailand (/assets/th.js; Rick, 19 Oct 2026). */
+.gt-pick{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px; font-size:.95rem; font-weight:700; color:rgba(245,233,216,.72); }
+.gt-pick span{ display:inline-flex; padding:2px; border-radius:10px; border:1px solid rgba(245,233,216,.28); }
+.gt-pick button{ font:inherit; font-weight:800; border:0; background:none; color:var(--paper); padding:5px 12px; border-radius:8px; cursor:pointer; }
+.gt-pick button[aria-pressed="true"]{ background:var(--orange); color:#1a1209; }
+.gt-pick button:focus-visible{ outline:3px solid var(--gold); outline-offset:2px; }
 .gt-pp{ font-size:1.15rem; padding:.55rem 1.6rem; }
 
 /* price chip */
@@ -873,14 +879,21 @@ img,video{max-width:100%;height:auto}
            all year. The same facts as /hininja/. The all-sales line sits under
            the button, as under the HI page's Buy (Rick's click, 12 Oct). -->
       <p class="gt-eyebrow gt-reveal mt-9">Arrive any day: classes run all year. Next group: 22 January 2027.</p>
-      <a href="/hininja/buy/?sku=HIN-GNS-2W&amp;src=gns" class="gt-cta gt-cta-fill gt-reveal mt-4">Enroll Now</a>
+      <!-- The card in baht (staged 20 Oct 2026; Rick, 19 Oct, as on tewtors.com: a visit from Thailand
+           "will CHOOSE how they want to pay", baht first). /assets/th.js shows the pick only on a visit
+           from Thailand and switches the two ways; everyone else sees Enroll Now and nothing about
+           Thailand. The big number and the ladder above stay in dollars (Rick's design). The baht
+           figures come from /assets/promptpay.js. gns.js tags all three buttons src=gns and keeps
+           the card's cur=thb; PromptPay is the HI door's card, paid to Rick Tew Co., Ltd. -->
+      <p class="pick gt-pick gt-reveal mt-4" data-th hidden>Pay in: <span role="group" aria-label="Pay in"><button type="button" data-cur="thb" aria-pressed="false">฿ Baht</button><button type="button" data-cur="usd" aria-pressed="true">$ US dollars</button></span></p>
+      <div data-way="usd">
+        <a href="/hininja/buy/?sku=HIN-GNS-2W&amp;src=gns" class="gt-cta gt-cta-fill gt-reveal mt-4">Enroll Now</a>
+      </div>
+      <div data-way="thb" data-sku="HIN-GNS-2W" hidden>
+        <a href="/hininja/buy/?sku=HIN-GNS-2W&amp;src=gns&amp;cur=thb" class="gt-cta gt-cta-fill gt-reveal mt-4 thb-card">Pay by card</a>
+        <a href="/hininja/promptpay/?sku=HIN-GNS-2W&amp;src=gns" class="gt-cta gt-cta-ghost gt-pp gt-reveal mt-4 thb-pp">Pay with PromptPay</a>
+      </div>
       <p class="gt-buy-note gt-reveal">At checkout you add your arrival date. All sales are final; your dates can move to another two weeks, within a year of buying.</p>
-      <!-- PromptPay for payers in Thailand (17 Oct 2026, Rick: "I am allowing our promptpay option for
-           those living in thailand to buy our services"): the HI door's card, paid to Rick Tew Co., Ltd.;
-           gns.js tags it src=gns like the Enroll buttons, so the Paid mail names this page.
-           Both lines show only on a visit from Thailand (data-th, /assets/th.js; Rick, 19 Oct). -->
-      <a href="/hininja/promptpay/?sku=HIN-GNS-2W&amp;src=gns" class="gt-cta gt-cta-ghost gt-pp gt-reveal mt-4" data-th hidden>In Thailand? Pay with PromptPay</a>
-      <p class="gt-buy-note gt-reveal" data-th hidden>Paying with a Thai card? Ask your bank first to allow international (US dollar) payments on it.</p>
     </div>
   </section>
 
@@ -1160,6 +1173,7 @@ img,video{max-width:100%;height:auto}
 
 </div>
 <script src="gns.js" defer></script>
+<script src="/assets/promptpay.js" defer></script>
 <script src="/assets/th.js" defer></script>
 </body>
 </html>

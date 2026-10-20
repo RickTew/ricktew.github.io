@@ -22,7 +22,17 @@
    is the YEAR only, ฿19,997 ("we DO NOT WANT to chase them monthlhy"; by card
    it stays $99 a month). A new item needs its SKU in PAID_SKUS in
    supabase/functions/ricktew-contact/index.ts as well, or its press arrives as
-   an ordinary message. */
+   an ordinary message.
+
+   THE CARD IN BAHT, ON THE BUY PAGES (20 Oct 2026). Rick, 19 Oct, as on
+   tewtors.com: a visit from Thailand "will CHOOSE how they want to pay", baht
+   first ("Baht first, like the app"); everyone else sees US dollars and
+   nothing about Thailand. So each Buy page has a "Pay in: ฿ Baht | $ US
+   dollars" pick (data-th, run by /assets/th.js) over two ways: the US dollar
+   Buy as before, and a baht way with "Pay ฿X by card" (the Digital Dojo's one
+   checkout with cur=thb: one payment in baht to Rick Tew Co., Ltd., nothing
+   renews) and "Pay ฿X with PromptPay" (this card). The baht way's figures are
+   written below from ITEMS, so they live here and nowhere else. */
 (function () {
   "use strict";
 
@@ -51,7 +61,7 @@
     },
     "HIN-GNS-2W": {
       door: "hi", thb: 69999, kind: "weeks",
-      name: { en: "Gooffy Ninja ShhT!!, 2 weeks on Koh Samui", th: "Gooffy Ninja ShhT!! 2 สัปดาห์ที่เกาะสมุย" },
+      name: { en: "Gooffy Ninja ShhT!!, 2 weeks", th: "Gooffy Ninja ShhT!! 2 สัปดาห์" }, /* no place in a payment name (Rick, 19 Oct 2026) */
       field: { en: "Arrival date", th: "วันที่มาถึง" }, type: "date",
       back: "/hininja/#price"
     }
@@ -64,6 +74,7 @@
   var WORDS = {
     en: {
       title: "Pay with PromptPay", lang: "ไทย", copy: "Copy", copied: "Copied",
+      card: "Pay {thb} by card", pp: "Pay {thb} with PromptPay",
       build: "to build, first month included", then: "Then {thb} a year for the hosting: about {mo} a month, paid once for the year.", weeks: "for 2 weeks, all in",
       doIt: "Scan and pay this. Then press Paid.", name: "Your name", email: "Your email", paid: "Paid {thb}",
       phone: "On your phone? Press and hold the QR to save it, then scan it from your photos in your bank app.",
@@ -96,6 +107,22 @@
   var thb = function (n) { return "฿" + n.toLocaleString("en-US"); };
   /* The year with what it comes to a month, as the kit prints it (no saving claimed). */
   var yearLine = function (w, y) { return w.then.replace("{thb}", thb(y)).replace("{mo}", thb(Math.floor(y / 12))); };
+
+  /* A Buy page: write the baht way's figures (English, like the page) and stop. */
+  if (!$("pay")) {
+    [].forEach.call(document.querySelectorAll(".thb-amt, .thb-what, .thb-then, .thb-card, .thb-pp"), function (el) {
+      var box = el.closest("[data-sku]"), k = box && box.getAttribute("data-sku");
+      var it = k && Object.prototype.hasOwnProperty.call(ITEMS, k) ? ITEMS[k] : null;
+      if (!it) return;
+      var w = WORDS.en, c = el.classList;
+      el.textContent =
+        c.contains("thb-amt") ? thb(it.thb) :
+        c.contains("thb-what") ? (it.kind === "build" ? w.build : w.weeks) :
+        c.contains("thb-then") ? (it.year ? yearLine(w, it.year) : "") :
+        (c.contains("thb-card") ? w.card : w.pp).replace("{thb}", thb(it.thb));
+    });
+    return;
+  }
   var door = document.body.getAttribute("data-door");
   var q; try { q = new URLSearchParams(location.search); } catch (e) { q = null; }
   var sku = (q && q.get("sku")) || "";
