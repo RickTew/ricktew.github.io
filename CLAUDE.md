@@ -1274,8 +1274,14 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   the pick. /hininja/'s big price swaps too, and so do its two longer-stay
   lines (price box and the FAQ "Can I stay longer?"): in baht they read
   "Write to me for a longer stay" with no dollar figures (Rick's click,
-  20 Oct, on his read of the page); /gns/'s big number and ladder stay
-  in dollars (his design), and gns.js keeps `cur=thb` when it tags src=gns.
+  20 Oct, on his read of the page). /gns/ matches (his click "Match
+  /hininja/", same read): in baht its price chip, big number and sticky bar
+  read ฿ from ITEMS, the 2/3/4-week ladder gives way to "Stay longer? Write
+  to me for a longer stay." (to the mailbox, `?about=gns-ask`), the FAQ
+  answer and the quiz's claim button and "long" plan line follow
+  (`shownPrice()` in gns.js); the dollar view is his design untouched. A
+  page with a baht pick shows no dollar figure in baht view, and the
+  reverse. gns.js keeps `cur=thb` when it tags src=gns.
   The old "Paying with a Thai card?" note is gone. Terms section 3 reads
   "Paying in Thai baht". **It needs `SHOP_TH_LIVE=on`** on tews-inc: if
   the switch is ever off, a `cur=thb` Buy quietly gets the US dollar

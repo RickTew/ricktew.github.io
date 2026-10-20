@@ -24,6 +24,12 @@
   /* PromptPay for payers in Thailand (17 Oct 2026): the HI door's card, with the same tag. */
   [].forEach.call(document.querySelectorAll('a[href^="/hininja/promptpay/?"]'), function (a) { a.setAttribute("href", "/hininja/promptpay/?sku=HIN-GNS-2W&src=" + SRC); });
   var CONTACT = "/aininja/?about=gns-private#opt-8c";
+  /* The price as the page shows it: baht when a visit from Thailand has baht picked (th.js
+     writes the figure from /assets/promptpay.js), else dollars (Rick, 20 Oct 2026). */
+  function shownPrice() {
+    var b = document.querySelector('.gt-bignum [data-way="thb"]');
+    return b && !b.hidden && b.textContent ? b.textContent : "$2,222";
+  }
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var clamp01 = function (n) { return n < 0 ? 0 : n > 1 ? 1 : n; };
 
@@ -489,7 +495,8 @@
   var EPLAN_MIX = {
     taste: "Plan: a 2-week taste of a different life. That is exactly the size of the program. Suspiciously convenient.",
     scout: "Plan: scouting a real move. Rick has set up life in Holland, Singapore, the Philippines and Thailand. Ask him ANYTHING about visas, rent and reality. He will not shut up about it.",
-    long: "Plan: stay as long as it feels right. The extension ladder exists for exactly this ($1,000 per extra week, and week 3 is when the island really gets you)."
+    long: "Plan: stay as long as it feels right. The extension ladder exists for exactly this ($1,000 per extra week, and week 3 is when the island really gets you).",
+    longThb: "Plan: stay as long as it feels right. Write to Rick for a longer stay (week 3 is when the island really gets you)."
   };
   var BLEND_LABEL = { body: "Body first", mind: "Mind first", both: "Mind + body" };
   var BLEND_MIX = {
@@ -521,7 +528,7 @@
       case "fun": out.push(FUN_MIX[a.funstyle]); break;
       case "gamer": out.push(GBAL_MIX[a.gbalance], FLAVOR_MIX[a.flavor]); break;
       case "reset": out.push(RFOCUS_MIX[a.rfocus]); break;
-      case "escape": out.push(EWHY_MIX[a.ewhy], EPLAN_MIX[a.eplan]); break;
+      case "escape": out.push(EWHY_MIX[a.ewhy], EPLAN_MIX[a.eplan === "long" && shownPrice() !== "$2,222" ? "longThb" : a.eplan]); break;
     }
     out.push(BLEND_MIX[a.blend]);
     return out.filter(Boolean);
@@ -706,7 +713,7 @@
       res.appendChild(btn("qz-link", "See the full (goofy) program anyway", toTop));
       res.appendChild(btn("qz-link", "Enroll in GNS regardless, I can handle jokes", enroll));
     } else if (ok) {
-      res.appendChild(btn("qz-btn qz-btn-red", "Claim your 2-week spot ($2,222)", enroll));
+      res.appendChild(btn("qz-btn qz-btn-red", "Claim your 2-week spot (" + shownPrice() + ")", enroll));
       res.appendChild(btn("qz-link", "See the full program", toTop));
     } else {
       res.appendChild(btn("qz-btn qz-btn-md", "See the full program", toTop));
