@@ -1252,9 +1252,10 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   `tests/promptpay-sweep.js`, which walks all three views (Thailand,
   elsewhere, no answer). Test: `deno test supabase/functions/ricktew-geo/geo_test.ts`.
   Refresh the blocks once in a while: run `th-ranges.py`, the test, deploy.
-- **The card in baht, the buyer's pick (staged 20 Oct 2026 on branch
-  `baht-pick`, Rick's click "Rework it now, live on your go"; it supersedes
-  the branch `baht-card`).** The shape of tewtors.com's workbook pages, by
+- **The card in baht, the buyer's pick (LIVE 20 Oct 2026, Rick's clicks
+  "Rework it now, live on your go" then "Go live now"; he set
+  `SHOP_TH_LIVE=on` on tews-inc himself, this chat's secret write being
+  blocked; the branches `baht-pick` and `baht-card` are history).** The shape of tewtors.com's workbook pages, by
   Rick's 19 Oct rule: a visit from Thailand "will CHOOSE how they want to
   pay", baht first ("Baht first, like the app"). On MamaMia, the Spa booking
   site, /hininja/ and /gns/ a `p.pick` ("Pay in: ฿ Baht | $ US dollars",
@@ -1268,11 +1269,9 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   the pick. /hininja/'s big price swaps too; /gns/'s big number and ladder stay
   in dollars (his design), and gns.js keeps `cur=thb` when it tags src=gns.
   The old "Paying with a Thai card?" note is gone. Terms section 3 reads
-  "Paying in Thai baht". **Goes live only together with the Digital Dojo's
-  `SHOP_TH_LIVE=on`:** while it is off, a `cur=thb` Buy still gets the US
-  dollar checkout. Order: Rick's go, the switch on, merge, push, then one
-  click per Buy page read live (Stripe's page shows Rick Tew Co., Ltd., THB,
-  the amount and the question), and the plain Buy still Tew's Inc USD.
+  "Paying in Thai baht". **It needs `SHOP_TH_LIVE=on`** on tews-inc: if
+  the switch is ever off, a `cur=thb` Buy quietly gets the US dollar
+  checkout, so turn it off only together with taking the pick off the pages.
 - **The cards:** `/aininja/shop/promptpay/?sku=` (payee "R2 Hosting Thailand ·
   Rick Tew Co., Ltd.", blue) and `/hininja/promptpay/?sku=` (payee "Rick Tew
   Co., Ltd.", red press only), both noindex, both run by `assets/promptpay.js`,
