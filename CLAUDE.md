@@ -1401,8 +1401,15 @@ open items); read it before changing the page. Canonical program docs:
   day: /gns/ gets its own ask box (above); /hininja/'s "Got an injury, or not
   very fit?" is copied into the /gns/ FAQ word for word; the /gns/ photo grid
   and caption go on /hininja/ after "What it is" (`figure.proof`), to be
-  swapped for today's adult class shots when he sends them. The page for the
-  ads is his open call.
+  swapped for today's adult class shots when he sends them. **Then his two
+  picks: the HI Ninja ads land on /gns/** (TEWBEDO builds the Google Ads
+  campaign, "HI Ninja ...", in the shared account; this chat owns the facts,
+  the ad words, the page and the sale's source), **and ad sales are counted
+  on our side, no Google tag:** the page packs the ad's campaign and Google's
+  click id into the Buy's `src` (the relay and the checkout already take
+  `[A-Za-z0-9_-]{1,200}`, so the held ricktew-shop code is not touched) and
+  the ask box carries the same to the mailbox; TEWBEDO uploads the sales.
+  Not built yet: see NEXT-SESSION.md. /hininja/ stays live as the HI door.
 - **The GNS round of 12 Oct 2026** (`playtest/reports/2026-10-12-gns-SUMMARY.md`,
   7 readers in Rick's audience plus the find-them research). All 7 were UNSURE
   the training was real until the sealed file, because the open page showed no
