@@ -15,17 +15,19 @@
    US dollar Buy, shown to everyone else; "thb" is the card in baht and
    PromptPay, its figures written by /assets/promptpay.js.
 
-   DOLLARS PAUSED (21 Oct 2026). Rick: "we default to the Rick Tew Co., for now
-   as we are doing more work and focus here and when that changes we can simply
-   adjust", and for the pages, "simply pause and or hide the other Stripe
-   option". So every visitor gets the baht way (the card in baht, paid to Rick
-   Tew Co., Ltd.); the pick and the US dollar Buy stay hidden; PromptPay is one
-   of the Thailand-only lines. The buy relays send cur=thb on every Buy, so an
-   old dollar link lands on Rick Tew Co. too. To bring dollars back: DOLLARS =
-   true here, and the cur check back in /aininja/shop/buy/ and /hininja/buy/. */
+   EVERY BUY PAYS RICK TEW CO. (21 Oct 2026). Rick: "we default to the Rick Tew
+   Co., for now", and for a visitor from abroad: "Customer SEES what would be
+   normal to see, when it goes to Striple or pay it can show how it is supposed
+   to show ... We don't sell aininja to tourists". So a visit from Thailand sees
+   the baht way and PromptPay; everyone else sees the US dollar view (GNS at its
+   dollar price; the two apps say "Want one? Write to me.", no price, no Buy), and Stripe's
+   Adaptive Pricing on Rick Tew Co. shows them their own currency at checkout.
+   The buy relays send cur=thb on every Buy, so every card lands on Rick Tew
+   Co. The "Pay in" pick is gone: both choices would reach the same company.
+   Tew's Inc on these pages again: the cur check back in /aininja/shop/buy/ and
+   /hininja/buy/, and the pick shown in show(). */
 (function () {
   "use strict";
-  var DOLLARS = false;
   var lines = document.querySelectorAll("[data-th]"), hasWays = !!document.querySelector("[data-way]");
   if (!lines.length && !hasWays) return;
   function pick(cur) {
@@ -35,13 +37,9 @@
   [].forEach.call(document.querySelectorAll(".pick button[data-cur]"), function (b) {
     b.addEventListener("click", function () { pick(b.getAttribute("data-cur")); });
   });
-  if (hasWays && !DOLLARS) pick("thb");
   function show() {
     [].forEach.call(lines, function (el) { el.hidden = false; });
-    if (hasWays && DOLLARS) {
-      [].forEach.call(document.querySelectorAll(".pick"), function (el) { el.hidden = false; });
-      pick("thb");
-    }
+    if (hasWays) pick("thb");
   }
   var preview = /[?&]th=([01])(?:&|$)/.exec(location.search);
   if (preview) { if (preview[1] === "1") show(); return; }

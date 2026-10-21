@@ -1437,15 +1437,27 @@ location in Samui", "simply pause and or hide the other Stripe option", "we
 default to the Rick Tew Co., for now as we are doing more work and focus here
 and when that changes we can simply adjust".
 
-- **The pause, pages only (the checkout code is untouched, still on hold):**
-  `assets/th.js` has `DOLLARS = false`, so every visitor gets the baht way on
-  MamaMia, the Spa booking site, /hininja/ and /gns/ ("Pay ฿X by card", to Rick
-  Tew Co.); the "Pay in" pick (no longer `data-th`) and the US dollar Buy stay
-  hidden; the PromptPay buttons are `data-th`, Thailand only. Both relays
-  (`/aininja/shop/buy/`, `/hininja/buy/`) add `cur=thb` to every Buy, so an
-  old dollar link lands on Rick Tew Co. too. **It needs `SHOP_TH_LIVE=on`** on
-  tews-inc: off, a `cur=thb` Buy falls back to Tew's Inc in dollars. To bring
-  dollars back: `DOLLARS = true` and the cur check back in the two relays.
+- **What each visitor sees (the same day, second pass, via TEWBEDO; Rick:
+  "Customer SEES what would be normal to see, when it goes to Striple or pay
+  it can show how it is supposed to show ... We don't sell aininja to
+  tourists"; his clicks on two yellow boxes in a local preview):** a visit
+  from Thailand gets the baht way (card in baht + PromptPay, no pick). Anyone
+  else gets the US dollar view: GNS on /hininja/ and /gns/ exactly as he
+  designed it ($2,222, "Buy 2 weeks, $2,222"), and MamaMia and the Spa booking
+  site show NO price and NO Buy, only "Want one? Write to me." (no word of
+  Thailand, his 19 Oct red-flag rule; their "At checkout you add ..." line is
+  `data-th`). Stripe's Adaptive Pricing then shows a buyer abroad their own
+  currency: ฿69,999 is about $2,130 to $2,175 on a US card (rate ~33.5 plus
+  Stripe's 2 to 4%), under the $2,222 on the page, never over. The "Pay in"
+  pick is gone (both choices reach the same company; no longer `data-th`).
+- **The wall is the relays (the checkout code is untouched, still on hold):**
+  both (`/aininja/shop/buy/`, `/hininja/buy/`) add `cur=thb` to every Buy, so
+  every card, old links included, lands on Rick Tew Co. **It needs
+  `SHOP_TH_LIVE=on`** on tews-inc: off, a `cur=thb` Buy falls back to Tew's
+  Inc in dollars. Tew's Inc itself is NOT switched off: Rick, in TEWBEDO,
+  "just using the Rick Tew Co. Stripe for certain sites can just leave Tews as
+  it is for taking payments for global products or other things we do". To
+  put Tew's Inc back on these pages: the cur check back in the two relays.
   Checked 21 Oct before pausing: the only ricktew.com orders were two test
   payments (19 Oct), so no live buyer was on Tew's Inc. TEWBEDO read Stripe
   the same day: Tew's Inc has no active subscription (the three R2 Hosting

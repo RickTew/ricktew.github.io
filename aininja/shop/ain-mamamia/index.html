@@ -194,21 +194,10 @@ footer a:hover{color:var(--blue-d)}
                  Thailand. The baht way's figures come from /assets/promptpay.js. The card in baht is the Digital
                  Dojo's one checkout with cur=thb: one payment in baht to Rick Tew Co., Ltd., nothing renews. -->
             <p class="pick" hidden>Pay in: <span role="group" aria-label="Pay in"><button type="button" data-cur="thb" aria-pressed="false">฿ Baht</button><button type="button" data-cur="usd" aria-pressed="true">$ US dollars</button></span></p>
+            <!-- From abroad (21 Oct 2026; Rick: "We don't sell aininja to tourists"): no price and no Buy,
+                 and no word of Thailand (Rick, 19 Oct: "a red flag"). A visit from Thailand gets the baht way below. -->
             <div data-way="usd">
-              <div class="amount">$222 <small>to build</small></div>
-              <p>First month included. Then $99 a month.</p>
-              <p class="note">Renews automatically at $99 a month after the first 30 days, until you cancel. Cancel anytime with the link in your order email. Your photos and words come with you.</p>
-              <!-- Rick, 7 Oct 2026: "no refunds for this work as I can not get that time back", and for the
-                   wording: "no refunds but you can reword my words to what would be normal to see or say".
-                   The same line sits under Stripe's Pay button and in Terms section 3. -->
-              <p class="note">All sales are final. No refunds.</p>
-              <!-- The Dojo's one checkout (Rick, 7 Oct 2026: "these will be the same as the workbooks where we
-                   only need one and the price is the same and they just choose the one they want so we don't
-                   need 100 stripe links for each app"). ricktew-shop's /buy makes a Stripe page for the SKU:
-                   $222 today, $99 a month after a 30-day trial, "Baby's first name" asked there. After paying
-                   the buyer lands on /aininja/shop/ain-mamamia/thanks/. The next app at the same price is the
-                   same address with its own SKU. -->
-              <a class="btn btn-blue buy" id="buyMamaMia" href="/aininja/shop/buy/?sku=AIN-MAMAMIA">Buy MamaMia</a>
+              <p>Want one? <a href="/aininja/#opt-8c">Write to me</a>.</p>
             </div>
             <div data-way="thb" data-sku="AIN-MAMAMIA" hidden>
               <div class="amount"><span class="thb-amt"></span> <small class="thb-what"></small></div>
@@ -219,7 +208,7 @@ footer a:hover{color:var(--blue-d)}
             </div>
           </div>
         </div>
-        <p class="after">At checkout you add the baby&rsquo;s first name. Mama gets her own link and her own code.</p>
+        <p class="after" data-th hidden>At checkout you add the baby&rsquo;s first name. Mama gets her own link and her own code.</p>
         <p class="ask"><a href="/aininja/#opt-8c">A question first? Write to me.</a></p>
       </div>
     </div>
