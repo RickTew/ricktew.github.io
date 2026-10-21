@@ -1424,6 +1424,36 @@ open items); read it before changing the page. Canonical program docs:
 
 ---
 
+## Who runs the site: Rick Tew Co., Ltd. (21 Oct 2026)
+
+For Thailand's ETDA digital platform filing, which files by operating company
+with no "doing business as". Rick's ruling in the Digital Dojo chat, "Move every
+site to Rick Tew Co.", then his click here, "Yes, do it": ricktew.com is run by
+**Rick Tew Co., Ltd.** (a Thai company on Koh Samui), and **each sale belongs
+to the company that charges the card**: US dollars, Tew's Inc (Las Vegas,
+Nevada, its own Stripe); Thai baht, Rick Tew Co., Ltd. Never write that Rick
+Tew Co. sells everything while Tew's Inc's Stripe takes the dollars: Stripe's
+restricted list bans "receiving settlement proceeds for goods or services that
+you did not provide", so that wording needs a dollar Stripe on Rick Tew Co.
+first (TEWBEDO's lane).
+
+- **Terms** (`aininja/legal/terms.html`, dated 21 October 2026): the top line
+  reads "ricktew.com and The Digital Dojo, run by Rick Tew Co., Ltd."; section 9
+  is "Who you are dealing with, and the law" (your agreement is with the
+  company that charged you, and its law governs: Nevada for Tew's Inc,
+  Thailand for Rick Tew Co.); section 8's liability cap is that company's.
+  **Privacy** has the same top line and says each company keeps its own
+  payment records. Both footers start "Rick Tew Co., Ltd.".
+- **Footers:** "Run by Rick Tew Co., Ltd." on 31 pages (front page, /hininja/
+  and its history page, /hsp/, /about/, the older pages, and every AI Ninja
+  page's "THE DIGITAL DOJO · by Rick Tew" line). The copyright stays "Rick
+  Tew". The HI and older pages also gained a Terms link (they had none, yet
+  /hininja/ sells GNS). /gns/ is left as designed.
+- The ETDA filing itself is the Digital Dojo's; this chat tells it when a
+  change here is live.
+
+---
+
 ## Hosting
 
 **LIVE on GitHub Pages.** The migration below is DONE, kept only as a record.
