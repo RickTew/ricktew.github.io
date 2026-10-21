@@ -31,9 +31,9 @@
   /hininja/buy/?sku=HIN-GNS-2W&src=gns, the HI page's own Buy step into the
   Dojo's one checkout. src=gns tags the order as this page's (gns.js turns a
   post's ?src=instagram into gns-instagram), for the 6-month comparison of
-  the two pages. Contact and private sessions still go to the mailbox on
-  /aininja/ (?about=gns-private, gns-ask; ?about=gns is kept there for old
-  links). NinjaGym removed GNS on 28 Sep 2026 and ninjagym.com/gns/*
+  the two pages. Contact and private sessions go to this page's own ask box
+  (#ask, since 21 Oct 2026; it posts to the mailbox). The /aininja/
+  ?about=gns-private, gns-ask and gns presets stay there for old links. NinjaGym removed GNS on 28 Sep 2026 and ninjagym.com/gns/*
   redirects here.
 
   The vault tapes and the world photos are NOT copied: they are the same
@@ -314,6 +314,26 @@ img,video{max-width:100%;height:auto}
 .gt-faq-plus{ color:var(--orange); font-family:var(--font-bangers),cursive; font-size:1.4rem; transition:transform .18s ease; }
 .gt-faq[open] .gt-faq-plus{ transform:rotate(45deg); }
 .gt-faq p{ margin-top:.6rem; font-size:.92rem; color:rgba(245,233,216,.8); line-height:1.6; }
+/* the ask box (21 Oct 2026): a question goes to Rick's mailbox from this page, not the AI page */
+.gt-ask-lead{ margin-top:.75rem; color:rgba(245,233,216,.8); }
+.gt-ask{ margin-top:2rem; background:var(--ink2); border:1px solid var(--edge); border-radius:14px; padding:1.25rem; text-align:left; }
+.gt-ask .gt-fld{ display:flex; flex-direction:column; gap:.35rem; margin-top:.9rem; }
+.gt-ask .gt-fld:first-child{ margin-top:0; }
+.gt-ask label{ font-weight:800; color:var(--gold); font-size:.92rem; }
+.gt-ask input, .gt-ask textarea{ font:inherit; color:var(--paper); background:var(--ink); border:1.5px solid rgba(245,233,216,.22); border-radius:10px; padding:.7rem .85rem; width:100%; }
+.gt-ask textarea{ min-height:8.5rem; resize:vertical; }
+.gt-ask input:focus-visible, .gt-ask textarea:focus-visible{ outline:3px solid var(--gold); outline-offset:2px; border-color:var(--orange); }
+.gt-ask-row{ display:grid; gap:.9rem; }
+@media (min-width:640px){ .gt-ask-row{ grid-template-columns:1fr 1fr; } .gt-ask-row .gt-fld{ margin-top:0; } }
+.gt-ask .gt-cta{ margin-top:1.1rem; border:0; cursor:pointer; }
+.gt-ask .gt-cta:disabled{ opacity:.6; cursor:default; }
+.gt-ask-err{ display:none; margin-top:.75rem; color:#ffb4a8; font-size:.92rem; }
+.gt-ask-err.on{ display:block; }
+.gt-ask-done{ display:none; text-align:center; }
+.gt-ask-done.on{ display:block; }
+.gt-ask-done h3{ font-family:var(--font-bangers),cursive; font-size:2rem; color:var(--gold); letter-spacing:.02em; }
+.gt-ask-done p{ margin-top:.5rem; color:rgba(245,233,216,.8); }
+.gt-trap{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
 
 /* final */
 .gt-final{ position:relative; overflow:hidden; padding:clamp(4rem,9vw,7rem) 0; background:linear-gradient(180deg, rgba(226,59,46,.14), rgba(0,0,0,.4)); border-top:1px solid var(--edge); }
@@ -883,7 +903,7 @@ img,video{max-width:100%;height:auto}
         </div>
       </div>
 
-      <p class="gt-eyebrow gt-reveal mt-8" data-way="thb" hidden>Stay longer? <a href="/aininja/?about=gns-ask#opt-8c">Write to me</a> for a longer stay.</p>
+      <p class="gt-eyebrow gt-reveal mt-8" data-way="thb" hidden>Stay longer? <a href="#ask">Write to me</a> for a longer stay.</p>
 
       <!-- Rick, 10 Oct 2026: the next group; 12 Oct: arrive any day, classes run
            all year. The same facts as /hininja/. The all-sales line sits under
@@ -1125,13 +1145,44 @@ img,video{max-width:100%;height:auto}
       </div>
       <div class="gt-faqs mt-8">
         <details class="gt-reveal gt-faq"><summary>Do I need experience?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>No. It is built for beginners. Trained before? Welcome too. Everyone trains at their level. Not a fight camp. No sparring unless you ask.</p></details>
+        <details class="gt-reveal gt-faq"><summary>Got an injury, or not very fit?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>Tell me before you come. Every drill has an easier version, and the Guide keeps it at your level.</p></details>
         <details class="gt-reveal gt-faq"><summary>What if I am not a morning person?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>No worries. Just show up to the evening review sessions, where we go over what we did that morning. Mr. Tew rotates teaching mornings and evenings, so both types get at least 2 classes a week with Mr. Tew.</p></details>
         <details class="gt-reveal gt-faq"><summary>Can I bring my family or kids?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>The live-in program stays in hostel-style bunks built for solo travelers, so it is not set up for families to lodge together. You are welcome to book your own accommodation nearby, and the kids can train at our NinjaGym Kids center while you are in the program.</p></details>
-        <details class="gt-reveal gt-faq"><summary>Can I stay longer?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>Yes<span data-way="usd">, a flat $1,000 per extra week. So 3 weeks is $3,222, 4 weeks is $4,222. The 222 tail stays.</span><span data-way="thb" hidden>. <a href="/aininja/?about=gns-ask#opt-8c">Write to me</a> for a longer stay.</span></p></details>
+        <details class="gt-reveal gt-faq"><summary>Can I stay longer?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>Yes<span data-way="usd">, a flat $1,000 per extra week. So 3 weeks is $3,222, 4 weeks is $4,222. The 222 tail stays.</span><span data-way="thb" hidden>. <a href="#ask">Write to me</a> for a longer stay.</span></p></details>
         <details class="gt-reveal gt-faq"><summary>What is the free month of WinJitsu?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>Every enrollment comes with one free month of WinJitsu.com, our separate training app. It holds the full home study program and everything we actually teach.</p></details>
         <details class="gt-reveal gt-faq"><summary>Where exactly is it?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>Rick Tew's NinjaGym, Big C Mall, Koh Samui, plus a small hostel nearby. Game room at both.</p></details>
         <details class="gt-reveal gt-faq"><summary>Already have a place on Samui?<span class="gt-faq-plus" aria-hidden="true">+</span></summary><p>Skipping the dorm does not change the price. You arrange your own room nearby and keep everything else in the program, plus a private 1-on-1 meetup and chat with Rick.</p></details>
       </div>
+    </div>
+  </section>
+
+  <!-- 10b. ASK (21 Oct 2026): this page's own question box. Contact went to
+       ninjagym.com/contact until NinjaGym dropped GNS on 28 Sep, then to the AI
+       page's mailbox as a stopgap; in the head-to-head round 8 of 12 readers
+       landed there and 6 would have quit. Same mailbox, same walls, subject
+       hininja, sent from here. The trap field sits outside the form. -->
+  <section class="gt-sec" id="ask">
+    <div class="shell-3xl">
+      <div class="gt-reveal tc">
+        <h2 class="gt-h2">Shh, ask first</h2>
+        <p class="gt-ask-lead">A question before you enroll? It goes to Rick's mailbox; check your inbox for the reply.</p>
+      </div>
+      <div class="gt-ask gt-reveal">
+        <form id="askForm" novalidate>
+          <div class="gt-ask-row">
+            <div class="gt-fld"><label for="askName">Your name</label><input id="askName" name="name" type="text" autocomplete="name" maxlength="100" required></div>
+            <div class="gt-fld"><label for="askEmail">Your email</label><input id="askEmail" name="email" type="email" autocomplete="email" maxlength="200" required></div>
+          </div>
+          <div class="gt-fld"><label for="askMsg">Your question</label><textarea id="askMsg" name="message" maxlength="4900" required></textarea></div>
+          <button class="gt-cta gt-cta-fill" id="askSend" type="submit">Send it to Rick</button>
+          <p class="gt-ask-err" id="askErr" role="alert"></p>
+        </form>
+        <div class="gt-ask-done" id="askDone" tabindex="-1">
+          <h3>Posted.</h3>
+          <p>Rick's Ninja Agent answers first, and Rick picks it up from there.</p>
+        </div>
+      </div>
+      <div class="gt-trap" aria-hidden="true"><label for="askWebsite">Leave this empty</label><input id="askWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></div>
     </div>
   </section>
 
@@ -1146,7 +1197,7 @@ img,video{max-width:100%;height:auto}
         <a href="/">RickTew.com</a>
         <a href="https://www.ninjagym.com" target="_blank" rel="noopener noreferrer">NinjaGym.com</a>
         <a href="https://www.winjitsu.com" target="_blank" rel="noopener noreferrer">WinJitsu.com</a>
-        <a href="/aininja/?about=gns-ask#opt-8c">Contact</a>
+        <a href="#ask">Contact</a>
       </div>
     </div>
   </section>

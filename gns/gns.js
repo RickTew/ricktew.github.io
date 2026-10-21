@@ -2,8 +2,8 @@
    Ported 28 Sep 2026 from the NinjaGym Next.js components (GnsLanding,
    GnsVault, GnsQuiz, GnsMotion). The words are theirs, unchanged.
    Enroll goes to the checkout (Rick's click, 12 Oct 2026) through the HI
-   page's Buy step, tagged src=gns; contact still goes to the mailbox on
-   /aininja/ with the request written in.
+   page's Buy step, tagged src=gns; a question goes to the mailbox from this
+   page's own ask box (#ask, 21 Oct 2026), never the AI page.
    No long dashes anywhere (GNS rule and site rule). */
 (function () {
   "use strict";
@@ -23,7 +23,7 @@
   });
   /* PromptPay for payers in Thailand (17 Oct 2026): the HI door's card, with the same tag. */
   [].forEach.call(document.querySelectorAll('a[href^="/hininja/promptpay/?"]'), function (a) { a.setAttribute("href", "/hininja/promptpay/?sku=HIN-GNS-2W&src=" + SRC); });
-  var CONTACT = "/aininja/?about=gns-private#opt-8c";
+  var CONTACT = "#ask";
   /* The price as the page shows it: baht when a visit from Thailand has baht picked (th.js
      writes the figure from /assets/promptpay.js), else dollars (Rick, 20 Oct 2026). */
   function shownPrice() {
@@ -413,9 +413,9 @@
   /* honest screening notes so nobody lands uncomfortable */
   function fitNotes(a) {
     var notes = [];
-    if (a.vibe === "serious") notes.push({ tone: "warn", text: "Straight talk: GNS group sessions run on jokes, games and deliberate goofiness (it is in the name). If you want strictly serious training, private 1-on-1 sessions with Rick are a better fit. They are booked separately at their own rate, so reach out through the contact page before enrolling and we will point you right." });
-    if (a.live === "own") notes.push({ tone: "warn", text: "Heads up on housing: the program includes shared, dorm-style ninja lodging, and it is basically thrown in free, so skipping it does not change the price. Needing your own room or villa is completely fine: you arrange and cover that yourself nearby and keep everything else in the program. To make up for it, you get a private 1-on-1 meetup and chat with Rick (think Coffee and no Kicks), and we will happily point you to good spots nearby. Message us via the contact page." });
-    if (a.who === "family") notes.push({ tone: "info", text: "Bringing kids or family? The GNS program itself is built for the adult; the kids plug into NinjaGym's regular classes and camps. Tell us ages via the contact page and we will map it out." });
+    if (a.vibe === "serious") notes.push({ tone: "warn", text: "Straight talk: GNS group sessions run on jokes, games and deliberate goofiness (it is in the name). If you want strictly serious training, private 1-on-1 sessions with Rick are a better fit. They are booked separately at their own rate, so reach out through the ask box at the bottom of this page before enrolling and we will point you right." });
+    if (a.live === "own") notes.push({ tone: "warn", text: "Heads up on housing: the program includes shared, dorm-style ninja lodging, and it is basically thrown in free, so skipping it does not change the price. Needing your own room or villa is completely fine: you arrange and cover that yourself nearby and keep everything else in the program. To make up for it, you get a private 1-on-1 meetup and chat with Rick (think Coffee and no Kicks), and we will happily point you to good spots nearby. Message us in the ask box at the bottom of this page." });
+    if (a.who === "family") notes.push({ tone: "info", text: "Bringing kids or family? The GNS program itself is built for the adult; the kids plug into NinjaGym's regular classes and camps. Tell us ages in the ask box at the bottom of this page and we will map it out." });
     return notes;
   }
 
@@ -709,6 +709,7 @@
     if (a.vibe === "serious") {
       var ask = el("a", "qz-btn qz-btn-red", "Ask about private sessions");
       ask.href = CONTACT;
+      ask.addEventListener("click", function () { askAbout("private 1-on-1 sessions with Rick"); });
       res.appendChild(ask);
       res.appendChild(btn("qz-link", "See the full (goofy) program anyway", toTop));
       res.appendChild(btn("qz-link", "Enroll in GNS regardless, I can handle jokes", enroll));
@@ -718,6 +719,11 @@
     } else {
       res.appendChild(btn("qz-btn qz-btn-md", "See the full program", toTop));
       res.appendChild(btn("qz-link", "Or enroll when you're ready", enroll));
+    }
+    if (a.vibe !== "serious" && (a.live === "own" || a.who === "family")) {
+      var askq = el("a", "qz-link", "Ask a question first");
+      askq.href = CONTACT;
+      res.appendChild(askq);
     }
     if (a.pull === "coach") {
       var wj = el("a", "qz-link", "Peek at WinJitsu, the mental martial art");
@@ -787,4 +793,41 @@
   }
   if (reduced) setArc(0.5);
   else onScrollRAF(function () { setArc(elementProgress(dn)); });
+
+  // The ask box (#ask, 21 Oct 2026): the same mailbox and walls as the form on
+  // /hininja/ (subject hininja, the trap field outside the form, the fill time),
+  // posted from here so a question never lands on the AI page. The first line
+  // says which page it came from; a post's ?src= rides along when it is on the
+  // mailbox's list (the endpoint checks again), else it is "gns".
+  var askForm = document.getElementById("askForm");
+  var askMsg = document.getElementById("askMsg");
+  var askTopic = "";
+  function askAbout(t) { askTopic = t; if (askMsg && !askMsg.value.trim()) askMsg.value = "About " + t + ": "; }
+  if (askForm) {
+    var askShown = Date.now();
+    var askSrc = "gns";
+    try {
+      var s0 = (new URLSearchParams(location.search).get("src") || "").toLowerCase();
+      if (/^[a-z]{1,20}$/.test(s0)) askSrc = s0;
+    } catch (e) {}
+    var askErr = document.getElementById("askErr"), askSend = document.getElementById("askSend");
+    var askFail = function (m) { askErr.textContent = m; askErr.classList.add("on"); };
+    askForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      askErr.classList.remove("on");
+      var f = askForm.elements;
+      var name = f.namedItem("name").value.trim(), email = f.namedItem("email").value.trim(), text = askMsg.value.trim();
+      if (!name || !email || !text) { askFail("Name, an address to reply to, and your question. That is all of it."); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { askFail("That email address does not look right. The reply goes there."); return; }
+      var first = "About: Gooffy Ninja ShhT!!" + (askTopic ? ", " + askTopic : "") + ", from the GNS page.";
+      var data = { name: name, email: email, subject: "hininja", message: first + "\n\n" + text,
+        website: document.getElementById("askWebsite").value, elapsedMs: Date.now() - askShown, source: askSrc };
+      askSend.disabled = true; askSend.textContent = "Posting...";
+      fetch("https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
+      }).then(function (res) { if (!res.ok) throw new Error(String(res.status)); return res.json(); })
+        .then(function () { askForm.hidden = true; var d = document.getElementById("askDone"); d.classList.add("on"); d.focus(); })
+        .catch(function () { askSend.disabled = false; askSend.textContent = "Send it to Rick"; askFail("That did not go through. Check your connection and press send again."); });
+    });
+  }
 })();

@@ -53,6 +53,11 @@ function rng(seed) { return () => (seed = (seed * 1103515245 + 12345) % 21474836
       const r = await ctx.request.get(new URL(h, BASE + URL_).href);
       if (r.status() !== 200) flag("dead link", at + " " + h + " " + r.status());
     }
+    // a question stays on this page (21 Oct 2026): no link to the AI page but its asset files
+    for (const h of new Set(await p.$$eval("a[href]", a => a.map(x => x.getAttribute("href")))))
+      if (/^\/aininja\/(?!assets\/)/.test(h)) flag("contact", at + ": a link to the AI page, " + h);
+    const contact = await p.$$eval(".gt-foot a", a => a.filter(x => x.textContent.trim() === "Contact").map(x => x.getAttribute("href")));
+    if (contact.join() !== "#ask") flag("contact", at + ": footer Contact is " + JSON.stringify(contact));
     const enrolls = await p.$$eval("a", a => a.filter(x => /enroll/i.test(x.textContent)).map(x => x.href));
     if (enrolls.length < 4) flag("enroll", at + ": only " + enrolls.length + " Enroll links");
     enrolls.forEach(h => { if (h !== ENROLL) flag("enroll", at + ": " + h); });
@@ -135,7 +140,7 @@ function rng(seed) { return () => (seed = (seed * 1103515245 + 12345) % 21474836
       if (/[–—]/.test(out)) flag("quiz", at + " walk " + walk + ": long dash");
       if (!/^The (Shadow|Thunder|Twilight) /m.test(out)) flag("quiz", at + " walk " + walk + ": type " + (out.match(/The .*/) || [""])[0]);
       const hrefs = await p.$$eval(qz + " a", a => a.map(x => x.href));
-      hrefs.forEach(h => { if (h !== BASE + "/aininja/?about=gns-private#opt-8c" && !/^https:\/\/www\.winjitsu\.com\/?$/.test(h)) flag("quiz", at + ": link " + h); });
+      hrefs.forEach(h => { if (h !== BASE + URL_ + "#ask" && !/^https:\/\/www\.winjitsu\.com\/?$/.test(h)) flag("quiz", at + ": link " + h); });
       if (walk === 3) {
         const full = await p.$(qz + " >> text=/^See the full/");
         if (!full) flag("quiz", at + ": no See the full program button");
@@ -215,6 +220,43 @@ function rng(seed) { return () => (seed = (seed * 1103515245 + 12345) % 21474836
         if (bought !== ENROLL) flag("enroll", at + ": the quiz's enroll went to " + (bought || q.url()));
       }
       await ec.close();
+    }
+
+    // The ask box: an empty press posts nothing; a filled one posts the mailbox's
+    // shape (subject hininja, the page in the first line, a post's ?src=, the
+    // trap empty) to a stubbed endpoint and shows Posted. Nothing is sent.
+    {
+      const ac = await b.newContext({ ...opts, serviceWorkers: "block" });
+      const q = await ac.newPage();
+      q.on("pageerror", e => errs.push("ask: " + e.message));
+      const posts = [];
+      await q.route(/stripe\.com/, r => r.abort());
+      await q.route(/supabase\.co/, r => {
+        if (/ricktew-contact/.test(r.request().url()) && r.request().method() === "POST") {
+          posts.push(JSON.parse(r.request().postData() || "{}"));
+          return r.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
+        }
+        return r.abort();
+      });
+      await q.goto(BASE + URL_ + "?src=instagram", { waitUntil: "load" });
+      await q.evaluate(() => document.getElementById("ask").scrollIntoView());
+      await q.click("#askSend");
+      if (!(await q.isVisible("#askErr"))) flag("ask", at + ": an empty press shows no error");
+      await q.fill("#askName", "Sweep Test");
+      await q.fill("#askEmail", "sweep@example.com");
+      await q.fill("#askMsg", "Is there a room for two?");
+      await q.click("#askSend");
+      await q.waitForSelector("#askDone.on", { timeout: 5000 }).catch(() => flag("ask", at + ": no Posted after a filled press"));
+      if (posts.length !== 1) flag("ask", at + ": " + posts.length + " posts");
+      else {
+        const d = posts[0];
+        if (d.subject !== "hininja") flag("ask", at + ": subject " + d.subject);
+        if (!/^About: Gooffy Ninja ShhT!!, from the GNS page\.\n\nIs there a room for two\?$/.test(d.message || "")) flag("ask", at + ": message " + JSON.stringify(d.message).slice(0, 120));
+        if (d.source !== "instagram") flag("ask", at + ": source " + d.source);
+        if (d.website !== "") flag("ask", at + ": trap field not empty");
+        if (!(d.elapsedMs > 0)) flag("ask", at + ": elapsedMs " + d.elapsedMs);
+      }
+      await ac.close();
     }
 
     errs.forEach(e => flag("console", at + ": " + e.slice(0, 160)));

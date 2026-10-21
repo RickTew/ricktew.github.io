@@ -1277,7 +1277,7 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   20 Oct, on his read of the page). /gns/ matches (his click "Match
   /hininja/", same read): in baht its price chip, big number and sticky bar
   read ฿ from ITEMS, the 2/3/4-week ladder gives way to "Stay longer? Write
-  to me for a longer stay." (to the mailbox, `?about=gns-ask`), the FAQ
+  to me for a longer stay." (to the page's own ask box, `#ask`), the FAQ
   answer and the quiz's claim button and "long" plan line follow
   (`shownPrice()` in gns.js); the dollar view is his design untouched. A
   page with a baht pick shows no dollar figure in baht view, and the
@@ -1371,12 +1371,38 @@ open items); read it before changing the page. Canonical program docs:
   when src is "gns" or starts "gns-" (the Dojo's checkout, beae04a, 12 Oct);
   any other src returns to /hininja/. Success lands on /hininja/thanks/. NinjaGym removed GNS on 28 Sep (its checkout,
   bookings table and images are gone; ninjagym.com/gns, /gns/* and
-  /gooffy-ninja 308 here). Contact still goes to the mailbox: the quiz's
-  private-sessions button `?about=gns-private`, the footer Contact
-  `?about=gns-ask`; `?about=gns` stays in the slot script's fixed list for
-  old links. The Ninja Agent's auto-reply answers them from the chat box's
-  `hininja` entry, then Rick follows up. Never edit anything in
-  `~/Dev/NinjaGym`.
+  /gooffy-ninja 308 here). **A question stays on /gns/ (21 Oct 2026, Rick:
+  "it used to have its own ... Obviously it should not go there"):** the page
+  has its own ask box, `#ask` ("Shh, ask first", name, email, question),
+  posting from `gns.js` to the mailbox with subject `hininja`, the first line
+  "About: Gooffy Ninja ShhT!!, from the GNS page." (plus ", private 1-on-1
+  sessions with Rick" from the quiz's private button), a post's `?src=` when
+  it is on the mailbox's list (else `gns`), and the trap field outside the
+  form. The footer Contact, the baht view's "Write to me" lines and the
+  quiz's buttons all point at `#ask`; no link on /gns/ goes to /aininja/ but
+  the asset files (the sweep fails on one). History: Contact went to
+  ninjagym.com/contact, then from 28 Sep to the AI page's mailbox as a
+  stopgap, and /gns/ was never re-pointed when /hininja/ got its own form on
+  9 Oct; 8 of 12 head-to-head readers landed on the blue page and 6 would
+  have quit. The `?about=gns`, `gns-private` and `gns-ask` presets stay on
+  /aininja/ for links already out. The Ninja Agent's auto-reply answers them
+  from the chat box's `hininja` entry, then Rick follows up. Never edit
+  anything in `~/Dev/NinjaGym`.
+- **The head-to-head round of 21 Oct 2026** (`playtest/reports/2026-10-21-h2h-SUMMARY.md`,
+  12 types, each reading BOTH pages, Rick's pick "12 types"). Vote /gns/ 7,
+  /hininja/ 5, but 9 of 12 voted for the page they started on: the split by
+  type is the signal. Every fun-nerd and traveller type went /gns/ (gamers,
+  skeptic nerd, nomad, backpacker, team, couple); every careful type went
+  /hininja/ (woman alone, careful beginner, parent with a teen, 54-year-old,
+  bad knee). Legit: /gns/ 9 of 12, /hininja/ 3 of 12 (side by side, against
+  6 of 7 read alone on 12 Oct). 12 of 12 named the /gns/ photo grid as the
+  proof; 12 of 12 were confused by the door bar on /hininja/ ("is this an AI
+  company?"); 0 would buy now, 12 would write first. Rick's clicks the same
+  day: /gns/ gets its own ask box (above); /hininja/'s "Got an injury, or not
+  very fit?" is copied into the /gns/ FAQ word for word; the /gns/ photo grid
+  and caption go on /hininja/ after "What it is" (`figure.proof`), to be
+  swapped for today's adult class shots when he sends them. The page for the
+  ads is his open call.
 - **The GNS round of 12 Oct 2026** (`playtest/reports/2026-10-12-gns-SUMMARY.md`,
   7 readers in Rick's audience plus the find-them research). All 7 were UNSURE
   the training was real until the sealed file, because the open page showed no
