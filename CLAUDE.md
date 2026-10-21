@@ -1447,8 +1447,11 @@ and when that changes we can simply adjust".
   site show NO price and NO Buy, only "Want one? Write to me." (no word of
   Thailand, his 19 Oct red-flag rule; their "At checkout you add ..." line is
   `data-th`). Stripe's Adaptive Pricing then shows a buyer abroad their own
-  currency: ฿69,999 is about $2,130 to $2,175 on a US card (rate ~33.5 plus
-  Stripe's 2 to 4%), under the $2,222 on the page, never over. The "Pay in"
+  currency: Stripe offered $2,165.38 for ฿69,999 on 21 Oct (about 32.3 baht
+  to the dollar with its fee), under the $2,222 on the page TODAY. It is NOT
+  a guarantee: if the baht strengthens past about 31.5 (roughly 2.6% from 21
+  Oct), the charge comes out over $2,222 (the Tewtors chat's catch). Re-read
+  the checkout amount before any GNS or Pocket Dojo marketing push. The "Pay in"
   pick is gone (both choices reach the same company; no longer `data-th`).
 - **GNS is US dollars for EVERY visitor, Thailand included (third pass, same
   day).** Rick: "we don't really sell to visitors in thailand for our hininja
