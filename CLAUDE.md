@@ -1428,22 +1428,43 @@ open items); read it before changing the page. Canonical program docs:
 
 For Thailand's ETDA digital platform filing, which files by operating company
 with no "doing business as". Rick's ruling in the Digital Dojo chat, "Move every
-site to Rick Tew Co.", then his click here, "Yes, do it": ricktew.com is run by
-**Rick Tew Co., Ltd.** (a Thai company on Koh Samui), and **each sale belongs
-to the company that charges the card**: US dollars, Tew's Inc (Las Vegas,
-Nevada, its own Stripe); Thai baht, Rick Tew Co., Ltd. Never write that Rick
-Tew Co. sells everything while Tew's Inc's Stripe takes the dollars: Stripe's
-restricted list bans "receiving settlement proceeds for goods or services that
-you did not provide", so that wording needs a dollar Stripe on Rick Tew Co.
-first (TEWBEDO's lane).
+site to Rick Tew Co.", then his clicks here the same day. **ricktew.com is run
+by Rick Tew Co., Ltd.** (a Thai company on Koh Samui) **and everything on it is
+sold and charged by Rick Tew Co.; the Tew's Inc dollar checkout is PAUSED.**
+His words: "all aininja work for now can just be listed on Rick Tew Co. LTD",
+"even GNS now can be Rick Tew Co. LTD Stripe because the people would use our
+location in Samui", "simply pause and or hide the other Stripe option", "we
+default to the Rick Tew Co., for now as we are doing more work and focus here
+and when that changes we can simply adjust".
 
-- **Terms** (`aininja/legal/terms.html`, dated 21 October 2026): the top line
-  reads "ricktew.com and The Digital Dojo, run by Rick Tew Co., Ltd."; section 9
-  is "Who you are dealing with, and the law" (your agreement is with the
-  company that charged you, and its law governs: Nevada for Tew's Inc,
-  Thailand for Rick Tew Co.); section 8's liability cap is that company's.
-  **Privacy** has the same top line and says each company keeps its own
-  payment records. Both footers start "Rick Tew Co., Ltd.".
+- **The pause, pages only (the checkout code is untouched, still on hold):**
+  `assets/th.js` has `DOLLARS = false`, so every visitor gets the baht way on
+  MamaMia, the Spa booking site, /hininja/ and /gns/ ("Pay ฿X by card", to Rick
+  Tew Co.); the "Pay in" pick (no longer `data-th`) and the US dollar Buy stay
+  hidden; the PromptPay buttons are `data-th`, Thailand only. Both relays
+  (`/aininja/shop/buy/`, `/hininja/buy/`) add `cur=thb` to every Buy, so an
+  old dollar link lands on Rick Tew Co. too. **It needs `SHOP_TH_LIVE=on`** on
+  tews-inc: off, a `cur=thb` Buy falls back to Tew's Inc in dollars. To bring
+  dollars back: `DOLLARS = true` and the cur check back in the two relays.
+  Checked 21 Oct before pausing: the only ricktew.com orders were two test
+  payments (19 Oct), so no live buyer was on Tew's Inc.
+- **Never write that Rick Tew Co. sells something Tew's Inc's Stripe charges:**
+  Stripe's restricted list bans "receiving settlement proceeds for goods or
+  services that you did not provide". If dollars come back on Tew's Inc, the
+  Terms go back to naming both companies (commit 1713456 has that wording).
+- **Terms** (`aininja/legal/terms.html`, dated 21 October 2026): top line
+  "ricktew.com and The Digital Dojo, run by Rick Tew Co., Ltd."; section 3
+  opens "Every payment on ricktew.com goes to Rick Tew Co., Ltd." (a card at
+  checkout is in baht; the Shop apps and GNS are "at the price shown on" their
+  page, no dollar figure); section 8's cap is Rick Tew Co.'s; section 9, "Who
+  you are dealing with, and the law", governed by the laws of Thailand.
+  **Privacy**: same top line, "Every payment is made to Rick Tew Co., Ltd.".
+  Both footers start "Rick Tew Co., Ltd.".
+- **Still in dollars on purpose:** the /aininja/ plan cards (Your Dojo
+  $2,222 a month, R2 Hosting $222 then $99) are invoiced, not checkout, and
+  TEWBEDO bills them from Rick Tew Co.; llms.txt and the two app pages'
+  Product JSON-LD keep the dollar list price (the one-place wall keeps baht
+  out of them).
 - **Footers:** "Run by Rick Tew Co., Ltd." on 31 pages (front page, /hininja/
   and its history page, /hsp/, /about/, the older pages, and every AI Ninja
   page's "THE DIGITAL DOJO · by Rick Tew" line). The copyright stays "Rick

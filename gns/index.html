@@ -892,13 +892,13 @@ img,video{max-width:100%;height:auto}
            Thailand. In baht, the price chip, the big number and the sticky bar read baht and the ladder
            gives way to one line (Rick, 20 Oct). The baht figures come from /assets/promptpay.js. gns.js tags all three buttons src=gns and keeps
            the card's cur=thb; PromptPay is the HI door's card, paid to Rick Tew Co., Ltd. -->
-      <p class="pick gt-pick gt-reveal mt-4" data-th hidden>Pay in: <span role="group" aria-label="Pay in"><button type="button" data-cur="thb" aria-pressed="false">฿ Baht</button><button type="button" data-cur="usd" aria-pressed="true">$ US dollars</button></span></p>
+      <p class="pick gt-pick gt-reveal mt-4" hidden>Pay in: <span role="group" aria-label="Pay in"><button type="button" data-cur="thb" aria-pressed="false">฿ Baht</button><button type="button" data-cur="usd" aria-pressed="true">$ US dollars</button></span></p>
       <div data-way="usd">
         <a href="/hininja/buy/?sku=HIN-GNS-2W&amp;src=gns" class="gt-cta gt-cta-fill gt-reveal mt-4">Enroll Now</a>
       </div>
       <div data-way="thb" data-sku="HIN-GNS-2W" hidden>
         <a href="/hininja/buy/?sku=HIN-GNS-2W&amp;src=gns&amp;cur=thb" class="gt-cta gt-cta-fill gt-reveal mt-4 thb-card">Pay by card</a>
-        <a href="/hininja/promptpay/?sku=HIN-GNS-2W&amp;src=gns" class="gt-cta gt-cta-ghost gt-pp gt-reveal mt-4 thb-pp">Pay with PromptPay</a>
+        <a href="/hininja/promptpay/?sku=HIN-GNS-2W&amp;src=gns" class="gt-cta gt-cta-ghost gt-pp gt-reveal mt-4 thb-pp" data-th hidden>Pay with PromptPay</a>
       </div>
       <p class="gt-buy-note gt-reveal">At checkout you add your arrival date. All sales are final; your dates can move to another two weeks, within a year of buying.</p>
     </div>

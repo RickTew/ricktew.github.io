@@ -13,11 +13,21 @@
    those lines. From Thailand it opens on baht ("Baht first, like the app",
    Rick on tewtors.com) and switches the page's [data-way] blocks: "usd" is the
    US dollar Buy, shown to everyone else; "thb" is the card in baht and
-   PromptPay, its figures written by /assets/promptpay.js. */
+   PromptPay, its figures written by /assets/promptpay.js.
+
+   DOLLARS PAUSED (21 Oct 2026). Rick: "we default to the Rick Tew Co., for now
+   as we are doing more work and focus here and when that changes we can simply
+   adjust", and for the pages, "simply pause and or hide the other Stripe
+   option". So every visitor gets the baht way (the card in baht, paid to Rick
+   Tew Co., Ltd.); the pick and the US dollar Buy stay hidden; PromptPay is one
+   of the Thailand-only lines. The buy relays send cur=thb on every Buy, so an
+   old dollar link lands on Rick Tew Co. too. To bring dollars back: DOLLARS =
+   true here, and the cur check back in /aininja/shop/buy/ and /hininja/buy/. */
 (function () {
   "use strict";
-  var lines = document.querySelectorAll("[data-th]");
-  if (!lines.length) return;
+  var DOLLARS = false;
+  var lines = document.querySelectorAll("[data-th]"), hasWays = !!document.querySelector("[data-way]");
+  if (!lines.length && !hasWays) return;
   function pick(cur) {
     [].forEach.call(document.querySelectorAll("[data-way]"), function (el) { el.hidden = el.getAttribute("data-way") !== cur; });
     [].forEach.call(document.querySelectorAll(".pick button[data-cur]"), function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-cur") === cur)); });
@@ -25,9 +35,13 @@
   [].forEach.call(document.querySelectorAll(".pick button[data-cur]"), function (b) {
     b.addEventListener("click", function () { pick(b.getAttribute("data-cur")); });
   });
+  if (hasWays && !DOLLARS) pick("thb");
   function show() {
     [].forEach.call(lines, function (el) { el.hidden = false; });
-    if (document.querySelector("[data-way]")) pick("thb");
+    if (hasWays && DOLLARS) {
+      [].forEach.call(document.querySelectorAll(".pick"), function (el) { el.hidden = false; });
+      pick("thb");
+    }
   }
   var preview = /[?&]th=([01])(?:&|$)/.exec(location.search);
   if (preview) { if (preview[1] === "1") show(); return; }

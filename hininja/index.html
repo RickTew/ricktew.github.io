@@ -292,13 +292,13 @@ footer a:hover{color:var(--ink)}
              Buy and nothing about Thailand. The baht figures come from /assets/promptpay.js. The card in
              baht is the Digital Dojo's one checkout with cur=thb: one payment in baht to Rick Tew Co., Ltd.;
              PromptPay is the HI door's card, paid to the same company. -->
-        <p class="pick" data-th hidden>Pay in: <span role="group" aria-label="Pay in"><button type="button" data-cur="thb" aria-pressed="false">฿ Baht</button><button type="button" data-cur="usd" aria-pressed="true">$ US dollars</button></span></p>
+        <p class="pick" hidden>Pay in: <span role="group" aria-label="Pay in"><button type="button" data-cur="thb" aria-pressed="false">฿ Baht</button><button type="button" data-cur="usd" aria-pressed="true">$ US dollars</button></span></p>
         <div data-way="usd">
           <a class="btn btn-red buy" id="buyGns" href="/hininja/buy/?sku=HIN-GNS-2W">Buy 2 weeks, $2,222</a>
         </div>
         <div data-way="thb" data-sku="HIN-GNS-2W" hidden>
           <a class="btn btn-red buy thb-card" id="cardGns" href="/hininja/buy/?sku=HIN-GNS-2W&amp;cur=thb">Pay by card</a>
-          <a class="btn btn-quiet pp thb-pp" id="ppGns" href="/hininja/promptpay/?sku=HIN-GNS-2W">Pay with PromptPay</a>
+          <a class="btn btn-quiet pp thb-pp" id="ppGns" data-th hidden href="/hininja/promptpay/?sku=HIN-GNS-2W">Pay with PromptPay</a>
         </div>
         <p class="longer">At checkout you add your arrival date. All sales are final; your dates can move to another two weeks, within a year of buying.</p>
       </div>

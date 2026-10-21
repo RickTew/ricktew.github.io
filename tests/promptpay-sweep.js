@@ -16,8 +16,12 @@
      else, or with no answer, sees none of them (Rick, 19 Oct 2026);
    - the card in baht (staged 20 Oct 2026): from Thailand each Buy page opens
      on the baht way, its card button goes through the relay to the Digital
-     Dojo's checkout with cur=thb (mocked: nothing is bought), and the pick
-     switches to US dollars and back; from anywhere else no ฿ shows at all.
+     Dojo's checkout with cur=thb (mocked: nothing is bought).
+   - DOLLARS PAUSED (21 Oct 2026, Rick: "we default to the Rick Tew Co."):
+     every visitor, from Thailand or not, sees the baht way and no pick; the
+     hidden US dollar Buy also reaches the checkout with cur=thb (the relays
+     add it); from anywhere else PromptPay and every line about Thailand
+     stay hidden, and no dollar way shows.
    Exit 1 on any finding. */
 "use strict";
 const fs = require("fs"), path = require("path");
@@ -88,11 +92,7 @@ const flag = m => found.push(m);
       if (!(await p.isVisible(c.card)) || (await p.isVisible(c.buy))) flag(at + ": the baht way is not the one showing first from Thailand");
       if ((await p.innerText(c.card).catch(() => "")).trim().toLowerCase() !== ("Pay " + price + " by card").toLowerCase()) flag(at + ": the card in baht reads " + JSON.stringify(await p.innerText(c.card).catch(() => "")));
       if (c.sku === "HIN-GNS-2W" && (await p.innerText(".price-grid .amt")).trim() !== price) flag(at + ": the price at the top does not show " + price);
-      await p.click('.pick button[data-cur="usd"]');
-      if (!(await p.isVisible(c.buy)) || (await p.isVisible(c.card)) || (await p.isVisible(c.btn))) flag(at + ": the $ US dollars pick did not switch");
-      if ((await p.getAttribute('.pick button[data-cur="usd"]', "aria-pressed")) !== "true") flag(at + ": the $ US dollars pick is not marked pressed");
-      await p.click('.pick button[data-cur="thb"]');
-      if (!(await p.isVisible(c.card))) flag(at + ": the ฿ Baht pick did not switch back");
+      if (await p.isVisible(".pick")) flag(at + ": the Pay in pick shows while dollars are paused");
       // The card in baht, through the relay to the checkout with cur=thb.
       const cardHref = await p.getAttribute(c.card, "href");
       const cardWant = c.relay + "?sku=" + c.sku + "&cur=thb" + (src ? "&src=instagram" : "");
@@ -104,6 +104,14 @@ const flag = m => found.push(m);
       const fnWant = CHECKOUT + "?sku=" + c.sku + (src ? "&src=instagram" : "") + "&cur=thb";
       if (checkout !== fnWant) flag(at + ": the card in baht reached " + checkout + ", not " + fnWant);
       await cp.close();
+      // The hidden US dollar Buy (an old link) lands on the card in baht too.
+      const usdHref = await p.getAttribute(c.buy, "href");
+      checkout = null;
+      const up = await ctx.newPage(); watch(up, at + " old dollar Buy");
+      await up.goto(new URL(usdHref, BASE).href);
+      await up.waitForURL(u => u.href.startsWith(CHECKOUT), { timeout: 5000 }).catch(() => {});
+      if (!checkout || !/[?&]cur=thb(&|$)/.test(checkout)) flag(at + ": the old dollar Buy reached " + checkout + " without cur=thb");
+      await up.close();
       await p.click(c.btn);
       await p.waitForLoadState("load");
       if (!p.url().includes(c.door + "?sku=" + c.sku)) flag(at + ": clicking it landed on " + p.url());
@@ -205,10 +213,13 @@ const flag = m => found.push(m);
         await p.goto(BASE + u, { waitUntil: "networkidle" });
         const open = await p.$$eval("[data-th]", els => els.filter(e => !e.hidden).length);
         if (open) flag(at + ": " + open + " Thailand line(s) showing");
-        const ways = await p.$$eval("[data-way]", els => els.filter(e => e.hidden !== (e.getAttribute("data-way") === "thb")).length);
-        if (ways) flag(at + ": " + ways + " pay way(s) not on US dollars");
-        const seen = (await p.evaluate(() => document.body.innerText)).match(/in thailand|thai card|in baht|฿/gi);
+        const ways = await p.$$eval("[data-way]", els => els.filter(e => e.hidden !== (e.getAttribute("data-way") === "usd")).length);
+        if (ways) flag(at + ": " + ways + " pay way(s) not on the baht way (dollars are paused)");
+        if (await p.$$eval(".pick", els => els.some(e => !e.hidden))) flag(at + ": the Pay in pick shows");
+        const seen = (await p.evaluate(() => document.body.innerText)).match(/in thailand|thai card/gi);
         if (seen) flag(at + ": the page says " + seen.join(", "));
+        if (await p.$$eval(".thb-pp", els => els.some(e => e.offsetParent !== null))) flag(at + ": a PromptPay button shows");
+        if (await p.$$eval("[data-way]", els => els.length) && /\$\d/.test(await p.$$eval('[data-way="thb"]', els => els.map(e => e.innerText).join(" ")))) flag(at + ": a dollar figure in the baht way");
         await p.close();
       }
       await out.close();

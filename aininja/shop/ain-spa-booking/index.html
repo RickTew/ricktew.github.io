@@ -192,7 +192,7 @@ footer a:hover{color:var(--blue-d)}
                  from Thailand and switches the two ways; everyone else sees the US dollar way and nothing about
                  Thailand. The baht way's figures come from /assets/promptpay.js. The card in baht is the Digital
                  Dojo's one checkout with cur=thb: one payment in baht to Rick Tew Co., Ltd., nothing renews. -->
-            <p class="pick" data-th hidden>Pay in: <span role="group" aria-label="Pay in"><button type="button" data-cur="thb" aria-pressed="false">฿ Baht</button><button type="button" data-cur="usd" aria-pressed="true">$ US dollars</button></span></p>
+            <p class="pick" hidden>Pay in: <span role="group" aria-label="Pay in"><button type="button" data-cur="thb" aria-pressed="false">฿ Baht</button><button type="button" data-cur="usd" aria-pressed="true">$ US dollars</button></span></p>
             <div data-way="usd">
               <div class="amount">$222 <small>to build</small></div>
               <p>The first month included, then $99 a month.</p>
@@ -209,7 +209,7 @@ footer a:hover{color:var(--blue-d)}
               <p class="note">Not in the build price, quoted in writing first: member cards and PINs, treatment packs, the till, events, tax invoices.</p>
               <p class="note">All sales are final. No refunds.</p>
               <a class="btn btn-blue buy thb-card" id="cardSpaBooking" href="/aininja/shop/buy/?sku=AIN-SPA-BOOKING&amp;cur=thb">Pay by card</a>
-              <a class="btn btn-quiet pp thb-pp" id="ppSpaBooking" href="/aininja/shop/promptpay/?sku=AIN-SPA-BOOKING">Pay with PromptPay</a>
+              <a class="btn btn-quiet pp thb-pp" id="ppSpaBooking" data-th hidden href="/aininja/shop/promptpay/?sku=AIN-SPA-BOOKING">Pay with PromptPay</a>
             </div>
           </div>
         </div>

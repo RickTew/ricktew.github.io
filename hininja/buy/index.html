@@ -29,12 +29,12 @@ a{color:#175a94;font-weight:800}
 (function(){
   var FN="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy";
   var q; try{ q=new URLSearchParams(location.search); }catch(e){ q=null; }
-  var sku=(q&&q.get("sku"))||"", src=(q&&q.get("src"))||"", cur=(q&&q.get("cur"))||"";
+  var sku=(q&&q.get("sku"))||"", src=(q&&q.get("src"))||"";
   if(!/^[A-Z]{2,5}-[A-Z0-9-]{2,40}$/.test(sku)){
     document.getElementById("msg").innerHTML='That link is missing its product. <a href="/hininja/">Back to HI Ninja</a>.';
     return;
   }
-  location.replace(FN+"?sku="+encodeURIComponent(sku)+(/^[A-Za-z0-9_-]{1,200}$/.test(src)?"&src="+encodeURIComponent(src):"")+(cur==="thb"?"&cur=thb":""));
+  location.replace(FN+"?sku="+encodeURIComponent(sku)+(/^[A-Za-z0-9_-]{1,200}$/.test(src)?"&src="+encodeURIComponent(src):"")+"&cur=thb"); /* dollars paused, 21 Oct 2026: see /assets/th.js */
 })();
 </script>
 </body>
