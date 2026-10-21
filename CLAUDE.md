@@ -1450,6 +1450,18 @@ and when that changes we can simply adjust".
   currency: ฿69,999 is about $2,130 to $2,175 on a US card (rate ~33.5 plus
   Stripe's 2 to 4%), under the $2,222 on the page, never over. The "Pay in"
   pick is gone (both choices reach the same company; no longer `data-th`).
+- **GNS is US dollars for EVERY visitor, Thailand included (third pass, same
+  day).** Rick: "we don't really sell to visitors in thailand for our hininja
+  stuff (we can but its not usual as typical are comfing from their home
+  country for us and the vacation. So you should show it in U.S. unless there
+  is a law to do otherwise". /hininja/ and /gns/ carry `<body data-usd-only>`,
+  so th.js never switches them to baht: $2,222 and his design for everyone, no
+  PromptPay button (the /hininja/promptpay/ card still works by its link). The
+  Buy still pays Rick Tew Co. No law requiring baht was found (21 Oct): the
+  2017 online-sales notice (No. 44 B.E. 2560) asks for a clearly shown price.
+  /about/ keeps "2 weeks, $2,222, all in." on his answer. The same rule for
+  Pocket Dojo: /hsp/ keeps "$2,222 once" while its checkout charges ฿69,999 on
+  Rick Tew Co. (Tewtors app 4b2c47d; Stripe offered $2,165.38 to a US card).
 - **The wall is the relays (the checkout code is untouched, still on hold):**
   both (`/aininja/shop/buy/`, `/hininja/buy/`) add `cur=thb` to every Buy, so
   every card, old links included, lands on Rick Tew Co. **It needs

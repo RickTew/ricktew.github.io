@@ -41,7 +41,7 @@ const CASES = [
     buy: "#buySpaBooking", card: "#cardSpaBooking", relay: "/aininja/shop/buy/",
     payee: "R2 Hosting Thailand · Rick Tew Co., Ltd.", amount: "฿6,999 to build, first month included", then: "Then ฿1,997 a month for the hosting, or ฿19,997 for the year.", field: "Studio name", value: "Sabai Test Studio" },
   { from: "/hininja/", btn: "#ppGns", sku: "HIN-GNS-2W", door: "/hininja/promptpay/",
-    buy: "#buyGns", card: "#cardGns", relay: "/hininja/buy/",
+    buy: "#buyGns", card: "#cardGns", relay: "/hininja/buy/", usd: true,
     payee: "Rick Tew Co., Ltd.", amount: "฿69,999 for 2 weeks, all in", then: "", field: "Arrival date", value: "2027-01-22" },
 ];
 
@@ -85,6 +85,19 @@ const flag = m => found.push(m);
       const href = await p.getAttribute(c.btn, "href").catch(() => null);
       const want = c.door + "?sku=" + c.sku + (src ? "&src=instagram" : "");
       if (!href || !href.endsWith(want)) flag(at + ": the PromptPay button goes to " + href + ", not " + want);
+      if (c.usd) {
+        // GNS (21 Oct 2026): US dollars for every visitor, Thailand included; its card stays reachable.
+        await p.waitForTimeout(500);
+        if (!(await p.isVisible(c.buy)) || (await p.isVisible(c.card)) || (await p.isVisible(c.btn))) flag(at + ": GNS is not on the US dollar view from Thailand");
+        if ((await p.innerText(".price-grid .amt")).trim() !== "$2,222") flag(at + ": the price at the top does not show $2,222 from Thailand");
+        checkout = null;
+        const gp = await ctx.newPage(); watch(gp, at + " Buy");
+        await gp.goto(new URL(await p.getAttribute(c.buy, "href"), BASE).href);
+        await gp.waitForURL(u => u.href.startsWith(CHECKOUT), { timeout: 5000 }).catch(() => {});
+        if (!checkout || !/[?&]cur=thb(&|$)/.test(checkout)) flag(at + ": the GNS Buy reached " + checkout + " without cur=thb");
+        await gp.close();
+        await p.goto(BASE + c.door + "?sku=" + c.sku, { waitUntil: "load" });
+      } else {
       await p.waitForSelector(c.btn, { state: "visible", timeout: 3000 }).catch(() => flag(at + ": the PromptPay button is not visible from Thailand"));
 
       // The pick: baht first from Thailand, then dollars and back.
@@ -113,6 +126,7 @@ const flag = m => found.push(m);
       await up.close();
       await p.click(c.btn);
       await p.waitForLoadState("load");
+      }
       if (!p.url().includes(c.door + "?sku=" + c.sku)) flag(at + ": clicking it landed on " + p.url());
 
       const t = id => p.textContent(id).then(s => (s || "").trim());

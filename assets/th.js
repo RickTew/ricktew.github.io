@@ -25,7 +25,9 @@
    The buy relays send cur=thb on every Buy, so every card lands on Rick Tew
    Co. The "Pay in" pick is gone: both choices would reach the same company.
    Tew's Inc on these pages again: the cur check back in /aininja/shop/buy/ and
-   /hininja/buy/, and the pick shown in show(). */
+   /hininja/buy/, and the pick shown in show().
+   GNS (/hininja/, /gns/) carries body[data-usd-only]: US dollars for every
+   visitor, Thailand included (Rick, 21 Oct: its buyers come from abroad). */
 (function () {
   "use strict";
   var lines = document.querySelectorAll("[data-th]"), hasWays = !!document.querySelector("[data-way]");
@@ -37,9 +39,10 @@
   [].forEach.call(document.querySelectorAll(".pick button[data-cur]"), function (b) {
     b.addEventListener("click", function () { pick(b.getAttribute("data-cur")); });
   });
+  var usdOnly = document.body.hasAttribute("data-usd-only");
   function show() {
     [].forEach.call(lines, function (el) { el.hidden = false; });
-    if (hasWays) pick("thb");
+    if (hasWays && !usdOnly) pick("thb");
   }
   var preview = /[?&]th=([01])(?:&|$)/.exec(location.search);
   if (preview) { if (preview[1] === "1") show(); return; }
