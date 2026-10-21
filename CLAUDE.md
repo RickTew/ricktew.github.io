@@ -1447,7 +1447,12 @@ and when that changes we can simply adjust".
   tews-inc: off, a `cur=thb` Buy falls back to Tew's Inc in dollars. To bring
   dollars back: `DOLLARS = true` and the cur check back in the two relays.
   Checked 21 Oct before pausing: the only ricktew.com orders were two test
-  payments (19 Oct), so no live buyer was on Tew's Inc.
+  payments (19 Oct), so no live buyer was on Tew's Inc. TEWBEDO read Stripe
+  the same day: Tew's Inc has no active subscription (the three R2 Hosting
+  ones moved to Rick Tew Co. on 19 Oct), and **Adaptive Pricing is ON for
+  Rick Tew Co.** (Checkout, Elements, the hosted invoice page). ricktew-shop's
+  baht session sets nothing that turns it off, so a buyer abroad who presses
+  "Pay ฿X by card" is offered their own currency at checkout.
 - **Never write that Rick Tew Co. sells something Tew's Inc's Stripe charges:**
   Stripe's restricted list bans "receiving settlement proceeds for goods or
   services that you did not provide". If dollars come back on Tew's Inc, the
