@@ -1319,7 +1319,7 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   does not answer it. Rick checks the bank and starts the order by hand; the
   Dojo records it in its open payments. Live proof 17 Oct: a TEST press
   delivered to the Ninja Agent's mailbox, no auto-reply sent. Escaping test
-  34 checks.
+  34 checks (42 since the ad fields of 22 Oct 2026, ricktew-contact v34).
 - **Pocket Dojo (HSP, $2,222 once): built, ON HOLD.** Rick, 17 Oct: PromptPay
   "inside the app" at ฿69,999, and "pocket dojo is not on or part of tewtors so
   ricktew chat should be handling that". Its code is in the app repo
@@ -1409,7 +1409,25 @@ open items); read it before changing the page. Canonical program docs:
   click id into the Buy's `src` (the relay and the checkout already take
   `[A-Za-z0-9_-]{1,200}`, so the held ricktew-shop code is not touched) and
   the ask box carries the same to the mailbox; TEWBEDO uploads the sales.
-  Not built yet: see NEXT-SESSION.md. /hininja/ stays live as the HI door.
+  **The counting is LIVE since 22 Oct 2026; the ads are NOT started** (Rick,
+  22 Oct: "just prepare the ads but we will not start yet until we get clear
+  set up for the page and still waiting on the personal review note etc for
+  the pages"). How it works: an ad visit's `gclid` (or `gbraid` / `wbraid`)
+  plus `cid` (the campaign's final URL suffix `cid={campaignid}`) makes the
+  Buy's src `gns-gads-<campaign>-<g|b|w><click id>` (`gns.js`; a click id off
+  `[A-Za-z0-9_-]` or past 200 in total is left off, a missing cid is `0`; the
+  ad wins over a post's ?src=); the ask box posts `source: "gads"`,
+  `adCampaign` and `adClick: "gclid:<id>"`, and ricktew-contact (v34) holds
+  both to a fixed shape and writes an "Ad:" line plus `X-Ad-Campaign` and
+  `X-Ad-Click` into the mail, NOT Auto-Submitted (the Ninja Agent answers it).
+  Nothing is kept in the browser. The Privacy page has the "Ads:" line, Rick's
+  pick of the full wording (dated 22 October 2026). Known gap: Stripe's own
+  back arrow returns to a bare /gns/, so a second Buy after it loses the tag
+  (the browser's Back keeps it); the fix (src on the cancel URL) is the held
+  checkout code, at the full move. The ad V1 (headlines, descriptions,
+  callouts, sitelinks, search words, the data TEWBEDO reads) waits in
+  `.claude/gns-ads-v1.md` (private) until he says start.
+  /hininja/ stays live as the HI door.
 - **The GNS round of 12 Oct 2026** (`playtest/reports/2026-10-12-gns-SUMMARY.md`,
   7 readers in Rick's audience plus the find-them research). All 7 were UNSURE
   the training was real until the sealed file, because the open page showed no

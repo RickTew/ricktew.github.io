@@ -9,7 +9,8 @@
 // in a function secret and only here.
 //
 // One action, one function:
-//   POST {name, email, subject, message, website, elapsedMs, source, sku?} -> {ok:true}
+//   POST {name, email, subject, message, website, elapsedMs, source, sku?,
+//         adCampaign?, adClick?} -> {ok:true}
 //
 // It ALWAYS answers {ok:true}. A dropped submission looks exactly like an
 // accepted one, because telling a bot which check tripped is telling its
@@ -103,8 +104,19 @@ const SOURCES: Record<string, string> = {
   youtube: 'YouTube',
   contra: 'Contra',
   gns: 'The GNS page',
+  gads: 'Google Ads',
   direct: 'Direct, no source on the link',
 };
+
+/** An ad click (the HI Ninja ads land on /gns/; Rick's pick 21 Oct 2026,
+ *  "Count on our side", no Google tag). With source "gads" the page posts the
+ *  campaign id (cid={campaignid} in the ad's final URL suffix) and Google's
+ *  click id as "gclid:<id>" (or gbraid / wbraid). Both are held to a fixed
+ *  shape, kept only with source "gads", and written into the mail as a line
+ *  plus X-Ad-Campaign and X-Ad-Click, which TEWBEDO reads to report the lead
+ *  back to the ad account. Anything off the shape is left out, never an error. */
+const AD_CAMPAIGN = /^[0-9]{1,20}$/;
+const AD_CLICK = /^(gclid|gbraid|wbraid):[A-Za-z0-9_-]{1,190}$/;
 
 const MAX = { name: 100, email: 200, message: 5000 };
 
@@ -207,8 +219,15 @@ async function passCap(visitor: string): Promise<'ok' | 'visitor' | 'day'> {
   return 'ok';
 }
 
+/** "campaign 123, gclid Cj0..." for the mail; "0" is a click whose link had no cid. */
+function adLine(f: { adCampaign: string; adClick: string }) {
+  return `campaign ${f.adCampaign === '0' ? 'not on the link' : f.adCampaign}, ` +
+    (f.adClick ? f.adClick.replace(':', ' ') : 'no click id');
+}
+
 async function sendMail(f: {
   name: string; email: string; subjectLabel: string; message: string; sourceLabel: string; sku: string;
+  adCampaign: string; adClick: string;
 }) {
   const key = Deno.env.get('RESEND_API_KEY');
   const to = Deno.env.get('CONTACT_TO');
@@ -233,6 +252,7 @@ async function sendMail(f: {
     row('About', esc(f.subjectLabel)) +
     row('Via', f.sku ? 'the PromptPay card on ricktew.com' : 'the mailbox on ricktew.com/aininja/') +
     row('Source', esc(f.sourceLabel)) +
+    (f.adCampaign ? row('Ad', esc(adLine(f))) : '') +
     `</table>` +
     `<hr style="border:none;border-top:1px solid #ddd;margin:16px 0">` +
     `<div style="font-family:system-ui,sans-serif;font-size:15px;white-space:pre-wrap">` +
@@ -241,7 +261,16 @@ async function sendMail(f: {
 
   const text =
     `From: ${f.name}\nEmail: ${f.email}\nAbout: ${f.subjectLabel}\n` +
-    `Via: ${f.sku ? 'the PromptPay card on ricktew.com' : 'the mailbox on ricktew.com/aininja/'}\nSource: ${f.sourceLabel}\n\n${f.message}\n`;
+    `Via: ${f.sku ? 'the PromptPay card on ricktew.com' : 'the mailbox on ricktew.com/aininja/'}\nSource: ${f.sourceLabel}\n` +
+    (f.adCampaign ? `Ad: ${adLine(f)}\n` : '') + `\n${f.message}\n`;
+
+  // An ad lead is a real question, so it is NOT marked Auto-Submitted: the
+  // Ninja Agent answers it like any other. The X-Ad headers only label it.
+  const headers: Record<string, string> = {
+    ...(f.sku ? { 'Auto-Submitted': 'auto-generated', 'X-PromptPay-Sku': f.sku } : {}),
+    ...(f.adCampaign ? { 'X-Ad-Campaign': f.adCampaign } : {}),
+    ...(f.adClick ? { 'X-Ad-Click': f.adClick } : {}),
+  };
 
   // The subject label comes from a fixed list, so it can never carry
   // attacker-chosen text. The NAME can, and the subject is the one place
@@ -268,7 +297,7 @@ async function sendMail(f: {
       // mark (RFC 3834), the one the Intake's mail carries, which TEWBEDO's
       // auto-reply guard already treats as "do not answer"; the subject's
       // "Paid PromptPay" prefix is its second signal.
-      ...(f.sku ? { headers: { 'Auto-Submitted': 'auto-generated', 'X-PromptPay-Sku': f.sku } } : {}),
+      ...(Object.keys(headers).length ? { headers } : {}),
     }),
   });
   if (!res.ok) {
@@ -317,11 +346,14 @@ Deno.serve(async (req) => {
   const paidSku = subjectKey === 'paid' ? sku : '';
   const sourceKey = SOURCES[str(p.source)] ? str(p.source) : 'direct';
   const sourceLabel = SOURCES[sourceKey];
+  const adCampaign = sourceKey === 'gads' && AD_CAMPAIGN.test(str(p.adCampaign)) ? str(p.adCampaign) : '';
+  const adClick = adCampaign && AD_CLICK.test(str(p.adClick)) ? str(p.adClick) : '';
   const message = str(p.message).trim();
   const trap = str(p.website).trim();
   const elapsedMs = typeof p.elapsedMs === 'number' ? p.elapsedMs : -1;
 
-  const seen = { name, email, subject: subjectKey, source: sourceKey, message, ...(paidSku ? { sku: paidSku } : {}) };
+  const seen = { name, email, subject: subjectKey, source: sourceKey, message, ...(paidSku ? { sku: paidSku } : {}),
+    ...(adCampaign ? { adCampaign } : {}), ...(adClick ? { adClick } : {}) };
 
   // Browser validation is a courtesy to humans; the endpoint is what is
   // actually exposed, so required is re-checked here.
@@ -372,7 +404,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    await sendMail({ name, email, subjectLabel, message, sourceLabel, sku: paidSku });
+    await sendMail({ name, email, subjectLabel, message, sourceLabel, sku: paidSku, adCampaign, adClick });
   } catch (e) {
     // The mail pipe being down must never reach the visitor. They get the
     // same confirmation and the message survives in the log. Note the SDK

@@ -6,7 +6,9 @@
    links, stray addresses, links and anchors that go nowhere. Then the page's
    own moving parts: every Enroll goes to the checkout through the HI page's
    Buy step, tagged src=gns (Rick's click, 12 Oct 2026; a post's ?src= rides
-   on as gns-<src>, a bad one is dropped), the quiz's enroll button too, the
+   on as gns-<src>, a bad one is dropped; an ad click's gclid / gbraid and
+   cid ride on as gns-gads-<cid>-<g|b><id>, Rick's pick of 21 Oct 2026, and
+   the ask box posts them), the quiz's enroll button too, the
    three mailbox prefills, the belt tabs, the vault (declassify, every tape
    tab, a tape plays, every world file opens, reseal), the quiz (every first
    answer, then 40 seeded random walks to a result, Back, Retake, and "See
@@ -196,7 +198,14 @@ function rng(seed) { return () => (seed = (seed * 1103515245 + 12345) % 21474836
       // stub the step itself.
       await q.route(/supabase\.co|stripe\.com/, r => r.abort());
       await q.route(/\/hininja\/buy\//, r => { bought = r.request().url(); r.fulfill({ status: 200, contentType: "text/html", body: "<p>buy stub</p>" }); });
-      for (const [src, want] of [["instagram", ENROLL + "-instagram"], ["no%20good", ENROLL]]) {
+      const longId = "A".repeat(190);
+      for (const [src, want] of [["instagram", ENROLL + "-instagram"], ["no%20good", ENROLL],
+        // An ad click: the campaign and Google's click id ride in src; the ad wins
+        // over a post's src; a click id off the shape or too long is left off.
+        ["x&gclid=Cj0KCQjw_abc-123XYZ_BwE&cid=21987654321", ENROLL + "-gads-21987654321-gCj0KCQjw_abc-123XYZ_BwE"],
+        ["instagram&gbraid=0AAAAADx9", ENROLL + "-gads-0-b0AAAAADx9"],
+        ["x&gclid=bad%20id&cid=5", ENROLL + "-gads-5"],
+        ["x&gclid=" + longId + "&cid=123", ENROLL + "-gads-123"]]) {
         await q.goto(BASE + URL_ + "?src=" + src, { waitUntil: "load" });
         const hs = await q.$$eval("a", a => a.filter(x => /enroll/i.test(x.textContent)).map(x => x.href));
         if (hs.length < 4) flag("enroll", at + " ?src=" + src + ": only " + hs.length + " Enroll links");
@@ -255,6 +264,21 @@ function rng(seed) { return () => (seed = (seed * 1103515245 + 12345) % 21474836
         if (d.source !== "instagram") flag("ask", at + ": source " + d.source);
         if (d.website !== "") flag("ask", at + ": trap field not empty");
         if (!(d.elapsedMs > 0)) flag("ask", at + ": elapsedMs " + d.elapsedMs);
+        if ("adCampaign" in d || "adClick" in d) flag("ask", at + ": ad fields on a visit with no ad click");
+      }
+      // From an ad click: source gads, the campaign and the click id.
+      await q.goto(BASE + URL_ + "?gclid=Cj0KCQjw_abc-123XYZ_BwE&cid=21987654321", { waitUntil: "load" });
+      await q.evaluate(() => document.getElementById("ask").scrollIntoView());
+      await q.fill("#askName", "Sweep Test");
+      await q.fill("#askEmail", "sweep@example.com");
+      await q.fill("#askMsg", "Is there a room for two?");
+      await q.click("#askSend");
+      await q.waitForSelector("#askDone.on", { timeout: 5000 }).catch(() => flag("ask", at + ": ad visit, no Posted after a filled press"));
+      if (posts.length !== 2) flag("ask", at + ": ad visit, " + (posts.length - 1) + " posts");
+      else {
+        const d = posts[1];
+        if (d.source !== "gads" || d.adCampaign !== "21987654321" || d.adClick !== "gclid:Cj0KCQjw_abc-123XYZ_BwE")
+          flag("ask", at + ": ad visit posted " + JSON.stringify({ source: d.source, adCampaign: d.adCampaign, adClick: d.adClick }));
       }
       await ac.close();
     }

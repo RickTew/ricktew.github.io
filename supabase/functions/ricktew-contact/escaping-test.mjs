@@ -254,6 +254,49 @@ console.log('-- the PromptPay Paid press, through the real handler');
   gate.length = 0;
 }
 
+// ---- An ad click from /gns/ (21 Oct 2026, "Count on our side") ----
+// The campaign and the click id are typed by whoever builds the link, so they
+// are attacker-typed too: a fixed shape, only with source "gads", a line and
+// two headers in the mail, never Auto-Submitted (the Ninja Agent answers it).
+console.log('');
+console.log('-- an ad click from /gns/, through the real handler');
+{
+  const say = (ok, label, got) => { console.log((ok ? '  PASS  ' : '  FAIL  ') + label); if (!ok) { bad++; console.log('          got', JSON.stringify(got)); } };
+  gate.length = 0;
+  let n = 0;
+  const ask = async (body) => {
+    sent = null;
+    await handler(new Request('https://x/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Origin: 'https://ricktew.com', 'x-forwarded-for': '8.8.8.' + (++n) },
+      body: JSON.stringify({ name: 'Priya', email: 'priya.k@gmail.com', subject: 'hininja', website: '', elapsedMs: 30000,
+        message: 'About: Gooffy Ninja ShhT!!, from the GNS page.\n\nIs there a room for two?', ...body }),
+    }));
+    return sent;
+  };
+  const click = 'gclid:Cj0KCQjw_abc-123XYZ_BwE';
+  const ok = await ask({ source: 'gads', adCampaign: '21987654321', adClick: click });
+  say(ok && ok.text.includes('Source: Google Ads') && ok.text.includes('Ad: campaign 21987654321, gclid Cj0KCQjw_abc-123XYZ_BwE'),
+    'an ad lead: Source Google Ads and the Ad line in the text', ok && ok.text);
+  say(ok && /<td[^>]*>Ad<\/td>/.test(ok.html) && ok.html.includes('campaign 21987654321'), 'the Ad row is in the html', ok && ok.html);
+  say(ok && ok.headers && ok.headers['X-Ad-Campaign'] === '21987654321' && ok.headers['X-Ad-Click'] === click && !ok.headers['Auto-Submitted'],
+    'X-Ad-Campaign and X-Ad-Click set, and NOT Auto-Submitted, so the Ninja Agent still answers', ok && ok.headers);
+  say(ok && ok.subject.startsWith('AI Ninja ') && !/gclid|Cj0K/.test(ok.subject), 'the subject is unchanged by the ad', ok && ok.subject);
+  const noCid = await ask({ source: 'gads', adCampaign: '0', adClick: 'gbraid:0AAAAADx9' });
+  say(noCid && noCid.text.includes('Ad: campaign not on the link, gbraid 0AAAAADx9') && noCid.headers['X-Ad-Click'] === 'gbraid:0AAAAADx9',
+    'a click whose link had no cid: "campaign not on the link", the click id kept', noCid && noCid.text);
+  const hostileAd = await ask({ source: 'gads', adCampaign: '<b>1</b>', adClick: 'gclid:<script>alert(1)</script>' });
+  say(hostileAd && !hostileAd.headers && !/Ad:/.test(hostileAd.text) && !/<script|<b>/.test(hostileAd.html + hostileAd.text.split('\n\n')[0]) && hostileAd.text.includes('Source: Google Ads'),
+    'a campaign or click off the shape is left out: no Ad line, no headers, no markup', hostileAd && { text: hostileAd.text, headers: hostileAd.headers });
+  const badClick = await ask({ source: 'gads', adCampaign: '123', adClick: 'gclid:abc\r\nBcc: x@evil.example' });
+  say(badClick && badClick.headers && badClick.headers['X-Ad-Campaign'] === '123' && !badClick.headers['X-Ad-Click'] && !/evil/.test(JSON.stringify(badClick.headers)),
+    'a newline in the click id: the click is dropped, the campaign kept, nothing injected', badClick && badClick.headers);
+  const notAd = await ask({ source: 'instagram', adCampaign: '123', adClick: click });
+  say(notAd && !notAd.headers && !/Ad:/.test(notAd.text) && notAd.text.includes('Source: Instagram'),
+    'ad fields without source "gads" are ignored', notAd && notAd.text);
+  gate.length = 0;
+}
+
 console.log('');
 console.log(bad === 0 ? 'ALL ESCAPING AND GAUNTLET CHECKS PASSED' : bad + ' CHECK(S) FAILED');
 process.exit(bad === 0 ? 0 : 1);

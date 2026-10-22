@@ -10,11 +10,33 @@
 
   /* Enroll: the Dojo's one checkout through /hininja/buy/, tagged as this
      page's order (src=gns). A post's ?src=instagram rides on as gns-instagram,
-     the same shape check as /hininja/buy/ (letters, digits, _ and -, up to 200). */
+     the same shape check as /hininja/buy/ (letters, digits, _ and -, up to 200).
+     An ad click (the HI Ninja ads land here; Rick's pick 21 Oct 2026, "Count on
+     our side", no Google tag): Google adds gclid (gbraid or wbraid from some
+     Apple devices) and the campaign's final URL suffix adds cid={campaignid}.
+     The Buy's src becomes gns-gads-<campaign>-<g|b|w><click id>, and the ask
+     box posts the same two. A click id outside that shape, or one that would
+     take src past 200, is left off and gns-gads-<campaign> stays. Nothing is
+     kept in the browser: the reference rides only on this visit's links. */
   var SRC = "gns";
+  var AD = null;
   try {
-    var postSrc = new URLSearchParams(location.search).get("src") || "";
-    if (/^[A-Za-z0-9_-]{1,196}$/.test(postSrc)) SRC = "gns-" + postSrc;
+    var q0 = new URLSearchParams(location.search);
+    [["gclid", "g"], ["gbraid", "b"], ["wbraid", "w"]].some(function (k) {
+      if (!q0.has(k[0])) return false;
+      var id = q0.get(k[0]) || "", cid = q0.get("cid") || "";
+      AD = { campaign: /^[0-9]{1,20}$/.test(cid) ? cid : "0", kind: k[0], letter: k[1],
+        click: /^[A-Za-z0-9_-]{1,190}$/.test(id) ? id : "" };
+      return true;
+    });
+    if (AD) {
+      SRC = "gns-gads-" + AD.campaign;
+      if (AD.click && (SRC + "-" + AD.letter + AD.click).length > 200) AD.click = "";
+      if (AD.click) SRC += "-" + AD.letter + AD.click;
+    } else {
+      var postSrc = q0.get("src") || "";
+      if (/^[A-Za-z0-9_-]{1,196}$/.test(postSrc)) SRC = "gns-" + postSrc;
+    }
   } catch (e) {}
   var ENROLL = "/hininja/buy/?sku=HIN-GNS-2W&src=" + SRC;
   /* The card in baht (staged 20 Oct 2026) is the same Buy with cur=thb, kept. */
@@ -798,7 +820,9 @@
   // /hininja/ (subject hininja, the trap field outside the form, the fill time),
   // posted from here so a question never lands on the AI page. The first line
   // says which page it came from; a post's ?src= rides along when it is on the
-  // mailbox's list (the endpoint checks again), else it is "gns".
+  // mailbox's list (the endpoint checks again), else it is "gns". From an ad
+  // click it is "gads", with the campaign and the click id (the endpoint checks
+  // their shape again and puts them in the mail for TEWBEDO's upload).
   var askForm = document.getElementById("askForm");
   var askMsg = document.getElementById("askMsg");
   var askTopic = "";
@@ -821,7 +845,8 @@
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { askFail("That email address does not look right. The reply goes there."); return; }
       var first = "About: Gooffy Ninja ShhT!!" + (askTopic ? ", " + askTopic : "") + ", from the GNS page.";
       var data = { name: name, email: email, subject: "hininja", message: first + "\n\n" + text,
-        website: document.getElementById("askWebsite").value, elapsedMs: Date.now() - askShown, source: askSrc };
+        website: document.getElementById("askWebsite").value, elapsedMs: Date.now() - askShown, source: AD ? "gads" : askSrc };
+      if (AD) { data.adCampaign = AD.campaign; if (AD.click) data.adClick = AD.kind + ":" + AD.click; }
       askSend.disabled = true; askSend.textContent = "Posting...";
       fetch("https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact", {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
