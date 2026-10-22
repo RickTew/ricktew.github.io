@@ -1370,6 +1370,12 @@ retires (the held checkout code is not touched). The HI Ninja ads land on
 NerdHostel's page; the gclid counting moves into NerdHostel's bookings (TEWBEDO
 told). The 12-reader round runs on the finished path. Until NerdHostel's page is
 live, everything below stands and nothing here changes.
+**Later the same day, Rick's picks:** "NerdHostel first, GNS as upgrade" (in
+TEWBEDO; NerdHostel is the front door, ninja and AI are upgrades) and, on an AI
+Ninja stay, "Add-on first": "Build it with Rick" as a weekly add-on at
+NerdHostel, no ads, its own two weeks only if it sells (research, private, in
+`.claude/research/2026-10-22-ai-ninja-stay-*.md`: AI-trip searches about 350 a
+month against ninja's 850; nobody sells it).
 
 Rick's live-in 2-week ninja program on Koh Samui ($2,222, +$1,000 a week).
 Rick, 28 Sep: GNS belongs on ricktew.com/gns, not NinjaGym. The NinjaGym
