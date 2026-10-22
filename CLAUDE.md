@@ -1478,8 +1478,14 @@ open items); read it before changing the page. Canonical program docs:
   and this chat and the NerdHostel chat must share one count so nobody is
   overbooked (the checkout asks only the arrival date and checks no capacity);
   age: 16 and over, a parent of an under-18 signs extra documents and need not
-  stay ("what is legally required" is being researched; no age line goes on a
-  page before it).
+  stay. Research done (no Thai law bars it; the hostel's rule decides), Rick's
+  click "Write first, parent signs", and NerdHostel's yes (22 Oct: 16 and 17
+  alone with a parent's signed consent, the normal shared dorm; whether it is
+  a licensed hotel is NOT answered, so no licence claim on any page). So both
+  FAQs carry, after "Can I bring my family or kids?": "I am 16 or 17. Can I
+  come on my own?" / "Yes, with a parent's signature on the papers: the
+  enrolment, a travel consent letter and a medical consent. Write to me before
+  you book." (/hininja/next/ had it from the start.)
 - **The GNS round of 12 Oct 2026** (`playtest/reports/2026-10-12-gns-SUMMARY.md`,
   7 readers in Rick's audience plus the find-them research). All 7 were UNSURE
   the training was real until the sealed file, because the open page showed no

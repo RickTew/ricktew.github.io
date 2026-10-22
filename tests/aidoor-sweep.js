@@ -11,7 +11,7 @@
 "use strict";
 const fs = require("fs"), path = require("path");
 const { chromium, devices } = require("/Users/ricktew/Dev/Roy Martina/newnei-app/node_modules/playwright");
-const ROOT = path.join(__dirname, ".."), BASE = "http://localhost:8765";
+const ROOT = path.join(__dirname, ".."), BASE = process.env.BASE || "http://localhost:8765";
 const SHORT = ["/aininja/ai-customer-service/", "/aininja/ai-agents/", "/aininja/booking-system/"]; // the search pages, 2 Oct 2026
 const PAGES = ["/aininja/", "/aininja/done-for-you/", ...SHORT, "/aininja/r2/", "/aininja/start/",
   "/aininja/shop/", "/aininja/shop/ain-mamamia/", "/aininja/shop/ain-mamamia/thanks/", "/aininja/shop/ain-spa-booking/", "/aininja/shop/ain-spa-booking/thanks/", "/aininja/shop/ain-contact-form/", "/aininja/shop/ain-customer-inbox/", "/aininja/shop/thanks/", "/aininja/shop/thanks/?link=expired", "/aininja/shop/download/",

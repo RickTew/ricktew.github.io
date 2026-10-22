@@ -15,7 +15,7 @@
    the full program" going back to the top). Exit 1 on any finding. */
 "use strict";
 const { chromium, devices } = require("/Users/ricktew/Dev/Roy Martina/newnei-app/node_modules/playwright");
-const BASE = "http://localhost:8765", URL_ = "/gns/";
+const BASE = process.env.BASE || "http://localhost:8765", URL_ = "/gns/";
 const ENROLL = BASE + "/hininja/buy/?sku=HIN-GNS-2W&src=gns";
 const found = {};
 function flag(kind, msg) { (found[kind] = found[kind] || []).push(msg); }

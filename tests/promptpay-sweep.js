@@ -26,7 +26,7 @@
 "use strict";
 const fs = require("fs"), path = require("path");
 const { chromium, devices } = require("/Users/ricktew/Dev/Roy Martina/newnei-app/node_modules/playwright");
-const ROOT = path.join(__dirname, ".."), BASE = "http://localhost:8765";
+const ROOT = path.join(__dirname, ".."), BASE = process.env.BASE || "http://localhost:8765";
 const ENDPOINT = "https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact";
 const GEO = "https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-geo";
 const CHECKOUT = "https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy";
