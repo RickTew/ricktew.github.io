@@ -36,6 +36,13 @@ ninja? / You are in the X Ninja door / Take the Y Ninja door". Red carries HI,
 blue carries AI. Its CSS is in `css/site.css` for the HI side and inline for
 `/aininja/`. The footer `.doors` link stays as the bottom-of-page answer, and
 `/aininja/` got one too, which it had been missing entirely.
+**Since 22 Oct 2026 the bar is OFF every HI page** (Rick's click "Off all HI
+pages" after the head-to-head round: 12 of 12 readers took "Take the AI Ninja
+door" for "is this an AI company?" or "wrong ad?"). Fourteen pages lost the
+markup; the CSS stays in `css/site.css` (and inline on /hininja/, its thanks
+page, /hsp/ and /about/) so the bar can come back. The footer links to the
+front page stay. `/aininja/` and its pages keep their bar. A new HI page gets
+no bar.
 
 The old Google Sites pages are all still live at their original URLs, styled by
 `css/site.css` + `js/site.js`. The one that moved is the old front page: it is
@@ -1428,6 +1435,28 @@ open items); read it before changing the page. Canonical program docs:
   callouts, sitelinks, search words, the data TEWBEDO reads) waits in
   `.claude/gns-ads-v1.md` (private) until he says start.
   /hininja/ stays live as the HI door.
+- **Rick's clicks of 22 Oct 2026 on the round's other findings** (yellow boxes
+  in his Chrome): the door bar off every HI page (above); the /gns/ adult photo
+  grid moved up into the /hininja/ hero, the Phi Phi jump kick left the page and
+  its share card (the old history page keeps it); "The goofy is the whole
+  point. Every session is silly" became "Sessions are relaxed and fun, and they
+  are backed by more than 25 years of real ninja training, taught around the
+  globe." on /hininja/ only; the ages 16, 19 and 21 left both pages ("Teaching
+  since his teens" stays; /gns/'s USA world file and quiz lost "at 16", "at
+  19", "at 21"); the /hininja/ form opens with "About: the 2-week live-in
+  program on Koh Samui." (was "I want this Tew: a spot on Gooffy Ninja
+  ShhT!!"); both pages' FAQ gained "Is there a private room, or a room for
+  two?" ("No private rooms" is his fact). **His facts the same day:** meals
+  stay included as the pages say ("if both already say included keep it for
+  now"; normally 2 a day; none of the 12 readers decided on meals, 10 asked how
+  many); "we are selling the training and the housing and meals are optional at
+  no added costs" (no discount for one's own place); GNS runs with NerdHostel
+  to keep its rooms full from January, **max 6 men and 6 women per 2 weeks**,
+  and this chat and the NerdHostel chat must share one count so nobody is
+  overbooked (the checkout asks only the arrival date and checks no capacity);
+  age: 16 and over, a parent of an under-18 signs extra documents and need not
+  stay ("what is legally required" is being researched; no age line goes on a
+  page before it).
 - **The GNS round of 12 Oct 2026** (`playtest/reports/2026-10-12-gns-SUMMARY.md`,
   7 readers in Rick's audience plus the find-them research). All 7 were UNSURE
   the training was real until the sealed file, because the open page showed no

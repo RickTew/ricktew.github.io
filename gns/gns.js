@@ -159,7 +159,7 @@
   var REGIONS = [
     { id: "usa", code: "File 01", title: "United States", tag: "Camps in the mountains of California",
       text: [
-        "This is where it started. First classes at 16, his own dojo at 19, and then the thing nobody in the industry had done before: live-in Ninja Training Camps. Rick founded the College of Martial Science (CMS) and ran camps in the mountains of California by Yosemite National Park, where students lived, trained and got thrown down hills full time.",
+        "This is where it started. First classes, his own dojo, and then the thing nobody in the industry had done before: live-in Ninja Training Camps. Rick founded the College of Martial Science (CMS) and ran camps in the mountains of California by Yosemite National Park, where students lived, trained and got thrown down hills full time.",
         "The C.A.N.U. tours took students from around the world across California: Yosemite, Joshua Tree, rock faces, rope work and the occasional flying kick over the Grand Canyon (documented, see photo)."
       ],
       photos: [
@@ -511,7 +511,7 @@
   var EWHY_MIX = {
     burnout: "You are cooked, so the recipe changes: slow mornings, coffee and kicks, naps that nobody judges, and training that gives energy back instead of taking it.",
     routine: "The same week on repeat ends the moment you land. No two GNS days match, and the Ninja Menu means even the training refuses to repeat itself.",
-    chapter: "A chapter ended. Rick has closed a few of his own (left the USA at 21, left Europe after 6 years, started over in Asia), so you will be plotting the next one with someone who has actually done it.",
+    chapter: "A chapter ended. Rick has closed a few of his own (left the USA, left Europe after 6 years, started over in Asia), so you will be plotting the next one with someone who has actually done it.",
     distance: "Distance is healthy. 9,000 kilometers, a beach, and a nunchaku have fixed more heads than most people admit."
   };
   var EPLAN_MIX = {

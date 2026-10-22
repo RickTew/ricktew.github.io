@@ -449,7 +449,10 @@ footer.site-footer .doors a:hover { text-decoration: underline; }
    one-way: nothing at the top of either door led back to the question.
    This sits above everything on every HI page and says where you are,
    with both other exits next to it. The footer .doors link stays as the
-   bottom-of-page answer to the same problem. */
+   bottom-of-page answer to the same problem.
+   Since 22 Oct 2026 no HI page carries it (Rick's click after the
+   head-to-head round: 12 of 12 readers took "Take the AI Ninja door" for
+   "is this an AI company?"). The rules stay so the bar can come back. */
 .doorbar {
   background: #101418;
   color: #aab2bc;
