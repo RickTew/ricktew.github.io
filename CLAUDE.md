@@ -1354,6 +1354,23 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
 
 ## /gns/: Gooffy Ninja ShhT!! (moved from NinjaGym 2026-09-28)
 
+**GNS MOVES TO NERDHOSTEL (Rick's click, 22 Oct 2026, "Move GNS to NerdHostel").**
+His words: "we can integrate that into nerdhostel somehow as it can explain the
+ninja perks and we can likely just move that one over to nerd hostel and remove
+from ricktew. We might even just have ricktew types book direct on nerdhostel if
+that is easier to keep the one booking system functional". The GNS page and its
+booking go to nerdhostel.com, built by the NerdHostel chat (`~/Dev/nerd-hostel`,
+one booking system: 6 men's + 6 women's beds, one row a bed, Stripe and
+PromptPay). This chat keeps ONE relaxed HI page (the preview at
+`/hininja/next/`, built 22 Oct to his brief) whose Book button goes to
+NerdHostel's GNS booking with `?src=ricktew`, and once NerdHostel's page is live
+`/gns/` FORWARDS there (query string kept, so ad and post links still count),
+leaves the sitemap and llms.txt, and the `/hininja/buy/` relay for HIN-GNS-2W
+retires (the held checkout code is not touched). The HI Ninja ads land on
+NerdHostel's page; the gclid counting moves into NerdHostel's bookings (TEWBEDO
+told). The 12-reader round runs on the finished path. Until NerdHostel's page is
+live, everything below stands and nothing here changes.
+
 Rick's live-in 2-week ninja program on Koh Samui ($2,222, +$1,000 a week).
 Rick, 28 Sep: GNS belongs on ricktew.com/gns, not NinjaGym. The NinjaGym
 session handed over everything it knew in
