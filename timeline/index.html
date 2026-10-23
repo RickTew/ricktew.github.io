@@ -69,6 +69,36 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 .menu-go a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .menu .cue{margin-top:20px}
 
+/* Story chapters: words on one side, a pinned picture that changes on the other */
+.story{padding:84px 0 40px}
+.story .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+.eyebrow{font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.eyebrow.red{color:var(--red)}
+.eyebrow.blue{color:var(--blue)}
+.story h2{margin-top:10px;font-size:clamp(32px,5.6vw,58px);font-weight:900;max-width:16em}
+.story-grid{margin-top:26px;display:grid;grid-template-columns:1fr;gap:0}
+.step{padding:22px 0;opacity:.25;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.step.on,.step.seen{opacity:1;transform:none}
+.step p{font-size:clamp(18px,2.1vw,21px);line-height:1.6;color:var(--body);max-width:34em}
+.step p + p{margin-top:12px}
+.step figure{margin:0 0 16px;border-radius:16px;overflow:hidden;background:var(--panel);aspect-ratio:4/3}
+.step figure img{width:100%;height:100%;object-fit:cover;display:block}
+.step figure.contain img,.media figure.contain img{object-fit:contain}
+.media{display:none}
+@media (min-width:900px){
+  .story-grid{grid-template-columns:1fr 1.05fr;gap:56px;align-items:start}
+  .story-grid .steps{order:1}
+  .media{display:block;order:2;position:sticky;top:12vh;height:72vh;border-radius:18px;overflow:hidden;background:var(--panel);
+    box-shadow:0 18px 50px rgba(16,20,24,.12)}
+  .media figure{position:absolute;inset:0;margin:0;opacity:0;transform:scale(1.05);transition:opacity .7s ease,transform 1.2s ease}
+  .media figure.on{opacity:1;transform:none}
+  .media figure img{width:100%;height:100%;object-fit:cover;display:block}
+  .step{min-height:62vh;display:flex;flex-direction:column;justify-content:center;padding:0}
+  .step figure{display:none}
+  .steps .step:last-child{min-height:72vh}
+}
+@media (prefers-reduced-motion:reduce){ .step,.media figure{transition:none;transform:none} }
+
 /* One chapter: a tall track, a pinned stage inside it. The track's height is how long the scrub lasts. */
 .chapter{position:relative;height:420vh}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--panel)}
@@ -147,6 +177,50 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
     </div>
     <p class="menu-go"><a id="nowGo" href="/aininja/">Go</a></p>
     <span class="cue" aria-hidden="true">Or scroll for the story</span>
+  </section>
+
+  <!-- THE AUTHORITY PAGE, chapter by chapter (Rick's picks, 23 Oct 2026: the 13 chapters of
+       .claude/research/2026-10-23-old-site-inventory.md; no ages, no Dux Ryu, no dropout line).
+       Words are the old About page's (git 74bb80d) in first person; photos are the ones it used.
+       Each .step carries its own figure: on a phone it shows in line, on a wide screen the script
+       copies the figures into one pinned frame that changes as the steps pass. -->
+  <section class="story" aria-labelledby="ch1">
+    <div class="wrap">
+      <p class="eyebrow red">1 &middot; The mission</p>
+      <h2 id="ch1">Get a Black Belt in what you do.</h2>
+      <div class="story-grid">
+        <div class="steps">
+          <div class="step"><figure><img src="/assets/images/ee6d47c766.png" alt="Rick Tew in the splits on a red mat"></figure>
+            <p>Hi, I'm Rick Tew. Even though my last name says otherwise, there is only one of me. But I do have a split personality. I believe we all do, and the mix of those traits is what makes us who we are.</p></div>
+          <div class="step"><figure><img src="/assets/images/0c7887b6ac.png" alt="Rick Tew speaking to groups and teaching classes"></figure>
+            <p>My passion is helping people find their key strengths and put them together, so they get more out of life. It started on the mat. Today it also means building the systems a business runs on, and training the people who run it.</p></div>
+          <div class="step"><figure class="contain"><img src="/assets/images/947e3fd437.png" alt="BLAST, WinJitsu and Rick Tew on stage"></figure>
+            <p>I only teach from experience, and I learn by doing. The martial arts, the camps, the books, the gyms and the apps: this page is all of it, in the order it happened.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" aria-labelledby="ch2">
+    <div class="wrap">
+      <p class="eyebrow red">2 &middot; Roots</p>
+      <h2 id="ch2">It is in the doing.</h2>
+      <div class="story-grid">
+        <div class="steps">
+          <div class="step"><figure class="contain"><img src="/assets/images/1a57dd212f.png" alt="Rick Tew's early years of training, outdoors and in the backyard"></figure>
+            <p>While others talk, I try to walk. That walk began when I was a boy and ran away from home in Indiana to be in California. It worked, and a new journey began.</p></div>
+          <div class="step"><figure><img src="/assets/images/af52d2deab.png" alt="Rick Tew climbing a rock face"></figure>
+            <p>As a young teen I joined the Boy Scouts. I still remember working with my Dad to finish the sit-ups for another award on my belt. Scouting gave me trips into the outdoors and a system for setting goals, and it is why I have taken students to places like Yosemite.</p></div>
+          <div class="step"><figure class="contain"><img src="/assets/images/848643405f.png" alt="Rick Tew in a black gi, mid jump kick"></figure>
+            <p>I connected with shows like Godzilla, where the one everybody saw as the bad guy was often the good guy. The underdog is misunderstood, but endures and wins. That is how I saw the ninja, and it pulled me into the martial arts.</p></div>
+          <div class="step"><figure class="contain"><img src="/aininja/assets/story/ninja/world/us-early-years.webp" alt="Rick Tew training as a teen"></figure>
+            <p>In my teens I fell in love with the ninja art of ninjitsu. My first training center was the backyard, with carpet wrapped around a plum tree for a striking dummy. A TV crew filmed me there throwing stars, climbing ropes and running my obstacle course.</p>
+            <p>My goals were simple: get the splits, earn a black belt, open my own dojo. Done, done and done.</p></div>
+          <div class="step"><figure><img src="/aininja/assets/story/rick/childhood-game.webp" alt="The arena game Rick built on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles"></figure>
+            <p>I also drew a game by hand: the boards, the character sheets, the cut-out tiles. Today it is Arena RPG, and I am building it for real with AI.</p></div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="chapter" data-seq="frames/mat/frame_" data-count="96" data-fit="cover" data-tone="dark" aria-label="Martial arts">
@@ -309,6 +383,29 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
   window.addEventListener("resize", measure);
   window.__ring = { get angle(){ return angle; }, get front(){ return front; }, N: N };
   measure();
+})();
+</script>
+<script>
+/* Story chapters: the step nearest the middle of the screen is "on"; on a wide screen its
+   figure shows in the pinned frame (copied there from the steps, so each picture is written once). */
+(function(){
+  "use strict";
+  [].forEach.call(document.querySelectorAll(".story"), function(story){
+    var steps = [].slice.call(story.querySelectorAll(".step"));
+    var media = document.createElement("div"); media.className = "media"; media.setAttribute("aria-hidden", "true");
+    var figs = steps.map(function(s){ var f = s.querySelector("figure").cloneNode(true); f.querySelector("img").alt = ""; media.appendChild(f); return f; });
+    story.querySelector(".story-grid").appendChild(media);
+    function pick(i){
+      steps.forEach(function(s, k){ s.classList.toggle("on", k === i); if (k <= i) s.classList.add("seen"); });
+      figs.forEach(function(f, k){ f.classList.toggle("on", k === i); });
+    }
+    pick(0);
+    if (!("IntersectionObserver" in window)) { steps.forEach(function(s){ s.classList.add("seen"); }); return; }
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) pick(steps.indexOf(e.target)); });
+    }, { rootMargin: "-45% 0px -45% 0px" });
+    steps.forEach(function(s){ io.observe(s); });
+  });
 })();
 </script>
 <script>
