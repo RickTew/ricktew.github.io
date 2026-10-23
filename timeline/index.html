@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- TEST PAGE (23 Oct 2026, Rick's pick "Unlinked test page"): the scroll timeline effect.
+     Unlinked, noindex, not in the sitemap. Each chapter pins a canvas and the scroll picks
+     the frame, the way Nate Herk's blender page does, in plain JS with no libraries.
+     Frames: timeline/frames/<chapter>/frame_0001.webp ... ; every take is kept on the
+     Extreme Pro at Studio/RickTew/takes/timeline-scroll/ (ring.html + render.js redraw
+     the ring). Captions are lines already on the resume and the About page, no new claims. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rick Tew: timeline test</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/images/favicon.png">
+<link href="/assets/fonts/archivo-nunito-4dd723.css" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --ink:#101418; --muted:#69707a; --body:#3a4148;
+  --blue:#1e73bd; --red:#d61f26; --line:#e8e6e2; --panel:#f7f6f4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.55}
+h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;letter-spacing:-.02em}
+
+.testbar{position:fixed;left:0;right:0;top:0;z-index:20;background:var(--ink);color:#fff;font-size:13px;
+  text-align:center;padding:7px 16px}
+
+.intro{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  padding:90px 16px 40px}
+.intro h1{font-size:clamp(44px,9vw,96px);font-weight:900}
+.intro p{margin-top:14px;color:var(--muted);font-size:18px;max-width:30em}
+.cue{margin-top:38px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.cue::after{content:"";display:block;width:1px;height:46px;margin:12px auto 0;background:var(--muted);
+  animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:scaleY(.3);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
+
+/* One chapter: a tall track, a pinned stage inside it. The track's height is how long the scrub lasts. */
+.chapter{position:relative;height:420vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--panel)}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.chapter[data-tone="dark"] .stage{background:#101418}
+
+.label{position:absolute;left:16px;top:52px;z-index:3;font-family:"Archivo",Arial,sans-serif;font-weight:900;
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;padding:6px 10px;border-radius:6px}
+.label.red{background:var(--red)}
+.label.blue{background:var(--blue)}
+
+.cap{position:absolute;left:16px;right:16px;bottom:7vh;z-index:3;max-width:560px;margin:0 auto;
+  background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+  box-shadow:0 14px 40px rgba(16,20,24,.16);opacity:0;transform:translateY(18px);
+  transition:opacity .45s ease,transform .45s ease}
+.cap.on{opacity:1;transform:none}
+.cap h2{font-size:clamp(22px,4.4vw,32px);font-weight:900}
+.cap p{margin-top:6px;color:var(--body)}
+
+.bar{position:absolute;left:0;bottom:0;height:3px;z-index:4;width:0;background:var(--ink)}
+.chapter .bar.red{background:var(--red)}
+.chapter .bar.blue{background:var(--blue)}
+
+.outro{padding:90px 16px 70px;text-align:center}
+.outro h2{font-size:clamp(30px,6vw,52px);font-weight:900}
+.outro p{margin:12px auto 0;max-width:32em;color:var(--body)}
+.doors{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.doors a{display:inline-block;padding:13px 22px;border-radius:999px;color:#fff;font-weight:800;text-decoration:none}
+.doors a.hi{background:var(--red)}
+.doors a.ai{background:var(--blue)}
+.doors a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;color:var(--muted);font-size:13px}
+
+@media (min-width:900px){
+  .label{left:32px;top:60px}
+  .cap{left:auto;right:6vw;bottom:auto;top:50%;margin:0;width:400px;transform:translateY(calc(-50% + 18px))}
+  .cap.on{transform:translateY(-50%)}
+  /* the ring fills the middle, so its captions sit under it */
+  .chapter[data-fit="contain"] .cap{top:auto;bottom:5vh;left:0;right:0;margin:0 auto;width:520px;transform:translateY(18px)}
+  .chapter[data-fit="contain"] .cap.on{transform:none}
+}
+</style>
+</head>
+<body>
+<p class="testbar">Test page. Not linked anywhere, not in search.</p>
+
+<main id="main">
+  <header class="intro">
+    <h1>Rick Tew</h1>
+    <p>The mat, the camps, the gym and the code. Scroll and it moves.</p>
+    <span class="cue" aria-hidden="true">Scroll</span>
+  </header>
+
+  <section class="chapter" data-seq="frames/mat/frame_" data-count="96" data-fit="cover" data-tone="dark" aria-label="Martial arts">
+    <div class="stage">
+      <canvas aria-hidden="true"></canvas>
+      <span class="label red">Martial arts</span>
+      <div class="cap" data-at="0.04-0.36"><h2>It started on the mat.</h2><p>A backyard dojo first, then a dojo of my own.</p></div>
+      <div class="cap" data-at="0.38-0.68"><h2>RTMS</h2><p>Rick Tew's Martial Science: a ranked path from beginner to instructor.</p></div>
+      <div class="cap" data-at="0.70-0.98"><h2>Schools on three continents</h2><p>Martial arts schools, dojos and gyms in the US, Europe and Asia.</p></div>
+      <span class="bar red"></span>
+    </div>
+  </section>
+
+  <section class="chapter" data-seq="frames/ring/frame_" data-count="96" data-fit="contain" aria-label="Around the world">
+    <div class="stage">
+      <canvas aria-hidden="true"></canvas>
+      <span class="label red">Around the world</span>
+      <div class="cap" data-at="0.04-0.36"><h2>Live-in ninja camps</h2><p>First in the martial arts industry to run live-in Ninja Training Camps.</p></div>
+      <div class="cap" data-at="0.38-0.68"><h2>Four continents</h2><p>Camps and tours on four continents. Yosemite and Joshua Tree among them.</p></div>
+      <div class="cap" data-at="0.70-0.98"><h2>On stage</h2><p>Spoke at HP, TU Delft and the University of Rotterdam, and wrote the five-book series "Be a Black Belt in What You Do".</p></div>
+      <span class="bar red"></span>
+    </div>
+  </section>
+
+  <section class="chapter" data-seq="frames/arena/frame_" data-count="96" data-fit="cover" data-tone="dark" aria-label="Tech and AI">
+    <div class="stage">
+      <canvas aria-hidden="true"></canvas>
+      <span class="label blue">Tech and AI</span>
+      <div class="cap" data-at="0.04-0.36"><h2>Arena RPG</h2><p>A board game I am now building for real with AI.</p></div>
+      <div class="cap" data-at="0.38-0.68"><h2>The systems behind the work</h2><p>The app my gym runs on, and the booking, inboxes and payments for small businesses.</p></div>
+      <div class="cap" data-at="0.70-0.98"><h2>A person at the helm</h2><p>By default nothing goes out to a customer without a press.</p></div>
+      <span class="bar blue"></span>
+    </div>
+  </section>
+
+  <section class="outro">
+    <h2>Which ninja do you want?</h2>
+    <p>The in-person work, or the digital work.</p>
+    <div class="doors">
+      <a class="hi" href="/hininja/">HI Ninja</a>
+      <a class="ai" href="/aininja/">AI Ninja</a>
+    </div>
+  </section>
+</main>
+
+<footer>Rick Tew. Run by Rick Tew Co., Ltd.</footer>
+
+<script>
+/* The scrub: each chapter's scroll progress (0 at the top of its track, 1 at the bottom)
+   picks a frame. The drawn frame eases toward the target so a jumpy wheel still reads smooth.
+   Frames load when a chapter comes near, nearest loaded frame is drawn until the exact one lands. */
+(function(){
+  "use strict";
+  var EASE = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 0.18;
+  var chapters = [].slice.call(document.querySelectorAll(".chapter")).map(function(el){
+    var c = el.querySelector("canvas");
+    return {
+      el: el, canvas: c, ctx: c.getContext("2d"),
+      seq: el.getAttribute("data-seq"), count: +el.getAttribute("data-count"),
+      fit: el.getAttribute("data-fit"), imgs: [], loading: false,
+      caps: [].slice.call(el.querySelectorAll(".cap")).map(function(k){
+        var r = k.getAttribute("data-at").split("-"); return { el: k, a: +r[0], b: +r[1] };
+      }),
+      bar: el.querySelector(".bar"), shown: -1, cur: 0, target: 0, w: 0, h: 0
+    };
+  });
+
+  function src(ch, i){ return ch.seq + String(i + 1).padStart(4, "0") + ".webp"; }
+
+  function load(ch){
+    if (ch.loading) return; ch.loading = true;
+    /* first, middle and last first, so the chapter has something to show at once */
+    var order = [0, ch.count >> 1, ch.count - 1];
+    for (var i = 0; i < ch.count; i++) if (order.indexOf(i) < 0) order.push(i);
+    order.forEach(function(i){
+      var im = new Image(); im.decoding = "async";
+      im.onload = function(){ ch.imgs[i] = im; if (ch.shown < 0) ch.shown = -2; };
+      im.src = src(ch, i);
+    });
+  }
+
+  function size(ch){
+    var r = ch.canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
+    var w = Math.round(r.width * d), h = Math.round(r.height * d);
+    if (w !== ch.w || h !== ch.h){ ch.canvas.width = ch.w = w; ch.canvas.height = ch.h = h; ch.shown = -2; }
+  }
+
+  function nearest(ch, i){
+    for (var k = 0; k < ch.count; k++){
+      if (ch.imgs[i - k]) return ch.imgs[i - k];
+      if (ch.imgs[i + k]) return ch.imgs[i + k];
+    }
+    return null;
+  }
+
+  function draw(ch, i){
+    var im = nearest(ch, i); if (!im) return;
+    var cw = ch.w, chh = ch.h, iw = im.naturalWidth, ih = im.naturalHeight;
+    /* cover on a wide screen; on a tall phone a full cover crops a 4:3 tape to one arm,
+       so the frame fills about 60% of the height and sits a little above the caption */
+    var tall = cw < chh, s, oy;
+    if (ch.fit === "contain") s = Math.min(cw / iw, chh / ih);
+    else if (tall) s = Math.max(cw / iw, (chh * 0.6) / ih);
+    else s = Math.max(cw / iw, chh / ih);
+    var dw = iw * s, dh = ih * s;
+    oy = tall && ch.fit !== "contain" ? Math.max(0, (chh * 0.42) - dh / 2) : (chh - dh) / 2;
+    ch.ctx.clearRect(0, 0, cw, chh);
+    ch.ctx.drawImage(im, (cw - dw) / 2, oy, dw, dh);
+    ch.shown = ch.imgs[i] ? i : -2;
+  }
+
+  function tick(){
+    var vh = window.innerHeight;
+    chapters.forEach(function(ch){
+      var r = ch.el.getBoundingClientRect();
+      if (r.top < vh * 2.5 && r.bottom > -vh) load(ch);
+      if (r.bottom < 0 || r.top > vh) return;            /* not on screen: skip the work */
+      size(ch);
+      var p = Math.min(1, Math.max(0, -r.top / (r.height - vh)));
+      ch.target = p * (ch.count - 1);
+      ch.cur += (ch.target - ch.cur) * EASE;
+      if (Math.abs(ch.target - ch.cur) < 0.05) ch.cur = ch.target;
+      var i = Math.round(ch.cur);
+      if (i !== ch.shown) draw(ch, i);
+      ch.caps.forEach(function(k){ k.el.classList.toggle("on", p >= k.a && p <= k.b); });
+      if (ch.bar) ch.bar.style.width = (p * 100).toFixed(2) + "%";
+    });
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
