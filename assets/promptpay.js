@@ -171,7 +171,7 @@
     $("t-phone").textContent = w.phone;
     $("t-back-q").textContent = w.backQ;
     $("back-link").textContent = w.back;
-    $("back-link").href = src === "gns" ? "/gns/" : item.back;
+    $("back-link").href = src === "gns" ? "https://www.nerdhostel.com/gns" : item.back;
     if (posted) $("posted").textContent = w.posted.replace("{thb}", thb(item.thb)).replace("{item}", item.name[lang]);
   }
   render();

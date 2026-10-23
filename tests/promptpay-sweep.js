@@ -31,7 +31,7 @@ const ENDPOINT = "https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-
 const GEO = "https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-geo";
 const CHECKOUT = "https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy";
 // Every page with a data-th line.
-const TH_PAGES = ["/aininja/shop/ain-mamamia/", "/aininja/shop/ain-spa-booking/", "/hininja/", "/gns/", "/aininja/", "/aininja/r2/"];
+const TH_PAGES = ["/aininja/shop/ain-mamamia/", "/aininja/shop/ain-spa-booking/", "/aininja/", "/aininja/r2/"];   /* GNS (and its Thailand line) is on NerdHostel since 23 Oct 2026: /gns/ forwards, /hininja/ has no Buy */
 
 const CASES = [
   { from: "/aininja/shop/ain-mamamia/", btn: "#ppMamaMia", sku: "AIN-MAMAMIA", door: "/aininja/shop/promptpay/",
@@ -40,7 +40,7 @@ const CASES = [
   { from: "/aininja/shop/ain-spa-booking/", btn: "#ppSpaBooking", sku: "AIN-SPA-BOOKING", door: "/aininja/shop/promptpay/",
     buy: "#buySpaBooking", card: "#cardSpaBooking", relay: "/aininja/shop/buy/",
     payee: "R2 Hosting Thailand · Rick Tew Co., Ltd.", amount: "฿6,999 to build, first month included", then: "Then ฿1,997 a month for the hosting, or ฿19,997 for the year.", field: "Studio name", value: "Sabai Test Studio" },
-  { from: "/hininja/", btn: "#ppGns", sku: "HIN-GNS-2W", door: "/hininja/promptpay/",
+  { from: "https://www.nerdhostel.com/gns", btn: "#ppGns", sku: "HIN-GNS-2W", door: "/hininja/promptpay/",
     buy: "#buyGns", card: "#cardGns", relay: "/hininja/buy/", usd: true,
     payee: "Rick Tew Co., Ltd.", amount: "฿69,999 for 2 weeks, all in", then: "", field: "Arrival date", value: "2027-01-22" },
 ];
@@ -81,11 +81,23 @@ const flag = m => found.push(m);
       // The Buy page's button, with a post's ?src= on the page.
       const src = c.sku === "HIN-GNS-2W" ? "" : "?src=instagram";
       const p = await ctx.newPage(); watch(p, at);
-      await p.goto(BASE + c.from + src, { waitUntil: "load" });
-      const href = await p.getAttribute(c.btn, "href").catch(() => null);
-      const want = c.door + "?sku=" + c.sku + (src ? "&src=instagram" : "");
-      if (!href || !href.endsWith(want)) flag(at + ": the PromptPay button goes to " + href + ", not " + want);
+      if (!c.usd) {
+        await p.goto(BASE + c.from + src, { waitUntil: "load" });
+        const href = await p.getAttribute(c.btn, "href").catch(() => null);
+        const want = c.door + "?sku=" + c.sku + (src ? "&src=instagram" : "");
+        if (!href || !href.endsWith(want)) flag(at + ": the PromptPay button goes to " + href + ", not " + want);
+      }
       if (c.usd) {
+        // GNS moved to NerdHostel on 23 Oct 2026; its page's Buy still comes through this
+        // site's relay, so the relay is what is checked: tag kept, cur=thb added.
+        checkout = null;
+        const gp = await ctx.newPage(); watch(gp, at + " relay");
+        await gp.goto(BASE + c.relay + "?sku=" + c.sku + "&src=gns-ricktew");
+        await gp.waitForURL(u => u.href.startsWith(CHECKOUT), { timeout: 5000 }).catch(() => {});
+        if (!checkout || !/[?&]cur=thb(&|$)/.test(checkout) || !/[?&]src=gns-ricktew(&|$)/.test(checkout)) flag(at + ": the GNS relay reached " + checkout + " without cur=thb or its tag");
+        await gp.close();
+        await p.goto(BASE + c.door + "?sku=" + c.sku, { waitUntil: "load" });
+      } else if (false) {
         // GNS (21 Oct 2026): US dollars for every visitor, Thailand included; its card stays reachable.
         await p.waitForTimeout(500);
         if (!(await p.isVisible(c.buy)) || (await p.isVisible(c.card)) || (await p.isVisible(c.btn))) flag(at + ": GNS is not on the US dollar view from Thailand");
@@ -179,18 +191,13 @@ const flag = m => found.push(m);
       await p.close();
     }
 
-    // The GNS page's PromptPay button, tagged gns, and its card's back link.
+    // The GNS card as NerdHostel's GNS page links it (that page moved there on 23 Oct 2026):
+    // tagged gns-<post>, its back link returns to NerdHostel, and the Paid mail says gns.
     {
-      const at = dev + " /gns/";
+      const at = dev + " GNS card";
       const p = await ctx.newPage(); watch(p, at);
-      await p.goto(BASE + "/gns/?src=instagram", { waitUntil: "load" });
-      const href = await p.$eval('a[href^="/hininja/promptpay/?"]', a => a.getAttribute("href")).catch(() => null);
-      if (href !== "/hininja/promptpay/?sku=HIN-GNS-2W&src=gns-instagram") flag(at + ": the PromptPay button goes to " + href);
-      const buys = await p.$$eval('a[href^="/hininja/buy/?"]', as => as.map(a => (a.classList.contains("thb-card") ? "card " : "") + a.getAttribute("href")));
-      if (!buys.includes("card /hininja/buy/?sku=HIN-GNS-2W&src=gns-instagram&cur=thb")) flag(at + ": the card in baht lost its tag or cur=thb: " + JSON.stringify(buys));
-      if (buys.filter(h => !h.startsWith("card ")).some(h => h !== "/hininja/buy/?sku=HIN-GNS-2W&src=gns-instagram")) flag(at + ": an Enroll button is not the plain dollar Buy: " + JSON.stringify(buys));
-      await p.goto(BASE + href, { waitUntil: "load" });
-      if ((await p.getAttribute("#back-link", "href")) !== "/gns/") flag(at + ": the card's back link does not return to /gns/");
+      await p.goto(BASE + "/hininja/promptpay/?sku=HIN-GNS-2W&src=gns-instagram", { waitUntil: "load" });
+      if ((await p.getAttribute("#back-link", "href")) !== "https://www.nerdhostel.com/gns") flag(at + ": the card's back link does not return to NerdHostel's GNS page");
       posts = [];
       await p.fill("#ppName", "Somchai Test"); await p.fill("#ppEmail", "somchai.test@example.com"); await p.fill("#ppField", "2027-01-22");
       await p.waitForTimeout(3100); await p.click("#ppSend"); await p.waitForTimeout(400);
