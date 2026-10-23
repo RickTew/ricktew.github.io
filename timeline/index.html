@@ -54,7 +54,7 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 .cap h2{font-size:clamp(22px,4.4vw,32px);font-weight:900}
 .cap p{margin-top:6px;color:var(--body)}
 
-.bar{position:absolute;left:0;bottom:0;height:3px;z-index:4;width:0;background:var(--ink)}
+.bar{position:absolute;left:0;bottom:0;height:3px;z-index:4;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--ink)}
 .chapter .bar.red{background:var(--red)}
 .chapter .bar.blue{background:var(--blue)}
 
@@ -135,42 +135,62 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
 
 <script>
 /* The scrub: each chapter's scroll progress (0 at the top of its track, 1 at the bottom)
-   picks a frame. The drawn frame eases toward the target so a jumpy wheel still reads smooth.
-   Frames load when a chapter comes near, nearest loaded frame is drawn until the exact one lands. */
+   picks the frame directly, no easing, so the picture is always where the thumb is.
+   Work happens only when the scroll moves. Frames load coarse first (every 16th, then
+   8th, 4th, 2nd, all) and are decoded before use, so a chapter moves from the first second
+   on a slow phone and fills in its in-between frames as they land. */
 (function(){
   "use strict";
-  var EASE = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 0.18;
   var chapters = [].slice.call(document.querySelectorAll(".chapter")).map(function(el){
     var c = el.querySelector("canvas");
     return {
-      el: el, canvas: c, ctx: c.getContext("2d"),
+      el: el, canvas: c, ctx: c.getContext("2d", { alpha: false }),
       seq: el.getAttribute("data-seq"), count: +el.getAttribute("data-count"),
-      fit: el.getAttribute("data-fit"), imgs: [], loading: false,
+      fit: el.getAttribute("data-fit"),
+      bg: getComputedStyle(el.querySelector(".stage")).backgroundColor,
+      imgs: [], loading: false, drawnImg: null, w: 0, h: 0, top: 0, height: 0,
       caps: [].slice.call(el.querySelectorAll(".cap")).map(function(k){
-        var r = k.getAttribute("data-at").split("-"); return { el: k, a: +r[0], b: +r[1] };
+        var r = k.getAttribute("data-at").split("-"); return { el: k, a: +r[0], b: +r[1], on: false };
       }),
-      bar: el.querySelector(".bar"), shown: -1, cur: 0, target: 0, w: 0, h: 0
+      bar: el.querySelector(".bar")
     };
   });
+  var vh = 0, queued = false;
+  window.__timeline = chapters;   /* read by the test scripts */
 
   function src(ch, i){ return ch.seq + String(i + 1).padStart(4, "0") + ".webp"; }
 
   function load(ch){
     if (ch.loading) return; ch.loading = true;
-    /* first, middle and last first, so the chapter has something to show at once */
-    var order = [0, ch.count >> 1, ch.count - 1];
-    for (var i = 0; i < ch.count; i++) if (order.indexOf(i) < 0) order.push(i);
-    order.forEach(function(i){
-      var im = new Image(); im.decoding = "async";
-      im.onload = function(){ ch.imgs[i] = im; if (ch.shown < 0) ch.shown = -2; };
-      im.src = src(ch, i);
+    var order = [], seen = {};
+    [16, 8, 4, 2, 1].forEach(function(step){
+      for (var i = 0; i < ch.count; i += step) if (!seen[i]) { seen[i] = 1; order.push(i); }
     });
+    if (!seen[ch.count - 1]) order.splice(1, 0, ch.count - 1);
+    var next = 0, busy = 0;
+    function pump(){
+      while (busy < 6 && next < order.length){
+        (function(i){
+          busy++;
+          var im = new Image(); im.decoding = "async"; im.src = src(ch, i);
+          var done = function(){ busy--; ch.imgs[i] = im; request(); pump(); };
+          (im.decode ? im.decode() : Promise.reject()).then(done, function(){
+            if (im.complete && im.naturalWidth) done(); else im.onload = done;
+          });
+        })(order[next++]);
+      }
+    }
+    pump();
   }
 
-  function size(ch){
-    var r = ch.canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
-    var w = Math.round(r.width * d), h = Math.round(r.height * d);
-    if (w !== ch.w || h !== ch.h){ ch.canvas.width = ch.w = w; ch.canvas.height = ch.h = h; ch.shown = -2; }
+  function measure(){
+    vh = document.documentElement.clientHeight;
+    var d = Math.min(window.devicePixelRatio || 1, 2);
+    chapters.forEach(function(ch){
+      ch.top = ch.el.offsetTop; ch.height = ch.el.offsetHeight;
+      var w = Math.round(ch.canvas.clientWidth * d), h = Math.round(ch.canvas.clientHeight * d);
+      if (w !== ch.w || h !== ch.h){ ch.canvas.width = ch.w = w; ch.canvas.height = ch.h = h; ch.drawnImg = null; }
+    });
   }
 
   function nearest(ch, i){
@@ -181,8 +201,7 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
     return null;
   }
 
-  function draw(ch, i){
-    var im = nearest(ch, i); if (!im) return;
+  function draw(ch, im){
     var cw = ch.w, chh = ch.h, iw = im.naturalWidth, ih = im.naturalHeight;
     /* cover on a wide screen; on a tall phone a full cover crops a 4:3 tape to one arm,
        so the frame fills about 60% of the height and sits a little above the caption */
@@ -192,30 +211,37 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
     else s = Math.max(cw / iw, chh / ih);
     var dw = iw * s, dh = ih * s;
     oy = tall && ch.fit !== "contain" ? Math.max(0, (chh * 0.42) - dh / 2) : (chh - dh) / 2;
-    ch.ctx.clearRect(0, 0, cw, chh);
+    if (dw < cw || dh < chh || oy > 0){ ch.ctx.fillStyle = ch.bg; ch.ctx.fillRect(0, 0, cw, chh); }
     ch.ctx.drawImage(im, (cw - dw) / 2, oy, dw, dh);
-    ch.shown = ch.imgs[i] ? i : -2;
+    ch.drawnImg = im;
   }
 
-  function tick(){
-    var vh = window.innerHeight;
-    chapters.forEach(function(ch){
-      var r = ch.el.getBoundingClientRect();
-      if (r.top < vh * 2.5 && r.bottom > -vh) load(ch);
-      if (r.bottom < 0 || r.top > vh) return;            /* not on screen: skip the work */
-      size(ch);
-      var p = Math.min(1, Math.max(0, -r.top / (r.height - vh)));
-      ch.target = p * (ch.count - 1);
-      ch.cur += (ch.target - ch.cur) * EASE;
-      if (Math.abs(ch.target - ch.cur) < 0.05) ch.cur = ch.target;
-      var i = Math.round(ch.cur);
-      if (i !== ch.shown) draw(ch, i);
-      ch.caps.forEach(function(k){ k.el.classList.toggle("on", p >= k.a && p <= k.b); });
-      if (ch.bar) ch.bar.style.width = (p * 100).toFixed(2) + "%";
+  function frame(){
+    queued = false;
+    var y = window.scrollY;
+    chapters.forEach(function(ch, n){
+      var top = ch.top - y, bottom = top + ch.height;
+      if (top < vh * 3 && bottom > -vh) load(ch);
+      if (bottom < 0 || top > vh) return;
+      if (chapters[n + 1] && top < vh) load(chapters[n + 1]);   /* the next chapter starts early */
+      var p = Math.min(1, Math.max(0, -top / (ch.height - vh)));
+      var im = nearest(ch, Math.round(p * (ch.count - 1)));
+      if (im && im !== ch.drawnImg) draw(ch, im);
+      ch.caps.forEach(function(k){
+        var on = p >= k.a && p <= k.b;
+        if (on !== k.on){ k.on = on; k.el.classList.toggle("on", on); }
+      });
+      if (ch.bar) ch.bar.style.transform = "scaleX(" + p.toFixed(4) + ")";
     });
-    requestAnimationFrame(tick);
   }
-  requestAnimationFrame(tick);
+
+  function request(){ if (!queued){ queued = true; requestAnimationFrame(frame); } }
+
+  measure();
+  window.addEventListener("scroll", request, { passive: true });
+  window.addEventListener("resize", function(){ measure(); request(); });
+  window.addEventListener("load", function(){ measure(); request(); });
+  request();
 })();
 </script>
 </body>
