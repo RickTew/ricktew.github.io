@@ -35,6 +35,40 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
   animation:cue 1.8s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:scaleY(.3);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
 
+/* The menu ring */
+.menu{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:64px 0 28px;background:var(--panel);overflow:hidden}
+.menu-head{text-align:center;padding:0 16px}
+.menu-head h1{font-size:clamp(38px,7vw,72px);font-weight:900}
+.menu-head p{margin-top:8px;color:var(--muted)}
+.ring-stage{position:relative;width:100%;height:clamp(300px,52vh,460px);perspective:1100px;perspective-origin:50% 35%;
+  touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;outline:none}
+.ring-stage.drag{cursor:grabbing}
+.ring{list-style:none;position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.ring li{position:absolute;left:0;top:0;transform-style:preserve-3d}
+.ring a{position:absolute;left:0;top:0;display:block;width:var(--cw,220px);height:calc(var(--cw,220px) * 1.3);
+  margin-left:calc(var(--cw,220px) / -2);margin-top:calc(var(--cw,220px) * -0.65);
+  border-radius:16px;overflow:hidden;background:#fff;border:5px solid #fff;color:var(--ink);text-decoration:none;
+  box-shadow:0 18px 40px rgba(16,20,24,.18);backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  -webkit-user-drag:none}
+.ring a img{display:block;width:100%;height:78%;object-fit:cover;pointer-events:none;-webkit-user-drag:none;background:#e9eef3}
+.ring a img.fit-top{object-position:50% 0}
+.ring a img.fit-contain{object-fit:contain;background:linear-gradient(160deg,#e9f2fb,#f7f6f4)}
+.ring a span{display:flex;align-items:center;justify-content:center;height:22%;padding:0 8px;text-align:center;
+  font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:clamp(15px,2.2vw,19px)}
+.ring a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.menu-foot{display:flex;align-items:center;gap:14px;margin-top:6px;padding:0 16px;width:100%;max-width:560px}
+.now{flex:1;text-align:center;min-height:3.2em}
+.now b{display:block;font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:22px}
+.now span{display:block;color:var(--body);font-size:15px}
+.turn{flex:none;width:46px;height:46px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);
+  font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(16,20,24,.08)}
+.turn:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.menu-go{margin-top:12px}
+.menu-go a{display:inline-block;padding:12px 30px;border-radius:999px;background:var(--ink);color:#fff;font-weight:800;text-decoration:none}
+.menu-go a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.menu .cue{margin-top:20px}
+
 /* One chapter: a tall track, a pinned stage inside it. The track's height is how long the scrub lasts. */
 .chapter{position:relative;height:420vh}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--panel)}
@@ -82,11 +116,38 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
 <p class="testbar">Test page. Not linked anywhere, not in search.</p>
 
 <main id="main">
-  <header class="intro">
-    <h1>Rick Tew</h1>
-    <p>The mat, the camps, the gym and the code. Scroll and it moves.</p>
-    <span class="cue" aria-hidden="true">Scroll</span>
-  </header>
+  <!-- The menu ring (Rick, 23 Oct: "the links to all that we do so then they would pick one
+       form that (like a menu) and go"). Real links in a real list; the script lays them on a
+       3D ring and turns it by swipe, drag, arrows or keys. It never turns by itself. -->
+  <section class="menu" id="menu" aria-label="Pick one">
+    <div class="menu-head">
+      <h1>Rick Tew</h1>
+      <p>Everything I build and teach. Turn it, pick one, go.</p>
+    </div>
+    <div class="ring-stage" id="ringStage">
+      <ul class="ring" id="ring">
+        <li><a href="/aininja/" data-kind="Digital" data-line="Done-for-you AI for small business, run by a person."><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="" class="fit-contain"><span>AI Ninja</span></a></li>
+        <li><a href="/hininja/" data-kind="In person" data-line="Two weeks of ninja training on Koh Samui."><img src="/aininja/assets/story/ninja/world/asia-ninjagym.webp" alt=""><span>HI Ninja</span></a></li>
+        <li><a href="https://ninjagym.com/" data-kind="In person" data-line="The ninja gym for kids on Koh Samui."><img src="/aininja/assets/story/ninjagym/gym-flying-jump.webp" alt=""><span>NinjaGym</span></a></li>
+        <li><a href="/hsp/" data-kind="Digital" data-line="Pocket Dojo, the Home Study Program: train at home."><img src="/hsp/pocketdojo-apps.webp" alt=""><span>Pocket Dojo</span></a></li>
+        <li><a href="/rtms/" data-kind="In person" data-line="Rick Tew's Martial Science, beginner to instructor."><img src="/aininja/assets/story/ninja/world/us-press-blackbelt.webp" alt=""><span>RTMS</span></a></li>
+        <li><a href="https://winjitsu.com/" data-kind="Mind" data-line="WinJitsu, the mental martial art."><img src="/aininja/assets/story/winjitsu/winjitsu-app.webp" alt="" class="fit-top"><span>WinJitsu</span></a></li>
+        <li><a href="https://tewtors.com/workbooks/" data-kind="Mind" data-line="Workbooks for the mind."><img src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="" class="fit-contain"><span>Tewtors</span></a></li>
+        <li><a href="/camps/" data-kind="In person" data-line="Long-term martial art camps in Thailand."><img src="/aininja/assets/story/ninja/world/us-camp-crew.webp" alt=""><span>Camps</span></a></li>
+        <li><a href="/tours/" data-kind="In person" data-line="Travel and training in Thailand."><img src="/aininja/assets/story/ninja/world/asia-island.webp" alt=""><span>Tours</span></a></li>
+        <li><a href="https://www.nerdhostel.com/" data-kind="In person" data-line="A hostel on Koh Samui, across the street from NinjaGym."><img src="/aininja/assets/story/apps/nerdhostel.webp" alt=""><span>NerdHostel</span></a></li>
+        <li><a href="https://dungeonhole.com/" data-kind="Digital" data-line="Dungeon Hole, a 1v1 dungeon strategy game."><img src="/aininja/assets/story/games/dh-party.webp" alt=""><span>Dungeon Hole</span></a></li>
+        <li><a href="https://apps.apple.com/us/app/tewgo/id6763025917" data-kind="Digital" data-line="TEWGO, a strategy board game on the App Store."><img src="/aininja/assets/story/apps/tewgo.webp" alt=""><span>TEWGO</span></a></li>
+      </ul>
+    </div>
+    <div class="menu-foot">
+      <button type="button" class="turn" id="ringPrev" aria-label="Turn left">&#8592;</button>
+      <div class="now" aria-live="polite"><b id="nowName">AI Ninja</b><span id="nowLine"></span></div>
+      <button type="button" class="turn" id="ringNext" aria-label="Turn right">&#8594;</button>
+    </div>
+    <p class="menu-go"><a id="nowGo" href="/aininja/">Go</a></p>
+    <span class="cue" aria-hidden="true">Or scroll for the story</span>
+  </section>
 
   <section class="chapter" data-seq="frames/mat/frame_" data-count="96" data-fit="cover" data-tone="dark" aria-label="Martial arts">
     <div class="stage">
@@ -133,6 +194,123 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
 
 <footer>Rick Tew. Run by Rick Tew Co., Ltd.</footer>
 
+<script>
+/* The menu ring. Card i faces front when the ring's angle is -i * step. A drag turns it
+   with the finger and keeps a little momentum, then it settles on the nearest card.
+   A tap on a side card turns it to the front; a tap on the front card follows its link. */
+(function(){
+  "use strict";
+  var stage = document.getElementById("ringStage"), list = document.getElementById("ring");
+  var links = [].slice.call(list.querySelectorAll("a")), N = links.length, STEP = 360 / N;
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var angle = 0, vel = 0, target = 0, R = 500, front = 0, raf = 0;
+  var drag = null, moved = false;
+  var nowName = document.getElementById("nowName"), nowLine = document.getElementById("nowLine"), nowGo = document.getElementById("nowGo");
+
+  function mod(a, n){ return ((a % n) + n) % n; }
+
+  function measure(){
+    var w = stage.clientWidth;
+    var cw = Math.round(Math.max(150, Math.min(230, w * 0.38)));
+    stage.style.setProperty("--cw", cw + "px");
+    R = Math.round(N * (cw + 26) / (2 * Math.PI));
+    layout();
+  }
+
+  function layout(){
+    links.forEach(function(a, i){
+      var deg = i * STEP + angle, c = Math.cos(deg * Math.PI / 180);
+      a.parentNode.style.transform = "rotateY(" + deg.toFixed(2) + "deg) translateZ(" + R + "px)";
+      a.style.opacity = (0.15 + 0.85 * Math.max(0, c)).toFixed(3);
+      a.tabIndex = 0;
+    });
+    list.style.transform = "translateZ(" + (-R) + "px)";
+    var f = mod(Math.round(-angle / STEP), N);
+    if (f !== front || !nowLine.textContent){
+      front = f;
+      var a = links[f];
+      nowName.textContent = a.querySelector("span").textContent;
+      nowLine.textContent = a.getAttribute("data-line");
+      nowGo.href = a.href;
+      nowGo.textContent = "Go to " + nowName.textContent;
+    }
+  }
+
+  function settleOn(t){ target = t; vel = 0; if (still){ angle = t; layout(); } else run(); }
+  function nearest(){ return Math.round(angle / STEP) * STEP; }
+  /* the equivalent of card i's front angle closest to where the ring is now */
+  function frontOf(i){ var t = -i * STEP; return t + Math.round((angle - t) / 360) * 360; }
+
+  function run(){ if (!raf) raf = requestAnimationFrame(step); }
+  function step(){
+    raf = 0;
+    if (drag){ layout(); return; }
+    if (Math.abs(vel) > 0.25){                 /* momentum after a flick */
+      angle += vel; vel *= 0.92; target = null;
+    } else {
+      if (target === null) target = nearest();
+      var d = target - angle;
+      angle += d * 0.16;
+      if (Math.abs(d) < 0.05){ angle = target; layout(); return; }
+    }
+    layout(); run();
+  }
+
+  stage.addEventListener("pointerdown", function(e){
+    if (e.button !== 0) return;
+    drag = { x: e.clientX, last: e.clientX, t: e.timeStamp, id: e.pointerId };
+    moved = false; vel = 0;
+  });
+  window.addEventListener("pointermove", function(e){
+    if (!drag || e.pointerId !== drag.id) return;
+    var dx = e.clientX - drag.last;
+    if (!moved && Math.abs(e.clientX - drag.x) > 6){ moved = true; stage.classList.add("drag"); try { stage.setPointerCapture(e.pointerId); } catch (_) {} }
+    if (!moved) return;
+    var k = 160 / Math.max(320, stage.clientWidth);   /* about a card per thumb-width of drag */
+    angle += dx * k;
+    var dt = Math.max(1, e.timeStamp - drag.t);
+    vel = (dx * k) * (16 / dt);
+    drag.last = e.clientX; drag.t = e.timeStamp;
+    run();
+  });
+  function endDrag(e){
+    if (!drag || (e && e.pointerId !== drag.id)) return;
+    drag = null; stage.classList.remove("drag");
+    if (still) vel = 0;
+    target = null; run();
+  }
+  window.addEventListener("pointerup", endDrag);
+  window.addEventListener("pointercancel", endDrag);
+
+  links.forEach(function(a, i){
+    a.addEventListener("click", function(e){
+      if (moved){ e.preventDefault(); moved = false; return; }
+      if (i !== front){ e.preventDefault(); settleOn(frontOf(i)); }
+    });
+    a.addEventListener("focus", function(){ if (i !== front) settleOn(frontOf(i)); });
+    a.addEventListener("dragstart", function(e){ e.preventDefault(); });
+  });
+
+  document.getElementById("ringPrev").addEventListener("click", function(){ settleOn(nearest() + STEP); });
+  document.getElementById("ringNext").addEventListener("click", function(){ settleOn(nearest() - STEP); });
+  stage.addEventListener("keydown", function(e){
+    if (e.key === "ArrowLeft"){ e.preventDefault(); settleOn(nearest() + STEP); }
+    if (e.key === "ArrowRight"){ e.preventDefault(); settleOn(nearest() - STEP); }
+  });
+  /* a sideways trackpad swipe turns it; an up-down wheel stays the page's */
+  var wheelEnd = 0;
+  stage.addEventListener("wheel", function(e){
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault();
+    angle -= e.deltaX * 0.12; vel = 0; target = angle; layout();
+    clearTimeout(wheelEnd); wheelEnd = setTimeout(function(){ target = null; run(); }, 140);
+  }, { passive: false });
+
+  window.addEventListener("resize", measure);
+  window.__ring = { get angle(){ return angle; }, get front(){ return front; }, N: N };
+  measure();
+})();
+</script>
 <script>
 /* The scrub: each chapter's scroll progress (0 at the top of its track, 1 at the bottom)
    picks the frame directly, no easing, so the picture is always where the thumb is.
