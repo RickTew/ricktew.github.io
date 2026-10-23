@@ -58,6 +58,9 @@ import { gauntletScore } from './gauntlet.ts';
 const ALLOWED_ORIGINS = [
   'https://ricktew.com',
   'https://www.ricktew.com',
+  // the GNS page moved to NerdHostel keeps its "Send it to Rick" box (Rick's click, 23 Oct 2026)
+  'https://www.nerdhostel.com',
+  'https://nerdhostel.com',
   'http://localhost:8080',
   'http://127.0.0.1:8080',
   'http://localhost:5500',
