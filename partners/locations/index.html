@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Rick, 24 Oct 2026 (relayed by TEWBEDO): "you mentioned a bangkok mall was offering free
+     rent. Let's make a new location search page to attach to the bangkok roadmap so we can
+     actively start to hunt down options in Bangkok right now".
+     The working list of candidate sites for NinjaGym Bangkok. Same soft gate as the roadmap
+     (one code, one sessionStorage key, so unlocking either opens both), noindex, not in the
+     sitemap. THIS REPO IS PUBLIC: the gate hides the page from a casual visitor, not from
+     anyone reading GitHub, so only public facts go here (published leasing pages, sources).
+     Never write a rent we offered, a negotiation note or a private person's details.
+     Every fact carries its source; "unverified" marks anything not read at the source.
+     Rule: nobody contacts a mall, broker or landlord without Rick's yes, one contact at a time.
+     To update a site: edit SITES at the bottom, deploy, check live. -->
+<title>NinjaGym Bangkok: Location Search</title>
+<link rel="icon" href="/assets/images/favicon.png">
+<link href="/assets/fonts/nunito-fraunces-29e533.css" rel="stylesheet">
+<style>
+/* NinjaGym house palette, as on the roadmap: blue-led, green = good news, gold = to do. */
+:root{
+  --canvas:#f5f8fc; --ink:#1f2937; --ink2:#16233a; --muted:#5f6b7a;
+  --navy:#173a6b; --navy-d:#0f2647; --blue:#2f6fed; --blue-d:#1d4fb8;
+  --green:#1f9d5b; --green-d:#14663c; --gold:#c98a2e; --gold-d:#8a5a18;
+  --purple:#6b4a9c; --red:#c73b3b; --line:#e2e9f2;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--canvas);color:var(--ink);font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.55}
+a{color:var(--blue-d)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+@media (max-width:700px){ .wrap{padding:0 16px} }
+
+.top{background:linear-gradient(150deg,#0d2044 0%,#173a6b 45%,#2f6fed 100%);color:#fff;padding:18px 0 46px}
+.top-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.wm{font-weight:900;letter-spacing:.16em;font-size:15px}
+.wm .g{color:#ffd479}
+.back{margin-left:auto;color:#dbe8fb;font-weight:800;font-size:14px;text-decoration:none;border:1.5px solid rgba(255,255,255,.35);border-radius:999px;padding:6px 14px}
+.back:hover{background:rgba(255,255,255,.12)}
+.eyebrow{margin-top:34px;font-size:13px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:#9fc0ea}
+.top h1{margin-top:8px;font-family:"Fraunces",Georgia,serif;font-style:italic;font-weight:600;font-size:clamp(36px,5.6vw,58px);line-height:1.02}
+.top h1 span{color:#ffd479}
+.top .lead{margin-top:14px;font-size:18px;color:#dbe8fb;max-width:62ch}
+
+.rulebox{margin-top:-24px;position:relative;background:#fff;border:2px solid #c98a2e66;border-radius:16px;padding:16px 20px;box-shadow:0 14px 34px rgba(15,38,71,.12);display:flex;gap:14px;align-items:flex-start}
+.rulebox b{color:var(--gold-d)}
+.rulebox svg{flex:none;width:26px;height:26px;stroke:var(--gold-d);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-top:1px}
+
+section{padding:44px 0 6px}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:900;line-height:1.1;color:var(--navy-d);letter-spacing:-.01em}
+h2 span{color:var(--blue)}
+.k{font-size:12.5px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-d)}
+.k+h2{margin-top:6px}
+.sub{margin-top:10px;color:#33404f;max-width:70ch}
+.small{font-size:14px;color:var(--muted)}
+
+.rules{margin-top:18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:820px){ .rules{grid-template-columns:1fr} }
+.rules div{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:16px 18px}
+.rules b{display:block;font-weight:900;color:var(--navy-d);font-size:17px}
+.rules p{margin-top:6px;font-size:15px;color:#33404f}
+.numbers{margin-top:14px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 18px;font-size:15px;color:#33404f}
+.numbers b{color:var(--ink2)}
+
+.lead-card{margin-top:18px;background:#fff;border:2px solid #1f9d5b66;border-radius:16px;padding:18px 20px}
+.lead-card h3{font-size:19px;font-weight:900;color:var(--green-d)}
+.lead-card p{margin-top:8px;font-size:15.5px;color:#33404f}
+
+.tools{margin-top:18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:820px){ .tools{grid-template-columns:1fr 1fr} }
+@media (max-width:520px){ .tools{grid-template-columns:1fr} }
+.tools a{display:block;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;text-decoration:none;color:var(--ink);transition:border-color .12s ease,box-shadow .12s ease}
+.tools a:hover{border-color:var(--blue);box-shadow:0 8px 22px rgba(15,38,71,.10)}
+.tools b{display:block;font-weight:900;color:var(--navy-d)}
+.tools span{display:block;margin-top:4px;font-size:14px;color:var(--muted)}
+
+/* status filter: these are buttons, so they get the round shape */
+.filters{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.filters button{font:inherit;font-weight:800;font-size:14px;border-radius:999px;padding:7px 14px;border:1.5px solid var(--line);background:#fff;color:var(--ink2);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.filters button span{font-weight:900;opacity:.7;margin-left:4px}
+
+.sites{margin-top:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:820px){ .sites{grid-template-columns:1fr} }
+.site{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column}
+.site-hd{display:flex;align-items:flex-start;gap:10px}
+.site h3{font-size:19px;font-weight:900;color:var(--navy-d);line-height:1.2}
+.site .th{display:block;font-size:14px;font-weight:700;color:var(--muted);margin-top:2px}
+/* labels, not buttons: small squared tags */
+.st{margin-left:auto;flex:none;font-size:12px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;border-radius:6px;padding:3px 8px;border:1.5px solid}
+.st-found{color:var(--blue-d);border-color:#2f6fed55;background:#2f6fed12}
+.st-tocontact{color:var(--gold-d);border-color:#c98a2e77;background:#c98a2e18}
+.st-contacted{color:var(--purple);border-color:#6b4a9c66;background:#6b4a9c14}
+.st-visited{color:var(--navy-d);border-color:#173a6b66;background:#173a6b12}
+.st-offer{color:var(--green-d);border-color:#1f9d5b77;background:#1f9d5b16}
+.st-no{color:var(--muted);border-color:#9aa4b2;background:#f1f3f6}
+.meta{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px 12px;font-size:14px;color:var(--muted);font-weight:700}
+.meta .ty{color:var(--blue-d)}
+.meta .gr{color:var(--purple)}
+.site dl{margin-top:12px;display:grid;grid-template-columns:110px 1fr;gap:6px 12px;font-size:15px}
+@media (max-width:420px){ .site dl{grid-template-columns:1fr;gap:0 0} .site dd{margin-bottom:8px} }
+.site dt{font-weight:900;color:var(--ink2);font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding-top:2px}
+.site dd{color:#33404f}
+.uv{display:inline-block;font-size:11.5px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#b4560f;border:1px solid #e8731c66;border-radius:5px;padding:0 5px;margin-left:4px;vertical-align:1px}
+.src{margin-top:auto;padding-top:12px;font-size:13px;color:var(--muted)}
+.src a{color:var(--muted)}
+.empty{margin-top:16px;color:var(--muted)}
+
+.listings{margin-top:16px;display:grid;gap:10px}
+.listings li{list-style:none;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 16px;font-size:15px;color:#33404f}
+.listings b{color:var(--ink2)}
+
+footer{margin-top:48px;padding:22px 0 40px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+
+/* soft gate, the roadmap's own (same code, same key) */
+#gate{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#0d2044 0%,#173a6b 60%,#0f2647 100%);color:#fff;padding:24px}
+#gate .gcard{width:100%;max-width:370px;text-align:center}
+#gate .gwm{font-weight:900;letter-spacing:.16em;font-size:24px}
+#gate .gwm .g{color:#ffd479}
+#gate .gkick{margin-top:8px;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#9fc0ea}
+#gate .gsub{margin-top:16px;font-size:15px;color:#dbe8fb;font-weight:700;line-height:1.4}
+#gate .grow{margin-top:18px;display:flex;gap:8px}
+#gate input{flex:1;min-width:0;font:inherit;font-size:17px;font-weight:700;padding:11px 14px;border-radius:11px;border:1.6px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;outline:none}
+#gate input::placeholder{color:#a9c1e6;font-weight:600}
+#gate input:focus{border-color:#8bc0f2;background:rgba(255,255,255,.18)}
+#gate button{font:inherit;font-weight:900;font-size:15px;padding:11px 20px;border-radius:11px;border:none;background:#2f6fed;color:#fff;cursor:pointer}
+#gate button:hover{background:#1d4fb8}
+#gate .gerr{margin-top:11px;font-size:13px;font-weight:800;color:#ffd0cf;min-height:15px}
+#gate .ghint{margin-top:6px;font-size:12px;color:#8fa9cf}
+body.locked{overflow:hidden}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gcard">
+    <div class="gwm">NINJA<span class="g">GYM</span></div>
+    <div class="gkick">Bangkok Location Search</div>
+    <div class="gsub">This is a private preview. Enter the access code to view.</div>
+    <div class="grow">
+      <input id="gate-input" type="password" placeholder="Access code" autocomplete="off" spellcheck="false" aria-label="Access code">
+      <button id="gate-btn" type="button">Enter</button>
+    </div>
+    <div class="gerr" id="gate-err" role="alert"></div>
+    <div class="ghint">Ask Rick Tew's NinjaGym for the code.</div>
+  </div>
+</div>
+<script>
+(function(){
+  var CODE = 'ninjagym';
+  var gate = document.getElementById('gate'), input = document.getElementById('gate-input'),
+      btn = document.getElementById('gate-btn'), err = document.getElementById('gate-err');
+  function unlock(){ try{ sessionStorage.setItem('ng_roadmap_ok','1'); }catch(e){} gate.style.display='none'; document.body.classList.remove('locked'); }
+  var ok=false; try{ ok = sessionStorage.getItem('ng_roadmap_ok')==='1'; }catch(e){}
+  if(ok){ gate.style.display='none'; } else { document.body.classList.add('locked'); setTimeout(function(){ input.focus(); }, 60); }
+  function tryUnlock(){ if((input.value||'').trim().toLowerCase()===CODE){ unlock(); } else { err.textContent='That code did not match. Try again.'; input.select(); } }
+  btn.addEventListener('click', tryUnlock);
+  input.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); tryUnlock(); } });
+})();
+</script>
+
+<header class="top">
+  <div class="wrap">
+    <div class="top-bar">
+      <div class="wm">RICK TEW'S NINJA<span class="g">GYM</span></div>
+      <a class="back" href="/partners/">Back to the roadmap</a>
+    </div>
+    <div class="eyebrow">NinjaGym Bangkok</div>
+    <h1>Location search: <span>Bangkok and beyond</span></h1>
+    <p class="lead">The working list of sites for the first NinjaGym centers. Each one shows its area, the space, the rent or deal on offer, how to reach its leasing office, and where the hunt stands.</p>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="rulebox">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+    <p><b>Nobody contacts a mall, broker or landlord until Rick says yes, one contact at a time.</b> Every fact here has its source. <span class="uv">Unverified</span> marks anything not yet read at the source.</p>
+  </div>
+
+  <section id="look">
+    <div class="k">What we look for</div>
+    <h2>The roadmap's rules for <span>every site</span></h2>
+    <div class="rules">
+      <div><b>Near schools</b><p>Lean centers near schools, where the after-school and weekend demand already exists. Lower rent and entry budget, quicker to fill.</p></div>
+      <div><b>Affluent areas</b><p>Bigger-budget centers anchor affluent neighborhoods, with the space and family spending for a full climb zone, game room and events.</p></div>
+      <div><b>Spacing matters</b><p>Centers spread across Bangkok's districts, never stacked, so each one adds new families instead of splitting the same ones.</p></div>
+    </div>
+    <p class="numbers"><b>The numbers to beat:</b> the roadmap's model assumes rent of about ฿60,000 a month per center (its slider runs ฿20,000 to ฿260,000). NinjaGym centers are drop-and-go: parents leave their ninja training and go shop, so a mall with a kids' floor or a supermarket fits the model.</p>
+  </section>
+
+  <section id="lead">
+    <div class="k">The lead</div>
+    <h2>Free rent for a <span>kids' martial arts school</span></h2>
+    <div class="lead-card" id="leadCard">
+      <h3>Panipak Taekwondo, JAS Green Village Prawet</h3>
+      <p>JAS Asset gave Panipak Taekwondo, a kids' Taekwondo school, its space on the 2nd floor of JAS Green Village Prawet at no cost for the whole 3-year contract, to help make new Taekwondo athletes.</p>
+      <p>Read it as a one-off: the opening was built around Olympic gold medallist Panipak "Tennis" Wongpattanakit. No other free-rent offer to a kids' or education tenant was found at any mall, and that mall now has a kids' martial arts school. JAS's other malls (below) share one leasing line, so one call covers seven of them.</p>
+      <p class="small">Sources: <a href="https://mitihoon.com/2024/09/02/485179/" rel="noopener noreferrer">mitihoon.com, 2 September 2024</a> (the same press release is on share2trade). Whether the school still trades there in 2026: unknown.</p>
+    </div>
+  </section>
+
+  <section id="start">
+    <div class="k">Start looking</div>
+    <h2>Ways to find <span>more sites</span></h2>
+    <p class="sub">Each link opens a search or a page; nothing is sent. When a site moves along (to contact, contacted, visited), tell the ricktew.com chat or TEWBEDO and this page is updated and checked live.</p>
+    <div class="tools">
+      <a href="https://www.google.com/maps/search/international+school+Bangkok" rel="noopener noreferrer"><b>International schools on a map</b><span>Where the school belts are: Bangna, Ratchaphruek, Krungthep Kreetha, Sukhumvit.</span></a>
+      <a href="https://www.google.com/maps/search/community+mall+Bangkok" rel="noopener noreferrer"><b>Community malls on a map</b><span>Smaller malls near housing, the drop-and-go kind.</span></a>
+      <a href="https://www.google.com/maps/search/kids+taekwondo+Bangkok" rel="noopener noreferrer"><b>Kids' martial arts already there</b><span>Shows the demand, and the schools a new center would sit beside.</span></a>
+      <a href="https://www.เซ้งร้าน.com/listings?q=โรงเรียน" rel="noopener noreferrer"><b>School takeovers on เซ้งร้าน.com</b><span>Education spaces for takeover; its site can be searched.</span></a>
+      <a href="https://www.centralpattana.co.th/en/contact-us/cpn-contact-information" rel="noopener noreferrer"><b>Central Pattana's leasing form</b><span>One form for every Central mall. Opening it sends nothing.</span></a>
+      <a href="https://www.jasasset.co.th/en/our-assets/33/community-malls" rel="noopener noreferrer"><b>JAS Asset's malls</b><span>Seven of the sites below, one leasing line.</span></a>
+    </div>
+    <p class="numbers"><b>Not checked yet:</b> the Thonburi side (Rama 2, Bang Khae, and Seacon Bangkae's education area), Bangkok Mall in Bangna, Gateway Ekamai, and Little Walk Krungthep Kreetha.</p>
+  </section>
+
+  <section id="sites">
+    <div class="k">The list</div>
+    <h2>Candidate sites</h2>
+    <p class="sub">18 sites, grouped by catchment: pick at most one per group so each center keeps its own families. Status runs found, to contact, contacted, visited, offer, no. Tap a status to show only those.</p>
+    <div class="filters" id="filters" role="group" aria-label="Show sites by status"></div>
+    <div class="sites" id="siteList"></div>
+    <p class="empty" id="empty" hidden>No sites with that status yet.</p>
+  </section>
+
+  <section id="listings">
+    <div class="k">Takeovers</div>
+    <h2>Where Thai lease takeovers <span>are posted</span></h2>
+    <p class="sub">A lease takeover (เซ้ง) can bring a fitted space and a lower start. No kids' martial arts school was found for sale or closing anywhere in Thailand (24 Oct 2026). Most takeover ads sit in Facebook groups that search engines cannot read, so these are checked by hand.</p>
+    <ul class="listings" id="listingList"></ul>
+  </section>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">Updated 24 October 2026 &middot; <a href="/partners/">The roadmap</a></div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  /* The list. One object per site; keep every claim to what its source says.
+     status: found | tocontact | contacted | visited | offer | no
+     type: "School area" (lean center) or "Affluent area" (bigger build)
+     uv: the names of fields not yet read at their source, shown as Unverified. */
+  var JAS = "https://www.jasasset.co.th/en/our-assets/33/community-malls";
+  var JASC = "JAS leasing, every branch: 063-247-9253, 083-669-5153, 094-414-9989, 063-394-4669";
+  var JAS26 = ["JAS Asset, 3 Jul 2026","https://www.jasasset.co.th/th/newsroom/news-and-media/183"];
+  var CPN = "https://www.centralpattana.co.th/en/contact-us/cpn-contact-information";
+  var CPNT = ["Central Pattana, leasable areas end 2024","https://www.centralpattana.co.th/en/investor-relations/assets-under-central-pattana/retail-properties"];
+  var SITES = [
+    /* East: Prawet and Srinakarin */
+    {name:"JAS Green Village Prawet", th:"แจส กรีน วิลเลจ ประเวศ", area:"Prawet, Bangkok (Sukhaphiban 2 Road)", group:"East: Prawet and Srinakarin", type:"School area", status:"found",
+     why:"A neighbourhood mall with an education zone and a children's play garden, for Prawet, Sukhaphiban 2, Lat Krabang and On Nut. Panipak Taekwondo, a kids' school, is already on the 2nd floor.",
+     space:"Sales area 10,000 sqm; about 90% leased before it opened (June 2024). Vacancies unknown.",
+     deal:"Panipak Taekwondo got its space free for 3 years (see the lead). No general offer published.",
+     contact:JASC, contactUrl:JAS,
+     sources:[["share2trade, 5 Jul 2024","https://www.share2trade.com/news/31182/"],["mitihoon, 6 Jun 2024","https://www.mitihoon.com/?p=463199"],["JAS Asset","https://www.jasasset.co.th/en/our-assets/33/community-malls"]]},
+    {name:"Seacon Square Srinakarin", th:"ซีคอนสแควร์", area:"Prawet, Bangkok (Srinakarin Road)", group:"East: Prawet and Srinakarin", type:"Affluent area", status:"found",
+     why:"A big regional mall being rebuilt. Its new MyScape side, due December 2026, has a My Active Life zone for exercise and wellness, so new space is being let now. Kids' classes there today: unknown.",
+     space:"Unknown.", deal:"None found.",
+     contact:"No leasing path published. Main line 02-721-8888.", contactUrl:"https://www.seaconsquare.com/contact-us",
+     sources:[["Thairath, 20 Jul 2026","https://en.thairath.co.th/money/business_marketing/trends/2947531"],["Seacon Square","https://www.seaconsquare.com/contact-us"]]},
+    {name:"The JAS Urban Srinakarin", th:"แจส เออเบิร์น ศรีนครินทร์", area:"Srinakarin Road, Bangkok", group:"East: Prawet and Srinakarin", type:"School area", status:"found",
+     why:"A Tops supermarket anchor (parents shop) and an SF cinema; the JAS Sport Club has 9 badminton courts here. No school nearby named yet.",
+     space:"About 19,850 sqm leasable (JAS page, written around 2021). Vacancies unknown.", deal:"None found.",
+     contact:JASC, contactUrl:JAS, sources:[["JAS Asset",JAS],JAS26]},
+    {name:"JAS Green Village Ramkhamhaeng", th:"แจส กรีน วิลเลจ รามคำแหง", area:"Ramkhamhaeng, Bangkok (Rat Phatthana Road)", group:"East: Prawet and Srinakarin", type:"School area", status:"found",
+     why:"JAS says it targets office workers and nearby schools, with an area for children. On the future Orange Line.",
+     space:"5,000 sqm sales area; opened late 2024. Vacancies unknown.", deal:"None found.",
+     contact:JASC, contactUrl:JAS,
+     sources:[["JAS Asset","https://www.jasasset.co.th/th/newsroom/news-and-media/152"],["hoonvision, 23 Sep 2024","https://www.hoonvision.com/?p=4586"]]},
+    {name:"Market Place Krungthep Kreetha", area:"Krungthep Kreetha, east Bangkok", group:"East: Prawet and Srinakarin", type:"Affluent area", status:"found",
+     why:"Siam Future's one-storey mall for young and multi-generation families, opened 2021. Brighton College Bangkok is in Krungthep Kreetha. At over 5,000 sqm it suits a lean center.",
+     space:"Over 5,000 sqm of shops in all (2021). Vacancies unknown.", deal:"None found.",
+     contact:"Nothing published. Central Pattana's leasing form offers \"Other shopping center\".", contactUrl:CPN,
+     sources:[["InfoQuest, 27 Sep 2021","https://www.infoquest.co.th/?p=129720"],["Brighton College Bangkok","https://brightoncollege.ac.th/"]]},
+    /* Praditmanutham */
+    {name:"Central Eastville", th:"เซ็นทรัล อีสต์วิลล์", area:"East Bangkok (Praditmanutham Road)", group:"Praditmanutham", type:"Affluent area", status:"found", uv:["area"],
+     why:"Central Pattana describes middle-to-high income shoppers, 130 housing projects nearby and students from 78 schools, Bodindecha (Sing Singhaseni) and Satriwitthaya 2 among them (page written around 2015).",
+     space:"35,732 sqm leasable (end of 2024). Kids' tenants and vacancies unknown.", deal:"None found.",
+     contact:"Central Pattana's leasing form: pick Central Eastville, the space type, a budget bracket and the term.", contactUrl:CPN,
+     sources:[["Central Pattana","https://www.centralpattana.co.th/en/our-business/shopping-center/383/central-eastville"],CPNT]},
+    {name:"The Crystal Ekamai-Ramindra", area:"Lat Phrao, Bangkok (Praditmanutham Road)", group:"Praditmanutham", type:"Affluent area", status:"found",
+     why:"Calls itself the first luxury lifestyle mall on Praditmanutham Road, 220+ shops, with The Crystal Kid's Club and a children's event in 2026. Same road as Central Eastville: pick one of the two.",
+     space:"Unknown.", deal:"None found.",
+     contact:"No leasing page. Contact form and 02-101-5711 (general line).", contactUrl:"https://thecrystal.allyglobal.com/contact-us",
+     sources:[["The Crystal","https://thecrystal.allyglobal.com/"]]},
+    /* Northeast: Ramintra and Kubon */
+    {name:"JAS Green Village Kubon", th:"แจส กรีน วิลเลจ คู้บอน", area:"Khlong Sam Wa, Bangkok (Kubon Road)", group:"Northeast: Ramintra and Kubon", type:"Affluent area", status:"found",
+     why:"JAS aims it at households with purchasing power across Ramintra, Kubon, Khlong Sam Wa, Min Buri and Nimitmai. Skill and tutoring schools, a supermarket, a children's playground and the JAS Sport Club.",
+     space:"Over 22,350 sqm of shops (JAS page, written around 2021). Vacancies unknown.", deal:"None found.",
+     contact:JASC, contactUrl:JAS, sources:[["JAS Asset",JAS],JAS26]},
+    {name:"The Jas Ramintra", th:"เดอะ แจส รามอินทรา", area:"Bang Khen, Bangkok (Lat Pla Khao Road)", group:"Northeast: Ramintra and Kubon", type:"School area", status:"found",
+     why:"JAS lists educational institutes among its tenants, with a 24-hour Max Value supermarket. JAS's head office is in the building.",
+     space:"About 12,000 sqm leasable (around 2021). Vacancies unknown.", deal:"None found.",
+     contact:JASC, contactUrl:JAS, sources:[["JAS Asset",JAS]]},
+    {name:"The Promenade", area:"Khan Na Yao, Bangkok (Ramintra Road)", group:"Northeast: Ramintra and Kubon", type:"School area", status:"found",
+     why:"Runs children's events such as a Kids Camp. No kids' class tenants or nearby school confirmed yet.",
+     space:"Unknown.", deal:"None found.",
+     contact:"Its tenant page says to call about renting space: 02-947-5000. LINE @fashionpromenade.", contactUrl:"https://www.thepromenade.co.th/service-tenants",
+     sources:[["The Promenade","https://www.thepromenade.co.th/event/kids-camp-space-explorer/"]]},
+    {name:"The Walk Kaset-Nawamin", th:"เดอะวอล์ค เกษตร-นวมินทร์", area:"Lat Phrao, Bangkok (Prasert Manukitch Road)", group:"Northeast: Ramintra and Kubon", type:"School area", status:"found",
+     why:"The Walk describes a Genius World zone of skills and learning schools for all ages (its page does not split zones by branch).",
+     space:"Unknown.", deal:"None found.",
+     contact:"Branch line 0-2108-7200 (general line).", contactUrl:"https://www.thewalk.co.th/",
+     sources:[["The Walk","https://www.thewalk.co.th/"]]},
+    {name:"The Jas Wanghin", area:"Lat Phrao, Bangkok (Lat Phrao to Wang Hin Road)", group:"Northeast: Ramintra and Kubon", type:"School area", status:"found",
+     why:"JAS's first community mall, aimed at housewives, families and locals in dense housing. No school nearby named yet.",
+     space:"About 5,750 sqm leasable (around 2021). Vacancies unknown.", deal:"None found.",
+     contact:JASC, contactUrl:JAS, sources:[["JAS Asset",JAS]]},
+    /* West: Ratchaphruek and Nonthaburi */
+    {name:"Central Westville", area:"Bang Kruai, Nonthaburi (Ratchaphruek)", group:"West: Ratchaphruek and Nonthaburi", type:"Affluent area", status:"found",
+     why:"Central Group counts about 415,000 people with high purchasing power around it, aiming at homes worth ฿10 million to ฿100 million (2022).",
+     space:"31,297 sqm leasable (end of 2024); opened 2023. Vacancies unknown.", deal:"None found.",
+     contact:"Its Leasing link goes to Central Pattana's form. Call center 02-572-0999.", contactUrl:CPN,
+     sources:[["Central Group, 30 Mar 2022","https://www.centralgroup.com/en/newsroom/corporate-news/475/"],["Central Westville","https://www.centralwestville.com"],CPNT]},
+    {name:"The Walk Ratchaphruek", th:"เดอะวอล์ค ราชพฤกษ์", area:"Bang Kruai, Nonthaburi (Ratchaphruek)", group:"West: Ratchaphruek and Nonthaburi", type:"School area", status:"found",
+     why:"A Genius World zone of skills and learning schools for all ages, plus Index Living Mall. Same district as Central Westville: pick one of the two.",
+     space:"Unknown.", deal:"None found.",
+     contact:"General branch line, printed as 0-2489-692 (it looks one digit short).", contactUrl:"https://www.thewalk.co.th/",
+     sources:[["The Walk","https://www.thewalk.co.th/"]]},
+    {name:"JAS Green Village Bang Bua Thong", th:"JAS green village บางบัวทอง", area:"Bang Bua Thong, Nonthaburi", group:"West: Ratchaphruek and Nonthaburi", type:"School area", status:"found",
+     why:"JAS says it has space for children's and family activities. Opened September 2023. No school nearby named yet.",
+     space:"Unknown.", deal:"None found.",
+     contact:JASC, contactUrl:JAS, sources:[["JAS Asset","https://www.jasasset.co.th/th/newsroom/news-and-media/150"]]},
+    /* South: Bangna */
+    {name:"Mega Bangna", th:"เมกาบางนา", area:"Bang Phli, Samut Prakan (Bangna to Trad Road)", group:"South: Bangna", type:"Affluent area", status:"found",
+     why:"The mall's own Mega Smart Kids page sells classes for children while their parents shop: tutoring, dance, music, Bricks 4 Kidz and taekwondo. The drop-and-go model, written by the landlord. The Kick School and taekwondo classes are already inside.",
+     space:"100% leased. A ฿6,000 million expansion due in the third quarter of 2028 adds more than 3,000 sqm of activity and active-lifestyle space: that is the real opening.",
+     deal:"None found.",
+     contact:"Contact form, topic \"leasing inquiries to open new store\". Main line 02-105-1000.", contactUrl:"https://www.mega-bangna.com/en/contact-us",
+     sources:[["Mega Smart Kids","https://www.mega-bangna.com/en/store-guide/?category=14"],["brandinside, 5 Feb 2024","https://brandinside.asia/mega-bangna-2024-mkt-campaign/"],["thaipublica, 24 Jun 2026","https://thaipublica.org/2026/06/megabangna-cpn-x-ikano/"]]},
+    /* North: Rangsit */
+    {name:"Future Park Rangsit and Zpell", th:"ฟิวเจอร์พาร์ค รังสิต", area:"Thanyaburi, Pathum Thani (Phahonyothin Road)", group:"North: Rangsit", type:"School area", status:"found",
+     why:"A regional super-mall with a School category of about a dozen kids' schools, nearly all on the 3rd floor: dance, music, reading, languages. A taekwondo school and Gymboree are already there.",
+     space:"More than 600,000 sqm with Zpell. Vacancies unknown.", deal:"None found.",
+     contact:"Apply-to-be-a-tenant form (for common-area events and booths, not shops). 0-2958-0011.", contactUrl:"https://www.futurepark.co.th/tenant/",
+     sources:[["Future Park schools","https://www.futurepark.co.th/shop-category/school/"],["Future Park tenants","https://www.futurepark.co.th/tenant/"]]},
+    /* Central Sukhumvit */
+    {name:"K Village", th:"เค วิลเลจ", area:"Khlong Toei, Bangkok (Sukhumvit 26)", group:"Central Sukhumvit", type:"Affluent area", status:"found",
+     why:"A Villa Market anchor, a children's play park, and kids' tenants on its own Children list: ballet, a language school, Bricks 4 Kidz (entries from 2021 and 2022). Small-shop format.",
+     space:"Unknown.", deal:"None found.",
+     contact:"No leasing page. 02-258-9919, LINE @kvillagebkk (general).", contactUrl:"https://kvillagebangkok.com/contact-us/",
+     sources:[["K Village, Children","https://kvillagebangkok.com/children/"]]}
+  ];
+
+  var LISTINGS = [
+    {name:"เซ้งร้าน.com", url:"https://www.facebook.com/selloutthailand", note:"Shop takeovers and rentals on Facebook, about 257,000 followers. Its own site can be searched (see Start looking)."},
+    {name:"เซ้งร้านไหนดี", url:"https://www.facebook.com/sengrannaidee", note:"Bangkok shop takeovers on Facebook, about 545,000 followers."},
+    {name:"Bizkaakai", url:"https://www.facebook.com/Bizkaakai", note:"Businesses for sale in Thailand, on Facebook and bizkaakai.com (no education category)."}
+  ];
+
+  var STATUS = [["all","All"],["found","Found"],["tocontact","To contact"],["contacted","Contacted"],["visited","Visited"],["offer","Offer"],["no","No"]];
+  var LABEL = {}; STATUS.forEach(function(s){ LABEL[s[0]]=s[1]; });
+
+  function el(tag, cls, text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+  function uvTag(){ return el("span","uv","Unverified"); }
+
+  function card(s){
+    var c=el("article","site"); c.dataset.status=s.status;
+    var hd=el("div","site-hd"), t=el("h3",null,s.name);
+    if(s.th) t.appendChild(el("span","th",s.th));
+    hd.appendChild(t); hd.appendChild(el("span","st st-"+s.status,LABEL[s.status]||s.status));
+    c.appendChild(hd);
+    var m=el("div","meta"); m.appendChild(el("span","ty",s.type)); m.appendChild(el("span",null,s.area)); m.appendChild(el("span","gr",s.group)); if(s.uv && s.uv.indexOf("area")>-1) m.appendChild(uvTag()); c.appendChild(m);
+    var dl=el("dl");
+    [["why","Why here"],["space","Space"],["deal","Rent or deal"],["contact","Leasing"]].forEach(function(f){
+      if(!s[f[0]]) return;
+      dl.appendChild(el("dt",null,f[1]));
+      var dd=el("dd");
+      dd.textContent=s[f[0]];
+      if(f[0]==="contact" && s.contactUrl){ var a=el("a",null,"Open the page"); a.href=s.contactUrl; a.rel="noopener noreferrer"; dd.appendChild(document.createTextNode(" ")); dd.appendChild(a); }
+      if(s.uv && s.uv.indexOf(f[0])>-1) dd.appendChild(uvTag());
+      dl.appendChild(dd);
+    });
+    c.appendChild(dl);
+    if(s.sources && s.sources.length){
+      var p=el("p","src","Sources: ");
+      s.sources.forEach(function(u,i){ var a=el("a",null,u[0]); a.href=u[1]; a.rel="noopener noreferrer"; if(i) p.appendChild(document.createTextNode(", ")); p.appendChild(a); });
+      c.appendChild(p);
+    }
+    return c;
+  }
+
+  var list=document.getElementById("siteList"), filters=document.getElementById("filters"), empty=document.getElementById("empty");
+  SITES.forEach(function(s){ list.appendChild(card(s)); });
+  STATUS.forEach(function(s){
+    var n = s[0]==="all" ? SITES.length : SITES.filter(function(x){ return x.status===s[0]; }).length;
+    var b=el("button",null,s[1]); b.type="button"; b.dataset.f=s[0]; b.setAttribute("aria-pressed", s[0]==="all"?"true":"false");
+    b.appendChild(el("span",null,String(n)));
+    filters.appendChild(b);
+  });
+  function show(f){
+    var shown=0;
+    [].forEach.call(list.children,function(c){ var on = f==="all" || c.dataset.status===f; c.hidden=!on; if(on) shown++; });
+    [].forEach.call(filters.children,function(b){ b.setAttribute("aria-pressed", b.dataset.f===f?"true":"false"); });
+    empty.hidden = shown>0;
+  }
+  filters.addEventListener("click",function(e){ var b=e.target.closest("button"); if(b) show(b.dataset.f); });
+  show("all");
+
+  var ll=document.getElementById("listingList");
+  LISTINGS.forEach(function(x){
+    var li=el("li"), a=el("a",null,x.name); a.href=x.url; a.rel="noopener noreferrer";
+    var b=el("b"); b.appendChild(a); li.appendChild(b); li.appendChild(document.createTextNode(": "+x.note));
+    if(x.uv) li.appendChild(uvTag());
+    ll.appendChild(li);
+  });
+})();
+</script>
+</body>
+</html>
