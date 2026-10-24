@@ -73,7 +73,8 @@ h2 span{color:var(--blue)}
 .map{position:relative;border-radius:16px;overflow:hidden;border:1.5px solid var(--line);background:#e9eef4}
 .map img{display:block;width:100%;height:auto}
 .pin{position:absolute;transform:translate(-50%,-50%);border-radius:50%;text-decoration:none}
-.pin.p-found,.pin.p-contacted{width:17px;height:17px}
+.pin.p-found,.pin.p-contacted,.pin.p-other{width:17px;height:17px}
+.pin.p-other::before{content:"";position:absolute;left:50%;top:50%;width:13px;height:13px;transform:translate(-50%,-50%);border-radius:3px;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);background:var(--green)}
 .pin.p-found::before,.pin.p-contacted::before{content:"";position:absolute;left:50%;top:50%;width:13px;height:13px;transform:translate(-50%,-50%);border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);background:var(--blue)}
 .pin.p-contacted::before{background:var(--purple)}
 .pin.p-best{width:28px;height:28px;background:#ffd479;color:var(--navy-d);border:2.5px solid var(--navy-d);font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.35);z-index:2}
@@ -82,7 +83,7 @@ h2 span{color:var(--blue)}
 .credit a{color:var(--muted)}
 .legend{margin-top:12px}
 .dot{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #9aa4b2;vertical-align:-1px;margin-left:6px}
-.d-found{background:var(--blue)}.d-contacted{background:var(--purple)}
+.d-found{background:var(--blue)}.d-contacted{background:var(--purple)}.d-other{background:var(--green);border-radius:3px}
 
 /* the best 8: a rank and tap-to-call buttons (buttons, so round) */
 .site.best{border:2px solid #c98a2e88;box-shadow:0 10px 26px rgba(201,138,46,.12)}
@@ -161,6 +162,12 @@ details.more summary:focus-visible{outline:3px solid var(--blue);outline-offset:
 .site:target{outline:4px solid #ffd479;outline-offset:3px;box-shadow:0 0 0 8px rgba(255,212,121,.35)}
 .lbl{position:absolute;transform:translate(-50%,calc(-100% - 12px));background:var(--navy-d);color:#fff;font-weight:800;font-size:13px;padding:5px 10px;border-radius:8px;white-space:nowrap;text-decoration:none;z-index:4}
 .key{display:inline-flex;width:18px;height:18px;border-radius:50%;background:#ffd479;border:2px solid var(--navy-d);color:var(--navy-d);font-weight:900;font-size:11px;align-items:center;justify-content:center;vertical-align:-3px}
+
+.kinds{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.kinds button{font:inherit;font-weight:900;font-size:15px;border-radius:999px;padding:8px 16px;border:2px solid var(--navy);background:#fff;color:var(--navy-d);cursor:pointer}
+.kinds button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.kinds button span{opacity:.75;margin-left:5px}
+.kinds button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 
 /* status filter: these are buttons, so they get the round shape */
 .filters{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
@@ -268,7 +275,7 @@ body.locked{overflow:hidden}
     <div class="map" id="mapBox" role="group" aria-label="Map of the sites in Bangkok">
       <img src="/partners/locations/img/bkk-map.webp" alt="Map of Bangkok and its edge, from Rangsit in the north to Bangna in the south" width="952" height="1221">
     </div>
-    <p class="small legend"><span class="key">1</span> the best 8 <span class="dot d-found"></span> found <span class="dot d-contacted"></span> asked. Tap a dot for its name.<span id="offWrap"> Not on the map (no exact point): <span id="offMap"></span>.</span></p>
+    <p class="small legend"><span class="key">1</span> the best 8 <span class="dot d-found"></span> found <span class="dot d-contacted"></span> asked <span class="dot d-other"></span> other (not a mall). Tap a dot for its name.<span id="offWrap"> Not on the map (no exact point): <span id="offMap"></span>.</span></p>
     <p class="credit">Map data &copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap contributors</a></p>
   </section>
 
@@ -320,10 +327,11 @@ body.locked{overflow:hidden}
   <section id="sites">
     <h2>Candidate sites</h2>
     <p class="sub">Any size. Rent target about ฿60,000 a month.</p>
+    <div class="kinds" id="kinds" role="group" aria-label="Malls or other places"></div>
     <div class="filters" id="filters" role="group" aria-label="Show sites by status"></div>
-    <h3 class="kindh">Malls</h3>
+    <h3 class="kindh" id="hMalls">Malls</h3>
     <div class="sites" id="siteList"></div>
-    <h3 class="kindh">Other</h3>
+    <h3 class="kindh" id="hOther">Other: shophouses, buildings, units</h3>
     <div class="sites" id="otherList"></div>
     <p class="empty" id="empty" hidden>No sites with that status yet.</p>
   </section>
@@ -624,17 +632,30 @@ body.locked{overflow:hidden}
     b.appendChild(el("span",null,String(n)));
     filters.appendChild(b);
   });
+  /* Malls / Other (Rick, 24 Oct 2026: "I don't see the listings and separation with the mall vs other") */
+  var kinds=document.getElementById("kinds"), kf="all", sf="all";
+  [["all","All places",SITES.length],["mall","Malls",SITES.filter(function(s){ return s.kind!=="other"; }).length],["other","Other",SITES.filter(function(s){ return s.kind==="other"; }).length]].forEach(function(k){
+    var b=nt(el("button",null,k[1])); b.type="button"; b.dataset.k=k[0]; b.setAttribute("aria-pressed",k[0]==="all"?"true":"false");
+    b.appendChild(el("span",null,String(k[2]))); kinds.appendChild(b);
+  });
   function show(f){
-    var shown=0;
-    [].forEach.call(list.children,function(c){ var on = f==="all" || c.dataset.status===f; c.hidden=!on; if(on) shown++; });
-    [].forEach.call(other.children,function(c){ var on = f==="all" || c.dataset.status===f; c.hidden=!on; if(on) shown++; });
-    [].forEach.call(filters.children,function(b){ b.setAttribute("aria-pressed", b.dataset.f===f?"true":"false"); });
+    if(f) sf=f; var shown=0;
+    function pass(c){ var on=(sf==="all"||c.dataset.status===sf); c.hidden=!on; if(on) shown++; }
+    [].forEach.call(list.children,pass); [].forEach.call(other.children,pass);
+    var mOn=kf!=="other", oOn=kf!=="mall";
+    list.hidden=!mOn; document.getElementById("hMalls").hidden=!mOn;
+    other.hidden=!oOn; document.getElementById("hOther").hidden=!oOn;
+    if(!mOn) shown-= [].filter.call(list.children,function(c){ return !c.hidden; }).length;
+    if(!oOn) shown-= [].filter.call(other.children,function(c){ return !c.hidden; }).length;
+    [].forEach.call(filters.children,function(b){ b.setAttribute("aria-pressed", b.dataset.f===sf?"true":"false"); });
+    [].forEach.call(kinds.children,function(b){ b.setAttribute("aria-pressed", b.dataset.k===kf?"true":"false"); });
     empty.hidden = shown>0;
   }
+  kinds.addEventListener("click",function(e){ var b=e.target.closest("button"); if(b){ kf=b.dataset.k; show(); } });
   filters.addEventListener("click",function(e){ var b=e.target.closest("button"); if(b) show(b.dataset.f); });
   show("all");
   /* a jump to a card shows it even when a filter hid it */
-  function reveal(){ var c=location.hash && document.getElementById(location.hash.slice(1)); if(c && c.classList.contains("site") && c.hidden) show("all"); }
+  function reveal(){ var c=location.hash && document.getElementById(location.hash.slice(1)); if(c && c.classList.contains("site") && (c.hidden || c.parentNode.hidden)){ kf="all"; show("all"); } }
   window.addEventListener("hashchange",reveal); reveal();
 
   /* pins: Web Mercator at zoom 12, in the crop of the map picture (tile pixels) */
@@ -652,7 +673,7 @@ body.locked{overflow:hidden}
        be safe tap targets (axe target-size), so a tap on the map names the nearest dot */
     var a;
     if(s.rank){ a=el("a","pin p-best",String(s.rank)); a.href="#site-"+slug(s.name); a.setAttribute("aria-label","Best "+s.rank+": "+s.name); }
-    else { a=el("span","pin p-"+(s.status==="contacted"?"contacted":"found")); a.setAttribute("role","img"); a.setAttribute("aria-label",s.name); dots.push({el:a,s:s}); }
+    else { a=el("span","pin p-"+(s.kind==="other"?"other":s.status==="contacted"?"contacted":"found")); a.setAttribute("role","img"); a.setAttribute("aria-label",s.name); dots.push({el:a,s:s}); }
     a.title=s.name; a.style.left=q[0]+"%"; a.style.top=q[1]+"%";
     map.appendChild(a);
   });
