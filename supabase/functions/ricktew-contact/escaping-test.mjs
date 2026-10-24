@@ -254,6 +254,36 @@ console.log('-- the PromptPay Paid press, through the real handler');
   gate.length = 0;
 }
 
+// ---- A Bangkok site find (24 Oct 2026): the box on /partners/locations/ ----
+// Subject "site": "Bangkok site find: <name>", marked Auto-Submitted with X-Site-Find,
+// Via the location search; every other subject keeps its own Via line.
+console.log('');
+console.log('-- a Bangkok site find, through the real handler');
+{
+  const say = (ok, label, got) => { console.log((ok ? '  PASS  ' : '  FAIL  ') + label); if (!ok) { bad++; console.log('          got', JSON.stringify(got)); } };
+  gate.length = 0;
+  const post = async (body, ip) => {
+    sent = null;
+    await handler(new Request('https://x/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Origin: 'https://ricktew.com', 'x-forwarded-for': ip },
+      body: JSON.stringify({ name: 'Wanrawee', email: 'wanrawee.k@gmail.com', website: '', elapsedMs: 30000, source: '',
+        message: 'Place: a shophouse on Narathiwas Soi 22\nWhere: next to Belle Park\n\nGround floor for rent, about 120 sqm, sign on the door.', ...body }),
+    }));
+    return sent;
+  };
+  const m = await post({ subject: 'site' }, '9.9.8.1');
+  say(m && m.subject === 'Bangkok site find: Wanrawee', 'a site find: subject "Bangkok site find: <name>"', m && m.subject);
+  say(m && m.headers && m.headers['Auto-Submitted'] === 'auto-generated' && m.headers['X-Site-Find'] === 'bangkok',
+    'a site find is marked Auto-Submitted with X-Site-Find, so the Ninja Agent does not answer it', m && m.headers);
+  say(m && m.text.includes('Via: the location search on ricktew.com/partners/locations/') && m.text.includes('Narathiwas Soi 22'),
+    'the site find says where it came from and carries the find', m && m.text);
+  const q = await post({ subject: 'hininja', message: 'Can I come for one week in January, and is there a womens dorm?' }, '9.9.8.2');
+  say(q && q.text.includes('Via: the mailbox on ricktew.com/aininja/') && !q.headers,
+    'any other subject keeps the mailbox Via line and no auto-reply mark', q && q.text);
+  gate.length = 0;
+}
+
 // ---- An ad click from /gns/ (21 Oct 2026, "Count on our side") ----
 // The campaign and the click id are typed by whoever builds the link, so they
 // are attacker-typed too: a fixed shape, only with source "gads", a line and

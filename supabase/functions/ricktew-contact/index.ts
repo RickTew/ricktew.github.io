@@ -76,8 +76,16 @@ const SUBJECTS: Record<string, string> = {
   slot: 'A mailbox or an answer box like this',
   hininja: 'The HI Ninja side',
   paid: 'Paid by PromptPay',
+  site: 'A Bangkok site find',
   other: 'Something else',
 };
+
+/** A place found for NinjaGym Bangkok (24 Oct 2026, Rick: "if we find information
+ *  about a place can we have a section to put it in"; his pick "A box to type a find
+ *  in"). The box on /partners/locations/ posts subject "site". The mail reads
+ *  "Bangkok site find: <name>" and is marked Auto-Submitted with X-Site-Find, so the
+ *  Ninja Agent does not answer it; TEWBEDO checks the find and sends it on. */
+const SITE_VIA = 'the location search on ricktew.com/partners/locations/';
 
 /** The PromptPay Paid press (17 Oct 2026, Rick: "I am allowing our promptpay
  *  option for those living in thailand to buy our services"; the Dojo's kit,
@@ -230,13 +238,14 @@ function adLine(f: { adCampaign: string; adClick: string }) {
 
 async function sendMail(f: {
   name: string; email: string; subjectLabel: string; message: string; sourceLabel: string; sku: string;
-  adCampaign: string; adClick: string;
+  adCampaign: string; adClick: string; site: boolean;
 }) {
   const key = Deno.env.get('RESEND_API_KEY');
   const to = Deno.env.get('CONTACT_TO');
   const from = Deno.env.get('CONTACT_FROM');
   if (!key || !to || !from) throw new Error('mail_not_configured');
 
+  const via = f.sku ? 'the PromptPay card on ricktew.com' : f.site ? SITE_VIA : 'the mailbox on ricktew.com/aininja/';
   const row = (label: string, value: string) =>
     `<tr><td style="padding:4px 12px 4px 0;color:#666;vertical-align:top">${label}</td>` +
     `<td style="padding:4px 0">${value}</td></tr>`;
@@ -253,7 +262,7 @@ async function sendMail(f: {
     row('From', esc(f.name)) +
     row('Email', esc(f.email)) +
     row('About', esc(f.subjectLabel)) +
-    row('Via', f.sku ? 'the PromptPay card on ricktew.com' : 'the mailbox on ricktew.com/aininja/') +
+    row('Via', via) +
     row('Source', esc(f.sourceLabel)) +
     (f.adCampaign ? row('Ad', esc(adLine(f))) : '') +
     `</table>` +
@@ -264,13 +273,14 @@ async function sendMail(f: {
 
   const text =
     `From: ${f.name}\nEmail: ${f.email}\nAbout: ${f.subjectLabel}\n` +
-    `Via: ${f.sku ? 'the PromptPay card on ricktew.com' : 'the mailbox on ricktew.com/aininja/'}\nSource: ${f.sourceLabel}\n` +
+    `Via: ${via}\nSource: ${f.sourceLabel}\n` +
     (f.adCampaign ? `Ad: ${adLine(f)}\n` : '') + `\n${f.message}\n`;
 
   // An ad lead is a real question, so it is NOT marked Auto-Submitted: the
   // Ninja Agent answers it like any other. The X-Ad headers only label it.
   const headers: Record<string, string> = {
     ...(f.sku ? { 'Auto-Submitted': 'auto-generated', 'X-PromptPay-Sku': f.sku } : {}),
+    ...(f.site ? { 'Auto-Submitted': 'auto-generated', 'X-Site-Find': 'bangkok' } : {}),
     ...(f.adCampaign ? { 'X-Ad-Campaign': f.adCampaign } : {}),
     ...(f.adClick ? { 'X-Ad-Click': f.adClick } : {}),
   };
@@ -292,7 +302,7 @@ async function sendMail(f: {
       // Reply-to is the visitor. TEWBEDO reads this to set the ticket
       // contact, so The Ninja Agent's reply reaches the person who wrote in.
       reply_to: oneLine(f.email, MAX.email),
-      subject: oneLine(f.sku ? `Paid PromptPay ${f.sku}: ${subjectName}` : `AI Ninja ${f.subjectLabel}: ${subjectName}`, 180),
+      subject: oneLine(f.sku ? `Paid PromptPay ${f.sku}: ${subjectName}` : f.site ? `Bangkok site find: ${subjectName}` : `AI Ninja ${f.subjectLabel}: ${subjectName}`, 180),
       html,
       text,
       // A Paid notice is for Rick to check at the bank, not for the Ninja
@@ -407,7 +417,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    await sendMail({ name, email, subjectLabel, message, sourceLabel, sku: paidSku, adCampaign, adClick });
+    await sendMail({ name, email, subjectLabel, message, sourceLabel, sku: paidSku, adCampaign, adClick, site: subjectKey === 'site' });
   } catch (e) {
     // The mail pipe being down must never reach the visitor. They get the
     // same confirmation and the message survives in the log. Note the SDK
