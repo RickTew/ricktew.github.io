@@ -40,6 +40,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
 .wm .g{color:#ffd479}
 .back{margin-left:auto;color:#dbe8fb;font-weight:800;font-size:14px;text-decoration:none;border:1.5px solid rgba(255,255,255,.35);border-radius:999px;padding:6px 14px}
 .back:hover{background:rgba(255,255,255,.12)}
+.th-link{color:#ffd479;font-weight:800;font-size:14px;text-decoration:none;border:1.5px solid rgba(255,212,121,.5);border-radius:999px;padding:6px 14px}
+.th-link:hover{background:rgba(255,212,121,.12)}
+@media (max-width:520px){ .top-bar .wm{flex-basis:100%} .back{margin-left:0} }
 .eyebrow{margin-top:34px;font-size:13px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:#9fc0ea}
 .top h1{margin-top:8px;font-family:"Fraunces",Georgia,serif;font-style:italic;font-weight:600;font-size:clamp(36px,5.6vw,58px);line-height:1.02}
 .top h1 span{color:#ffd479}
@@ -105,7 +108,8 @@ h2 span{color:var(--blue)}
 .site dt{font-weight:900;color:var(--ink2);font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding-top:2px}
 .site dd{color:#33404f}
 .uv{display:inline-block;font-size:11.5px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#b4560f;border:1px solid #e8731c66;border-radius:5px;padding:0 5px;margin-left:4px;vertical-align:1px}
-.src{margin-top:auto;padding-top:12px;font-size:13px;color:var(--muted)}
+.asof{margin-top:12px;font-size:13.5px;font-weight:800;color:var(--gold-d)}
+.src{margin-top:auto;padding-top:8px;font-size:13px;color:var(--muted)}
 .src a{color:var(--muted)}
 .empty{margin-top:16px;color:var(--muted)}
 
@@ -167,6 +171,7 @@ body.locked{overflow:hidden}
     <div class="top-bar">
       <div class="wm">RICK TEW'S NINJA<span class="g">GYM</span></div>
       <a class="back" href="/partners/">Back to the roadmap</a>
+      <a class="th-link" href="https://ricktew-com.translate.goog/partners/locations/?_x_tr_sl=en&amp;_x_tr_tl=th&amp;_x_tr_hl=th" rel="noopener" title="Read this page in Thai via Google Translate">อ่านภาษาไทย</a>
     </div>
     <div class="eyebrow">NinjaGym Bangkok</div>
     <h1>Location search: <span>Bangkok and beyond</span></h1>
@@ -193,8 +198,8 @@ body.locked{overflow:hidden}
   </section>
 
   <section id="lead">
-    <div class="k">The lead</div>
-    <h2>Free rent for a <span>kids' martial arts school</span></h2>
+    <div class="k">The lead, from 2024</div>
+    <h2>Free rent for a kids' martial arts school, <span>in 2024</span></h2>
     <div class="lead-card" id="leadCard">
       <h3>Panipak Taekwondo, JAS Green Village Prawet</h3>
       <p>JAS Asset gave Panipak Taekwondo, a kids' Taekwondo school, its space on the 2nd floor of JAS Green Village Prawet at no cost for the whole 3-year contract, to help make new Taekwondo athletes.</p>
@@ -221,7 +226,7 @@ body.locked{overflow:hidden}
   <section id="sites">
     <div class="k">The list</div>
     <h2>Candidate sites</h2>
-    <p class="sub">18 sites, grouped by catchment: pick at most one per group so each center keeps its own families. Status runs found, to contact, contacted, visited, offer, no. Tap a status to show only those.</p>
+    <p class="sub">These are malls to ask, not listings of empty space: no current vacancy was found for any of them (24 October 2026). They are listed by area, not ranked; pick at most one per area so each center keeps its own families. Status runs found, to contact, contacted, visited, offer, no. Tap a status to show only those.</p>
     <div class="filters" id="filters" role="group" aria-label="Show sites by status"></div>
     <div class="sites" id="siteList"></div>
     <p class="empty" id="empty" hidden>No sites with that status yet.</p>
@@ -254,95 +259,95 @@ body.locked{overflow:hidden}
   var CPNT = ["Central Pattana, leasable areas end 2024","https://www.centralpattana.co.th/en/investor-relations/assets-under-central-pattana/retail-properties"];
   var SITES = [
     /* East: Prawet and Srinakarin */
-    {name:"JAS Green Village Prawet", th:"แจส กรีน วิลเลจ ประเวศ", area:"Prawet, Bangkok (Sukhaphiban 2 Road)", group:"East: Prawet and Srinakarin", type:"School area", status:"found",
+    {name:"JAS Green Village Prawet", asof:"July 2024 (its opening). Nothing newer found.", th:"แจส กรีน วิลเลจ ประเวศ", area:"Prawet, Bangkok (Sukhaphiban 2 Road)", group:"East: Prawet and Srinakarin", type:"School area", status:"found",
      why:"A neighbourhood mall with an education zone and a children's play garden, for Prawet, Sukhaphiban 2, Lat Krabang and On Nut. Panipak Taekwondo, a kids' school, is already on the 2nd floor.",
      space:"Sales area 10,000 sqm; about 90% leased before it opened (June 2024). Vacancies unknown.",
      deal:"Panipak Taekwondo got its space free for 3 years (see the lead). No general offer published.",
      contact:JASC, contactUrl:JAS,
      sources:[["share2trade, 5 Jul 2024","https://www.share2trade.com/news/31182/"],["mitihoon, 6 Jun 2024","https://www.mitihoon.com/?p=463199"],["JAS Asset","https://www.jasasset.co.th/en/our-assets/33/community-malls"]]},
-    {name:"Seacon Square Srinakarin", th:"ซีคอนสแควร์", area:"Prawet, Bangkok (Srinakarin Road)", group:"East: Prawet and Srinakarin", type:"Affluent area", status:"found",
+    {name:"Seacon Square Srinakarin", asof:"July 2026.", th:"ซีคอนสแควร์", area:"Prawet, Bangkok (Srinakarin Road)", group:"East: Prawet and Srinakarin", type:"Affluent area", status:"found",
      why:"A big regional mall being rebuilt. Its new MyScape side, due December 2026, has a My Active Life zone for exercise and wellness, so new space is being let now. Kids' classes there today: unknown.",
      space:"Unknown.", deal:"None found.",
      contact:"No leasing path published. Main line 02-721-8888.", contactUrl:"https://www.seaconsquare.com/contact-us",
      sources:[["Thairath, 20 Jul 2026","https://en.thairath.co.th/money/business_marketing/trends/2947531"],["Seacon Square","https://www.seaconsquare.com/contact-us"]]},
-    {name:"The JAS Urban Srinakarin", th:"แจส เออเบิร์น ศรีนครินทร์", area:"Srinakarin Road, Bangkok", group:"East: Prawet and Srinakarin", type:"School area", status:"found",
+    {name:"The JAS Urban Srinakarin", asof:"July 2026; the space figure is from around 2021.", th:"แจส เออเบิร์น ศรีนครินทร์", area:"Srinakarin Road, Bangkok", group:"East: Prawet and Srinakarin", type:"School area", status:"found",
      why:"A Tops supermarket anchor (parents shop) and an SF cinema; the JAS Sport Club has 9 badminton courts here. No school nearby named yet.",
      space:"About 19,850 sqm leasable (JAS page, written around 2021). Vacancies unknown.", deal:"None found.",
      contact:JASC, contactUrl:JAS, sources:[["JAS Asset",JAS],JAS26]},
-    {name:"JAS Green Village Ramkhamhaeng", th:"แจส กรีน วิลเลจ รามคำแหง", area:"Ramkhamhaeng, Bangkok (Rat Phatthana Road)", group:"East: Prawet and Srinakarin", type:"School area", status:"found",
+    {name:"JAS Green Village Ramkhamhaeng", asof:"September 2024 (its opening).", th:"แจส กรีน วิลเลจ รามคำแหง", area:"Ramkhamhaeng, Bangkok (Rat Phatthana Road)", group:"East: Prawet and Srinakarin", type:"School area", status:"found",
      why:"JAS says it targets office workers and nearby schools, with an area for children. On the future Orange Line.",
      space:"5,000 sqm sales area; opened late 2024. Vacancies unknown.", deal:"None found.",
      contact:JASC, contactUrl:JAS,
      sources:[["JAS Asset","https://www.jasasset.co.th/th/newsroom/news-and-media/152"],["hoonvision, 23 Sep 2024","https://www.hoonvision.com/?p=4586"]]},
-    {name:"Market Place Krungthep Kreetha", area:"Krungthep Kreetha, east Bangkok", group:"East: Prawet and Srinakarin", type:"Affluent area", status:"found",
+    {name:"Market Place Krungthep Kreetha", asof:"September 2021 (its opening). Nothing newer found.", area:"Krungthep Kreetha, east Bangkok", group:"East: Prawet and Srinakarin", type:"Affluent area", status:"found",
      why:"Siam Future's one-storey mall for young and multi-generation families, opened 2021. Brighton College Bangkok is in Krungthep Kreetha. At over 5,000 sqm it suits a lean center.",
      space:"Over 5,000 sqm of shops in all (2021). Vacancies unknown.", deal:"None found.",
      contact:"Nothing published. Central Pattana's leasing form offers \"Other shopping center\".", contactUrl:CPN,
      sources:[["InfoQuest, 27 Sep 2021","https://www.infoquest.co.th/?p=129720"],["Brighton College Bangkok","https://brightoncollege.ac.th/"]]},
     /* Praditmanutham */
-    {name:"Central Eastville", th:"เซ็นทรัล อีสต์วิลล์", area:"East Bangkok (Praditmanutham Road)", group:"Praditmanutham", type:"Affluent area", status:"found", uv:["area"],
+    {name:"Central Eastville", asof:"End of 2024 (leasable area); the area profile is from around 2015.", th:"เซ็นทรัล อีสต์วิลล์", area:"East Bangkok (Praditmanutham Road)", group:"Praditmanutham", type:"Affluent area", status:"found", uv:["area"],
      why:"Central Pattana describes middle-to-high income shoppers, 130 housing projects nearby and students from 78 schools, Bodindecha (Sing Singhaseni) and Satriwitthaya 2 among them (page written around 2015).",
      space:"35,732 sqm leasable (end of 2024). Kids' tenants and vacancies unknown.", deal:"None found.",
      contact:"Central Pattana's leasing form: pick Central Eastville, the space type, a budget bracket and the term.", contactUrl:CPN,
      sources:[["Central Pattana","https://www.centralpattana.co.th/en/our-business/shopping-center/383/central-eastville"],CPNT]},
-    {name:"The Crystal Ekamai-Ramindra", area:"Lat Phrao, Bangkok (Praditmanutham Road)", group:"Praditmanutham", type:"Affluent area", status:"found",
+    {name:"The Crystal Ekamai-Ramindra", asof:"The mall's own site, read 24 October 2026.", area:"Lat Phrao, Bangkok (Praditmanutham Road)", group:"Praditmanutham", type:"Affluent area", status:"found",
      why:"Calls itself the first luxury lifestyle mall on Praditmanutham Road, 220+ shops, with The Crystal Kid's Club and a children's event in 2026. Same road as Central Eastville: pick one of the two.",
      space:"Unknown.", deal:"None found.",
      contact:"No leasing page. Contact form and 02-101-5711 (general line).", contactUrl:"https://thecrystal.allyglobal.com/contact-us",
      sources:[["The Crystal","https://thecrystal.allyglobal.com/"]]},
     /* Northeast: Ramintra and Kubon */
-    {name:"JAS Green Village Kubon", th:"แจส กรีน วิลเลจ คู้บอน", area:"Khlong Sam Wa, Bangkok (Kubon Road)", group:"Northeast: Ramintra and Kubon", type:"Affluent area", status:"found",
+    {name:"JAS Green Village Kubon", asof:"July 2026; the space figure is from around 2021.", th:"แจส กรีน วิลเลจ คู้บอน", area:"Khlong Sam Wa, Bangkok (Kubon Road)", group:"Northeast: Ramintra and Kubon", type:"Affluent area", status:"found",
      why:"JAS aims it at households with purchasing power across Ramintra, Kubon, Khlong Sam Wa, Min Buri and Nimitmai. Skill and tutoring schools, a supermarket, a children's playground and the JAS Sport Club.",
      space:"Over 22,350 sqm of shops (JAS page, written around 2021). Vacancies unknown.", deal:"None found.",
      contact:JASC, contactUrl:JAS, sources:[["JAS Asset",JAS],JAS26]},
-    {name:"The Jas Ramintra", th:"เดอะ แจส รามอินทรา", area:"Bang Khen, Bangkok (Lat Pla Khao Road)", group:"Northeast: Ramintra and Kubon", type:"School area", status:"found",
+    {name:"The Jas Ramintra", asof:"Around 2021 (JAS's page). Nothing newer found.", th:"เดอะ แจส รามอินทรา", area:"Bang Khen, Bangkok (Lat Pla Khao Road)", group:"Northeast: Ramintra and Kubon", type:"School area", status:"found",
      why:"JAS lists educational institutes among its tenants, with a 24-hour Max Value supermarket. JAS's head office is in the building.",
      space:"About 12,000 sqm leasable (around 2021). Vacancies unknown.", deal:"None found.",
      contact:JASC, contactUrl:JAS, sources:[["JAS Asset",JAS]]},
-    {name:"The Promenade", area:"Khan Na Yao, Bangkok (Ramintra Road)", group:"Northeast: Ramintra and Kubon", type:"School area", status:"found",
+    {name:"The Promenade", asof:"The mall's own site, read 24 October 2026.", area:"Khan Na Yao, Bangkok (Ramintra Road)", group:"Northeast: Ramintra and Kubon", type:"School area", status:"found",
      why:"Runs children's events such as a Kids Camp. No kids' class tenants or nearby school confirmed yet.",
      space:"Unknown.", deal:"None found.",
      contact:"Its tenant page says to call about renting space: 02-947-5000. LINE @fashionpromenade.", contactUrl:"https://www.thepromenade.co.th/service-tenants",
      sources:[["The Promenade","https://www.thepromenade.co.th/event/kids-camp-space-explorer/"]]},
-    {name:"The Walk Kaset-Nawamin", th:"เดอะวอล์ค เกษตร-นวมินทร์", area:"Lat Phrao, Bangkok (Prasert Manukitch Road)", group:"Northeast: Ramintra and Kubon", type:"School area", status:"found",
+    {name:"The Walk Kaset-Nawamin", asof:"The mall's own site, read 24 October 2026.", th:"เดอะวอล์ค เกษตร-นวมินทร์", area:"Lat Phrao, Bangkok (Prasert Manukitch Road)", group:"Northeast: Ramintra and Kubon", type:"School area", status:"found",
      why:"The Walk describes a Genius World zone of skills and learning schools for all ages (its page does not split zones by branch).",
      space:"Unknown.", deal:"None found.",
      contact:"Branch line 0-2108-7200 (general line).", contactUrl:"https://www.thewalk.co.th/",
      sources:[["The Walk","https://www.thewalk.co.th/"]]},
-    {name:"The Jas Wanghin", area:"Lat Phrao, Bangkok (Lat Phrao to Wang Hin Road)", group:"Northeast: Ramintra and Kubon", type:"School area", status:"found",
+    {name:"The Jas Wanghin", asof:"Around 2021 (JAS's page). Nothing newer found.", area:"Lat Phrao, Bangkok (Lat Phrao to Wang Hin Road)", group:"Northeast: Ramintra and Kubon", type:"School area", status:"found",
      why:"JAS's first community mall, aimed at housewives, families and locals in dense housing. No school nearby named yet.",
      space:"About 5,750 sqm leasable (around 2021). Vacancies unknown.", deal:"None found.",
      contact:JASC, contactUrl:JAS, sources:[["JAS Asset",JAS]]},
     /* West: Ratchaphruek and Nonthaburi */
-    {name:"Central Westville", area:"Bang Kruai, Nonthaburi (Ratchaphruek)", group:"West: Ratchaphruek and Nonthaburi", type:"Affluent area", status:"found",
+    {name:"Central Westville", asof:"End of 2024 (leasable area); the area profile is from 2022.", area:"Bang Kruai, Nonthaburi (Ratchaphruek)", group:"West: Ratchaphruek and Nonthaburi", type:"Affluent area", status:"found",
      why:"Central Group counts about 415,000 people with high purchasing power around it, aiming at homes worth ฿10 million to ฿100 million (2022).",
      space:"31,297 sqm leasable (end of 2024); opened 2023. Vacancies unknown.", deal:"None found.",
      contact:"Its Leasing link goes to Central Pattana's form. Call center 02-572-0999.", contactUrl:CPN,
      sources:[["Central Group, 30 Mar 2022","https://www.centralgroup.com/en/newsroom/corporate-news/475/"],["Central Westville","https://www.centralwestville.com"],CPNT]},
-    {name:"The Walk Ratchaphruek", th:"เดอะวอล์ค ราชพฤกษ์", area:"Bang Kruai, Nonthaburi (Ratchaphruek)", group:"West: Ratchaphruek and Nonthaburi", type:"School area", status:"found",
+    {name:"The Walk Ratchaphruek", asof:"The mall's own site, read 24 October 2026.", th:"เดอะวอล์ค ราชพฤกษ์", area:"Bang Kruai, Nonthaburi (Ratchaphruek)", group:"West: Ratchaphruek and Nonthaburi", type:"School area", status:"found",
      why:"A Genius World zone of skills and learning schools for all ages, plus Index Living Mall. Same district as Central Westville: pick one of the two.",
      space:"Unknown.", deal:"None found.",
      contact:"General branch line, printed as 0-2489-692 (it looks one digit short).", contactUrl:"https://www.thewalk.co.th/",
      sources:[["The Walk","https://www.thewalk.co.th/"]]},
-    {name:"JAS Green Village Bang Bua Thong", th:"JAS green village บางบัวทอง", area:"Bang Bua Thong, Nonthaburi", group:"West: Ratchaphruek and Nonthaburi", type:"School area", status:"found",
+    {name:"JAS Green Village Bang Bua Thong", asof:"November 2024.", th:"JAS green village บางบัวทอง", area:"Bang Bua Thong, Nonthaburi", group:"West: Ratchaphruek and Nonthaburi", type:"School area", status:"found",
      why:"JAS says it has space for children's and family activities. Opened September 2023. No school nearby named yet.",
      space:"Unknown.", deal:"None found.",
      contact:JASC, contactUrl:JAS, sources:[["JAS Asset","https://www.jasasset.co.th/th/newsroom/news-and-media/150"]]},
     /* South: Bangna */
-    {name:"Mega Bangna", th:"เมกาบางนา", area:"Bang Phli, Samut Prakan (Bangna to Trad Road)", group:"South: Bangna", type:"Affluent area", status:"found",
+    {name:"Mega Bangna", asof:"June 2026.", th:"เมกาบางนา", area:"Bang Phli, Samut Prakan (Bangna to Trad Road)", group:"South: Bangna", type:"Affluent area", status:"found",
      why:"The mall's own Mega Smart Kids page sells classes for children while their parents shop: tutoring, dance, music, Bricks 4 Kidz and taekwondo. The drop-and-go model, written by the landlord. The Kick School and taekwondo classes are already inside.",
      space:"100% leased. A ฿6,000 million expansion due in the third quarter of 2028 adds more than 3,000 sqm of activity and active-lifestyle space: that is the real opening.",
      deal:"None found.",
      contact:"Contact form, topic \"leasing inquiries to open new store\". Main line 02-105-1000.", contactUrl:"https://www.mega-bangna.com/en/contact-us",
      sources:[["Mega Smart Kids","https://www.mega-bangna.com/en/store-guide/?category=14"],["brandinside, 5 Feb 2024","https://brandinside.asia/mega-bangna-2024-mkt-campaign/"],["thaipublica, 24 Jun 2026","https://thaipublica.org/2026/06/megabangna-cpn-x-ikano/"]]},
     /* North: Rangsit */
-    {name:"Future Park Rangsit and Zpell", th:"ฟิวเจอร์พาร์ค รังสิต", area:"Thanyaburi, Pathum Thani (Phahonyothin Road)", group:"North: Rangsit", type:"School area", status:"found",
+    {name:"Future Park Rangsit and Zpell", asof:"The mall's own site, read 24 October 2026.", th:"ฟิวเจอร์พาร์ค รังสิต", area:"Thanyaburi, Pathum Thani (Phahonyothin Road)", group:"North: Rangsit", type:"School area", status:"found",
      why:"A regional super-mall with a School category of about a dozen kids' schools, nearly all on the 3rd floor: dance, music, reading, languages. A taekwondo school and Gymboree are already there.",
      space:"More than 600,000 sqm with Zpell. Vacancies unknown.", deal:"None found.",
      contact:"Apply-to-be-a-tenant form (for common-area events and booths, not shops). 0-2958-0011.", contactUrl:"https://www.futurepark.co.th/tenant/",
      sources:[["Future Park schools","https://www.futurepark.co.th/shop-category/school/"],["Future Park tenants","https://www.futurepark.co.th/tenant/"]]},
     /* Central Sukhumvit */
-    {name:"K Village", th:"เค วิลเลจ", area:"Khlong Toei, Bangkok (Sukhumvit 26)", group:"Central Sukhumvit", type:"Affluent area", status:"found",
+    {name:"K Village", asof:"The mall's own site, read 24 October 2026; its kids' tenant entries are from 2021 and 2022.", th:"เค วิลเลจ", area:"Khlong Toei, Bangkok (Sukhumvit 26)", group:"Central Sukhumvit", type:"Affluent area", status:"found",
      why:"A Villa Market anchor, a children's play park, and kids' tenants on its own Children list: ballet, a language school, Bricks 4 Kidz (entries from 2021 and 2022). Small-shop format.",
      space:"Unknown.", deal:"None found.",
      contact:"No leasing page. 02-258-9919, LINE @kvillagebkk (general).", contactUrl:"https://kvillagebangkok.com/contact-us/",
@@ -379,6 +384,7 @@ body.locked{overflow:hidden}
       dl.appendChild(dd);
     });
     c.appendChild(dl);
+    if(s.asof) c.appendChild(el("p","asof","Facts as of: "+s.asof));
     if(s.sources && s.sources.length){
       var p=el("p","src","Sources: ");
       s.sources.forEach(function(u,i){ var a=el("a",null,u[0]); a.href=u[1]; a.rel="noopener noreferrer"; if(i) p.appendChild(document.createTextNode(", ")); p.appendChild(a); });
