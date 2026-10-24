@@ -118,6 +118,7 @@ table.act .th{display:block;font-size:12.5px;font-weight:700;color:var(--muted)}
 table.act tr.done td{background:#f6f7f9;color:var(--muted)}
 table.act .rk-c{width:44px}
 .wait{display:block;color:var(--purple)}
+.gm{display:block;margin-top:6px;font-size:13.5px;font-weight:800;color:var(--blue-d)}
 .go{display:block;color:var(--green-d)}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .call a.tel.sm{margin-top:6px;padding:5px 10px;font-size:14px}
@@ -458,6 +459,8 @@ body.locked{overflow:hidden}
   /* names, statuses, numbers and LINE stay as they are in the Thai (Google Translate) view */
   function nt(e){ e.setAttribute("translate","no"); e.classList.add("notranslate"); return e; }
   function uvTag(){ return el("span","uv","Unverified"); }
+  /* a site with no exact point: a link that opens Google Maps searching for it (nothing loads from Google here) */
+  function gmap(s){ var a=el("a","gm","Not on our map: find it on Google Maps"); a.href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(s.name+" Bangkok"); a.rel="noopener noreferrer"; return a; }
   function slug(n){ return n.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
   function telLink(ph, cls){
     if(!ph[1]){ var p=nt(el("span","plain",ph[0])); p.appendChild(el("small",null,ph[2])); return p; }
@@ -475,7 +478,8 @@ body.locked{overflow:hidden}
     var td0=el("td","rk-c"); td0.appendChild(el("span","rk",String(s.rank))); tr.appendChild(td0);
     var td1=el("td"); td1.dataset.l="Mall"; var a=nt(el("a",null,s.name)); a.href="#site-"+slug(s.name); td1.appendChild(a);
     if(s.th) td1.appendChild(nt(el("span","th",s.th)));
-    if(s.comp) td1.appendChild(el("span","rv","Rival")); tr.appendChild(td1);
+    if(s.comp) td1.appendChild(el("span","rv","Rival"));
+    if(s.lat==null) td1.appendChild(gmap(s)); tr.appendChild(td1);
     var td2=el("td","stc"); td2.dataset.l="Status";
     var ph=(s.phones||[]).filter(function(p){ return p[1]; })[0];
     if(s.status==="contacted"){ td2.appendChild(el("b","wait",r.asked||"Asked, waiting")); if(ph) td2.appendChild(telLink(ph,"tel sm")); }
@@ -497,6 +501,7 @@ body.locked{overflow:hidden}
     c.appendChild(hd);
     var m=el("div","meta"); m.appendChild(el("span","ty",s.type)); m.appendChild(el("span",null,s.area)); m.appendChild(el("span","gr",s.group));
     if(s.comp) m.appendChild(el("span","rv","Rival")); if(s.uv && s.uv.indexOf("area")>-1) m.appendChild(uvTag()); c.appendChild(m);
+    if(s.lat==null) c.appendChild(gmap(s));
     {
       if(s.phones || s.line){
         var call=el("div","call");
