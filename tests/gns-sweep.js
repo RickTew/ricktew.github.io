@@ -33,6 +33,13 @@ const CASES = [
   if (p.url() !== BASE + "/hininja/?src=x#price") findings.push(`/hininja/next/ landed on ${p.url()}`);
   const book = await p.$eval("a.buy", (a) => a.getAttribute("href")).catch(() => null);
   if (book !== NH + "?src=ricktew") findings.push(`/hininja/ Book goes to ${book}`);
+  // An ad visit: the Book carries the campaign and the click id on to NerdHostel (24 Oct 2026).
+  await p.goto(BASE + "/hininja/?gclid=Ab_c-12&cid=987", { waitUntil: "load" }).catch(() => {});
+  const adBook = await p.$eval("a.buy", (a) => a.getAttribute("href")).catch(() => null);
+  if (adBook !== NH + "?src=ricktew&cid=987&gclid=Ab_c-12") findings.push(`/hininja/ Book from an ad goes to ${adBook}`);
+  await p.goto(BASE + "/hininja/?wbraid=bad%20id", { waitUntil: "load" }).catch(() => {});
+  const badBook = await p.$eval("a.buy", (a) => a.getAttribute("href")).catch(() => null);
+  if (badBook !== NH + "?src=ricktew&cid=0&wbraid=") findings.push(`/hininja/ Book from a bad ad link goes to ${badBook}`);
   await browser.close();
   console.log("SIM PLAYTEST, the /gns/ forward, " + new Date().toISOString());
   console.log(findings.length ? findings.join("\n") : "clean");

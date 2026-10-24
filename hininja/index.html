@@ -23,10 +23,14 @@
 <link rel="icon" href="/assets/images/favicon.png">
 <link href="/assets/fonts/oswald-opensans-48e45d.css" rel="stylesheet">
 <style>
+/* The look, 24 Oct 2026 (Rick: "improve the design and colors"): a calm Samui sea for
+   the accents and the light bands, red still only on the buttons (his 9 Oct rule), and
+   headlines in sentence case so the page reads relaxed, not boot camp. */
 :root{
-  --bg:#ffffff; --ink:#101418; --ink2:#20262c; --muted:#69707a;
-  --red:#d61f26; --red-d:#a91218; --blue:#1e73bd;
-  --line:#e8e6e2; --panel:#f7f6f4;
+  --bg:#ffffff; --ink:#101418; --ink2:#24323b; --muted:#5b6a72;
+  --red:#d61f26; --red-d:#a91218;
+  --sea:#0c5a61; --sea-d:#0a3a41; --mist:#ebf5f3; --mist2:#cfe6e2; --line:#dde7e5;
+  --dawn:#f7c993; --noon:#b5e2dc; --dusk:#eaa27c; --night:#16384a;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 [hidden]{display:none!important}
@@ -34,138 +38,167 @@ html{scroll-behavior:smooth;scroll-padding-top:70px}
 @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
 body{background:var(--bg);color:var(--ink);font-family:"Open Sans","Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.65}
 img,video{max-width:100%;height:auto;display:block}
-a{color:var(--ink2)}
-h1,h2,h3{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:700;line-height:1.08;color:var(--ink);text-transform:uppercase;letter-spacing:.01em}
-.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+a{color:var(--sea)}
+h1,h2,h3{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;line-height:1.08;color:var(--ink)}
+h3{text-transform:uppercase;letter-spacing:.04em}
+h1,h2,.hero h1 span{text-wrap:balance}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 @media (max-width:700px){ .wrap{padding:0 16px} }
 /* Red is for the buttons only (Rick, 9 Oct 2026). */
-.k{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:18px;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:13px 28px;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .12s ease,background .12s ease}
+.k{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--sea)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:18px;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:13px 28px;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .12s ease,background .12s ease,border-color .12s ease}
 .btn:hover{transform:translateY(-1px)}
-.btn:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
 .btn-red{background:var(--red);color:#fff}
 .btn-red:hover{background:var(--red-d)}
-.btn-quiet{background:#fff;color:var(--ink);border-color:var(--line)}
-.btn-quiet:hover{border-color:var(--ink2)}
+.btn-quiet{background:#fff;color:var(--ink);border-color:var(--mist2)}
+.btn-quiet:hover{border-color:var(--sea)}
+@media (prefers-reduced-motion:reduce){ .btn{transition:none} .btn:hover{transform:none} }
 
 .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.nav-in{max-width:1040px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:18px}
+.nav-in{max-width:1080px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:18px}
 .brand{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:.12em;color:var(--ink);text-decoration:none;white-space:nowrap}
-.brand span{color:var(--muted)}
+.brand span{color:var(--sea)}
 .nav-links{margin-left:auto;display:flex;align-items:center;gap:18px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:15px;letter-spacing:.08em;text-transform:uppercase}
 .nav-links a{color:var(--muted);text-decoration:none}
-.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover{color:var(--sea)}
 .nav-links .btn{font-size:15px;padding:8px 18px;color:#fff}
 @media (max-width:760px){ .nav-links a:not(.btn){display:none} .nav-in{padding:10px 16px} }
 
-.hero{padding:54px 0 44px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:center}
-@media (max-width:860px){ .hero-grid{grid-template-columns:1fr;gap:26px} }
-.hero h1{font-size:clamp(38px,6vw,62px);margin-top:12px}
-.hero h1 span{color:var(--ink2);display:block}
+.hero{padding:58px 0 60px;background:linear-gradient(180deg,var(--mist) 0%,var(--mist) 70%,#fff 100%)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:44px;align-items:center}
+@media (max-width:860px){ .hero-grid{grid-template-columns:1fr;gap:28px} .hero{padding:40px 0 44px} }
+.hero h1{font-size:clamp(40px,6vw,66px);margin-top:12px}
+.hero h1 span{color:var(--sea);display:block}
 .hero .lede{margin-top:18px;font-size:19px;color:var(--ink2);max-width:46ch}
-.hero .cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
-.hero figure img{border-radius:18px;box-shadow:0 18px 44px rgba(16,20,24,.16);width:100%}
+.hero .lede+.lede{margin-top:12px}
+.hero .cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.hero figure img{border-radius:20px;box-shadow:0 24px 54px rgba(10,58,65,.20);width:100%}
 figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 
-.band{padding:64px 0;border-top:1px solid var(--line)}
-.band.tint{background:var(--panel)}
-.band h2{font-size:clamp(30px,4.4vw,46px);margin-top:8px}
+.band{padding:68px 0}
+.band.tint{background:var(--mist)}
+.band h2{font-size:clamp(32px,4.6vw,48px);margin-top:8px}
 .band .lead{margin-top:14px;font-size:18px;color:var(--ink2);max-width:62ch}
 .note{font-size:15px;color:var(--muted)}
 
 /* what it is, and is not */
-.isnot{margin-top:28px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:18px}
+.isnot{margin-top:30px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:18px}
 @media (max-width:860px){ .isnot{grid-template-columns:1fr} }
-.isnot div{background:#fff;border:2px solid var(--line);border-radius:18px;padding:22px 24px}
-.isnot h3{font-size:21px}
-.isnot ul{margin-top:12px;padding-left:20px;display:grid;gap:8px;font-size:16px;color:var(--ink2)}
+.isnot>div{border-radius:20px;padding:24px 26px}
+.isnot .get{background:var(--mist);border:2px solid var(--mist2)}
+.isnot .not{background:#fff;border:2px solid var(--line)}
+.isnot h3{font-size:20px}
+.isnot ul{margin-top:14px;list-style:none;display:grid;gap:10px;font-size:16px;color:var(--ink2)}
+.isnot li{position:relative;padding-left:32px}
+.isnot li::before{content:"";position:absolute;left:0;top:.2em;width:20px;height:20px;border-radius:50%}
+.isnot .get li::before{background:var(--sea) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
+.isnot .not li::before{border:2px solid var(--muted);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 5l6 6M11 5l-6 6' fill='none' stroke='%235b6a72' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/16px no-repeat}
 
 /* where you start */
-.start{margin-top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.start{margin-top:30px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 @media (max-width:860px){ .start{grid-template-columns:1fr 1fr} }
 @media (max-width:480px){ .start{grid-template-columns:1fr} }
-.start div{background:#fff;border:2px solid var(--line);border-radius:16px;padding:16px 18px}
-.start span{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.start div{background:#fff;border:2px solid var(--mist2);border-radius:16px;padding:16px 18px}
+.start span{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--sea)}
 .start p{margin-top:4px;font-size:15.5px;color:var(--ink2)}
 
-/* a day */
-.day{margin-top:28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+/* a day: the bar shows the weekday from 6am to midnight, so the two hours of class
+   sit inside a day that is mostly the island's. */
+.dayline{margin-top:30px;padding:20px 22px 12px;background:#fff;border:2px solid var(--line);border-radius:20px}
+@media (max-width:480px){ .dayline{padding:16px 14px 10px} }
+.dl-labels,.dl-ticks{position:relative;height:24px}
+.dl-labels span,.dl-ticks span{position:absolute;left:calc(var(--m) / 18 * 100%);transform:translateX(-50%);white-space:nowrap}
+.dl-labels span{bottom:4px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sea-d)}
+.dl-ticks{margin-top:6px}
+.dl-ticks span{top:0;font-size:12.5px;color:var(--muted)}
+.dl-ticks span:first-child{transform:none}
+.dl-ticks span:last-child{transform:translateX(-100%)}
+.dl-track{position:relative;height:58px;border-radius:14px;overflow:hidden;background:linear-gradient(90deg,var(--dawn) 0%,var(--noon) 30%,var(--noon) 62%,var(--dusk) 78%,var(--night) 100%)}
+.dl-track span{position:absolute;top:0;bottom:0;left:calc(var(--a) / 18 * 100%);width:calc((var(--b) - var(--a)) / 18 * 100%)}
+.dl-class{background:var(--sea-d)}
+.dl-opt{background:rgba(10,58,65,.55);outline:2px dashed rgba(255,255,255,.85);outline-offset:-5px}
+.dl-free{display:flex;align-items:center;justify-content:center;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:17px;color:var(--sea-d);text-align:center;line-height:1.1;padding:0 6px}
+@media (max-width:480px){ .dl-free{font-size:15px} .dl-labels span{font-size:12px;letter-spacing:.08em} }
+.day{margin-top:18px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 @media (max-width:860px){ .day{grid-template-columns:1fr 1fr} }
 @media (max-width:480px){ .day{grid-template-columns:1fr} }
-.slot{background:#fff;border:2px solid var(--line);border-radius:16px;padding:18px}
-.slot .when{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.slot{background:var(--mist);border:2px solid var(--mist2);border-radius:16px;padding:18px}
+.slot .when{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--sea)}
 .slot .time{font-size:14px;color:var(--muted)}
-.slot h3{font-size:20px;margin-top:8px}
+.slot h3{font-size:19px;margin-top:8px}
 .slot p{margin-top:8px;font-size:15px;color:var(--ink2)}
 
-/* where */
-.where{margin-top:26px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
-@media (max-width:860px){ .where{grid-template-columns:1fr} }
-.where img{width:100%;border-radius:16px}
-.where p{font-size:17px;color:var(--ink2)}
-.where p+p{margin-top:12px}
+/* where: train and stay, side by side; the columns follow the two photos' shapes
+   (2.08 and 1.34 wide for 1 high) so both pictures stand the same height. */
+.where-text{margin-top:14px;max-width:62ch}
+.where-text p{font-size:18px;color:var(--ink2)}
+.where-text p+p{margin-top:12px}
+.pair{margin-top:28px;display:grid;grid-template-columns:2.08fr 1.34fr;gap:20px;align-items:start}
+@media (max-width:760px){ .pair{grid-template-columns:1fr} }
+.pair .k{margin-bottom:8px}
+.pair img{width:100%;border-radius:18px;box-shadow:0 14px 34px rgba(10,58,65,.14)}
 
 /* price */
-.price-grid{margin-top:28px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:start}
+.price-grid{margin-top:30px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:start}
 @media (max-width:860px){ .price-grid{grid-template-columns:1fr} }
-.card{background:#fff;border:2px solid var(--line);border-radius:20px;padding:26px}
-.card .amt{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:700;font-size:64px;line-height:1;color:var(--ink)}
-.card .per{margin-top:6px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
-.card .all{margin-top:10px;font-size:16px;color:var(--ink2)}
+.card{background:#fff;border:2px solid var(--sea);border-radius:22px;padding:28px;box-shadow:0 20px 44px rgba(10,58,65,.10)}
+.card .amt{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:700;font-size:66px;line-height:1;color:var(--sea-d)}
+.card .per{margin-top:6px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--sea)}
+.card .all{margin-top:12px;font-size:16px;color:var(--ink2)}
 .card .btn{margin-top:20px;width:100%}
 .card .small{margin-top:14px;font-size:15px;color:var(--ink2)}
-.card .off{margin-top:10px;font-size:14px;font-weight:700;color:var(--red-d)}
-.first{background:#fff;border:2px solid var(--line);border-radius:20px;padding:26px}
-.first h3{font-size:24px}
+.first{background:var(--mist);border:2px solid var(--mist2);border-radius:22px;padding:28px}
+.first h3{font-size:22px}
 .first p{margin-top:10px;font-size:16px;color:var(--ink2)}
 .first .btn{margin-top:18px}
 
 /* who you learn from */
-.rick-grid{margin-top:28px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
+.rick-grid{margin-top:30px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
 @media (max-width:860px){ .rick-grid{grid-template-columns:1fr} }
-.tape video{width:100%;border-radius:14px;background:#000;aspect-ratio:4/3}
+.tape video{width:100%;border-radius:16px;background:#000;aspect-ratio:4/3}
 .record{list-style:none;display:grid;gap:12px}
-.record li{background:#fff;border:2px solid var(--line);border-radius:14px;padding:13px 16px;font-size:15.5px;color:var(--ink2)}
-.record li span{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
-.olddays{margin-top:40px}
-.olddays h3{font-size:26px}
+.record li{background:#fff;border:2px solid var(--mist2);border-radius:14px;padding:13px 16px;font-size:15.5px;color:var(--ink2)}
+.record li span{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--sea);margin-bottom:2px}
+.olddays{margin-top:44px;padding-top:34px;border-top:2px solid var(--mist2)}
+.olddays h3{font-size:24px}
 .olddays .lead{margin-top:10px}
 .old-grid{margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 @media (max-width:760px){ .old-grid{grid-template-columns:1fr} }
 .old-grid img{width:100%;border-radius:14px}
-.deeper{margin-top:28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.deeper{margin-top:30px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 @media (max-width:860px){ .deeper{grid-template-columns:1fr 1fr} }
 @media (max-width:420px){ .deeper{grid-template-columns:1fr} }
-.deeper a{display:block;background:#fff;border:2px solid var(--line);border-radius:16px;padding:16px 18px;text-decoration:none;color:var(--ink)}
-.deeper a:hover{border-color:var(--ink2)}
+.deeper a{display:block;background:#fff;border:2px solid var(--mist2);border-radius:16px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:border-color .12s ease,box-shadow .12s ease}
+.deeper a:hover{border-color:var(--sea);box-shadow:0 8px 22px rgba(10,58,65,.12)}
 .deeper span{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.deeper b{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:20px;text-transform:uppercase;margin-top:4px}
+.deeper b{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:20px;text-transform:uppercase;margin-top:4px;color:var(--sea-d)}
 
 /* FAQ */
-.faq{margin-top:22px;max-width:780px}
+.faq{margin-top:24px;max-width:800px}
 .faq details{border-top:1px solid var(--line);padding:4px 0}
 .faq details:last-child{border-bottom:1px solid var(--line)}
-.faq summary{cursor:pointer;list-style:none;padding:14px 32px 14px 0;font-weight:700;font-size:17px;position:relative}
+.faq summary{cursor:pointer;list-style:none;padding:14px 36px 14px 0;font-weight:700;font-size:17px;position:relative}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";position:absolute;right:4px;top:10px;font-size:24px;color:var(--muted)}
+.faq summary::after{content:"+";position:absolute;right:4px;top:9px;font-size:26px;color:var(--sea)}
 .faq details[open] summary::after{content:"\2212"}
+.faq summary:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
 .faq details p{padding:0 0 16px;color:var(--ink2)}
 
 /* ask first */
-.ask{background:#101418;color:#fff}
+.ask{background:var(--sea-d);color:#fff}
 .ask h2{color:#fff}
-.ask .lead{color:#c9ced6}
-.ask .k{color:#aab2bc}
-.form{margin-top:26px;background:#fff;color:var(--ink);border-radius:20px;padding:26px;max-width:720px}
+.ask .lead{color:#cde3e0}
+.ask .k{color:#9fd0c9}
+.form{margin-top:26px;background:#fff;color:var(--ink);border-radius:22px;padding:28px;max-width:720px}
 @media (max-width:640px){ .form{padding:20px 16px} }
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media (max-width:640px){ .row2{grid-template-columns:1fr} }
 .form label{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
 .form .fld{margin-top:16px}
 .form .row2 .fld{margin-top:0}
-.form input,.form textarea{display:block;width:100%;font:inherit;font-size:16px;padding:12px 14px;border:2px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink)}
-.form input:focus-visible,.form textarea:focus-visible{outline:3px solid var(--blue);outline-offset:1px}
+.form input,.form textarea{display:block;width:100%;font:inherit;font-size:16px;padding:12px 14px;border:2px solid var(--mist2);border-radius:10px;background:var(--mist);color:var(--ink)}
+.form input:focus-visible,.form textarea:focus-visible{outline:3px solid var(--sea);outline-offset:1px}
 .form textarea{min-height:150px;resize:vertical}
 .form .btn{margin-top:20px;width:100%}
 .form .err{display:none;margin-top:12px;font-weight:700;color:var(--red-d)}
@@ -179,7 +212,7 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 footer{padding:26px 0 40px;font-size:14px;color:var(--muted);border-top:1px solid var(--line)}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 footer a{color:var(--muted);text-decoration:none}
-footer a:hover{color:var(--ink)}
+footer a:hover{color:var(--sea)}
 </style>
 </head>
 <body data-usd-only>
@@ -225,7 +258,7 @@ footer a:hover{color:var(--ink)}
     <h2>A relaxed way into ninja martial arts.</h2>
     <p class="lead">Always wanted to know what ninja martial arts is like? This is a great introduction, with plenty of time for the island.</p>
     <div class="isnot">
-      <div>
+      <div class="get">
         <h3>What you get</h3>
         <ul>
           <li>A morning class, 8 to 10, Monday to Friday.</li>
@@ -235,7 +268,7 @@ footer a:hover{color:var(--ink)}
           <li>New to AI? Want to learn while you are here? Rick can help with that too.</li>
         </ul>
       </div>
-      <div>
+      <div class="not">
         <h3>What it is not</h3>
         <ul>
           <li>Not a fight camp. No sparring unless you ask.</li>
@@ -267,6 +300,15 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <div class="k">Monday to Friday</div>
     <h2>A day on Samui</h2>
+    <div class="dayline" role="img" aria-label="A weekday from 6am to midnight: class from 8 to 10 in the morning, the island from 10am to 8pm, and an optional session from 8 to 10 in the evening.">
+      <div class="dl-labels" aria-hidden="true"><span style="--m:3">Class</span><span style="--m:15">Optional</span></div>
+      <div class="dl-track" aria-hidden="true">
+        <span class="dl-class" style="--a:2;--b:4"></span>
+        <span class="dl-free" style="--a:4;--b:14">The island is yours</span>
+        <span class="dl-opt" style="--a:14;--b:16"></span>
+      </div>
+      <div class="dl-ticks" aria-hidden="true"><span style="--m:0">6am</span><span style="--m:6">Noon</span><span style="--m:12">6pm</span><span style="--m:18">Midnight</span></div>
+    </div>
     <div class="day">
       <div class="slot"><div class="when">Morning</div><div class="time">8am to 10am</div><h3>Class</h3><p>New material, drills and corrections. Rick teaches at least 2 classes a week; on the other days you practice with Guides, people who trained here before you.</p></div>
       <div class="slot"><div class="when">Daytime</div><div class="time">Free</div><h3>The island is yours</h3><p>Beaches, food, the jungle, a nap. Your holiday stays your holiday.</p></div>
@@ -280,12 +322,13 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <div class="k">Where you train and stay</div>
     <h2>NinjaGym, Big C Mall, Koh Samui</h2>
-    <div class="where">
-      <div>
-        <p>You train at NinjaGym and stay at a small hostel nearby, in a shared men's or women's dorm. Game room at both. Meals are included: simple and hearty.</p>
-        <p>Already have a place, or want your own room? That is fine. The price is the same, and you keep everything else.</p>
-      </div>
-      <figure><img src="/aininja/assets/story/ninja/world/asia-founder.webp" alt="Rick Tew stretching in the splits on red mats" width="640" height="308" loading="lazy"><figcaption>Rick Tew, founder of NinjaGym</figcaption></figure>
+    <div class="where-text">
+      <p>You train at NinjaGym and stay at a small hostel nearby, in a shared men's or women's dorm. Game room at both. Meals are included: simple and hearty.</p>
+      <p>Already have a place, or want your own room? That is fine. The price is the same, and you keep everything else.</p>
+    </div>
+    <div class="pair">
+      <figure><div class="k">Train</div><img src="/aininja/assets/story/ninja/world/asia-founder.webp" alt="Rick Tew stretching in the splits on red mats" width="640" height="308" loading="lazy"><figcaption>Rick Tew, founder of NinjaGym</figcaption></figure>
+      <figure><div class="k">Stay</div><img src="/hininja/img/dorm-bunks.webp" alt="A NerdHostel dorm: wooden bunk beds with red pillows over colourful floor mats" width="1200" height="896" loading="lazy"><figcaption>A dorm at NerdHostel: six beds, in bunks</figcaption></figure>
     </div>
   </div>
 </section>
@@ -404,7 +447,8 @@ footer a:hover{color:var(--ink)}
   "use strict";
   /* An ad click's gclid / gbraid / wbraid and cid={campaignid} ride into the ask box as
      source "gads" with the campaign and the click id, as on the GNS page. The Book button
-     itself goes to NerdHostel's GNS page with src=ricktew. Nothing is kept in the browser. */
+     goes to NerdHostel's GNS page with src=ricktew, and on an ad visit the same two ride
+     along (below). Nothing is kept in the browser. */
   var AD=null;
   try{
     var q=new URLSearchParams(location.search);
@@ -415,6 +459,16 @@ footer a:hover{color:var(--ink)}
       return true;
     });
   }catch(e){}
+
+  /* From an ad visit the Book button carries the campaign and the click id on to
+     NerdHostel's GNS page, whose script turns them into the checkout's src
+     gns-gads-<campaign>-<g|b|w><click id>, so an ad sale is counted (24 Oct 2026,
+     Rick: "get the ads going for hininja page"). */
+  if(AD){
+    [].forEach.call(document.querySelectorAll("a.buy"),function(a){
+      a.setAttribute("href","https://www.nerdhostel.com/gns?src=ricktew&cid="+AD.campaign+"&"+AD.kind+"="+AD.click);
+    });
+  }
 
   /* The ask box: the same mailbox and walls as the GNS page (subject hininja, the trap field
      outside the form, the fill time); from an ad click it carries source "gads" with
