@@ -118,6 +118,7 @@ table.act .th{display:block;font-size:12.5px;font-weight:700;color:var(--muted)}
 table.act tr.done td{background:#f6f7f9;color:var(--muted)}
 table.act .rk-c{width:44px}
 .wait{display:block;color:var(--purple)}
+.kindh{margin-top:20px;font-size:20px;font-weight:900;color:var(--navy-d)}
 .gm{display:block;margin-top:6px;font-size:13.5px;font-weight:800;color:var(--blue-d)}
 .go{display:block;color:var(--green-d)}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
@@ -250,7 +251,7 @@ body.locked{overflow:hidden}
     <div class="map" id="mapBox" role="group" aria-label="Map of the sites in Bangkok">
       <img src="/partners/locations/img/bkk-map.webp" alt="Map of Bangkok and its edge, from Rangsit in the north to Bangna in the south" width="952" height="1221">
     </div>
-    <p class="small legend"><span class="key">1</span> the best 8 <span class="dot d-found"></span> found <span class="dot d-contacted"></span> asked. Tap a dot for its name. Not on the map (no exact point): <span id="offMap"></span>.</p>
+    <p class="small legend"><span class="key">1</span> the best 8 <span class="dot d-found"></span> found <span class="dot d-contacted"></span> asked. Tap a dot for its name.<span id="offWrap"> Not on the map (no exact point): <span id="offMap"></span>.</span></p>
     <p class="credit">Map data &copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap contributors</a></p>
   </section>
 
@@ -272,6 +273,7 @@ body.locked{overflow:hidden}
     <a href="https://www.google.com/maps/search/community+mall+Bangkok" rel="noopener noreferrer">Community malls map</a>
     <a href="https://www.google.com/maps/search/kids+taekwondo+Bangkok" rel="noopener noreferrer">Kids' martial arts map</a>
     <a href="https://www.เซ้งร้าน.com/listings?q=โรงเรียน" rel="noopener noreferrer">School takeovers</a>
+    <a href="https://www.เซ้งร้าน.com/listings?q=นราธิวาส" rel="noopener noreferrer">Takeovers on Narathiwas</a>
     <a href="https://www.facebook.com/selloutthailand" rel="noopener noreferrer">เซ้งร้าน.com</a>
     <a href="https://www.facebook.com/sengrannaidee" rel="noopener noreferrer">เซ้งร้านไหนดี</a>
     <a href="https://www.facebook.com/Bizkaakai" rel="noopener noreferrer">Bizkaakai</a>
@@ -282,7 +284,10 @@ body.locked{overflow:hidden}
     <h2>Candidate sites</h2>
     <p class="sub">Any size. Rent target about ฿60,000 a month.</p>
     <div class="filters" id="filters" role="group" aria-label="Show sites by status"></div>
+    <h3 class="kindh">Malls</h3>
     <div class="sites" id="siteList"></div>
+    <h3 class="kindh">Other</h3>
+    <div class="sites" id="otherList"></div>
     <p class="empty" id="empty" hidden>No sites with that status yet.</p>
   </section>
     </div>
@@ -310,8 +315,14 @@ body.locked{overflow:hidden}
   var CPN = "https://www.centralpattana.co.th/en/contact-us/cpn-contact-information";
   var CPNT = ["Central Pattana, leasable areas end 2024","https://www.centralpattana.co.th/en/investor-relations/assets-under-central-pattana/retail-properties"];
   var SITES = [
+    /* OTHER: not a mall (shops under condos, shophouses, buildings) */
+    {name:"Belle Park area, Narathiwas", kind:"other", lat:13.69951, lng:100.53692, area:"Chong Nonsi, Yan Nawa (Narathiwas Road)", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found",
+     short:"Rick knows this zone: shops under or around the Belle Park condos and The Narathiwas Residence.", nw:"24 Oct 2026 (no shop for rent found online yet)",
+     why:"Belle Park Residence lists a shop in the project, with no unit details. The Narathiwas Residence is a serviced apartment whose address differs between listing sites.",
+     contact:"No leasing contact found yet.",
+     sources:[["OpenStreetMap, Belle Park Condominium","https://www.openstreetmap.org/search?query=Belle%20Park%20Condominium%20Bangkok"],["PropertyHub, Belle Park Residence","https://propertyhub.in.th/en/projects/belle-park-residence"]]},
     /* East: Prawet and Srinakarin */
-    {name:"JAS Green Village Prawet", nw:"3 Oct 2026", short:"Kids' school already here: Panipak Taekwondo, a rival.", old:"June 2024", comp:true, asof:"3 October 2026 (the school's post); the mall's own facts are from July 2024.", th:"แจส กรีน วิลเลจ ประเวศ", area:"Prawet, Bangkok (Sukhaphiban 2 Road)", group:"East: Prawet and Srinakarin", type:"School area", status:"contacted",
+    {name:"JAS Green Village Prawet", lat:13.69643, lng:100.70352, nw:"3 Oct 2026", short:"Kids' school already here: Panipak Taekwondo, a rival.", old:"June 2024", comp:true, asof:"3 October 2026 (the school's post); the mall's own facts are from July 2024.", th:"แจส กรีน วิลเลจ ประเวศ", area:"Prawet, Bangkok (Sukhaphiban 2 Road)", group:"East: Prawet and Srinakarin", type:"School area", status:"contacted",
      why:"A neighbourhood mall with an education zone and a children's play garden, for Prawet, Sukhaphiban 2, Lat Krabang and On Nut. Panipak Taekwondo, a kids' school, is already on the 2nd floor.",
      space:"Sales area 10,000 sqm; about 90% leased before it opened (June 2024). Vacancies unknown.",
      deal:"2024: JAS gave Panipak Taekwondo, a kids' school, its space here free for 3 years, around Olympic gold medallist Panipak Wongpattanakit. Still here: belt test 19 Dec 2026 (its post, 3 Oct 2026).",
@@ -326,7 +337,7 @@ body.locked{overflow:hidden}
      why:"A Tops supermarket anchor (parents shop) and an SF cinema; the JAS Sport Club has 9 badminton courts here. No school nearby named yet.",
      space:"About 19,850 sqm leasable (JAS page, written around 2021). Vacancies unknown.", deal:"None found.",
      contact:JASC, contactUrl:JAS, note:JASNOTE, sources:[["JAS Asset","https://www.jasasset.co.th/en/our-assets/33/community-malls"],JAS26]},
-    {name:"JAS Green Village Ramkhamhaeng", nw:"Sep 2024", short:"JAS aims it at nearby schools, with an area for children.", old:"September 2024", asof:"September 2024 (its opening).", th:"แจส กรีน วิลเลจ รามคำแหง", area:"Ramkhamhaeng, Bangkok (Rat Phatthana Road)", group:"East: Prawet and Srinakarin", type:"Area: to check", status:"contacted",
+    {name:"JAS Green Village Ramkhamhaeng", lat:13.78924, lng:100.69548, nw:"Sep 2024", short:"JAS aims it at nearby schools, with an area for children.", old:"September 2024", asof:"September 2024 (its opening).", th:"แจส กรีน วิลเลจ รามคำแหง", area:"Ramkhamhaeng, Bangkok (Rat Phatthana Road)", group:"East: Prawet and Srinakarin", type:"Area: to check", status:"contacted",
      why:"JAS says it targets office workers and nearby schools, with an area for children. On the future Orange Line.",
      space:"5,000 sqm sales area; opened late 2024. Vacancies unknown.", deal:"None found.",
      contact:JASC, contactUrl:JAS, note:JASNOTE,
@@ -394,8 +405,8 @@ body.locked{overflow:hidden}
      contact:"An event booth form (not shops). Phone 02-487-1000 (general).", contactUrl:"https://themalllifestore.com/retail-space-solution/special-event", asof:"April 2024.",
      sources:[["Marketeer, 17 Apr 2024","https://marketeeronline.co/archives/348937"]]},
     /* Thonburi North */
-    {name:"LITTLE WALK Phrannok-Phutthamonthon", nw:"22 Oct 2026", act:{"callNote": "general line, ask for leasing", "space": "Unknown; leases went fast at opening", "date": "22 Oct 2026", "why": "New, kids' skill schools, rich homes nearby"}, short:"New; kids' skill schools; rich homes nearby.", old:"March 2026", area:"Taling Chan side, west Bangkok (Phrannok to Phutthamonthon Sai 4 road)", group:"Thonburi North", type:"School area", status:"tocontact", rank:2,
-     phones:[["0-2898-6420","+6628986420","general line, ask for leasing (lines 6420 to 6425)"]],
+    {name:"LITTLE WALK Phrannok-Phutthamonthon", lat:13.75179, lng:100.44357, nw:"22 Oct 2026", act:{"callNote": "general line, ask for leasing", "space": "Unknown; leases went fast at opening", "date": "22 Oct 2026", "why": "New, kids' skill schools, rich homes nearby"}, short:"New; kids' skill schools; rich homes nearby.", old:"March 2026", area:"517 Phran Nok-Phutthamonthon Sai 4 Road, Bang Phrom, Taling Chan", group:"Thonburi North", type:"School area", status:"tocontact", rank:2,
+     phones:[["081-110-4560","+66811104560","the mall itself (its Google Maps listing)"],["0-2898-6420","+6628986420","Index Living Mall head office: general line, ask for leasing"]],
      why:"A new strip mall (2026) with a category for kids' schools, more than 10 leading schools nearby and homes at ฿15 million to ฿50 million. Index Living Mall opens a Talent Sport Academy here in 2027, and it gave Panipak Taekwondo free rent at another LITTLE WALK in 2024.",
      space:"4,700 sqm, 40+ brands, Tops; leases closed quickly. Vacancies unknown.", deal:"None published.",
      contact:"No leasing line published; the head office line is general.", contactUrl:ILM, asof:"22 October 2026.",
@@ -416,7 +427,7 @@ body.locked{overflow:hidden}
      space:"Unknown.", deal:"None found.",
      contact:"No leasing line published; the phones are general.", contactUrl:"https://www.thewalk.co.th/",
      sources:[["Index Living Mall, 22 Oct 2026","https://investor.indexlivingmall.com/en/updates/press-releases/505/"],["The Walk","https://www.thewalk.co.th/"]]},
-    {name:"JAS Green Village Bang Bua Thong", nw:"Nov 2024", short:"Space for children's and family activities.", old:"November 2024", asof:"November 2024.", th:"JAS green village บางบัวทอง", area:"Bang Bua Thong, Nonthaburi", group:"West: Ratchaphruek and Nonthaburi", type:"Area: to check", status:"contacted",
+    {name:"JAS Green Village Bang Bua Thong", lat:13.90841, lng:100.39543, nw:"Nov 2024", short:"Space for children's and family activities.", old:"November 2024", asof:"November 2024.", th:"JAS green village บางบัวทอง", area:"Bang Bua Thong, Nonthaburi", group:"West: Ratchaphruek and Nonthaburi", type:"Area: to check", status:"contacted",
      why:"JAS says it has space for children's and family activities. Opened September 2023. No school nearby named yet.",
      space:"Unknown.", deal:"None found.",
      contact:JASC, contactUrl:JAS, note:JASNOTE, sources:[["JAS Asset","https://www.jasasset.co.th/th/newsroom/news-and-media/150"]]},
@@ -532,8 +543,8 @@ body.locked{overflow:hidden}
     return c;
   }
 
-  var list=document.getElementById("siteList"), filters=document.getElementById("filters"), empty=document.getElementById("empty");
-  SITES.forEach(function(s){ list.appendChild(card(s)); });
+  var list=document.getElementById("siteList"), other=document.getElementById("otherList"), filters=document.getElementById("filters"), empty=document.getElementById("empty");
+  SITES.forEach(function(s){ (s.kind==="other"?other:list).appendChild(card(s)); });
   STATUS.forEach(function(s){
     var n = s[0]==="all" ? SITES.length : SITES.filter(function(x){ return x.status===s[0]; }).length;
     var b=nt(el("button",null,s[1])); b.type="button"; b.dataset.f=s[0]; b.setAttribute("aria-pressed", s[0]==="all"?"true":"false");
@@ -543,6 +554,7 @@ body.locked{overflow:hidden}
   function show(f){
     var shown=0;
     [].forEach.call(list.children,function(c){ var on = f==="all" || c.dataset.status===f; c.hidden=!on; if(on) shown++; });
+    [].forEach.call(other.children,function(c){ var on = f==="all" || c.dataset.status===f; c.hidden=!on; if(on) shown++; });
     [].forEach.call(filters.children,function(b){ b.setAttribute("aria-pressed", b.dataset.f===f?"true":"false"); });
     empty.hidden = shown>0;
   }
@@ -580,7 +592,8 @@ body.locked{overflow:hidden}
     lbl.textContent=best.s.name; lbl.href="#site-"+slug(best.s.name);
     lbl.style.left=best.el.style.left; lbl.style.top=best.el.style.top; lbl.hidden=false;
   });
-  document.getElementById("offMap").textContent=off.reverse().join(", ");
+  var offEl=document.getElementById("offMap");
+  if(off.length) offEl.textContent=off.reverse().join(", "); else document.getElementById("offWrap").hidden=true;
 
 })();
 </script>
