@@ -12,8 +12,9 @@
      sitemap. THIS REPO IS PUBLIC: the gate hides the page from a casual visitor, not from
      anyone reading GitHub, so only public facts go here (published leasing pages, sources).
      Never write a rent we offered, a negotiation note or a private person's details.
-     A mall that already has a kids' martial arts school is a rival: tag it comp:true
-     ("Competition") and rank it lower (Rick, 24 Oct 2026, "A rival: rank it lower").
+     A kids' martial arts school in a mall is a neighbour, not a rival (Rick, 24 Oct 2026:
+     "we do not compete with Taekwondo ... we are more of a playground for ninja not martial
+     arts classes"); it reversed his earlier "A rival: rank it lower".
      Every fact carries its source; "unverified" marks anything not read at the source.
      Rule (Rick's picks in TEWBEDO, 24 Oct 2026): a one-month hunt; the best 8 are contacted at
      once, each on Rick's yes, by a call in Thai asking every size and rent ("all and we can
@@ -379,29 +380,29 @@ body.locked{overflow:hidden}
   var SITES = [
     /* OTHER: not a mall (shops under condos, shophouses, buildings) */
     {name:"Belle Park area, Narathiwas", kind:"other", lat:13.69951, lng:100.53692, area:"Chong Nonsi, Yan Nawa (Narathiwas Road)", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found",
-     short:"Schools close by: Sarasas Ektra (950 m), King's College International (1.4 km). A rival next door: The Kick Taekwondo in Central Rama 3.", nw:"24 Oct 2026",
+     short:"Schools close by: Sarasas Ektra (950 m), King's College International (1.4 km). Central Rama 3 is next door.", nw:"24 Oct 2026",
      why:"Neither building has shop space: The Narathiwas Residence is a 326-room serviced-apartment hotel (379 Soi Sathupradit 19), and Belle Park has no shop. The units for rent nearby are the cards below.",
      sources:[["Central Rama 3 directory, 23 Oct 2026","https://map.centralpattana.co.th/directory/mall/RM3"],["OpenStreetMap, Belle Park Condominium","https://www.openstreetmap.org/search?query=Belle%20Park%20Condominium%20Bangkok"]]},
-    {name:"Soi Narathiwas 22, two-unit building", kind:"other", lat:13.70293, lng:100.53592, area:"Soi Narathiwas 22, 400 m north of The Narathiwas", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found",
-     short:"400 sqm over 4 floors, ฿50,000 a month.", nw:"23 Sep 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/6246959", sources:[["The listing","https://propertyhub.in.th/listings/6246959"]]},
-    {name:"Soi Chan 16 Yaek 6, four-unit corner building", kind:"other", lat:13.70594, lng:100.53206, area:"End of Soi Narathiwas 14, Thung Wat Don, Sathon", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found", uv:["area"],
-     short:"500 to 525 sqm over 4 floors, parking, ฿40,000 to ฿45,000 a month.", nw:"24 Oct 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/5753316", sources:[["The listing","https://propertyhub.in.th/listings/5753316"]]},
-    {name:"Soi Narathiwas 10 to 18, three-unit building", kind:"other", lat:13.69616, lng:100.54499, area:"Narathiwas, Soi 10 to 18 (the listing's pin is approximate)", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found", uv:["area"],
-     short:"360 sqm, 12 m frontage, listed for a training centre, ฿34,998 a month.", nw:"23 Oct 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/6176070", sources:[["The listing","https://propertyhub.in.th/listings/6176070"]]},
+    {name:"Soi Narathiwas 22, two-unit building", kind:"other", lat:13.70293, lng:100.53592, area:"Soi Narathiwas 22, 400 m north of The Narathiwas", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"tocontact",
+     short:"Whole building, 2 shophouses joined: 4 floors of about 100 sqm (400 sqm in all), ฿50,000 a month for all of it (to confirm).", nw:"23 Sep 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/6246959", sources:[["The listing","https://propertyhub.in.th/listings/6246959"]]},
+    {name:"Soi Chan 16 Yaek 6, four-unit corner building", kind:"other", lat:13.70594, lng:100.53206, area:"End of Soi Narathiwas 14, Thung Wat Don, Sathon", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"tocontact", uv:["area"],
+     short:"Whole building, 4 shophouses opened through: 4 floors of about 130 sqm (525 sqm in all), parking, ฿40,000 to ฿45,000 a month for all of it.", nw:"24 Oct 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/5753316", sources:[["The listing","https://propertyhub.in.th/listings/5753316"]]},
+    {name:"Soi Narathiwas 10 to 18, three-unit building", kind:"other", lat:13.69616, lng:100.54499, area:"Narathiwas, Soi 10 to 18 (the listing's pin is approximate)", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"tocontact", uv:["area"],
+     short:"Whole building, 3 shophouses: 3 floors of 120 sqm (12 x 10 m, 360 sqm in all), ฿34,998 a month for all of it; needs renovation.", nw:"23 Oct 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/6176070", sources:[["The listing","https://propertyhub.in.th/listings/6176070"]]},
     {name:"Rama 3 Soi 52, two-unit corner building", kind:"other", lat:13.68711, lng:100.5497, area:"Rama 3 Soi 52, 1.9 km from The Narathiwas", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found",
-     short:"528 sqm corner, ฿30,000 a month.", nw:"9 Sep 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/6386787", sources:[["The listing","https://propertyhub.in.th/listings/6386787"]]},
+     short:"Whole building, 2 shophouses opened through: 4 floors of about 112 sqm (8 x 14 m) plus a mezzanine, 528 sqm in all, ฿30,000 a month for all of it.", nw:"9 Sep 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/6386787", sources:[["The listing","https://propertyhub.in.th/listings/6386787"]]},
     {name:"Narathiwas, Silom end, ground-floor corner unit", kind:"other", lat:13.71682, lng:100.53231, area:"Narathiwas Road at Silom, near BTS Saint Louis", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found",
-     short:"422 sqm on the ground floor, ฿316,500 a month, 3-year minimum.", nw:"confirmed available in October 2026 (listed 20 Feb 2026)", contact:"The listing page (an agent).", contactUrl:"https://propertyscout.co.th/en/retail-space-rent-silomsathorn-2666921/", sources:[["The listing","https://propertyscout.co.th/en/retail-space-rent-silomsathorn-2666921/"]]},
-    {name:"Sathorn Happy Land Tower, one floor", kind:"other", lat:13.71976, lng:100.53816, area:"South Sathorn", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found",
-     short:"800 sqm on one floor, ฿119,998 a month.", nw:"24 Oct 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/6260484", sources:[["The listing","https://propertyhub.in.th/listings/6260484"]]},
+     short:"One ground-floor space of 422 sqm, ฿316,500 a month, 3-year minimum.", nw:"confirmed available in October 2026 (listed 20 Feb 2026)", contact:"The listing page (an agent).", contactUrl:"https://propertyscout.co.th/en/retail-space-rent-silomsathorn-2666921/", sources:[["The listing","https://propertyscout.co.th/en/retail-space-rent-silomsathorn-2666921/"]]},
+    {name:"Sathorn Happy Land Tower, one floor", kind:"other", lat:13.71976, lng:100.53816, area:"South Sathorn", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"tocontact",
+     short:"One open floor of 800 sqm, ฿119,998 a month.", nw:"24 Oct 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/6260484", sources:[["The listing","https://propertyhub.in.th/listings/6260484"]]},
     /* East: Prawet and Srinakarin */
-    {name:"JAS Green Village Prawet", lat:13.69643, lng:100.70352, nw:"3 Oct 2026", short:"Kids' school already here: Panipak Taekwondo, a rival.", old:"June 2024", comp:true, asof:"3 October 2026 (the school's post); the mall's own facts are from July 2024.", th:"แจส กรีน วิลเลจ ประเวศ", area:"Prawet, Bangkok (Sukhaphiban 2 Road)", group:"East: Prawet and Srinakarin", type:"School area", status:"contacted",
+    {name:"JAS Green Village Prawet", lat:13.69643, lng:100.70352, nw:"3 Oct 2026", short:"Kids' classes already here: Panipak Taekwondo on the 2nd floor.", old:"June 2024", asof:"3 October 2026 (the school's post); the mall's own facts are from July 2024.", th:"แจส กรีน วิลเลจ ประเวศ", area:"Prawet, Bangkok (Sukhaphiban 2 Road)", group:"East: Prawet and Srinakarin", type:"School area", status:"contacted",
      why:"A neighbourhood mall with an education zone and a children's play garden, for Prawet, Sukhaphiban 2, Lat Krabang and On Nut. Panipak Taekwondo, a kids' school, is already on the 2nd floor.",
      space:"Sales area 10,000 sqm; about 90% leased before it opened (June 2024). Vacancies unknown.",
      deal:"2024: JAS gave Panipak Taekwondo, a kids' school, its space here free for 3 years, around Olympic gold medallist Panipak Wongpattanakit. Still here: belt test 19 Dec 2026 (its post, 3 Oct 2026).",
      contact:JASC, contactUrl:JAS, note:JASNOTE,
      sources:[["mitihoon, 2 Sep 2024","https://mitihoon.com/2024/09/02/485179/"],["Panipak Taekwondo, 3 Oct 2026","https://www.instagram.com/panipak.taekwondo/p/DeD4alnk1LS/"],["share2trade, 5 Jul 2024","https://www.share2trade.com/news/31182/"],["mitihoon, 6 Jun 2024","https://www.mitihoon.com/?p=463199"],["JAS Asset","https://www.jasasset.co.th/en/our-assets/33/community-malls"]]},
-    {name:"Seacon Square Srinakarin", nw:"20 Jul 2026", act:{"callNote": "general line, ask for leasing", "space": "Yes: new space being let now (MyScape, due Dec 2026)", "date": "20 Jul 2026", "why": "New Active Life zone; Panipak has 2 malls in this area"}, short:"New space being let now; Active Life zone due December 2026.", old:"July 2026", lat:13.69413, lng:100.64816, asof:"July 2026.", th:"ซีคอนสแควร์", area:"Prawet, Bangkok (Srinakarin Road)", group:"East: Prawet and Srinakarin", type:"Affluent area", status:"tocontact", rank:6, phones:[["02-721-8888","+6627218888","general line, ask for leasing"]], line:["LINE (general)","https://lin.ee/nb1RhgJ"],
+    {name:"Seacon Square Srinakarin", nw:"20 Jul 2026", act:{"callNote": "general line, ask for leasing", "space": "Yes: new space being let now (MyScape, due Dec 2026)", "date": "20 Jul 2026", "why": "New Active Life zone being let now"}, short:"New space being let now; Active Life zone due December 2026.", old:"July 2026", lat:13.69413, lng:100.64816, asof:"July 2026.", th:"ซีคอนสแควร์", area:"Prawet, Bangkok (Srinakarin Road)", group:"East: Prawet and Srinakarin", type:"Affluent area", status:"tocontact", rank:6, phones:[["02-721-8888","+6627218888","general line, ask for leasing"]], line:["LINE (general)","https://lin.ee/nb1RhgJ"],
      why:"A big regional mall being rebuilt. Its new MyScape side, due December 2026, has a My Active Life zone for exercise and wellness, so new space is being let now. Kids' classes there today: unknown.",
      space:"Unknown.", deal:"None found.",
      contact:"No leasing path published. Main line 02-721-8888.", contactUrl:"https://www.seaconsquare.com/contact-us",
@@ -420,7 +421,7 @@ body.locked{overflow:hidden}
      space:"Over 5,000 sqm of shops in all (2021). Vacancies unknown.", deal:"None found.",
      contact:"Nothing published. Central Pattana's leasing form offers \"Other shopping center\".", contactUrl:CPN,
      sources:[["InfoQuest, 27 Sep 2021","https://www.infoquest.co.th/?p=129720"],["Brighton College Bangkok","https://brightoncollege.ac.th/"]]},
-    {name:"LITTLE WALK Krungthep Kreetha", nw:"3 Oct 2026", short:"Family strip mall; Panipak Taekwondo is here, a rival.", old:"October 2023", comp:true, lat:13.75249, lng:100.68617, area:"Saphan Sung, east Bangkok (Srinagarindra to Rom Klao Road)", group:"East: Prawet and Srinakarin", type:"School area", status:"found",
+    {name:"LITTLE WALK Krungthep Kreetha", nw:"3 Oct 2026", short:"Family strip mall with kids' schools, Panipak Taekwondo among them.", old:"October 2023", lat:13.75249, lng:100.68617, area:"Saphan Sung, east Bangkok (Srinagarindra to Rom Klao Road)", group:"East: Prawet and Srinakarin", type:"School area", status:"found",
      why:"A one-storey strip mall built for families, with kids' schools on site: Panipak Taekwondo, maths, music, a kids' cafe. Kids' martial arts is already here.",
      space:"5,300 sqm, 76 shops, a Villa Market; fully let within months of opening (2023). Vacancies unknown.",
      deal:"2024: Index Living Mall gave Panipak Taekwondo free rent here (term not stated). Both free deals came within two weeks of her second Olympic gold.",
@@ -505,14 +506,14 @@ body.locked{overflow:hidden}
      space:"Unknown.", deal:"None found.",
      contact:JASC, contactUrl:JAS, note:JASNOTE, sources:[["JAS Asset","https://www.jasasset.co.th/th/newsroom/news-and-media/150"]]},
     /* South: Bangna */
-    {name:"Mega Bangna", nw:"25 Jun 2026", act:{"asked": "Asked 24 Oct, waiting", "space": "No: full now, expansion Q3 2028", "date": "25 Jun 2026", "why": "The Kick School and taekwondo already there; asked about the waiting list and 2028"}, short:"Full now, kids' martial arts already there; 2028 expansion.", old:"June 2026", comp:true, lat:13.64706, lng:100.68051, asof:"June 2026.", th:"เมกาบางนา", area:"Bang Phli, Samut Prakan (Bangna to Trad Road)", group:"South: Bangna", type:"Affluent area", status:"contacted", note:"Asked 24 Oct 2026 by email to its leasing address. No reply yet.", rank:4, phones:[["02-105-1000","+6621051000","main line"]], line:["LINE (general)","https://lin.ee/9EkhTT9"],
-     why:"Full now, kids' martial arts already there (The Kick School and taekwondo classes). Its Mega Smart Kids page sells classes for children while parents shop. Ask about the waiting list and the 2028 expansion.",
+    {name:"Mega Bangna", nw:"25 Jun 2026", act:{"asked": "Asked 24 Oct, waiting", "space": "No: full now, expansion Q3 2028", "date": "25 Jun 2026", "why": "Full now; kids' classes sell here; asked about the waiting list and the 2028 expansion"}, short:"Full now; kids' classes sell here; 2028 expansion.", old:"June 2026", lat:13.64706, lng:100.68051, asof:"June 2026.", th:"เมกาบางนา", area:"Bang Phli, Samut Prakan (Bangna to Trad Road)", group:"South: Bangna", type:"Affluent area", status:"contacted", note:"Asked 24 Oct 2026 by email to its leasing address. No reply yet.", rank:4, phones:[["02-105-1000","+6621051000","main line"]], line:["LINE (general)","https://lin.ee/9EkhTT9"],
+     why:"Full now. Its Mega Smart Kids page sells classes for children while parents shop (The Kick School and taekwondo among them). Ask about the waiting list and the 2028 expansion.",
      space:"100% leased. A ฿6,000 million expansion due in the third quarter of 2028 adds more than 3,000 sqm of activity and active-lifestyle space: that is the real opening.",
      deal:"None found.",
      contact:"A leasing email and a contact form topic \"leasing inquiries to open new store\" on its contact page.", contactUrl:"https://www.mega-bangna.com/en/contact-us",
      sources:[["Mega Smart Kids","https://www.mega-bangna.com/en/store-guide/?category=14"],["brandinside, 5 Feb 2024","https://brandinside.asia/mega-bangna-2024-mkt-campaign/"],["thaipublica, 24 Jun 2026","https://thaipublica.org/2026/06/megabangna-cpn-x-ikano/"]]},
     /* North: Rangsit */
-    {name:"Future Park Rangsit and Zpell", nw:"its own site, read 24 Oct 2026", short:"A floor of kids' schools, taekwondo among them: a rival.", old:"24 October 2026 (its own site)", comp:true, lat:13.98895, lng:100.61844, asof:"The mall's own site, read 24 October 2026.", th:"ฟิวเจอร์พาร์ค รังสิต", area:"Thanyaburi, Pathum Thani (Phahonyothin Road)", group:"North: Rangsit", type:"School area", status:"found",
+    {name:"Future Park Rangsit and Zpell", nw:"its own site, read 24 Oct 2026", short:"A whole floor of kids' schools.", old:"24 October 2026 (its own site)", lat:13.98895, lng:100.61844, asof:"The mall's own site, read 24 October 2026.", th:"ฟิวเจอร์พาร์ค รังสิต", area:"Thanyaburi, Pathum Thani (Phahonyothin Road)", group:"North: Rangsit", type:"School area", status:"found",
      why:"A regional super-mall with a School category of about a dozen kids' schools, nearly all on the 3rd floor: dance, music, reading, languages. A taekwondo school and Gymboree are already there.",
      space:"More than 600,000 sqm with Zpell. Vacancies unknown.", deal:"None found.",
      contact:"Apply-to-be-a-tenant form (for common-area events and booths, not shops). 0-2958-0011.", contactUrl:"https://www.futurepark.co.th/tenant/",
@@ -562,7 +563,6 @@ body.locked{overflow:hidden}
     var td0=el("td","rk-c"); td0.appendChild(el("span","rk",String(s.rank))); tr.appendChild(td0);
     var td1=el("td"); td1.dataset.l="Mall"; var a=nt(el("a",null,s.name)); a.href="#site-"+slug(s.name); td1.appendChild(a);
     if(s.th) td1.appendChild(nt(el("span","th",s.th)));
-    if(s.comp) td1.appendChild(el("span","rv","Rival"));
     if(s.lat==null) td1.appendChild(gmap(s)); tr.appendChild(td1);
     var td2=el("td","stc"); td2.dataset.l="Status";
     var ph=(s.phones||[]).filter(function(p){ return p[1]; })[0];
@@ -584,7 +584,7 @@ body.locked{overflow:hidden}
     hd.appendChild(t); hd.appendChild(nt(el("span","st st-"+s.status,LABEL[s.status]||s.status)));
     c.appendChild(hd);
     var m=el("div","meta"); m.appendChild(el("span","ty",s.type)); m.appendChild(el("span",null,s.area)); m.appendChild(el("span","gr",s.group));
-    if(s.comp) m.appendChild(el("span","rv","Rival")); if(s.uv && s.uv.indexOf("area")>-1) m.appendChild(uvTag()); c.appendChild(m);
+    if(s.uv && s.uv.indexOf("area")>-1) m.appendChild(uvTag()); c.appendChild(m);
     if(s.lat==null) c.appendChild(gmap(s));
     {
       if(s.phones || s.line){
