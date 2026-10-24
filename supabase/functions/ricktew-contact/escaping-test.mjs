@@ -272,12 +272,15 @@ console.log('-- a Bangkok site find, through the real handler');
     }));
     return sent;
   };
-  const m = await post({ subject: 'site' }, '9.9.8.1');
-  say(m && m.subject === 'Bangkok site find: Wanrawee', 'a site find: subject "Bangkok site find: <name>"', m && m.subject);
+  const m = await post({ subject: 'site', name: 'Shophouse, Narathiwas Soi 22', email: '' }, '9.9.8.1');
+  say(m && m.subject === 'Bangkok site find: Shophouse, Narathiwas Soi 22', 'a site find with no email: subject "Bangkok site find: <place>"', m && m.subject);
+  say(m && !m.reply_to && !m.text.includes('Email:') && m.text.includes('Place: Shophouse'), 'a site find with no email: no Reply-To, no Email line, the place on top', m && { reply_to: m.reply_to, text: m.text });
   say(m && m.headers && m.headers['Auto-Submitted'] === 'auto-generated' && m.headers['X-Site-Find'] === 'bangkok',
     'a site find is marked Auto-Submitted with X-Site-Find, so the Ninja Agent does not answer it', m && m.headers);
   say(m && m.text.includes('Via: the location search on ricktew.com/partners/locations/') && m.text.includes('Narathiwas Soi 22'),
     'the site find says where it came from and carries the find', m && m.text);
+  const noMail = await post({ subject: 'hininja', email: '', message: 'Can I come for one week in January, and is there a womens dorm?' }, '9.9.8.3');
+  say(noMail === null, 'any other subject still needs an email: dropped without one', noMail && noMail.subject);
   const q = await post({ subject: 'hininja', message: 'Can I come for one week in January, and is there a womens dorm?' }, '9.9.8.2');
   say(q && q.text.includes('Via: the mailbox on ricktew.com/aininja/') && !q.headers,
     'any other subject keeps the mailbox Via line and no auto-reply mark', q && q.text);

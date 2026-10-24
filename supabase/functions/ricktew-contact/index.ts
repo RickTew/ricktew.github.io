@@ -83,8 +83,10 @@ const SUBJECTS: Record<string, string> = {
 /** A place found for NinjaGym Bangkok (24 Oct 2026, Rick: "if we find information
  *  about a place can we have a section to put it in"; his pick "A box to type a find
  *  in"). The box on /partners/locations/ posts subject "site". The mail reads
- *  "Bangkok site find: <name>" and is marked Auto-Submitted with X-Site-Find, so the
- *  Ninja Agent does not answer it; TEWBEDO checks the find and sends it on. */
+ *  "Bangkok site find: <place>" and is marked Auto-Submitted with X-Site-Find, so the
+ *  Ninja Agent does not answer it; TEWBEDO checks the find and sends it on.
+ *  Rick, the same evening: "we do not need your name and email just ask about the
+ *  location": a site find carries the place in "name" and no email (no Reply-To). */
 const SITE_VIA = 'the location search on ricktew.com/partners/locations/';
 
 /** The PromptPay Paid press (17 Oct 2026, Rick: "I am allowing our promptpay
@@ -259,8 +261,8 @@ async function sendMail(f: {
   // no job here and the whole class of bug is removed rather than handled.
   const html =
     `<table style="font-family:system-ui,sans-serif;font-size:14px">` +
-    row('From', esc(f.name)) +
-    row('Email', esc(f.email)) +
+    row(f.site ? 'Place' : 'From', esc(f.name)) +
+    (f.email ? row('Email', esc(f.email)) : '') +
     row('About', esc(f.subjectLabel)) +
     row('Via', via) +
     row('Source', esc(f.sourceLabel)) +
@@ -272,7 +274,7 @@ async function sendMail(f: {
     `</div>`;
 
   const text =
-    `From: ${f.name}\nEmail: ${f.email}\nAbout: ${f.subjectLabel}\n` +
+    `${f.site ? 'Place' : 'From'}: ${f.name}\n${f.email ? `Email: ${f.email}\n` : ''}About: ${f.subjectLabel}\n` +
     `Via: ${via}\nSource: ${f.sourceLabel}\n` +
     (f.adCampaign ? `Ad: ${adLine(f)}\n` : '') + `\n${f.message}\n`;
 
@@ -301,7 +303,7 @@ async function sendMail(f: {
       to: [to],
       // Reply-to is the visitor. TEWBEDO reads this to set the ticket
       // contact, so The Ninja Agent's reply reaches the person who wrote in.
-      reply_to: oneLine(f.email, MAX.email),
+      ...(f.email ? { reply_to: oneLine(f.email, MAX.email) } : {}),
       subject: oneLine(f.sku ? `Paid PromptPay ${f.sku}: ${subjectName}` : f.site ? `Bangkok site find: ${subjectName}` : `AI Ninja ${f.subjectLabel}: ${subjectName}`, 180),
       html,
       text,
@@ -352,11 +354,13 @@ Deno.serve(async (req) => {
 
   const str = (v: unknown) => (typeof v === 'string' ? v : '');
   const name = str(p.name).trim();
-  const email = str(p.email).trim();
+  const emailIn = str(p.email).trim();
   const sku = PAID_SKUS.includes(str(p.sku)) ? str(p.sku) : '';
   const subjectKey = SUBJECTS[str(p.subject)] && (str(p.subject) !== 'paid' || sku) ? str(p.subject) : 'other';
   const subjectLabel = SUBJECTS[subjectKey];
   const paidSku = subjectKey === 'paid' ? sku : '';
+  const isSite = subjectKey === 'site';
+  const email = emailIn;
   const sourceKey = SOURCES[str(p.source)] ? str(p.source) : 'direct';
   const sourceLabel = SOURCES[sourceKey];
   const adCampaign = sourceKey === 'gads' && AD_CAMPAIGN.test(str(p.adCampaign)) ? str(p.adCampaign) : '';
@@ -370,11 +374,11 @@ Deno.serve(async (req) => {
 
   // Browser validation is a courtesy to humans; the endpoint is what is
   // actually exposed, so required is re-checked here.
-  if (!name || !email || !message) {
+  if (!name || (!email && !isSite) || !message) {
     logDrop('missing_required', seen);
     return json({ ok: true }, 200, origin);
   }
-  if (!looksLikeEmail(email)) {
+  if (email && !looksLikeEmail(email)) {
     logDrop('bad_email', seen);
     return json({ ok: true }, 200, origin);
   }

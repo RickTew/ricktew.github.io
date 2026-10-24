@@ -126,10 +126,9 @@ table.act .rk-c{width:44px}
 .addfind label{display:block;margin-top:10px;font-weight:800;font-size:14px;color:var(--ink2)}
 .addfind input,.addfind textarea{display:block;width:100%;margin-top:4px;font:inherit;font-size:15px;padding:9px 11px;border:1.5px solid var(--line);border-radius:9px;background:var(--canvas);color:var(--ink)}
 .addfind input:focus-visible,.addfind textarea:focus-visible{outline:3px solid var(--blue);outline-offset:1px}
-.addfind textarea{min-height:90px;resize:vertical}
-.addfind .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.addfind .row2 label{margin-top:0}
-@media (max-width:520px){ .addfind .row2{grid-template-columns:1fr} }
+.addfind textarea{min-height:70px;resize:vertical}
+.addfind .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media (max-width:520px){ .addfind .row3{grid-template-columns:1fr} }
 .addfind button{margin-top:12px;font:inherit;font-weight:900;font-size:15px;border:0;border-radius:999px;padding:9px 22px;background:var(--blue-d);color:#fff;cursor:pointer}
 .addfind button:hover{background:var(--navy)}
 .addfind button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
@@ -281,13 +280,14 @@ body.locked{overflow:hidden}
     <details class="addfind" id="addFind">
       <summary>Found a place? Add it</summary>
       <form id="findForm" novalidate>
-        <div class="row2">
-          <div><label for="fName">Your name</label><input id="fName" type="text" autocomplete="name" maxlength="100" required></div>
-          <div><label for="fEmail">Your email</label><input id="fEmail" type="email" autocomplete="email" maxlength="200" required></div>
+        <label for="fPlace">Place</label><input id="fPlace" type="text" maxlength="100" required>
+        <label for="fWhere">Address or Google Maps link</label><input id="fWhere" type="text" maxlength="500">
+        <div class="row3">
+          <div><label for="fPhone">Phone</label><input id="fPhone" type="text" inputmode="tel" maxlength="60"></div>
+          <div><label for="fSize">Size</label><input id="fSize" type="text" maxlength="60"></div>
+          <div><label for="fRent">Rent</label><input id="fRent" type="text" maxlength="60"></div>
         </div>
-        <label for="fPlace">Place</label><input id="fPlace" type="text" maxlength="200" required>
-        <label for="fWhere">Where (address, area or a Google Maps link)</label><input id="fWhere" type="text" maxlength="500">
-        <label for="fWhat">What you found</label><textarea id="fWhat" maxlength="3500" required></textarea>
+        <label for="fWhat">Anything else</label><textarea id="fWhat" maxlength="3000"></textarea>
         <button type="submit" id="fSend">Send</button>
         <p class="ferr" id="fErr" role="alert"></p>
       </form>
@@ -342,11 +342,12 @@ body.locked{overflow:hidden}
   function v(id){ return document.getElementById(id).value.trim(); }
   form.addEventListener("submit",function(e){
     e.preventDefault(); err.textContent="";
-    var name=v("fName"), email=v("fEmail"), place=v("fPlace"), where=v("fWhere"), what=v("fWhat");
-    if(!name||!email||!place||!what){ err.textContent="Your name, your email, the place and what you found."; return; }
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ err.textContent="That email address does not look right."; return; }
-    var data={name:name, email:email, subject:"site", source:"direct",
-      message:"Place: "+place+(where?"\nWhere: "+where:"")+"\n\n"+what,
+    var place=v("fPlace");
+    if(!place){ err.textContent="The place, at least."; return; }
+    var lines=["Place: "+place];
+    [["Where","fWhere"],["Phone","fPhone"],["Size","fSize"],["Rent","fRent"]].forEach(function(f){ var x=v(f[1]); if(x) lines.push(f[0]+": "+x); });
+    var what=v("fWhat"); if(what) lines.push("", what);
+    var data={name:place, email:"", subject:"site", source:"direct", message:lines.join("\n"),
       website:document.getElementById("fWebsite").value, elapsedMs: opened ? Date.now()-opened : -1};
     send.disabled=true; send.textContent="Sending...";
     fetch("https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})
@@ -378,10 +379,21 @@ body.locked{overflow:hidden}
   var SITES = [
     /* OTHER: not a mall (shops under condos, shophouses, buildings) */
     {name:"Belle Park area, Narathiwas", kind:"other", lat:13.69951, lng:100.53692, area:"Chong Nonsi, Yan Nawa (Narathiwas Road)", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found",
-     short:"Rick knows this zone: shops under or around the Belle Park condos and The Narathiwas Residence.", nw:"24 Oct 2026 (no shop for rent found online yet)",
-     why:"Belle Park Residence lists a shop in the project, with no unit details. The Narathiwas Residence is a serviced apartment whose address differs between listing sites.",
-     contact:"No leasing contact found yet.",
-     sources:[["OpenStreetMap, Belle Park Condominium","https://www.openstreetmap.org/search?query=Belle%20Park%20Condominium%20Bangkok"],["PropertyHub, Belle Park Residence","https://propertyhub.in.th/en/projects/belle-park-residence"]]},
+     short:"Schools close by: Sarasas Ektra (950 m), King's College International (1.4 km). A rival next door: The Kick Taekwondo in Central Rama 3.", nw:"24 Oct 2026",
+     why:"Neither building has shop space: The Narathiwas Residence is a 326-room serviced-apartment hotel (379 Soi Sathupradit 19), and Belle Park has no shop. The units for rent nearby are the cards below.",
+     sources:[["Central Rama 3 directory, 23 Oct 2026","https://map.centralpattana.co.th/directory/mall/RM3"],["OpenStreetMap, Belle Park Condominium","https://www.openstreetmap.org/search?query=Belle%20Park%20Condominium%20Bangkok"]]},
+    {name:"Soi Narathiwas 22, two-unit building", kind:"other", lat:13.70293, lng:100.53592, area:"Soi Narathiwas 22, 400 m north of The Narathiwas", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found",
+     short:"400 sqm over 4 floors, ฿50,000 a month.", nw:"23 Sep 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/6246959", sources:[["The listing","https://propertyhub.in.th/listings/6246959"]]},
+    {name:"Soi Chan 16 Yaek 6, four-unit corner building", kind:"other", lat:13.70594, lng:100.53206, area:"End of Soi Narathiwas 14, Thung Wat Don, Sathon", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found", uv:["area"],
+     short:"500 to 525 sqm over 4 floors, parking, ฿40,000 to ฿45,000 a month.", nw:"24 Oct 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/5753316", sources:[["The listing","https://propertyhub.in.th/listings/5753316"]]},
+    {name:"Soi Narathiwas 10 to 18, three-unit building", kind:"other", lat:13.69616, lng:100.54499, area:"Narathiwas, Soi 10 to 18 (the listing's pin is approximate)", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found", uv:["area"],
+     short:"360 sqm, 12 m frontage, listed for a training centre, ฿34,998 a month.", nw:"23 Oct 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/6176070", sources:[["The listing","https://propertyhub.in.th/listings/6176070"]]},
+    {name:"Rama 3 Soi 52, two-unit corner building", kind:"other", lat:13.68711, lng:100.5497, area:"Rama 3 Soi 52, 1.9 km from The Narathiwas", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found",
+     short:"528 sqm corner, ฿30,000 a month.", nw:"9 Sep 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/6386787", sources:[["The listing","https://propertyhub.in.th/listings/6386787"]]},
+    {name:"Narathiwas, Silom end, ground-floor corner unit", kind:"other", lat:13.71682, lng:100.53231, area:"Narathiwas Road at Silom, near BTS Saint Louis", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found",
+     short:"422 sqm on the ground floor, ฿316,500 a month, 3-year minimum.", nw:"confirmed available in October 2026 (listed 20 Feb 2026)", contact:"The listing page (an agent).", contactUrl:"https://propertyscout.co.th/en/retail-space-rent-silomsathorn-2666921/", sources:[["The listing","https://propertyscout.co.th/en/retail-space-rent-silomsathorn-2666921/"]]},
+    {name:"Sathorn Happy Land Tower, one floor", kind:"other", lat:13.71976, lng:100.53816, area:"South Sathorn", group:"Central: Sathorn and Narathiwas", type:"Area: to check", status:"found",
+     short:"800 sqm on one floor, ฿119,998 a month.", nw:"24 Oct 2026", contact:"The listing page (an agent).", contactUrl:"https://propertyhub.in.th/listings/6260484", sources:[["The listing","https://propertyhub.in.th/listings/6260484"]]},
     /* East: Prawet and Srinakarin */
     {name:"JAS Green Village Prawet", lat:13.69643, lng:100.70352, nw:"3 Oct 2026", short:"Kids' school already here: Panipak Taekwondo, a rival.", old:"June 2024", comp:true, asof:"3 October 2026 (the school's post); the mall's own facts are from July 2024.", th:"แจส กรีน วิลเลจ ประเวศ", area:"Prawet, Bangkok (Sukhaphiban 2 Road)", group:"East: Prawet and Srinakarin", type:"School area", status:"contacted",
      why:"A neighbourhood mall with an education zone and a children's play garden, for Prawet, Sukhaphiban 2, Lat Krabang and On Nut. Panipak Taekwondo, a kids' school, is already on the 2nd floor.",
