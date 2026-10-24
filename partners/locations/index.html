@@ -57,7 +57,6 @@ section{padding:30px 0 6px}
 .quick b{color:var(--ink2);font-weight:900}
 .quick a{font-weight:800}
 .note{margin-top:12px;font-size:14px;font-weight:800;color:var(--purple)}
-.note.stop{color:#a12b2b}
 h2{font-size:clamp(24px,3.4vw,32px);font-weight:900;line-height:1.1;color:var(--navy-d);letter-spacing:-.01em}
 h2 span{color:var(--blue)}
 .k{font-size:12.5px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-d)}
@@ -110,7 +109,7 @@ h2 span{color:var(--blue)}
 .callbox b{color:var(--green-d)}
 .actwrap{margin-top:10px}
 table.act{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1.5px solid var(--line);border-radius:14px;overflow:hidden;font-size:14.5px}
-h2.acth{margin-top:18px;font-size:22px}
+h2.acth{font-size:22px}
 table.act th{background:var(--canvas);text-align:left;font-size:12.5px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2);padding:9px 10px;border-bottom:1.5px solid var(--line)}
 table.act td{padding:10px;vertical-align:top;border-bottom:1px solid var(--line);color:#33404f}
 table.act tr:last-child td{border-bottom:0}
@@ -118,7 +117,7 @@ table.act td a{font-weight:900;color:var(--navy-d)}
 table.act .th{display:block;font-size:12.5px;font-weight:700;color:var(--muted)}
 table.act tr.done td{background:#f6f7f9;color:var(--muted)}
 table.act .rk-c{width:44px}
-.stop{color:#a12b2b}
+.wait{display:block;color:var(--purple)}
 .go{display:block;color:var(--green-d)}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .call a.tel.sm{margin-top:6px;padding:5px 10px;font-size:14px}
@@ -235,7 +234,7 @@ body.locked{overflow:hidden}
       <a class="th-link" href="https://ricktew-com.translate.goog/partners/locations/?_x_tr_sl=en&amp;_x_tr_tl=th&amp;_x_tr_hl=th" rel="noopener" title="Read this page in Thai via Google Translate">อ่านภาษาไทย</a>
     </div>
     <h1>Location search: <span>Bangkok and beyond</span></h1>
-    <p class="lead">Malls to ask for the first NinjaGym centers, in a one-month hunt. The best 8 get a call in Thai at once, each on Rick's yes, asking every size and rent; then Rick visits.</p>
+    <p class="lead">Malls to ask for the first NinjaGym centers.</p>
   </div>
 </header>
 
@@ -257,11 +256,6 @@ body.locked{overflow:hidden}
     </aside>
     <div class="listcol">
   <section id="act">
-    <div class="callbox">
-      <p><b>Rick said yes to these calls (24 Oct).</b></p>
-      <p>Ask: free shops now or soon, sizes, monthly rent, deposit, contract term, their leasing email.</p>
-      <p>Report: reply to Kuno's email.</p>
-    </div>
     <h2 class="acth" id="bestH">The best 8</h2>
     <div class="actwrap">
       <table class="act" aria-labelledby="bestH">
@@ -285,7 +279,7 @@ body.locked{overflow:hidden}
 
   <section id="sites">
     <h2>Candidate sites</h2>
-    <p class="sub">Near schools for a lean center, a well-off area for a bigger one, one per area. Any size; rent target about ฿60,000 a month. The best 8 first, then the rest by area.</p>
+    <p class="sub">Any size. Rent target about ฿60,000 a month.</p>
     <div class="filters" id="filters" role="group" aria-label="Show sites by status"></div>
     <div class="sites" id="siteList"></div>
     <p class="empty" id="empty" hidden>No sites with that status yet.</p>
@@ -309,7 +303,7 @@ body.locked{overflow:hidden}
      uv: the names of fields not yet read at their source, shown as Unverified. */
   var JAS = "https://www.jasasset.co.th/en/contact-us";
   var JASC = "JAS leasing, every branch: 063-394-4669, 083-669-5153, 094-414-9989";
-  var JASNOTE = "Asked 24 Oct 2026: one email covers all 7 JAS malls. No reply yet. Do not call.";
+  var JASNOTE = "Asked 24 Oct 2026: one email covers all 7 JAS malls. No reply yet.";
   var JAS26 = ["JAS Asset, 3 Jul 2026","https://www.jasasset.co.th/th/newsroom/news-and-media/183"];
   var ILM = "https://www.indexlivingmall.com/contacts";
   var CPN = "https://www.centralpattana.co.th/en/contact-us/cpn-contact-information";
@@ -348,7 +342,7 @@ body.locked{overflow:hidden}
      contact:"No leasing line published. Index Living Mall head office 0-2898-6420-5 (general).", contactUrl:ILM, asof:"3 October 2026 (the school's post); the mall's own facts are from 2023 and March 2026.",
      sources:[["Marketeer, 22 Aug 2024","https://marketeeronline.co/archives/371630"],["Kaohoon, 10 Oct 2023","https://www.kaohooninternational.com/sustainability/531946"],["Index Living Mall, 10 Mar 2026","https://investor.indexlivingmall.com/en/updates/press-releases/470/"]]},
     /* Praditmanutham */
-    {name:"Central Eastville", act:{"asked": "Asked 24 Oct (Central's form), do not call", "space": "Unknown", "date": "31 Dec 2024", "why": "Middle-to-high income, big schools nearby"}, short:"Middle-to-high income, big schools nearby.", old:"around 2015 (the area profile)", lat:13.80376, lng:100.61416, asof:"End of 2024 (leasable area); the area profile is from around 2015.", th:"เซ็นทรัล อีสต์วิลล์", area:"East Bangkok (Praditmanutham Road)", group:"Praditmanutham", type:"Affluent area", status:"contacted", note:"Asked 24 Oct 2026 through Central Pattana's leasing form (one form for Rama 2 and Eastville). No reply yet. Do not call.", rank:5, line:["LINE (general)","https://lin.ee/Bi5cMwi"], uv:["area"],
+    {name:"Central Eastville", act:{"asked": "Asked 24 Oct, waiting", "space": "Unknown", "date": "31 Dec 2024", "why": "Middle-to-high income, big schools nearby"}, short:"Middle-to-high income, big schools nearby.", old:"around 2015 (the area profile)", lat:13.80376, lng:100.61416, asof:"End of 2024 (leasable area); the area profile is from around 2015.", th:"เซ็นทรัล อีสต์วิลล์", area:"East Bangkok (Praditmanutham Road)", group:"Praditmanutham", type:"Affluent area", status:"contacted", note:"Asked 24 Oct 2026 through Central Pattana's leasing form (one form for Rama 2 and Eastville). No reply yet.", rank:5, line:["LINE (general)","https://lin.ee/Bi5cMwi"], uv:["area"],
      why:"Central Pattana describes middle-to-high income shoppers, 130 housing projects nearby and students from 78 schools, Bodindecha (Sing Singhaseni) and Satriwitthaya 2 among them (page written around 2015).",
      space:"35,732 sqm leasable (end of 2024). Kids' tenants and vacancies unknown.", deal:"None found.",
      contact:"Central Pattana's leasing form: pick Central Eastville, the space type, a budget bracket and the term.", contactUrl:CPN,
@@ -382,7 +376,7 @@ body.locked{overflow:hidden}
      space:"About 5,750 sqm leasable (around 2021). Vacancies unknown.", deal:"None found.",
      contact:JASC, contactUrl:JAS, note:JASNOTE, sources:[["JAS Asset","https://www.jasasset.co.th/en/our-assets/33/community-malls"]]},
     /* Thonburi South */
-    {name:"Central Rama 2", act:{"asked": "Asked 24 Oct (Central's form), do not call", "space": "Unknown", "date": "25 Apr 2026", "why": "Big family mall, kids' taekwondo tournaments held there, no martial arts school"}, short:"Big family mall; kids' taekwondo tournaments held there.", old:"end of 2024 (leasable area)", th:"เซ็นทรัล พระราม 2", lat:13.66378, lng:100.43766, area:"Bang Khun Thian, Bangkok (Rama 2 Road)", group:"Thonburi South", type:"Area: to check", status:"contacted", note:"Asked 24 Oct 2026 through Central Pattana's leasing form (one form for Rama 2 and Eastville). No reply yet. Do not call.", rank:1,
+    {name:"Central Rama 2", act:{"asked": "Asked 24 Oct, waiting", "space": "Unknown", "date": "25 Apr 2026", "why": "Big family mall, kids' taekwondo tournaments held there, no martial arts school"}, short:"Big family mall; kids' taekwondo tournaments held there.", old:"end of 2024 (leasable area)", th:"เซ็นทรัล พระราม 2", lat:13.66378, lng:100.43766, area:"Bang Khun Thian, Bangkok (Rama 2 Road)", group:"Thonburi South", type:"Area: to check", status:"contacted", note:"Asked 24 Oct 2026 through Central Pattana's leasing form (one form for Rama 2 and Eastville). No reply yet.", rank:1,
      phones:[["02-866-4300","+6628664300","call center, general"]],
      why:"A big family mall in a family suburb where kids' taekwondo tournaments are already held (April 2026). No martial arts tenant found.",
      space:"103,950 sqm leasable (end of 2024). Kids' class tenants unknown.", deal:"None found.",
@@ -426,7 +420,7 @@ body.locked{overflow:hidden}
      space:"Unknown.", deal:"None found.",
      contact:JASC, contactUrl:JAS, note:JASNOTE, sources:[["JAS Asset","https://www.jasasset.co.th/th/newsroom/news-and-media/150"]]},
     /* South: Bangna */
-    {name:"Mega Bangna", act:{"asked": "Asked 24 Oct (email), do not call", "space": "No: full now, expansion Q3 2028", "date": "25 Jun 2026", "why": "The Kick School and taekwondo already there; asked about the waiting list and 2028"}, short:"Full now, kids' martial arts already there; 2028 expansion.", old:"June 2026", comp:true, lat:13.64706, lng:100.68051, asof:"June 2026.", th:"เมกาบางนา", area:"Bang Phli, Samut Prakan (Bangna to Trad Road)", group:"South: Bangna", type:"Affluent area", status:"contacted", note:"Asked 24 Oct 2026 by email to its leasing address. No reply yet. Do not call.", rank:4, phones:[["02-105-1000","+6621051000","main line"]], line:["LINE (general)","https://lin.ee/9EkhTT9"],
+    {name:"Mega Bangna", act:{"asked": "Asked 24 Oct, waiting", "space": "No: full now, expansion Q3 2028", "date": "25 Jun 2026", "why": "The Kick School and taekwondo already there; asked about the waiting list and 2028"}, short:"Full now, kids' martial arts already there; 2028 expansion.", old:"June 2026", comp:true, lat:13.64706, lng:100.68051, asof:"June 2026.", th:"เมกาบางนา", area:"Bang Phli, Samut Prakan (Bangna to Trad Road)", group:"South: Bangna", type:"Affluent area", status:"contacted", note:"Asked 24 Oct 2026 by email to its leasing address. No reply yet.", rank:4, phones:[["02-105-1000","+6621051000","main line"]], line:["LINE (general)","https://lin.ee/9EkhTT9"],
      why:"Full now, kids' martial arts already there (The Kick School and taekwondo classes). Its Mega Smart Kids page sells classes for children while parents shop. Ask about the waiting list and the 2028 expansion.",
      space:"100% leased. A ฿6,000 million expansion due in the third quarter of 2028 adds more than 3,000 sqm of activity and active-lifestyle space: that is the real opening.",
      deal:"None found.",
@@ -483,9 +477,9 @@ body.locked{overflow:hidden}
     if(s.th) td1.appendChild(nt(el("span","th",s.th)));
     if(s.comp) td1.appendChild(el("span","rv","Rival")); tr.appendChild(td1);
     var td2=el("td","stc"); td2.dataset.l="Status";
-    if(s.status==="contacted") td2.appendChild(el("b","stop",r.asked||"Asked, do not call"));
+    var ph=(s.phones||[]).filter(function(p){ return p[1]; })[0];
+    if(s.status==="contacted"){ td2.appendChild(el("b","wait",r.asked||"Asked, waiting")); if(ph) td2.appendChild(telLink(ph,"tel sm")); }
     else {
-      var ph=(s.phones||[]).filter(function(p){ return p[1]; })[0];
       td2.appendChild(el("b","go","Call now"+(r.callNote && (!ph || ph[2].indexOf(r.callNote)<0) ? " ("+r.callNote+")" : "")));
       if(ph) td2.appendChild(telLink(ph,"tel sm"));
     }
@@ -503,15 +497,13 @@ body.locked{overflow:hidden}
     c.appendChild(hd);
     var m=el("div","meta"); m.appendChild(el("span","ty",s.type)); m.appendChild(el("span",null,s.area)); m.appendChild(el("span","gr",s.group));
     if(s.comp) m.appendChild(el("span","rv","Rival")); if(s.uv && s.uv.indexOf("area")>-1) m.appendChild(uvTag()); c.appendChild(m);
-    if(s.status==="contacted"){ if(s.note) c.appendChild(el("p","note stop",s.note)); }
-    else {
+    {
       if(s.phones || s.line){
         var call=el("div","call");
         (s.phones||[]).forEach(function(ph){ call.appendChild(telLink(ph)); });
         if(s.line){ var l=nt(el("a","ln",s.line[0])); l.href=s.line[1]; l.rel="noopener noreferrer"; call.appendChild(l); }
         c.appendChild(call);
       }
-      if(s.note) c.appendChild(el("p","note",s.note));
     }
     if(s.short) c.appendChild(el("p","why1",s.short));
     if(s.old) c.appendChild(el("p","asof","Facts as of: "+s.old));
