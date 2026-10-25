@@ -334,6 +334,7 @@
        "An optional review class, 8 to 10pm, to practice.",
        "WinJitsu coaching, included.",
        "A dorm bed if you need one, with simple meals.",
+       "Free pick-up from Samui Airport.",
        "Arrive any day from 15 January 2027. Dates can move, within a year of buying."].forEach(function(t){ get.appendChild(el("li",null,t)); });
       root.appendChild(get);
       root.appendChild(el("p","mc-p","Now pick how long you stay."));
