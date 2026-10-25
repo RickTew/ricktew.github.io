@@ -2,8 +2,11 @@
    2 week ... program for hininja lets focus on the quiz funnel and make one at the top
    that will lead them to training: two week intro to martial arts by Rick Tew").
 
-   The visitor picks an area, then the technique, up to 5 a week (10 for the two weeks);
-   every pick shows the Book button. Book saves the plan to the mailbox (subject "plan",
+   The visitor picks an area, then the technique, up to 5 a week; every pick shows the
+   Book button. Rick's clicks of 25 Oct: Body Movement as an 8th area; four stays, 2 weeks
+   $2,222, 3 weeks $3,222 ("add another week for only 1K"), the full month $3,997 and a
+   belt, 2 months, $7,994 (the checkout sells the same four, ?weeks=2|3|4|8); WinJitsu
+   coaching included ("as included like before"). Book saves the plan to the mailbox (subject "plan",
    Auto-Submitted, so the Ninja Agent does not answer while they pay) and goes straight
    to the checkout through /hininja/buy/. Rick builds the Sensei Seminar from the plans.
 
@@ -73,6 +76,17 @@
       ["Reverse Heel Kick",4,"A spinning kick that drives the heel into the target."],
       ["Dropping Heel Kick",5,"The heel comes down from above onto the target."],
       ["Advanced Kicks",5,"The basic kicks combined and chained past their textbook form."]]},
+    {id:"bm", name:"Body Movement", items:[
+      ["Duck",1,"Drop under an attack or a moving object, head covered, and spring back."],
+      ["Jump",1,"Leave the ground to clear a low attack or get on top of an obstacle."],
+      ["Pivot, Shuffle, Shift & Step",2,"Four everyday leg movements that become martial arts footwork."],
+      ["Cartwheel",2,"A sideways handspring to escape and evade."],
+      ["Kip",3,"The kip-up: spring from lying down to your feet without pushing up with the hands."],
+      ["Hand Springs",3,"Use your hands like a springboard to vault, flip and land on your feet."],
+      ["Stealthing",4,"The art of invisibility, hidden in plain sight."],
+      ["Climbing",4,"One of the most exciting parts of outdoor ninja training."],
+      ["Strikes & Kicks Form",5,"A two-person drill that mixes every strike and kick."],
+      ["1-40 Form",5,"A fun 40-count freestyle drill that works almost every basic."]]},
     {id:"nt", name:"Ninja Tools", note:"Taught after you sign a waiver.", items:[
       ["Short tools",0,"One-hand tools: grips, angles and footwork."],
       ["Long tools",0,"Two-hand long tools: reach, balance and flow."],
@@ -91,7 +105,15 @@
       ["Personal Security Course",5,"Real defense in real places."]]}
   ];
 
-  var PER_WEEK=5, WEEKS=2, MAX=PER_WEEK*WEEKS;
+  var PER_WEEK=5;
+  /* weeks: the checkout's key; book: the Book button's words */
+  var STAYS=[
+    {weeks:2, name:"2 weeks", price:2222, book:"Book my two weeks"},
+    {weeks:3, name:"3 weeks", price:3222, book:"Book my 3 weeks"},
+    {weeks:4, name:"1 month", price:3997, book:"Book my month"},
+    {weeks:8, name:"A belt, 2 months", price:7994, book:"Book my belt"}];
+  function stay(){ for(var i=0;i<STAYS.length;i++) if(STAYS[i].weeks===plan.weeks) return STAYS[i]; return STAYS[0]; }
+  function money(n){ return "$"+String(n).replace(/\B(?=(\d{3})+(?!\d))/g,","); }
   var KEY="hininja-plan-v1";
   var FN="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact";
   var shown=Date.now();
@@ -99,11 +121,12 @@
   var byId={};
   MENU.forEach(function(c){ c.items.forEach(function(it,i){ byId[c.id+i]={cat:c, name:it[0], level:it[1], line:it[2]}; }); });
 
-  var plan={picks:[], wj:false};
+  var plan={picks:[], weeks:2};
+  function max(){ return PER_WEEK*plan.weeks; }
   try{
     var saved=JSON.parse(localStorage.getItem(KEY)||"null");
-    if(saved && Array.isArray(saved.picks)) plan.picks=saved.picks.filter(function(id){ return byId[id]; }).slice(0,MAX);
-    if(saved && saved.wj===true) plan.wj=true;
+    if(saved && [2,3,4,8].indexOf(saved.weeks)>=0) plan.weeks=saved.weeks;
+    if(saved && Array.isArray(saved.picks)) plan.picks=saved.picks.filter(function(id){ return byId[id]; }).slice(0,max());
   }catch(e){}
   function keep(){ try{ localStorage.setItem(KEY,JSON.stringify(plan)); }catch(e){} }
 
@@ -123,7 +146,7 @@
   }catch(e){}
   function checkoutUrl(){
     var src=AD&&AD.click ? "gns-gads-"+AD.campaign+"-"+AD.letter+AD.click : "ricktew-plan";
-    return "/hininja/buy/?sku=HIN-GNS-2W&src="+encodeURIComponent(src);
+    return "/hininja/buy/?sku=HIN-GNS-2W&src="+encodeURIComponent(src)+"&weeks="+plan.weeks;
   }
 
   function el(tag,cls,text){ var n=document.createElement(tag); if(cls) n.className=cls; if(text!=null) n.textContent=text; return n; }
@@ -132,18 +155,32 @@
   function toggle(id){
     var i=plan.picks.indexOf(id);
     if(i>=0) plan.picks.splice(i,1);
-    else if(plan.picks.length<MAX) plan.picks.push(id);
+    else if(plan.picks.length<max()) plan.picks.push(id);
     keep();
   }
-  function levelText(it){ return it.level ? "Level "+it.level : ""; }
+  var BELTS=["","Yellow belt","Orange belt","Green belt","Blue belt","Red belt"];
+  function levelText(it){ return it.level ? BELTS[it.level] : ""; }
 
   var step="menu", openCat=null, lastAdded=null;
+  var draft={name:"", email:""}; /* what was typed in the form survives a re-render (a week added on the form step) */
   function go(s,focus){ step=s; render(focus!==false); }
 
   /* the plan, week by week: picks fill the weeks in order, 5 a week */
   function tray(){
     var t=el("div","tray");
-    for(var w=0; w<WEEKS; w++){
+    var st=el("div","stays"); st.setAttribute("role","group"); st.setAttribute("aria-label","Your stay");
+    st.appendChild(el("span","stay-l","Your stay"));
+    STAYS.forEach(function(o){
+      var b=btn("stay-o",null,function(){ plan.weeks=o.weeks; keep(); render(false); var f=root.querySelector('.stay-o[aria-pressed="true"]'); if(f) f.focus(); });
+      b.setAttribute("aria-pressed",o.weeks===plan.weeks?"true":"false");
+      b.disabled=plan.picks.length>PER_WEEK*o.weeks;
+      b.appendChild(el("b",null,o.name)); b.appendChild(el("span",null,money(o.price)));
+      st.appendChild(b);
+    });
+    t.appendChild(st);
+    if(plan.weeks===8) t.appendChild(el("p","tray-n","The belt program: yellow belt first. Your picks join the morning seminar too."));
+    var rows=Math.min(plan.weeks, Math.max(2, Math.ceil(plan.picks.length/PER_WEEK)+(plan.picks.length%PER_WEEK?0:1)));
+    for(var w=0; w<rows; w++){
       var row=el("div","wk");
       row.appendChild(el("span","wk-l","Week "+(w+1)));
       var chips=el("div","wk-c");
@@ -163,8 +200,7 @@
       row.appendChild(chips);
       t.appendChild(row);
     }
-    var n=plan.picks.length;
-    t.appendChild(el("p","tray-n",n+" of "+MAX+" picked. Up to "+PER_WEEK+" a week."));
+    t.appendChild(el("p","tray-n",plan.picks.length+" of "+max()+" picked, up to "+PER_WEEK+" a week."));
     return t;
   }
 
@@ -181,7 +217,7 @@
     if(step==="menu"){
       hd=head("The Ninja Menu","What do you want to learn?");
       root.appendChild(hd.frag);
-      root.appendChild(el("p","mc-p","Pick an area, then the technique. Rick builds your two weeks around it."));
+      root.appendChild(el("p","mc-p","Pick an area, then the technique. Rick builds your weeks around it."));
       var tiles=el("div","tiles");
       MENU.forEach(function(c){
         var picked=plan.picks.filter(function(id){ return byId[id].cat===c; }).length;
@@ -194,16 +230,16 @@
       root.appendChild(tiles);
       if(plan.picks.length){
         root.appendChild(tray());
-        root.appendChild(btn("btn btn-red mc-go","Book my two weeks",function(){ go("book"); }));
+        root.appendChild(btn("btn btn-red mc-go",stay().book,function(){ go("book"); }));
       }
     }
     else if(step==="pick"){
       var c=openCat;
       root.appendChild(btn("mc-back","Back to the menu",function(){ go("menu"); }));
-      hd=head("The Ninja Menu","Which "+(c.id==="nt"?"tool":c.id==="sd"?"one":c.name.toLowerCase().replace(/s$/,""))+"?");
+      hd=head("The Ninja Menu","Which "+(c.id==="nt"?"tool":c.id==="sd"?"one":c.id==="bm"?"move":c.name.toLowerCase().replace(/s$/,""))+"?");
       root.appendChild(hd.frag);
       if(c.note) root.appendChild(el("p","mc-p",c.note));
-      var full=plan.picks.length>=MAX;
+      var full=plan.picks.length>=max();
       var ul=el("ul","picks");
       c.items.forEach(function(it,i){
         var id=c.id+i, on=has(id);
@@ -216,33 +252,40 @@
         if(full && !on) b.disabled=true;
         var top=el("span","pick-t");
         top.appendChild(el("b",null,it[0]));
-        top.appendChild(el("span","pick-l",on?"Added":levelText(byId[id])));
+        top.appendChild(el("span","pick-l"+(on||!it[1]?"":" lv"+it[1]),on?"Added":levelText(byId[id])));
         b.appendChild(top);
         b.appendChild(el("span","pick-d",it[2]));
         li.appendChild(b); ul.appendChild(li);
       });
       root.appendChild(ul);
-      if(full) root.appendChild(el("p","mc-p","Your two weeks are full. Tap a pick in your plan to swap it out."));
+      if(full) root.appendChild(el("p","mc-p",plan.weeks<8?"Your weeks are full. Pick a longer stay in your plan, or tap a pick to swap it out.":"Your weeks are full. Tap a pick in your plan to swap it out."));
       if(plan.picks.length){
         root.appendChild(tray());
-        root.appendChild(btn("btn btn-red mc-go","Book my two weeks",function(){ go("book"); }));
+        root.appendChild(btn("btn btn-red mc-go",stay().book,function(){ go("book"); }));
       }
     }
     else if(step==="added"){
-      hd=head("Your two weeks",has(lastAdded)?"Added: "+byId[lastAdded].name:"Your plan so far");
+      hd=head("Your plan",has(lastAdded)?"Added: "+byId[lastAdded].name:"Your plan so far");
       root.appendChild(hd.frag);
       root.appendChild(tray());
       root.appendChild(el("p","mc-p","Every morning is a Sensei Seminar of up to two hours: Rick combines the group's picks, so you also learn what the others chose. The review class is where you practice it."));
       var row=el("div","mc-row");
-      row.appendChild(btn("btn btn-red","Book my two weeks",function(){ go("book"); }));
-      row.appendChild(btn("btn btn-quiet",plan.picks.length<MAX?"Pick another":"Swap a pick",function(){ go("menu"); }));
+      row.appendChild(btn("btn btn-red",stay().book,function(){ go("book"); }));
+      row.appendChild(btn("btn btn-quiet",plan.picks.length<max()?"Pick another":"Swap a pick",function(){ go("menu"); }));
       root.appendChild(row);
     }
     else if(step==="book"){
       root.appendChild(btn("mc-back","Back to the menu",function(){ go("menu"); }));
-      hd=head("Your two weeks","Save your plan and book");
+      hd=head("Your plan","Save your plan and book");
       root.appendChild(hd.frag);
       root.appendChild(tray());
+      if(plan.weeks<4){
+        var up=el("div","upsell");
+        up.appendChild(el("p",null,plan.weeks===2?"Stay longer? Add another week for only $1,000, or make it the full month for $3,997.":"Make it the full month for $3,997?"));
+        if(plan.weeks===2) up.appendChild(btn("btn btn-quiet","Add a week, $3,222",function(){ plan.weeks=3; keep(); render(false); }));
+        up.appendChild(btn("btn btn-quiet","The full month, $3,997",function(){ plan.weeks=4; keep(); render(false); }));
+        root.appendChild(up);
+      }
       root.appendChild(bookForm());
     }
     /* a step can be much shorter than the last (a long list, then the form): bring the
@@ -254,13 +297,12 @@
   }
 
   function planText(){
-    var lines=["My two weeks, from the Ninja Menu on the HI Ninja page.",""];
-    for(var w=0; w<WEEKS; w++){
+    var lines=["My plan, from the Ninja Menu on the HI Ninja page.","","Stay: "+stay().name+", "+money(stay().price)+(plan.weeks===8?" (the belt program, yellow belt first)":""),""];
+    if(!plan.picks.length) lines.push("No picks yet.");
+    for(var w=0; w<plan.weeks; w++){
       var wk=plan.picks.slice(w*PER_WEEK,(w+1)*PER_WEEK);
       if(wk.length) lines.push("Week "+(w+1)+": "+wk.map(function(id){ return byId[id].name+" ("+byId[id].cat.name+")"; }).join(", "));
     }
-    lines.push("");
-    lines.push("WinJitsu coaching add-on: "+(plan.wj?"yes, interested":"not ticked"));
     return lines.join("\n");
   }
 
@@ -273,15 +315,14 @@
       d.appendChild(l); d.appendChild(i); return {d:d,i:i};
     }
     var nm=fld("planName","Your name","text","name",100), em=fld("planEmail","Your email","email","email",200);
+    nm.i.value=draft.name; em.i.value=draft.email;
+    nm.i.addEventListener("input",function(){ draft.name=nm.i.value; });
+    em.i.addEventListener("input",function(){ draft.email=em.i.value; });
     r2.appendChild(nm.d); r2.appendChild(em.d); f.appendChild(r2);
-    var wl=el("label","wj"); var wc=el("input"); wc.type="checkbox"; wc.checked=plan.wj;
-    wc.addEventListener("change",function(){ plan.wj=wc.checked; keep(); });
-    wl.appendChild(wc); wl.appendChild(el("span",null,"Add WinJitsu coaching too: Rick's mental martial art, outside class. An add-on, priced on its own."));
-    f.appendChild(wl);
-    var send=el("button","btn btn-red","Save my plan and book, $2,222"); send.type="submit";
+    var send=el("button","btn btn-red","Save my plan and book, "+money(stay().price)); send.type="submit";
     f.appendChild(send);
     var err=el("p","err"); err.setAttribute("role","alert"); f.appendChild(err);
-    f.appendChild(el("p","mc-small","Your plan goes to Rick, then the secure checkout for 2 weeks. At checkout you add your arrival date. All sales are final; your dates can move to another two weeks, within a year of buying."));
+    f.appendChild(el("p","mc-small","Training, WinJitsu coaching, a dorm bed if you need one, and meals. Your plan goes to Rick, then the secure checkout, where you add your arrival date. All sales are final; your dates can move, within a year of buying."));
     var askA=el("a","mc-ask","Questions first? Ask Rick, with your picks"); askA.href="#ask";
     askA.addEventListener("click",function(){
       var m=document.getElementById("askMsg");
@@ -294,7 +335,7 @@
       function fail(m){ err.textContent=m; err.classList.add("on"); }
       if(!name||!email){ fail("Your name and an email for Rick to send your plan to."); return; }
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ fail("That email address does not look right."); return; }
-      if(!plan.picks.length){ fail("Pick at least one thing to learn first."); return; }
+      if(!plan.picks.length && plan.weeks!==8){ fail("Pick at least one thing to learn first."); return; }
       var trap=document.getElementById("askWebsite");
       var data={name:name, email:email, subject:"plan", message:planText(), website:trap?trap.value:"",
         elapsedMs:Date.now()-shown, source:AD?"gads":SRC};
@@ -309,5 +350,13 @@
     return f;
   }
 
+  [].forEach.call(document.querySelectorAll("a[data-stay]"),function(a){
+    a.addEventListener("click",function(){
+      var w=Number(a.getAttribute("data-stay"));
+      if([2,3,4,8].indexOf(w)<0) return;
+      plan.weeks=w; keep(); step="book"; render(false);
+      setTimeout(function(){ var h=root.querySelector(".mc-h"); if(h) h.focus({preventScroll:true}); },400);
+    });
+  });
   render(false);
 })();
