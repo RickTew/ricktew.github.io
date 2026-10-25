@@ -6,7 +6,8 @@
    before any stay or Book shows (Rick, 25 Oct: "I only picked stance and it went here making
    me feel like it was too fast and must book. So let's have them build their Ninja Week
    (minimum 5 choices before this or they will not understand it)"). Up to 5 picks a week. Rick's clicks of 25 Oct: Body Movement as an 8th area; four stays, 2 weeks
-   $2,222, 3 weeks $3,222 ("add another week for only 1K"), the full month $3,997 and a
+   $2,222, 3 weeks $3,222 ("add another week for 1K"; "only" cut on his click after the
+   reader round), the full month $3,997 and a
    belt, 2 months, $7,994 (the checkout sells the same four, ?weeks=2|3|4|8); WinJitsu
    coaching included ("as included like before"). Book saves the plan to the mailbox (subject "plan",
    Auto-Submitted, so the Ninja Agent does not answer while they pay) and goes straight
@@ -288,6 +289,7 @@
       hd=head("The Ninja Menu","Which "+(c.id==="nt"?"tool":c.id==="sd"?"one":c.id==="bm"?"move":c.name.toLowerCase().replace(/s$/,""))+"?");
       root.appendChild(hd.frag);
       if(c.note) root.appendChild(el("p","mc-p",c.note));
+      root.appendChild(el("p","mc-any","Any level can pick any technique: every drill has an easier version."));
       var full=plan.picks.length>=max();
       var ul=el("ul","picks");
       c.items.forEach(function(it,i){
@@ -326,7 +328,15 @@
     else if(step==="ready"){
       hd=head("Your Ninja Week","Your Ninja Week is ready");
       root.appendChild(hd.frag);
-      root.appendChild(el("p","mc-p","Every morning is a Sensei Seminar of up to two hours: Rick combines the group's picks, so you also learn what the others chose. The review class is where you practice it. Arrive any day from 15 January 2027. Now pick how long you stay."));
+      var get=el("ul","mc-get");
+      ["The Sensei Seminar, 8 to 10am, Monday to Friday, up to two hours: your picks and the group's, so you also learn what the others chose.",
+       "Rick builds every seminar from the group's picks and teaches at least 2 a week. On the other mornings, Guides, people who trained here before, lead it.",
+       "An optional review class, 8 to 10pm, to practice.",
+       "WinJitsu coaching, included.",
+       "A dorm bed if you need one, with simple meals.",
+       "Arrive any day from 15 January 2027. Dates can move, within a year of buying."].forEach(function(t){ get.appendChild(el("li",null,t)); });
+      root.appendChild(get);
+      root.appendChild(el("p","mc-p","Now pick how long you stay."));
       root.appendChild(tray());
       var row=el("div","mc-stack");
       row.appendChild(btn("btn btn-red",stay().book,function(){ go("book"); }));
@@ -340,8 +350,8 @@
       root.appendChild(tray(true));
       if(plan.weeks<4){
         var up=el("div","upsell");
-        up.appendChild(el("p",null,plan.weeks===2?"Stay longer? Add another week for only $1,000, or make it the full month for $3,997.":"Make it the full month for $3,997?"));
-        if(plan.weeks===2) up.appendChild(btn("btn btn-quiet","Add a week, $3,222",function(){ plan.weeks=3; keep(); render(false); }));
+        up.appendChild(el("p",null,plan.weeks===2?"Stay longer? Add a week for $1,000, or make it the full month for $3,997.":"Make it the full month for $3,997?"));
+        if(plan.weeks===2) up.appendChild(btn("btn btn-quiet","3 weeks in all, $3,222",function(){ plan.weeks=3; keep(); render(false); }));
         up.appendChild(btn("btn btn-quiet","The full month, $3,997",function(){ plan.weeks=4; keep(); render(false); }));
         root.appendChild(up);
       }

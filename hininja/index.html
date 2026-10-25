@@ -307,6 +307,11 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 .mc-go{margin-top:14px;width:100%}
 .mc-row{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
 .mc-stack{margin-top:16px;display:grid;gap:10px}
+/* what you get, said where they decide (25 Oct round, 5 of 6; Rick's pick "Say it plainly there") */
+.mc-get{list-style:none;margin-top:12px;display:grid;gap:7px}
+.mc-get li{position:relative;padding-left:24px;font-size:15px;line-height:1.45;color:var(--ink2)}
+.mc-get li::before{content:"";position:absolute;left:0;top:.35em;width:14px;height:14px;border-radius:50%;background:var(--green)}
+.mc-any{margin-top:6px;font-size:14.5px;font-weight:700;color:var(--ink)}
 /* the pick list's bar stays at the bottom of the screen while the list scrolls (25 Oct round:
    "my Ninja Week box sits below them all") */
 .mc-bar{position:sticky;bottom:10px;z-index:5;margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:2px solid var(--ink);border-radius:14px;padding:8px 8px 8px 14px;box-shadow:0 10px 28px rgba(16,20,24,.18)}
@@ -387,7 +392,6 @@ footer a:hover{color:var(--sea)}
           <li>An optional review class, 8 to 10 in the evening, to practice the morning.</li>
           <li>WinJitsu, Rick's mental martial art: coaching for focus, goals and life. Training and coaching, a full mind-body program.</li>
           <li>Nerdy ninja conversations, a game room, and the island in between.</li>
-          <li>New to AI? Want to learn while you are here? Rick can help with that too.</li>
         </ul>
       </div>
       <div class="isnot-r">
@@ -455,7 +459,7 @@ footer a:hover{color:var(--sea)}
     <h2>A day on Samui</h2>
     <div class="day">
       <div class="slot"><div class="when">Morning</div><div class="time">8am to 10am</div><h3>Sensei Seminar</h3><p>Rick combines what the group picked from the Ninja Menu, so you also learn what the others chose. Rick teaches at least 2 classes a week; on the other days you practice with Guides, people who trained here before you.</p></div>
-      <div class="slot"><div class="when">Daytime</div><div class="time">Yours</div><h3>Your time</h3><p>Game, train, read, get coached, build a business with Rick, or go see the island.</p></div>
+      <div class="slot"><div class="when">Daytime</div><div class="time">Yours</div><h3>Your time</h3><p>Game, train, read, get coached, or go see the island.</p></div>
       <div class="slot"><div class="when">Evening</div><div class="time">8pm to 10pm, optional</div><h3>Review class</h3><p>Practice the morning with the group. Not a morning person? Come to this one instead.</p></div>
       <div class="slot"><div class="when">Weekends</div><div class="time">Free</div><h3>Explore</h3><p>No classes. Go see more of Samui, or stay in and play games.</p></div>
     </div>
@@ -500,7 +504,7 @@ footer a:hover{color:var(--sea)}
         <div class="per">2 weeks</div>
         <p class="all">Training and WinJitsu coaching. A dorm bed if you need one. Arrive any day from 15 January 2027. Next group: 22 January 2027.</p>
         <ul class="more">
-          <li><b>3 weeks, $3,222</b>Add a week for only $1,000.</li>
+          <li><b>3 weeks, $3,222</b>Add a week for $1,000.</li>
           <li><b>The full month, $3,997</b>Four weeks.</li>
           <li><b>A belt, $7,994</b><a href="#belts">The belt program</a>: 2 months per belt.</li>
         </ul>
