@@ -127,6 +127,8 @@ const SOURCES: Record<string, string> = {
   youtube: 'YouTube',
   contra: 'Contra',
   gns: 'The GNS page',
+  // NerdHostel links its guests to the HI Ninja page (Rick, 25 Oct 2026: "we parnter with nerdhostel ... and nerdhostel does it back the same to us but for the training")
+  nerdhostel: 'NerdHostel',
   gads: 'Google Ads',
   direct: 'Direct, no source on the link',
 };

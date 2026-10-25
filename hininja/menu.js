@@ -154,7 +154,8 @@
     var s0=(q.get("src")||"").toLowerCase(); if(/^[a-z]{1,20}$/.test(s0)) SRC=s0;
   }catch(e){}
   function checkoutUrl(){
-    var src=AD&&AD.click ? "gns-gads-"+AD.campaign+"-"+AD.letter+AD.click : "ricktew-plan";
+    /* a partner's or a post's ?src= rides on the order too (ricktew-plan-nerdhostel) */
+    var src=AD&&AD.click ? "gns-gads-"+AD.campaign+"-"+AD.letter+AD.click : "ricktew-plan"+(SRC!=="direct"?"-"+SRC:"");
     return "/hininja/buy/?sku=HIN-GNS-2W&src="+encodeURIComponent(src)+"&weeks="+plan.weeks;
   }
 
@@ -368,7 +369,7 @@
     var send=el("button","btn btn-red","Save my plan and book, "+money(stay().price)); send.type="submit";
     f.appendChild(send);
     var err=el("p","err"); err.setAttribute("role","alert"); f.appendChild(err);
-    f.appendChild(el("p","mc-small","Training, WinJitsu coaching, a dorm bed if you need one, and meals. Your plan goes to Rick, then the secure checkout, where you add your arrival date. All sales are final; your dates can move, within a year of buying."));
+    f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed if you need one. Your plan goes to Rick, then the secure checkout, where you add your arrival date. All sales are final; your dates can move, within a year of buying."));
     var askA=el("a","mc-ask","Questions first? Ask Rick, with your picks"); askA.href="#ask";
     askA.addEventListener("click",function(){
       var m=document.getElementById("askMsg");

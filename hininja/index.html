@@ -139,6 +139,26 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 .dorm{max-width:380px;margin-top:14px}
 .dorm img{width:100%;border-radius:16px}
 .perks-h{margin-top:34px;font-size:20px}
+/* our partner, filling the left of the stay section (Rick, 25 Oct: "on the left we say we
+   partner with nerdhostel and can use their logo too ... it also plugs the site") */
+.partner{margin-top:22px;display:flex;gap:16px;align-items:center;background:#fff;border:2px solid var(--mist2);border-radius:18px;padding:16px 18px}
+.partner img{width:72px;height:72px;border-radius:16px;flex:none}
+.partner span{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sea)}
+.partner b{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:22px;line-height:1.2}
+.partner p{margin-top:2px;font-size:15.5px;color:var(--ink2)}
+.partner a{display:inline-block;margin-top:6px;font-weight:700}
+/* WinJitsu, included (Rick, 25 Oct: "I don't see any of the winjitsu bonus stuff"), in the
+   AI Ninja blue so the mind half of the offer stands out */
+.mind{background:var(--sea-d);color:#fff}
+.mind h2{color:#fff}
+.mind .lead{color:#f0f6fc}
+.mind .k{color:var(--hi)}
+.mind-grid{margin-top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:760px){ .mind-grid{grid-template-columns:1fr} }
+.mind-grid div{background:rgba(0,0,0,.2);border:2px solid rgba(255,255,255,.28);border-radius:18px;padding:18px 20px}
+.mind-grid span{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--hi)}
+.mind-grid b{display:block;margin-top:4px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:22px;line-height:1.15;color:#fff}
+.mind-grid p{margin-top:6px;font-size:15.5px;color:#f0f6fc}
 .perks{margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 @media (max-width:760px){ .perks{grid-template-columns:1fr} }
 .perks div{background:#fff;border:2px solid var(--mist2);border-radius:16px;padding:16px 18px}
@@ -309,6 +329,7 @@ footer a:hover{color:var(--sea)}
     <div class="nav-links">
       <a href="#menu">The menu</a>
       <a href="#what">What it is</a>
+      <a href="#mind">WinJitsu</a>
       <a href="#belts">Belts</a>
       <a href="#day">A day</a>
       <a href="#price">Price</a>
@@ -367,6 +388,19 @@ footer a:hover{color:var(--sea)}
   </div>
 </section>
 
+<section class="band mind" id="mind">
+  <div class="wrap">
+    <div class="k">Included: WinJitsu</div>
+    <h2>Train the body and the mind.</h2>
+    <p class="lead">WinJitsu is Rick's mental martial art: coaching for focus, goals and life. It comes with every stay. Come for the training or for the coaching; you get both.</p>
+    <div class="mind-grid">
+      <div><span>Coaching</span><b>WinJitsu with Rick</b><p>Focus, goals and the self-doubt that holds you back, outside class.</p></div>
+      <div><span>The books</span><b>Five WinJitsu books</b><p>ACE, MAK, MBS, NRG and CMT, Rick's series, part of the belts from orange on.</p></div>
+      <div><span>At home</span><b>A free month of WinJitsu.com</b><p>The WinJitsu app, so the training comes home with you.</p></div>
+    </div>
+  </div>
+</section>
+
 <section class="band tint" id="belts">
   <div class="wrap">
     <div class="k">The belt program</div>
@@ -392,7 +426,7 @@ footer a:hover{color:var(--sea)}
       <div><span>The mind</span><p>The RTMS book, stretching, and WinJitsu coaching</p></div>
     </div>
     <div class="belt-buy">
-      <p><b>$7,994 a belt, 2 months.</b> Training, WinJitsu coaching, a dorm bed if you need one, and meals. Your Ninja Menu picks join the morning seminar too.</p>
+      <p><b>$7,994 a belt, 2 months.</b> Training and WinJitsu coaching. A dorm bed if you need one. Your Ninja Menu picks join the morning seminar too.</p>
       <a class="btn btn-red" href="#menu" data-stay="8">Book the yellow belt</a>
     </div>
   </div>
@@ -417,8 +451,17 @@ footer a:hover{color:var(--sea)}
     <h2>What if I don't have a place to stay?</h2>
     <div class="stay-grid">
       <div class="where-text">
-        <p>You pay for the training. If you need a bed, there is basic housing nearby at no added cost: a shared men's or women's dorm, and simple meals.</p>
+        <p>You pay for the training. If you need a bed, there is basic housing nearby at no added cost: a shared men's or women's dorm, with simple meals if you need a little boost.</p>
         <p>Already have a place, or want your own room? That is fine. The price is the same.</p>
+        <div class="partner">
+          <img src="/hininja/img/nerdhostel-mark.webp" alt="" width="72" height="72" loading="lazy">
+          <div>
+            <span>Our partner</span>
+            <b>NerdHostel</b>
+            <p>The dorms are at NerdHostel, a gamer hostel and co-working space across the street from NinjaGym.</p>
+            <a href="https://www.nerdhostel.com/?src=ricktew" target="_blank" rel="noopener">Visit NerdHostel</a>
+          </div>
+        </div>
       </div>
       <figure class="dorm"><img src="/hininja/img/dorm-bunks.webp" alt="A dorm: wooden bunk beds with red pillows" width="1200" height="896" loading="lazy"><figcaption>The dorm: six beds, in bunks</figcaption></figure>
     </div>
@@ -439,7 +482,7 @@ footer a:hover{color:var(--sea)}
       <div class="card">
         <div class="amt">$2,222</div>
         <div class="per">2 weeks</div>
-        <p class="all">Training, WinJitsu coaching, a dorm bed if you need one, and meals. Arrive any day from 15 January 2027. Next group: 22 January 2027.</p>
+        <p class="all">Training and WinJitsu coaching. A dorm bed if you need one. Arrive any day from 15 January 2027. Next group: 22 January 2027.</p>
         <ul class="more">
           <li><b>3 weeks, $3,222</b>Add a week for only $1,000.</li>
           <li><b>The full month, $3,997</b>Four weeks.</li>
