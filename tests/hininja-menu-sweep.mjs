@@ -41,13 +41,14 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (!/4 more to go/.test(await menu.locator('.tray-n').textContent())) bad.push(label + ' progress after 1');
   await noBook('after 1 pick');
   await page.screenshot({ path: OUT + label + '-2-one.png' });
-  await button('Pick from another area');
+  await button('Other areas');
   await tile('Stances');
   for (let i = 0; i < 3; i++) await menu.locator('.pick[aria-pressed="false"]').first().click();
   await noBook('after 4 picks');
   await menu.locator('.pick[aria-pressed="false"]').first().click(); // the 5th
   if (await menu.locator('h2').textContent() !== 'Your Ninja Week is ready') bad.push(label + ' 5th pick did not open the ready step');
   if (await menu.locator('.stay-o').count() !== 4) bad.push(label + ' stays not shown when ready');
+  if (await menu.locator('.wk').count() !== 1) bad.push(label + ' empty week rows under ready: ' + await menu.locator('.wk').count());
   await page.screenshot({ path: OUT + label + '-3-ready.png' });
   // fill the 2 weeks
   await button('Add more picks'); await tile('Stances');
@@ -64,12 +65,20 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await pick('Front Kicks');
   if (await stayBtn('2 weeks').isEnabled()) bad.push(label + ' 2 weeks enabled with 11 picks');
   await page.screenshot({ path: OUT + label + '-4-stays.png' });
+  // the pick list's bar: "Your Ninja Week is ready" with See my week
+  if (!/ready/.test(await menu.locator('.mc-bar').textContent())) bad.push(label + ' bar not ready');
+  await menu.locator('.mc-bar button').click();
+  if (await menu.locator('h2').textContent() !== 'Your Ninja Week is ready') bad.push(label + ' See my week');
   await button('Book my month');
   if (await menu.locator('.upsell').count()) bad.push(label + ' upsell shown for a month');
+  if (await menu.locator('.stay-o').count()) bad.push(label + ' a second stay picker on the book step');
+  if (!/1 month, \$3,997/.test(await menu.locator('.stay-line').textContent())) bad.push(label + ' stay line');
+  await menu.locator('.stay-line button', { hasText: 'Change' }).click();
   await stayBtn('3 weeks').click();
+  await button('Book my 3 weeks');
   if (!/full month for \$3,997/.test(await menu.locator('.upsell').textContent())) bad.push(label + ' upsell for 3 weeks');
   await page.fill('#planName', 'Test Person');
-  await stayBtn('1 month').click(); // keeps what was typed
+  await button('The full month, $3,997'); // keeps what was typed
   if (await page.inputValue('#planName') !== 'Test Person') bad.push(label + ' name lost');
   await page.fill('#planEmail', 'test.person@gmail.com');
   if (await menu.locator('button[type=submit]').textContent() !== 'Save my plan and book, $3,997') bad.push(label + ' send text');
@@ -87,7 +96,8 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await page.reload();
   await page.locator('#belts a[data-stay="8"]').click();
   await page.waitForTimeout(700);
-  if (await stayBtn('A belt').getAttribute('aria-pressed') !== 'true') bad.push(label + ' belt not chosen');
+  if (!/A belt, 2 months, \$7,994/.test(await menu.locator('.stay-line').textContent())) bad.push(label + ' belt not chosen');
+  if (!/No picks needed/.test(await menu.locator('.tray-n').last().textContent())) bad.push(label + ' belt picks line');
   await page.fill('#planName', 'Belt Person'); await page.fill('#planEmail', 'belt.person@gmail.com');
   if (await menu.locator('button[type=submit]').textContent() !== 'Save my plan and book, $7,994') bad.push(label + ' belt send text');
   await page.screenshot({ path: OUT + label + '-6-belt.png' });

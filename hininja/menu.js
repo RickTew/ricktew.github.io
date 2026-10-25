@@ -61,7 +61,7 @@
       ["Fist Strikes",1,"Make a safe fist first, then four fist strikes and where each one lands."],
       ["Palm Heel Strike",1,"A safe, powerful open-hand strike. Easy to learn, hard to hurt your own hand."],
       ["Knife Hand Strike",2,"A circular strike with the narrow outside edge of the hand."],
-      ["Jab, Cross, Hook & Uppercut",2,"The four core boxing punches, adapted for RTMS."],
+      ["Jab, Cross, Hook & Uppercut",2,"The four core boxing punches, adapted for Rick's system."],
       ["Finger Strikes",3,"Precise strikes to small, soft targets."],
       ["Bent Wrist",3,"A backup strike with the bent top of the wrist, for when the hand is hurt."],
       ["Forearm Strikes",4,"A wide, forceful striking surface: the forearm."],
@@ -176,8 +176,15 @@
   function go(s,focus){ step=s; render(focus!==false); }
 
   /* the plan, week by week: picks fill the weeks in order, 5 a week */
-  function tray(){
+  function tray(onBook){
     var t=el("div","tray");
+    if(onBook){
+      var sl=el("div","stay-line");
+      sl.appendChild(el("span","stay-l","Your stay"));
+      sl.appendChild(el("b",null,stay().name+", "+money(stay().price)));
+      sl.appendChild(btn("mc-back","Change",function(){ go("ready"); }));
+      t.appendChild(sl);
+    } else {
     var st=el("div","stays"); st.setAttribute("role","group"); st.setAttribute("aria-label","Your stay");
     st.appendChild(el("span","stay-l","Your stay"));
     STAYS.forEach(function(o){
@@ -188,8 +195,10 @@
       st.appendChild(b);
     });
     t.appendChild(st);
+    }
     if(plan.weeks===8) t.appendChild(el("p","tray-n","The belt program: yellow belt first. Your picks join the morning seminar too."));
-    var rows=Math.min(plan.weeks, Math.max(2, Math.ceil(plan.picks.length/PER_WEEK)+(plan.picks.length%PER_WEEK?0:1)));
+    /* only the weeks that hold picks: an empty Week 2 under "ready" read as unfinished (25 Oct round) */
+    var rows=Math.min(plan.weeks, Math.max(1, Math.ceil(plan.picks.length/PER_WEEK)));
     for(var w=0; w<rows; w++){
       var row=el("div","wk");
       row.appendChild(el("span","wk-l","Week "+(w+1)));
@@ -210,7 +219,7 @@
       row.appendChild(chips);
       t.appendChild(row);
     }
-    t.appendChild(el("p","tray-n",plan.picks.length+" of "+max()+" picked, up to "+PER_WEEK+" a week."));
+    t.appendChild(el("p","tray-n",!plan.picks.length?"No picks needed for the belt. Add some if you like.":plan.picks.length<max()?plan.picks.length+" picked. Add more for your other weeks if you like, up to "+PER_WEEK+" a week.":plan.picks.length+" picked. Your weeks are full."));
     return t;
   }
 
@@ -303,9 +312,12 @@
       });
       root.appendChild(ul);
       if(full) root.appendChild(el("p","mc-p",plan.weeks<8?"Your weeks are full. Pick a longer stay in your plan, or tap a pick to swap it out.":"Your weeks are full. Tap a pick in your plan to swap it out."));
+      var bar=el("div","mc-bar");
+      bar.appendChild(el("span",null,ready()?"Your Ninja Week is ready":plan.picks.length+" of "+WEEK_MIN+" picked"));
+      bar.appendChild(ready()?btn("btn btn-red","See my week",function(){ go("ready"); }):btn("btn btn-quiet","Other areas",function(){ go("menu"); }));
+      root.appendChild(bar);
       if(!ready()){
         root.appendChild(weekProgress());
-        root.appendChild(btn("btn btn-quiet mc-go","Pick from another area",function(){ go("menu"); }));
       } else {
         root.appendChild(tray());
         root.appendChild(btn("btn btn-red mc-go",stay().book,function(){ go("book"); }));
@@ -314,7 +326,7 @@
     else if(step==="ready"){
       hd=head("Your Ninja Week","Your Ninja Week is ready");
       root.appendChild(hd.frag);
-      root.appendChild(el("p","mc-p","Every morning is a Sensei Seminar of up to two hours: Rick combines the group's picks, so you also learn what the others chose. The review class is where you practice it. Now pick how long you stay."));
+      root.appendChild(el("p","mc-p","Every morning is a Sensei Seminar of up to two hours: Rick combines the group's picks, so you also learn what the others chose. The review class is where you practice it. Arrive any day from 15 January 2027. Now pick how long you stay."));
       root.appendChild(tray());
       var row=el("div","mc-stack");
       row.appendChild(btn("btn btn-red",stay().book,function(){ go("book"); }));
@@ -325,7 +337,7 @@
       root.appendChild(btn("mc-back","Back to the menu",function(){ go("menu"); }));
       hd=head("Your plan","Save your plan and book");
       root.appendChild(hd.frag);
-      root.appendChild(tray());
+      root.appendChild(tray(true));
       if(plan.weeks<4){
         var up=el("div","upsell");
         up.appendChild(el("p",null,plan.weeks===2?"Stay longer? Add another week for only $1,000, or make it the full month for $3,997.":"Make it the full month for $3,997?"));
