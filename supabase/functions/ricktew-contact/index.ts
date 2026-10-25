@@ -77,8 +77,18 @@ const SUBJECTS: Record<string, string> = {
   hininja: 'The HI Ninja side',
   paid: 'Paid by PromptPay',
   site: 'A Bangkok site find',
+  plan: 'An HI Ninja training plan',
   other: 'Something else',
 };
+
+/** A training plan from the Ninja Menu on /hininja/ (25 Oct 2026, Rick: "the goal is
+ *  to get them to fill in the quiz and be led to the CTA purchase booking asap ... we
+ *  need to keep track of it"). The visitor picks what they want to learn, the page
+ *  posts subject "plan" with the picks in the message, then sends them on to the
+ *  checkout. The mail reads "HI Ninja plan: <name>" and is marked Auto-Submitted with
+ *  X-HI-Plan, so the Ninja Agent does not answer it while they are paying; Rick builds
+ *  the Sensei Seminar from it and replies by hand. */
+const PLAN_VIA = 'the Ninja Menu on ricktew.com/hininja/';
 
 /** A place found for NinjaGym Bangkok (24 Oct 2026, Rick: "if we find information
  *  about a place can we have a section to put it in"; his pick "A box to type a find
@@ -240,14 +250,14 @@ function adLine(f: { adCampaign: string; adClick: string }) {
 
 async function sendMail(f: {
   name: string; email: string; subjectLabel: string; message: string; sourceLabel: string; sku: string;
-  adCampaign: string; adClick: string; site: boolean;
+  adCampaign: string; adClick: string; site: boolean; plan: boolean;
 }) {
   const key = Deno.env.get('RESEND_API_KEY');
   const to = Deno.env.get('CONTACT_TO');
   const from = Deno.env.get('CONTACT_FROM');
   if (!key || !to || !from) throw new Error('mail_not_configured');
 
-  const via = f.sku ? 'the PromptPay card on ricktew.com' : f.site ? SITE_VIA : 'the mailbox on ricktew.com/aininja/';
+  const via = f.sku ? 'the PromptPay card on ricktew.com' : f.site ? SITE_VIA : f.plan ? PLAN_VIA : 'the mailbox on ricktew.com/aininja/';
   const row = (label: string, value: string) =>
     `<tr><td style="padding:4px 12px 4px 0;color:#666;vertical-align:top">${label}</td>` +
     `<td style="padding:4px 0">${value}</td></tr>`;
@@ -283,6 +293,7 @@ async function sendMail(f: {
   const headers: Record<string, string> = {
     ...(f.sku ? { 'Auto-Submitted': 'auto-generated', 'X-PromptPay-Sku': f.sku } : {}),
     ...(f.site ? { 'Auto-Submitted': 'auto-generated', 'X-Site-Find': 'bangkok' } : {}),
+    ...(f.plan ? { 'Auto-Submitted': 'auto-generated', 'X-HI-Plan': 'hininja' } : {}),
     ...(f.adCampaign ? { 'X-Ad-Campaign': f.adCampaign } : {}),
     ...(f.adClick ? { 'X-Ad-Click': f.adClick } : {}),
   };
@@ -304,7 +315,7 @@ async function sendMail(f: {
       // Reply-to is the visitor. TEWBEDO reads this to set the ticket
       // contact, so The Ninja Agent's reply reaches the person who wrote in.
       ...(f.email ? { reply_to: oneLine(f.email, MAX.email) } : {}),
-      subject: oneLine(f.sku ? `Paid PromptPay ${f.sku}: ${subjectName}` : f.site ? `Bangkok site find: ${subjectName}` : `AI Ninja ${f.subjectLabel}: ${subjectName}`, 180),
+      subject: oneLine(f.sku ? `Paid PromptPay ${f.sku}: ${subjectName}` : f.site ? `Bangkok site find: ${subjectName}` : f.plan ? `HI Ninja plan: ${subjectName}` : `AI Ninja ${f.subjectLabel}: ${subjectName}`, 180),
       html,
       text,
       // A Paid notice is for Rick to check at the bank, not for the Ninja
@@ -421,7 +432,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    await sendMail({ name, email, subjectLabel, message, sourceLabel, sku: paidSku, adCampaign, adClick, site: subjectKey === 'site' });
+    await sendMail({ name, email, subjectLabel, message, sourceLabel, sku: paidSku, adCampaign, adClick, site: subjectKey === 'site', plan: subjectKey === 'plan' });
   } catch (e) {
     // The mail pipe being down must never reach the visitor. They get the
     // same confirmation and the message survives in the log. Note the SDK

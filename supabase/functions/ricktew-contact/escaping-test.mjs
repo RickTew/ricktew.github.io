@@ -287,6 +287,38 @@ console.log('-- a Bangkok site find, through the real handler');
   gate.length = 0;
 }
 
+// ---- A training plan from the Ninja Menu on /hininja/ (25 Oct 2026) ----
+// Subject "plan": "HI Ninja plan: <name>", Reply-To the visitor, marked Auto-Submitted
+// with X-HI-Plan (the Ninja Agent does not answer while they pay), Via the Ninja Menu.
+console.log('');
+console.log('-- a training plan from the Ninja Menu, through the real handler');
+{
+  const say = (ok, label, got) => { console.log((ok ? '  PASS  ' : '  FAIL  ') + label); if (!ok) { bad++; console.log('          got', JSON.stringify(got)); } };
+  gate.length = 0;
+  let n = 0;
+  const plan = async (body) => {
+    sent = null;
+    await handler(new Request('https://x/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Origin: 'https://ricktew.com', 'x-forwarded-for': '7.7.7.' + (++n) },
+      body: JSON.stringify({ name: 'Jamie Lee', email: 'jamie.lee@gmail.com', subject: 'plan', website: '', elapsedMs: 40000, source: '',
+        message: 'My two weeks, from the Ninja Menu on the HI Ninja page.\n\nWeek 1: Horse Stance (Stances), Forward Roll (Rolls), Front Kicks (Kicks)\n\nWinJitsu coaching add-on: interested\n\nNext: the checkout.', ...body }),
+    }));
+    return sent;
+  };
+  const m = await plan({});
+  say(m && m.subject === 'HI Ninja plan: Jamie Lee' && m.reply_to === 'jamie.lee@gmail.com', 'a plan: subject "HI Ninja plan: <name>", Reply-To the visitor', m && { subject: m.subject, reply_to: m.reply_to });
+  say(m && m.headers && m.headers['Auto-Submitted'] === 'auto-generated' && m.headers['X-HI-Plan'] === 'hininja',
+    'a plan is marked Auto-Submitted with X-HI-Plan, so the Ninja Agent does not answer it', m && m.headers);
+  say(m && m.text.includes('Via: the Ninja Menu on ricktew.com/hininja/') && m.text.includes('Horse Stance (Stances)'),
+    'the plan says where it came from and carries the picks', m && m.text);
+  const hostile = await plan({ name: 'Jamie <img src=x onerror=alert(1)>', message: 'Week 1: <script>alert(1)</script> Horse Stance' });
+  say(hostile && !/<script|<img/i.test(hostile.html) && !/[<>]/.test(hostile.subject), 'a hostile plan: escaped in the html, nothing markup-shaped in the subject', hostile && { subject: hostile.subject });
+  const noMail = await plan({ email: '' });
+  say(noMail === null, 'a plan without an email is dropped', noMail && noMail.subject);
+  gate.length = 0;
+}
+
 // ---- An ad click from /gns/ (21 Oct 2026, "Count on our side") ----
 // The campaign and the click id are typed by whoever builds the link, so they
 // are attacker-typed too: a fixed shape, only with source "gads", a line and
