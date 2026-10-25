@@ -93,7 +93,7 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 /* what it is, and is not */
 .isnot{margin-top:30px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:18px}
 @media (max-width:860px){ .isnot{grid-template-columns:1fr} }
-.isnot>div{border-radius:20px;padding:24px 26px}
+.isnot .get,.isnot .not{border-radius:20px;padding:24px 26px}
 .isnot .get{background:var(--mist);border:2px solid var(--mist2)}
 .isnot .not{background:#fff;border:2px solid var(--line)}
 .isnot h3{font-size:20px}
@@ -103,6 +103,11 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 .isnot .get li::before{background:var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
 .isnot .not li::before{border:2px solid var(--muted);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 5l6 6M11 5l-6 6' fill='none' stroke='%235b6a72' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/16px no-repeat}
 
+/* Rick teaching (Rick, 25 Oct 2026: "we need some pics of me teaching a student or two"):
+   one under "What it is not", the Europe row under his video */
+.isnot-r{display:grid;gap:16px;align-content:start}
+.teach img{width:100%;border-radius:16px}
+.teach-eu{margin-top:18px}
 /* where you start */
 .belts{list-style:none;margin-top:28px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
 @media (max-width:700px){ .belts{grid-template-columns:1fr 1fr} }
@@ -376,6 +381,7 @@ footer a:hover{color:var(--sea)}
           <li>New to AI? Want to learn while you are here? Rick can help with that too.</li>
         </ul>
       </div>
+      <div class="isnot-r">
       <div class="not">
         <h3>What it is not</h3>
         <ul>
@@ -383,6 +389,8 @@ footer a:hover{color:var(--sea)}
           <li>Not a boot camp. Every drill has an easier version.</li>
           <li>No experience needed. Trained before? Welcome too.</li>
         </ul>
+      </div>
+      <figure class="teach"><img src="/hininja/img/teaching-two.webp" alt="Rick Tew, in a black shirt, coaching two students through an arm technique outdoors" width="792" height="447" loading="lazy"><figcaption>Rick coaching two students</figcaption></figure>
       </div>
     </div>
   </div>
@@ -507,10 +515,13 @@ footer a:hover{color:var(--sea)}
     <h2>Rick Tew. A real person, a real background.</h2>
     <p class="lead">More than 25 years of ninja martial arts, taught around the world, and the man behind WinJitsu. These two weeks are the easy-going version.</p>
     <div class="rick-grid">
+      <div>
       <figure class="tape">
         <video src="/aininja/assets/story/ninja/tapes/intro-full.mp4" poster="/aininja/assets/story/ninja/tapes/intro-poster.webp" controls playsinline preload="none"></video>
         <figcaption>Rick Tew in his own words</figcaption>
       </figure>
+      <figure class="teach teach-eu"><img src="/hininja/img/teaching-europe.webp" alt="Four photos of Rick Tew in a blue uniform teaching one student at a time" width="640" height="167" loading="lazy"><figcaption>Rick teaching one on one, in Europe</figcaption></figure>
+      </div>
       <div>
       <figure class="founder"><img src="/aininja/assets/story/ninja/world/asia-founder.webp" alt="Rick Tew stretching in the splits on red mats" width="640" height="308" loading="lazy"><figcaption>Rick Tew, founder of NinjaGym</figcaption></figure>
       <ul class="record">
