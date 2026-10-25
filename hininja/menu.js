@@ -2,8 +2,10 @@
    2 week ... program for hininja lets focus on the quiz funnel and make one at the top
    that will lead them to training: two week intro to martial arts by Rick Tew").
 
-   The visitor picks an area, then the technique, up to 5 a week; every pick shows the
-   Book button. Rick's clicks of 25 Oct: Body Movement as an 8th area; four stays, 2 weeks
+   The visitor picks an area, then the technique, and first builds a Ninja Week: 5 picks
+   before any stay or Book shows (Rick, 25 Oct: "I only picked stance and it went here making
+   me feel like it was too fast and must book. So let's have them build their Ninja Week
+   (minimum 5 choices before this or they will not understand it)"). Up to 5 picks a week. Rick's clicks of 25 Oct: Body Movement as an 8th area; four stays, 2 weeks
    $2,222, 3 weeks $3,222 ("add another week for only 1K"), the full month $3,997 and a
    belt, 2 months, $7,994 (the checkout sells the same four, ?weeks=2|3|4|8); WinJitsu
    coaching included ("as included like before"). Book saves the plan to the mailbox (subject "plan",
@@ -11,8 +13,9 @@
    to the checkout through /hininja/buy/. Rick builds the Sensei Seminar from the plans.
 
    The techniques and their lines come from Pocket Dojo's lessons (the RTMS book's levels,
-   ~/Dev/Winjitsu/content/hsp), cut short. Ninja Tools shows four kinds of tool, never a
-   lesson title: weapon words stay off public pages (the same rule as /hsp/).
+   ~/Dev/Winjitsu/content/hsp), cut short. Ninja Tools uses the book's own names (Rick, 25 Oct:
+   "tools is sword, nunchaku, stick, knife, tactical, rope, staff, etc"); /hsp/ keeps its own
+   rule of no tool names, which is the app's.
    The plan is kept in this browser only (a convenience, so a reload keeps it). */
 (function(){
   "use strict";
@@ -88,10 +91,16 @@
       ["Strikes & Kicks Form",5,"A two-person drill that mixes every strike and kick."],
       ["1-40 Form",5,"A fun 40-count freestyle drill that works almost every basic."]]},
     {id:"nt", name:"Ninja Tools", note:"Taught after you sign a waiver.", items:[
-      ["Short tools",0,"One-hand tools: grips, angles and footwork."],
-      ["Long tools",0,"Two-hand long tools: reach, balance and flow."],
-      ["Flexible tools",0,"Rope and other flexible tools, in fluid motion."],
-      ["Everyday objects",0,"What is around you, used to protect yourself."]]},
+      ["Stick / Tonfa",1,"The stick is the foundation of all weapons: the grips, the fourteen angles of attack and the checking hand."],
+      ["Knife",1,"Defending against the most common real-world weapon. Mindset and survival come before any disarm."],
+      ["Chain / Rope",2,"Flexible weapons worked through the fourteen angles of attack."],
+      ["Staff",2,"The Bo staff: a long, two-handed weapon worked through the fourteen angles of attack."],
+      ["Sword / Half Staff",3,"The blade in three stages, from a wooden trainer to the real sword."],
+      ["Environmental Weapons",3,"Anything around you, used as a weapon or a shield."],
+      ["Sai",4,"The traditional Okinawan weapon that traps and breaks an opponent's weapon."],
+      ["Nunchaku",4,"Two sticks and a chain that become part of you in fluid motion."],
+      ["Blinding Powder",5,"The ninja's metsubishi: fine powder thrown to the eyes to buy time."],
+      ["Tactical Training",5,"The red belt's tactical training, set with Rick."]]},
     {id:"sd", name:"Self-defense", items:[
       ["Natural Reactions",1,"Train a move until it happens on its own, without thinking."],
       ["Combat Reality",1,"What actually works, stripped of the showmanship."],
@@ -105,7 +114,7 @@
       ["Personal Security Course",5,"Real defense in real places."]]}
   ];
 
-  var PER_WEEK=5;
+  var PER_WEEK=5, WEEK_MIN=5; /* picks before the stays and Book show */
   /* weeks: the checkout's key; book: the Book button's words */
   var STAYS=[
     {weeks:2, name:"2 weeks", price:2222, book:"Book my two weeks"},
@@ -161,7 +170,7 @@
   var BELTS=["","Yellow belt","Orange belt","Green belt","Blue belt","Red belt"];
   function levelText(it){ return it.level ? BELTS[it.level] : ""; }
 
-  var step="menu", openCat=null, lastAdded=null;
+  var step="menu", openCat=null;
   var draft={name:"", email:""}; /* what was typed in the form survives a re-render (a week added on the form step) */
   function go(s,focus){ step=s; render(focus!==false); }
 
@@ -204,6 +213,35 @@
     return t;
   }
 
+  /* the first week filling up, before the stays and Book show */
+  function weekProgress(){
+    var t=el("div","tray");
+    var row=el("div","wk");
+    row.appendChild(el("span","wk-l","Week 1"));
+    var chips=el("div","wk-c");
+    for(var s=0; s<WEEK_MIN; s++){
+      var id=plan.picks[s];
+      if(id){
+        (function(id){
+          var c=btn("chip",byId[id].name,function(){ toggle(id); render(false); });
+          c.setAttribute("aria-label","Remove "+byId[id].name+" from your Ninja Week");
+          c.appendChild(el("span","x","\u00d7")).setAttribute("aria-hidden","true");
+          chips.appendChild(c);
+        })(id);
+      } else { var e=el("span","chip open"); e.setAttribute("aria-hidden","true"); chips.appendChild(e); }
+    }
+    row.appendChild(chips);
+    var left=WEEK_MIN-plan.picks.length;
+    var h=el("div","stay-l","Your Ninja Week");
+    t.appendChild(h);
+    t.appendChild(row);
+    t.appendChild(el("p","tray-n",plan.picks.length?left+" more to go. Pick from any area, as many from one as you like.":"Pick 5 things to learn. Then you choose how long you stay."));
+    return t;
+  }
+  function ready(){ return plan.picks.length>=WEEK_MIN; }
+  var live=el("p","sr-only"); live.setAttribute("aria-live","polite"); root.parentNode.insertBefore(live,root.nextSibling);
+  function say(m){ live.textContent=""; setTimeout(function(){ live.textContent=m; },60); }
+
   function head(kicker,title){
     var h=el("h2","mc-h",title); h.tabIndex=-1;
     var f=document.createDocumentFragment();
@@ -215,20 +253,21 @@
     root.textContent="";
     var hd;
     if(step==="menu"){
-      hd=head("The Ninja Menu","What do you want to learn?");
+      hd=head("Take the quiz","What do you want to learn?");
       root.appendChild(hd.frag);
-      root.appendChild(el("p","mc-p","Pick an area, then the technique. Rick builds your weeks around it."));
+      root.appendChild(el("p","mc-p","Build your Ninja Week: pick an area, then the technique, 5 picks in all. Rick builds the group's seminar from everyone's picks."));
       var tiles=el("div","tiles");
       MENU.forEach(function(c){
         var picked=plan.picks.filter(function(id){ return byId[id].cat===c; }).length;
         var b=btn("tile",null,function(){ openCat=c; go("pick"); });
         b.appendChild(el("b",null,c.name));
-        b.appendChild(el("small",null,c.id==="nt" ? "After a waiver" : c.items.slice(0,2).map(function(it){ return it[0]; }).join(", ")+" ..."));
+        b.appendChild(el("small",null,c.items.slice(0,2).map(function(it){ return it[0]; }).join(", ")+" and more"));
         if(picked) b.appendChild(el("span","tile-n",picked+" picked"));
         tiles.appendChild(b);
       });
       root.appendChild(tiles);
-      if(plan.picks.length){
+      if(!ready()) root.appendChild(weekProgress());
+      else {
         root.appendChild(tray());
         root.appendChild(btn("btn btn-red mc-go",stay().book,function(){ go("book"); }));
       }
@@ -245,8 +284,12 @@
         var id=c.id+i, on=has(id);
         var li=el("li");
         var b=btn("pick",null,function(){
-          var was=has(id); toggle(id);
-          if(!was){ lastAdded=id; go("added"); } else render(false);
+          var was=has(id), before=plan.picks.length; toggle(id);
+          if(!was && before===WEEK_MIN-1 && plan.picks.length===WEEK_MIN){ go("ready"); return; }
+          render(false);
+          var again=root.querySelectorAll(".pick")[i]; if(again) again.focus();
+          if(!was) say("Added "+it[0]+". "+(ready()?"":(WEEK_MIN-plan.picks.length)+" more to go."));
+          else say("Removed "+it[0]+".");
         });
         b.setAttribute("aria-pressed",on?"true":"false");
         if(full && !on) b.disabled=true;
@@ -259,19 +302,22 @@
       });
       root.appendChild(ul);
       if(full) root.appendChild(el("p","mc-p",plan.weeks<8?"Your weeks are full. Pick a longer stay in your plan, or tap a pick to swap it out.":"Your weeks are full. Tap a pick in your plan to swap it out."));
-      if(plan.picks.length){
+      if(!ready()){
+        root.appendChild(weekProgress());
+        root.appendChild(btn("btn btn-quiet mc-go","Pick from another area",function(){ go("menu"); }));
+      } else {
         root.appendChild(tray());
         root.appendChild(btn("btn btn-red mc-go",stay().book,function(){ go("book"); }));
       }
     }
-    else if(step==="added"){
-      hd=head("Your plan",has(lastAdded)?"Added: "+byId[lastAdded].name:"Your plan so far");
+    else if(step==="ready"){
+      hd=head("Your Ninja Week","Your Ninja Week is ready");
       root.appendChild(hd.frag);
+      root.appendChild(el("p","mc-p","Every morning is a Sensei Seminar of up to two hours: Rick combines the group's picks, so you also learn what the others chose. The review class is where you practice it. Now pick how long you stay."));
       root.appendChild(tray());
-      root.appendChild(el("p","mc-p","Every morning is a Sensei Seminar of up to two hours: Rick combines the group's picks, so you also learn what the others chose. The review class is where you practice it."));
-      var row=el("div","mc-row");
+      var row=el("div","mc-stack");
       row.appendChild(btn("btn btn-red",stay().book,function(){ go("book"); }));
-      row.appendChild(btn("btn btn-quiet",plan.picks.length<max()?"Pick another":"Swap a pick",function(){ go("menu"); }));
+      if(plan.picks.length<max()) row.appendChild(btn("btn btn-quiet","Add more picks",function(){ go("menu"); }));
       root.appendChild(row);
     }
     else if(step==="book"){
@@ -335,7 +381,7 @@
       function fail(m){ err.textContent=m; err.classList.add("on"); }
       if(!name||!email){ fail("Your name and an email for Rick to send your plan to."); return; }
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ fail("That email address does not look right."); return; }
-      if(!plan.picks.length && plan.weeks!==8){ fail("Pick at least one thing to learn first."); return; }
+      if(!ready() && plan.weeks!==8){ fail("Build your Ninja Week first: 5 picks from the menu."); return; }
       var trap=document.getElementById("askWebsite");
       var data={name:name, email:email, subject:"plan", message:planText(), website:trap?trap.value:"",
         elapsedMs:Date.now()-shown, source:AD?"gads":SRC};
@@ -350,6 +396,13 @@
     return f;
   }
 
+  /* "Take the quiz" (Rick, 25 Oct: "might need to start with take the quiz"): the menu comes into
+     view with its first step and focus on its heading */
+  var tq=document.getElementById("takeQuiz");
+  if(tq) tq.addEventListener("click",function(){
+    if(step!=="menu"){ step="menu"; render(false); }
+    setTimeout(function(){ var h=root.querySelector(".mc-h"); if(h) h.focus({preventScroll:true}); },400);
+  });
   [].forEach.call(document.querySelectorAll("a[data-stay]"),function(a){
     a.addEventListener("click",function(){
       var w=Number(a.getAttribute("data-stay"));

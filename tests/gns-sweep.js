@@ -1,7 +1,7 @@
 /* GNS moved to NerdHostel on 23 Oct 2026 (Rick: "remove the one on ricktew as we will just use
    one site"). ricktew.com/gns/ is only a forward now, so this sweep checks the forward: the
    query string (a post's ?src=, an ad's gclid and cid) and the #hash ride along to
-   https://www.nerdhostel.com/gns, and the old /hininja/next/ preview lands on /hininja/.
+   https://www.nerdhostel.com/gns, and the old /hininja/next/ and /hininja/preview/ addresses land on /hininja/.
    The full GNS page sweep was here until then (git history); its page is NerdHostel's now.
    NerdHostel is not contacted: its address is answered locally.
    Serve the repo first, then: BASE=http://localhost:8765 node tests/gns-sweep.js */
@@ -31,15 +31,14 @@ const CASES = [
   await p.goto(BASE + "/hininja/next/?src=x#price", { waitUntil: "load" }).catch(() => {});
   await p.waitForURL((u) => !String(u).includes("/next/"), { timeout: 5000 }).catch(() => {});
   if (p.url() !== BASE + "/hininja/?src=x#price") findings.push(`/hininja/next/ landed on ${p.url()}`);
-  const book = await p.$eval("a.buy", (a) => a.getAttribute("href")).catch(() => null);
-  if (book !== NH + "?src=ricktew") findings.push(`/hininja/ Book goes to ${book}`);
-  // An ad visit: the Book carries the campaign and the click id on to NerdHostel (24 Oct 2026).
-  await p.goto(BASE + "/hininja/?gclid=Ab_c-12&cid=987", { waitUntil: "load" }).catch(() => {});
-  const adBook = await p.$eval("a.buy", (a) => a.getAttribute("href")).catch(() => null);
-  if (adBook !== NH + "?src=ricktew&cid=987&gclid=Ab_c-12") findings.push(`/hininja/ Book from an ad goes to ${adBook}`);
-  await p.goto(BASE + "/hininja/?wbraid=bad%20id", { waitUntil: "load" }).catch(() => {});
-  const badBook = await p.$eval("a.buy", (a) => a.getAttribute("href")).catch(() => null);
-  if (badBook !== NH + "?src=ricktew&cid=0&wbraid=") findings.push(`/hininja/ Book from a bad ad link goes to ${badBook}`);
+  // Since 25 Oct 2026 /hininja/ books through its Ninja Menu (tests/hininja-menu-sweep.mjs walks it);
+  // the price card's button opens the menu, and the old preview address lands on /hininja/.
+  const card = await p.$eval("#price .card a.btn", (a) => a.getAttribute("href")).catch(() => null);
+  if (card !== "#menu") findings.push(`/hininja/ price card button goes to ${card}`);
+  if (!(await p.$("#menu .tile"))) findings.push("/hininja/ has no Ninja Menu");
+  await p.goto(BASE + "/hininja/preview/?gclid=Ab_c-12&cid=987#belts", { waitUntil: "load" }).catch(() => {});
+  await p.waitForURL((u) => !String(u).includes("/preview/"), { timeout: 5000 }).catch(() => {});
+  if (p.url() !== BASE + "/hininja/?gclid=Ab_c-12&cid=987#belts") findings.push(`/hininja/preview/ landed on ${p.url()}`);
   await browser.close();
   console.log("SIM PLAYTEST, the /gns/ forward, " + new Date().toISOString());
   console.log(findings.length ? findings.join("\n") : "clean");

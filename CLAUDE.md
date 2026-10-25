@@ -23,6 +23,17 @@ places:
   in questions name them by address, never "test A/B". The old HI home is word
   for word at `/hininja/history/`. Reader round and rulings:
   `playtest/reports/2026-10-09-hi-SUMMARY.md`, memory `project_hi_landing_plan`.
+  **Since 25 Oct 2026 `/hininja/` opens with the Ninja Menu** (Rick: "make one at the
+  top that will lead them to training: two week intro to martial arts by Rick Tew"): a
+  quiz where the visitor builds a Ninja Week (5 picks from 8 areas of the RTMS book, no
+  Book before the 5th), then picks a stay (2 weeks $2,222, 3 weeks $3,222, the month
+  $3,997, the belt program $7,994 for 2 months, yellow belt first); the plan goes to the
+  mailbox (subject `plan`, Auto-Submitted) and Book goes straight to `/hininja/buy/` with
+  `?weeks=2|3|4|8`, which the checkout sells (Digital Dojo cadd11cd; Rick lifted the hold
+  for that one change). The morning is the Sensei Seminar, built from the group's picks.
+  Code `hininja/menu.js`, sweep `tests/hininja-menu-sweep.mjs`. Colours: white, grey, the
+  AI Ninja blue, yellow, belt colours, red only on buttons; no mall named; WinJitsu
+  coaching included; never Rick's photo next to the bunk beds.
 - **`/aininja/` AI Ninja** — the digital work. Building with AI for businesses.
 
 Both are live. The honest reason for the split, in Rick's words: the hardcore
