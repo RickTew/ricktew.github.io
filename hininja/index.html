@@ -278,10 +278,12 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 .mc-back:focus-visible,.tile:focus-visible,.pick:focus-visible,.chip:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
 /* every tile the same height, the words at the top (Rick, 25 Oct: "these should all be the same height") */
 .tiles{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:10px}
-.tile{position:relative;display:flex;flex-direction:column;justify-content:flex-start;text-align:left;font:inherit;cursor:pointer;background:var(--mist);border:2px solid var(--mist2);border-radius:14px;padding:12px 14px;color:var(--ink);transition:border-color .12s ease,box-shadow .12s ease}
+.tile{position:relative;display:flex;flex-direction:column;justify-content:flex-start;text-align:left;font:inherit;cursor:pointer;background:var(--mist);border:2px solid var(--mist2);border-radius:12px;padding:9px 12px;color:var(--ink);transition:border-color .12s ease,box-shadow .12s ease}
 .tile:hover{border-color:var(--sea);box-shadow:0 8px 20px rgba(16,20,24,.12)}
-.tile b{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:19px;letter-spacing:.04em;text-transform:uppercase;color:var(--sea-d)}
-.tile small{display:block;margin-top:2px;font-size:13px;line-height:1.35;color:var(--muted)}
+.tile b{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:17px;letter-spacing:.04em;text-transform:uppercase;color:var(--sea-d)}
+.tile small{display:block;margin-top:1px;font-size:12.5px;line-height:1.3;color:var(--muted)}
+/* smaller buttons (Rick, 26 Oct 2026: "the ninja menu buttons are TOO big"): on a phone the name alone */
+@media (max-width:520px){ .tiles{gap:8px} .tile small{display:none} .tile b{font-size:16px} }
 .tile-n{display:block;margin-top:6px;font-size:12.5px;font-weight:700;color:var(--sea)}
 .picks{list-style:none;margin-top:14px;display:grid;gap:8px}
 .pick{display:block;width:100%;text-align:left;font:inherit;cursor:pointer;background:#fff;border:2px solid var(--mist2);border-radius:14px;padding:11px 14px;color:var(--ink);transition:border-color .12s ease,background .12s ease}
