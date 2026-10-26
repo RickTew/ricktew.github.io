@@ -263,11 +263,14 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 
 /* The Ninja Menu (25 Oct 2026): the quiz in the hero. Text and photo on the left, the
    menu on the right; on a phone the menu comes straight after the headline. */
-.hero-grid{grid-template-areas:"text menu" "photo menu";grid-template-rows:auto 1fr;align-items:start;row-gap:26px}
+.hero-grid{grid-template-areas:"text menu" "vid menu" "photo menu";grid-template-rows:auto auto 1fr;align-items:start;row-gap:26px}
 .hero-text{grid-area:text}
 .hero-photo{grid-area:photo}
+/* Vid's explainer of the menu (26 Oct 2026): plays only when pressed; on a phone it comes after the menu */
+.hero-vid{grid-area:vid}
+.hero-vid video{width:100%;height:auto;aspect-ratio:1/1;border-radius:16px;background:var(--mist);border:2px solid var(--mist2)}
 .menu-card{grid-area:menu}
-@media (max-width:860px){ .hero-grid{grid-template-areas:"text" "menu" "photo";grid-template-rows:none} }
+@media (max-width:860px){ .hero-grid{grid-template-areas:"text" "menu" "vid" "photo";grid-template-rows:none} }
 .menu-card{background:#fff;border:2px solid var(--mist2);border-radius:22px;padding:24px;box-shadow:0 24px 54px rgba(16,20,24,.14)}
 @media (max-width:480px){ .menu-card{padding:18px 14px} }
 .mc-k{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--sea)}
@@ -389,6 +392,10 @@ footer a:hover{color:var(--sea)}
     <div class="menu-card" id="menu">
       <noscript><p>The Ninja Menu needs JavaScript. <a href="#ask">Ask Rick</a> what you want to learn instead.</p></noscript>
     </div>
+    <figure class="hero-vid">
+      <video src="/hininja/video/ninja-menu.mp4" poster="/hininja/video/ninja-menu-poster.webp" controls playsinline preload="none" width="1080" height="1080"></video>
+      <figcaption>How the Ninja Menu works</figcaption>
+    </figure>
     <figure class="hero-photo">
       <img src="/aininja/assets/story/ninja/world/asia-ninjagym.webp" alt="Adults, men and women, training on red mats inside NinjaGym on Koh Samui" width="640" height="335">
       <figcaption>Inside NinjaGym on Koh Samui</figcaption>
