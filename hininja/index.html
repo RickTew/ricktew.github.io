@@ -197,6 +197,18 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 .record{list-style:none;display:grid;gap:12px}
 .record li{background:#fff;border:2px solid var(--mist2);border-radius:14px;padding:13px 16px;font-size:15.5px;color:var(--ink2)}
 .record li span{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--sea);margin-bottom:2px}
+/* students in their own words: the quote cards from the old site, as text (26 Oct 2026) */
+.voices{margin-top:44px;padding-top:34px;border-top:2px solid var(--mist2)}
+.voices h3{font-size:24px}
+.voices .lead{margin-top:10px}
+.voice-grid{margin-top:22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 22px}
+@media (max-width:900px){ .voice-grid{grid-template-columns:1fr 1fr} }
+@media (max-width:600px){ .voice-grid{grid-template-columns:1fr} }
+.voice{display:flex;flex-direction:column}
+.voice blockquote{position:relative;flex:1;background:#fff;border:2px solid var(--mist2);border-radius:16px;padding:16px 18px;font-size:15.5px;line-height:1.6;color:var(--ink2)}
+.voice blockquote::after{content:"";position:absolute;left:38px;bottom:-11px;width:18px;height:18px;background:#fff;border-right:2px solid var(--mist2);border-bottom:2px solid var(--mist2);transform:rotate(45deg)}
+.voice figcaption{margin-top:16px;display:flex;align-items:center;gap:12px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:16px;letter-spacing:.06em;color:var(--ink)}
+.voice figcaption img{width:64px;height:64px;border-radius:50%;object-fit:cover;flex:none}
 .olddays{margin-top:44px;padding-top:34px;border-top:2px solid var(--mist2)}
 .olddays h3{font-size:24px}
 .olddays .lead{margin-top:10px}
@@ -534,7 +546,7 @@ footer a:hover{color:var(--sea)}
         <video src="/aininja/assets/story/ninja/tapes/intro-full.mp4" poster="/aininja/assets/story/ninja/tapes/intro-poster.webp" controls playsinline preload="none"></video>
         <figcaption>Rick Tew in his own words</figcaption>
       </figure>
-      <figure class="teach teach-eu"><img src="/hininja/img/teaching-europe.webp" alt="Four photos of Rick Tew in a blue uniform teaching one student at a time" width="640" height="167" loading="lazy"><figcaption>Rick teaching one on one, in Europe</figcaption></figure>
+      <figure class="teach teach-eu"><img src="/hininja/img/teaching-europe.webp" alt="Four photos of Rick Tew in a blue uniform teaching one student at a time" width="640" height="167" loading="lazy"><figcaption>Rick teaching one on one</figcaption></figure>
       </div>
       <div>
       <figure class="founder"><img src="/aininja/assets/story/ninja/world/asia-founder.webp" alt="Rick Tew stretching in the splits on red mats" width="640" height="308" loading="lazy"><figcaption>Rick Tew, founder of NinjaGym</figcaption></figure>
@@ -545,6 +557,18 @@ footer a:hover{color:var(--sea)}
         <li><span>In the press</span>Black Belt, KO Karate, Fighting Spirit Zendokan, Fighting Sports and International Lifestyle Magazine</li>
         <li><span>Coaching</span>Certified Strategic Intervention Coach, Robbins-Madanes Training</li>
       </ul>
+      </div>
+    </div>
+    <div class="voices" id="voices">
+      <h3>Students, in their own words</h3>
+      <p class="lead">From students who trained with Rick over the years.</p>
+      <div class="voice-grid">
+        <figure class="voice"><blockquote>The training is very professional, complex, creative and you always learn something new. Rick Tew is kind and helping. He knows exactly how far he can push his students. The atmosphere during training is nice, positive and always with a sense of humor.</blockquote><figcaption><img src="/hininja/img/students/sibel.webp" alt="" width="64" height="64" loading="lazy">Sibel K.</figcaption></figure>
+        <figure class="voice"><blockquote>Variety of the training: several self-defense techniques for real situations, sparring, grappling, weapons, stretching, etc. Specially appreciated, we could also choose areas we wanted to learn and practice.</blockquote><figcaption><img src="/hininja/img/students/gabriela.webp" alt="" width="64" height="64" loading="lazy">Gabriela Z.</figcaption></figure>
+        <figure class="voice"><blockquote>Rick Tew is the most dynamic teacher and person that I have had the pleasure to train with and learn from. Years later and I am still amazed how his lessons still enrich my life.</blockquote><figcaption><img src="/hininja/img/students/seth.webp" alt="" width="64" height="64" loading="lazy">Seth T.</figcaption></figure>
+        <figure class="voice"><blockquote>He is very intelligent, very funny, very cool, and very disciplined. This rare combination of attributes makes Rick a dynamo of a person and teacher.</blockquote><figcaption><img src="/hininja/img/students/jamien.webp" alt="" width="64" height="64" loading="lazy">Jamien O.</figcaption></figure>
+        <figure class="voice"><blockquote>What I like the most is the variety of the system, which involves everyday life training with how to be healthy in mind, body, spirit and nutrition.</blockquote><figcaption><img src="/hininja/img/students/kevin.webp" alt="" width="64" height="64" loading="lazy">Kevin O.</figcaption></figure>
+        <figure class="voice"><blockquote>Although the students may join here starting at ground zero, if they simply choose not to quit, not to give up on themselves, they will eventually get there.</blockquote><figcaption><img src="/hininja/img/students/jeff.webp" alt="" width="64" height="64" loading="lazy">Jeff T.</figcaption></figure>
       </div>
     </div>
     <div class="olddays">
