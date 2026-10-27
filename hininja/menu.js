@@ -203,7 +203,7 @@
   function levelText(it){ return it.level ? BELTS[it.level] : ""; }
 
   var step="menu", openCat=null;
-  var draft={name:"", email:""}; /* what was typed in the form survives a re-render (a week added on the form step) */
+  var draft={name:"", email:"", friend:""}; /* what was typed in the form survives a re-render (a week added on the form step) */
   function go(s,focus){ step=s; render(focus!==false); }
 
   /* the plan, week by week: picks fill the weeks in order, 5 a week */
@@ -411,8 +411,10 @@
     }
   }
 
-  function planText(){
-    var lines=["My plan, from the Ninja Menu on the HI Ninja page.","","Stay: "+stay().name+", "+money(stay().price)+(plan.weeks===8?" (the belt program, yellow belt first)":""),""];
+  function planText(friend){
+    var lines=["My plan, from the Ninja Menu on the HI Ninja page.","","Stay: "+stay().name+", "+money(stay().price)+(plan.weeks===8?" (the belt program, yellow belt first)":"")];
+    if(friend) lines.push("Friend, FREE (booked in November): "+friend+", same dates, same stay");
+    lines.push("");
     if(!plan.picks.length) lines.push("No picks yet.");
     weeksOf().forEach(function(wk,w){
       lines.push("Week "+(w+1)+": "+(isQuick(wk[0])?"Quick pick: "+byId[wk[0]].name:wk.map(function(id){ return byId[id].name+" ("+byId[id].cat.name+")"; }).join(", ")));
@@ -433,6 +435,15 @@
     nm.i.addEventListener("input",function(){ draft.name=nm.i.value; });
     em.i.addEventListener("input",function(){ draft.email=em.i.value; });
     r2.appendChild(nm.d); r2.appendChild(em.d); f.appendChild(r2);
+    /* the November friend promo (the page's script sets promo-on until 30 November 2026): the friend rides in
+       the plan mail, the checkout stays one item */
+    var fr=null;
+    if(document.documentElement.classList.contains("promo-on")){
+      fr=fld("planFriend","Bringing a friend for FREE? Their name","text","off",100);
+      fr.d.className="fld fr"; fr.i.required=false; fr.i.value=draft.friend;
+      fr.i.addEventListener("input",function(){ draft.friend=fr.i.value; });
+      f.appendChild(fr.d);
+    }
     var send=el("button","btn btn-red","Save my plan and book, "+money(stay().price)); send.type="submit";
     f.appendChild(send);
     var err=el("p","err"); err.setAttribute("role","alert"); f.appendChild(err);
@@ -451,7 +462,7 @@
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ fail("That email address does not look right."); return; }
       if(!ready() && plan.weeks!==8){ fail("Build your Ninja Week first: 5 picks from the menu."); return; }
       var trap=document.getElementById("askWebsite");
-      var data={name:name, email:email, subject:"plan", message:planText(), website:trap?trap.value:"",
+      var data={name:name, email:email, subject:"plan", message:planText(fr?fr.i.value.trim():""), website:trap?trap.value:"",
         elapsedMs:Date.now()-shown, source:AD?"gads":SRC};
       if(AD){ data.adCampaign=AD.campaign; if(AD.click) data.adClick=AD.kind+":"+AD.click; }
       send.disabled=true; send.textContent="Saving your plan...";

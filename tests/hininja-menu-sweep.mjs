@@ -2,7 +2,8 @@
    filling the weeks and the cap, the four stays and the upsell beside Book, the plan mail (stubbed:
    nothing is sent) and the checkout hand-off through the real /hininja/buy/ relay (the checkout
    function is stubbed: no Stripe session), the belt program's button, an ad click's src, the popular
-   quick picks (one fills a week, 27 Oct 2026), and no page overflow. Serve the repo first, then: BASE=http://localhost:8765 node tests/hininja-menu-sweep.mjs */
+   quick picks (one fills a week, 27 Oct 2026), the November friend promo on a set clock (shown with
+   its friend box in the plan mail, then gone after 30 November), and no page overflow. Serve the repo first, then: BASE=http://localhost:8765 node tests/hininja-menu-sweep.mjs */
 import { createRequire } from 'module';
 import os from 'os';
 const require = createRequire(import.meta.url);
@@ -131,6 +132,32 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (!posted || !/Week 1: Quick pick: PSC Self-Defense Program\nWeek 2: Quick pick: Strikes and Kicks form\nWeek 3: Fist Strikes \(Strikes\), Elbow \(Strikes\), Ridge Hand \(Strikes\)/.test(posted.message)) bad.push(label + ' quick posted ' + JSON.stringify(posted && posted.message));
   if (!checkout || !/src=ricktew-plan&weeks=3&cur=thb$/.test(checkout)) bad.push(label + ' quick checkout ' + checkout);
   if (label === 'desktop') console.log(posted && posted.message);
+  // the November friend promo (27 Oct 2026): shown while it runs, gone by itself after 30 November 2026, Thailand time
+  for (const [when, on] of [['2026-11-15T12:00:00+07:00', true], ['2026-12-01T00:00:01+07:00', false]]) {
+    const pctx = await browser.newContext({ viewport: vp, serviceWorkers: 'block' });
+    const pp = await pctx.newPage();
+    await pp.clock.setFixedTime(new Date(when));
+    let pposted = null;
+    await pp.route('**/functions/v1/ricktew-contact', r => { pposted = JSON.parse(r.request().postData()); r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: '{"ok":true}' }); });
+    await pp.route('**/functions/v1/ricktew-shop/**', r => r.fulfill({ status: 200, contentType: 'text/html', body: '<p>stub checkout</p>' }));
+    await pp.goto(BASE + '/hininja/');
+    await pp.evaluate(() => localStorage.clear());
+    await pp.reload();
+    const shown = await pp.locator('.promo').isVisible() && await pp.locator('.promo-box').isVisible();
+    if (shown !== on) bad.push(label + ' promo shown=' + shown + ' at ' + when);
+    await pp.locator('#belts a[data-stay="8"]').click();
+    await pp.waitForTimeout(700);
+    if ((await pp.locator('#planFriend').count() === 1) !== on) bad.push(label + ' friend field at ' + when);
+    if (on) {
+      await pp.locator('.hero').screenshot({ path: OUT + label + '-8-promo-hero.png' });
+      await pp.fill('#planName', 'Promo Person'); await pp.fill('#planEmail', 'promo.person@gmail.com'); await pp.fill('#planFriend', 'Pat Friend');
+      await pp.locator('#menu').screenshot({ path: OUT + label + '-8-promo-form.png' });
+      await pp.locator('#menu button[type=submit]').click();
+      await pp.waitForTimeout(1500);
+      if (!pposted || !/Stay: A belt, 2 months, \$7,994 \(the belt program, yellow belt first\)\nFriend, FREE \(booked in November\): Pat Friend, same dates, same stay\n/.test(pposted.message)) bad.push(label + ' promo posted ' + JSON.stringify(pposted && pposted.message));
+    }
+    await pctx.close();
+  }
   await page.goto(BASE + '/hininja/');
   const ov = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   if (ov > 0) bad.push(label + ' overflow ' + ov);
