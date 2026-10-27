@@ -42,6 +42,16 @@ places:
   `#what` then `#belts`, When `#day`, Where `#where`, Why `#mind` (with the student voices),
   How `#price`, then Rick's own `#rick` ("Who you learn from"), the FAQ and the ask box. The quiz box holds two sentences at most per view
   ("Max of two sentences on the right"); its ready step is five short ticks (his pick).
+  **Later on 27 Oct, his notes on the live page:** the hero's left column holds "How it works", five icon
+  steps (Pick, Book, Arrive, Train, Explore), where Vid's menu video sat ("looks weird"); the video opens from
+  inside the menu ("Watch how to pick"). Why `#mind` is the reasons people come (learn martial arts, a new
+  skill on vacation, see Thailand, advice from someone who has been there), with the student voices;
+  **WinJitsu is not a Why, it is What's "Bonus: WinJitsu"** (blue box). When is "The dates and the
+  schedule." Where is "Koh Samui, Thailand.", then "Interested in a California, U.S. Tew's Tour? Click here"
+  (it fills the ask box until the tour has a page; swap the href when it does) and the few-days stay at
+  nerdhostel.com. The menu's eight areas are icons from the HSP yellow belt sheet (Extreme Pro,
+  `Rick Tew Archive/Graphics & Art/Level_1complete.ai`; all 18 cut in `Studio/RickTew/takes/menu-icons/`),
+  four across; under them his four **popular quick picks**, one fills a whole week (`q0` to `q3` in menu.js).
   **No specifics in videos, images or ads** (Rick, same day: "We do not use specific for our
   ads or images or videos as we might want to change them often so leave the specifics for
   the pages and text that we can list fast"): no place, length of stay, time, date, price or
