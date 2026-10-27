@@ -246,7 +246,7 @@
     var h=el("div","stay-l","Your Ninja Week");
     t.appendChild(h);
     t.appendChild(row);
-    t.appendChild(el("p","tray-n",plan.picks.length?left+" more to go. Pick from any area, as many from one as you like.":"Pick 5 things to learn. Then you choose how long you stay."));
+    if(plan.picks.length) t.appendChild(el("p","tray-n",left+" more to go."));
     return t;
   }
   function ready(){ return plan.picks.length>=WEEK_MIN; }
@@ -266,7 +266,9 @@
     if(step==="menu"){
       hd=head("Take the quiz","What do you want to learn?");
       root.appendChild(hd.frag);
-      root.appendChild(el("p","mc-p","Build your Ninja Week: pick an area, then the technique, 5 picks in all. Rick builds the group's seminar from everyone's picks."));
+      /* two sentences at most in this box (Rick, 27 Oct 2026: "Max of two sentences on the right"); the
+         seminar line is the hero's, beside it */
+      root.appendChild(el("p","mc-p","Pick 5 things, from any area. Then you choose how long you stay."));
       var tiles=el("div","tiles");
       MENU.forEach(function(c){
         var picked=plan.picks.filter(function(id){ return byId[id].cat===c; }).length;
@@ -329,13 +331,13 @@
       hd=head("Your Ninja Week","Your Ninja Week is ready");
       root.appendChild(hd.frag);
       var get=el("ul","mc-get");
-      ["The Sensei Seminar, 8 to 10am, Monday to Friday, up to two hours: your picks and the group's, so you also learn what the others chose.",
-       "Rick builds every seminar from the group's picks and teaches at least 2 a week. On the other mornings, Guides, people who trained here before, lead it.",
-       "An optional review class, 8 to 10pm, to practice.",
-       "WinJitsu coaching, included.",
-       "A dorm bed if you need one, with simple meals.",
-       "Free pick-up from Samui Airport.",
-       "Arrive any day from 15 January 2027. Dates can move, within a year of buying."].forEach(function(t){ get.appendChild(el("li",null,t)); });
+      /* short ticks, not sentences (Rick's pick "Short ticks", 27 Oct 2026); the times, who teaches
+         and the dates are on the page below, in When and How */
+      ["The Sensei Seminar, built from the group's picks",
+       "An optional evening review class",
+       "WinJitsu coaching",
+       "A dorm bed if you need one",
+       "Free pick-up from Samui Airport"].forEach(function(t){ get.appendChild(el("li",null,t)); });
       root.appendChild(get);
       root.appendChild(el("p","mc-p","Now pick how long you stay."));
       root.appendChild(tray());
