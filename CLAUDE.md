@@ -34,6 +34,16 @@ places:
   Code `hininja/menu.js`, sweep `tests/hininja-menu-sweep.mjs`. Colours: white, grey, the
   AI Ninja blue, yellow, belt colours, red only on buttons; no mall named; WinJitsu
   coaching included; never Rick's photo next to the bunk beds.
+  **Since 27 Oct 2026 the headline is "Intro to martial arts by Rick Tew"** (Rick: "Intro
+  to martial arts instead of two weeks (as we offer multiple lengths"), and the page after
+  the intro and quiz runs in his 5 W's order: Who `#rick`, What `#what` then `#belts`, When
+  `#day`, Where `#where`, Why `#mind` (with the student voices), How `#price`, then the FAQ
+  and the ask box; the ids did not change. The quiz box holds two sentences at most per view
+  ("Max of two sentences on the right"); its ready step is five short ticks (his pick).
+  **No specifics in videos, images or ads** (Rick, same day: "We do not use specific for our
+  ads or images or videos as we might want to change them often so leave the specifics for
+  the pages and text that we can list fast"): no place, length of stay, time, date, price or
+  count in a picture or a clip, recorded screens included; the page text carries them.
 - **`/aininja/` AI Ninja** — the digital work. Building with AI for businesses.
 
 Both are live. The honest reason for the split, in Rick's words: the hardcore

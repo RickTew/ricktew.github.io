@@ -280,7 +280,8 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 .hero-grid{grid-template-areas:"text menu" "vid menu" "photo menu";grid-template-rows:auto auto 1fr;align-items:start;row-gap:26px}
 .hero-text{grid-area:text}
 .hero-photo{grid-area:photo}
-/* Vid's explainer of the menu (26 Oct 2026): plays only when pressed; on a phone it comes after the menu */
+/* Vid's explainer of the menu (26 Oct 2026; v3 27 Oct, nothing in it that might change, the cover shows the
+   menu): plays only when pressed; on a phone it comes after the menu */
 .hero-vid{grid-area:vid}
 .hero-vid video{width:100%;height:auto;aspect-ratio:1/1;border-radius:16px;background:var(--mist);border:2px solid var(--mist2)}
 .menu-card{grid-area:menu}
@@ -408,7 +409,7 @@ footer a:hover{color:var(--sea)}
       <noscript><p>The Ninja Menu needs JavaScript. <a href="#ask">Ask Rick</a> what you want to learn instead.</p></noscript>
     </div>
     <figure class="hero-vid">
-      <video src="/hininja/video/ninja-menu.mp4" poster="/hininja/video/ninja-menu-poster.webp" controls playsinline preload="none" width="1080" height="1080"></video>
+      <video src="/hininja/video/ninja-menu.mp4?v=3" poster="/hininja/video/ninja-menu-poster.webp?v=3" controls playsinline preload="none" width="1080" height="1080"></video>
       <figcaption>How the Ninja Menu works</figcaption>
     </figure>
     <figure class="hero-photo">
