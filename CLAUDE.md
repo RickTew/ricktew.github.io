@@ -879,7 +879,15 @@ full price cards until those left on 1 Oct 2026), `llms.txt`, and invite links.
   database function `public.aininja_gate_hit` (service role only), inside one
   transaction under a lock per door: before that the count and the insert were
   separate calls and a parallel burst passed them all (Poli M1; proven live the
-  same day: 40 requests at once for one sheet got exactly 24 addresses). The
+  same day: 40 requests at once for one sheet got exactly 24 addresses; the
+SQL is `supabase/migrations/20261027042616_aininja_gate_hit_atomic.sql`, a
+record, not re-run). An upload is counted when its address is handed out, not
+when the file lands: that is what bounds storage, and its cost is that a flood
+of address requests with no file closes uploads for the day (the Digital
+Dojo's L10, accepted LOW; the text box still works). The page names the true
+reason: the visitor's hour, the sheet's 24 files, or "Uploads are closed for
+now" for the site's day or a full bucket. If the drop log shows
+`"gate":"full"`, clear junk from the bucket. The
   receipt names a Shop helper only from the fixed list `SHOP_NAMES` (the
   page's `SHOP` map: add a new one in both) and never repeats the order id,
   which stays in Rick's copy. The bucket's own size limit is 50 MB since 16 Oct

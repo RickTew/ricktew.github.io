@@ -40,17 +40,20 @@ async function walk(browser, label, ctxOpts) {
   const ctx = await browser.newContext(ctxOpts);
   const page = await ctx.newPage();
   const consoleErrors = [], pageErrors = [], badReq = [];
-  page.on("console", m => { if (m.type() === "error") consoleErrors.push(m.text()); });
+  // The 429s are the refused-upload checks below, sent on purpose by the mock.
+  page.on("console", m => { if (m.type() === "error" && !m.text().includes("status of 429")) consoleErrors.push(m.text()); });
   page.on("pageerror", e => pageErrors.push(String(e)));
   page.on("requestfailed", r => { if (r.url().startsWith("http://127.0.0.1")) badReq.push([r.url(), r.failure() && r.failure().errorText]); });
   page.on("response", r => { if (r.status() >= 400 && r.url().startsWith("http://127.0.0.1")) badReq.push([r.url(), r.status()]); });
 
   const posts = [];
-  let uploadPuts = 0;
+  let uploadPuts = 0, refuse = "";
   await page.route(ENDPOINT, async route => {
     const body = route.request().postDataJSON();
     posts.push(body);
     if (body.action === "upload-url") {
+      // The gate refusing, with its reason (27 Oct 2026): the page must name the true one.
+      if (refuse) return route.fulfill({ status: 429, contentType: "application/json", body: JSON.stringify({ error: "busy", gate: refuse }) });
       const p = `intake/2026-09/${body.intake}/media/t-${body.name}`;
       return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, url: `https://stub.supabase.co/storage/v1/object/upload/sign/aininja-intake/${p}?token=T`, path: p }) });
     }
@@ -175,6 +178,16 @@ async function walk(browser, label, ctxOpts) {
   if (uploadPuts !== 1) flag("upload", label + `: expected 1 PUT to storage, saw ${uploadPuts}`);
   const up = posts.find(p => p.action === "upload-url");
   if (!up || up.kind !== "file" || up.name !== "price list.pdf" || !/^[a-z0-9]{20}$/.test(up.intake)) flag("upload", label + ": upload-url request malformed: " + JSON.stringify(up));
+
+  // ---- a refused upload says why: the visitor's hour, or uploads closed for the site ----
+  for (const [gate, want] of [["visitor", "Too many uploads from here in the last hour"], ["day", "Uploads are closed for now"], ["full", "Uploads are closed for now"]]) {
+    refuse = gate;
+    await page.setInputFiles("#fileInput", { name: `refused-${gate}.pdf`, mimeType: "application/pdf", buffer: Buffer.from("%PDF-1.4 stub") });
+    await page.waitForTimeout(600);
+    const said = await page.$$eval("#fileList li", (els, n) => { const li = els.find(e => e.textContent.includes(n)); return li ? li.querySelector(".fm").textContent : ""; }, `refused-${gate}.pdf`);
+    if (!said.includes(want)) flag("upload", label + `: a refused upload (${gate}) said "${said}", expected "${want}"`);
+  }
+  refuse = "";
 
   // ---- recorder cards: present, and the screen card degrades on a phone ----
   const rec = await page.evaluate(() => ({

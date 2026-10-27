@@ -852,7 +852,11 @@ footer a:hover{color:var(--blue-d)}
     if(quick){ qVoice.textContent="Adding your voice note..."; qVoice.classList.add("on"); }
     var li=row(f), bar=li.querySelector(".fp"), fill=bar.querySelector("i"); renderEmpty();
     fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"upload-url",intake:state.intake,kind:kind,name:name,size:blob.size,mime:blob.type,company_url:document.getElementById("company_url").value})})
-    .then(function(res){ if(res.status===413) throw new Error("too_big"); if(res.status===429) throw new Error("busy"); if(!res.ok) throw new Error("endpoint "+res.status); return res.json(); })
+    .then(function(res){
+      if(res.status===413) throw new Error("too_big");
+      // The gate says why (visitor, sheet, day, full), so the client is told the true reason.
+      if(res.status===429) return res.json().catch(function(){ return {}; }).then(function(b){ throw new Error("busy:"+(b&&/^[a-z]{1,10}$/.test(b.gate)?b.gate:"")); });
+      if(!res.ok) throw new Error("endpoint "+res.status); return res.json(); })
     .then(function(d){
       if(!d||!d.url||!d.path) throw new Error("no url");
       f.path=d.path; li.dataset.path=d.path;
@@ -875,7 +879,12 @@ footer a:hover{color:var(--blue-d)}
     .catch(function(err){
       if(String(err.message)==="aborted") return;
       bar.classList.add("bad");
-      var m=/too_big/.test(err.message)?"That file is over the 50 MB limit. Trim it, split it, or paste a link to it in the Links box above.":/busy/.test(err.message)?"Too many uploads from here in the last hour. Type it in the box instead, or try again later.":"That upload did not finish. Check your connection and add it again.";
+      var em=String(err.message);
+      var m=/too_big/.test(em)?"That file is over the 50 MB limit. Trim it, split it, or paste a link to it in the Links box above."
+        :em==="busy:visitor"?"Too many uploads from here in the last hour. Type it in the box instead, or try again later."
+        :em==="busy:sheet"?"That is the limit of "+C.LIMITS.files+" files on one sheet. Send the rest by reply to your receipt."
+        :/^busy/.test(em)?"Uploads are closed for now. Type it in the box instead."
+        :"That upload did not finish. Check your connection and add it again.";
       li.querySelector(".fm").textContent=m; li.querySelector(".fm").style.color="#a91218";
       if(f.quick) showVoice();
       showErr(ek,m);
