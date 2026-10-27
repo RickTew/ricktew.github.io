@@ -43,8 +43,8 @@ places:
   How `#price`, then Rick's own `#rick` ("Who you learn from"), the FAQ and the ask box. The quiz box holds two sentences at most per view
   ("Max of two sentences on the right"); its ready step is five short ticks (his pick).
   **Later on 27 Oct, his notes on the live page:** the hero's left column holds "How it works", five icon
-  steps (Pick, Book, Arrive, Train, Explore), where Vid's menu video sat ("looks weird"); the video opens from
-  inside the menu ("Watch how to pick"). Why `#mind` is the reasons people come (learn martial arts, a new
+  steps (Pick, Book, Arrive, Train, Explore), where Vid's menu video sat ("looks weird"); the video was then
+  dropped from the page altogether (his click "Drop the video"; v2 to v4 stay on the Extreme Pro). Why `#mind` is the reasons people come (learn martial arts, a new
   skill on vacation, see Thailand, advice from someone who has been there), with the student voices;
   **WinJitsu is not a Why, it is What's "Bonus: WinJitsu"** (blue box). When is "The dates and the
   schedule." Where is "Koh Samui, Thailand.", then "Interested in a California, U.S. Tew's Tour? Click here"
