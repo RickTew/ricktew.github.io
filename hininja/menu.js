@@ -115,7 +115,12 @@
       ["Personal Security Course",5,"Real defense in real places."]]}
   ];
 
-  var PER_WEEK=5, WEEK_MIN=5; /* picks before the stays and Book show */
+  /* Popular quick picks, one fills a whole week (Rick, 27 Oct 2026: "popular quick picks that easily last a
+     week for those that don't want to choose"), his four names as he wrote them; ids q0 to q3, each with an
+     icon from the same HSP sheet */
+  var QUICK=["Mini-Martial Art System via Stances","PSC Self-Defense Program","Ninja Tools and tactics","Strikes and Kicks form"];
+
+  var PER_WEEK=5, WEEK_MIN=5; /* single picks before the stays and Book show */
   /* weeks: the checkout's key; book: the Book button's words */
   var STAYS=[
     {weeks:2, name:"2 weeks", price:2222, book:"Book my two weeks"},
@@ -130,13 +135,31 @@
 
   var byId={};
   MENU.forEach(function(c){ c.items.forEach(function(it,i){ byId[c.id+i]={cat:c, name:it[0], level:it[1], line:it[2]}; }); });
+  QUICK.forEach(function(n,i){ byId["q"+i]={cat:null, quick:true, name:n, level:0, line:""}; });
+  function isQuick(id){ return byId[id].quick===true; }
 
   var plan={picks:[], weeks:2};
-  function max(){ return PER_WEEK*plan.weeks; }
+  /* the plan as weeks: a quick pick is a week of its own, single picks fill weeks 5 at a time,
+     and a week still filling up comes last */
+  function weeksOf(){
+    var out=[], cur=null;
+    plan.picks.forEach(function(id){
+      if(isQuick(id)) out.push([id]);
+      else { if(!cur||cur.length>=PER_WEEK){ cur=[]; out.push(cur); } cur.push(id); }
+    });
+    if(cur && cur.length<PER_WEEK){ out.splice(out.indexOf(cur),1); out.push(cur); }
+    return out;
+  }
+  /* room for one more single pick, or (quick) for a whole week */
+  function room(quick){
+    var w=weeksOf(), last=w[w.length-1];
+    if(!quick && last && !isQuick(last[0]) && last.length<PER_WEEK) return true;
+    return w.length<plan.weeks;
+  }
   try{
     var saved=JSON.parse(localStorage.getItem(KEY)||"null");
     if(saved && [2,3,4,8].indexOf(saved.weeks)>=0) plan.weeks=saved.weeks;
-    if(saved && Array.isArray(saved.picks)) plan.picks=saved.picks.filter(function(id){ return byId[id]; }).slice(0,max());
+    if(saved && Array.isArray(saved.picks)) saved.picks.forEach(function(id){ if(byId[id] && plan.picks.indexOf(id)<0 && room(isQuick(id))) plan.picks.push(id); });
   }catch(e){}
   function keep(){ try{ localStorage.setItem(KEY,JSON.stringify(plan)); }catch(e){} }
 
@@ -166,8 +189,15 @@
   function toggle(id){
     var i=plan.picks.indexOf(id);
     if(i>=0) plan.picks.splice(i,1);
-    else if(plan.picks.length<max()) plan.picks.push(id);
+    else if(room(isQuick(id))) plan.picks.push(id);
     keep();
+  }
+  /* a pick in the plan, tapped to take it out; a Ninja Week no longer complete goes back to the menu */
+  function chip(id,where,focus){
+    var c=btn("chip"+(isQuick(id)?" quick":""),byId[id].name,function(){ toggle(id); if(step==="ready" && !ready()) step="menu"; render(focus); });
+    c.setAttribute("aria-label","Remove "+byId[id].name+" from your "+where);
+    c.appendChild(el("span","x","×")).setAttribute("aria-hidden","true");
+    return c;
   }
   var BELTS=["","Yellow belt","Orange belt","Green belt","Blue belt","Red belt"];
   function levelText(it){ return it.level ? BELTS[it.level] : ""; }
@@ -188,10 +218,11 @@
     } else {
     var st=el("div","stays"); st.setAttribute("role","group"); st.setAttribute("aria-label","Your stay");
     st.appendChild(el("span","stay-l","Your stay"));
+    var used=weeksOf().length;
     STAYS.forEach(function(o){
       var b=btn("stay-o",null,function(){ plan.weeks=o.weeks; keep(); render(false); var f=root.querySelector('.stay-o[aria-pressed="true"]'); if(f) f.focus(); });
       b.setAttribute("aria-pressed",o.weeks===plan.weeks?"true":"false");
-      b.disabled=plan.picks.length>PER_WEEK*o.weeks;
+      b.disabled=used>o.weeks;
       b.appendChild(el("b",null,o.name)); b.appendChild(el("span",null,money(o.price)));
       st.appendChild(b);
     });
@@ -199,28 +230,20 @@
     }
     if(plan.weeks===8) t.appendChild(el("p","tray-n","The belt program: yellow belt first. Your picks join the morning seminar too."));
     /* only the weeks that hold picks: an empty Week 2 under "ready" read as unfinished (25 Oct round) */
-    var rows=Math.min(plan.weeks, Math.max(1, Math.ceil(plan.picks.length/PER_WEEK)));
-    for(var w=0; w<rows; w++){
+    var weeks=weeksOf(); if(!weeks.length) weeks=[[]];
+    weeks.forEach(function(wk,w){
       var row=el("div","wk");
       row.appendChild(el("span","wk-l","Week "+(w+1)));
       var chips=el("div","wk-c");
-      for(var s=0; s<PER_WEEK; s++){
-        var id=plan.picks[w*PER_WEEK+s];
-        if(id){
-          (function(id){
-            var c=btn("chip",byId[id].name,function(){ toggle(id); render(true); });
-            c.setAttribute("aria-label","Remove "+byId[id].name+" from your plan");
-            c.appendChild(el("span","x","×")).setAttribute("aria-hidden","true");
-            chips.appendChild(c);
-          })(id);
-        } else {
-          var e=el("span","chip open"); e.setAttribute("aria-hidden","true"); chips.appendChild(e);
-        }
+      if(wk.length && isQuick(wk[0])) chips.appendChild(chip(wk[0],"plan",true));
+      else for(var s=0; s<PER_WEEK; s++){
+        if(wk[s]) chips.appendChild(chip(wk[s],"plan",true));
+        else { var e=el("span","chip open"); e.setAttribute("aria-hidden","true"); chips.appendChild(e); }
       }
       row.appendChild(chips);
       t.appendChild(row);
-    }
-    t.appendChild(el("p","tray-n",!plan.picks.length?"No picks needed for the belt. Add some if you like.":plan.picks.length<max()?plan.picks.length+" picked. Add more for your other weeks if you like, up to "+PER_WEEK+" a week.":plan.picks.length+" picked. Your weeks are full."));
+    });
+    t.appendChild(el("p","tray-n",!plan.picks.length?"No picks needed for the belt. Add some if you like.":room(false)?plan.picks.length+" picked. Add more for your other weeks if you like, up to "+PER_WEEK+" a week.":plan.picks.length+" picked. Your weeks are full."));
     return t;
   }
 
@@ -232,14 +255,8 @@
     var chips=el("div","wk-c");
     for(var s=0; s<WEEK_MIN; s++){
       var id=plan.picks[s];
-      if(id){
-        (function(id){
-          var c=btn("chip",byId[id].name,function(){ toggle(id); render(false); });
-          c.setAttribute("aria-label","Remove "+byId[id].name+" from your Ninja Week");
-          c.appendChild(el("span","x","\u00d7")).setAttribute("aria-hidden","true");
-          chips.appendChild(c);
-        })(id);
-      } else { var e=el("span","chip open"); e.setAttribute("aria-hidden","true"); chips.appendChild(e); }
+      if(id) chips.appendChild(chip(id,"Ninja Week",false));
+      else { var e=el("span","chip open"); e.setAttribute("aria-hidden","true"); chips.appendChild(e); }
     }
     row.appendChild(chips);
     var left=WEEK_MIN-plan.picks.length;
@@ -249,7 +266,7 @@
     if(plan.picks.length) t.appendChild(el("p","tray-n",left+" more to go."));
     return t;
   }
-  function ready(){ return plan.picks.length>=WEEK_MIN; }
+  function ready(){ return plan.picks.length>=WEEK_MIN || plan.picks.some(isQuick); }
   var live=el("p","sr-only"); live.setAttribute("aria-live","polite"); root.parentNode.insertBefore(live,root.nextSibling);
   function say(m){ live.textContent=""; setTimeout(function(){ live.textContent=m; },60); }
 
@@ -302,6 +319,25 @@
         tiles.appendChild(b);
       });
       root.appendChild(tiles);
+      var ql=el("div","qp-l","Popular quick picks · a full week each"); ql.id="qpL";
+      root.appendChild(ql);
+      var qs=el("div","qps"); qs.setAttribute("role","group"); qs.setAttribute("aria-labelledby","qpL");
+      QUICK.forEach(function(n,i){
+        var id="q"+i, on=has(id);
+        var b=btn("qp",null,function(){
+          var wasReady=ready(); toggle(id);
+          if(!on && !wasReady && ready()){ go("ready"); return; }
+          render(false);
+          var again=root.querySelectorAll(".qp")[i]; if(again) again.focus();
+          say((on?"Removed ":"Added ")+n+".");
+        });
+        b.setAttribute("aria-pressed",on?"true":"false");
+        if(!on && !room(true)) b.disabled=true;
+        var im=el("img"); im.src="/hininja/img/menu/"+id+".webp"; im.alt=""; im.width=34; im.height=34;
+        b.appendChild(im); b.appendChild(el("span",null,n));
+        qs.appendChild(b);
+      });
+      root.appendChild(qs);
       if(!ready()) root.appendChild(weekProgress());
       else {
         root.appendChild(tray());
@@ -315,14 +351,14 @@
       root.appendChild(hd.frag);
       if(c.note) root.appendChild(el("p","mc-p",c.note));
       root.appendChild(el("p","mc-any","Any level can pick any technique: every drill has an easier version."));
-      var full=plan.picks.length>=max();
+      var full=!room(false);
       var ul=el("ul","picks");
       c.items.forEach(function(it,i){
         var id=c.id+i, on=has(id);
         var li=el("li");
         var b=btn("pick",null,function(){
-          var was=has(id), before=plan.picks.length; toggle(id);
-          if(!was && before===WEEK_MIN-1 && plan.picks.length===WEEK_MIN){ go("ready"); return; }
+          var was=has(id), wasReady=ready(); toggle(id);
+          if(!was && !wasReady && ready()){ go("ready"); return; }
           render(false);
           var again=root.querySelectorAll(".pick")[i]; if(again) again.focus();
           if(!was) say("Added "+it[0]+". "+(ready()?"":(WEEK_MIN-plan.picks.length)+" more to go."));
@@ -366,7 +402,7 @@
       root.appendChild(tray());
       var row=el("div","mc-stack");
       row.appendChild(btn("btn btn-red",stay().book,function(){ go("book"); }));
-      if(plan.picks.length<max()) row.appendChild(btn("btn btn-quiet","Add more picks",function(){ go("menu"); }));
+      if(room(false)) row.appendChild(btn("btn btn-quiet","Add more picks",function(){ go("menu"); }));
       root.appendChild(row);
     }
     else if(step==="book"){
@@ -394,10 +430,9 @@
   function planText(){
     var lines=["My plan, from the Ninja Menu on the HI Ninja page.","","Stay: "+stay().name+", "+money(stay().price)+(plan.weeks===8?" (the belt program, yellow belt first)":""),""];
     if(!plan.picks.length) lines.push("No picks yet.");
-    for(var w=0; w<plan.weeks; w++){
-      var wk=plan.picks.slice(w*PER_WEEK,(w+1)*PER_WEEK);
-      if(wk.length) lines.push("Week "+(w+1)+": "+wk.map(function(id){ return byId[id].name+" ("+byId[id].cat.name+")"; }).join(", "));
-    }
+    weeksOf().forEach(function(wk,w){
+      lines.push("Week "+(w+1)+": "+(isQuick(wk[0])?"Quick pick: "+byId[wk[0]].name:wk.map(function(id){ return byId[id].name+" ("+byId[id].cat.name+")"; }).join(", ")));
+    });
     return lines.join("\n");
   }
 

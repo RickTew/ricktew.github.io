@@ -1,8 +1,8 @@
 /* The Ninja Menu on /hininja/ (25 Oct 2026): desktop and phone, the eight areas, the belt dots,
    filling the weeks and the cap, the four stays and the upsell beside Book, the plan mail (stubbed:
    nothing is sent) and the checkout hand-off through the real /hininja/buy/ relay (the checkout
-   function is stubbed: no Stripe session), the belt program's button, an ad click's src, and no
-   page overflow. Serve the repo first, then: BASE=http://localhost:8765 node tests/hininja-menu-sweep.mjs */
+   function is stubbed: no Stripe session), the belt program's button, an ad click's src, the popular
+   quick picks (one fills a week, 27 Oct 2026), and no page overflow. Serve the repo first, then: BASE=http://localhost:8765 node tests/hininja-menu-sweep.mjs */
 import { createRequire } from 'module';
 import os from 'os';
 const require = createRequire(import.meta.url);
@@ -105,6 +105,32 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await page.waitForTimeout(1500);
   if (!posted || !/Stay: A belt, 2 months, \$7,994 \(the belt program, yellow belt first\)/.test(posted.message)) bad.push(label + ' belt posted ' + JSON.stringify(posted));
   if (!checkout || !/src=ricktew-plan&weeks=8&cur=thb$/.test(checkout)) bad.push(label + ' belt checkout ' + checkout);
+  // the popular quick picks (27 Oct 2026): one fills a whole week, mixes with single picks, and closes when the weeks are full
+  posted = null; checkout = null;
+  await page.goto(BASE + '/hininja/');
+  await page.evaluate(() => localStorage.clear());
+  await page.reload();
+  if (await menu.locator('.qp').count() !== 4) bad.push(label + ' quick picks ' + await menu.locator('.qp').count());
+  if (await menu.locator('.tile img').count() !== 8) bad.push(label + ' tile icons');
+  await tile('Strikes'); await pick('Fist Strikes'); await pick('Elbow'); await pick('Ridge Hand');
+  await button('Other areas');
+  await menu.locator('.qp', { hasText: 'PSC Self-Defense Program' }).click();
+  if (await menu.locator('h2').textContent() !== 'Your Ninja Week is ready') bad.push(label + ' a quick pick did not open the ready step');
+  const rows = await menu.locator('.wk').allTextContents();
+  if (rows.length !== 2 || !/Week 1.*PSC Self-Defense Program/.test(rows[0]) || !/Week 2.*Fist Strikes/.test(rows[1])) bad.push(label + ' quick rows ' + JSON.stringify(rows));
+  await page.screenshot({ path: OUT + label + '-7-quick.png' });
+  await button('Add more picks');
+  if (await menu.locator('.qp[aria-pressed="false"]:disabled').count() !== 3) bad.push(label + ' quick picks open with 2 weeks used');
+  await stayBtn('3 weeks').click();
+  await menu.locator('.qp', { hasText: 'Strikes and Kicks form' }).click();
+  if (await stayBtn('2 weeks').isEnabled()) bad.push(label + ' 2 weeks enabled with 3 weeks used');
+  await button('Book my 3 weeks');
+  await page.fill('#planName', 'Quick Person'); await page.fill('#planEmail', 'quick.person@gmail.com');
+  await menu.locator('button[type=submit]').click();
+  await page.waitForTimeout(1500);
+  if (!posted || !/Week 1: Quick pick: PSC Self-Defense Program\nWeek 2: Quick pick: Strikes and Kicks form\nWeek 3: Fist Strikes \(Strikes\), Elbow \(Strikes\), Ridge Hand \(Strikes\)/.test(posted.message)) bad.push(label + ' quick posted ' + JSON.stringify(posted && posted.message));
+  if (!checkout || !/src=ricktew-plan&weeks=3&cur=thb$/.test(checkout)) bad.push(label + ' quick checkout ' + checkout);
+  if (label === 'desktop') console.log(posted && posted.message);
   await page.goto(BASE + '/hininja/');
   const ov = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   if (ov > 0) bad.push(label + ' overflow ' + ov);

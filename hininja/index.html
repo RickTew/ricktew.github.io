@@ -328,6 +328,17 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 .tile img{width:52px;height:52px}
 .tile b{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:13.5px;line-height:1.15;letter-spacing:.03em;text-transform:uppercase;color:var(--sea-d);overflow-wrap:break-word;max-width:100%}
 @media (max-width:520px){ .tiles{gap:6px} .tile{padding:7px 3px} .tile img{width:44px;height:44px} .tile b{font-size:12px} }
+/* the popular quick picks, one fills a week (Rick, 27 Oct 2026), kept small so the menu stays short */
+.qp-l{margin-top:14px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.qps{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:8px}
+.qp{display:flex;align-items:center;gap:10px;text-align:left;font:inherit;font-size:14px;font-weight:700;line-height:1.25;color:var(--ink);background:#fff;border:2px solid var(--mist2);border-radius:12px;padding:7px 10px 7px 7px;cursor:pointer}
+.qp img{width:34px;height:34px;flex:none}
+.qp:hover:not(:disabled){border-color:var(--ink)}
+.qp[aria-pressed="true"]{background:var(--hi);border-color:var(--ink)}
+.qp:disabled{opacity:.45;cursor:not-allowed}
+.qp:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
+@media (max-width:520px){ .qps{gap:6px} .qp{font-size:13px;gap:7px;padding:6px 8px 6px 6px} .qp img{width:30px;height:30px} }
+.chip.quick{background:var(--hi);border-color:var(--ink);color:var(--ink)}
 .tile-n{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:var(--sea);color:#fff;font-size:12px;font-weight:700;line-height:22px;text-align:center}
 .picks{list-style:none;margin-top:14px;display:grid;gap:8px}
 .pick{display:block;width:100%;text-align:left;font:inherit;cursor:pointer;background:#fff;border:2px solid var(--mist2);border-radius:14px;padding:11px 14px;color:var(--ink);transition:border-color .12s ease,background .12s ease}
