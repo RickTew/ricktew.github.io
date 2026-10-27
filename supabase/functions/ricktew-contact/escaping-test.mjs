@@ -40,13 +40,19 @@ globalThis.fetch = async (url, opts) => {
     sent = JSON.parse(opts.body);
     return { ok: true, status: 200, text: async () => 'stubbed' };
   }
-  if (String(url).includes('/rest/v1/aininja_intake_gate')) {
+  // The database function aininja_gate_hit (27 Oct 2026), the same rules in
+  // the same order: visitor hour, day ceiling, then record, then held.
+  if (String(url).includes('/rest/v1/rpc/aininja_gate_hit')) {
     if (gateDown) return { ok: false, status: 500, headers: new Headers(), text: async () => 'down' };
-    if (opts && opts.method === 'POST') { gate.push({ ...JSON.parse(opts.body), at: new Date().toISOString() }); return { ok: true, status: 201, text: async () => '' }; }
-    const q = new URL(String(url)).searchParams; let list = gate;
-    for (const col of ['door', 'ip_hash']) if (q.get(col)) list = list.filter(r => 'eq.' + r[col] === q.get(col));
-    if (q.get('at')) list = list.filter(r => r.at > q.get('at').slice(3));
-    return { ok: true, status: 200, headers: new Headers({ 'content-range': `0-0/${list.length}` }), text: async () => '[]' };
+    const a = JSON.parse(opts.body), now = Date.now();
+    const recent = (r, ms) => now - Date.parse(r.at) < ms;
+    const answer = (v) => ({ ok: true, status: 200, json: async () => v, text: async () => JSON.stringify(v) });
+    const mine = gate.filter(r => r.door === a.p_door);
+    if (mine.filter(r => r.ip_hash === a.p_ip_hash && recent(r, 3600e3)).length >= a.p_hour) return answer('visitor');
+    const dayN = mine.filter(r => recent(r, 86400e3)).length;
+    if (dayN >= a.p_day) return answer('day');
+    gate.push({ door: a.p_door, ip_hash: a.p_ip_hash, intake: a.p_intake, at: new Date().toISOString() });
+    return answer(a.p_soft_day > 0 && dayN >= a.p_soft_day ? 'held' : 'ok');
   }
   return realFetch(url, opts);
 };
@@ -204,20 +210,48 @@ console.log('-- the send cap, through the real handler');
   const other = await post(...people[1], '6.6.6.6');
   say(other.mailed && other.drops.length === 0, 'another visitor in the same hour is still mailed', other);
 
-  // A busy day: a hundred messages already in, from anyone.
-  while (gate.length < 100) gate.push({ door: 'mailbox', ip_hash: 'f'.repeat(32), intake: '', at: new Date().toISOString() });
+  // A busy day: a hundred messages already in, from anyone. The 101st still
+  // reaches Rick, marked so the Ninja Agent sends nothing to the typed address.
+  const fill = (door, n) => { while (gate.filter(r => r.door === door).length < n) gate.push({ door, ip_hash: 'f'.repeat(32), intake: '', at: new Date().toISOString() }); };
+  fill('mailbox', 100);
   const late = await post(...people[0], '5.5.5.5');
-  say(!late.mailed && late.drops.length === 1 && late.drops[0].includes('"reason":"rate_day"'), 'the 101st message of the day is dropped like an acceptance', late);
+  const lateMail = sent;
+  say(late.mailed && late.drops.length === 0 && lateMail.headers && lateMail.headers['Auto-Submitted'] === 'auto-generated' && lateMail.headers['X-Mailbox-Held'] === 'day' && /Held: More than 100/.test(lateMail.text),
+    'the 101st message of the day reaches Rick marked Auto-Submitted and Held, so the Ninja Agent does not reply', { late, headers: lateMail && lateMail.headers });
+  const early = await post(...people[1], '5.5.5.6');
+  say(early.mailed && sent.headers && sent.headers['X-Mailbox-Held'] === 'day', 'the 102nd is held the same way', sent && sent.headers);
+  fill('mailbox', 300);
+  const over = await post(...people[0], '5.5.5.7');
+  say(!over.mailed && over.drops.length === 1 && over.drops[0].includes('"reason":"rate_day"') && over.drops[0].includes('Interested'),
+    'past three hundred in a day: dropped like an acceptance, the whole message in the drop line', over);
+  // A full mailbox door never silences a Paid press: notices count apart.
+  {
+    sent = null;
+    const r = await handler(new Request('https://x/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Origin: 'https://ricktew.com', 'x-forwarded-for': '5.5.5.8' },
+      body: JSON.stringify({ name: 'Somchai Prasert', email: 'somchai.p@gmail.com', subject: 'paid', sku: 'AIN-MAMAMIA', message: 'Paid 6,999 baht by PromptPay just now. Baby name Mali.', website: '', elapsedMs: 30000, source: '' }),
+    }));
+    say(r.status === 200 && sent && /^Paid PromptPay AIN-MAMAMIA/.test(sent.subject) && gate.some(g => g.door === 'notice'),
+      'with the mailbox door full, a Paid press still reaches Rick (door notice)', sent && sent.subject);
+  }
   // Rows from another door never count against the mailbox.
   gate.length = 0;
   for (let i = 0; i < 120; i++) gate.push({ door: 'upload', ip_hash: 'e'.repeat(32), intake: 'x', at: new Date().toISOString() });
   const mixed = await post(...people[0], '4.4.4.4');
-  say(mixed.mailed && mixed.drops.length === 0, 'upload rows in the same table do not count against the mailbox', mixed);
+  say(mixed.mailed && mixed.drops.length === 0 && !(sent.headers && sent.headers['Auto-Submitted']), 'upload rows in the same table do not count against the mailbox', mixed);
 
+  // An unreadable count fails closed: no mail, the whole message in the log.
   gateDown = true;
   const down = await post(...people[0], '3.3.3.3');
-  say(down.mailed && down.drops.length === 1 && down.drops[0].includes('"reason":"gate_unavailable"'), 'gate table down: the message is still mailed, and the log says so', down);
+  say(!down.mailed && down.status === 200 && down.body === '{"ok":true}' && down.drops.length === 1 && down.drops[0].includes('"reason":"gate_unavailable"') && down.drops[0].includes('Interested'),
+    'gate table down: dropped like an acceptance, no mail, the whole message in the drop line', down);
   gateDown = false;
+
+  // An oversized body cannot write itself into the log whole.
+  const huge = await post('Somchai', 'somchai.p@gmail.com', 'x'.repeat(200000), '3.3.3.4');
+  say(!huge.mailed && huge.drops.length === 1 && huge.drops[0].includes('"reason":"too_long"') && huge.drops[0].length <= 20000 + 40,
+    'a 200,000-character message: dropped, and the drop line is cut at 20,000', huge.drops[0] && huge.drops[0].length);
 }
 
 // ---- The PromptPay Paid press (17 Oct 2026) ----

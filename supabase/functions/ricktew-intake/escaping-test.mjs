@@ -9,6 +9,8 @@ const rows = [];
 let drops = [];
 const gate = [];      // the upload gate table (9 Oct 2026)
 let gateDown = false;
+const gateCalls = []; // what the endpoint asked the database function
+let bucketBytes = 0;  // what the bucket holds, as the database function reads it
 const origLog = console.log;
 console.log = (...a) => { if (String(a[0]).startsWith('ricktew-intake drop')) drops.push(a.join(' ')); else origLog(...a); };
 
@@ -31,17 +33,22 @@ globalThis.fetch = async (url, opts) => {
     return { ok: true, status: 200, json: async () => ({ signedURL: `/object/sign/aininja-intake/${path}?token=SIGNED` }) };
   }
   if (u.includes('/storage/v1/object/aininja-intake/')) { stored[u.split('/object/aininja-intake/')[1]] = opts.body; return { ok: true, status: 200, text: async () => '' }; }
-  if (u.includes('/rest/v1/aininja_intake_gate')) {
+  // The database function aininja_gate_hit (27 Oct 2026), the same rules in
+  // the same order: visitor hour, sheet, day ceiling, bucket, record, held.
+  if (u.includes('/rest/v1/rpc/aininja_gate_hit')) {
     if (gateDown) return { ok: false, status: 500, headers: new Headers(), text: async () => 'down' };
-    const method = (opts && opts.method) || 'GET';
-    if (method === 'POST') { gate.push({ ...JSON.parse(opts.body), at: new Date().toISOString() }); return { ok: true, status: 201, text: async () => '' }; }
-    if (method === 'DELETE') return { ok: true, status: 204, text: async () => '' };
-    const q = new URL(u).searchParams; let list = gate;
-    if (q.get('door')) list = list.filter(r => 'eq.' + r.door === q.get('door'));
-    if (q.get('ip_hash')) list = list.filter(r => 'eq.' + r.ip_hash === q.get('ip_hash'));
-    if (q.get('intake')) list = list.filter(r => 'eq.' + r.intake === q.get('intake'));
-    if (q.get('at')) list = list.filter(r => r.at > q.get('at').slice(3));
-    return { ok: true, status: 200, headers: new Headers({ 'content-range': `0-0/${list.length}` }), text: async () => '[]' };
+    const a = JSON.parse(opts.body), now = Date.now();
+    const recent = (r, ms) => now - Date.parse(r.at) < ms;
+    const answer = (v) => ({ ok: true, status: 200, json: async () => v, text: async () => JSON.stringify(v) });
+    gateCalls.push(a);
+    const mine = gate.filter(r => r.door === a.p_door);
+    if (mine.filter(r => r.ip_hash === a.p_ip_hash && recent(r, 3600e3)).length >= a.p_hour) return answer('visitor');
+    if (a.p_sheet > 0 && mine.filter(r => r.intake === a.p_intake).length >= a.p_sheet) return answer('sheet');
+    const dayN = mine.filter(r => recent(r, 86400e3)).length;
+    if (dayN >= a.p_day) return answer('day');
+    if (a.p_bucket_bytes > 0 && bucketBytes >= a.p_bucket_bytes) return answer('full');
+    gate.push({ door: a.p_door, ip_hash: a.p_ip_hash, intake: a.p_intake, at: new Date().toISOString() });
+    return answer(a.p_soft_day > 0 && dayN >= a.p_soft_day ? 'held' : 'ok');
   }
   if (u.includes('/rest/v1/aininja_intake')) { rows.push(JSON.parse(opts.body)); return { ok: true, status: 201, text: async () => '' }; }
   throw new Error('unexpected fetch ' + u);
@@ -212,6 +219,7 @@ await dropCase('bad email', b => { b.answers.email = 'not-an-address'; }, 'bad_c
   // one visitor, many sheets: 30 an hour, then 429
   let okCount = 0, last = null;
   for (let i = 0; i < 31; i++) { last = await post(up('visitor' + String(i).padStart(14, '0')), 'https://ricktew.com', '9.9.9.9'); if (last.status === 200) okCount++; }
+  for (let i = gate.length - 1; i >= 0; i--) if (gate[i].door === 'upload' && gate[i].intake.startsWith('visitor')) gate.splice(i, 1);
   const lb = await last.json();
   checks.push(['gate: one visitor gets 30 upload addresses an hour, the 31st is a 429', okCount === 30 && last.status === 429 && lb.error === 'busy' && drops.some(d => d.includes('upload_limit') && d.includes('visitor'))]);
   // one sheet, many visitors: 24 files (LIMITS.files), then 429
@@ -219,9 +227,22 @@ await dropCase('bad email', b => { b.answers.email = 'not-an-address'; }, 'bad_c
   for (let i = 0; i < 25; i++) { sl = await post(up('sheetcap000000000000'), 'https://ricktew.com', '10.0.0.' + i); if (sl.status === 200) sheetOk++; }
   checks.push(['gate: one sheet gets 24 uploads, the 25th is a 429', sheetOk === 24 && sl.status === 429 && drops.some(d => d.includes('"gate":"sheet"'))]);
   checks.push(['gate: no raw IP is stored, only a 32-character hash', gate.length > 0 && gate.every(r => /^[0-9a-f]{32}$/.test(r.ip_hash)) && !JSON.stringify(gate).includes('9.9.9.9')]);
+  // The site's day: sixty addresses, then 429, whoever asks.
+  for (let i = gate.length - 1; i >= 0; i--) if (gate[i].door === 'upload') gate.splice(i, 1);
+  let dayOk = 0, dl = null;
+  for (let i = 0; i < 61; i++) { dl = await post(up('dayfill' + String(i).padStart(14, '0')), 'https://ricktew.com', '10.1.' + Math.floor(i / 20) + '.' + i); if (dl.status === 200) dayOk++; }
+  checks.push(['gate: the site gets 60 upload addresses a day, the 61st is a 429', dayOk === 60 && dl.status === 429 && drops.some(d => d.includes('"gate":"day"'))]);
+  for (let i = gate.length - 1; i >= 0; i--) if (gate[i].door === 'upload') gate.splice(i, 1);
+  // The bucket at its ceiling hands out no address.
+  drops = []; gateCalls.length = 0;
+  bucketBytes = 5 * 1024 ** 3;
+  const f = await post(up('bucketfull0000000000'), 'https://ricktew.com', '10.2.0.1');
+  checks.push(['gate: at 5 GB in the bucket, no address, a 429, the log says full', f.status === 429 && drops.some(d => d.includes('"gate":"full"')) && gateCalls[0] && gateCalls[0].p_bucket_bytes === 5 * 1024 ** 3]);
+  bucketBytes = 0;
   gateDown = true; drops = [];
   const c = await post(up('gatedown000000000000'), 'https://ricktew.com', '8.8.8.8');
-  checks.push(['gate: if the table is down, a real upload still gets its address, and the log says so', c.status === 200 && drops.some(d => d.includes('gate_unavailable'))]);
+  const cb = await c.json();
+  checks.push(['gate: if the table is down, no address is handed out (fails closed), and the log says so', c.status === 503 && !cb.url && drops.some(d => d.includes('gate_unavailable') && d.includes('"door":"upload"'))]);
   gateDown = false;
 }
 
@@ -240,15 +261,25 @@ await dropCase('bad email', b => { b.answers.email = 'not-an-address'; }, 'bad_c
   checks.push(['cap: one visitor, three sends in an hour each send both mails', sent.slice(0, 3).every(n => n === 2)]);
   checks.push(['cap: the fourth is dropped like an acceptance, nothing sent, answers in the drop line', sent[3] === 0 && drops.some(d => d.includes('"reason":"rate_visitor"') && d.includes('Answer my bookings.'))]);
   checks.push(['cap: submit rows carry door submit and a hash, never the raw IP', gate.filter(r => r.door === 'submit').every(r => /^[0-9a-f]{32}$/.test(r.ip_hash)) && !JSON.stringify(gate).includes('11.11.11.11')]);
-  checks.push(['cap: upload rows do not count against sends (55+ upload rows already in the table)', gate.filter(r => r.door === 'upload').length > 50 && sent[0] === 2]);
+  for (let i = 0; i < 55; i++) gate.push({ door: 'upload', ip_hash: 'e'.repeat(32), intake: 'x', at: new Date().toISOString() });
+  { const m0 = mails.length; await post({ ...sheet, intake: 'sendcap0000000000002' }, 'https://ricktew.com', '11.11.11.12'); sent.push(mails.length - m0); }
+  checks.push(['cap: upload rows do not count against sends (55 upload rows in the table)', gate.filter(r => r.door === 'upload').length >= 55 && sent[4] === 2]);
   before = mails.length; drops = [];
   while (submits() < 50) gate.push({ door: 'submit', ip_hash: 'f'.repeat(32), intake: 'x', at: new Date().toISOString() });
   const late = await post(sheet, 'https://ricktew.com', '12.12.12.12');
-  checks.push(['cap: the 51st send of the day is dropped like an acceptance', late.status === 200 && (await late.text()) === '{"ok":true}' && mails.length === before && drops.some(d => d.includes('"reason":"rate_day"'))]);
+  const lateMails = mails.slice(before);
+  checks.push(['cap: the 51st send of the day still lands with Rick, marked held, and no receipt goes to the typed address',
+    late.status === 200 && (await late.text()) === '{"ok":true}' && lateMails.length === 1 && lateMails[0].subject.startsWith('AI Ninja Intake: ') &&
+    lateMails[0].headers['X-Intake-Held'] === 'receipt' && lateMails[0].text.startsWith('No receipt was sent to the client') &&
+    !lateMails.some(m => m.to.includes('sam@example.com')) && drops.some(d => d.includes('"reason":"receipt_held"'))]);
+  before = mails.length; drops = [];
+  while (submits() < 150) gate.push({ door: 'submit', ip_hash: 'f'.repeat(32), intake: 'x', at: new Date().toISOString() });
+  const over = await post(sheet, 'https://ricktew.com', '12.12.12.13');
+  checks.push(['cap: past 150 in a day the sheet is dropped like an acceptance, answers in the drop line', over.status === 200 && (await over.text()) === '{"ok":true}' && mails.length === before && drops.some(d => d.includes('"reason":"rate_day"') && d.includes('Answer my bookings.'))]);
   for (let i = gate.length - 1; i >= 0; i--) if (gate[i].door === 'submit') gate.splice(i, 1);
   gateDown = true; before = mails.length; drops = [];
-  await post(sheet, 'https://ricktew.com', '13.13.13.13');
-  checks.push(['cap: gate table down, the sheet still goes through (both mails) and the log says so', mails.length === before + 2 && drops.some(d => d.includes('gate_unavailable') && d.includes('"door":"submit"'))]);
+  const down = await post(sheet, 'https://ricktew.com', '13.13.13.13');
+  checks.push(['cap: gate table down, the sheet is dropped like an acceptance (fails closed), answers in the drop line', down.status === 200 && (await down.text()) === '{"ok":true}' && mails.length === before && drops.some(d => d.includes('gate_unavailable') && d.includes('"door":"submit"') && d.includes('Answer my bookings.'))]);
   gateDown = false;
 }
 
@@ -292,7 +323,7 @@ await dropCase('bad email', b => { b.answers.email = 'not-an-address'; }, 'bad_c
   checks.push(['purchase: SKU, plan and order headers on the Ninja mail', nm && nm.headers['X-Intake-Sku'] === 'AIN-CONTACT-FORM' && nm.headers['X-Intake-Plan'] === 'we-run-it' && nm.headers['X-Intake-Order'] === ORDER]);
   checks.push(['purchase: the sheet says what was bought', nm && nm.text.includes(`Bought in the Shop: AIN-CONTACT-FORM, We run it (Stripe checkout ${ORDER})`)]);
   checks.push(['purchase: subject prefix and X-Intake-Id unchanged (TEWBEDO files on both)', nm && nm.subject.startsWith('AI Ninja Intake: ') && nm.headers['X-Intake-Id'] === ID]);
-  checks.push(['purchase: the receipt carries the same SKU', rc && rc.text.includes('filed with your order: AIN-CONTACT-FORM, We run it')]);
+  checks.push(['purchase: the receipt names the helper from the fixed list, no SKU, no order id', rc && rc.text.includes('filed with your order: Contact Form, We run it.') && !JSON.stringify(rc).includes(ORDER) && !JSON.stringify(rc).includes('AIN-CONTACT-FORM')]);
   checks.push(['purchase: intake.json keeps it, the table row does not (no column)', json.purchase && json.purchase.sku === 'AIN-CONTACT-FORM' && rows.length === 1 && !('purchase' in rows[0])]);
 
   before = mails.length;
@@ -304,6 +335,11 @@ await dropCase('bad email', b => { b.answers.email = 'not-an-address'; }, 'bad_c
   await post({ ...hostile, purchase: { sku: 'AIN-CUSTOMER-INBOX', plan: '<b>free</b>', order: 'cs_live_x"><img src=x>' } });
   [nm, rc] = [mails[before], mails[before + 1]];
   checks.push(['purchase: a bad plan or order is dropped, the SKU kept', nm && nm.headers['X-Intake-Sku'] === 'AIN-CUSTOMER-INBOX' && !nm.headers['X-Intake-Plan'] && !nm.headers['X-Intake-Order'] && nm.text.includes('Bought in the Shop: AIN-CUSTOMER-INBOX\n') && !/free<\/b>|cs_live_x/.test(JSON.stringify(nm) + JSON.stringify(rc))]);
+  // A SKU that fits the shape but is no Shop helper (the Dojo's probe, 26 Oct 2026).
+  before = mails.length;
+  await post({ ...hostile, purchase: { sku: 'CALL-18005550199-NOW', plan: '', order: ORDER } });
+  [nm, rc] = [mails[before], mails[before + 1]];
+  checks.push(['purchase: an unknown SKU stays in Rick\'s copy but the receipt says only "filed with your order"', nm && nm.text.includes('Bought in the Shop: CALL-18005550199-NOW') && rc && rc.text.includes('It is filed with your order.\n') && !JSON.stringify(rc).includes('18005550199') && !JSON.stringify(rc).includes(ORDER)]);
 }
 
 let bad = 0;

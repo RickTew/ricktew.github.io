@@ -22,7 +22,8 @@
 //   where event_message like '%ricktew-contact drop%'
 //
 // (Supabase dashboard -> Edge Functions -> ricktew-contact -> Logs.)
-// Read it monthly for the first quarter.
+// Supabase keeps these logs 7 days on Pro, so a drop not read within the
+// week is gone: read it weekly, never on a calendar longer than that.
 //
 // Secrets required. Set them with:
 //   supabase secrets set --project-ref <ref> CONTACT_TO=... CONTACT_FROM=...
@@ -192,21 +193,44 @@ function looksLikeEmail(s: string) {
 
 
 /** One line per dropped or unsent message, holding the whole thing, so a
- *  real person the gauntlet ate can still be answered. */
+ *  real person the gauntlet ate can still be answered. Cut at 20,000
+ *  characters like the Intake's: a real message (5,000 at most) always fits,
+ *  and an oversized body cannot write itself into the log whole. */
 function logDrop(reason: string, fields: Record<string, unknown>) {
-  console.log('ricktew-contact drop', JSON.stringify({ reason, ...fields }));
+  console.log('ricktew-contact drop', JSON.stringify({ reason, ...fields }).slice(0, 20000));
 }
 
-// ---- The send cap (16 Oct 2026, Rick's click after the Dojo's security pass) ----
-// Every accepted message draws the Ninja Agent's reply to the address typed,
+// ---- The send cap (16 Oct 2026; atomic since 27 Oct 2026, the Dojo's second pass) ----
+// Every accepted question draws the Ninja Agent's reply to the address typed,
 // so a script that got past the gauntlet could aim our own mail at any inbox.
-// One visitor gets five messages an hour, the whole site a hundred a day. The
-// counts live in the Intake's gate table under door 'mailbox': one row per
-// accepted message, a hashed visitor and the time. Never the raw IP: the hash
-// is keyed with the service key, so the table cannot be turned back into
-// addresses. The Intake's housekeeping deletes rows older than two days.
-const GATE = 'aininja_intake_gate';
-const CAP = { perVisitorHour: 5, perDay: 100 };
+// The counts live in the Intake's gate table, one row per accepted message, a
+// hashed visitor and the time. Never the raw IP: the hash is keyed with the
+// service key, so the table cannot be turned back into addresses.
+//
+// One call to the database function aininja_gate_hit counts and records the
+// row inside one transaction, under a lock per door, so a parallel burst
+// counts itself. (Until 27 Oct the count and the insert were separate calls,
+// and every request in a burst read the count from before the burst.)
+//
+// Two doors:
+//   'mailbox'  questions, which the Ninja Agent answers. Five an hour per
+//              visitor. The first hundred of the day go as usual; from the
+//              hundred and first to the three hundredth the mail still reaches
+//              Rick, marked Auto-Submitted, so the Ninja Agent sends nothing to
+//              the typed address and filling the day no longer silences a real
+//              message. Past three hundred, a drop.
+//   'notice'   paid, plan and site, which are marked Auto-Submitted anyway and
+//              never draw a reply. Ten an hour per visitor, three hundred a
+//              day, counted apart, so a flood of questions never silences a
+//              Paid press.
+// If the gate cannot be read the message is dropped like an acceptance, the
+// whole of it in the log: an unreadable count fails closed (the kata's rule).
+const CAPS = {
+  mailbox: { perVisitorHour: 5, replyDay: 100, perDay: 300 },
+  notice: { perVisitorHour: 10, replyDay: 0, perDay: 300 },
+};
+const NOTICES = ['paid', 'plan', 'site'];
+const HELD_LINE = 'More than 100 messages came in today, so the Ninja Agent did not answer this one. Answer it by hand if it is real.';
 
 function sb() {
   const url = Deno.env.get('SUPABASE_URL');
@@ -221,27 +245,20 @@ async function visitorHash(req: Request) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`${pepper}|${ip}`));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 32);
 }
-async function gateCount(filter: string) {
+async function passCap(door: 'mailbox' | 'notice', visitor: string): Promise<'ok' | 'held' | 'visitor' | 'day'> {
   const s = sb();
-  const res = await fetch(`${s.url}/rest/v1/${GATE}?select=id&door=eq.mailbox&${filter}&limit=1`, {
-    headers: { ...s.headers, Prefer: 'count=exact' },
+  const c = CAPS[door];
+  const res = await fetch(`${s.url}/rest/v1/rpc/aininja_gate_hit`, {
+    method: 'POST', headers: { ...s.headers, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      p_door: door, p_ip_hash: visitor, p_intake: '', p_hour: c.perVisitorHour,
+      p_sheet: 0, p_soft_day: c.replyDay, p_day: c.perDay, p_bucket_bytes: 0,
+    }),
   });
-  if (!res.ok) throw new Error(`gate count ${res.status}`);
-  const n = Number((res.headers.get('content-range') || '').split('/')[1]);
-  if (!Number.isFinite(n)) throw new Error('gate count unreadable');
-  return n;
-}
-async function passCap(visitor: string): Promise<'ok' | 'visitor' | 'day'> {
-  const now = Date.now();
-  if (await gateCount(`ip_hash=eq.${visitor}&at=gt.${new Date(now - 3600e3).toISOString()}`) >= CAP.perVisitorHour) return 'visitor';
-  if (await gateCount(`at=gt.${new Date(now - 86400e3).toISOString()}`) >= CAP.perDay) return 'day';
-  const s = sb();
-  const ins = await fetch(`${s.url}/rest/v1/${GATE}`, {
-    method: 'POST', headers: { ...s.headers, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-    body: JSON.stringify({ door: 'mailbox', ip_hash: visitor, intake: '' }),
-  });
-  if (!ins.ok) throw new Error(`gate insert ${ins.status}`);
-  return 'ok';
+  if (!res.ok) throw new Error(`gate ${res.status}`);
+  const answer = await res.json();
+  if (answer === 'ok' || answer === 'held' || answer === 'visitor' || answer === 'day') return answer;
+  throw new Error(`gate answer ${String(answer).slice(0, 40)}`);
 }
 
 /** "campaign 123, gclid Cj0..." for the mail; "0" is a click whose link had no cid. */
@@ -252,7 +269,7 @@ function adLine(f: { adCampaign: string; adClick: string }) {
 
 async function sendMail(f: {
   name: string; email: string; subjectLabel: string; message: string; sourceLabel: string; sku: string;
-  adCampaign: string; adClick: string; site: boolean; plan: boolean;
+  adCampaign: string; adClick: string; site: boolean; plan: boolean; held: boolean;
 }) {
   const key = Deno.env.get('RESEND_API_KEY');
   const to = Deno.env.get('CONTACT_TO');
@@ -279,6 +296,7 @@ async function sendMail(f: {
     row('Via', via) +
     row('Source', esc(f.sourceLabel)) +
     (f.adCampaign ? row('Ad', esc(adLine(f))) : '') +
+    (f.held ? row('Held', HELD_LINE) : '') +
     `</table>` +
     `<hr style="border:none;border-top:1px solid #ddd;margin:16px 0">` +
     `<div style="font-family:system-ui,sans-serif;font-size:15px;white-space:pre-wrap">` +
@@ -288,14 +306,18 @@ async function sendMail(f: {
   const text =
     `${f.site ? 'Place' : 'From'}: ${f.name}\n${f.email ? `Email: ${f.email}\n` : ''}About: ${f.subjectLabel}\n` +
     `Via: ${via}\nSource: ${f.sourceLabel}\n` +
-    (f.adCampaign ? `Ad: ${adLine(f)}\n` : '') + `\n${f.message}\n`;
+    (f.adCampaign ? `Ad: ${adLine(f)}\n` : '') + (f.held ? `Held: ${HELD_LINE}\n` : '') + `\n${f.message}\n`;
 
   // An ad lead is a real question, so it is NOT marked Auto-Submitted: the
   // Ninja Agent answers it like any other. The X-Ad headers only label it.
+  // A held question (past the day's hundred) IS marked, so the Ninja Agent
+  // sends nothing to the typed address; TEWBEDO's guard skips any mail
+  // carrying Auto-Submitted, and the thread waits for Rick.
   const headers: Record<string, string> = {
     ...(f.sku ? { 'Auto-Submitted': 'auto-generated', 'X-PromptPay-Sku': f.sku } : {}),
     ...(f.site ? { 'Auto-Submitted': 'auto-generated', 'X-Site-Find': 'bangkok' } : {}),
     ...(f.plan ? { 'Auto-Submitted': 'auto-generated', 'X-HI-Plan': 'hininja' } : {}),
+    ...(f.held ? { 'Auto-Submitted': 'auto-generated', 'X-Mailbox-Held': 'day' } : {}),
     ...(f.adCampaign ? { 'X-Ad-Campaign': f.adCampaign } : {}),
     ...(f.adClick ? { 'X-Ad-Click': f.adClick } : {}),
   };
@@ -420,21 +442,25 @@ Deno.serve(async (req) => {
   }
 
   // The cap counts only messages that passed every wall above, so a bot's
-  // rejected junk never uses up a real person's allowance. If the table
-  // cannot be read, the message goes ahead and the log says so: the cap is a
-  // wall against abuse, not a reason to lose a real lead.
+  // rejected junk never uses up a real person's allowance. The row is written
+  // before the send goes. If the gate cannot be read, the message is dropped
+  // like an acceptance with the whole of it in the log: a broken count must
+  // not open the door to mailing any address a stranger types.
+  let held = false;
   try {
-    const cap = await passCap(await visitorHash(req));
-    if (cap !== 'ok') {
+    const cap = await passCap(NOTICES.includes(subjectKey) ? 'notice' : 'mailbox', await visitorHash(req));
+    if (cap === 'visitor' || cap === 'day') {
       logDrop(cap === 'visitor' ? 'rate_visitor' : 'rate_day', seen);
       return json({ ok: true }, 200, origin);
     }
+    held = cap === 'held';
   } catch (e) {
-    logDrop('gate_unavailable', { name, email, error: e instanceof Error ? e.message : String(e) });
+    logDrop('gate_unavailable', { ...seen, error: e instanceof Error ? e.message : String(e) });
+    return json({ ok: true }, 200, origin);
   }
 
   try {
-    await sendMail({ name, email, subjectLabel, message, sourceLabel, sku: paidSku, adCampaign, adClick, site: subjectKey === 'site', plan: subjectKey === 'plan' });
+    await sendMail({ name, email, subjectLabel, message, sourceLabel, sku: paidSku, adCampaign, adClick, site: subjectKey === 'site', plan: subjectKey === 'plan', held });
   } catch (e) {
     // The mail pipe being down must never reach the visitor. They get the
     // same confirmation and the message survives in the log. Note the SDK

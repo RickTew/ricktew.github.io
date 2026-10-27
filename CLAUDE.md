@@ -862,15 +862,31 @@ full price cards until those left on 1 Oct 2026), `llms.txt`, and invite links.
   plus email with nothing to say is a silent drop. **The upload door has walls:**
   Origin required, the trap field rides along, and `public.aininja_intake_gate`
   (RLS on, no policies) caps 30 addresses an hour per visitor (a keyed hash,
-  never the IP), 24 per sheet, 300 a day; if the table is unreadable the upload
-  goes ahead and logs `gate_unavailable`. **The Send has a cap too (16 Oct
-  2026, Rick's click):** 3 accepted sheets an hour per visitor and 50 a day,
-  door `submit` in the same table (it has a `door` column since that day:
-  `upload`, `submit`, `mailbox`; each door counts only its own rows), checked
-  after every other wall and before anything is stored or mailed; over it is a
-  silent drop (`rate_visitor`, `rate_day`, the answers in the line). The
-  bucket's own size limit is 50 MB since the same day (it was 500 MB), the
-  same as the catalog. ricktew-intake v23; the escaping test is 81 checks.
+  never the IP), 24 per sheet, 60 a day for the whole site, and hands out none
+  once the bucket holds 5 GB (27 Oct 2026, after the Digital Dojo's second
+  security pass; the detail is in its private report); if the gate is unreadable
+  no address is handed out (a 503, `gate_unavailable`). **The Send has a cap too (16 Oct
+  2026, Rick's click):** 3 accepted sheets an hour per visitor, door `submit`
+  in the same table (it has a `door` column since that day: `upload`,
+  `submit`, `mailbox`, and `notice` since 27 Oct; each door counts only its
+  own rows), checked after every other wall and before anything is stored or
+  mailed. The site's first 50 sheets of the day get the receipt; from the 51st
+  to the 150th the sheet still lands with Rick, marked `X-Intake-Held: receipt`
+  with a line saying no receipt went out (`receipt_held` in the log); past 150,
+  or over the visitor's three, it is a silent drop (`rate_visitor`,
+  `rate_day`, the answers in the line); an unreadable gate is a silent drop
+  too. **Since 27 Oct 2026 every door counts and records in ONE call,** the
+  database function `public.aininja_gate_hit` (service role only), inside one
+  transaction under a lock per door: before that the count and the insert were
+  separate calls and a parallel burst passed them all (Poli M1; proven live the
+  same day: 40 requests at once for one sheet got exactly 24 addresses). The
+  receipt names a Shop helper only from the fixed list `SHOP_NAMES` (the
+  page's `SHOP` map: add a new one in both) and never repeats the order id,
+  which stays in Rick's copy. The bucket's own size limit is 50 MB since 16 Oct
+  (it was 500 MB), the same as the catalog; it has no type allowlist on
+  purpose (real clients' .numbers, .pages and .key files arrive typeless, and
+  the files are only ever opened by Rick from the signed links in his own
+  mail). ricktew-intake v31; the escaping test is 86 checks.
   First live run the same day: intake
   `o8faxgimwcqqbbm9p5lc`, a 6-second voice note (a song from Rick's Downloads
   through Chrome's fake microphone), both mails sent. The sweep takes
@@ -1038,17 +1054,31 @@ at the `ENDPOINT` line is the endpoint's only legitimate caller, and
 `llms.txt` points assistants at the tool, not the URL. Keep it that way: a
 new caller that posts from outside a browser is dropped silently.
 
-**The send cap (16 Oct 2026, Rick's click after the Dojo's security pass).**
-Every accepted message draws the Ninja Agent's reply to the address typed,
-so one visitor gets 5 messages an hour and the whole site 100 a day,
-counted in `public.aininja_intake_gate` under door `mailbox` (a keyed hash,
-never the IP) and only AFTER every other wall, so a bot's junk never uses up
-a person's allowance. Over the cap is a silent drop (`rate_visitor`,
-`rate_day`, the whole message in the line); if the table is unreadable the
-message goes ahead and logs `gate_unavailable`. ricktew-contact v26; the
-escaping test is 29 checks.
+**The send cap (16 Oct 2026, Rick's click after the Dojo's security pass;
+reworked 27 Oct 2026 after its second pass).** Every accepted question draws
+the Ninja Agent's reply to the address typed, so one visitor gets 5 questions
+an hour, counted in `public.aininja_intake_gate` under door `mailbox` (a
+keyed hash, never the IP) and only AFTER every other wall, so a bot's junk
+never uses up a person's allowance. The count and the row are one call to
+`public.aininja_gate_hit` (one transaction, a lock per door), so a parallel
+burst counts itself. The site's first 100 questions of the day go as usual;
+from the 101st to the 300th the mail still reaches Rick, marked
+`Auto-Submitted` and `X-Mailbox-Held: day` with a "Held" line, so the Ninja
+Agent sends nothing to the typed address (TEWBEDO's guard skips any mail
+carrying Auto-Submitted) and a filled day no longer silences real messages;
+past 300 it is a silent drop. Paid, plan and site messages are door `notice`
+(10 an hour per visitor, 300 a day), counted apart, so a flood of questions
+never silences a Paid press. Over a cap is a silent drop (`rate_visitor`,
+`rate_day`, the whole message in the line). **If the gate is unreadable the
+message is dropped too** (`gate_unavailable`, the whole message in the line):
+it fails closed, the kata's rule, because a broken count must not open the
+door to mailing any address a stranger types (until 27 Oct it went ahead).
+Drop lines are cut at 20,000 characters, like the Intake's. ricktew-contact
+v40; the escaping test is 57 checks.
 
-**Read the drop log monthly for the first quarter.** Supabase logs, filter
+**Read the drop log WEEKLY: Supabase keeps it 7 days on Pro** (it said
+"monthly for the first quarter" until 27 Oct 2026, which outlived the log
+by three weeks). Supabase logs, filter
 `event_message like '%ricktew-contact drop%'`. A rejected submission is
 deliberately indistinguishable from an accepted one, and a mail pipe that is
 down never reaches the visitor, so this log is the ONLY place a lost message

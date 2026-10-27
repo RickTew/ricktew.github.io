@@ -4,3 +4,8 @@
 
 # Supabase CLI scratch (project ref, version cache). Not source.
 supabase/.temp/
+
+# Env files never go in this PUBLIC repo. supabase/functions/ is where the
+# Supabase CLI looks for .env files by default (27 Oct 2026, Poli L7).
+.env
+.env.*

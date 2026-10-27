@@ -22,9 +22,11 @@
 //          public.aininja_intake, one mail carries the Markdown to the Ninja
 //          Agent's mailbox (CONTACT_TO, which TEWBEDO files as a ticket), and
 //          one receipt goes to the client listing what landed and the
-//          essential questions they skipped. Since 16 Oct 2026 one visitor
-//          gets three sends an hour and the whole site fifty a day; over that
-//          is a silent drop like every other wall.
+//          essential questions they skipped. One visitor gets three sends an
+//          hour (16 Oct 2026). Since 27 Oct 2026 the site's first fifty sheets
+//          of the day get a receipt; from the fifty-first to the hundred and
+//          fiftieth the sheet still lands with Rick but no receipt goes to the
+//          typed address; past that, a silent drop like every other wall.
 //
 // The question catalog is intake-questions.js beside this file, a COPY of
 // aininja/start/intake-questions.js made by deploy.sh. The endpoint accepts
@@ -71,14 +73,19 @@ const TABLE = 'aininja_intake';
 const LINK_DAYS = 30;
 const MIN_FILL_MS = 20000; // 56 questions. Nobody real finishes in twenty seconds.
 const MIN_QUICK_MS = 8000;  // the quick start: two fields and a note or a voice note.
-const GATE = 'aininja_intake_gate';
+const GATE = 'aininja_gate_hit'; // the database function over the table aininja_intake_gate
 // Upload walls (9 Oct 2026). A real sheet carries at most LIMITS.files files;
 // a person retrying a bad connection stays far under the hourly line.
-const UPLOADS = { perVisitorHour: 30, perDay: 300 };
+// 27 Oct 2026: each address can carry LIMITS.fileBytes and nothing empties the
+// bucket, so the day is sixty addresses (the most a day can add is about 3 GB)
+// and the bucket stops handing out addresses at 5 GB in all. Nine files had
+// arrived by then, 0.3 MB.
+const UPLOADS = { perVisitorHour: 30, perDay: 60, bucketBytes: 5 * 1024 ** 3 };
 // Send walls (16 Oct 2026, Rick's click after the Dojo's security pass): every
 // accepted sheet writes two files and a row and sends two mails, one of them to
 // the address typed. A real client sends once, twice with the quick start.
-const SUBMITS = { perVisitorHour: 3, perDay: 50 };
+// Past receiptDay the sheet still lands with Rick, without the receipt.
+const SUBMITS = { perVisitorHour: 3, receiptDay: 50, perDay: 150 };
 const MAX = { name: 100, email: 200, key: 80, fileName: 120, files: CATALOG.LIMITS.files };
 
 const ALLOWED_ORIGINS = [
@@ -143,6 +150,16 @@ function readPurchase(v: unknown): Purchase | null {
 }
 function purchaseLine(b: Purchase) {
   return `${b.sku}${b.plan ? ', ' + PLANS[b.plan] : ''}${b.order ? ' (Stripe checkout ' + b.order + ')' : ''}`;
+}
+/** The Shop helpers that send a buyer here, the page's SHOP map. Only these
+ *  names reach the receipt, which goes to an address a stranger typed: the
+ *  SKU there is a name from this list or nothing, and the order id stays in
+ *  Rick's copy (27 Oct 2026: a SKU checked for its shape only could carry a
+ *  stranger's words into the receipt). */
+const SHOP_NAMES: Record<string, string> = { 'AIN-CONTACT-FORM': 'Contact Form', 'AIN-CUSTOMER-INBOX': 'Customer Inbox' };
+function receiptPurchaseLine(b: Purchase) {
+  const name = SHOP_NAMES[b.sku];
+  return name ? `${name}${b.plan ? ', ' + PLANS[b.plan] : ''}` : '';
 }
 
 /** An intake id is minted in the browser (random, 20 lowercase alphanumerics)
@@ -212,8 +229,13 @@ async function insertRow(row: Record<string, unknown>) {
 // time. Never the raw IP: the hash is keyed with the service key, so the table
 // cannot be turned back into addresses. Rows older than two days are deleted.
 // Since 16 Oct 2026 the table has a door column: 'upload' here, 'submit' for
-// an accepted sheet, 'mailbox' for ricktew-contact's send cap. Each door
-// counts only its own rows.
+// an accepted sheet, 'mailbox' and 'notice' for ricktew-contact's send cap.
+// Each door counts only its own rows.
+// Since 27 Oct 2026 the count and the row are one call, the database function
+// aininja_gate_hit, inside one transaction under a lock per door, so a
+// parallel burst counts itself (until then every request in a burst read the
+// count from before it). If the gate cannot be read, the door stays shut: an
+// unreadable count fails closed.
 async function visitorHash(req: Request) {
   const ip = (req.headers.get('cf-connecting-ip') || req.headers.get('x-real-ip') ||
     (req.headers.get('x-forwarded-for') || '').split(',')[0] || '').trim() || 'unknown';
@@ -221,34 +243,29 @@ async function visitorHash(req: Request) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`${pepper}|${ip}`));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 32);
 }
-async function gateCount(filter: string) {
-  const s = sb();
-  const res = await fetch(`${s.url}/rest/v1/${GATE}?select=id&${filter}&limit=1`, {
-    headers: { ...s.headers, Prefer: 'count=exact' },
-  });
-  if (!res.ok) throw new Error(`gate count ${res.status}`);
-  const range = res.headers.get('content-range') || '';
-  const n = Number(range.split('/')[1]);
-  if (!Number.isFinite(n)) throw new Error('gate count unreadable');
-  return n;
-}
-type GateResult = 'ok' | 'visitor' | 'sheet' | 'day';
+type GateResult = 'ok' | 'held' | 'visitor' | 'sheet' | 'day' | 'full';
+const GATE_ANSWERS: GateResult[] = ['ok', 'held', 'visitor', 'sheet', 'day', 'full'];
+/** One call: count, record, and (inside the database function) delete rows
+ *  older than two days. 'held' is a submit past receiptDay; 'full' is the
+ *  bucket at its ceiling. */
 async function passGate(door: 'upload' | 'submit', visitor: string, intake: string): Promise<GateResult> {
-  const now = Date.now();
-  const hourAgo = new Date(now - 3600e3).toISOString(), dayAgo = new Date(now - 86400e3).toISOString();
-  const lim = door === 'upload' ? UPLOADS : SUBMITS, d = `door=eq.${door}`;
-  if (await gateCount(`${d}&ip_hash=eq.${visitor}&at=gt.${hourAgo}`) >= lim.perVisitorHour) return 'visitor';
-  if (door === 'upload' && await gateCount(`${d}&intake=eq.${intake}`) >= CATALOG.LIMITS.files) return 'sheet';
-  if (await gateCount(`${d}&at=gt.${dayAgo}`) >= lim.perDay) return 'day';
   const s = sb();
-  const ins = await fetch(`${s.url}/rest/v1/${GATE}`, {
-    method: 'POST', headers: { ...s.headers, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-    body: JSON.stringify({ door, ip_hash: visitor, intake }),
+  const up = door === 'upload';
+  const res = await fetch(`${s.url}/rest/v1/rpc/${GATE}`, {
+    method: 'POST', headers: { ...s.headers, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      p_door: door, p_ip_hash: visitor, p_intake: intake,
+      p_hour: up ? UPLOADS.perVisitorHour : SUBMITS.perVisitorHour,
+      p_sheet: up ? CATALOG.LIMITS.files : 0,
+      p_soft_day: up ? 0 : SUBMITS.receiptDay,
+      p_day: up ? UPLOADS.perDay : SUBMITS.perDay,
+      p_bucket_bytes: up ? UPLOADS.bucketBytes : 0,
+    }),
   });
-  if (!ins.ok) throw new Error(`gate insert ${ins.status}`);
-  // Housekeeping, best effort: nothing older than two days is kept.
-  fetch(`${s.url}/rest/v1/${GATE}?at=lt.${new Date(now - 2 * 86400e3).toISOString()}`, { method: 'DELETE', headers: s.headers }).catch(() => {});
-  return 'ok';
+  if (!res.ok) throw new Error(`gate ${res.status}`);
+  const answer = await res.json();
+  if (GATE_ANSWERS.includes(answer)) return answer;
+  throw new Error(`gate answer ${String(answer).slice(0, 40)}`);
 }
 
 // ---- The invite key ----
@@ -454,7 +471,7 @@ function receiptFirstName(name: string) {
 
 async function mailToNinja(p: {
   intake: string; name: string; email: string; business: string; key: KeyCheck; md: string;
-  files: (FileRef & { url: string | null })[]; purchase: Purchase | null;
+  files: (FileRef & { url: string | null })[]; purchase: Purchase | null; held: boolean;
 }) {
   const to = Deno.env.get('CONTACT_TO'); const from = Deno.env.get('CONTACT_FROM');
   if (!to || !from) throw new Error('mail_not_configured');
@@ -465,6 +482,7 @@ async function mailToNinja(p: {
   const html =
     `<div style="font-family:system-ui,sans-serif;font-size:14px">` +
     `<p>New client intake from ricktew.com/aininja/start/. The whole sheet is below as Markdown; the same text is stored as intake.md beside the recordings.</p>` +
+    (p.held ? `<p><b>No receipt was sent to the client:</b> more than ${SUBMITS.receiptDay} sheets came in today. Write to them by hand if this one is real.</p>` : '') +
     (links ? `<p><b>Recordings and files</b> (links good for ${LINK_DAYS} days):</p><ul>${links}</ul>` : `<p><b>No recordings or files were sent.</b></p>`) +
     `<hr style="border:none;border-top:1px solid #ddd;margin:16px 0">` +
     `<pre style="white-space:pre-wrap;font:13px/1.5 ui-monospace,Menlo,monospace">${esc(p.md)}</pre></div>`;
@@ -479,8 +497,10 @@ async function mailToNinja(p: {
       ...(p.purchase?.plan ? { 'X-Intake-Plan': p.purchase.plan } : {}),
       ...(p.purchase?.order ? { 'X-Intake-Order': p.purchase.order } : {}),
       'X-Intake-Key': p.key.status,
+      ...(p.held ? { 'X-Intake-Held': 'receipt' } : {}),
     },
-    html, text: p.md,
+    html,
+    text: (p.held ? `No receipt was sent to the client: more than ${SUBMITS.receiptDay} sheets came in today. Write to them by hand if this one is real.\n\n` : '') + p.md,
   });
 }
 
@@ -508,7 +528,7 @@ async function mailReceipt(p: {
   const text =
     `Hi ${first || 'there'},\n\n` +
     `Your intake landed: ${landed}. It is stored privately, and Rick picks it up from there.\n\n` +
-    (p.purchase ? `It is filed with your order: ${purchaseLine(p.purchase)}.\n\n` : '') +
+    (p.purchase ? (receiptPurchaseLine(p.purchase) ? `It is filed with your order: ${receiptPurchaseLine(p.purchase)}.\n\n` : `It is filed with your order.\n\n`) : '') +
     (missedText + noRec ? missedText + noRec + `\n\n` : '') +
     `What happens next: Rick reads the sheet and the recordings, then writes back with the first plan and the questions he still has.\n\n` +
     `AI Ninja\nricktew.com/aininja\n\n(This receipt was written from your own sheet, nothing more. Rick picks it up from there.)`;
@@ -516,7 +536,7 @@ async function mailReceipt(p: {
     `<div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.55;color:#101418">` +
     `<p>Hi ${esc(first || 'there')},</p>` +
     `<p>Your intake landed: ${esc(landed)}. It is stored privately, and Rick picks it up from there.</p>` +
-    (p.purchase ? `<p>It is filed with your order: ${esc(purchaseLine(p.purchase))}.</p>` : '') +
+    (p.purchase ? (receiptPurchaseLine(p.purchase) ? `<p>It is filed with your order: ${esc(receiptPurchaseLine(p.purchase))}.</p>` : `<p>It is filed with your order.</p>`) : '') +
     (p.quick ? '' : p.missed.length
       ? `<p>A few questions on the sheet are still open. Reply to this mail with the answers, or record a voice note and send it along:</p><ol>${p.missed.map(q => `<li>${esc(q.ask!)}</li>`).join('')}</ol>`
       : `<p>You answered every essential question. Thank you for the care.</p>`) +
@@ -565,10 +585,11 @@ Deno.serve(async (req) => {
       const gate = await passGate('upload', await visitorHash(req), intake);
       if (gate !== 'ok') { logDrop('upload_limit', { intake, gate }); return json({ error: 'busy', gate }, 429, origin); }
     } catch (e) {
-      // The gate is a wall against abuse, not a reason to lose a real client's
-      // voice note: if the table cannot be read, the upload goes ahead and the
-      // log says so.
-      logDrop('gate_unavailable', { intake, error: e instanceof Error ? e.message : String(e) });
+      // An unreadable gate hands out no address: this is the door that fills
+      // the storage every project shares. The page tells the client the
+      // upload did not finish and to try again.
+      logDrop('gate_unavailable', { intake, door: 'upload', error: e instanceof Error ? e.message : String(e) });
+      return json({ error: 'storage' }, 503, origin);
     }
     const name = safeFileName(str(p.name) || kind);
     const path = `${folder(intake)}/media/${Date.now().toString(36)}-${name}`;
@@ -612,14 +633,19 @@ Deno.serve(async (req) => {
   if (elapsedMs >= 0 && elapsedMs < (quick ? MIN_QUICK_MS : MIN_FILL_MS)) { logDrop('too_fast', { ...seen, elapsedMs, quick }); return json({ ok: true }, 200, origin); }
 
   // The send cap, counted only after every wall above, so rejected junk never
-  // uses up a real client's allowance. The drop line carries the answers, so a
-  // real sheet caught here can still be read. If the table cannot be read, the
-  // sheet goes ahead and the log says so.
+  // uses up a real client's allowance, and recorded before anything is sent.
+  // The drop line carries the answers, so a real sheet caught here can still
+  // be read. Past the day's receipts ('held') the sheet still lands with Rick
+  // and only the receipt to the typed address is skipped. If the gate cannot
+  // be read, the sheet is dropped like an acceptance, answers in the log.
+  let held = false;
   try {
     const gate = await passGate('submit', await visitorHash(req), intake);
-    if (gate !== 'ok') { logDrop(gate === 'visitor' ? 'rate_visitor' : 'rate_day', { ...seen, answers }); return json({ ok: true }, 200, origin); }
+    if (gate === 'held') held = true;
+    else if (gate !== 'ok') { logDrop(gate === 'visitor' ? 'rate_visitor' : 'rate_day', { ...seen, answers }); return json({ ok: true }, 200, origin); }
   } catch (e) {
-    logDrop('gate_unavailable', { ...seen, door: 'submit', error: e instanceof Error ? e.message : String(e) });
+    logDrop('gate_unavailable', { ...seen, door: 'submit', answers, error: e instanceof Error ? e.message : String(e) });
+    return json({ ok: true }, 200, origin);
   }
 
   const when = new Date();
@@ -655,15 +681,19 @@ Deno.serve(async (req) => {
     logDrop('row_failed', { ...seen, error: e instanceof Error ? e.message : String(e) });
   }
   try {
-    await mailToNinja({ intake, name, email, business, key, md, files: linked, purchase });
+    await mailToNinja({ intake, name, email, business, key, md, files: linked, purchase, held });
   } catch (e) {
     logDrop('unsent_ninja', { ...seen, error: e instanceof Error ? e.message : String(e), md });
   }
-  try {
-    const answered = Object.keys(answers).filter(k => !k.endsWith('_more') && !['name', 'email'].includes(k)).length;
-    await mailReceipt({ name, email, answered, files, missed, purchase, quick });
-  } catch (e) {
-    logDrop('unsent_receipt', { ...seen, error: e instanceof Error ? e.message : String(e) });
+  if (held) {
+    logDrop('receipt_held', seen);
+  } else {
+    try {
+      const answered = Object.keys(answers).filter(k => !k.endsWith('_more') && !['name', 'email'].includes(k)).length;
+      await mailReceipt({ name, email, answered, files, missed, purchase, quick });
+    } catch (e) {
+      logDrop('unsent_receipt', { ...seen, error: e instanceof Error ? e.message : String(e) });
+    }
   }
 
   return json({ ok: true }, 200, origin);
