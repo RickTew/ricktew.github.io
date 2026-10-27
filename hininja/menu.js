@@ -264,11 +264,11 @@
     root.textContent="";
     var hd;
     if(step==="menu"){
-      hd=head("Take the quiz","What do you want to learn?");
+      hd=head("Personalize your martial arts camp","What do you want to learn?");
       root.appendChild(hd.frag);
       /* two sentences at most in this box (Rick, 27 Oct 2026: "Max of two sentences on the right"); the
-         seminar line is the hero's, beside it */
-      root.appendChild(el("p","mc-p","Pick 5 things, from any area. Then you choose how long you stay."));
+         workshop line is the hero's, beside it; "Pick 5 Tactics" and the kicker are his, 27 Oct ("it is not a quiz") */
+      root.appendChild(el("p","mc-p","Pick 5 tactics. Then you choose how long you stay."));
       var tiles=el("div","tiles");
       MENU.forEach(function(c){
         var picked=plan.picks.filter(function(id){ return byId[id].cat===c; }).length;
@@ -333,7 +333,7 @@
       var get=el("ul","mc-get");
       /* short ticks, not sentences (Rick's pick "Short ticks", 27 Oct 2026); the times, who teaches
          and the dates are on the page below, in When and How */
-      ["The Sensei Seminar, built from the group's picks",
+      ["A private group workshop, built from everyone's picks",
        "An optional evening review class",
        "WinJitsu coaching",
        "A dorm bed if you need one",
@@ -422,13 +422,6 @@
     return f;
   }
 
-  /* "Take the quiz" (Rick, 25 Oct: "might need to start with take the quiz"): the menu comes into
-     view with its first step and focus on its heading */
-  var tq=document.getElementById("takeQuiz");
-  if(tq) tq.addEventListener("click",function(){
-    if(step!=="menu"){ step="menu"; render(false); }
-    setTimeout(function(){ var h=root.querySelector(".mc-h"); if(h) h.focus({preventScroll:true}); },400);
-  });
   [].forEach.call(document.querySelectorAll("a[data-stay]"),function(a){
     a.addEventListener("click",function(){
       var w=Number(a.getAttribute("data-stay"));
