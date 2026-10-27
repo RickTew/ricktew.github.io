@@ -320,14 +320,15 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 .mc-back{margin-bottom:10px;font:inherit;font-size:14.5px;font-weight:700;color:var(--sea);background:none;border:0;padding:4px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .mc-back:focus-visible,.tile:focus-visible,.pick:focus-visible,.chip:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
 /* every tile the same height, the words at the top (Rick, 25 Oct: "these should all be the same height") */
-.tiles{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:10px}
-.tile{position:relative;display:flex;flex-direction:column;justify-content:flex-start;text-align:left;font:inherit;cursor:pointer;background:var(--mist);border:2px solid var(--mist2);border-radius:12px;padding:9px 12px;color:var(--ink);transition:border-color .12s ease,box-shadow .12s ease}
+/* four across, an icon over the name (27 Oct 2026, Rick: "shorten the height of the ninja menu ... don't list
+   stances but show an image icon instead"); the count of picks sits on the corner */
+.tiles{margin-top:14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:1fr;gap:8px}
+.tile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;text-align:center;font:inherit;cursor:pointer;background:var(--mist);border:2px solid var(--mist2);border-radius:12px;padding:8px 4px;color:var(--ink);transition:border-color .12s ease,box-shadow .12s ease}
 .tile:hover{border-color:var(--sea);box-shadow:0 8px 20px rgba(16,20,24,.12)}
-.tile b{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:17px;letter-spacing:.04em;text-transform:uppercase;color:var(--sea-d)}
-.tile small{display:block;margin-top:1px;font-size:12.5px;line-height:1.3;color:var(--muted)}
-/* smaller buttons (Rick, 26 Oct 2026: "the ninja menu buttons are TOO big"): on a phone the name alone */
-@media (max-width:520px){ .tiles{gap:8px} .tile small{display:none} .tile b{font-size:16px} }
-.tile-n{display:block;margin-top:6px;font-size:12.5px;font-weight:700;color:var(--sea)}
+.tile img{width:52px;height:52px}
+.tile b{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:13.5px;line-height:1.15;letter-spacing:.03em;text-transform:uppercase;color:var(--sea-d);overflow-wrap:break-word;max-width:100%}
+@media (max-width:520px){ .tiles{gap:6px} .tile{padding:7px 3px} .tile img{width:44px;height:44px} .tile b{font-size:12px} }
+.tile-n{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:var(--sea);color:#fff;font-size:12px;font-weight:700;line-height:22px;text-align:center}
 .picks{list-style:none;margin-top:14px;display:grid;gap:8px}
 .pick{display:block;width:100%;text-align:left;font:inherit;cursor:pointer;background:#fff;border:2px solid var(--mist2);border-radius:14px;padding:11px 14px;color:var(--ink);transition:border-color .12s ease,background .12s ease}
 .pick:hover:not(:disabled){border-color:var(--sea)}

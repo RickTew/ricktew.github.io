@@ -290,10 +290,15 @@
       var tiles=el("div","tiles");
       MENU.forEach(function(c){
         var picked=plan.picks.filter(function(id){ return byId[id].cat===c; }).length;
+        /* an icon from the Home Study Program's yellow belt set (Level_1complete.ai) in place of the
+           technique list, so the menu is shorter (Rick, 27 Oct 2026: "Is there a way to shorten the height of
+           the ninja menu? Maybe don't list stances but show an image icon instead. We actually made a bunch
+           for HSP a long time ago") */
         var b=btn("tile",null,function(){ openCat=c; go("pick"); });
+        var im=el("img"); im.src="/hininja/img/menu/"+c.id+".webp"; im.alt=""; im.width=52; im.height=52;
+        b.appendChild(im);
         b.appendChild(el("b",null,c.name));
-        b.appendChild(el("small",null,c.items.slice(0,2).map(function(it){ return it[0]; }).join(", ")+" and more"));
-        if(picked) b.appendChild(el("span","tile-n",picked+" picked"));
+        if(picked){ b.appendChild(el("span","tile-n",String(picked))).setAttribute("aria-hidden","true"); b.setAttribute("aria-label",c.name+", "+picked+" picked"); }
         tiles.appendChild(b);
       });
       root.appendChild(tiles);
