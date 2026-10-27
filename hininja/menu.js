@@ -172,9 +172,9 @@
   var BELTS=["","Yellow belt","Orange belt","Green belt","Blue belt","Red belt"];
   function levelText(it){ return it.level ? BELTS[it.level] : ""; }
 
-  var step="menu", openCat=null;
+  var step="menu", openCat=null, vidOpen=false;
   var draft={name:"", email:""}; /* what was typed in the form survives a re-render (a week added on the form step) */
-  function go(s,focus){ step=s; render(focus!==false); }
+  function go(s,focus){ step=s; if(s!=="menu") vidOpen=false; render(focus!==false); }
 
   /* the plan, week by week: picks fill the weeks in order, 5 a week */
   function tray(onBook){
@@ -269,6 +269,24 @@
       /* two sentences at most in this box (Rick, 27 Oct 2026: "Max of two sentences on the right"); the
          workshop line is the hero's, beside it; "Pick 5 Tactics" and the kicker are his, 27 Oct ("it is not a quiz") */
       root.appendChild(el("p","mc-p","Pick 5 tactics. Then you choose how long you stay."));
+      /* Vid's explainer of how to pick opens here, and plays only when pressed (Rick, 27 Oct 2026, when it sat
+         beside the menu: "need to remove this video from here as it looks weird ... If this is only how to
+         pick from the right then it can be a click to open in the ninja menu") */
+      if(!vidOpen){
+        root.appendChild(btn("mc-vid-b","Watch how to pick",function(){
+          vidOpen=true; render(false);
+          var v=root.querySelector(".mc-vid video");
+          if(v){ v.focus(); var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+        }));
+      } else {
+        var fig=el("figure","mc-vid"), v=el("video");
+        v.src="/hininja/video/ninja-menu.mp4?v=4"; v.poster="/hininja/video/ninja-menu-poster.webp?v=4";
+        v.controls=true; v.preload="none"; v.width=1080; v.height=1080;
+        v.setAttribute("playsinline",""); v.setAttribute("aria-label","How to pick from the menu");
+        fig.appendChild(v);
+        fig.appendChild(btn("mc-back","Close the video",function(){ vidOpen=false; render(false); var b=root.querySelector(".mc-vid-b"); if(b) b.focus(); }));
+        root.appendChild(fig);
+      }
       var tiles=el("div","tiles");
       MENU.forEach(function(c){
         var picked=plan.picks.filter(function(id){ return byId[id].cat===c; }).length;

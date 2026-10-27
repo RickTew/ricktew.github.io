@@ -166,8 +166,23 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 .partner b{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:22px;line-height:1.2}
 .partner p{margin-top:2px;font-size:15.5px;color:var(--ink2)}
 .partner a{display:inline-block;margin-top:6px;font-weight:700}
-/* WinJitsu, included (Rick, 25 Oct: "I don't see any of the winjitsu bonus stuff"), in the
-   AI Ninja blue so the mind half of the offer stands out */
+/* Why, in the AI Ninja blue: the reasons people come (Rick, 27 Oct 2026: "Why is to learn the martial
+   arts, learn a new skill on vacation, see Thailand or Samui get coaching or advice from someone with an
+   extensive been there done that background. Winjitsu is no in why but in the what as bonus"). WinJitsu
+   keeps the blue in What's bonus box (Rick, 25 Oct: "I don't see any of the winjitsu bonus stuff"). */
+.bonus{margin-top:18px;background:var(--sea-d);color:#fff;border-radius:20px;padding:24px 26px}
+@media (max-width:480px){ .bonus{padding:20px 16px} }
+.bonus h3{font-size:20px;color:#fff}
+.bonus>p{margin-top:8px;font-size:16px;color:#f0f6fc;max-width:62ch}
+.bonus .mind-grid{margin-top:16px}
+.mind-grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:960px){ .mind-grid.four{grid-template-columns:1fr 1fr} }
+@media (max-width:560px){ .mind-grid.four{grid-template-columns:1fr} }
+/* Where: the place first, then the two other ways (Rick, 27 Oct 2026: "the Where is Samui Thailand
+   (interested in a California U.S. Tew's Tour? Click here (for a future link) or simple place to stay
+   for a few days click nerdhostel.com"); until the tour has a page, its link fills the ask box */
+.alts{list-style:none;margin-top:14px;display:grid;gap:6px;font-size:16.5px;color:var(--ink2)}
+.alts a{font-weight:700}
 .mind{background:var(--sea-d);color:#fff}
 .mind h2{color:#fff}
 .mind .lead{color:#f0f6fc}
@@ -279,15 +294,23 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 
 /* The Ninja Menu (25 Oct 2026): the quiz in the hero. Text and photo on the left, the
    menu on the right; on a phone the menu comes straight after the headline. */
-.hero-grid{grid-template-areas:"text menu" "vid menu" "photo menu";grid-template-rows:auto auto 1fr;align-items:start;row-gap:26px}
+.hero-grid{grid-template-areas:"text menu" "how menu" "photo menu";grid-template-rows:auto auto 1fr;align-items:start;row-gap:26px}
 .hero-text{grid-area:text}
 .hero-photo{grid-area:photo}
-/* Vid's explainer of the menu (26 Oct 2026; v4 27 Oct, nothing in it that might change, no jargon, the cover shows the
-   menu): plays only when pressed; on a phone it comes after the menu */
-.hero-vid{grid-area:vid}
-.hero-vid video{width:100%;height:auto;aspect-ratio:1/1;border-radius:16px;background:var(--mist);border:2px solid var(--mist2)}
+/* How the program works, in icons (27 Oct 2026, Rick, on the menu video that sat here: "need to remove this
+   video from here as it looks weird. What is supposed to be here is the how it works for the program using
+   icons"). The video now opens from inside the menu. On a phone this comes after the menu. */
+.hero-how{grid-area:how}
+.how-h{font-size:24px}
+.how{list-style:none;margin-top:14px;display:grid;gap:14px}
+.how li{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:start}
+.how li:not(:last-child)::before{content:"";position:absolute;left:21px;top:44px;bottom:-14px;width:2px;background:var(--mist2)}
+.how-i{width:44px;height:44px;border-radius:50%;background:var(--hi);display:grid;place-items:center;color:var(--ink)}
+.how-i svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.how-t{padding-top:1px;font-size:15.5px;line-height:1.45;color:var(--ink2)}
+.how-t b{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
 .menu-card{grid-area:menu}
-@media (max-width:860px){ .hero-grid{grid-template-areas:"text" "menu" "vid" "photo";grid-template-rows:none} }
+@media (max-width:860px){ .hero-grid{grid-template-areas:"text" "menu" "how" "photo";grid-template-rows:none} }
 .menu-card{background:#fff;border:2px solid var(--mist2);border-radius:22px;padding:24px;box-shadow:0 24px 54px rgba(16,20,24,.14)}
 @media (max-width:480px){ .menu-card{padding:18px 14px} }
 .mc-k{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--sea)}
@@ -349,6 +372,13 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 .mc-get li{position:relative;padding-left:27px;font-size:15px;line-height:1.45;color:var(--ink2)}
 .mc-get li::before{content:"";position:absolute;left:0;top:.2em;width:17px;height:17px;border-radius:50%;background:var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/17px no-repeat}
 .mc-any{margin-top:6px;font-size:14.5px;font-weight:700;color:var(--ink)}
+.mc-vid-b{margin-top:12px;display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:14.5px;font-weight:700;color:var(--ink);background:#fff;border:2px solid var(--mist2);border-radius:999px;padding:5px 14px 5px 6px;cursor:pointer}
+.mc-vid-b::before{content:"";width:22px;height:22px;border-radius:50%;background:var(--sea) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4 2.2l5.6 3.8L4 9.8z' fill='%23fff'/%3E%3C/svg%3E") center/12px no-repeat}
+.mc-vid-b:hover{border-color:var(--sea)}
+.mc-vid-b:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
+.mc-vid{margin-top:12px}
+.mc-vid video{width:100%;height:auto;aspect-ratio:1/1;border-radius:14px;background:var(--mist);border:2px solid var(--mist2)}
+.mc-vid .mc-back{margin:6px 0 0}
 /* the pick list's bar stays at the bottom of the screen while the list scrolls (25 Oct round:
    "my Ninja Week box sits below them all") */
 .mc-bar{position:sticky;bottom:10px;z-index:5;margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:2px solid var(--ink);border-radius:14px;padding:8px 8px 8px 14px;box-shadow:0 10px 28px rgba(16,20,24,.18)}
@@ -410,10 +440,16 @@ footer a:hover{color:var(--sea)}
     <div class="menu-card" id="menu">
       <noscript><p>The Ninja Menu needs JavaScript. <a href="#ask">Ask Rick</a> what you want to learn instead.</p></noscript>
     </div>
-    <figure class="hero-vid">
-      <video src="/hininja/video/ninja-menu.mp4?v=4" poster="/hininja/video/ninja-menu-poster.webp?v=4" controls playsinline preload="none" width="1080" height="1080"></video>
-      <figcaption>How the Ninja Menu works</figcaption>
-    </figure>
+    <div class="hero-how">
+      <h2 class="how-h">How it works</h2>
+      <ol class="how">
+        <li><span class="how-i" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9.5 4V2.8h5V4M8.5 10.5l2 2 4.5-4.5M8.5 16.5h7"/></svg></span><span class="how-t"><b>Pick</b>Choose what you want to learn.</span></li>
+        <li><span class="how-i" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M7.5 14h3M7.5 17h3"/></svg></span><span class="how-t"><b>Book</b>Choose how long you stay, and book.</span></li>
+        <li><span class="how-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15.5l-8-4.5V5a1.5 1.5 0 0 0-3 0v6l-8 4.5v2l8-2.5V19l-2.5 1.5V22l4-1 4 1v-1.5L13 19v-4l8 2.5z"/></svg></span><span class="how-t"><b>Arrive</b>Free airport pick-up, and a dorm bed if you need one.</span></li>
+        <li><span class="how-i" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="7.5" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14.5 20a3.8 3.8 0 0 1 6.5-2.7"/></svg></span><span class="how-t"><b>Train</b>A private group workshop, built from everyone's picks.</span></li>
+        <li><span class="how-i" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.3"/><path d="M12 2.6v1.3M5.6 9H4.3M19.7 9h-1.3M7.5 4.5l.9.9M16.5 4.5l-.9.9M3 15.8c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1M3 19.8c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/></svg></span><span class="how-t"><b>Explore</b>The rest of the day is yours: game, read, or see the island.</span></li>
+      </ol>
+    </div>
     <figure class="hero-photo">
       <img src="/aininja/assets/story/ninja/world/asia-ninjagym.webp" alt="Adults, men and women, training on red mats inside NinjaGym on Koh Samui" width="640" height="335">
       <figcaption>Inside NinjaGym on Koh Samui</figcaption>
@@ -447,7 +483,6 @@ footer a:hover{color:var(--sea)}
         <ul>
           <li>The Sensei Seminar: a private group workshop Rick builds from the group's picks, 8 to 10 in the morning, Monday to Friday.</li>
           <li>An optional review class, 8 to 10 in the evening, to practice the morning.</li>
-          <li>WinJitsu, Rick's mental martial art: coaching for focus, goals and life. Training and coaching, a full mind-body program.</li>
           <li>Nerdy ninja conversations, a game room, and the island in between.</li>
           <li>Free pick-up from Samui Airport.</li>
         </ul>
@@ -461,6 +496,15 @@ footer a:hover{color:var(--sea)}
           <li>No experience needed. Trained before? Welcome too.</li>
         </ul>
       </div>
+      </div>
+    </div>
+    <div class="bonus">
+      <h3>Bonus: WinJitsu</h3>
+      <p>Rick's mental martial art: coaching for focus, goals and life. It comes with every stay.</p>
+      <div class="mind-grid">
+        <div><span>Coaching</span><b>WinJitsu with Rick</b><p>Focus, goals and the self-doubt that holds you back, outside class.</p></div>
+        <div><span>The books</span><b>Five WinJitsu books</b><p>Rick's own series, part of the belts from orange on.</p></div>
+        <div><span>At home</span><b>A free month of WinJitsu.com</b><p>The WinJitsu app, so the training comes home with you.</p></div>
       </div>
     </div>
     <div class="teach-row">
@@ -504,7 +548,7 @@ footer a:hover{color:var(--sea)}
 <section class="band" id="day">
   <div class="wrap">
     <div class="k">When</div>
-    <h2>A day on Samui</h2>
+    <h2>The dates and the schedule.</h2>
     <p class="lead">Start any day from 15 January 2027: classes run all year, Monday to Friday. The next group starts 22 January 2027.</p>
     <div class="day">
       <div class="slot"><div class="when">Morning</div><div class="time">8am to 10am</div><h3>Sensei Seminar</h3><p>Rick combines what the group picked from the Ninja Menu, so you also learn what the others chose. Rick teaches at least 2 classes a week; on the other days you practice with Guides, people who trained here before you.</p></div>
@@ -518,7 +562,13 @@ footer a:hover{color:var(--sea)}
 <section class="band tint" id="where">
   <div class="wrap">
     <div class="k">Where</div>
-    <h2>What if I don't have a place to stay?</h2>
+    <h2>Koh Samui, Thailand.</h2>
+    <p class="lead">An island in the Gulf of Thailand, where Rick runs NinjaGym.</p>
+    <ul class="alts">
+      <li>Interested in a California, U.S. Tew's Tour? <a href="#ask" data-ask="I am interested in a California U.S. Tew's Tour.">Click here</a></li>
+      <li>Only need a simple place to stay for a few days? <a href="https://www.nerdhostel.com/?src=ricktew" target="_blank" rel="noopener">nerdhostel.com</a></li>
+    </ul>
+    <h3 class="perks-h">What if I don't have a place to stay?</h3>
     <div class="stay-grid">
       <div class="where-text">
         <div class="partner">
@@ -546,12 +596,12 @@ footer a:hover{color:var(--sea)}
 <section class="band mind" id="mind">
   <div class="wrap">
     <div class="k">Why</div>
-    <h2>Train the body and the mind.</h2>
-    <p class="lead">WinJitsu is Rick's mental martial art: coaching for focus, goals and life. It comes with every stay. Come for the training or for the coaching; you get both.</p>
-    <div class="mind-grid">
-      <div><span>Coaching</span><b>WinJitsu with Rick</b><p>Focus, goals and the self-doubt that holds you back, outside class.</p></div>
-      <div><span>The books</span><b>Five WinJitsu books</b><p>Rick's own series, part of the belts from orange on.</p></div>
-      <div><span>At home</span><b>A free month of WinJitsu.com</b><p>The WinJitsu app, so the training comes home with you.</p></div>
+    <h2>Why people come.</h2>
+    <div class="mind-grid four">
+      <div><span>Learn</span><b>Martial arts</b><p>A relaxed way into Rick's own system, Modern American Ninjitsu.</p></div>
+      <div><span>On vacation</span><b>A new skill</b><p>Class in the morning, then the day is yours.</p></div>
+      <div><span>Travel</span><b>See Thailand</b><p>Koh Samui between classes, and free weekends to see more of it.</p></div>
+      <div><span>Coaching and advice</span><b>Been there, done that</b><p>From Rick: more than 25 years of ninja martial arts, taught around the world.</p></div>
     </div>
     <div class="voices" id="voices">
       <h3>Students, in their own words</h3>
@@ -729,6 +779,10 @@ footer a:hover{color:var(--sea)}
   var shown=Date.now();
   var askSrc="direct";
   try{ var s0=(new URLSearchParams(location.search).get("src")||"").toLowerCase(); if(/^[a-z]{1,20}$/.test(s0)) askSrc=s0; }catch(e){}
+  /* a link about something else fills the question first (the Tew's Tour line in Where, until the tour has its own page) */
+  [].forEach.call(document.querySelectorAll("a[data-ask]"),function(a){
+    a.addEventListener("click",function(){ if(!msg.value.trim()) msg.value=a.getAttribute("data-ask")+"\n\n"; });
+  });
   function fail(m){ err.textContent=m; err.classList.add("on"); }
   form.addEventListener("submit",function(e){
     e.preventDefault(); err.classList.remove("on");
