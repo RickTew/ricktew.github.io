@@ -226,16 +226,19 @@ figcaption a{font-weight:700;white-space:nowrap}
 .hsp-phones figcaption{margin-top:10px;text-align:center;font-size:15.5px;color:var(--ink2)}
 .hsp-cta{margin-top:22px;padding-top:20px;border-top:2px solid var(--mist2);display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;justify-content:space-between}
 .hsp-cta p{font-size:18px;color:var(--ink);max-width:46ch}
-.wj-story{margin-top:22px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:22px;align-items:center}
+.wj-story{margin-top:22px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:22px;align-items:start}
 @media (max-width:760px){ .wj-story{grid-template-columns:1fr} }
 .wj-pai .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center}
 .wj-pai img{display:block;width:100%;height:auto}
 .wj-pai figcaption{margin-top:8px}
 .wj-words span{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--hi)}
 .wj-words p{margin-top:8px;font-size:15.5px;color:#f0f6fc}
-.wj-words blockquote{margin-top:12px;font-size:16.5px;font-style:italic;color:#fff}
-.wj-words cite{display:block;margin-top:4px;font-size:14px;font-style:normal;color:var(--hi)}
-.wj-pics{margin-top:22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+.wj-story blockquote{margin-top:12px;font-size:16.5px;font-style:italic;color:#fff}
+.wj-story cite{display:block;margin-top:4px;font-size:14px;font-style:normal;color:var(--hi)}
+.wj-pics{margin-top:22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.wj-pics .book-rot{width:auto;height:240px;aspect-ratio:329/457;margin:0 auto;border-radius:14px;background:#fff}
+.wj-pics .book-rot img{height:100%;width:100%;max-width:none;object-fit:contain;border-radius:0;background:none}
+.wj-pics figcaption a{color:var(--hi);font-weight:700}
 @media (max-width:560px){ .wj-pics{grid-template-columns:1fr} }
 .wj-pics img{display:block;width:auto;max-width:100%;height:240px;object-fit:contain;margin:0 auto;border-radius:14px;background:#fff}
 .wj-pics figcaption{text-align:center}
@@ -838,14 +841,14 @@ footer a:hover{color:var(--sea)}
       <div class="wj-head">
         <img class="wj-logo" src="/hininja/img/winjitsu/winjitsu-logo.webp" alt="WinJitsu" width="320" height="320" loading="lazy">
         <div>
-          <span class="wj-kick">Bonus: WinJitsu, with every stay</span>
+          <span class="wj-kick">Bonus with every stay: WinJitsu, the mental martial art</span>
           <h3>Be a <b>black belt</b> in what you do.</h3>
           <p>Kicks train the body. WinJitsu trains the mind behind them: Rick's mental martial art for focus, goals and life. It comes with every stay.</p>
         </div>
       </div>
       <div class="mind-grid">
-        <div><i class="wj-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></i><span>Coaching</span><b>WinJitsu with Rick</b><p>Sharpen your focus, set your goals and beat the self-doubt that holds you back, outside class.</p></div>
-        <div><i class="wj-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10.5 18.5h3"/></svg></i><span>At home</span><b>A free month of WinJitsu.com</b><p>The WinJitsu app, so the training comes home with you. WinJitsu.com, Rick's since 2002.</p></div>
+        <div><span>Coaching</span><b>WinJitsu with Rick</b><p>Sharpen your focus, set your goals and beat the self-doubt that holds you back, outside class.</p></div>
+        <div><span>Free with your stay</span><b>A free month of WinJitsu.com</b><p>The WinJitsu app, so the training comes home with you. WinJitsu.com, Rick's since 2002.</p></div>
       </div>
       <!-- Rick, 27 Oct 2026: his ACE book photo "for Winjitsu writing", the blurb "on rick writing winjitsu the
            5 books" (his ruled words, from the WinJitsu chat: winjitsu-workbooks house/intro.py; "In 2010," left
@@ -853,7 +856,7 @@ footer a:hover{color:var(--sea)}
            or a vacation: he moved to Pai to write. App screens say WinJitsu, never Tewtors. -->
       <div class="wj-story">
         <!-- both Pai photos, smaller (Rick, 28 Oct 2026: "try the other photo or both so it is smaller") -->
-        <figure class="wj-pai"><div class="two"><img src="/hininja/img/winjitsu/pai-treehouse.webp" alt="Rick Tew on the balcony of a carved wooden treehouse in Pai, in the mountains of northern Thailand" width="640" height="514" loading="lazy"><img src="/hininja/img/winjitsu/pai-desk.webp" alt="Rick Tew smiling at a wooden desk with a laptop, in a treehouse room in Pai" width="960" height="758" loading="lazy"></div><figcaption>The system Rick wrote here comes with every stay.</figcaption></figure>
+        <figure class="wj-pai"><div class="two"><img src="/hininja/img/winjitsu/pai-treehouse.webp" alt="Rick Tew on the balcony of a carved wooden treehouse in Pai, in the mountains of northern Thailand" width="640" height="514" loading="lazy"><img src="/hininja/img/winjitsu/pai-desk.webp" alt="Rick Tew smiling at a wooden desk with a laptop, in a treehouse room in Pai" width="960" height="758" loading="lazy"></div><blockquote>"It is my passion to help others find their key strengths so that they too can combine them to achieve a greater level of fulfillment in life." <cite>Rick Tew</cite></blockquote></figure>
         <div class="wj-words">
           <span>How WinJitsu came about</span>
           <p>Rick took the old-school approach and moved to the mountains of Thailand (Pai) to write from his experience as a martial arts instructor, motivational speaker and traveler, and to formulate the 5-system foundation of WinJitsu.</p>
@@ -861,15 +864,23 @@ footer a:hover{color:var(--sea)}
           <!-- Rick's own WINJITSU_INTRO.pdf (7 pages, 2008), byte for byte, his click "WINJITSU_INTRO.pdf", 28 Oct 2026 night;
                opens in a new tab like the RTMS book -->
           <p class="wj-read"><a href="/hininja/winjitsu-introduction.pdf" target="_blank" rel="noopener">Read Rick's WinJitsu introduction free</a> (7 pages, PDF).</p>
-          <blockquote>"It is my passion to help others find their key strengths so that they too can combine them to achieve a greater level of fulfillment in life." <cite>Rick Tew</cite></blockquote>
         </div>
       </div>
       <!-- Rick, 28 Oct 2026: "Winjitsu should show the 5 book image and the app image (the PHONES)". The phones are
            drawn from the WinJitsu app's own screens (winjitsu-workbooks house/assets app-home.png, app-lesson.png),
            which say WinJitsu: the Tewtors phone picture says Tewtors, so it is not used here. -->
       <div class="wj-pics">
-        <figure><img src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="The five WinJitsu books, Be a Black Belt in What You Do, by Rick Tew" width="956" height="1024" loading="lazy"><figcaption>Five books, one per finger: together they make a fist. <a href="#price">Pick your stay</a></figcaption></figure>
-        <figure><img src="/hininja/img/winjitsu/ace-book.webp" alt="A hand holding the WinJitsu book Achieving Combined Excellence by Rick Tew" width="329" height="457" loading="lazy"><figcaption>Rick's mental martial art, in the WinJitsu app with your stay.</figcaption></figure>
+        <!-- Rick, 28 Oct 2026 night: the stack picture off ("we can remove this image and content box"); the ACE book in hand
+             "can rotate showing the covers of the other books" (the fronts of his own Winjitsu 2-5 Full Book Cover 2013 5x8.pdf,
+             cut, nothing redrawn); "MENTAL martial art" made plain; "WinJitsu is also available on Amazon and Kindle ... so we
+             don't look scammy" (the listings read live that night: print 1453763279, Kindle B00QVP44WI and the rest) -->
+        <figure><div class="rot book-rot" role="group" aria-label="The five WinJitsu books">
+          <img class="on" src="/hininja/img/winjitsu/ace-book.webp" alt="A hand holding the WinJitsu book Achieving Combined Excellence by Rick Tew" width="329" height="457">
+          <img src="/hininja/img/winjitsu/cover-mak.webp" alt="The cover of WinJitsu book 2, Motivation, Action, Knowledge" width="500" height="825" loading="lazy">
+          <img src="/hininja/img/winjitsu/cover-mbs.webp" alt="The cover of WinJitsu book 3, Mind, Body, Spirit" width="500" height="825" loading="lazy">
+          <img src="/hininja/img/winjitsu/cover-nrg.webp" alt="The cover of WinJitsu book 4, Neuro Reasons for Growth" width="500" height="825" loading="lazy">
+          <img src="/hininja/img/winjitsu/cover-cmt.webp" alt="The cover of WinJitsu book 5, Creative Mental Training" width="500" height="825" loading="lazy">
+        </div><figcaption>WinJitsu is the mental martial art: training for your mind, not another fighting style. The books are on Amazon, <a href="https://www.amazon.com/dp/1453763279" target="_blank" rel="noopener">in print</a> and <a href="https://www.amazon.com/dp/B00QVP44WI" target="_blank" rel="noopener">on Kindle</a>.</figcaption></figure>
         <figure class="wj-phones"><img src="/hininja/img/winjitsu/phones.webp" alt="Two phones showing the WinJitsu app: its home screen and a lesson, Achieving Combined Excellence" width="861" height="900" loading="lazy"><figcaption>Take it home: a free month of the app with your stay. A few minutes a day, wherever you go next. <a href="#price">Pick your stay</a></figcaption></figure>
       </div>
     </div>
