@@ -33,6 +33,11 @@ const ADAPT = [
   "the first two picks: natural reactions: train a move until it happens on its own, without thinking"
 ];
 
+/* Rick's own words for the chat, not on the page (he wrote them for the box, 28 Oct 2026 night) */
+const RICK = [
+  "it depends on the students, so you can get more than one, or just more focus on your own choices"
+];
+
 const SAMPLES = {
   "what-is": ["what is this exactly?", "what is hi ninja", "is this a retreat"],
   "price": ["how much is it?", "what are your prices", "is it expensive"],
@@ -41,6 +46,7 @@ const SAMPLES = {
   "start": ["when can I start", "what are the dates", "when is the next group", "I am already on Koh Samui. Can I start next week?"],
   "schedule": ["what does a typical day look like", "how many classes a week", "what is the daily schedule", "Can I train only the evening class?"],
   "learn": ["what will I learn", "is this ninjutsu", "what style of martial art is it"],
+  "pace": ["What if I pick 5 things, do I only learn one tactic a day?", "how many techniques a day will I learn", "is it only one tactic per day"],
   "menu": ["how does the ninja menu work", "what are quick picks", "how do I choose my tactics"],
   "experience": ["I have never trained before", "do I need any experience", "I am a complete beginner"],
   "age": ["am I too old at 55", "is there an age limit", "What ages are the other students?"],
@@ -93,7 +99,7 @@ for (const e of ask.LIBRARY) {
     s = s.trim().toLowerCase().replace(/[.?!:]+$/, "");
     if (!s) continue;
     const parts = s.split(": ");
-    const ok = TEXT.includes(s) || ADAPT.includes(s) || (parts.length > 1 && (TEXT.includes(parts.slice(1).join(": ")) || TEXT.includes(parts[parts.length - 1])));
+    const ok = TEXT.includes(s) || ADAPT.includes(s) || RICK.includes(s) || (parts.length > 1 && (TEXT.includes(parts.slice(1).join(": ")) || TEXT.includes(parts[parts.length - 1])));
     if (!ok) bad.push(`${e.id}: not on the page: "${s}"`);
   }
   for (const m of plain.match(/\$[0-9][0-9,]*/g) || []) if (!TEXT.includes(m.toLowerCase())) bad.push(`${e.id}: price ${m} is not on the page`);

@@ -158,6 +158,12 @@
      a:"<p>Pick 5 tactics. Then you choose how long you stay.</p><p>Rick combines what the group picked from the Ninja Menu, so you also learn what the others chose.</p>",
      next:{href:"#menu", label:"Pick your 5 tactics"}},
 
+    {id:"pace", q:"If I pick 5, do I only learn one tactic a day?",
+     alt:["one tactic a day","one technique a day","one a day","one per day","only one a day","only learn one","one thing a day","how many tactics a day","how many techniques a day","how many a day","how much a day","how fast will i learn","how fast do we learn","5 things","five things"],
+     keys:"pace fast faster speed daily per day only",
+     a:"<p>No. It depends on the students, so you can get more than one, or just more focus on your own choices.</p><p>Rick combines what the group picked from the Ninja Menu, so you also learn what the others chose.</p>",
+     next:{href:"#menu", label:"Pick your 5 tactics"}},
+
     {id:"experience", q:"Do I need experience?",
      alt:["need experience","never trained","no experience","complete beginner","total beginner","first time","never done martial arts","im a beginner","i am a beginner","trained before"],
      keys:"experience experienced beginner beginners trained novice level levels advanced",
