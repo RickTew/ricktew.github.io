@@ -311,7 +311,7 @@
     {id:"refunds", q:"Can I get a refund, or move my dates?",
      alt:["refund","refunds","money back","cancel","cancellation","change my dates","move my dates","reschedule","postpone","cant make it","cant come","flights change","flight changes","my flight","my flights","cant come on my dates","miss my dates"],
      keys:"refund refunds refundable cancel cancellation cancelled reschedule postpone final flight flights",
-     a:"<p>All sales are final; your dates can move, within a year of buying.</p>",
+     a:"<p>Ill, or your flights change? Your dates can move, within a year of buying. All sales are final.</p>",
      next:STAYS},
 
     {id:"book", q:"How do I book?",
