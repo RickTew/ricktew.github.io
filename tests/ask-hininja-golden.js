@@ -37,12 +37,12 @@ const SAMPLES = {
   "price": ["how much is it?", "what are your prices", "is it expensive"],
   "one-week": ["can I come for a week", "do you do one week?"],
   "longer": ["can I stay longer", "what about 3 weeks", "can I come for a month"],
-  "start": ["when can I start", "what are the dates", "when is the next group"],
+  "start": ["when can I start", "what are the dates", "when is the next group", "I am already on Koh Samui. Can I start next week?"],
   "schedule": ["what does a typical day look like", "how many classes a week", "what is the daily schedule"],
   "learn": ["what will I learn", "is this ninjutsu", "what style of martial art is it"],
   "menu": ["how does the ninja menu work", "what are quick picks", "how do I choose my tactics"],
   "experience": ["I have never trained before", "do I need any experience", "I am a complete beginner"],
-  "age": ["am I too old at 55", "is there an age limit"],
+  "age": ["am I too old at 55", "is there an age limit", "What ages are the other students?"],
   "teens": ["I am 17, can I come alone", "do you take teenagers"],
   "injury": ["I have a bad knee", "I am out of shape, is that ok", "I have an old injury"],
   "sparring": ["is there sparring", "is it a hardcore boot camp", "is it intense"],
@@ -64,7 +64,7 @@ const SAMPLES = {
   "instructor": ["what is the instructor program", "I want to become an instructor", "can I learn to teach"],
   "winjitsu": ["what is winjitsu", "is there life coaching"],
   "kids": ["can I bring my kids", "can my family come"],
-  "refunds": ["can I get a refund", "can I change my dates"],
+  "refunds": ["can I get a refund", "can I change my dates", "What happens if my flights change and I can not come on my dates?"],
   "book": ["how do I book", "how do I sign up", "how do I pay"],
   "included": ["what is included", "do I get a t-shirt"]
 };

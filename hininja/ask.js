@@ -133,7 +133,7 @@
      next:STAYS},
 
     {id:"start", q:"When can I start?",
-     alt:["when can i start","when can i arrive","start date","start dates","when does it start","next group","when is the next","the dates","what dates","which dates","any day"],
+     alt:["when can i start","when can i arrive","start date","start dates","when does it start","next group","when is the next","the dates","what dates","which dates","any day","start next week","start tomorrow","start before january","already on samui","already on koh samui","already here"],
      keys:"start starting begin dates date arrive arrival january 2027 group open available availability opening",
      a:"<p>Any day from 15 January 2027: classes run all year, Monday to Friday. The next group starts 22 January 2027. At checkout you add your arrival date.</p>",
      next:MENU},
@@ -163,7 +163,7 @@
      next:MENU},
 
     {id:"age", q:"Am I too old?",
-     alt:["too old","am i too old","age limit","how old","over 40","over 50","over 60","older people","my age"],
+     alt:["too old","am i too old","age limit","how old","over 40","over 50","over 60","older people","my age","what ages","ages of the other","how old are the other"],
      keys:"old older age ages aged limit senior seniors 40 50 60 70 retired",
      a:"<p>No. There is no upper age limit: the relaxed plan is for everyone, and every drill has an easier version. Tell me about an old injury before you come.</p>",
      next:MENU},
@@ -295,8 +295,8 @@
      next:ASK("Ask Kuno about it","About bringing my family: ")},
 
     {id:"refunds", q:"Can I get a refund, or move my dates?",
-     alt:["refund","refunds","money back","cancel","cancellation","change my dates","move my dates","reschedule","postpone","cant make it"],
-     keys:"refund refunds refundable cancel cancellation cancelled reschedule postpone final",
+     alt:["refund","refunds","money back","cancel","cancellation","change my dates","move my dates","reschedule","postpone","cant make it","flights change","flight changes","my flight","my flights","cant come on my dates","miss my dates"],
+     keys:"refund refunds refundable cancel cancellation cancelled reschedule postpone final flight flights",
      a:"<p>All sales are final; your dates can move, within a year of buying.</p>",
      next:STAYS},
 
