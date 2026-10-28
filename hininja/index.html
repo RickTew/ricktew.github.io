@@ -341,6 +341,16 @@ figcaption a{font-weight:700;white-space:nowrap}
 .faq summary:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
 .faq details p{padding:0 0 16px;color:var(--ink2)}
 
+/* the photo band (28 Oct 2026): a grid on a wide screen, one swipeable row on a phone */
+.gal{margin-top:22px;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.gal figure{margin:0}
+.gal img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;background:var(--mist)}
+.gal:focus-visible{outline:3px solid var(--sea);outline-offset:4px}
+@media (max-width:640px){
+  .gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+  .gal figure{flex:0 0 78%;scroll-snap-align:start}
+}
+.gal-cta{margin-top:14px;font-size:16px;color:var(--ink2)}
 /* the system: Rick Tew's Martial Science, the two shirt logos, the free book, the old site in dropdowns (28 Oct 2026) */
 .sys-top{margin-top:22px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:28px;align-items:center}
 @media (max-width:760px){ .sys-top{grid-template-columns:1fr} }
@@ -599,6 +609,43 @@ footer a:hover{color:var(--sea)}
     </figure>
   </div>
 </header>
+
+<!-- Rick, 28 Oct 2026: "We definitely need to pick better images so put up a lot more and we can choose them",
+     and "Should the initial photos be higher up". 23 real classes (2009 to 2018, Samui and Thailand, adults
+     only, no pads, no sparring) from his archive on the Extreme Pro, cropped tight, so he can pick which stay
+     and where. Phone: one swipeable row. -->
+<section class="band" id="photos">
+  <div class="wrap">
+    <div class="k">Real classes</div>
+    <h2>Real people, real training, at your level.</h2>
+    <div class="gal" tabindex="0" role="region" aria-label="Photos from real classes">
+      <figure><img src="/hininja/img/gallery/g01.webp" alt="Rick Tew teaching a stick drill to an adult on a red-mat terrace, the sea behind" width="900" height="705" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g02.webp" alt="Rick Tew and two adults, one a woman, in guard stance in a garden sala" width="900" height="820" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g03.webp" alt="Rick Tew with a woman and a man in guard stance in a bright training hall" width="900" height="776" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g04.webp" alt="Rick Tew teaching a woman a kick, side by side" width="900" height="843" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g05.webp" alt="A woman throws a strike while her partner checks it, on red mats" width="900" height="744" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g06.webp" alt="A woman in a low stance with a staff, on red mats" width="734" height="713" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g07.webp" alt="Rick Tew in a blue uniform holding a student in an arm lock on the mat" width="900" height="615" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g08.webp" alt="A student in a low stance with a bamboo staff on a grass field" width="627" height="638" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g09.webp" alt="A woman lunges with a staff toward a partner in an open-air hall" width="900" height="480" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g10.webp" alt="A woman raises her arm to block an overhead strike in a partner drill" width="900" height="713" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g11.webp" alt="A woman works a wrist lock with two training partners" width="900" height="621" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g12.webp" alt="A woman breaks a grab from her training partner on red mats" width="900" height="836" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g13.webp" alt="A stick drill in an open-air hall" width="900" height="623" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g14.webp" alt="An instructor shows a student a staff move" width="900" height="635" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g15.webp" alt="An instructor guides a student's wrist control while a woman waits her turn" width="900" height="812" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g16.webp" alt="A woman rolls out on the mat while the group watches" width="900" height="480" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g17.webp" alt="A stick drill on the red mats" width="900" height="480" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g18.webp" alt="A stick lock drill on a terrace, a tropical garden behind" width="889" height="900" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g19.webp" alt="A stick drill on a lawn under palm trees" width="900" height="675" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g20.webp" alt="Rick Tew in a blue uniform watches a student's strike in a palm garden" width="900" height="723" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g21.webp" alt="Rick Tew in a blue uniform shows a stance, students beside him" width="900" height="767" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g22.webp" alt="Rick Tew in a blue uniform shows an arm lock to a group of adults" width="900" height="621" loading="lazy"></figure>
+      <figure><img src="/hininja/img/gallery/g23.webp" alt="Rick Tew and two students in fighting stance on grass" width="900" height="743" loading="lazy"></figure>
+    </div>
+    <p class="gal-cta">Want in? <a href="#menu">Pick your 5 tactics</a></p>
+  </div>
+</section>
 
 <section class="band tint" id="who">
   <div class="wrap">
