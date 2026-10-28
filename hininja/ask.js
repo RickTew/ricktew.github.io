@@ -119,7 +119,7 @@
     {id:"price", q:"How much does it cost?",
      alt:["how much is","how much are","how much does","how much do","how much for","how much will","how much is it","what currency","which currency","us dollars","australian dollars","in usd","what does it cost","what is the price","whats the price","the prices","prices","price","price list","how much money"],
      keys:"cost costs price prices pricing fee fees expensive cheap usd dollar dollars rate rates package packages afford budget",
-     a:"<p>Prices in US dollars. 2 weeks: $2,222. 3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>A belt in the belt program is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is all five belts over 2 years, $15,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p><p>$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p>",
+     a:"<p>Prices in US dollars. Small groups, usually around 6: near-private lessons at the price of a group class.</p><p>2 weeks: $2,222. 3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>A belt in the belt program is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is all five belts over 2 years, $15,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p><p>$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p>",
      next:STAYS},
 
     {id:"deposit", q:"Can I pay a deposit?",
@@ -160,7 +160,7 @@
      next:MENU},
 
     {id:"learn", q:"What will I learn?",
-     alt:["what will i learn","what do i learn","what can i learn","what do you teach","what is taught","what kind of martial art","which martial art","what style","ninjutsu","ninjitsu","modern american ninjitsu"],
+     alt:["what will i learn","what do i learn","is it muay thai","is this muay thai","is it kickboxing","is it boxing","what can i learn","what do you teach","what is taught","what kind of martial art","which martial art","what style","ninjutsu","ninjitsu","modern american ninjitsu"],
      keys:"learn learning taught style styles art system ninjutsu ninjitsu stances rolls falls strikes kicks techniques technique skills curriculum",
      a:"<p>Pick your tactics and Rick builds a private group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand. The Ninja Menu has eight areas: Stances, Rolls, Falls, Strikes, Kicks, Body Movement, Ninja Tools and Self-defense.</p><p>The art is Rick's own system, Modern American Ninjitsu (most people spell it ninjutsu).</p>",
      next:{href:"#menu", label:"Pick your 5 tactics"}},
@@ -183,17 +183,24 @@
      a:"<p>No. It is built for beginners. Trained before? Welcome too. Everyone trains at their level.</p><p>Unlike most martial arts that expect you to conform to them, our system is built around you.</p>",
      next:MENU},
 
+    /* Rick's click "Add it as written", 29 Oct 2026 */
+    {id:"muay-thai", q:"Can I train Muay Thai too?",
+     alt:["muay thai too","train muay thai","do muay thai","muay thai as well","also muay thai","also do muay thai","muay thai on the side","muay thai in my free time","muay thai camp","muay thai gym","muay thai classes","thai boxing too","get bored","will i get bored","boring"],
+     keys:"bored boring",
+     a:"<p>Yes, many students do, in their free time. With eight areas on the Ninja Menu, there is too much to learn here to get bored.</p>",
+     next:MENU},
+
     {id:"age", q:"Am I too old?",
      alt:["too old","am i too old","age limit","how old","over 40","over 50","over 60","older people","my age","what ages","ages of the other","how old are the other"],
      keys:"old older age ages aged limit senior seniors 40 50 60 70 retired",
-     a:"<p>No. There is no upper age limit: the relaxed plan is for everyone, and every drill has an easier version. Tell me about an old injury before you come. Students come from 16 to their 60s.</p><p>The great thing about the martial science is that it is built around your own strengths and weaknesses.</p>",
+     a:"<p>No. There is no upper age limit: the relaxed plan is for everyone, and every drill has an easier version. Tell me about an old injury before you come. Students come from 16 to their 60s.</p><p>Age is not really a factor: the system is built around you. In one group, an 18-year-old from Germany stayed 3 months and a 54-year-old from Singapore came for a week. Both loved it.</p><p>The great thing about the martial science is that it is built around your own strengths and weaknesses.</p>",
      next:MENU},
 
     /* Rick, 29 Oct 2026: "usually around 6 up to 12", "16 to 60s" */
     {id:"group", q:"How big are the groups?",
      alt:["how big are the groups","how big is the group","group size","class size","size of the group","how many people","how many students","how many in a class","how many in the group","how many per class","how many others","how small","how crowded","big groups","small groups"],
      keys:"size crowded crowd people students others",
-     a:"<p>Usually around 6, up to 12. Students come from 16 to their 60s.</p>",
+     a:"<p>Usually around 6, up to 12: near-private lessons at the price of a group class. Students come from 16 to their 60s.</p>",
      next:MENU},
 
     {id:"teens", q:"I am 16 or 17. Can I come on my own?",
