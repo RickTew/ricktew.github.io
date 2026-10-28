@@ -408,7 +408,11 @@ figcaption a{font-weight:700;white-space:nowrap}
 /* the system: Rick Tew's Martial Science, the two shirt logos, the free book, the old site in dropdowns (28 Oct 2026) */
 .sys-top{margin-top:22px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:28px;align-items:center}
 @media (max-width:760px){ .sys-top{grid-template-columns:1fr} }
-.sys-logos{display:flex;align-items:center;justify-content:center;gap:22px}
+.sys-left{display:flex;justify-content:center}
+.sys-left .sys-book{margin-top:0;flex-direction:column;text-align:center;max-width:340px;padding:18px 20px 20px}
+.sys-left .sys-book img{width:170px}
+@media (max-width:480px){ .sys-left .sys-book img{width:130px} }
+.sys-book small{display:block;margin-top:8px;font-size:14px;color:var(--muted)}
 .sys-patch{width:220px;height:auto}
 @media (max-width:480px){ .sys-patch{width:170px} }
 .sys-book{margin-top:18px;display:flex;align-items:center;gap:16px;background:var(--mist);border:2px solid var(--mist2);border-radius:18px;padding:14px 18px 14px 14px;text-decoration:none;color:var(--ink);max-width:460px;transition:border-color .12s ease,box-shadow .12s ease}
@@ -943,21 +947,20 @@ footer a:hover{color:var(--sea)}
          pages, and the WinJitsu app's jutsu and jitsu cards with his "the U is YOU" (1 Oct 2026). /camps/ is not
          linked: it still sells a private room and private lessons, which today's stays do not have. -->
     <div class="sys-top">
-      <div class="sys-logos">
-        <img class="sys-patch" src="/hininja/img/rtms/rtms-patch.webp" alt="The red Rick Tew's Martial Science patch" width="560" height="560" loading="lazy">
-      </div>
-      <div class="sys-intro">
-        <p class="lead">RTMS for short: the art you train here. A martial science, not a style: Modern American Ninjitsu crossed with mixed martial arts, built to teach movement, not moves.</p>
+      <div class="sys-left">
         <!-- the free book (Rick, 28 Oct 2026 night): his own "RTMS Book 2010.pdf" (Modern Ninjitsu, Philosophy and System,
              184 pages; found in ~/Dev/UGTMA, a copy back in Rick Tew Archive/Documents), byte for byte, opening in a new tab
              (his "the link also takes you off the page and you can't get back"); the card shows the front of his
              "RTMS One Piece Book Cover 2013.pdf", cropped, nothing redrawn (his click "Yes, with my 2013 cover"). Never
              build or stitch a book of his (memory feedback_never_build_his_book). -->
-        <a class="sys-book" href="/hininja/modern-ninjitsu-philosophy-and-system.pdf" target="_blank" rel="noopener"><img src="/hininja/img/rtms/rtms-book-cover-2013.webp" alt="The cover of Modern Ninjitsu, Philosophy and System, by Sensei Rick Tew: Rick in a high kick beside the Rick Tew's Martial Science logo" width="400" height="640" loading="lazy"><span><b>Read the book free</b>Rick's Philosophy and System, 184 pages, PDF. Know the art before you arrive.</span></a>
+        <a class="sys-book" href="/hininja/modern-ninjitsu-philosophy-and-system.pdf" target="_blank" rel="noopener"><img src="/hininja/img/rtms/rtms-book-cover-2013.webp" alt="The cover of Modern Ninjitsu, Philosophy and System, by Sensei Rick Tew: Rick in a high kick beside the Rick Tew's Martial Science logo" width="400" height="640" loading="lazy"><span><b>Read the book free</b>Rick's Philosophy and System, 184 pages, PDF. Know the art before you arrive.<small>An oldie: first edition 2000, new edition 2010. Now being remade into the Home Study Program, in the Pocket Dojo app.</small></span></a>
+      </div>
+      <div class="sys-intro">
+        <p class="lead">RTMS for short: the art you train here. A martial science, not a style: Modern American Ninjitsu crossed with mixed martial arts, built to teach movement, not moves.</p>
       </div>
     </div>
     <div class="faq sys-faq">
-      <details><summary>Ninjitsu or ninjutsu? Jutsu or jitsu?</summary><p>A jutsu is a method: the shared form, the drill, what a teacher hands down. A jitsu is a truth: the method made true to you, through use, repetition and your own natural strength.</p><p>An easy way to remember it: the U in jutsu is YOU, the method handed to you. The I in jitsu is I, ME: my own truth.</p><p>So ninjutsu is the ninja method as it is handed down, and Ninjitsu is that method made your own. Rick's system spells it Ninjitsu; most people spell it ninjutsu. WinJitsu is Win plus Jitsu: the winning truth.</p></details>
+      <details><summary>Ninjitsu or ninjutsu? Jutsu or jitsu?</summary><p>A jutsu is a method: the shared form, the drill, what a teacher hands down. A jitsu is a truth: the method made true to you, through use, repetition and your own natural strength.</p><p>An easy way to remember it: the U in jutsu is YOU, the method handed to you. The I in jitsu is I, ME: my own truth.</p><p>So ninjutsu is the ninja method as it is handed down, and Ninjitsu is that method made your own. Rick spells it Ninjitsu because the system is built around you; most people spell it ninjutsu. WinJitsu is Win plus Jitsu: the winning truth.</p></details>
       <details><summary>What is RTMS?</summary><p>Rick Tew's Martial Science (RTMS) is not just another martial art. RTMS is geared towards the enhancement of mind, body and spirit, and it is a lifestyle. We focus on developing a strong character, self-esteem, life enhancing goals, self-confidence, self-discipline, physical conditioning and building knowledge through the martial arts experience.</p></details>
       <details><summary>Why a martial science, not a martial art?</summary><p>A typical martial art has already decided what makes up that style: when the student arrives, the instructor teaches the package and molds the student to it. The Martial Science develops around the student instead. In Rick's words: "It is my belief that the man makes the art and not the other way around." The student IS the style.</p></details>
       <details><summary>Five ranks, nine areas</summary><p>There are 5 ranking levels to instructor status. Each level includes two skills from 9 areas of focus: stances, rolls, falls, strikes, kicks, body movement, knowledge (the mind), combat and self-defense strategies, and weapons. Here they are the five belts, yellow to red, 2 months each. <a href="#belts">The yellow belt's skills</a></p></details>
