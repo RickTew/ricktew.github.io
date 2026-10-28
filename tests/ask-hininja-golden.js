@@ -36,16 +36,17 @@ const ADAPT = [
 const SAMPLES = {
   "what-is": ["what is this exactly?", "what is hi ninja", "is this a retreat"],
   "price": ["how much is it?", "what are your prices", "is it expensive"],
-  "one-week": ["can I come for a week", "do you do one week?"],
+  "one-week": ["can I come for a week", "do you do one week?", "can i just drop in for a class or do a few days?"],
   "longer": ["can I stay longer", "what about 3 weeks", "can I come for a month"],
   "start": ["when can I start", "what are the dates", "when is the next group", "I am already on Koh Samui. Can I start next week?"],
-  "schedule": ["what does a typical day look like", "how many classes a week", "what is the daily schedule"],
+  "schedule": ["what does a typical day look like", "how many classes a week", "what is the daily schedule", "Can I train only the evening class?"],
   "learn": ["what will I learn", "is this ninjutsu", "what style of martial art is it"],
   "menu": ["how does the ninja menu work", "what are quick picks", "how do I choose my tactics"],
   "experience": ["I have never trained before", "do I need any experience", "I am a complete beginner"],
   "age": ["am I too old at 55", "is there an age limit", "What ages are the other students?"],
   "teens": ["I am 17, can I come alone", "do you take teenagers"],
-  "injury": ["I have a bad knee", "I am out of shape, is that ok", "I have an old injury"],
+  "injury": ["I have a bad knee", "I am out of shape, is that ok", "I have an old injury",
+    "I'm 42 with an old knee injury and a black belt in karate from years ago. Can my knee handle this, and how hard is the training?"],
   "sparring": ["is there sparring", "is it a hardcore boot camp", "is it intense"],
   "women": ["is it ok for a solo female traveler", "is there a women's dorm"],
   "self-defense": ["can I learn self defense", "I want to protect myself"],
@@ -58,24 +59,29 @@ const SAMPLES = {
   "where": ["where is it", "where in thailand is this"],
   "center": ["is there a game room", "what facilities does the gym have", "can I work remotely there"],
   "who-teaches": ["who teaches the classes", "does rick teach every class", "Does Rick Teach morning or evening sessions?"],
-  "rick": ["who is rick tew", "is rick legit", "what are his credentials"],
+  "rick": ["who is rick tew", "is rick legit", "what are his credentials", "Who did Rick learn ninjutsu from? What is his lineage and rank?"],
   "belts": ["how do the belts work", "can I earn a yellow belt", "is there a belt test"],
   "mastery": ["what is mastery", "I want to move to thailand and train", "tell me about the mastery program"],
   "rick-time": ["how many hours with rick in mastery", "do I get private lessons"],
   "instructor": ["what is the instructor program", "I want to become an instructor", "can I learn to teach"],
   "winjitsu": ["what is winjitsu", "is there life coaching"],
   "pocket-dojo": ["what is pocket dojo", "is there a home study program", "I can't travel, can I train from home?"],
+  "friend": ["If I book two weeks in November, does my boyfriend come free?", "can I bring a friend for free", "What's the catch with the friend comes free deal?"],
   "kids": ["can I bring my kids", "can my family come"],
   "refunds": ["can I get a refund", "can I change my dates", "What happens if my flights change and I can not come on my dates?", "what if I cant come"],
   "book": ["how do I book", "how do I sign up", "how do I pay"],
   "included": ["what is included", "do I get a t-shirt"]
 };
+/* real questions with no page fact behind them: the honest miss, never a wrong answer (the 28 Oct big round) */
+const HONEST_MISS = ["Are there other women in the group, and how much body contact is there with other students?",
+  "Can I try one class before I book?"];
 const NONSENSE = ["tell me a joke", "what is the capital of france", "asdf qwerty zxcv", "do you sell pizza",
   "best crypto to buy now", "can you fix my car", "what is the weather tomorrow", "write me a poem", "is the moon made of cheese"];
 
 const ids = new Set();
 for (const e of ask.LIBRARY) {
   if (ids.has(e.id)) bad.push("duplicate id " + e.id); ids.add(e.id);
+  if (e.until && !(Date.now() < Date.parse(e.until))) { if (ask.answer(e.q).entry === e) bad.push(e.id + " answers after its until"); continue; }
   for (const q of [e.q].concat(SAMPLES[e.id] || [])) {
     const r = ask.answer(q);
     if (r.kind !== "answer" || r.entry.id !== e.id)
@@ -97,6 +103,10 @@ for (const e of ask.LIBRARY) {
   else if (n.ask) { if (!n.label || typeof n.line !== "string") bad.push(e.id + ": ask step without label or line"); }
   else if (n.href === "/hsp/") { if (!PAGE.includes('href="/hsp/"')) bad.push(e.id + ": /hsp/ is not linked on the page"); }
   else if (!["#menu", "#price"].includes(n.href)) bad.push(e.id + ": next step goes to " + n.href);
+}
+for (const q of HONEST_MISS) {
+  const r = ask.answer(q);
+  if (r.kind !== "miss") bad.push(`"${q}" should be the honest miss, got ${r.kind}${r.entry ? " " + r.entry.id : ""}`);
 }
 for (const id of ask.STARTERS) if (!ids.has(id)) bad.push("starter " + id + " is not an entry");
 for (const q of NONSENSE) {

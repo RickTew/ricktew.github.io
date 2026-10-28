@@ -50,9 +50,11 @@
   }
 
   var BUILT=null;
+  /* An entry with "until" (an ISO time) stops answering after it, like the page's dated promo lines. */
+  function live(e){ return !e.until || Date.now()<Date.parse(e.until); }
   function build(lib){
     var df={};
-    var built=lib.map(function(e){
+    var built=lib.filter(live).map(function(e){
       var keys={};
       tokens(e.q).concat(tokens(e.keys||"")).forEach(function(t){ keys[t]=1; });
       (e.alt||[]).forEach(function(p){ tokens(p).forEach(function(t){ keys[t]=1; }); });
@@ -115,13 +117,13 @@
      next:MENU},
 
     {id:"price", q:"How much does it cost?",
-     alt:["how much","how much is it","what does it cost","what is the price","whats the price","the prices","prices","price","price list","how much money"],
+     alt:["how much is","how much are","how much does","how much do","how much for","how much will","how much is it","what does it cost","what is the price","whats the price","the prices","prices","price","price list","how much money"],
      keys:"cost costs price prices pricing fee fees expensive cheap usd dollar dollars rate rates package packages afford budget",
      a:"<p>2 weeks: $2,222. 3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>A belt in the belt program is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is all five belts over 2 years, $15,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p>",
      next:STAYS},
 
     {id:"one-week", q:"Can I come for just one week?",
-     alt:["one week","1 week","for a week","a week only","just a week","only a week","single week","shorter stay","less than two weeks"],
+     alt:["one week","1 week","for a week","a week only","just a week","only a week","single week","shorter stay","less than two weeks","a few days","few days","3 days","three days","something shorter","anything shorter"],
      keys:"shorter 1111",
      a:"<p>One week is half the price, $1,111: book one week.</p>",
      next:ASK("Ask Kuno about one week","I would like to come for one week.")},
@@ -139,9 +141,9 @@
      next:MENU},
 
     {id:"schedule", q:"What does a day look like?",
-     alt:["a typical day","what does a day look like","daily schedule","the schedule","what time","class times","how many classes"],
+     alt:["a typical day","what does a day look like","daily schedule","the schedule","what time","class times","how many classes","only the evening","only evenings","evening only","evenings only","only the evening class"],
      keys:"schedule day daily routine timetable hours morning mornings evening evenings weekend weekends class classes week weekly times typical seminar",
-     a:"<p>The Sensei Seminar: a private group workshop Rick builds from the group's picks, 8 to 10 in the morning, Monday to Friday. An optional review class, 8 to 10 in the evening, to practice the morning.</p><p>Class, then the day is yours: game, train, read, or go see the island. Weekends: no classes. Go see more of Samui, or stay in and play games.</p>",
+     a:"<p>The Sensei Seminar: a private group workshop Rick builds from the group's picks, 8 to 10 in the morning, Monday to Friday. An optional review class, 8 to 10 in the evening, to practice the morning. Not a morning person? Come to this one instead.</p><p>Class, then the day is yours: game, train, read, or go see the island. Weekends: no classes. Go see more of Samui, or stay in and play games.</p>",
      next:MENU},
 
     {id:"learn", q:"What will I learn?",
@@ -175,7 +177,7 @@
      next:ASK("Ask Kuno first","I am 16 or 17 and would like to come.")},
 
     {id:"injury", q:"Got an injury, or not very fit?",
-     alt:["bad knee","bad back","not fit","not very fit","out of shape","an injury","old injury","overweight","unfit","health problem"],
+     alt:["bad knee","bad back","not fit","not very fit","out of shape","an injury","old injury","overweight","unfit","health problem","my knee","my back","my shoulder","knee injury","back injury","shoulder injury","injured"],
      keys:"injury injuries injured knee knees back shoulder fit fitness unfit shape health medical condition overweight weight hurt pain",
      a:"<p>Tell me before you come. Every drill has an easier version.</p>",
      next:ASK("Tell Kuno about it","About an injury or my fitness: ")},
@@ -253,8 +255,8 @@
      next:MENU},
 
     {id:"rick", q:"Who is Rick Tew?",
-     alt:["who is rick","who is rick tew","about rick","ricks background","his background","is rick legit","is he legit","is this legit","credentials","qualifications","how long has rick"],
-     keys:"background credentials qualification qualifications legit press magazine magazines record history founder",
+     alt:["who is rick","who is rick tew","about rick","ricks background","his background","is rick legit","is he legit","is this legit","credentials","qualifications","how long has rick","lineage","his lineage","who taught rick","who trained rick","ricks teacher","ricks teachers","his teacher","his teachers","trained under","learn from","learned from"],
+     keys:"background credentials qualification qualifications legit press magazine magazines record history founder lineage",
      a:"<p>More than 25 years of ninja martial arts, taught around the world, and the man behind WinJitsu. This intro is the easy-going version.</p><p>The first in the martial arts industry to run live-in Ninja Training Camps. In the press: Black Belt, KO Karate, Fighting Spirit Zendokan, Fighting Sports and International Lifestyle Magazine.</p>",
      next:MENU},
 
@@ -293,6 +295,12 @@
      keys:"pocket dojo home study online remote travel distance",
      a:"<p>Pocket Dojo is the Home Study Program on your phone: Rick Tew's Martial Science, belt by belt. Keep training what you learned in class, long after you fly home.</p><p>Want to train with Rick but can't travel? Join the Home Study Program and train at home, belt by belt.</p>",
      next:{href:"/hsp/", label:"See the Home Study Program"}},
+
+    {id:"friend", q:"Can a friend come for free?", until:"2026-11-30T17:00:00Z",
+     alt:["bring a friend","with a friend","a friend","my friend","friend for free","friend free","free friend","come free","comes free","come for free","comes for free","friend offer","friend deal","november offer","november deal","book in november"],
+     keys:"friend friends free november promo promotion offer deal boyfriend girlfriend partner",
+     a:"<p>Attend with a friend for free if you book in November.</p><p>Your friend comes with you, on the same dates, for the same stay, and gets everything you get: the training, the WinJitsu bonus and a dorm bed if they need one. Add their name when you book.</p>",
+     next:STAYS},
 
     {id:"kids", q:"Can I bring my family or kids?",
      alt:["bring my kids","bring my family","with my kids","with my family","my children","my son","my daughter","for kids","kids class","family"],
