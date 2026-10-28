@@ -72,7 +72,8 @@ places:
   routine, people, progress, WinJitsu coaching), Rick's own move (Holland, now Thailand), $15,988 and
   "Write to me about Mastery". His clicks the same day: **visas stay off the page** (no enrolment letter
   offered, though the DTV's soft-power route lists sports training), and **"Pay it all at once, or in five
-  parts, one before each belt."** (invoiced, not the checkout).
+  parts, one before each belt."** (invoiced, not the checkout), and the People tile adds **"Stay long enough
+  and you can help lead practice as a Guide."** (no pay or title promised).
   **No specifics in videos, images or ads** (Rick, same day: "We do not use specific for our
   ads or images or videos as we might want to change them often so leave the specifics for
   the pages and text that we can list fast"): no place, length of stay, time, date, price or
