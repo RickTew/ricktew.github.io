@@ -40,9 +40,10 @@ const RICK = [
 
 const SAMPLES = {
   "what-is": ["what is this exactly?", "what is hi ninja", "is this a retreat"],
-  "price": ["how much is it?", "what are your prices", "is it expensive"],
+  "price": ["how much is it?", "what are your prices", "is it expensive", "is that US or Australian dollars?"],
   "deposit": ["can I pay a deposit", "do I have to pay it all now?", "when is the rest due", "is there a discount if I pay in full"],
-  "one-week": ["can I come for a week", "do you do one week?", "can i just drop in for a class or do a few days?"],
+  "one-week": ["can I come for a week", "do you do one week?", "can i just do a few days?"],
+  "try-class": ["Can I try one class before I book?", "is there a trial class", "can I drop in for one class"],
   "longer": ["can I stay longer", "what about 3 weeks", "can I come for a month"],
   "start": ["when can I start", "what are the dates", "when is the next group", "I am already on Koh Samui. Can I start next week?"],
   "schedule": ["what does a typical day look like", "how many classes a week", "what is the daily schedule", "Can I train only the evening class?"],
@@ -51,6 +52,7 @@ const SAMPLES = {
   "menu": ["how does the ninja menu work", "what are quick picks", "how do I choose my tactics"],
   "experience": ["I have never trained before", "do I need any experience", "I am a complete beginner"],
   "age": ["am I too old at 55", "is there an age limit", "What ages are the other students?"],
+  "group": ["how many people are in a group", "what is the class size", "how big is the group", "how many students are usually there"],
   "teens": ["I am 17, can I come alone", "do you take teenagers"],
   "injury": ["I have a bad knee", "I am out of shape, is that ok", "I have an old injury",
     "I'm 42 with an old knee injury and a black belt in karate from years ago. Can my knee handle this, and how hard is the training?"],
@@ -80,8 +82,7 @@ const SAMPLES = {
   "included": ["what is included", "do I get a t-shirt"]
 };
 /* real questions with no page fact behind them: the honest miss, never a wrong answer (the 28 Oct big round) */
-const HONEST_MISS = ["Are there other women in the group, and how much body contact is there with other students?",
-  "Can I try one class before I book?"];
+const HONEST_MISS = ["Are there other women in the group, and how much body contact is there with other students?"];
 const NONSENSE = ["tell me a joke", "what is the capital of france", "asdf qwerty zxcv", "do you sell pizza",
   "best crypto to buy now", "can you fix my car", "what is the weather tomorrow", "write me a poem", "is the moon made of cheese"];
 

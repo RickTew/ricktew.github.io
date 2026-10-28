@@ -117,9 +117,9 @@
      next:MENU},
 
     {id:"price", q:"How much does it cost?",
-     alt:["how much is","how much are","how much does","how much do","how much for","how much will","how much is it","what does it cost","what is the price","whats the price","the prices","prices","price","price list","how much money"],
+     alt:["how much is","how much are","how much does","how much do","how much for","how much will","how much is it","what currency","which currency","us dollars","australian dollars","in usd","what does it cost","what is the price","whats the price","the prices","prices","price","price list","how much money"],
      keys:"cost costs price prices pricing fee fees expensive cheap usd dollar dollars rate rates package packages afford budget",
-     a:"<p>2 weeks: $2,222. 3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>A belt in the belt program is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is all five belts over 2 years, $15,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p><p>$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p>",
+     a:"<p>Prices in US dollars. 2 weeks: $2,222. 3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>A belt in the belt program is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is all five belts over 2 years, $15,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p><p>$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p>",
      next:STAYS},
 
     {id:"deposit", q:"Can I pay a deposit?",
@@ -133,6 +133,13 @@
      keys:"shorter 1111",
      a:"<p>One week is half the price, $1,111: book one week.</p>",
      next:ASK("Ask Kuno about one week","I would like to come for one week.")},
+
+    /* Rick's click "One class, booked ahead", 29 Oct 2026 */
+    {id:"try-class", q:"Already on Samui? Can I try one class first?",
+     alt:["try one class","try a class","one class first","a trial class","trial class","trial lesson","a single class","single class","one class","drop in","drop-in","drop in for a class","taster class","test class","before i book","before booking"],
+     keys:"trial try taster dropin",
+     a:"<p>Yes: one class, booked ahead.</p>",
+     next:ASK("Book one class","I am already on Samui and want to try one class first.")},
 
     {id:"longer", q:"Can I stay longer than two weeks?",
      alt:["stay longer","longer stay","three weeks","3 weeks","extra week","add a week","more than two weeks","a month","one month","1 month"],
@@ -179,7 +186,14 @@
     {id:"age", q:"Am I too old?",
      alt:["too old","am i too old","age limit","how old","over 40","over 50","over 60","older people","my age","what ages","ages of the other","how old are the other"],
      keys:"old older age ages aged limit senior seniors 40 50 60 70 retired",
-     a:"<p>No. There is no upper age limit: the relaxed plan is for everyone, and every drill has an easier version. Tell me about an old injury before you come.</p><p>The great thing about the martial science is that it is built around your own strengths and weaknesses.</p>",
+     a:"<p>No. There is no upper age limit: the relaxed plan is for everyone, and every drill has an easier version. Tell me about an old injury before you come. Students come from 16 to their 60s.</p><p>The great thing about the martial science is that it is built around your own strengths and weaknesses.</p>",
+     next:MENU},
+
+    /* Rick, 29 Oct 2026: "usually around 6 up to 12", "16 to 60s" */
+    {id:"group", q:"How big are the groups?",
+     alt:["how big are the groups","how big is the group","group size","class size","size of the group","how many people","how many students","how many in a class","how many in the group","how many per class","how many others","how small","how crowded","big groups","small groups"],
+     keys:"size crowded crowd people students others",
+     a:"<p>Usually around 6, up to 12. Students come from 16 to their 60s.</p>",
      next:MENU},
 
     {id:"teens", q:"I am 16 or 17. Can I come on my own?",
