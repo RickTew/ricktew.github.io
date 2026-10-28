@@ -301,7 +301,9 @@ figcaption a{font-weight:700;white-space:nowrap}
 @media (max-width:860px){ .rick-grid{grid-template-columns:1fr} }
 .tape video{width:100%;border-radius:16px;background:#000;aspect-ratio:4/3}
 .founder{margin-bottom:16px}
-.founder img{width:100%;border-radius:16px}
+.founder>img{width:100%;border-radius:16px}
+.record .rec-ng{display:grid;grid-template-columns:64px 1fr;column-gap:14px;align-items:center}
+.record .rec-ng img{grid-row:span 2;width:64px;height:auto}
 .record{list-style:none;display:grid;gap:12px}
 .record li{background:#fff;border:2px solid var(--mist2);border-radius:14px;padding:13px 16px;font-size:15.5px;color:var(--ink2)}
 .record li span{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--sea);margin-bottom:2px}
@@ -366,6 +368,8 @@ figcaption a{font-weight:700;white-space:nowrap}
 .sys-book b{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:20px;text-transform:uppercase;letter-spacing:.04em;color:var(--sea-d)}
 .sys-book span{font-size:15.5px;color:var(--ink2)}
 .sys-faq{margin-top:26px}
+
+.day-note{margin-top:18px;max-width:72ch;font-size:16px;color:var(--ink2)}
 
 /* ask first */
 .ask{background:var(--sea-d);color:#fff}
@@ -552,9 +556,9 @@ footer a:hover{color:var(--sea)}
 .kuno-mail form .kuno-go{margin-top:10px}
 .kuno-err{margin-top:6px;font-size:13.5px;font-weight:600;color:var(--red-d)}
 .kuno-err:empty{display:none}
-.kuno-form{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--line);background:#fff}
-.kuno-form input{flex:1;min-width:0;border:1px solid var(--mist2);border-radius:10px;padding:9px 12px;font:inherit;font-size:16px;color:var(--ink)}
-.kuno-form input:focus{outline:2px solid var(--sea);outline-offset:0;border-color:var(--sea)}
+.kuno-form{display:flex;align-items:flex-end;gap:8px;padding:10px 14px;border-top:1px solid var(--line);background:#fff}
+.kuno-form textarea{flex:1;min-width:0;border:1px solid var(--mist2);border-radius:10px;padding:9px 12px;font:inherit;font-size:16px;line-height:1.35;color:var(--ink);resize:none;min-height:3.3em;max-height:7em;overflow-y:auto}
+.kuno-form textarea:focus{outline:2px solid var(--sea);outline-offset:0;border-color:var(--sea)}
 .kuno-form button{flex-shrink:0}
 @media (max-width:700px){ .kuno-panel{right:0;bottom:0;left:0;width:100%;max-height:88vh;border-radius:18px 18px 0 0;border-left:0;border-right:0;border-bottom:0} }
 @media (prefers-reduced-motion:reduce){ .kuno-launch{transition:none} .kuno-launch:hover,.kuno-launch.kuno-away{transform:none} }
@@ -872,6 +876,10 @@ footer a:hover{color:var(--sea)}
       <div class="slot"><div class="when">Evening</div><div class="time">8pm to 10pm, optional</div><h3>Review class</h3><p>Practice the morning with the group. Not a morning person? Come to this one instead.</p></div>
       <div class="slot"><div class="when">Weekends</div><div class="time">Free</div><h3>Explore</h3><p>No classes. Go see more of Samui, or stay in and play games.</p></div>
     </div>
+    <!-- Rick, 28 Oct 2026: "Rick will often rotate when he is available or to help other students night and mornings.
+         This is because some students are night peopel and some are morning and not everyone will do both sessions
+         (though we recomend it)." -->
+    <p class="day-note">Rick often rotates between the morning and evening sessions when he is available, to help students at both: some are morning people, some are night people, and not everyone does both sessions (though we recommend it).</p>
   </div>
 </section>
 
@@ -1022,8 +1030,21 @@ footer a:hover{color:var(--sea)}
       <figure class="teach teach-eu"><img src="/hininja/img/teaching-europe.webp" alt="Four photos of Rick Tew in a blue uniform teaching one student at a time" width="640" height="167" loading="lazy"><figcaption>Rick shows you, you practice. <a href="#mastery">See how Mastery works</a></figcaption></figure>
       </div>
       <div>
-      <figure class="founder"><img src="/aininja/assets/story/ninja/world/asia-founder.webp" alt="Rick Tew stretching in the splits on red mats" width="640" height="308" loading="lazy"><figcaption>Train at the gym Rick runs. <a href="#price">Pick your stay</a></figcaption></figure>
+      <!-- Rick, 28 Oct 2026: "always get in my impressing photos (grand canyon jump, split kick, flying water kick
+           etc. Founder of ninjagym (show logo) etc. The old history about page had an easy way to copy". From his old
+           pages and the Canva originals on the Extreme Pro; the jump kick above the bay is in The old days below. -->
+      <figure class="founder"><div class="rot" role="group" aria-label="Rick Tew, the founder of NinjaGym: splits and jumps around the world">
+        <img class="on" src="/hininja/img/rick/founder-ninjagym.webp" alt="Rick Tew in the splits on red mats, under the words Founder of NinjaGym" width="1000" height="480" style="object-position:50% 50%">
+        <img src="/hininja/img/rick/canyon-jump.webp" alt="Rick Tew jumping from one rock tower to another at the Grand Canyon" width="1000" height="459" loading="lazy" style="object-position:55% 50%">
+        <img src="/hininja/img/rick/canyon-splits.webp" alt="Rick Tew in the splits on a rock ledge at the Grand Canyon" width="1000" height="688" loading="lazy" style="object-position:50% 50%">
+        <img src="/hininja/img/rick/split-kick.webp" alt="Rick Tew in a standing split kick" width="235" height="490" loading="lazy" style="object-fit:contain;background:#1d2f6e">
+        <img src="/hininja/img/rick/castle-splits.webp" alt="Rick Tew in the splits on a low wall in front of a castle" width="1000" height="622" loading="lazy" style="object-position:50% 60%">
+        <img src="/hininja/img/rick/boulder-leap.webp" alt="Rick Tew leaping between boulders" width="1000" height="563" loading="lazy" style="object-position:50% 40%">
+        <img src="/hininja/img/rick/river-splits.webp" alt="Rick Tew in the splits on rocks in a mountain river" width="1000" height="554" loading="lazy" style="object-position:50% 50%">
+        <img src="/aininja/assets/story/ninja/world/asia-founder.webp" alt="Rick Tew stretching in the splits on red mats" width="640" height="308" loading="lazy" style="object-position:50% 50%">
+      </div><figcaption>Splits around the globe, from canyons to castles. Train with the founder of NinjaGym. <a href="#price">Pick your stay</a></figcaption></figure>
       <ul class="record">
+        <li class="rec-ng"><img src="/hininja/img/ninjagym-logo.webp" alt="NinjaGym" width="240" height="214" loading="lazy"><span>Founder</span>NinjaGym, Koh Samui</li>
         <li><span>Teaching</span>Since his teens</li>
         <li><span>First of a kind</span>The first in the martial arts industry to run live-in Ninja Training Camps</li>
         <li><span>Taught</span>Students across the USA, Europe and Asia</li>
@@ -1214,7 +1235,7 @@ footer a:hover{color:var(--sea)}
   </div>
   <div class="kuno-log" id="kunoLog" aria-live="polite"></div>
   <form class="kuno-form" id="kunoForm" autocomplete="off">
-    <input id="kunoIn" type="text" maxlength="300" placeholder="Ask about the training or the stay" aria-label="Your question" autocomplete="off">
+    <textarea id="kunoIn" rows="2" maxlength="300" placeholder="Ask about the training or the stay" aria-label="Your question" autocomplete="off"></textarea>
     <button class="kuno-go" type="submit">Ask</button>
   </form>
 </div>

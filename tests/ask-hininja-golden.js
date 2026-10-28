@@ -56,7 +56,7 @@ const SAMPLES = {
   "airport": ["do you pick me up from the airport", "how do I get there"],
   "where": ["where is it", "where in thailand is this"],
   "center": ["is there a game room", "what facilities does the gym have", "can I work remotely there"],
-  "who-teaches": ["who teaches the classes", "does rick teach every class"],
+  "who-teaches": ["who teaches the classes", "does rick teach every class", "Does Rick Teach morning or evening sessions?"],
   "rick": ["who is rick tew", "is rick legit", "what are his credentials"],
   "belts": ["how do the belts work", "can I earn a yellow belt", "is there a belt test"],
   "mastery": ["what is mastery", "I want to move to thailand and train", "tell me about the mastery program"],

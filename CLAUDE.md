@@ -145,7 +145,15 @@ places:
     tagging the inbox by topic: his "Not now"). Same mailbox walls.
   - **Never say who teaches or who doesn't** (Rick: "most of the time I teach if available"): the "at least
     2 classes a week ... Guides" lines and the FAQ "Who teaches the classes?" are gone. Guides stay only as
-    training partners (Mastery, Instructor).
+    training partners (Mastery, Instructor). His own fact, the same evening, under When (`.day-note`): "Rick
+    often rotates between the morning and evening sessions when he is available, to help students at both: some
+    are morning people, some are night people, and not everyone does both sessions (though we recommend it)."
+  - **Rick's section `#rick` always shows his impressive photos** ("always get in my impressing photos (grand
+    canyon jump, split kick, flying water kick etc. Founder of ninjagym (show logo)"): a rotating box (the
+    Founder of NinjaGym banner, the Grand Canyon jump cut from the "Warrior Within" spread, the canyon, castle
+    and river splits, the boulder leap, the standing split kick; `hininja/img/rick/`), and "Founder: NinjaGym,
+    Koh Samui" with the logo first in his record list. The chat greets "Hi, I'm Kuno, Rick's assistant" and its
+    question box is two lines (Enter sends).
   - **Photos:** `#photos`, right under the top, holds the real classes he kept (3, 8, 9, 10, 11, 12, 14, 15 of
     the first hunt; "need others. So we should check more"); photo 22 sits under the headline (his "22 or a
     combo"; the combo waits for better photos). The price fine print is one card (`.every`, ticks + terms).

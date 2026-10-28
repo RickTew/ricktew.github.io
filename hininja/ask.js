@@ -247,9 +247,9 @@
      next:STAYS},
 
     {id:"who-teaches", q:"Who teaches the classes?",
-     alt:["who teaches","who is teaching","does rick teach","is rick there","taught by"],
+     alt:["who teaches","who is teaching","does rick teach","is rick there","taught by","morning or evening","rick teach the morning","rick teach the evening","morning sessions","evening sessions","which sessions"],
      keys:"teaches teacher teachers guide guides personally coaches",
-     a:"<p>Pick your tactics and Rick builds a private group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand.</p><p>Rick shows you, you practice.</p>",
+     a:"<p>Rick often rotates between the morning and evening sessions when he is available, to help students at both: some are morning people, some are night people, and not everyone does both sessions (though we recommend it).</p><p>Rick shows you, you practice.</p>",
      next:MENU},
 
     {id:"rick", q:"Who is Rick Tew?",
@@ -440,7 +440,7 @@
       misses.push(q);
       var b=bubble("n");
       var a=el("div","kuno-a");
-      a.innerHTML="<p>I do not have that one written down, and I would rather say so than guess. Send it to Kuno, Rick's assistant, then check your inbox for the reply.</p>";
+      a.innerHTML="<p>I do not have that one written down, and I would rather say so than guess. Send it to me, then check your inbox for the reply.</p>";
       b.appendChild(a);
       var row=el("div","kuno-act");
       var btn=el("button","kuno-go","Ask Kuno"); btn.type="button";
@@ -466,7 +466,7 @@
     function welcome(){
       var b=bubble("n");
       var a=el("div","kuno-a");
-      a.innerHTML="<p>Ask about the training, the stays or the island. Short answers in Rick's words. If I do not have one, you can send it to Kuno, Rick's assistant.</p>";
+      a.innerHTML="<p>Hi, I'm Kuno, Rick's assistant. Ask me about the training, the stays or the island, and I answer in Rick's words. If it is not here, send me your question and check your inbox for the reply.</p>";
       b.appendChild(a);
       chips(STARTERS.map(find), b);
     }
@@ -544,6 +544,14 @@
     }
     root.rtHiAskQuestion=ask;
 
+    /* two lines tall (Rick, 28 Oct 2026: "the question box should be two line height or longer quests
+       dissapear"); Enter sends, Shift+Enter adds a line */
+    input.addEventListener("keydown", function(e){
+      if(e.key==="Enter" && !e.shiftKey && !e.isComposing){
+        e.preventDefault();
+        if(form.requestSubmit) form.requestSubmit(); else form.dispatchEvent(new Event("submit",{cancelable:true}));
+      }
+    });
     form.addEventListener("submit", function(e){
       e.preventDefault();
       var q=input.value; input.value="";
