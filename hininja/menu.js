@@ -288,7 +288,8 @@
       root.appendChild(hd.frag);
       /* two sentences at most in this box (Rick, 27 Oct 2026: "Max of two sentences on the right"); the
          workshop line is the hero's, beside it; "Pick 5 Tactics" and the kicker are his, 27 Oct ("it is not a quiz") */
-      root.appendChild(el("p","mc-p","Pick 5 tactics. Then you choose how long you stay."));
+      /* "tactics" explained once (Rick's click "Explain it once", 29 Oct 2026: 8 of 11 readers asked "you mean techniques?") */
+      root.appendChild(el("p","mc-p","Pick 5 tactics: the techniques you want to learn. Then you choose how long you stay."));
       /* no video here: Vid's explainer of how to pick was dropped (Rick's click, 27 Oct 2026, "Drop the video",
          after the menu got its icons and quick picks); its cuts stay on the Extreme Pro */
       var tiles=el("div","tiles");
@@ -379,7 +380,7 @@
       var get=el("ul","mc-get");
       /* short ticks, not sentences (Rick's pick "Short ticks", 27 Oct 2026); the times, who teaches
          and the dates are on the page below, in When and How */
-      ["A private group workshop, built from everyone's picks",
+      ["A small-group workshop, built from everyone's picks",
        "An optional evening review class",
        "WinJitsu coaching",
        "A dorm bed if you need one",

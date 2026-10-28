@@ -113,7 +113,7 @@
     {id:"what-is", q:"What is this program?",
      alt:["what is this","what is it","what is hi ninja","what is the program","whats this","tell me about it","what do you offer","martial arts introduction","is this a retreat"],
      keys:"program introduction intro overview workshop retreat",
-     a:"<p>Pick your tactics and Rick builds a private group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand.</p><p>Always wanted to know what ninja martial arts is like? This is a great introduction, with plenty of time for the island.</p>",
+     a:"<p>Pick your tactics and Rick builds a small-group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand.</p><p>Always wanted to know what ninja martial arts is like? This is a great introduction, with plenty of time for the island.</p>",
      next:MENU},
 
     {id:"price", q:"How much does it cost?",
@@ -156,19 +156,19 @@
     {id:"schedule", q:"What does a day look like?",
      alt:["a typical day","what does a day look like","daily schedule","the schedule","what time","class times","how many classes","only the evening","only evenings","evening only","evenings only","only the evening class"],
      keys:"schedule day daily routine timetable hours morning mornings evening evenings weekend weekends class classes week weekly times typical seminar",
-     a:"<p>The Sensei Seminar: a private group workshop Rick builds from the group's picks, 8 to 10 in the morning, Monday to Friday. An optional review class, 8 to 10 in the evening, to practice the morning. Not a morning person? Come to this one instead.</p><p>Class, then the day is yours: game, train, read, or go see the island. Weekends: no classes. Go see more of Samui, or stay in and play games.</p>",
+     a:"<p>The Sensei Seminar: a small-group workshop Rick builds from the group's picks, 8 to 10 in the morning, Monday to Friday. An optional review class, 8 to 10 in the evening, to practice the morning. Not a morning person? Come to this one instead.</p><p>Class, then the day is yours: game, train, read, or go see the island. Weekends: no classes. Go see more of Samui, or stay in and play games.</p>",
      next:MENU},
 
     {id:"learn", q:"What will I learn?",
      alt:["what will i learn","what do i learn","is it muay thai","is this muay thai","is it kickboxing","is it boxing","what can i learn","what do you teach","what is taught","what kind of martial art","which martial art","what style","ninjutsu","ninjitsu","modern american ninjitsu"],
      keys:"learn learning taught style styles art system ninjutsu ninjitsu stances rolls falls strikes kicks techniques technique skills curriculum",
-     a:"<p>Pick your tactics and Rick builds a private group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand. The Ninja Menu has eight areas: Stances, Rolls, Falls, Strikes, Kicks, Body Movement, Ninja Tools and Self-defense.</p><p>The art is Rick's own system, Modern American Ninjitsu (most people spell it ninjutsu).</p>",
+     a:"<p>Pick your tactics and Rick builds a small-group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand. The Ninja Menu has eight areas: Stances, Rolls, Falls, Strikes, Kicks, Body Movement, Ninja Tools and Self-defense.</p><p>The art is Rick's own system, Modern American Ninjitsu (most people spell it ninjutsu).</p>",
      next:{href:"#menu", label:"Pick your 5 tactics"}},
 
     {id:"menu", q:"How does the Ninja Menu work?",
      alt:["ninja menu","the menu","how do i pick","how do i choose","pick 5","5 tactics","five tactics","quick picks","quick pick","build my week","ninja week"],
      keys:"menu pick picks picking tactic tactics choose choice choices quick plan",
-     a:"<p>Pick 5 tactics. Then you choose how long you stay.</p><p>Rick combines what the group picked from the Ninja Menu, so you also learn what the others chose.</p>",
+     a:"<p>Pick 5 tactics: the techniques you want to learn. Then you choose how long you stay.</p><p>Rick combines what the group picked from the Ninja Menu, so you also learn what the others chose.</p>",
      next:{href:"#menu", label:"Pick your 5 tactics"}},
 
     {id:"pace", q:"If I pick 5, do I only learn one tactic a day?",
