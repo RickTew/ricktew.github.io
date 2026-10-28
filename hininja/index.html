@@ -341,6 +341,21 @@ figcaption a{font-weight:700;white-space:nowrap}
 .faq summary:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
 .faq details p{padding:0 0 16px;color:var(--ink2)}
 
+/* the system: Rick Tew's Martial Science, the two shirt logos, the free book, the old site in dropdowns (28 Oct 2026) */
+.sys-top{margin-top:22px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:28px;align-items:center}
+@media (max-width:760px){ .sys-top{grid-template-columns:1fr} }
+.sys-logos{display:flex;align-items:center;justify-content:center;gap:22px}
+.sys-round{width:200px;height:auto}
+.sys-patch{width:160px;height:auto}
+@media (max-width:480px){ .sys-round{width:150px} .sys-patch{width:120px} }
+.sys-book{margin-top:18px;display:flex;align-items:center;gap:16px;background:var(--mist);border:2px solid var(--mist2);border-radius:18px;padding:14px 18px 14px 14px;text-decoration:none;color:var(--ink);max-width:460px;transition:border-color .12s ease,box-shadow .12s ease}
+.sys-book:hover{border-color:var(--sea);box-shadow:0 8px 22px rgba(16,20,24,.12)}
+.sys-book:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
+.sys-book img{width:76px;height:auto;border-radius:4px;box-shadow:0 4px 12px rgba(16,20,24,.25)}
+.sys-book b{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:20px;text-transform:uppercase;letter-spacing:.04em;color:var(--sea-d)}
+.sys-book span{font-size:15.5px;color:var(--ink2)}
+.sys-faq{margin-top:26px}
+
 /* ask first */
 .ask{background:var(--sea-d);color:#fff}
 .ask h2{color:#fff}
@@ -673,7 +688,7 @@ footer a:hover{color:var(--sea)}
   <div class="wrap">
     <div class="k">The belt program</div>
     <h2>Want a belt? Earn it here.</h2>
-    <p class="lead">For the serious: 2 months per belt, yellow belt first, up to 5 belts in a year. You earn each belt in a test with Rick at the end of its 2 months. The art is Rick's own system, Modern American Ninjitsu (most people spell it ninjutsu).</p>
+    <p class="lead">For the serious: 2 months per belt, yellow belt first, up to 5 belts in a year. You earn each belt in a test with Rick at the end of its 2 months. The art is Rick's own system, Modern American Ninjitsu (most people spell it ninjutsu). <a href="#system">The system, and the free book</a></p>
     <ol class="belts" aria-label="The five belts, 2 months each">
       <li style="--belt:var(--yellow)"><b>Yellow</b><span>Months 1 and 2</span></li>
       <li style="--belt:var(--orange)"><b>Orange</b><span>Months 3 and 4</span></li>
@@ -704,6 +719,40 @@ footer a:hover{color:var(--sea)}
      out students ... a solid mastery sales pitch ... those that MOVE to Thailand"; "mastery includes the
      same"). Every line is a fact already on this page or his. No visa letter and no paying over time
      until he says so. -->
+<section class="band" id="system">
+  <div class="wrap">
+    <div class="k">The system</div>
+    <h2>Rick Tew's Martial Science.</h2>
+    <!-- Rick, 28 Oct 2026: "we need the old site details easy to find for dropdowns and clicks and these two logos
+         along with everything I always share about our training (jutsu vs jitsu, rtms, read the old philosophy and
+         system book now for free (give them a free PDF) etc." The two logos are the ones on his training shirt (the
+         round Mind Body Spirit logo on the back, the red patch on the chest), cut from the book and its cover
+         (Extreme Pro, Rick Tew Archive/Documents: RTMS System Proof.pdf, RTMS Book Cover.pdf, 2004). The free PDF is
+         that cover plus the 19 pages. Every answer below is Rick's own words: the book, the old /rtms/ and /about/
+         pages, and the WinJitsu app's jutsu and jitsu cards with his "the U is YOU" (1 Oct 2026). /camps/ is not
+         linked: it still sells a private room and private lessons, which today's stays do not have. -->
+    <div class="sys-top">
+      <div class="sys-logos">
+        <img class="sys-round" src="/hininja/img/rtms/rtms-logo.webp" alt="The Rick Tew's Martial Science logo: a triangle of Mind, Body and Spirit over a yin yang" width="560" height="695" loading="lazy">
+        <img class="sys-patch" src="/hininja/img/rtms/rtms-patch.webp" alt="The red Rick Tew's Martial Science patch" width="560" height="560" loading="lazy">
+      </div>
+      <div class="sys-intro">
+        <p class="lead">RTMS for short: the art you train here. A martial science, not a style: Modern American Ninjitsu crossed with mixed martial arts, built to teach movement, not moves.</p>
+        <a class="sys-book" href="/hininja/rtms-philosophy-and-system.pdf"><img src="/hininja/img/rtms/rtms-book-cover.webp" alt="The cover of Modern Ninjitsu, Rick Tew's Martial Science, Philosophy and System, by Sensei Rick Tew" width="400" height="600" loading="lazy"><span><b>Read the book free</b>Rick's Philosophy and System, 20 pages, PDF. Know the art before you arrive.</span></a>
+      </div>
+    </div>
+    <div class="faq sys-faq">
+      <details><summary>Ninjitsu or ninjutsu? Jutsu or jitsu?</summary><p>A jutsu is a method: the shared form, the drill, what a teacher hands down. A jitsu is a truth: the method made true to you, through use, repetition and your own natural strength.</p><p>An easy way to remember it: the U in jutsu is YOU, the method handed to you. The I in jitsu is I, ME: my own truth.</p><p>So ninjutsu is the ninja method as it is handed down, and Ninjitsu is that method made your own. Rick's system spells it Ninjitsu; most people spell it ninjutsu. WinJitsu is Win plus Jitsu: the winning truth.</p></details>
+      <details><summary>What is RTMS?</summary><p>Rick Tew's Martial Science (RTMS) is not just another martial art. RTMS is geared towards the enhancement of mind, body and spirit, and it is a lifestyle. We focus on developing a strong character, self-esteem, life enhancing goals, self-confidence, self-discipline, physical conditioning and building knowledge through the martial arts experience.</p></details>
+      <details><summary>Why a martial science, not a martial art?</summary><p>A typical martial art has already decided what makes up that style: when the student arrives, the instructor teaches the package and molds the student to it. The Martial Science develops around the student instead. In Rick's words: "It is my belief that the man makes the art and not the other way around." The student IS the style.</p></details>
+      <details><summary>Five ranks, nine areas</summary><p>There are 5 ranking levels to instructor status. Each level includes two skills from 9 areas of focus: stances, rolls, falls, strikes, kicks, body movement, knowledge (the mind), combat and self-defense strategies, and weapons. Here they are the five belts, yellow to red, 2 months each. <a href="#belts">The yellow belt's skills</a></p></details>
+      <details><summary>What the logo means</summary><p>The logo has three parts. The yin yang in the background stands for balance: "Just as it rests in the background of our logo, it should rest in the background of your life." The triangle is mind, body and spirit: the left side is the mind, where all our knowledge and skill is given birth; the right side is the body and physical skills; the bottom is the spirit of all that we are and strive to become. Around them, the name: Rick Tew's Martial Science.</p></details>
+      <details><summary>The free book: Philosophy and System</summary><p>Modern Ninjitsu: Rick Tew's Martial Science, Philosophy and System, by Sensei Rick Tew. Twenty pages on what the Martial Science is and is not, realism over fiction, the logo, mind, body and spirit, and the panther, the dragon and the eagle. <a href="/hininja/rtms-philosophy-and-system.pdf">Read the book free (PDF, 3.4 MB)</a></p></details>
+      <details><summary>The old pages</summary><p>Rick's older pages are still online, as they were: <a href="/rtms/">RTMS, the system</a>, <a href="/winjitsu/">WinJitsu</a>, <a href="/tours/">Tew's Tours</a> and <a href="/hininja/history/">the history</a>. The old camps were hard core; this intro is not that.</p></details>
+    </div>
+  </div>
+</section>
+
 <section class="band master" id="mastery">
   <div class="wrap">
     <div class="k">Mastery</div>
