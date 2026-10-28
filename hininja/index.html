@@ -352,6 +352,13 @@ figcaption a{font-weight:700;white-space:nowrap}
 @media (max-width:900px){ .voice-grid{grid-template-columns:1fr 1fr} }
 @media (max-width:600px){ .voice-grid{grid-template-columns:1fr} }
 .voice{display:flex;flex-direction:column}
+/* every student quote the old site had (27), six slots that fade through them in place (Rick, 28 Oct 2026 night:
+   "all the quotes available but rotating"); a slot is as tall as its longest quote, so nothing moves while you read */
+.voice-slot{display:grid}
+.voice-slot blockquote{display:flex;align-items:center}
+.voice-slot>.voice{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .9s ease,visibility 0s linear .9s}
+.voice-slot>.voice.on{opacity:1;visibility:visible;transition:opacity .9s ease,visibility 0s}
+@media (prefers-reduced-motion:reduce){ .voice-slot>.voice,.voice-slot>.voice.on{transition:none} }
 .voice blockquote{position:relative;flex:1;background:#fff;border:2px solid var(--mist2);border-radius:16px;padding:16px 18px;font-size:15.5px;line-height:1.6;color:var(--ink2)}
 .voice blockquote::after{content:"";position:absolute;left:38px;bottom:-11px;width:18px;height:18px;background:#fff;border-right:2px solid var(--mist2);border-bottom:2px solid var(--mist2);transform:rotate(45deg)}
 .voice figcaption{margin-top:16px;display:flex;align-items:center;gap:12px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:16px;letter-spacing:.06em;color:var(--ink)}
@@ -1060,12 +1067,45 @@ footer a:hover{color:var(--sea)}
       <h3>Students, in their own words</h3>
       <p class="lead">From students who trained with Rick over the years.</p>
       <div class="voice-grid">
-        <figure class="voice"><blockquote>The training is very professional, complex, creative and you always learn something new. Rick Tew is kind and helping. He knows exactly how far he can push his students. The atmosphere during training is nice, positive and always with a sense of humor.</blockquote><figcaption><img src="/hininja/img/students/sibel.webp" alt="" width="64" height="64" loading="lazy">Sibel K.</figcaption></figure>
-        <figure class="voice"><blockquote>Variety of the training: several self-defense techniques for real situations, sparring, grappling, weapons, stretching, etc. Specially appreciated, we could also choose areas we wanted to learn and practice.</blockquote><figcaption><img src="/hininja/img/students/gabriela.webp" alt="" width="64" height="64" loading="lazy">Gabriela Z.</figcaption></figure>
-        <figure class="voice"><blockquote>Rick Tew is the most dynamic teacher and person that I have had the pleasure to train with and learn from. Years later and I am still amazed how his lessons still enrich my life.</blockquote><figcaption><img src="/hininja/img/students/seth.webp" alt="" width="64" height="64" loading="lazy">Seth T.</figcaption></figure>
-        <figure class="voice"><blockquote>He is very intelligent, very funny, very cool, and very disciplined. This rare combination of attributes makes Rick a dynamo of a person and teacher.</blockquote><figcaption><img src="/hininja/img/students/jamien.webp" alt="" width="64" height="64" loading="lazy">Jamien O.</figcaption></figure>
-        <figure class="voice"><blockquote>What I like the most is the variety of the system, which involves everyday life training with how to be healthy in mind, body, spirit and nutrition.</blockquote><figcaption><img src="/hininja/img/students/kevin.webp" alt="" width="64" height="64" loading="lazy">Kevin O.</figcaption></figure>
-        <figure class="voice"><blockquote>Although the students may join here starting at ground zero, if they simply choose not to quit, not to give up on themselves, they will eventually get there.</blockquote><figcaption><img src="/hininja/img/students/jeff.webp" alt="" width="64" height="64" loading="lazy">Jeff T.</figcaption></figure>
+        <div class="voice-slot">
+          <figure class="voice on"><blockquote>The training is very professional, complex, creative and you always learn something new. Rick Tew is kind and helping. He knows exactly how far he can push his students. The atmosphere during training is nice, positive and always with a sense of humor.</blockquote><figcaption><img src="/hininja/img/students/sibel.webp" alt="" width="64" height="64" loading="lazy">Sibel K.</figcaption></figure>
+          <figure class="voice"><blockquote>I can dive over chairs, flip in the air, climb high, dodge a knife, punch, kick and even do the splits. I've learned to relax, be happy, enjoy nature, and not worry about being afraid.</blockquote><figcaption><img src="/hininja/img/students/nate-p-1.webp" alt="" width="64" height="64" loading="lazy">Nate P.</figcaption></figure>
+          <figure class="voice"><blockquote>I think the quality of the training at the price I paid is exceptional value. I think Sensei Rick Tew's knowledge, experience, passion and dedication to share it is admirable and inspiring.</blockquote><figcaption><img src="/hininja/img/students/chris-h-2.webp" alt="" width="64" height="64" loading="lazy">Chris H.</figcaption></figure>
+          <figure class="voice"><blockquote>Rick Tew is also a gifted and impressive speaker and can mesmerize any crowd with his speeches. Words are not good enough to describe this man. Experience him...</blockquote><figcaption><img src="/hininja/img/students/roy-m.webp" alt="" width="64" height="64" loading="lazy">Roy M.</figcaption></figure>
+          <figure class="voice"><blockquote>I've personally witnessed how he has used his talents in the Martial Arts to not just define his life, but to enrich it and those around him. Mr. Tew has created personal development courses based off his unique experiences and most importantly, these courses are able to be modified to the individual.</blockquote><figcaption><img src="/hininja/img/students/kevin-k.webp" alt="" width="64" height="64" loading="lazy">Kevin K.</figcaption></figure>
+        </div>
+        <div class="voice-slot">
+          <figure class="voice on"><blockquote>Variety of the training: several self-defense techniques for real situations, sparring, grappling, weapons, stretching, etc. Specially appreciated, we could also choose areas we wanted to learn and practice.</blockquote><figcaption><img src="/hininja/img/students/gabriela.webp" alt="" width="64" height="64" loading="lazy">Gabriela Z.</figcaption></figure>
+          <figure class="voice"><blockquote>If you work hard you can make your body do amazing things. E.g. I never jumped higher, kicked higher, did a full flip, before I joined in the martial science training.</blockquote><figcaption><img src="/hininja/img/students/joost-v-1.webp" alt="" width="64" height="64" loading="lazy">Joost V.</figcaption></figure>
+          <figure class="voice"><blockquote>I have been taught knife techniques from martial artists all over the world and none seem more real than what Rick Tew has shared with me. Be careful who teaches you self-defense.</blockquote><figcaption><img src="/hininja/img/students/danian-t.webp" alt="" width="64" height="64" loading="lazy">Danian T.</figcaption></figure>
+          <figure class="voice"><blockquote>The uniqueness stands in its diversity and application to go outside of boxes and boundaries. It's a martial art system with a "custom feature" wherein you may create your own sense of what it is for you.</blockquote><figcaption><img src="/hininja/img/students/kris-b-1.webp" alt="" width="64" height="64" loading="lazy">Kris B.</figcaption></figure>
+          <figure class="voice"><blockquote>This experience has changed my life in a way that I now train three times a week, am more comfortable in crowds and look better naked, oh yeah! I will be back for more... oh yes...</blockquote><figcaption><img src="/hininja/img/students/chris-h-1.webp" alt="" width="64" height="64" loading="lazy">Chris H.</figcaption></figure>
+        </div>
+        <div class="voice-slot">
+          <figure class="voice on"><blockquote>Rick Tew is the most dynamic teacher and person that I have had the pleasure to train with and learn from. Years later and I am still amazed how his lessons still enrich my life.</blockquote><figcaption><img src="/hininja/img/students/seth.webp" alt="" width="64" height="64" loading="lazy">Seth T.</figcaption></figure>
+          <figure class="voice"><blockquote>I can vouch that Rick really does what he preaches, he walks the talk rather than talks the talk. He is very congruent in what he says and passionate as a result because he has actually lived it. He has a genuine energy about him, and that energy definitely comes from a place of contribution and creating value for others.</blockquote><figcaption><img src="/hininja/img/students/ronnie-l.webp" alt="" width="64" height="64" loading="lazy">Ronnie L.</figcaption></figure>
+          <figure class="voice"><blockquote>There is a well thought out system that focuses on basic and foundational movements, stances, strikes and such that allows for an increasing level of skill and complexity to be explored.</blockquote><figcaption><img src="/hininja/img/students/chris-h-3.webp" alt="" width="64" height="64" loading="lazy">Chris H.</figcaption></figure>
+          <figure class="voice"><blockquote>Rick is totally dedicated to his students. He's all about giving them all the opportunities he can so they can live the lifestyle that he has. What you want, When you want, Where you want, Why you want, and with Whom you want.</blockquote><figcaption><img src="/hininja/img/students/nate-p-2.webp" alt="" width="64" height="64" loading="lazy">Nate P.</figcaption></figure>
+          <figure class="voice"><blockquote>Rick seems to do things that most people would never even consider doing and seems to make them work.</blockquote><figcaption><img src="/hininja/img/students/bas-b.webp" alt="" width="64" height="64" loading="lazy">Bas B.</figcaption></figure>
+        </div>
+        <div class="voice-slot">
+          <figure class="voice on"><blockquote>He is very intelligent, very funny, very cool, and very disciplined. This rare combination of attributes makes Rick a dynamo of a person and teacher.</blockquote><figcaption><img src="/hininja/img/students/jamien.webp" alt="" width="64" height="64" loading="lazy">Jamien O.</figcaption></figure>
+          <figure class="voice"><blockquote>Physically, I have learned more than I can put into this response. I suppose to sum it up. I can do things with my body that I never knew I could do. I have surprised and surpassed my own expectations many times over. The best part is that the learning never stops and there is always a new level to reach and to kick your butt and make you want more.</blockquote><figcaption><img src="/hininja/img/students/kris-b-2.webp" alt="" width="64" height="64" loading="lazy">Kris B.</figcaption></figure>
+          <figure class="voice"><blockquote>I've found I can push myself much harder and farther than I previously thought, and my resolve has increased as well.</blockquote><figcaption><img src="/hininja/img/students/billy-s.webp" alt="" width="64" height="64" loading="lazy">Billy S.</figcaption></figure>
+          <figure class="voice"><blockquote>Its emphasis is on a realistic self defense. If it works use it. No useless forms, just how do I defend myself or others. No competition with other Martial arts or styles, if this technique from that art works for you then encompasses it in your style.</blockquote><figcaption><img src="/hininja/img/students/joost-v-2.webp" alt="" width="64" height="64" loading="lazy">Joost V.</figcaption></figure>
+          <figure class="voice"><blockquote>Other MA schools only teach a fighting system like a competition and non-realistic self-defense techniques; in RTMS you learn real combat training applied like full contact sparring and situations for real self-defense. Not to mention weaponry, outdoor training, rock climbing and more.</blockquote><figcaption><img src="/hininja/img/students/carlos-p.webp" alt="" width="64" height="64" loading="lazy">Carlos P.</figcaption></figure>
+        </div>
+        <div class="voice-slot">
+          <figure class="voice on"><blockquote>What I like the most is the variety of the system, which involves everyday life training with how to be healthy in mind, body, spirit and nutrition.</blockquote><figcaption><img src="/hininja/img/students/kevin.webp" alt="" width="64" height="64" loading="lazy">Kevin O.</figcaption></figure>
+          <figure class="voice"><blockquote>Well it's kind of like MMA only more, since you do not focus only on One on One ring fighting. You will have multiple attacker situations, weapons, involved in the outdoors (dirt, concrete, improvised weapons, etc). The system has a huge amount of variety, rolls and falls, stand up fighting, ground fighting, stealth, weapons, survival, and all the mental aspects.</blockquote><figcaption><img src="/hininja/img/students/cedric-c.webp" alt="" width="64" height="64" loading="lazy">Cedric C.</figcaption></figure>
+          <figure class="voice"><blockquote>It's eye opening how much you can learn in each class and how quickly that builds up.</blockquote><figcaption><img src="/hininja/img/students/patrick-a.webp" alt="" width="64" height="64" loading="lazy">Patrick A.</figcaption></figure>
+          <figure class="voice"><blockquote>I've learned so much, upon recollection it's unbelievable. I've learned to maximize my memory potential, set and follow through with goals, make the most out of my time, and take calculated risks.</blockquote><figcaption><img src="/hininja/img/students/jeff-t-2.webp" alt="" width="64" height="64" loading="lazy">Jeff T.</figcaption></figure>
+        </div>
+        <div class="voice-slot">
+          <figure class="voice on"><blockquote>Although the students may join here starting at ground zero, if they simply choose not to quit, not to give up on themselves, they will eventually get there.</blockquote><figcaption><img src="/hininja/img/students/jeff.webp" alt="" width="64" height="64" loading="lazy">Jeff T.</figcaption></figure>
+          <figure class="voice"><blockquote>One of the best periods in my life, in which I learned a lot, lived through a lot of great experiences, met a lot of people, made many new friends and was privileged to be able to share my knowledge and skills with my fellow RTMS team members and students.</blockquote><figcaption><img src="/hininja/img/students/ortwin-c.webp" alt="" width="64" height="64" loading="lazy">Ortwin C.</figcaption></figure>
+          <figure class="voice"><blockquote>What I respect is the way that the system taught builds and expands as I explored new techniques and refined the fundamentals I'd already learned. From fitness to self defense to strength, conditioning, mobility as well as personal development.</blockquote><figcaption><img src="/hininja/img/students/chris-h-4.webp" alt="" width="64" height="64" loading="lazy">Chris H.</figcaption></figure>
+        </div>
       </div>
     </div>
   </div>
@@ -1330,17 +1370,19 @@ footer a:hover{color:var(--sea)}
      it holds still under the mouse. */
   (function(){
     if(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    /* the student quotes turn the same way, slower, one slot at a time (every student quote, 28 Oct 2026 night) */
     function run(box,k){
-      var imgs=box.querySelectorAll("img"), i=0;
+      var quotes=box.classList.contains("voice-slot");
+      var imgs=box.querySelectorAll(quotes?":scope > .voice":"img"), i=0;
       if(imgs.length<2) return;
       setTimeout(function(){
         setInterval(function(){
           if(document.hidden || box.matches(":hover")) return;
           imgs[i].classList.remove("on"); i=(i+1)%imgs.length; imgs[i].classList.add("on");
-        },4000);
-      },(k%3)*1300);
+        },quotes?10000:4000);
+      },quotes?(k%6)*1700:(k%3)*1300);
     }
-    var boxes=[].slice.call(document.querySelectorAll(".rot"));
+    var boxes=[].slice.call(document.querySelectorAll(".rot, .voice-slot"));
     if(!("IntersectionObserver" in window)){ boxes.forEach(run); return; }
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ io.unobserve(e.target); run(e.target, boxes.indexOf(e.target)); } });
