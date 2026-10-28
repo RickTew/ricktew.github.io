@@ -289,7 +289,7 @@
      next:STAYS},
 
     {id:"pocket-dojo", q:"What is Pocket Dojo?",
-     alt:["pocket dojo","home study","home study program","the home study program","hsp","train at home","learn from home","train from home","online course","online training","train online","cant travel","can't travel","cannot travel","cant come"],
+     alt:["pocket dojo","home study","home study program","the home study program","hsp","train at home","learn from home","train from home","online course","online training","train online","cant travel","can't travel","cannot travel"],
      keys:"pocket dojo home study online remote travel distance",
      a:"<p>Pocket Dojo is the Home Study Program on your phone: Rick Tew's Martial Science, belt by belt. Keep training what you learned in class, long after you fly home.</p><p>Want to train with Rick but can't travel? Join the Home Study Program and train at home, belt by belt.</p>",
      next:{href:"/hsp/", label:"See the Home Study Program"}},
@@ -301,7 +301,7 @@
      next:ASK("Ask Kuno about it","About bringing my family: ")},
 
     {id:"refunds", q:"Can I get a refund, or move my dates?",
-     alt:["refund","refunds","money back","cancel","cancellation","change my dates","move my dates","reschedule","postpone","cant make it","flights change","flight changes","my flight","my flights","cant come on my dates","miss my dates"],
+     alt:["refund","refunds","money back","cancel","cancellation","change my dates","move my dates","reschedule","postpone","cant make it","cant come","flights change","flight changes","my flight","my flights","cant come on my dates","miss my dates"],
      keys:"refund refunds refundable cancel cancellation cancelled reschedule postpone final flight flights",
      a:"<p>All sales are final; your dates can move, within a year of buying.</p>",
      next:STAYS},

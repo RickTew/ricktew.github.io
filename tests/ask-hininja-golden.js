@@ -66,7 +66,7 @@ const SAMPLES = {
   "winjitsu": ["what is winjitsu", "is there life coaching"],
   "pocket-dojo": ["what is pocket dojo", "is there a home study program", "I can't travel, can I train from home?"],
   "kids": ["can I bring my kids", "can my family come"],
-  "refunds": ["can I get a refund", "can I change my dates", "What happens if my flights change and I can not come on my dates?"],
+  "refunds": ["can I get a refund", "can I change my dates", "What happens if my flights change and I can not come on my dates?", "what if I cant come"],
   "book": ["how do I book", "how do I sign up", "how do I pay"],
   "included": ["what is included", "do I get a t-shirt"]
 };
