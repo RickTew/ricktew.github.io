@@ -179,7 +179,7 @@ places:
     a date).
   - **`#system`**, between the belts and Mastery: Rick Tew's Martial Science, the two logos from his training
     shirt (round Mind Body Spirit on the back, the red patch on the chest), the free PDF
-    `/hininja/rtms-philosophy-and-system.pdf` (his 2004 "Modern Ninjitsu ... Philosophy and System", 20 pages)
+    `/hininja/rtms-philosophy-and-system.pdf` (OFF since 92417d8: it was a stitched cover plus a 2006 proof, see the 28 Oct night block)
     and seven dropdowns in his words (jutsu or jitsu with his "the U is YOU"; /camps/ is not linked, it still
     sells a private room).
   - **WinJitsu box:** the five books and two phones drawn from the WinJitsu app's own screens (never the
@@ -204,6 +204,31 @@ places:
     retired). The chat has a `pocket-dojo` entry whose next step is `/hsp/` (the golden test allows that one).
   - /about/ is off the HI footer and tiles ("not finish (and its not using my colors)"). The chat stays "Ask
     the Ninja" (his click; 0 of 4 readers took the cartoon for Rick).
+  - **28 Oct 2026, night: the 11-reader round on the live page** (`playtest/reports/2026-10-28-big-SUMMARY.md`; LEGIT 3,
+    UNSURE 8, 0 book now; 11 of 11 now believe Rick and the training are real) **and Rick's clicks on it:** Pocket Dojo is in
+    the "Every stay" list (2602b78); **no WinJitsu books with any stay** (his words: "no books they get the app and access";
+    the books card and the orange-belt captions are gone, 67e9821; Mastery's "access to everything" line keeps them); the
+    phone chat button steps aside over any line of text (5cbece8; the sweep fails if it covers a word); **"Only 12 spots left
+    for 2027" is gone** (082ce90); the When line lost "when he is available" (a6aaed0); the terms lead with the worry, "Ill,
+    or your flights change? Your dates can move, within a year of buying. All sales are final." (bc50aa0); **the price cards
+    run smallest first everywhere** (2 weeks, 2 months, Instructor, Mastery; fb0f1b8), the 2 weeks card saying "10 mornings
+    of the Sensei Seminar, free airport pick-up, and a dorm bed if you need one."
+  - **Two ways to pay a stay (his clicks the same night; LIVE 0e671d3 + Digital Dojo 399716e9, the hold lifted for it):**
+    "Hold my spot: $555 down" (฿17,499, non-refundable, the rest due 2 weeks before arrival, invoiced by TEWBEDO from Rick
+    Tew Co.) or "Pay in full now" ($222 / ฿6,999 off: $2,000 / ฿63,000, $3,000 / ฿94,999, belt $3,775 / ฿119,000). The
+    checkout's `?pay=deposit|full` (no `?pay` sells the stay price as before, for links already out); the relay passes it;
+    the sale notice says "Paid: Deposit. Balance due 2 weeks before arrival: ฿X". Terms section 3 dated 28 October 2026.
+  - **His words, "Built around you"**, in a box under What it is not (37c8534); the chat's injury, age and experience
+    answers quote it. His chat answer for "If I pick 5, do I only learn one tactic a day?" is entry `pace` (his words, the
+    golden test's RICK list).
+  - **Photos and quotes:** every rotating box starts on its first photo when it comes into view and holds still under the
+    mouse; the /camps/ shots (Rick with pads under the palms in the top box, the nunchaku smile leading Ninja tools, students
+    helping each other in review) are in (3fcc17d); **all 27 student quotes** from the old site's cards rotate in six slots
+    (a0f813d).
+  - **The free RTMS book is OFF** (92417d8; memory feedback_never_build_his_book): a session had glued the 2018 cover file to
+    the 2006 printer's proof, and Rick called it "a bad copy cat fake version". **Never build or assemble a book or PDF of his
+    work.** It comes back only as the exact file he gives (he thinks "trms2013" or so; not on the Extreme Pro), opening in a
+    new tab.
 - **`/aininja/` AI Ninja** — the digital work. Building with AI for businesses.
 
 Both are live. The honest reason for the split, in Rick's words: the hardcore
