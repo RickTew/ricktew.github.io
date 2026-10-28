@@ -311,6 +311,7 @@ figcaption a{font-weight:700;white-space:nowrap}
 .card .per{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--sea)}
 .card .amt{margin-top:6px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:700;font-size:48px;line-height:1;color:var(--sea-d)}
 .card .all{margin:12px 0 20px;font-size:16px;color:var(--ink2)}
+.card .dep{margin:-8px 0 20px;font-size:15px;color:var(--ink)}
 .card .cert{margin:0 0 18px}
 .card .cert img{display:block;width:100%;height:auto;border-radius:8px;box-shadow:0 8px 20px rgba(16,20,24,.14)}
 .card .cert figcaption{margin-top:8px;font-size:14.5px;font-weight:700;color:var(--ink2)}
@@ -551,6 +552,7 @@ figcaption a{font-weight:700;white-space:nowrap}
 .mc-form input[type=text],.mc-form input[type=email]{display:block;width:100%;font:inherit;font-size:16px;padding:11px 13px;border:2px solid var(--mist2);border-radius:10px;background:var(--mist);color:var(--ink)}
 .mc-form input:focus-visible{outline:3px solid var(--sea);outline-offset:1px}
 .mc-form .btn{margin-top:16px;width:100%}
+.mc-pay .btn+.btn{margin-top:10px}
 .mc-form .fr{margin-top:12px}
 .mc-form .err{display:none;margin-top:10px;font-weight:700;color:var(--red-d)}
 .mc-form .err.on{display:block}
@@ -1143,12 +1145,14 @@ footer a:hover{color:var(--sea)}
         <div class="per">2 weeks</div>
         <div class="amt">$2,222</div>
         <p class="all">The introduction. 10 mornings of the Sensei Seminar, free airport pick-up, and a dorm bed if you need one.</p>
+        <p class="dep">$555 down holds your spot. Or pay in full now: $2,000.</p>
         <a class="btn btn-red" href="#menu" data-stay="2">Pick and book</a>
       </div>
       <div class="card">
         <div class="per">2 months</div>
         <div class="amt">$3,997</div>
         <p class="all">Yellow belt first, earned in a test with Rick at the end. <a href="#belts">The belt program</a></p>
+        <p class="dep">$555 down holds your spot. Or pay in full now: $3,775.</p>
         <a class="btn btn-red" href="#menu" data-stay="8">Pick and book</a>
       </div>
       <div class="card">
@@ -1186,7 +1190,7 @@ footer a:hover{color:var(--sea)}
           <div><dt>Dates</dt><dd>Arrive any day from 15 January 2027. Next group: 22 January 2027.</dd></div>
           <div><dt>3 weeks</dt><dd>Add a week to the two weeks for $1,000: $3,222.</dd></div>
           <div><dt>1 week</dt><dd>Half the price, $1,111. <a href="#ask" data-topic="booking" data-ask="I want to book one week ($1,111).">Book one week</a></dd></div>
-          <div><dt>Checkout</dt><dd>You add your arrival date. Ill, or your flights change? Your dates can move, within a year of buying. All sales are final.</dd></div>
+          <div><dt>Checkout</dt><dd>You add your arrival date. $555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. Ill, or your flights change? Your dates can move, within a year of buying. All sales are final.</dd></div>
         </dl>
       </div>
       <div class="first">
@@ -1438,7 +1442,7 @@ footer a:hover{color:var(--sea)}
     <button class="kuno-go" type="submit">Ask</button>
   </form>
 </div>
-<script src="/hininja/ask.js?v=20261028j" defer></script>
-<script src="/hininja/menu.js?v=20261028b"></script>
+<script src="/hininja/ask.js?v=20261028k" defer></script>
+<script src="/hininja/menu.js?v=20261028c"></script>
 </body>
 </html>

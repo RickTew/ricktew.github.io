@@ -124,9 +124,12 @@
   var PER_WEEK=5, WEEK_MIN=5; /* single picks before the stays and Book show */
   /* weeks: the checkout's key; book: the Book button's words */
   var STAYS=[
-    {weeks:2, name:"2 weeks", price:2222, book:"Book my two weeks"},
-    {weeks:3, name:"3 weeks", price:3222, book:"Book my 3 weeks"},
-    {weeks:8, name:"A belt, 2 months", price:3997, book:"Book my belt"}]; /* 28 Oct 2026: the month left, the belt is $3,997 (Rick) */
+    {weeks:2, name:"2 weeks", price:2222, full:2000, book:"Book my two weeks"},
+    {weeks:3, name:"3 weeks", price:3222, full:3000, book:"Book my 3 weeks"},
+    {weeks:8, name:"A belt, 2 months", price:3997, full:3775, book:"Book my belt"}]; /* 28 Oct 2026: the month left, the belt is $3,997 (Rick) */
+  /* two ways to pay (Rick's clicks, 28 Oct 2026 night): $555 down holds the spot, the rest 2 weeks before arrival;
+     or the whole stay now, $222 off (full). The checkout takes ?pay=deposit|full (Digital Dojo 399716e9). */
+  var DEPOSIT=555;
   function stay(){ for(var i=0;i<STAYS.length;i++) if(STAYS[i].weeks===plan.weeks) return STAYS[i]; return STAYS[0]; }
   function money(n){ return "$"+String(n).replace(/\B(?=(\d{3})+(?!\d))/g,","); }
   var KEY="hininja-plan-v1";
@@ -177,10 +180,10 @@
     });
     var s0=(q.get("src")||"").toLowerCase(); if(/^[a-z]{1,20}$/.test(s0)) SRC=s0;
   }catch(e){}
-  function checkoutUrl(){
+  function checkoutUrl(pay){
     /* a partner's or a post's ?src= rides on the order too (ricktew-plan-nerdhostel) */
     var src=AD&&AD.click ? "gns-gads-"+AD.campaign+"-"+AD.letter+AD.click : "ricktew-plan"+(SRC!=="direct"?"-"+SRC:"");
-    return "/hininja/buy/?sku=HIN-GNS-2W&src="+encodeURIComponent(src)+"&weeks="+plan.weeks;
+    return "/hininja/buy/?sku=HIN-GNS-2W&src="+encodeURIComponent(src)+"&weeks="+plan.weeks+(pay==="deposit"||pay==="full"?"&pay="+pay:"");
   }
 
   function el(tag,cls,text){ var n=document.createElement(tag); if(cls) n.className=cls; if(text!=null) n.textContent=text; return n; }
@@ -411,8 +414,10 @@
     }
   }
 
-  function planText(friend){
+  function planText(friend,pay){
     var lines=["My plan, from the Ninja Menu on the HI Ninja page.","","Stay: "+stay().name+", "+money(stay().price)+(plan.weeks===8?" (the belt program, yellow belt first)":"")];
+    if(pay==="deposit") lines.push("Paying: "+money(DEPOSIT)+" down to hold the spot, the rest 2 weeks before arrival");
+    if(pay==="full") lines.push("Paying: in full now, "+money(stay().full));
     if(friend) lines.push("Friend, FREE (booked in November): "+friend+", same dates, same stay");
     lines.push("");
     if(!plan.picks.length) lines.push("No picks yet.");
@@ -444,10 +449,15 @@
       fr.i.addEventListener("input",function(){ draft.friend=fr.i.value; });
       f.appendChild(fr.d);
     }
-    var send=el("button","btn btn-red","Save my plan and book, "+money(stay().price)); send.type="submit";
-    f.appendChild(send);
+    var payWith="deposit";
+    var pays=el("div","mc-pay");
+    var send=el("button","btn btn-red","Hold my spot: "+money(DEPOSIT)+" down"); send.type="submit"; send.setAttribute("data-pay","deposit");
+    var whole=el("button","btn btn-quiet","Pay in full now: "+money(stay().full)); whole.type="submit"; whole.setAttribute("data-pay","full");
+    send.addEventListener("click",function(){ payWith="deposit"; });
+    whole.addEventListener("click",function(){ payWith="full"; });
+    pays.appendChild(send); pays.appendChild(whole); f.appendChild(pays);
     var err=el("p","err"); err.setAttribute("role","alert"); f.appendChild(err);
-    f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed if you need one. Your plan goes to Rick, then the secure checkout, where you add your arrival date. Ill, or your flights change? Your dates can move, within a year of buying. All sales are final."));
+    f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed if you need one. Your plan goes to Rick, then the secure checkout, where you add your arrival date. $555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. Ill, or your flights change? Your dates can move, within a year of buying. All sales are final."));
     var askA=el("a","mc-ask","A question about your plan? Ask it with your picks"); askA.href="#ask";
     askA.addEventListener("click",function(){
       var m=document.getElementById("askMsg"), t=document.getElementById("askTopic");
@@ -463,13 +473,13 @@
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ fail("That email address does not look right."); return; }
       if(!ready() && plan.weeks!==8){ fail("Build your Ninja Week first: 5 picks from the menu."); return; }
       var trap=document.getElementById("askWebsite");
-      var data={name:name, email:email, subject:"plan", message:planText(fr?fr.i.value.trim():""), website:trap?trap.value:"",
+      var data={name:name, email:email, subject:"plan", message:planText(fr?fr.i.value.trim():"",payWith), website:trap?trap.value:"",
         elapsedMs:Date.now()-shown, source:AD?"gads":SRC};
       if(AD){ data.adCampaign=AD.campaign; if(AD.click) data.adClick=AD.kind+":"+AD.click; }
-      send.disabled=true; send.textContent="Saving your plan...";
+      var pressed=payWith==="full"?whole:send; send.disabled=true; whole.disabled=true; pressed.textContent="Saving your plan...";
       /* the sale never waits on the mail: on an answer, an error or 6 seconds, on to the checkout */
       var left=false;
-      function on(){ if(left) return; left=true; send.textContent="Taking you to the checkout..."; location.assign(checkoutUrl()); }
+      function on(){ if(left) return; left=true; pressed.textContent="Taking you to the checkout..."; location.assign(checkoutUrl(payWith)); }
       setTimeout(on,6000);
       fetch(FN,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)}).then(on,on);
     });

@@ -83,13 +83,16 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await button('2 months and a belt, $3,997'); // keeps what was typed
   if (await page.inputValue('#planName') !== 'Test Person') bad.push(label + ' name lost');
   await page.fill('#planEmail', 'test.person@gmail.com');
-  if (await menu.locator('button[type=submit]').textContent() !== 'Save my plan and book, $3,997') bad.push(label + ' send text');
+  // two ways to pay (Rick's clicks, 28 Oct 2026 night): $555 down, or the whole stay now, $222 off
+  if (await menu.locator('button[data-pay="deposit"]').textContent() !== 'Hold my spot: $555 down') bad.push(label + ' deposit text');
+  if (await menu.locator('button[data-pay="full"]').textContent() !== 'Pay in full now: $3,775') bad.push(label + ' full text');
   await page.screenshot({ path: OUT + label + '-5-book.png' });
-  await menu.locator('button[type=submit]').click();
+  await menu.locator('button[data-pay="deposit"]').click();
   await page.waitForTimeout(1500);
+  if (posted && !/\nPaying: \$555 down to hold the spot, the rest 2 weeks before arrival\n/.test(posted.message)) bad.push(label + ' deposit line ' + JSON.stringify(posted.message));
   if (!posted || posted.subject !== 'plan' || !/Stay: A belt, 2 months, \$3,997 \(the belt program, yellow belt first\)/.test(posted.message) || !/Week 3: Front Kicks \(Kicks\)/.test(posted.message) || /WinJitsu coaching add-on/.test(posted.message) || posted.source !== 'gads')
     bad.push(label + ' posted ' + JSON.stringify(posted));
-  if (!checkout || !/buy\?sku=HIN-GNS-2W&src=gns-gads-2233-gCj0KabcXYZ&weeks=8&cur=thb$/.test(checkout)) bad.push(label + ' checkout ' + checkout);
+  if (!checkout || !/buy\?sku=HIN-GNS-2W&src=gns-gads-2233-gCj0KabcXYZ&weeks=8&pay=deposit&cur=thb$/.test(checkout)) bad.push(label + ' checkout ' + checkout);
   if (label === 'desktop') console.log(posted && posted.message);
   // the belt program's button: straight to the form with the belt, no picks needed
   posted = null; checkout = null;
@@ -101,12 +104,12 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (!/A belt, 2 months, \$3,997/.test(await menu.locator('.stay-line').textContent())) bad.push(label + ' belt not chosen');
   if (!/No picks needed/.test(await menu.locator('.tray-n').last().textContent())) bad.push(label + ' belt picks line');
   await page.fill('#planName', 'Belt Person'); await page.fill('#planEmail', 'belt.person@gmail.com');
-  if (await menu.locator('button[type=submit]').textContent() !== 'Save my plan and book, $3,997') bad.push(label + ' belt send text');
+  if (await menu.locator('button[data-pay="full"]').textContent() !== 'Pay in full now: $3,775') bad.push(label + ' belt full text');
   await page.screenshot({ path: OUT + label + '-6-belt.png' });
-  await menu.locator('button[type=submit]').click();
+  await menu.locator('button[data-pay="full"]').click();
   await page.waitForTimeout(1500);
-  if (!posted || !/Stay: A belt, 2 months, \$3,997 \(the belt program, yellow belt first\)/.test(posted.message)) bad.push(label + ' belt posted ' + JSON.stringify(posted));
-  if (!checkout || !/src=ricktew-plan&weeks=8&cur=thb$/.test(checkout)) bad.push(label + ' belt checkout ' + checkout);
+  if (!posted || !/Stay: A belt, 2 months, \$3,997 \(the belt program, yellow belt first\)\nPaying: in full now, \$3,775/.test(posted.message)) bad.push(label + ' belt posted ' + JSON.stringify(posted));
+  if (!checkout || !/src=ricktew-plan&weeks=8&pay=full&cur=thb$/.test(checkout)) bad.push(label + ' belt checkout ' + checkout);
   // the price cards (28 Oct 2026, the four of Rick's later click; smallest first since his click that night); Mastery and Instructor fill the ask box;
   // a stay other than the belt opens the menu with that stay, Ninja Week first
   await page.goto(BASE + '/hininja/');
@@ -155,10 +158,10 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (await stayBtn('2 weeks').isEnabled()) bad.push(label + ' 2 weeks enabled with 3 weeks used');
   await button('Book my 3 weeks');
   await page.fill('#planName', 'Quick Person'); await page.fill('#planEmail', 'quick.person@gmail.com');
-  await menu.locator('button[type=submit]').click();
+  await menu.locator('button[data-pay="deposit"]').click();
   await page.waitForTimeout(1500);
   if (!posted || !/Week 1: Quick pick: PSC Self-Defense Program\nWeek 2: Quick pick: Strikes and Kicks form\nWeek 3: Fist Strikes \(Strikes\), Elbow \(Strikes\), Ridge Hand \(Strikes\)/.test(posted.message)) bad.push(label + ' quick posted ' + JSON.stringify(posted && posted.message));
-  if (!checkout || !/src=ricktew-plan&weeks=3&cur=thb$/.test(checkout)) bad.push(label + ' quick checkout ' + checkout);
+  if (!checkout || !/src=ricktew-plan&weeks=3&pay=deposit&cur=thb$/.test(checkout)) bad.push(label + ' quick checkout ' + checkout);
   if (label === 'desktop') console.log(posted && posted.message);
   // the November friend promo (27 Oct 2026): shown while it runs, gone by itself after 30 November 2026, Thailand time
   for (const [when, on] of [['2026-11-15T12:00:00+07:00', true], ['2026-12-01T00:00:01+07:00', false]]) {
@@ -180,9 +183,9 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
       await pp.locator('.hero').screenshot({ path: OUT + label + '-8-promo-hero.png' });
       await pp.fill('#planName', 'Promo Person'); await pp.fill('#planEmail', 'promo.person@gmail.com'); await pp.fill('#planFriend', 'Pat Friend');
       await pp.locator('#menu').screenshot({ path: OUT + label + '-8-promo-form.png' });
-      await pp.locator('#menu button[type=submit]').click();
+      await pp.locator('#menu button[data-pay="deposit"]').click();
       await pp.waitForTimeout(1500);
-      if (!pposted || !/Stay: A belt, 2 months, \$3,997 \(the belt program, yellow belt first\)\nFriend, FREE \(booked in November\): Pat Friend, same dates, same stay\n/.test(pposted.message)) bad.push(label + ' promo posted ' + JSON.stringify(pposted && pposted.message));
+      if (!pposted || !/Stay: A belt, 2 months, \$3,997 \(the belt program, yellow belt first\)\nPaying: \$555 down to hold the spot, the rest 2 weeks before arrival\nFriend, FREE \(booked in November\): Pat Friend, same dates, same stay\n/.test(pposted.message)) bad.push(label + ' promo posted ' + JSON.stringify(pposted && pposted.message));
     }
     await pctx.close();
   }

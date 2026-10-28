@@ -119,7 +119,13 @@
     {id:"price", q:"How much does it cost?",
      alt:["how much is","how much are","how much does","how much do","how much for","how much will","how much is it","what does it cost","what is the price","whats the price","the prices","prices","price","price list","how much money"],
      keys:"cost costs price prices pricing fee fees expensive cheap usd dollar dollars rate rates package packages afford budget",
-     a:"<p>2 weeks: $2,222. 3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>A belt in the belt program is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is all five belts over 2 years, $15,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p>",
+     a:"<p>2 weeks: $2,222. 3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>A belt in the belt program is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is all five belts over 2 years, $15,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p><p>$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p>",
+     next:STAYS},
+
+    {id:"deposit", q:"Can I pay a deposit?",
+     alt:["deposit","a deposit","pay a deposit","the deposit","hold my spot","hold a spot","hold my place","pay later","pay the rest later","pay the rest","the balance","the rest","installments","pay in installments","pay in parts","pay in full","full payment","pay up front","pay upfront","pay it all"],
+     keys:"deposit deposits installment installments balance later upfront",
+     a:"<p>$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p><p>Ill, or your flights change? Your dates can move, within a year of buying. All sales are final.</p>",
      next:STAYS},
 
     {id:"one-week", q:"Can I come for just one week?",
@@ -317,13 +323,13 @@
     {id:"refunds", q:"Can I get a refund, or move my dates?",
      alt:["refund","refunds","money back","cancel","cancellation","change my dates","move my dates","reschedule","postpone","cant make it","cant come","flights change","flight changes","my flight","my flights","cant come on my dates","miss my dates"],
      keys:"refund refunds refundable cancel cancellation cancelled reschedule postpone final flight flights",
-     a:"<p>Ill, or your flights change? Your dates can move, within a year of buying. All sales are final.</p>",
+     a:"<p>Ill, or your flights change? Your dates can move, within a year of buying. All sales are final.</p><p>$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p>",
      next:STAYS},
 
     {id:"book", q:"How do I book?",
      alt:["how do i book","how to book","book now","sign up","signup","how do i sign up","enroll","enrol","register","reserve a spot","how do i pay","payment","pay by card"],
      keys:"book booking reserve reservation signup enroll enrol register registration pay paying payment checkout card spot",
-     a:"<p>Pick what you want to learn. Choose how long you stay, and book. At checkout you add your arrival date.</p>",
+     a:"<p>Pick what you want to learn. Choose how long you stay, and book. At checkout you add your arrival date.</p><p>$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p>",
      next:MENU},
 
     {id:"included", q:"What is included?",

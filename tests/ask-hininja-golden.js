@@ -41,6 +41,7 @@ const RICK = [
 const SAMPLES = {
   "what-is": ["what is this exactly?", "what is hi ninja", "is this a retreat"],
   "price": ["how much is it?", "what are your prices", "is it expensive"],
+  "deposit": ["can I pay a deposit", "do I have to pay it all now?", "when is the rest due", "is there a discount if I pay in full"],
   "one-week": ["can I come for a week", "do you do one week?", "can i just drop in for a class or do a few days?"],
   "longer": ["can I stay longer", "what about 3 weeks", "can I come for a month"],
   "start": ["when can I start", "what are the dates", "when is the next group", "I am already on Koh Samui. Can I start next week?"],
