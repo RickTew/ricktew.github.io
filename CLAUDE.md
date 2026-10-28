@@ -227,8 +227,9 @@ places:
     (a0f813d).
   - **The free RTMS book is OFF** (92417d8; memory feedback_never_build_his_book): a session had glued the 2018 cover file to
     the 2006 printer's proof, and Rick called it "a bad copy cat fake version". **Never build or assemble a book or PDF of his
-    work.** It comes back only as the exact file he gives (he thinks "trms2013" or so; not on the Extreme Pro), opening in a
-    new tab.
+    work.** Since the same night it IS back as his own file: `RTMS Book 2010.pdf` (184 pages, from ~/Dev/UGTMA; a copy back in
+    the Extreme Pro's Rick Tew Archive/Documents) at `/hininja/modern-ninjitsu-philosophy-and-system.pdf`, opening in a new tab,
+    the card showing the front of his `RTMS One Piece Book Cover 2013.pdf` (his click).
 - **`/aininja/` AI Ninja** — the digital work. Building with AI for businesses.
 
 Both are live. The honest reason for the split, in Rick's words: the hardcore
