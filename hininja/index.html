@@ -238,6 +238,8 @@ figcaption a{font-weight:700;white-space:nowrap}
 .master-buy{margin-top:24px;border:2px solid rgba(255,255,255,.3);border-radius:20px;padding:20px 22px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .master-buy .mp{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:700;font-size:40px;line-height:1;color:#fff}
 .master-buy p{flex:1 1 320px;font-size:16px;color:#e9edf2}
+.master-buy .m-save{margin-top:10px;font-weight:700;font-size:15.5px;color:var(--hi)}
+.card .save{margin:-6px 0 18px;font-size:14.5px;font-weight:700;color:var(--ink);background:#fff8db;border:2px solid var(--yellow);border-radius:10px;padding:6px 10px}
 .master-buy .spots{display:inline-block;margin-bottom:10px;background:var(--hi);color:var(--ink);font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:6px}
 .mind .voices h3,.mind .voice figcaption{color:#fff}
 .perks{margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
@@ -669,6 +671,9 @@ footer a:hover{color:var(--sea)}
       <div class="m-left">
         <div class="spots">Only 12 spots left for 2027</div>
         <div class="mp">$15,988</div>
+        <!-- Rick's click, 28 Oct 2026: "$2,000 off: $13,988" for booking Mastery in November; data-promo, so it
+             hides itself after 30 November with the friend promo -->
+        <div class="m-save" data-promo hidden>Book in November and save $2,000: $13,988</div>
       </div>
       <p>All five belts over 2 years. Mastery includes the same as every stay: training, WinJitsu coaching, and a dorm bed if you need one. $2,222 down reserves your spot. Then pay the rest all at once, or in five parts, one before each belt.</p>
       <a class="btn btn-red" href="#ask" data-ask="I want to reserve a Mastery spot for 2027 with $2,222 down (Mastery: all five belts over 2 years, $15,988).">Reserve my spot</a>
@@ -766,6 +771,7 @@ footer a:hover{color:var(--sea)}
         <div class="per">Mastery</div>
         <div class="amt">$15,988</div>
         <p class="all">All five belts, yellow to red, over 2 years. Only 12 spots left for 2027. <a href="#mastery">Why Mastery</a></p>
+        <div class="save" data-promo hidden>Book in November and save $2,000: $13,988</div>
         <a class="btn btn-red" href="#ask" data-ask="I want to reserve a Mastery spot for 2027 with $2,222 down (Mastery: all five belts over 2 years, $15,988).">Reserve a spot</a>
       </div>
       <div class="card">
