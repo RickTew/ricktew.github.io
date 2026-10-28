@@ -163,7 +163,10 @@ places:
     and seven dropdowns in his words (jutsu or jitsu with his "the U is YOU"; /camps/ is not linked, it still
     sells a private room).
   - **WinJitsu box:** the five books and two phones drawn from the WinJitsu app's own screens (never the
-    Tewtors phone picture, it says Tewtors); the Pai treehouse and desk photos small, side by side.
+    Tewtors phone picture, it says Tewtors); the Pai treehouse and desk photos small, side by side. Rick's
+    pick the same day in the WinJitsu chat: the ninja students' app (adult WinJitsu books plus Pocket Dojo)
+    will live at winjitsu.com on the Tewtors app, reversing his 6 Oct "308 forever". Until the WinJitsu chat
+    says it is live, the bonus line "A free month of WinJitsu.com" and its link stay as they are.
   - /about/ is off the HI footer and tiles ("not finish (and its not using my colors)"). The chat stays "Ask
     the Ninja" (his click; 0 of 4 readers took the cartoon for Rick).
 - **`/aininja/` AI Ninja** — the digital work. Building with AI for businesses.
