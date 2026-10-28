@@ -74,6 +74,15 @@ places:
   offered, though the DTV's soft-power route lists sports training), and **"Pay it all at once, or in five
   parts, one before each belt."** (invoiced, not the checkout), and the People tile adds **"Stay long enough
   and you can help lead practice as a Guide."** (no pay or title promised).
+  **How Mastery works, Rick's words the same day:** "I teach them a tactic or technique and then they
+  practice and focus on their training to MASTER the skills. It is not Rick Tew babysitting them hours on
+  end with private 1-1 sessions every day (that would cost them close to $222 an hour or more with
+  privates). So it is more sporadic with a guaranteed 200 hours a year"; private and small-group training
+  with him guiding them through the martial art and the system ("certifications etc"); they join the
+  short-stay classes; "access to everything (including all resources, apps, books etc)". On the page: three
+  steps (Rick shows you, You practice, You earn the belt), the not-daily-privates line, four tiles (200 hours
+  a year guaranteed, every class, every resource, people) and the FAQ "How much time with Rick do I get in
+  Mastery?". His concept for the pitch: "looking for your Mr. Miyagi", "be the Ninja Kid".
   **No specifics in videos, images or ads** (Rick, same day: "We do not use specific for our
   ads or images or videos as we might want to change them often so leave the specifics for
   the pages and text that we can list fast"): no place, length of stay, time, date, price or

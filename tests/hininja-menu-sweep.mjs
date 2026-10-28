@@ -185,7 +185,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
     await page.screenshot({ path: OUT + label + '-s-' + id + '.png' });
   }
   const txt = await page.locator('body').innerText();
-  if (/Big C|mall\b|island is yours|add-on/i.test(txt)) bad.push(label + ' old words: ' + (txt.match(/Big C|mall\b|island is yours|add-on/i) || [])[0]);
+  if (/Big C|\bmall\b|island is yours|add-on/i.test(txt)) bad.push(label + ' old words: ' + (txt.match(/Big C|\bmall\b|island is yours|add-on/i) || [])[0]);
   await ctx.close();
 }
 await browser.close();
