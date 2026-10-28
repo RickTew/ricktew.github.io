@@ -202,6 +202,18 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 .mind-grid b{display:block;margin-top:4px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:22px;line-height:1.15;color:#fff}
 .mind-grid p{margin-top:6px;font-size:15.5px;color:#f0f6fc}
 .mind .voices{border-top-color:rgba(255,255,255,.28)}
+/* Mastery (Rick, 28 Oct 2026: "we would rather have 10 1-2 [year] students than 10-20 in and out"): a dark
+   band so it stands apart; the tiles borrow the blue band's .mind-grid, the strip is the five belt colours */
+.master{background:var(--ink);color:#fff}
+.master h2{color:#fff}
+.master .lead{color:#e9edf2}
+.master .k{color:var(--hi)}
+.master .mind-grid div{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.22)}
+.belt-line{margin-top:24px;height:12px;border-radius:6px;max-width:520px;background:linear-gradient(90deg,var(--yellow) 0 20%,var(--orange) 20% 40%,var(--green) 40% 60%,var(--blue) 60% 80%,var(--redbelt) 80% 100%)}
+.master .made{margin-top:24px;font-size:17px;color:#e9edf2;max-width:62ch}
+.master-buy{margin-top:24px;border:2px solid rgba(255,255,255,.3);border-radius:20px;padding:20px 22px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.master-buy .mp{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:700;font-size:40px;line-height:1;color:#fff}
+.master-buy p{flex:1 1 320px;font-size:16px;color:#e9edf2}
 .mind .voices h3,.mind .voice figcaption{color:#fff}
 .perks{margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 @media (max-width:760px){ .perks{grid-template-columns:1fr} }
@@ -560,6 +572,31 @@ footer a:hover{color:var(--sea)}
   </div>
 </section>
 
+<!-- Mastery, the long stay (Rick, 28 Oct 2026: "we would rather have 10 1-2 students than 10-20 in and
+     out students ... a solid mastery sales pitch ... those that MOVE to Thailand"; "mastery includes the
+     same"). Every line is a fact already on this page or his. No visa letter and no paying over time
+     until he says so. -->
+<section class="band master" id="mastery">
+  <div class="wrap">
+    <div class="k">Mastery</div>
+    <h2>Moving to Thailand? Earn all five belts.</h2>
+    <p class="lead">Most people come for two weeks. Mastery is for the ones who stay: all five belts, yellow to red, over 1 to 2 years, with Rick.</p>
+    <div class="belt-line" aria-hidden="true"></div>
+    <div class="mind-grid four">
+      <div><span>A routine</span><b>Something to get up for</b><p>Class Monday to Friday, 8am to 10am, or the evening review class. The rest of the day is yours.</p></div>
+      <div><span>People</span><b>Someone to train with</b><p>The group, and the Guides: people who trained here before you.</p></div>
+      <div><span>Progress</span><b>One belt at a time</b><p>2 months of training per belt, and each one earned in a test with Rick.</p></div>
+      <div><span>The mind</span><b>WinJitsu coaching</b><p>Rick's mental martial art, coached by the man who wrote the five books.</p></div>
+    </div>
+    <p class="made">Rick has made the move himself: more than six years teaching in Holland, and now Thailand, where he runs NinjaGym.</p>
+    <div class="master-buy">
+      <div class="mp">$15,988</div>
+      <p>All five belts. Mastery includes the same as every stay: training, WinJitsu coaching, and a dorm bed if you need one.</p>
+      <a class="btn btn-red" href="#ask" data-ask="I am interested in Mastery: all five belts over 1 to 2 years ($15,988).">Write to me about Mastery</a>
+    </div>
+  </div>
+</section>
+
 <section class="band" id="day">
   <div class="wrap">
     <div class="k">When</div>
@@ -646,7 +683,7 @@ footer a:hover{color:var(--sea)}
       <div class="card">
         <div class="per">Mastery</div>
         <div class="amt">$15,988</div>
-        <p class="all">All five belts, yellow to red, over 1 to 2 years.</p>
+        <p class="all">All five belts, yellow to red, over 1 to 2 years. <a href="#mastery">Why Mastery</a></p>
         <a class="btn btn-red" href="#ask" data-ask="I am interested in Mastery: all five belts over 1 to 2 years ($15,988).">Write to me</a>
       </div>
       <div class="card">

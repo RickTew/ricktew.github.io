@@ -180,7 +180,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await page.goto(BASE + '/hininja/');
   const ov = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   if (ov > 0) bad.push(label + ' overflow ' + ov);
-  for (const id of ['belts', 'where', 'day', 'price', 'rick']) {
+  for (const id of ['belts', 'mastery', 'where', 'day', 'price', 'rick']) {
     await page.locator('#' + id).scrollIntoViewIfNeeded();
     await page.screenshot({ path: OUT + label + '-s-' + id + '.png' });
   }
