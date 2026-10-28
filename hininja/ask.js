@@ -269,7 +269,7 @@
     {id:"mastery", q:"What is Mastery?",
      alt:["mastery","the mastery program","move to thailand","moving to thailand","live in thailand","relocate","long term","two years","2 years","sensei"],
      keys:"mastery master relocate relocating longterm sensei",
-     a:"<p>Most people come for two weeks. Mastery is for the ones who stay: all five belts, yellow to red, over 2 years, with Rick.</p><p>Rick shows you a tactic or technique, in a private or small-group session. You practice on your own and in the group classes, until you master it. Each belt ends in a test with Rick.</p><p>$15,988. Only 12 spots left for 2027. $2,222 down reserves your spot, and spots are held in the order the deposits arrive. Then pay the rest all at once, or in five parts, one before each belt. Next group starts 22 January 2027.</p>",
+     a:"<p>Most people come for two weeks. Mastery is for the ones who stay: all five belts, yellow to red, over 2 years, with Rick.</p><p>Rick shows you a tactic or technique, in a private or small-group session. You practice on your own and in the group classes, until you master it. Each belt ends in a test with Rick.</p><p>$15,988. $2,222 down reserves your spot, and spots are held in the order the deposits arrive. Then pay the rest all at once, or in five parts, one before each belt. Next group starts 22 January 2027.</p>",
      next:ASK("Reserve my spot","I want to reserve a Mastery spot for 2027 with $2,222 down (Mastery: all five belts over 2 years, $15,988).")},
 
     {id:"rick-time", q:"How much time with Rick do I get in Mastery?",
