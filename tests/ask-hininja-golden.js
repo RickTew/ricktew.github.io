@@ -55,16 +55,17 @@ const SAMPLES = {
   "age": ["am I too old at 55", "is there an age limit", "What ages are the other students?"],
   "group": ["how many people are in a group", "what is the class size", "how big is the group", "how many students are usually there"],
   "teens": ["I am 17, can I come alone", "do you take teenagers"],
+  "parent-teen": ["Can I come with my 16-year-old son?", "who supervises my teen out of class", "can my teenager and I train together"],
   "injury": ["I have a bad knee", "I am out of shape, is that ok", "I have an old injury",
     "I'm 42 with an old knee injury and a black belt in karate from years ago. Can my knee handle this, and how hard is the training?"],
   "sparring": ["is there sparring", "is it a hardcore boot camp", "is it intense"],
-  "women": ["is it ok for a solo female traveler", "is there a women's dorm"],
+  "women": ["is it ok for a solo female traveler", "is there a women's dorm", "Are there other women in the group, and how much body contact is there with other students?", "can I pair with a woman"],
   "self-defense": ["can I learn self defense", "I want to protect myself"],
   "weapons": ["do you teach weapons", "can I learn nunchaku"],
   "dorm": ["where do I sleep", "is accommodation included", "what is the hostel like"],
   "private-room": ["can I get a private room", "can I share a room with my girlfriend"],
   "own-place": ["I already have a place on Samui", "is it cheaper without the dorm"],
-  "meals": ["are meals included", "what about food"],
+  "meals": ["are meals included", "what about food", "how many meals a day"],
   "airport": ["do you pick me up from the airport", "how do I get there"],
   "where": ["where is it", "where in thailand is this"],
   "center": ["is there a game room", "what facilities does the gym have", "can I work remotely there"],
@@ -83,7 +84,7 @@ const SAMPLES = {
   "included": ["what is included", "do I get a t-shirt"]
 };
 /* real questions with no page fact behind them: the honest miss, never a wrong answer (the 28 Oct big round) */
-const HONEST_MISS = ["Are there other women in the group, and how much body contact is there with other students?"];
+const HONEST_MISS = [];
 const NONSENSE = ["tell me a joke", "what is the capital of france", "asdf qwerty zxcv", "do you sell pizza",
   "best crypto to buy now", "can you fix my car", "what is the weather tomorrow", "write me a poem", "is the moon made of cheese"];
 

@@ -209,10 +209,17 @@
      a:"<p>Yes, with a parent's signature on the papers: the enrolment, a travel consent letter and a medical consent. Ask about the papers in the question form before you book.</p>",
      next:ASK("Ask Kuno first","I am 16 or 17 and would like to come.")},
 
+    /* Rick's click "Train and stay together", 29 Oct 2026 */
+    {id:"parent-teen", q:"Can a parent and a 16 or 17-year-old come together?",
+     alt:["with my teen","with my teenager","my teenager","my teen","my 16 year old","my 17 year old","16 year old son","17 year old son","16 year old daughter","17 year old daughter","teenage son","teenage daughter","train with my son","train with my daughter","parent and teen","parent and a teen","come together","who looks after","who supervises","supervise"],
+     keys:"teen teens teenager teenagers supervise supervises supervision together",
+     a:"<p>Yes. Come together: train side by side, and book a family room at NerdHostel or your own place. Out of class, a teen is the parent's to look after.</p>",
+     next:STAYS},
+
     {id:"injury", q:"Got an injury, or not very fit?",
      alt:["bad knee","bad back","not fit","not very fit","out of shape","an injury","old injury","overweight","unfit","health problem","my knee","my back","my shoulder","knee injury","back injury","shoulder injury","injured"],
      keys:"injury injuries injured knee knees back shoulder fit fitness unfit shape health medical condition overweight weight hurt pain",
-     a:"<p>Tell me before you come. Every drill has an easier version.</p><p>The great thing about the martial science is that it is built around your own strengths and weaknesses.</p>",
+     a:"<p>Tell me before you come. Every drill has an easier version. Bad knee? Skip any roll, fall or jump that hurts it, and train another part of the same tactic instead.</p><p>The great thing about the martial science is that it is built around your own strengths and weaknesses.</p>",
      next:ASK("Tell Kuno about it","About an injury or my fitness: ")},
 
     {id:"sparring", q:"Is it a fight camp? Is there sparring?",
@@ -222,9 +229,9 @@
      next:MENU},
 
     {id:"women", q:"Is it good for women?",
-     alt:["for women","as a woman","female","solo female","women only","womens dorm","women's dorm","girls","for a woman"],
-     keys:"women woman female females girl girls lady ladies solo womens",
-     a:"<p>Self-defense is on the Ninja Menu, and there is a women's dorm.</p><p>No private rooms. The stay is a shared men's or women's dorm.</p>",
+     alt:["for women","as a woman","female","solo female","women only","womens dorm","women's dorm","girls","for a woman","other women","pair with a woman","partner with a woman","body contact","how much contact","physical contact","say stop","partner drills"],
+     keys:"women woman female females girl girls lady ladies solo womens contact touching pair partner partners stop",
+     a:"<p>Self-defense is on the Ninja Menu, and there is a women's dorm. Women train in most groups. Ask to pair with a woman, and you can say stop at any time.</p><p>No private rooms. The stay is a shared men's or women's dorm.</p>",
      next:MENU},
 
     {id:"self-defense", q:"Can I learn self-defense?",
@@ -242,7 +249,7 @@
     {id:"dorm", q:"Where do I sleep?",
      alt:["where do i sleep","where do i stay","place to stay","accommodation","is housing included","a bed","dorm bed","the dorm","the dorms","hostel"],
      keys:"sleep sleeping stay staying bed beds dorm dorms housing accommodation accommodations hostel lodging nerdhostel bunk bunks room rooms",
-     a:"<p>You pay for the training. If you need a bed, there is basic housing nearby at no added cost: a shared men's or women's dorm, with simple meals if you need a little boost.</p><p>The dorms are at NerdHostel, a gamer hostel and co-working space across the street from NinjaGym.</p>",
+     a:"<p>You pay for the training. If you need a bed, there is basic housing nearby at no added cost: a shared men's or women's dorm, with two simple meals a day.</p><p>The dorms are at NerdHostel, a gamer hostel and co-working space across the street from NinjaGym.</p>",
      next:STAYS},
 
     {id:"private-room", q:"Is there a private room, or a room for two?",
@@ -258,9 +265,9 @@
      next:STAYS},
 
     {id:"meals", q:"Are meals included?",
-     alt:["meals included","is food included","what about food","breakfast","lunch","dinner"],
+     alt:["meals included","is food included","what about food","breakfast","lunch","dinner","meals a day","how many meals","meal a day"],
      keys:"meals meal food foods eat eating breakfast lunch dinner",
-     a:"<p>If you need a bed, there is basic housing nearby at no added cost: a shared men's or women's dorm, with simple meals if you need a little boost.</p>",
+     a:"<p>Yes, at no added cost: two simple meals a day.</p><p>If you need a bed, there is basic housing nearby at no added cost: a shared men's or women's dorm, with two simple meals a day.</p>",
      next:STAYS},
 
     {id:"airport", q:"Do you pick me up from the airport?",
