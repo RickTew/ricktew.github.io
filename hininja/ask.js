@@ -290,7 +290,7 @@
     {id:"rick", q:"Who is Rick Tew?",
      alt:["who is rick","who is rick tew","about rick","ricks background","his background","is rick legit","is he legit","is this legit","credentials","qualifications","how long has rick","lineage","his lineage","who taught rick","who trained rick","ricks teacher","ricks teachers","his teacher","his teachers","trained under","learn from","learned from"],
      keys:"background credentials qualification qualifications legit press magazine magazines record history founder lineage",
-     a:"<p>More than 25 years of ninja martial arts, taught around the world, and the man behind WinJitsu. This intro is the easy-going version.</p><p>The first in the martial arts industry to run live-in Ninja Training Camps. In the press: Black Belt, KO Karate, Fighting Spirit Zendokan, Fighting Sports and International Lifestyle Magazine.</p>",
+     a:"<p>Rick has taught thousands of students in multiple countries for more than 25 years, and run some of the most intense outdoor adventure programs. Been there, done that. Now he is laid back and teaches for fun: it is a lifelong passion. Now it is your turn.</p><p>The first in the martial arts industry to run live-in Ninja Training Camps. In the press: Black Belt, KO Karate, Fighting Spirit Zendokan, Fighting Sports and International Lifestyle Magazine.</p>",
      next:MENU},
 
     {id:"belts", q:"How do the belts work?",
