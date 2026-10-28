@@ -107,18 +107,18 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await page.waitForTimeout(1500);
   if (!posted || !/Stay: A belt, 2 months, \$3,997 \(the belt program, yellow belt first\)/.test(posted.message)) bad.push(label + ' belt posted ' + JSON.stringify(posted));
   if (!checkout || !/src=ricktew-plan&weeks=8&cur=thb$/.test(checkout)) bad.push(label + ' belt checkout ' + checkout);
-  // the price cards (28 Oct 2026, the four of Rick's later click): biggest first; Mastery and Instructor fill the ask box;
+  // the price cards (28 Oct 2026, the four of Rick's later click; smallest first since his click that night); Mastery and Instructor fill the ask box;
   // a stay other than the belt opens the menu with that stay, Ninja Week first
   await page.goto(BASE + '/hininja/');
   await page.evaluate(() => localStorage.clear());
   await page.reload();
   const amts = await page.locator('#price .stay-cards .amt').allTextContents();
-  if (amts.join(' ') !== '$15,988 $8,994 $3,997 $2,222') bad.push(label + ' price cards ' + amts.join(' '));
+  if (amts.join(' ') !== '$2,222 $3,997 $8,994 $15,988') bad.push(label + ' price cards ' + amts.join(' '));
   if (await page.locator('a[data-stay="4"]').count()) bad.push(label + ' a month button is back');
-  await page.locator('#price .stay-cards a[href="#ask"]').nth(0).click();
+  await page.locator('#price .stay-cards a[data-ask^="I want to reserve a Mastery"]').click();
   if (!/^I want to reserve a Mastery spot for 2027 with \$2,222 down/.test(await page.locator('#askMsg').inputValue())) bad.push(label + ' Mastery did not fill the ask box');
   await page.locator('#askMsg').fill('');
-  await page.locator('#price .stay-cards a[href="#ask"]').nth(1).click();
+  await page.locator('#price .stay-cards a[data-ask^="I want to reserve an Instructor"]').click();
   if (!/^I want to reserve an Instructor spot: all five belts in 1 year, and learning to teach \(\$8,994\)/.test(await page.locator('#askMsg').inputValue())) bad.push(label + ' Instructor did not fill the ask box');
   // the topic rides along (Rick, 28 Oct 2026: "selectors for what type of question"), and nothing asks anyone to write
   if (await page.locator('#askTopic').inputValue() !== 'mastery') bad.push(label + ' Instructor did not set the topic');
