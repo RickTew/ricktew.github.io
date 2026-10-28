@@ -255,7 +255,7 @@
     {id:"private-room", q:"Is there a private room, or a room for two?",
      alt:["private room","own room","room for two","single room","couple","couples","my partner","my girlfriend","my boyfriend","share a room"],
      keys:"private single couple couples partner girlfriend boyfriend together",
-     a:"<p>No private rooms. The stay is a shared men's or women's dorm. Want your own room? Book one nearby; the price stays the same.</p>",
+     a:"<p>No private rooms. The stay is a shared men's or women's dorm. Want your own room? Book one nearby; the price stays the same. A couple or a family can book a whole dorm room at NerdHostel, when it has room.</p>",
      next:STAYS},
 
     {id:"own-place", q:"I already have a place. Is it cheaper?",
