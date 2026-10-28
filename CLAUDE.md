@@ -58,6 +58,14 @@ places:
   menu's book form, which rides in the plan mail (the checkout stays one item). Every piece is `data-promo
   hidden`; the page's script shows them until 30 November 2026 ends in Thailand and then they are gone by
   themselves. The friend needs a second dorm bed: NerdHostel was told.
+  **Since 28 Oct 2026 the price section is packages, biggest first** (Rick pasted a Bronze / Silver /
+  Gold note, "let's create something for our page too", then clicked "3 cards, biggest first" and asked
+  for "a pricey mastery program for 1-2 years ... what part of 16K did you not understand? ... under
+  20K"): "Pick your stay." over four cards, **Mastery $15,988** (all five belts, yellow to red, over 1
+  to 2 years; its button "Write to me" fills the ask box, because the checkout sells up to 2 months),
+  Earn a belt $7,994, The month $3,997, 2 weeks $2,222, each about double the next. 3 weeks stays a
+  line under the cards (four fixed stays). A card's button picks that stay in the Ninja Menu
+  (`a[data-stay]` in menu.js); the Ninja Week is still built first unless it is the belt.
   **No specifics in videos, images or ads** (Rick, same day: "We do not use specific for our
   ads or images or videos as we might want to change them often so leave the specifics for
   the pages and text that we can list fast"): no place, length of stay, time, date, price or
