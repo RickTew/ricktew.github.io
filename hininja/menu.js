@@ -8,7 +8,8 @@
    (minimum 5 choices before this or they will not understand it)"). Up to 5 picks a week. Rick's clicks of 25 Oct: Body Movement as an 8th area; four stays, 2 weeks
    $2,222, 3 weeks $3,222 ("add another week for 1K"; "only" cut on his click after the
    reader round), the full month $3,997 and a
-   belt, 2 months, $7,994 (the checkout sells the same four, ?weeks=2|3|4|8); WinJitsu
+   belt, 2 months, $7,994 (the checkout sells the same four, ?weeks=2|3|4|8). Since 28 Oct 2026
+   (Rick: "2 months 3,997") three stays: the month left and the belt is $3,997 (?weeks=2|3|8); WinJitsu
    coaching included ("as included like before"). Book saves the plan to the mailbox (subject "plan",
    Auto-Submitted, so the Ninja Agent does not answer while they pay) and goes straight
    to the checkout through /hininja/buy/. Rick builds the Sensei Seminar from the plans.
@@ -125,8 +126,7 @@
   var STAYS=[
     {weeks:2, name:"2 weeks", price:2222, book:"Book my two weeks"},
     {weeks:3, name:"3 weeks", price:3222, book:"Book my 3 weeks"},
-    {weeks:4, name:"1 month", price:3997, book:"Book my month"},
-    {weeks:8, name:"A belt, 2 months", price:7994, book:"Book my belt"}];
+    {weeks:8, name:"A belt, 2 months", price:3997, book:"Book my belt"}]; /* 28 Oct 2026: the month left, the belt is $3,997 (Rick) */
   function stay(){ for(var i=0;i<STAYS.length;i++) if(STAYS[i].weeks===plan.weeks) return STAYS[i]; return STAYS[0]; }
   function money(n){ return "$"+String(n).replace(/\B(?=(\d{3})+(?!\d))/g,","); }
   var KEY="hininja-plan-v1";
@@ -158,7 +158,7 @@
   }
   try{
     var saved=JSON.parse(localStorage.getItem(KEY)||"null");
-    if(saved && [2,3,4,8].indexOf(saved.weeks)>=0) plan.weeks=saved.weeks;
+    if(saved && [2,3,8].indexOf(saved.weeks)>=0) plan.weeks=saved.weeks;
     if(saved && Array.isArray(saved.picks)) saved.picks.forEach(function(id){ if(byId[id] && plan.picks.indexOf(id)<0 && room(isQuick(id))) plan.picks.push(id); });
   }catch(e){}
   function keep(){ try{ localStorage.setItem(KEY,JSON.stringify(plan)); }catch(e){} }
@@ -394,11 +394,11 @@
       hd=head("Your plan","Save your plan and book");
       root.appendChild(hd.frag);
       root.appendChild(tray(true));
-      if(plan.weeks<4){
+      if(plan.weeks<8){
         var up=el("div","upsell");
-        up.appendChild(el("p",null,plan.weeks===2?"Stay longer? Add a week for $1,000, or make it the full month for $3,997.":"Make it the full month for $3,997?"));
+        up.appendChild(el("p",null,plan.weeks===2?"Stay longer? Add a week for $1,000, or make it 2 months and earn a yellow belt for $3,997.":"Make it 2 months and earn a yellow belt for $3,997?"));
         if(plan.weeks===2) up.appendChild(btn("btn btn-quiet","3 weeks in all, $3,222",function(){ plan.weeks=3; keep(); render(false); }));
-        up.appendChild(btn("btn btn-quiet","The full month, $3,997",function(){ plan.weeks=4; keep(); render(false); }));
+        up.appendChild(btn("btn btn-quiet","2 months and a belt, $3,997",function(){ plan.weeks=8; keep(); render(false); }));
         root.appendChild(up);
       }
       root.appendChild(bookForm());
@@ -480,7 +480,7 @@
   [].forEach.call(document.querySelectorAll("a[data-stay]"),function(a){
     a.addEventListener("click",function(){
       var w=Number(a.getAttribute("data-stay"));
-      if([2,3,4,8].indexOf(w)<0) return;
+      if([2,3,8].indexOf(w)<0) return;
       plan.weeks=w; keep(); step=(w===8||ready())?"book":"menu"; render(false);
       setTimeout(function(){ var h=root.querySelector(".mc-h"); if(h) h.focus({preventScroll:true}); },400);
     });

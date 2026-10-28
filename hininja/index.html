@@ -7,8 +7,8 @@
      sits at the top (Rick: "lets focus on the quiz funnel and make one at the top that will
      lead them to training: two week intro to martial arts by Rick Tew"; his click "Yes, add it
      to /hininja/ now"): the visitor picks what to learn and a stay (2 weeks $2,222, 3 weeks
-     $3,222, the month $3,997, a belt $7,994), the plan goes to the mailbox and the Book goes
-     straight to the checkout through /hininja/buy/ (?weeks=2|3|4|8). The menu is
+     $3,222, a belt $3,997 for 2 months since 28 Oct 2026, when the month left), the plan goes to the
+     mailbox and the Book goes straight to the checkout through /hininja/buy/ (?weeks=2|3|8). The menu is
      /hininja/menu.js. GNS's own page is NerdHostel's (https://www.nerdhostel.com/gns), whose
      Buy also uses /hininja/buy/, which must stay. The page before the menu is in git (4daaf10^).
      Rick's rules for this page: relaxed, never hardcore; underpromise; Guides are people who
@@ -388,8 +388,8 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 .chip .x{font-size:16px;line-height:1;color:var(--muted)}
 .chip.open{width:34px;height:30px;padding:0;border:2px dashed var(--mist2);background:transparent;cursor:default}
 .tray-n{margin-top:6px;font-size:13px;color:var(--muted)}
-.stays{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid var(--mist2)}
-@media (max-width:520px){ .stays{grid-template-columns:1fr 1fr} }
+.stays{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid var(--mist2)}
+@media (max-width:520px){ .stays{grid-template-columns:repeat(3,minmax(0,1fr))} }
 .stay-l{grid-column:1/-1;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
 .stay-o{font:inherit;text-align:center;cursor:pointer;background:#fff;border:2px solid var(--mist2);border-radius:12px;padding:7px 6px;color:var(--ink);line-height:1.25}
 .stay-o b{display:block;font-size:14px}
@@ -574,7 +574,7 @@ footer a:hover{color:var(--sea)}
       <div><span>The mind</span><p>The RTMS book, stretching, and WinJitsu coaching</p></div>
     </div>
     <div class="belt-buy">
-      <p><b>$7,994 a belt, 2 months.</b> Training and WinJitsu coaching. A dorm bed if you need one. Your Ninja Menu picks join the morning seminar too.</p>
+      <p><b>$3,997 a belt, 2 months.</b> Training and WinJitsu coaching. A dorm bed if you need one. Your Ninja Menu picks join the morning seminar too.</p>
       <a class="btn btn-red" href="#menu" data-stay="8">Book the yellow belt</a>
     </div>
   </div>
@@ -589,7 +589,7 @@ footer a:hover{color:var(--sea)}
     <div class="k">Mastery</div>
     <!-- Rick's idea "looking for your Mr. Miyagi", his pick without the film character's name (28 Oct 2026) -->
     <h2>Looking for your sensei? <span class="h2b">Move to Thailand and train with Rick.</span></h2>
-    <p class="lead">Most people come for two weeks. Mastery is for the ones who stay: all five belts, yellow to red, over 1 to 2 years, with Rick.</p>
+    <p class="lead">Most people come for two weeks. Mastery is for the ones who stay: all five belts, yellow to red, over 2 years, with Rick.</p>
     <div class="belt-line" aria-hidden="true"></div>
     <!-- how it works, in Rick's words of 28 Oct 2026: "I teach them a tactic or technique and then they
          practice and focus on their training to MASTER the skills. It is not Rick Tew babysitting them hours
@@ -614,7 +614,7 @@ footer a:hover{color:var(--sea)}
     <div class="master-buy">
       <div class="mp">$15,988</div>
       <p>All five belts. Mastery includes the same as every stay: training, WinJitsu coaching, and a dorm bed if you need one. Pay it all at once, or in five parts, one before each belt.</p>
-      <a class="btn btn-red" href="#ask" data-ask="I am interested in Mastery: all five belts over 1 to 2 years ($15,988).">Write to me about Mastery</a>
+      <a class="btn btn-red" href="#ask" data-ask="I am interested in Mastery: all five belts over 2 years ($15,988).">Write to me about Mastery</a>
     </div>
   </div>
 </section>
@@ -700,25 +700,28 @@ footer a:hover{color:var(--sea)}
          against nothing (his pasted Bronze / Silver / Gold note, then his click "3 cards, biggest
          first"). Each button picks its stay in the Ninja Menu (menu.js, a[data-stay]). Mastery on top,
          the note's $16K (Rick: "a pricey mastery program for 1-2 years", "what part of 16K did you not
-         understand?"), double the belt; the checkout sells up to 2 months, so it is "write to me first". -->
+         understand?"); the checkout sells up to 2 months, so it is "write to me first".
+         Rick, 28 Oct 2026, later: "Mastery 2 year, Instructor 1 year 8,994, 2 months 3,997", his click
+         "Yes, these four": the month and the $7,994 belt card left, the belt's 2 months is $3,997 (the
+         checkout's '8' changed the same hour on his "Lift the hold for this one line"). -->
     <div class="stay-cards">
       <div class="card">
         <div class="per">Mastery</div>
         <div class="amt">$15,988</div>
-        <p class="all">All five belts, yellow to red, over 1 to 2 years. <a href="#mastery">Why Mastery</a></p>
-        <a class="btn btn-red" href="#ask" data-ask="I am interested in Mastery: all five belts over 1 to 2 years ($15,988).">Write to me</a>
+        <p class="all">All five belts, yellow to red, over 2 years. <a href="#mastery">Why Mastery</a></p>
+        <a class="btn btn-red" href="#ask" data-ask="I am interested in Mastery: all five belts over 2 years ($15,988).">Write to me</a>
       </div>
       <div class="card">
-        <div class="per">Earn a belt</div>
-        <div class="amt">$7,994</div>
-        <p class="all">2 months. Yellow belt first, earned in a test with Rick at the end. <a href="#belts">The belt program</a></p>
-        <a class="btn btn-red" href="#menu" data-stay="8">Pick and book</a>
+        <div class="per">Instructor</div>
+        <div class="amt">$8,994</div>
+        <p class="all">1 year.</p>
+        <a class="btn btn-red" href="#ask" data-ask="I am interested in Instructor: 1 year ($8,994).">Write to me</a>
       </div>
       <div class="card">
-        <div class="per">The month</div>
+        <div class="per">2 months</div>
         <div class="amt">$3,997</div>
-        <p class="all">Four weeks.</p>
-        <a class="btn btn-red" href="#menu" data-stay="4">Pick and book</a>
+        <p class="all">Yellow belt first, earned in a test with Rick at the end. <a href="#belts">The belt program</a></p>
+        <a class="btn btn-red" href="#menu" data-stay="8">Pick and book</a>
       </div>
       <div class="card">
         <div class="per">2 weeks</div>
@@ -804,7 +807,7 @@ footer a:hover{color:var(--sea)}
       <details><summary>Got an injury, or not very fit?</summary><p>Tell me before you come. Every drill has an easier version.</p></details>
       <details><summary>I am 16 or 17. Can I come on my own?</summary><p>Yes, with a parent's signature on the papers: the enrolment, a travel consent letter and a medical consent. Write to me before you book.</p></details>
       <details><summary>When can I start?</summary><p>Any day from 15 January 2027: classes run all year, Monday to Friday. The next group starts 22 January 2027. At checkout you add your arrival date.</p></details>
-      <details><summary>Can I come for one week, or stay longer?</summary><p>One week is half the price, $1,111: <a href="#ask">write to me</a> first. Longer: 3 weeks is $3,222, the full month $3,997, and a belt in <a href="#belts">the belt program</a> is $7,994 for 2 months. Moving here? <a href="#mastery">Mastery</a> is all five belts over 1 to 2 years, $15,988.</p></details>
+      <details><summary>Can I come for one week, or stay longer?</summary><p>One week is half the price, $1,111: <a href="#ask">write to me</a> first. Longer: 3 weeks is $3,222, and a belt in <a href="#belts">the belt program</a> is $3,997 for 2 months. Instructor is 1 year, $8,994: <a href="#ask">write to me</a>. Moving here? <a href="#mastery">Mastery</a> is all five belts over 2 years, $15,988.</p></details>
       <details><summary>How much time with Rick do I get in Mastery?</summary><p>200 hours a year, guaranteed: private and small-group sessions, booked when his time is free. In between, you practice what he showed you, and you can join every group class.</p></details>
       <details><summary>Already have a place, or want your own room?</summary><p>That is fine. The price is the same: you pay for the training.</p></details>
       <details><summary>Is there a private room, or a room for two?</summary><p>No private rooms. The stay is a shared men's or women's dorm. Want your own room? Book one nearby; the price stays the same.</p></details>
