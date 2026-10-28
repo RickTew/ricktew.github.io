@@ -116,7 +116,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (amts.join(' ') !== '$15,988 $8,994 $3,997 $2,222') bad.push(label + ' price cards ' + amts.join(' '));
   if (await page.locator('a[data-stay="4"]').count()) bad.push(label + ' a month button is back');
   await page.locator('#price .stay-cards a[href="#ask"]').nth(0).click();
-  if (!/^I am interested in Mastery: all five belts over 2 years/.test(await page.locator('#askMsg').inputValue())) bad.push(label + ' Mastery did not fill the ask box');
+  if (!/^I want to reserve a Mastery spot for 2027 with \$2,222 down/.test(await page.locator('#askMsg').inputValue())) bad.push(label + ' Mastery did not fill the ask box');
   await page.locator('#askMsg').fill('');
   await page.locator('#price .stay-cards a[href="#ask"]').nth(1).click();
   if (!/^I am interested in Instructor: all five belts in 1 year, and learning to teach \(\$8,994\)/.test(await page.locator('#askMsg').inputValue())) bad.push(label + ' Instructor did not fill the ask box');

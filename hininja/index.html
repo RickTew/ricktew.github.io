@@ -238,6 +238,7 @@ figcaption a{font-weight:700;white-space:nowrap}
 .master-buy{margin-top:24px;border:2px solid rgba(255,255,255,.3);border-radius:20px;padding:20px 22px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .master-buy .mp{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:700;font-size:40px;line-height:1;color:#fff}
 .master-buy p{flex:1 1 320px;font-size:16px;color:#e9edf2}
+.master-buy .spots{display:inline-block;margin-bottom:10px;background:var(--hi);color:var(--ink);font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:6px}
 .mind .voices h3,.mind .voice figcaption{color:#fff}
 .perks{margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 @media (max-width:760px){ .perks{grid-template-columns:1fr} }
@@ -266,7 +267,7 @@ figcaption a{font-weight:700;white-space:nowrap}
 .card .per{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--sea)}
 .card .amt{margin-top:6px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:700;font-size:48px;line-height:1;color:var(--sea-d)}
 .card .all{margin:12px 0 20px;font-size:16px;color:var(--ink2)}
-.card .btn{margin-top:auto;width:100%}
+.card .btn{margin-top:auto;width:100%;padding-left:12px;padding-right:12px;white-space:nowrap}
 .price-grid{margin-top:26px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:start}
 @media (max-width:860px){ .price-grid{grid-template-columns:1fr} }
 .every .all{font-size:16px;color:var(--ink2)}
@@ -661,10 +662,16 @@ footer a:hover{color:var(--sea)}
       <div><span>People</span><b>Someone to train with</b><p>The group, and the Guides: people who trained here before you. Stay long enough and you can help lead practice as a Guide.</p></div>
     </div>
     <p class="made">Rick has made the move himself: more than six years teaching in Holland, and now Thailand, where he runs NinjaGym.</p>
+    <!-- Rick, 28 Oct 2026: "For the mastery program we can offer a 2,222 down now to reserve your spot ... Also,
+         state only 12 spots left for 2027". The $2,222 is invoiced until the payment links are made ("Once we
+         nail down the prices, we can create the real Stripe payments links"), so the button fills the ask box. -->
     <div class="master-buy">
-      <div class="mp">$15,988</div>
-      <p>All five belts. Mastery includes the same as every stay: training, WinJitsu coaching, and a dorm bed if you need one. Pay it all at once, or in five parts, one before each belt.</p>
-      <a class="btn btn-red" href="#ask" data-ask="I am interested in Mastery: all five belts over 2 years ($15,988).">Write to me about Mastery</a>
+      <div class="m-left">
+        <div class="spots">Only 12 spots left for 2027</div>
+        <div class="mp">$15,988</div>
+      </div>
+      <p>All five belts over 2 years. Mastery includes the same as every stay: training, WinJitsu coaching, and a dorm bed if you need one. $2,222 down reserves your spot. Then pay the rest all at once, or in five parts, one before each belt.</p>
+      <a class="btn btn-red" href="#ask" data-ask="I want to reserve a Mastery spot for 2027 with $2,222 down (Mastery: all five belts over 2 years, $15,988).">Reserve my spot</a>
     </div>
   </div>
 </section>
@@ -758,8 +765,8 @@ footer a:hover{color:var(--sea)}
       <div class="card">
         <div class="per">Mastery</div>
         <div class="amt">$15,988</div>
-        <p class="all">All five belts, yellow to red, over 2 years. <a href="#mastery">Why Mastery</a></p>
-        <a class="btn btn-red" href="#ask" data-ask="I am interested in Mastery: all five belts over 2 years ($15,988).">Write to me</a>
+        <p class="all">All five belts, yellow to red, over 2 years. Only 12 spots left for 2027. <a href="#mastery">Why Mastery</a></p>
+        <a class="btn btn-red" href="#ask" data-ask="I want to reserve a Mastery spot for 2027 with $2,222 down (Mastery: all five belts over 2 years, $15,988).">Reserve a spot</a>
       </div>
       <div class="card">
         <div class="per">Instructor</div>
