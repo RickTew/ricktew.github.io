@@ -247,9 +247,9 @@
      next:STAYS},
 
     {id:"who-teaches", q:"Who teaches the classes?",
-     alt:["who teaches","who is teaching","does rick teach","is rick there","the guides","a guide","what is a guide","who are the guides","taught by"],
+     alt:["who teaches","who is teaching","does rick teach","is rick there","taught by"],
      keys:"teaches teacher teachers guide guides personally coaches",
-     a:"<p>Rick teaches at least 2 classes a week, mornings and evenings in turn. On the other days you practice with Guides: people who trained here before you and are a step or two ahead.</p>",
+     a:"<p>Pick what you want to learn. Rick builds a private group workshop from everyone's picks.</p><p>Rick shows you, you practice.</p>",
      next:MENU},
 
     {id:"rick", q:"Who is Rick Tew?",
