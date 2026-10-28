@@ -16,6 +16,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://ricktew.com/hininja/about/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://ricktew.com/aininja/</loc>
     <lastmod>2026-10-02</lastmod>
     <priority>0.9</priority>
