@@ -16,7 +16,8 @@
      the bunk beds; WinJitsu coaching included.
      27 Oct 2026, Rick: "Intro to martial arts instead of two weeks (as we offer multiple lengths",
      then "Martial Arts Introduction so martial arts leads" (the headline; since 28 Oct 2026 "Martial Arts
-     Course", his click after 4 readers ranked Course first and read Introduction as a one-evening taster;
+     Course", his click after 4 readers ranked Course first, then "martial arts in the top line and Ninja
+     Course second line": Martial Arts / Ninja Course / by Rick Tew and read Introduction as a one-evening taster;
      he also ruled the same day "don't say who teaches or who doesn't as most of the time I teach if
      available", and the top Book now opens 2 weeks in the menu; retreat, camp or Thailand
      may come later for search),
@@ -27,10 +28,10 @@
      seminar yet (it can be explained in the what)"); the hero button is Book now, to How ("the quiz is
      right there already"); the menu is not called a quiz ("it is not a quiz"). No specifics (place, length, time, price) in videos, images or ads. -->
 
-<title>Martial Arts Course by Rick Tew | HI Ninja</title>
+<title>Martial Arts Ninja Course by Rick Tew | HI Ninja</title>
 <meta name="description" content="A relaxed introduction to ninja martial arts on Koh Samui with Rick Tew: a morning class, the island, nerdy ninja talk and WinJitsu coaching. Stay 2 weeks, 3 weeks, a month, or 2 months for a belt.">
 <link rel="canonical" href="https://ricktew.com/hininja/">
-<meta property="og:title" content="Martial Arts Course by Rick Tew">
+<meta property="og:title" content="Martial Arts Ninja Course by Rick Tew">
 <meta property="og:description" content="A relaxed introduction to ninja martial arts on Koh Samui with Rick Tew: a morning class, the island, nerdy ninja talk and WinJitsu coaching.">
 <meta property="og:url" content="https://ricktew.com/hininja/">
 <meta property="og:image" content="https://ricktew.com/aininja/assets/story/ninja/world/asia-ninjagym.webp">
@@ -344,8 +345,10 @@ figcaption a{font-weight:700;white-space:nowrap}
 .faq summary:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
 .faq details p{padding:0 0 16px;color:var(--ink2)}
 
-.hero-real{display:block;width:100%;max-width:560px;height:210px;object-fit:cover;object-position:50% 40%;border-radius:16px;margin-top:16px}
-@media (max-width:640px){ .hero-real{height:180px} }
+.hero-rot{position:relative;width:100%;max-width:560px;aspect-ratio:16/10;margin-top:16px;border-radius:16px;overflow:hidden;background:var(--mist2)}
+.hero-rot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease}
+.hero-rot img.on{opacity:1}
+@media (prefers-reduced-motion:reduce){ .hero-rot img{transition:none} }
 /* the photo band (28 Oct 2026): a grid on a wide screen, one swipeable row on a phone */
 .gal{margin-top:22px;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
 .gal figure{margin:0}
@@ -360,9 +363,8 @@ figcaption a{font-weight:700;white-space:nowrap}
 .sys-top{margin-top:22px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:28px;align-items:center}
 @media (max-width:760px){ .sys-top{grid-template-columns:1fr} }
 .sys-logos{display:flex;align-items:center;justify-content:center;gap:22px}
-.sys-round{width:200px;height:auto}
-.sys-patch{width:160px;height:auto}
-@media (max-width:480px){ .sys-round{width:150px} .sys-patch{width:120px} }
+.sys-patch{width:220px;height:auto}
+@media (max-width:480px){ .sys-patch{width:170px} }
 .sys-book{margin-top:18px;display:flex;align-items:center;gap:16px;background:var(--mist);border:2px solid var(--mist2);border-radius:18px;padding:14px 18px 14px 14px;text-decoration:none;color:var(--ink);max-width:460px;transition:border-color .12s ease,box-shadow .12s ease}
 .sys-book:hover{border-color:var(--sea);box-shadow:0 8px 22px rgba(16,20,24,.12)}
 .sys-book:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
@@ -515,7 +517,7 @@ footer a{color:var(--muted);text-decoration:none}
 footer a:hover{color:var(--sea)}
 
 /* Ask the Ninja, with Kuno (Rick, 28 Oct 2026). Engine and library: /hininja/ask.js. Light like the
-   page; red only on the buttons; the pill steps aside over the Ninja Menu's own buttons (.kuno-away). */
+   page; red only on the buttons; the pill steps aside over the Ninja Menu and every button or field on the page (.kuno-away). */
 .kuno-launch{position:fixed;right:16px;bottom:16px;z-index:140;display:inline-flex;align-items:center;gap:10px;background:var(--sea);color:#fff;border:2px solid var(--sea);border-radius:999px;padding:5px 18px 5px 5px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:.05em;text-transform:uppercase;line-height:1;cursor:pointer;box-shadow:0 12px 30px rgba(16,20,24,.28);transition:transform .15s ease,opacity .2s ease,background .12s ease}
 .kuno-launch img{width:40px;height:40px;border-radius:50%;border:2px solid var(--hi);background:#fff}
 .kuno-launch:hover{background:var(--sea-d);border-color:var(--sea-d);transform:translateY(-1px)}
@@ -590,9 +592,21 @@ footer a:hover{color:var(--sea)}
   <div class="wrap hero-grid">
     <div class="hero-text">
       <div class="k">HI Ninja &middot; Koh Samui</div>
-      <h1>Martial Arts Course <span>by <b>Rick Tew</b></span></h1>
-      <!-- a real class on the first screen (Rick, 28 Oct 2026: 4 of 4 readers wanted one; his pick, photo 22) -->
-      <img class="hero-real" src="/hininja/img/gallery/g22.webp" alt="Rick Tew in a blue uniform shows an arm lock to a group of adults" width="900" height="621">
+      <h1><span>Martial Arts</span> <span>Ninja Course</span> <span>by <b>Rick Tew</b></span></h1>
+      <!-- a real class on the first screen (Rick, 28 Oct 2026: 4 of 4 readers wanted one; his pick, photo 22),
+           then "you cut off my face in the image too and this box should rotate": it crossfades through his
+           kept photos, each framed on the faces (data-pos); no rotation with reduced motion -->
+      <div class="hero-rot" role="group" aria-label="Real classes">
+        <img class="on" src="/hininja/img/gallery/g22.webp" alt="Rick Tew in a blue uniform shows an arm lock to a group of adults" width="900" height="621" style="object-position:50% 20%">
+        <img src="/hininja/img/gallery/g11.webp" alt="A woman works a wrist lock with two training partners" width="900" height="621" loading="lazy" style="object-position:50% 30%">
+        <img src="/hininja/img/gallery/g03.webp" alt="Rick Tew with a woman and a man in guard stance in a bright training hall" width="900" height="776" loading="lazy" style="object-position:50% 20%">
+        <img src="/hininja/img/gallery/g12.webp" alt="A woman breaks a grab from her training partner on red mats" width="900" height="836" loading="lazy" style="object-position:50% 25%">
+        <img src="/hininja/img/gallery/g09.webp" alt="A woman lunges with a staff toward a partner in an open-air hall" width="900" height="480" loading="lazy" style="object-position:50% 50%">
+        <img src="/hininja/img/gallery/g15.webp" alt="An instructor guides a student's wrist control while a woman waits her turn" width="900" height="812" loading="lazy" style="object-position:50% 20%">
+        <img src="/hininja/img/gallery/g10.webp" alt="A woman raises her arm to block an overhead strike in a partner drill" width="900" height="713" loading="lazy" style="object-position:50% 30%">
+        <img src="/hininja/img/gallery/g14.webp" alt="An instructor shows a student a staff move" width="900" height="635" loading="lazy" style="object-position:50% 30%">
+        <img src="/hininja/img/gallery/g08.webp" alt="A student in a low stance with a bamboo staff on a grass field" width="627" height="638" loading="lazy" style="object-position:50% 20%">
+      </div>
       <p class="lede">Pick what you want to learn. Rick builds a private group workshop from everyone's picks: a relaxed introduction on Koh Samui.</p>
       <div class="cta"><a class="btn btn-red" href="#menu" data-stay="2">Book now</a></div>
       <p class="promo" data-promo hidden>Attend with a friend for free if you book in November.</p>
@@ -765,15 +779,14 @@ footer a:hover{color:var(--sea)}
     <h2>Rick Tew's Martial Science.</h2>
     <!-- Rick, 28 Oct 2026: "we need the old site details easy to find for dropdowns and clicks and these two logos
          along with everything I always share about our training (jutsu vs jitsu, rtms, read the old philosophy and
-         system book now for free (give them a free PDF) etc." The two logos are the ones on his training shirt (the
-         round Mind Body Spirit logo on the back, the red patch on the chest), cut from the book and its cover
-         (Extreme Pro, Rick Tew Archive/Documents: RTMS System Proof.pdf, RTMS Book Cover.pdf, 2004). The free PDF is
+         system book now for free (give them a free PDF) etc." The red patch from his training shirt is cut from the
+         book's cover (Extreme Pro, Rick Tew Archive/Documents: RTMS Book Cover.pdf, with RTMS System Proof.pdf, 2004);
+         the grey round logo came off the same day ("do not use this whatever it is"). The free PDF is
          that cover plus the 19 pages. Every answer below is Rick's own words: the book, the old /rtms/ and /about/
          pages, and the WinJitsu app's jutsu and jitsu cards with his "the U is YOU" (1 Oct 2026). /camps/ is not
          linked: it still sells a private room and private lessons, which today's stays do not have. -->
     <div class="sys-top">
       <div class="sys-logos">
-        <img class="sys-round" src="/hininja/img/rtms/rtms-logo.webp" alt="The Rick Tew's Martial Science logo: a triangle of Mind, Body and Spirit over a yin yang" width="560" height="695" loading="lazy">
         <img class="sys-patch" src="/hininja/img/rtms/rtms-patch.webp" alt="The red Rick Tew's Martial Science patch" width="560" height="560" loading="lazy">
       </div>
       <div class="sys-intro">
@@ -1146,6 +1159,16 @@ footer a:hover{color:var(--sea)}
       if(a.getAttribute("data-topic")) topic.value=a.getAttribute("data-topic");
     });
   });
+  /* the top photo box crossfades through Rick's kept photos (28 Oct 2026), not with reduced motion */
+  (function(){
+    var box=document.querySelector(".hero-rot"); if(!box) return;
+    var imgs=box.querySelectorAll("img"), i=0;
+    if(imgs.length<2 || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+    setInterval(function(){
+      if(document.hidden) return;
+      imgs[i].classList.remove("on"); i=(i+1)%imgs.length; imgs[i].classList.add("on");
+    },4000);
+  })();
   [].forEach.call(document.querySelectorAll("[data-open-ninja]"),function(b){
     b.addEventListener("click",function(){ if(window.rtHiAskOpen) window.rtHiAskOpen(); else location.hash="ask"; });
   });

@@ -379,7 +379,9 @@
     doc.addEventListener("keydown", function(e){ if(e.key==="Escape"&&!panel.hidden) close(); });
 
     /* The pill steps aside wherever it would sit on anything in the Ninja Menu you can press
-       (the tiles, the picks, the sticky "ready" bar, the stays and Book), on a phone or a laptop. */
+       (the tiles, the picks, the sticky "ready" bar, the stays and Book), on a phone or a laptop,
+       and since 28 Oct 2026 on any button or form field on the page (2 of 4 readers found it
+       over the 2 weeks "Pick and book"). */
     if(launch){
       var tick=false;
       var clash=function(){
@@ -387,7 +389,7 @@
         if(launch.hidden) return;
         launch.classList.remove("kuno-away");
         var r=launch.getBoundingClientRect(), pad=8, hit=false;
-        [].forEach.call(doc.querySelectorAll("#menu .mc-bar, #menu button, #menu a, #menu input"), function(n){
+        [].forEach.call(doc.querySelectorAll("#menu .mc-bar, #menu button, #menu a, #menu input, main a.btn, main button, main input, main select, main textarea, .sys-book"), function(n){
           if(hit) return;
           var b=n.getBoundingClientRect();
           if(!b.width||!b.height) return;

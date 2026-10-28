@@ -132,8 +132,9 @@ places:
   count in a picture or a clip, recorded screens included; the page text carries them.
   **28 Oct 2026, afternoon (his notes on the live page, then a 4-reader round,
   `playtest/reports/2026-10-28-hi-SUMMARY.md`, all four UNSURE):**
-  - **The headline is "Martial Arts Course by Rick Tew"** (his click; readers ranked Course first and read
-    "Introduction" as a one-evening taster). The lede keeps "a relaxed introduction".
+  - **The headline is "Martial Arts / Ninja Course / by Rick Tew"**, three lines (his click "Martial Arts
+    Course" after readers ranked Course first and read "Introduction" as a one-evening taster, then "martial
+    arts in the top line and Ninja Course second line"). The lede keeps "a relaxed introduction".
   - **Nobody is asked to write in** (Rick: "don't ask people to write to me. I don't want anyone to write to
     me, I want them to book and they can ask the ninja, the chat or fill in the contact form"). The nav and
     top Book now open **2 weeks in the Ninja Menu** (`data-stay="2"`, his click); Mastery and Instructor say
