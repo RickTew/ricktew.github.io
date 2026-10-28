@@ -293,7 +293,7 @@
     {id:"pocket-dojo", q:"What is Pocket Dojo?",
      alt:["pocket dojo","home study","home study program","the home study program","hsp","train at home","learn from home","train from home","online course","online training","train online","cant travel","can't travel","cannot travel"],
      keys:"pocket dojo home study online remote travel distance",
-     a:"<p>Pocket Dojo is the Home Study Program on your phone: Rick Tew's Martial Science, belt by belt. Keep training what you learned in class, long after you fly home.</p><p>Want to train with Rick but can't travel? Join the Home Study Program and train at home, belt by belt.</p>",
+     a:"<p>Bonus: Pocket Dojo, with every stay.</p><p>Pocket Dojo is the Home Study Program on your phone: Rick Tew's Martial Science, belt by belt. Keep training what you learned in class, long after you fly home.</p><p>Want to train with Rick but can't travel? Join the Home Study Program and train at home, belt by belt.</p>",
      next:{href:"/hsp/", label:"See the Home Study Program"}},
 
     {id:"friend", q:"Can a friend come for free?", until:"2026-11-30T17:00:00Z",
@@ -323,7 +323,7 @@
     {id:"included", q:"What is included?",
      alt:["what is included","whats included","what do i get","included in the price","all inclusive","t shirt","tshirt"],
      keys:"included include includes inclusive tshirt shirt extras",
-     a:"<p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p><p>Free pick-up from Samui Airport. Also included: a month of the WinJitsu.com app and a Rick Tew ninja T-shirt.</p>",
+     a:"<p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p><p>Free pick-up from Samui Airport. Also included: a month of the WinJitsu.com app and a Rick Tew ninja T-shirt. Pocket Dojo, the Home Study Program app.</p>",
      next:STAYS}
   ];
 
