@@ -119,7 +119,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (!/^I am interested in Mastery: all five belts over 2 years/.test(await page.locator('#askMsg').inputValue())) bad.push(label + ' Mastery did not fill the ask box');
   await page.locator('#askMsg').fill('');
   await page.locator('#price .stay-cards a[href="#ask"]').nth(1).click();
-  if (!/^I am interested in Instructor: 1 year \(\$8,994\)/.test(await page.locator('#askMsg').inputValue())) bad.push(label + ' Instructor did not fill the ask box');
+  if (!/^I am interested in Instructor: all five belts in 1 year, and learning to teach \(\$8,994\)/.test(await page.locator('#askMsg').inputValue())) bad.push(label + ' Instructor did not fill the ask box');
   await page.locator('#askMsg').fill('');
   await page.locator('#price a[data-stay="2"]').click();
   await page.waitForTimeout(700);
