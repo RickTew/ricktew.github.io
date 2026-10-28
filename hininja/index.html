@@ -640,6 +640,7 @@ footer a:hover{color:var(--sea)}
            first: no two from one place in a row, in any box. -->
       <div class="rot hero-rot" role="group" aria-label="Rick Tew teaching real classes">
         <img class="on" src="/hininja/img/gallery/g22.webp" alt="Rick Tew in a blue uniform shows an arm lock to a group of adults" width="900" height="621" style="object-position:50% 20%">
+        <img src="/hininja/img/gallery/p0021.webp" alt="Rick Tew coaches two students through an arm block on a palm-garden lawn" width="900" height="675" loading="lazy" style="object-position:50% 35%">
         <img src="/hininja/img/gallery/n01.webp" alt="Rick Tew coaches a woman through a wrist-grab release while the class waits" width="900" height="674" loading="lazy" style="object-position:50% 30%">
         <img src="/hininja/img/gallery/g03.webp" alt="Rick Tew with a woman and a man in guard stance in a bright training hall" width="900" height="776" loading="lazy" style="object-position:50% 20%">
         <img src="/hininja/img/gallery/n02.webp" alt="Rick Tew shows a wrist control on a student while a row of adults watches" width="900" height="816" loading="lazy" style="object-position:50% 30%">
@@ -711,7 +712,6 @@ footer a:hover{color:var(--sea)}
           <img src="/hininja/img/gallery/p0528.webp" alt="Rick Tew in a blue uniform shows a takedown while a line of students watches" width="512" height="384" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p0388.webp" alt="Rick Tew in a blue uniform shows a lock on a student" width="900" height="600" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/v01.webp" alt="Two students drill a high block and a strike on a hilltop among pine trees" width="900" height="675" loading="lazy" style="object-position:50% 30%">
-          <img src="/hininja/img/gallery/p0021.webp" alt="Two students drill an arm block on a palm-garden lawn while Rick Tew coaches" width="900" height="675" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/v04.webp" alt="Rick Tew in a blue uniform pins a student with an arm hold on red mats" width="900" height="506" loading="lazy" style="object-position:50% 40%">
           <img src="/hininja/img/gallery/v02.webp" alt="Rick Tew in a blue uniform breaks a hold from behind on a palm lawn" width="900" height="675" loading="lazy" style="object-position:55% 40%">
           <img src="/hininja/img/gallery/p0469.webp" alt="Students drill an arm control in a mirrored dojo" width="590" height="442" loading="lazy" style="object-position:50% 35%">
@@ -719,7 +719,8 @@ footer a:hover{color:var(--sea)}
           <img src="/hininja/img/gallery/v03.webp" alt="Rick Tew, smiling, takes a student's arm into a lock in a tropical garden" width="900" height="556" loading="lazy" style="object-position:40% 40%">
         </div><figcaption>Self-defense you can use. <a href="#menu">Pick Self-defense</a></figcaption></figure>
         <figure class="rot-fig"><div class="rot" role="group" aria-label="Ninja tools in real classes">
-          <img class="on" src="/hininja/img/gallery/v05.webp" alt="Students in black swing sticks in a park while their partners block" width="900" height="580" loading="lazy" style="object-position:40% 40%">
+          <img class="on" src="/hininja/img/gallery/c-nunchaku.webp" alt="A smiling student holds his nunchaku on a jungle trail, scooters parked behind him" width="720" height="405" style="object-position:50% 40%">
+          <img src="/hininja/img/gallery/v05.webp" alt="Students in black swing sticks in a park while their partners block" width="900" height="580" loading="lazy" style="object-position:40% 40%">
           <img src="/hininja/img/gallery/p0193.webp" alt="A woman raises a stick to block on a red mat" width="479" height="436" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/v06.webp" alt="Rick Tew works the long staff with a student on a terrace above the sea" width="900" height="675" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p0398.webp" alt="A student trains with nunchaku in an open-air hall" width="900" height="600" loading="lazy" style="object-position:50% 35%">
@@ -737,6 +738,7 @@ footer a:hover{color:var(--sea)}
           <img src="/hininja/img/gallery/v08.webp" alt="Two students work a clinch on a lawn while Rick Tew watches" width="900" height="675" loading="lazy" style="object-position:60% 35%">
           <img src="/hininja/img/gallery/v13.webp" alt="Rick Tew in a blue uniform and five students in fighting stance among eucalyptus trees" width="900" height="675" loading="lazy" style="object-position:50% 55%">
           <img src="/hininja/img/gallery/p0150.webp" alt="Two students sit on the mat and drill hand blocks" width="690" height="748" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/c-review.webp" alt="On a garden lawn, a student helps two classmates through a wrist hold during review" width="614" height="461" loading="lazy" style="object-position:50% 40%">
           <img src="/hininja/img/gallery/p0310.webp" alt="Rick Tew squares up to a red standing bag, three photos on the wall behind him" width="454" height="434" loading="lazy" style="object-position:50% 0%">
           <img src="/hininja/img/gallery/p0207.webp" alt="A woman drives a knee into a big exercise ball her partner holds" width="900" height="506" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/v12.webp" alt="Pairs work a sweep drill on the grass in a park" width="900" height="580" loading="lazy" style="object-position:50% 45%">
@@ -1322,19 +1324,28 @@ footer a:hover{color:var(--sea)}
       if(a.getAttribute("data-topic")) topic.value=a.getAttribute("data-topic");
     });
   });
-  /* the top photo box crossfades through Rick's kept photos (28 Oct 2026), not with reduced motion */
+  /* the photo boxes crossfade through Rick's kept photos (28 Oct 2026), not with reduced motion. Since
+     the 28 Oct night round each box starts on its first photo when it comes into view (they all ran
+     from page load, so a reader reached "Every age" long after its older student had gone by), and
+     it holds still under the mouse. */
   (function(){
     if(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    [].forEach.call(document.querySelectorAll(".rot"),function(box,k){
+    function run(box,k){
       var imgs=box.querySelectorAll("img"), i=0;
       if(imgs.length<2) return;
       setTimeout(function(){
         setInterval(function(){
-          if(document.hidden) return;
+          if(document.hidden || box.matches(":hover")) return;
           imgs[i].classList.remove("on"); i=(i+1)%imgs.length; imgs[i].classList.add("on");
         },4000);
-      },k*1300);
-    });
+      },(k%3)*1300);
+    }
+    var boxes=[].slice.call(document.querySelectorAll(".rot"));
+    if(!("IntersectionObserver" in window)){ boxes.forEach(run); return; }
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ io.unobserve(e.target); run(e.target, boxes.indexOf(e.target)); } });
+    },{threshold:.35});
+    boxes.forEach(function(b){ io.observe(b); });
   })();
   [].forEach.call(document.querySelectorAll("[data-open-ninja]"),function(b){
     b.addEventListener("click",function(){ if(window.rtHiAskOpen) window.rtHiAskOpen(); else location.hash="ask"; });
