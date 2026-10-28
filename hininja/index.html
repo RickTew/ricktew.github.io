@@ -309,8 +309,10 @@ figcaption a{font-weight:700;white-space:nowrap}
 .pair img{width:100%;border-radius:18px;box-shadow:0 14px 34px rgba(16,20,24,.14)}
 
 /* price: the stays side by side, biggest first (Rick, 28 Oct 2026); phones stack them, Mastery on top */
-.stay-cards{margin-top:30px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-@media (max-width:1080px){ .stay-cards{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.stay-cards{margin-top:30px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+@media (max-width:1080px){ .stay-cards{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (max-width:760px){ .stay-cards{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (min-width:1081px){ .stay-cards .card{padding:24px 18px} } /* five across since the 1 week (29 Oct 2026) */
 @media (max-width:600px){ .stay-cards{grid-template-columns:1fr} }
 .card{display:flex;flex-direction:column;background:#fff;border:2px solid var(--sea);border-radius:22px;padding:26px;box-shadow:0 20px 44px rgba(16,20,24,.10)}
 .card .per{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--sea)}
@@ -521,8 +523,8 @@ figcaption a{font-weight:700;white-space:nowrap}
 .chip .x{font-size:16px;line-height:1;color:var(--muted)}
 .chip.open{width:34px;height:30px;padding:0;border:2px dashed var(--mist2);background:transparent;cursor:default}
 .tray-n{margin-top:6px;font-size:13px;color:var(--muted)}
-.stays{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid var(--mist2)}
-@media (max-width:520px){ .stays{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.stays{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid var(--mist2)}
+@media (max-width:520px){ .stays{grid-template-columns:repeat(2,minmax(0,1fr))} }
 .stay-l{grid-column:1/-1;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
 .stay-o{font:inherit;text-align:center;cursor:pointer;background:#fff;border:2px solid var(--mist2);border-radius:12px;padding:7px 6px;color:var(--ink);line-height:1.25}
 .stay-o b{display:block;font-size:14px}
@@ -1179,6 +1181,15 @@ footer a:hover{color:var(--sea)}
          Rick's click "Smallest first everywhere", 28 Oct 2026 night: 7 of 11 readers stumbled at $15,988 first (the two
          who nearly quit read on phones, where the cards stack); the 2 weeks card got its line the same click. -->
     <div class="stay-cards">
+      <!-- the 1 week, sold at the checkout since 29 Oct 2026 (Rick's click "Sell it, pay in full only"; 3 of 11 readers
+           would book a week first; Digital Dojo 3315ce05, ?weeks=1, no deposit) -->
+      <div class="card">
+        <div class="per">1 week</div>
+        <div class="amt">$1,111</div>
+        <p class="all">Half the price. 5 mornings of the Sensei Seminar, and a dorm bed if you need one.</p>
+        <p class="dep">Paid in full at checkout.</p>
+        <a class="btn btn-red" href="#menu" data-stay="1">Pick and book</a>
+      </div>
       <div class="card">
         <div class="per">2 weeks</div>
         <div class="amt">$2,222</div>
@@ -1227,8 +1238,7 @@ footer a:hover{color:var(--sea)}
         <dl class="terms">
           <div><dt>Dates</dt><dd>Arrive any day from 15 January 2027. Next group: 22 January 2027.</dd></div>
           <div><dt>3 weeks</dt><dd>Add a week to the two weeks for $1,000: $3,222.</dd></div>
-          <div><dt>1 week</dt><dd>Half the price, $1,111. <a href="#ask" data-topic="booking" data-ask="I want to book one week ($1,111).">Book one week</a></dd></div>
-          <div><dt>Checkout</dt><dd>You add your arrival date. $555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. Ill, or your flights change? Your dates can move, within a year of buying. All sales are final. Payments go to Rick Tew Co., Ltd., our company on Koh Samui, Thailand.</dd></div>
+          <div><dt>Checkout</dt><dd>You add your arrival date. One week is paid in full. $555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. Ill, or your flights change? Your dates can move, within a year of buying. All sales are final. Payments go to Rick Tew Co., Ltd., our company on Koh Samui, Thailand.</dd></div>
         </dl>
       </div>
       <div class="first">
@@ -1327,7 +1337,7 @@ footer a:hover{color:var(--sea)}
       <details><summary>Can a parent and a 16 or 17-year-old come together?</summary><p>Yes. Come together: train side by side, and book a family room at NerdHostel or your own place. Out of class, a teen is the parent's to look after.</p></details>
       <details><summary>Are there other women, and how much contact is there?</summary><p>Women train in most groups. Ask to pair with a woman, and you can say stop at any time.</p></details>
       <details><summary>When can I start?</summary><p>Any day from 15 January 2027: classes run all year, Monday to Friday. The next group starts 22 January 2027. At checkout you add your arrival date.</p></details>
-      <details><summary>Can I come for one week, or stay longer?</summary><p>One week is half the price, $1,111: <a href="#ask" data-topic="booking" data-ask="I want to book one week ($1,111).">book one week</a>. Longer: 3 weeks is $3,222, and a belt in <a href="#belts">the belt program</a> is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: <a href="#ask" data-topic="mastery" data-ask="I want to reserve an Instructor spot: all five belts in 1 year, and learning to teach ($8,994).">reserve a spot</a>. Moving here? <a href="#mastery">Mastery</a> is all five belts over 2 years, $15,988.</p></details>
+      <details><summary>Can I come for one week, or stay longer?</summary><p>One week is half the price, $1,111: <a href="#menu" data-stay="1">book one week</a>. Longer: 3 weeks is $3,222, and a belt in <a href="#belts">the belt program</a> is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: <a href="#ask" data-topic="mastery" data-ask="I want to reserve an Instructor spot: all five belts in 1 year, and learning to teach ($8,994).">reserve a spot</a>. Moving here? <a href="#mastery">Mastery</a> is all five belts over 2 years, $15,988.</p></details>
       <!-- Rick's click "One class, booked ahead", 29 Oct 2026 (Jonas and Sofie, already on Samui). -->
       <details><summary>Already on Samui? Can I try one class first?</summary><p>Yes: one class, booked ahead. <a href="#ask" data-topic="booking" data-ask="I am already on Samui and want to try one class first.">Book one class</a> in the question form.</p></details>
       <details><summary>How much time with Rick do I get in Mastery?</summary><p>200 hours a year, guaranteed: private and small-group sessions, booked when his time is free. In between, you practice what he showed you, and you can join every group class.</p></details>

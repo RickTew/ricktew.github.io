@@ -119,7 +119,7 @@
     {id:"price", q:"How much does it cost?",
      alt:["how much is","how much are","how much does","how much do","how much for","how much will","how much is it","what currency","which currency","us dollars","australian dollars","in usd","what does it cost","what is the price","whats the price","the prices","prices","price","price list","how much money"],
      keys:"cost costs price prices pricing fee fees expensive cheap usd dollar dollars rate rates package packages afford budget",
-     a:"<p>Prices in US dollars. Small groups, usually around 6: near-private lessons at the price of a group class.</p><p>2 weeks: $2,222. 3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>A belt in the belt program is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is all five belts over 2 years, $15,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p><p>$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p>",
+     a:"<p>Prices in US dollars. Small groups, usually around 6: near-private lessons at the price of a group class.</p><p>One week is half the price, $1,111. 2 weeks: $2,222. 3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>A belt in the belt program is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is all five belts over 2 years, $15,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p><p>$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p>",
      next:STAYS},
 
     {id:"deposit", q:"Can I pay a deposit?",
@@ -131,8 +131,8 @@
     {id:"one-week", q:"Can I come for just one week?",
      alt:["one week","1 week","for a week","a week only","just a week","only a week","single week","shorter stay","less than two weeks","a few days","few days","3 days","three days","something shorter","anything shorter"],
      keys:"shorter 1111",
-     a:"<p>One week is half the price, $1,111: book one week.</p>",
-     next:ASK("Ask Kuno about one week","I would like to come for one week.")},
+     a:"<p>One week is half the price, $1,111: book one week. One week is paid in full.</p>",
+     next:STAYS},
 
     /* Rick's click "One class, booked ahead", 29 Oct 2026 */
     {id:"try-class", q:"Already on Samui? Can I try one class first?",

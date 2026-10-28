@@ -123,14 +123,16 @@
 
   var PER_WEEK=5, WEEK_MIN=5; /* single picks before the stays and Book show */
   /* weeks: the checkout's key; book: the Book button's words */
+  /* the 1 week since 29 Oct 2026 (Rick's click "Sell it, pay in full only"): no `full`, so no deposit and one Book button */
   var STAYS=[
+    {weeks:1, name:"1 week", price:1111, book:"Book my week"},
     {weeks:2, name:"2 weeks", price:2222, full:2000, book:"Book my two weeks"},
     {weeks:3, name:"3 weeks", price:3222, full:3000, book:"Book my 3 weeks"},
     {weeks:8, name:"A belt, 2 months", price:3997, full:3775, book:"Book my belt"}]; /* 28 Oct 2026: the month left, the belt is $3,997 (Rick) */
   /* two ways to pay (Rick's clicks, 28 Oct 2026 night): $555 down holds the spot, the rest 2 weeks before arrival;
      or the whole stay now, $222 off (full). The checkout takes ?pay=deposit|full (Digital Dojo 399716e9). */
   var DEPOSIT=555;
-  function stay(){ for(var i=0;i<STAYS.length;i++) if(STAYS[i].weeks===plan.weeks) return STAYS[i]; return STAYS[0]; }
+  function stay(){ for(var i=0;i<STAYS.length;i++) if(STAYS[i].weeks===plan.weeks) return STAYS[i]; return STAYS[1]; } /* else the 2 weeks */
   function money(n){ return "$"+String(n).replace(/\B(?=(\d{3})+(?!\d))/g,","); }
   var KEY="hininja-plan-v1";
   var FN="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact";
@@ -161,7 +163,7 @@
   }
   try{
     var saved=JSON.parse(localStorage.getItem(KEY)||"null");
-    if(saved && [2,3,8].indexOf(saved.weeks)>=0) plan.weeks=saved.weeks;
+    if(saved && [1,2,3,8].indexOf(saved.weeks)>=0) plan.weeks=saved.weeks;
     if(saved && Array.isArray(saved.picks)) saved.picks.forEach(function(id){ if(byId[id] && plan.picks.indexOf(id)<0 && room(isQuick(id))) plan.picks.push(id); });
   }catch(e){}
   function keep(){ try{ localStorage.setItem(KEY,JSON.stringify(plan)); }catch(e){} }
@@ -400,7 +402,8 @@
       root.appendChild(tray(true));
       if(plan.weeks<8){
         var up=el("div","upsell");
-        up.appendChild(el("p",null,plan.weeks===2?"Stay longer? Add a week for $1,000, or make it 2 months and earn a yellow belt for $3,997.":"Make it 2 months and earn a yellow belt for $3,997?"));
+        up.appendChild(el("p",null,plan.weeks===1?"Stay longer? Make it 2 weeks for $2,222, or 2 months and earn a yellow belt for $3,997.":plan.weeks===2?"Stay longer? Add a week for $1,000, or make it 2 months and earn a yellow belt for $3,997.":"Make it 2 months and earn a yellow belt for $3,997?"));
+        if(plan.weeks===1) up.appendChild(btn("btn btn-quiet","2 weeks in all, $2,222",function(){ plan.weeks=2; keep(); render(false); }));
         if(plan.weeks===2) up.appendChild(btn("btn btn-quiet","3 weeks in all, $3,222",function(){ plan.weeks=3; keep(); render(false); }));
         up.appendChild(btn("btn btn-quiet","2 months and a belt, $3,997",function(){ plan.weeks=8; keep(); render(false); }));
         root.appendChild(up);
@@ -419,6 +422,7 @@
     var lines=["My plan, from the Ninja Menu on the HI Ninja page.","","Stay: "+stay().name+", "+money(stay().price)+(plan.weeks===8?" (the belt program, yellow belt first)":"")];
     if(pay==="deposit") lines.push("Paying: "+money(DEPOSIT)+" down to hold the spot, the rest 2 weeks before arrival");
     if(pay==="full") lines.push("Paying: in full now, "+money(stay().full));
+    if(!pay) lines.push("Paying: in full, "+money(stay().price));
     if(friend) lines.push("Friend, FREE (booked in November): "+friend+", same dates, same stay");
     lines.push("");
     if(!plan.picks.length) lines.push("No picks yet.");
@@ -450,15 +454,16 @@
       fr.i.addEventListener("input",function(){ draft.friend=fr.i.value; });
       f.appendChild(fr.d);
     }
-    var payWith="deposit";
+    /* a stay with no pay-now price (the 1 week) has one button, paid in full: no ?pay rides to the checkout */
+    var twoWays=!!stay().full, payWith=twoWays?"deposit":"";
     var pays=el("div","mc-pay");
-    var send=el("button","btn btn-red","Hold my spot: "+money(DEPOSIT)+" down"); send.type="submit"; send.setAttribute("data-pay","deposit");
-    var whole=el("button","btn btn-quiet","Pay in full now: "+money(stay().full)); whole.type="submit"; whole.setAttribute("data-pay","full");
-    send.addEventListener("click",function(){ payWith="deposit"; });
+    var send=el("button","btn btn-red",twoWays?"Hold my spot: "+money(DEPOSIT)+" down":stay().book+": "+money(stay().price)); send.type="submit"; send.setAttribute("data-pay",twoWays?"deposit":"none");
+    var whole=el("button","btn btn-quiet",twoWays?"Pay in full now: "+money(stay().full):""); whole.type="submit"; whole.setAttribute("data-pay","full");
+    send.addEventListener("click",function(){ payWith=twoWays?"deposit":""; });
     whole.addEventListener("click",function(){ payWith="full"; });
-    pays.appendChild(send); pays.appendChild(whole); f.appendChild(pays);
+    pays.appendChild(send); if(twoWays) pays.appendChild(whole); f.appendChild(pays);
     var err=el("p","err"); err.setAttribute("role","alert"); f.appendChild(err);
-    f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed if you need one. Your plan goes to Rick, then the secure checkout, where you add your arrival date. $555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. Ill, or your flights change? Your dates can move, within a year of buying. All sales are final."));
+    f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed if you need one. Your plan goes to Rick, then the secure checkout, where you add your arrival date. "+(twoWays?"$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. ":"One week is paid in full. ")+"Ill, or your flights change? Your dates can move, within a year of buying. All sales are final."));
     var askA=el("a","mc-ask","A question about your plan? Ask it with your picks"); askA.href="#ask";
     askA.addEventListener("click",function(){
       var m=document.getElementById("askMsg"), t=document.getElementById("askTopic");
@@ -492,7 +497,7 @@
   [].forEach.call(document.querySelectorAll("a[data-stay]"),function(a){
     a.addEventListener("click",function(){
       var w=Number(a.getAttribute("data-stay"));
-      if([2,3,8].indexOf(w)<0) return;
+      if([1,2,3,8].indexOf(w)<0) return;
       plan.weeks=w; keep(); step=(w===8||ready())?"book":"menu"; render(false);
       setTimeout(function(){ var h=root.querySelector(".mc-h"); if(h) h.focus({preventScroll:true}); },400);
     });

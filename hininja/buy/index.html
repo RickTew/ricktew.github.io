@@ -16,7 +16,8 @@
      checkout, which answers with the secure payment page. Nothing is stored.
      Since 25 Oct 2026 a ?weeks= of 2 to 8 rides on too: the Ninja Menu's stay, which the
      checkout sells as 2 weeks, 3 weeks, the month or a belt (2, 3, 4 or 8; anything else is
-     the 2 weeks). Rick's clicks that day. Since 28 Oct 2026 night a ?pay=deposit|full rides on too:
+     the 2 weeks). Rick's clicks that day. Since 29 Oct 2026 ?weeks=1 too: one week, paid in full
+     (his click "Sell it, pay in full only"; Digital Dojo 3315ce05). Since 28 Oct 2026 night a ?pay=deposit|full rides on too:
      $555 down or the whole stay now, $222 off (his clicks; the checkout's ?pay, Digital Dojo 399716e9). -->
 <style>
 body{margin:0;background:#fff;color:#101418;font:600 17px/1.6 "Nunito","Helvetica Neue",Arial,sans-serif}
@@ -38,7 +39,7 @@ a{color:#175a94;font-weight:800}
     document.getElementById("msg").innerHTML='That link is missing its product. <a href="/hininja/">Back to the Martial Arts Ninja Course</a>.';
     return;
   }
-  location.replace(FN+"?sku="+encodeURIComponent(sku)+(/^[A-Za-z0-9_-]{1,200}$/.test(src)?"&src="+encodeURIComponent(src):"")+(/^[2-8]$/.test(weeks)?"&weeks="+weeks:"")+(/^(deposit|full)$/.test(pay)?"&pay="+pay:"")+"&cur=thb"); /* every Buy pays Rick Tew Co., 21 Oct 2026: see /assets/th.js */
+  location.replace(FN+"?sku="+encodeURIComponent(sku)+(/^[A-Za-z0-9_-]{1,200}$/.test(src)?"&src="+encodeURIComponent(src):"")+(/^[1-8]$/.test(weeks)?"&weeks="+weeks:"")+(/^(deposit|full)$/.test(pay)?"&pay="+pay:"")+"&cur=thb"); /* every Buy pays Rick Tew Co., 21 Oct 2026: see /assets/th.js */
 })();
 </script>
 </body>
