@@ -134,7 +134,8 @@ places:
   `playtest/reports/2026-10-28-hi-SUMMARY.md`, all four UNSURE):**
   - **The headline is "Martial Arts / Ninja Course / by Rick Tew"**, three lines (his click "Martial Arts
     Course" after readers ranked Course first and read "Introduction" as a one-evening taster, then "martial
-    arts in the top line and Ninja Course second line"). The lede keeps "a relaxed introduction".
+    arts in the top line and Ninja Course second line"). The lede is his, same day: "Pick your tactics and Rick
+    builds a private group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand."
   - **Nobody is asked to write in** (Rick: "don't ask people to write to me. I don't want anyone to write to
     me, I want them to book and they can ask the ninja, the chat or fill in the contact form"). The nav and
     top Book now open **2 weeks in the Ninja Menu** (`data-stay="2"`, his click); Mastery and Instructor say
