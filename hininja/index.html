@@ -132,9 +132,6 @@ figcaption a{font-weight:700;white-space:nowrap}
    one under "What it is not", the Europe row under his video */
 .isnot-r{display:grid;gap:16px;align-content:start}
 .teach img{width:100%;border-radius:16px}
-.teach-row{margin-top:18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-@media (max-width:760px){ .teach-row{grid-template-columns:1fr} }
-.teach-row img{aspect-ratio:16/9;object-fit:cover}
 .teach-eu{margin-top:18px}
 /* where you start */
 .belts{list-style:none;margin-top:28px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
@@ -345,20 +342,17 @@ figcaption a{font-weight:700;white-space:nowrap}
 .faq summary:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
 .faq details p{padding:0 0 16px;color:var(--ink2)}
 
-.hero-rot{position:relative;width:100%;max-width:560px;aspect-ratio:16/10;margin-top:16px;border-radius:16px;overflow:hidden;background:var(--mist2)}
-.hero-rot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease}
-.hero-rot img.on{opacity:1}
-@media (prefers-reduced-motion:reduce){ .hero-rot img{transition:none} }
-/* the photo band (28 Oct 2026): a grid on a wide screen, one swipeable row on a phone */
-.gal{margin-top:22px;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
-.gal figure{margin:0}
-.gal img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;background:var(--mist)}
-.gal:focus-visible{outline:3px solid var(--sea);outline-offset:4px}
-@media (max-width:640px){
-  .gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:8px;-webkit-overflow-scrolling:touch}
-  .gal figure{flex:0 0 78%;scroll-snap-align:start}
-}
-.gal-cta{margin-top:14px;font-size:16px;color:var(--ink2)}
+/* rotating photo boxes: the top one and the Real classes ones (28 Oct 2026) */
+.rot{position:relative;width:100%;aspect-ratio:16/10;border-radius:16px;overflow:hidden;background:var(--mist2)}
+.rot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease}
+.rot img.on{opacity:1}
+@media (prefers-reduced-motion:reduce){ .rot img{transition:none} }
+.hero-rot{max-width:560px;margin-top:16px}
+.real{margin-top:30px}
+.real-h{font-size:24px}
+.rot-row{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.rot-fig{margin:0}
+.rot-fig figcaption{margin-top:8px;font-size:15.5px;color:var(--ink2)}
 /* the system: Rick Tew's Martial Science, the two shirt logos, the free book, the old site in dropdowns (28 Oct 2026) */
 .sys-top{margin-top:22px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:28px;align-items:center}
 @media (max-width:760px){ .sys-top{grid-template-columns:1fr} }
@@ -595,17 +589,14 @@ footer a:hover{color:var(--sea)}
       <h1><span>Martial Arts</span> <span>Ninja Course</span> <span>by <b>Rick Tew</b></span></h1>
       <!-- a real class on the first screen (Rick, 28 Oct 2026: 4 of 4 readers wanted one; his pick, photo 22),
            then "you cut off my face in the image too and this box should rotate": it crossfades through his
-           kept photos, each framed on the faces (data-pos); no rotation with reduced motion -->
-      <div class="hero-rot" role="group" aria-label="Real classes">
+           kept photos, each framed on the faces; no rotation with reduced motion. The two teaching photos that
+           sat at the end of What joined it the same day ("can probably move these two to rotate with the top
+           first image"). -->
+      <div class="rot hero-rot" role="group" aria-label="Rick Tew teaching real classes">
         <img class="on" src="/hininja/img/gallery/g22.webp" alt="Rick Tew in a blue uniform shows an arm lock to a group of adults" width="900" height="621" style="object-position:50% 20%">
-        <img src="/hininja/img/gallery/g11.webp" alt="A woman works a wrist lock with two training partners" width="900" height="621" loading="lazy" style="object-position:50% 30%">
+        <img src="/hininja/img/teaching-two.webp" alt="Rick Tew, in a black shirt, coaching two students through an arm technique outdoors" width="792" height="447" loading="lazy" style="object-position:30% 30%">
+        <img src="/hininja/img/teaching-punch.webp" alt="Rick Tew guiding a woman's straight punch into a standing bag" width="960" height="540" loading="lazy" style="object-position:60% 30%">
         <img src="/hininja/img/gallery/g03.webp" alt="Rick Tew with a woman and a man in guard stance in a bright training hall" width="900" height="776" loading="lazy" style="object-position:50% 20%">
-        <img src="/hininja/img/gallery/g12.webp" alt="A woman breaks a grab from her training partner on red mats" width="900" height="836" loading="lazy" style="object-position:50% 25%">
-        <img src="/hininja/img/gallery/g09.webp" alt="A woman lunges with a staff toward a partner in an open-air hall" width="900" height="480" loading="lazy" style="object-position:50% 50%">
-        <img src="/hininja/img/gallery/g15.webp" alt="An instructor guides a student's wrist control while a woman waits her turn" width="900" height="812" loading="lazy" style="object-position:50% 20%">
-        <img src="/hininja/img/gallery/g10.webp" alt="A woman raises her arm to block an overhead strike in a partner drill" width="900" height="713" loading="lazy" style="object-position:50% 30%">
-        <img src="/hininja/img/gallery/g14.webp" alt="An instructor shows a student a staff move" width="900" height="635" loading="lazy" style="object-position:50% 30%">
-        <img src="/hininja/img/gallery/g08.webp" alt="A student in a low stance with a bamboo staff on a grass field" width="627" height="638" loading="lazy" style="object-position:50% 20%">
       </div>
       <p class="lede">Pick what you want to learn. Rick builds a private group workshop from everyone's picks: a relaxed introduction on Koh Samui.</p>
       <div class="cta"><a class="btn btn-red" href="#menu" data-stay="2">Book now</a></div>
@@ -631,29 +622,6 @@ footer a:hover{color:var(--sea)}
   </div>
 </header>
 
-<!-- Rick, 28 Oct 2026: "We definitely need to pick better images so put up a lot more and we can choose them",
-     and "Should the initial photos be higher up". 23 real classes (2009 to 2018, Samui and Thailand, adults
-     only, no pads, no sparring) from his archive on the Extreme Pro, cropped tight, so he can pick which stay
-     and where. His keeps the same day: 3, 8, 9, 10, 11, 12, 14, 15 ("but need others. So we should check
-     more"), and 22 under the headline. Phone: one swipeable row. -->
-<section class="band" id="photos">
-  <div class="wrap">
-    <div class="k">Real classes</div>
-    <h2>Real people, real training, at your level.</h2>
-    <div class="gal" tabindex="0" role="region" aria-label="Photos from real classes">
-      <figure><img src="/hininja/img/gallery/g03.webp" alt="Rick Tew with a woman and a man in guard stance in a bright training hall" width="900" height="776" loading="lazy"></figure>
-      <figure><img src="/hininja/img/gallery/g08.webp" alt="A student in a low stance with a bamboo staff on a grass field" width="627" height="638" loading="lazy"></figure>
-      <figure><img src="/hininja/img/gallery/g09.webp" alt="A woman lunges with a staff toward a partner in an open-air hall" width="900" height="480" loading="lazy"></figure>
-      <figure><img src="/hininja/img/gallery/g10.webp" alt="A woman raises her arm to block an overhead strike in a partner drill" width="900" height="713" loading="lazy"></figure>
-      <figure><img src="/hininja/img/gallery/g11.webp" alt="A woman works a wrist lock with two training partners" width="900" height="621" loading="lazy"></figure>
-      <figure><img src="/hininja/img/gallery/g12.webp" alt="A woman breaks a grab from her training partner on red mats" width="900" height="836" loading="lazy"></figure>
-      <figure><img src="/hininja/img/gallery/g14.webp" alt="An instructor shows a student a staff move" width="900" height="635" loading="lazy"></figure>
-      <figure><img src="/hininja/img/gallery/g15.webp" alt="An instructor guides a student's wrist control while a woman waits her turn" width="900" height="812" loading="lazy"></figure>
-    </div>
-    <p class="gal-cta">Want in? <a href="#menu">Pick your 5 tactics</a></p>
-  </div>
-</section>
-
 <section class="band tint" id="who">
   <div class="wrap">
     <div class="k">Who</div>
@@ -670,6 +638,27 @@ footer a:hover{color:var(--sea)}
       <div class="w-g"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 10h19v4h-19z"/><rect x="10" y="8.5" width="4" height="7" rx="1"/><path d="m10.5 15.5-2 5M13.5 15.5l2 5"/></svg></i><span>Want a belt</span><p>2 months per belt, yellow belt first, earned in a test with Rick. <a href="#belts">The belt program</a></p></div>
       <div class="w-b"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/></svg></i><span>Moving to Thailand</span><p>Mastery: all five belts over 2 years, with Rick. <a href="#mastery">Why Mastery</a></p></div>
       <div class="w-y"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="11" rx="1.5"/><path d="M7 8h6M7 11h9"/><path d="m8 20 4-5 4 5"/></svg></i><span>Want to teach</span><p>Instructor: all five belts in a year, and learn to lead practice as a Guide. <a href="#price">See Instructor</a></p></div>
+    </div>
+    <!-- Real classes, under the nine boxes (Rick, 28 Oct 2026: "REAL CLASSES should also go in the WHO section
+         under the FOR BEGINNERS etc section", and of the photo band: "good section but too many similar image
+         and each image box should rotate too"). Each box is one theme and crossfades through its photos; the
+         photos with Rick in them rotate at the top instead. Photos from his archive on the Extreme Pro, his keeps
+         of the first hunt; more boxes as the second hunt lands. -->
+    <div class="real" id="photos">
+      <h3 class="real-h">Real classes, at your level.</h3>
+      <div class="rot-row">
+        <figure class="rot-fig"><div class="rot" role="group" aria-label="Self-defense in real classes">
+          <img class="on" src="/hininja/img/gallery/g12.webp" alt="A woman breaks a grab from her training partner on red mats" width="900" height="836" loading="lazy" style="object-position:50% 25%">
+          <img src="/hininja/img/gallery/g11.webp" alt="A woman works a wrist lock with two training partners" width="900" height="621" loading="lazy" style="object-position:50% 30%">
+          <img src="/hininja/img/gallery/g10.webp" alt="A woman raises her arm to block an overhead strike in a partner drill" width="900" height="713" loading="lazy" style="object-position:50% 30%">
+          <img src="/hininja/img/gallery/g15.webp" alt="An instructor guides a student's wrist control while a woman waits her turn" width="900" height="812" loading="lazy" style="object-position:50% 20%">
+        </div><figcaption>Self-defense you can use. <a href="#menu">Pick Self-defense</a></figcaption></figure>
+        <figure class="rot-fig"><div class="rot" role="group" aria-label="Ninja tools in real classes">
+          <img class="on" src="/hininja/img/gallery/g09.webp" alt="A woman lunges with a staff toward a partner in an open-air hall" width="900" height="480" loading="lazy" style="object-position:50% 50%">
+          <img src="/hininja/img/gallery/g14.webp" alt="An instructor shows a student a staff move" width="900" height="635" loading="lazy" style="object-position:50% 30%">
+          <img src="/hininja/img/gallery/g08.webp" alt="A student in a low stance with a bamboo staff on a grass field" width="627" height="638" loading="lazy" style="object-position:50% 20%">
+        </div><figcaption>The staff, the stick and more. <a href="#menu">Pick Ninja Tools</a></figcaption></figure>
+      </div>
     </div>
   </div>
 </section>
@@ -730,10 +719,6 @@ footer a:hover{color:var(--sea)}
         <figure><img src="/hininja/img/winjitsu/ace-book.webp" alt="A hand holding the WinJitsu book Achieving Combined Excellence by Rick Tew" width="329" height="457" loading="lazy"><figcaption>Earn your orange belt and the books come into your training.</figcaption></figure>
         <figure class="wj-phones"><img src="/hininja/img/winjitsu/phones.webp" alt="Two phones showing the WinJitsu app: its home screen and a lesson, Achieving Combined Excellence" width="861" height="900" loading="lazy"><figcaption>Take it home: a free month of the app with your stay. A few minutes a day, wherever you go next. <a href="#price">Pick your stay</a></figcaption></figure>
       </div>
-    </div>
-    <div class="teach-row">
-      <figure class="teach"><img src="/hininja/img/teaching-two.webp" alt="Rick Tew, in a black shirt, coaching two students through an arm technique outdoors" width="792" height="447" loading="lazy"></figure>
-      <figure class="teach"><img src="/hininja/img/teaching-punch.webp" alt="Rick Tew guiding a woman's straight punch into a standing bag" width="960" height="540" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -1161,13 +1146,17 @@ footer a:hover{color:var(--sea)}
   });
   /* the top photo box crossfades through Rick's kept photos (28 Oct 2026), not with reduced motion */
   (function(){
-    var box=document.querySelector(".hero-rot"); if(!box) return;
-    var imgs=box.querySelectorAll("img"), i=0;
-    if(imgs.length<2 || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
-    setInterval(function(){
-      if(document.hidden) return;
-      imgs[i].classList.remove("on"); i=(i+1)%imgs.length; imgs[i].classList.add("on");
-    },4000);
+    if(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    [].forEach.call(document.querySelectorAll(".rot"),function(box,k){
+      var imgs=box.querySelectorAll("img"), i=0;
+      if(imgs.length<2) return;
+      setTimeout(function(){
+        setInterval(function(){
+          if(document.hidden) return;
+          imgs[i].classList.remove("on"); i=(i+1)%imgs.length; imgs[i].classList.add("on");
+        },4000);
+      },k*1300);
+    });
   })();
   [].forEach.call(document.querySelectorAll("[data-open-ninja]"),function(b){
     b.addEventListener("click",function(){ if(window.rtHiAskOpen) window.rtHiAskOpen(); else location.hash="ask"; });
