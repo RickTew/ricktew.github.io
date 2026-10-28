@@ -28,7 +28,7 @@
      seminar yet (it can be explained in the what)"); the hero button is Book now, to How ("the quiz is
      right there already"); the menu is not called a quiz ("it is not a quiz"). No specifics (place, length, time, price) in videos, images or ads. -->
 
-<title>Martial Arts Ninja Course by Rick Tew | HI Ninja</title>
+<title>Martial Arts Ninja Course by Rick Tew | Ninjitsu</title>
 <meta name="description" content="A relaxed ninja martial arts course on Koh Samui with Rick Tew: a morning class, the island, nerdy ninja talk and WinJitsu coaching. Stay 2 weeks, 3 weeks, a month, or 2 months for a belt.">
 <link rel="canonical" href="https://ricktew.com/hininja/">
 <meta property="og:title" content="Martial Arts Ninja Course by Rick Tew">
@@ -303,6 +303,7 @@ figcaption a{font-weight:700;white-space:nowrap}
 .who .w-g{background:#e8f6ee;border-color:var(--green)} .who .w-g i{background:var(--green)}
 .who .w-b{background:#e9f1fc;border-color:var(--blue)} .who .w-b i{background:var(--blue)}
 .who a{font-weight:700;white-space:nowrap;color:#1c6db4}
+.who .w-wide{grid-column:1/-1}
 @media (prefers-reduced-motion:reduce){ .who>div{transition:none} .who>div:hover{transform:none} }
 @media (max-width:760px){ .who>div{display:grid;grid-template-columns:42px minmax(0,1fr);column-gap:14px;align-items:start;padding:14px 16px} .who i{grid-row:span 2;margin:0} .who span{align-self:center} }
 .pair img{width:100%;border-radius:18px;box-shadow:0 14px 34px rgba(16,20,24,.14)}
@@ -627,7 +628,7 @@ footer a:hover{color:var(--sea)}
 
 <nav class="nav" aria-label="Main">
   <div class="nav-in">
-    <a class="brand" href="#top">RICK TEW <span>HI NINJA</span></a>
+    <a class="brand" href="#top">RICK TEW <span>NINJITSU</span></a>
     <div class="nav-links">
       <a href="#menu">The menu</a>
       <a href="#who">Who</a>
@@ -648,7 +649,9 @@ footer a:hover{color:var(--sea)}
 <header class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <div class="k">HI Ninja &middot; Koh Samui</div>
+      <!-- "Ninjitsu", not "HI Ninja" (Rick, 29 Oct 2026: "Can that blue text be NINJITSU we don't need to say, "HI NINJA"
+           anywhere no one will know what that means"; 11 of 11 readers did not know HI) -->
+      <div class="k">Ninjitsu &middot; Koh Samui</div>
       <h1><span>Martial Arts</span> <span>Ninja Course</span> <span>by <b>Rick Tew</b></span></h1>
       <!-- a real class on the first screen (Rick, 28 Oct 2026: 4 of 4 readers wanted one; his pick, photo 22),
            then "you cut off my face in the image too and this box should rotate": it crossfades through his
@@ -669,7 +672,9 @@ footer a:hover{color:var(--sea)}
         <img src="/hininja/img/teaching-punch.webp" alt="Rick Tew guiding a woman's straight punch into a standing bag" width="960" height="540" loading="lazy" style="object-position:60% 30%">
       </div>
       <p class="lede">Pick your tactics and Rick builds a private group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand.</p>
-      <div class="cta"><a class="btn btn-red" href="#menu" data-stay="2">Book now</a></div>
+      <!-- the hero's own Book now left on Rick's word, 29 Oct 2026: "that red BOOK NOW button doesn't do anything so
+           should we just remove it? We already have one that follows the page" (beside the menu on a wide screen it
+           moved the page a few pixels; the nav's Book now stays on screen at every width) -->
       <p class="promo" data-promo hidden>Attend with a friend for free if you book in November.</p>
     </div>
     <div class="menu-card" id="menu">
@@ -697,7 +702,10 @@ footer a:hover{color:var(--sea)}
     <div class="k">Who</div>
     <h2>For beginners, travelers and the ninja-curious.</h2>
     <!-- nine, each its own colour and icon (Rick, 28 Oct 2026: "add 3 more and should be easy to see not 9 same
-         same white boxes"); the three new ones point at the new stays -->
+         same white boxes"); the three new ones point at the new stays. The tenth, Families, runs the full width
+         under them (Rick, 29 Oct 2026: "we can also allow families ... the bonus of free kids classes ... This too
+         will help show we are a legit program because ninjagym.com blurb for those with kids"; his click "A Who
+         box, Families", one free session a day). -->
     <div class="perks who">
       <div class="w-y"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21v-8"/><path d="M12 13c0-4 3-7 7-7 0 4-3 7-7 7z"/><path d="M12 15.5c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg></i><span>New to martial arts</span><p>Built for beginners: every drill has an easier version.</p></div>
       <div class="w-o"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 8 21l4-2 4 2-1-7.5"/></svg></i><span>Trained before</span><p>Welcome too. Everyone trains at their level.</p></div>
@@ -708,6 +716,7 @@ footer a:hover{color:var(--sea)}
       <div class="w-g"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 10h19v4h-19z"/><rect x="10" y="8.5" width="4" height="7" rx="1"/><path d="m10.5 15.5-2 5M13.5 15.5l2 5"/></svg></i><span>Want a belt</span><p>2 months per belt, yellow belt first, earned in a test with Rick. <a href="#belts">The belt program</a></p></div>
       <div class="w-b"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/></svg></i><span>Moving to Thailand</span><p>Mastery: all five belts over 2 years, with Rick. <a href="#mastery">Why Mastery</a></p></div>
       <div class="w-y"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="11" rx="1.5"/><path d="M7 8h6M7 11h9"/><path d="m8 20 4-5 4 5"/></svg></i><span>Want to teach</span><p>Instructor: all five belts in a year, and learn to lead practice as a Guide. <a href="#price">See Instructor</a></p></div>
+      <div class="w-o w-wide"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="6" r="2.5"/><path d="M3.5 20v-5a4.5 4.5 0 0 1 9 0v5"/><circle cx="17" cy="10" r="2"/><path d="M14 20v-3a3 3 0 0 1 6 0v3"/></svg></i><span>Families</span><p>Bringing kids? Rick also runs NinjaGym, the ninja gym for kids on Koh Samui. Ages 3 to 9, older kids welcome. One free kids session a day during your stay. <a href="https://ninjagym.com/" target="_blank" rel="noopener">ninjagym.com</a></p></div>
     </div>
     <!-- Real classes, under the nine boxes (Rick, 28 Oct 2026: "REAL CLASSES should also go in the WHO section
          under the FOR BEGINNERS etc section", and of the photo band: "good section but too many similar image
@@ -1313,7 +1322,10 @@ footer a:hover{color:var(--sea)}
       <details><summary>How much time with Rick do I get in Mastery?</summary><p>200 hours a year, guaranteed: private and small-group sessions, booked when his time is free. In between, you practice what he showed you, and you can join every group class.</p></details>
       <details><summary>Already have a place, or want your own room?</summary><p>That is fine. The price is the same: you pay for the training.</p></details>
       <details><summary>Is there a private room, or a room for two?</summary><p>No private rooms. The stay is a shared men's or women's dorm. Want your own room? Book one nearby; the price stays the same.</p></details>
-      <details><summary>Can I bring my family or kids?</summary><p>The dorms are not set up for families to stay together. Book your own place nearby, and the kids can train at NinjaGym Kids while you are in the program.</p></details>
+      <!-- Rick, 29 Oct 2026: "allow families (but they need to stay in their own location if nerdhostel is full) ... The
+           come to the morning sessions and kids get a break from the parents, then kids do the day session and the
+           parents get a break from the kids"; his clicks "One free session a day", "Kids start at 10am", "As written". -->
+      <details><summary>Can I bring my family or kids?</summary><p>Yes. Your kids get one free session a day at NinjaGym, Rick's ninja gym for kids: you train 8 to 10 in the morning, and they train from 10am. Everyone gets a break. NinjaGym is for kids aged 3 to 9, and older kids are welcome too.</p><p>If NerdHostel has room, book a whole dorm room for your family there; if it is full, stay at your own place nearby.</p></details>
     </div>
   </div>
 </section>

@@ -77,7 +77,7 @@ const SAMPLES = {
   "winjitsu": ["what is winjitsu", "is there life coaching"],
   "pocket-dojo": ["what is pocket dojo", "is there a home study program", "I can't travel, can I train from home?"],
   "friend": ["If I book two weeks in November, does my boyfriend come free?", "can I bring a friend for free", "What's the catch with the friend comes free deal?"],
-  "kids": ["can I bring my kids", "can my family come"],
+  "kids": ["can I bring my kids", "can my family come", "do my kids get free classes at NinjaGym?", "where does a family stay"],
   "refunds": ["can I get a refund", "can I change my dates", "What happens if my flights change and I can not come on my dates?", "what if I cant come"],
   "book": ["how do I book", "how do I sign up", "how do I pay"],
   "included": ["what is included", "do I get a t-shirt"]

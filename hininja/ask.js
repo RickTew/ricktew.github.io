@@ -185,7 +185,7 @@
 
     /* Rick's click "Add it as written", 29 Oct 2026 */
     {id:"muay-thai", q:"Can I train Muay Thai too?",
-     alt:["muay thai too","train muay thai","do muay thai","muay thai as well","also muay thai","also do muay thai","muay thai on the side","muay thai in my free time","muay thai camp","muay thai gym","muay thai classes","thai boxing too","get bored","will i get bored","boring"],
+     alt:["muay thai too","train muay thai","do muay thai","muay thai as well","also muay thai","also do muay thai","muay thai on the side","muay thai camp","muay thai gym","muay thai classes","thai boxing too","get bored","will i get bored","boring"],
      keys:"bored boring",
      a:"<p>Yes, many students do, in their free time. With eight areas on the Ninja Menu, there is too much to learn here to get bored.</p>",
      next:MENU},
@@ -336,9 +336,9 @@
      next:STAYS},
 
     {id:"kids", q:"Can I bring my family or kids?",
-     alt:["bring my kids","bring my family","with my kids","with my family","my children","my son","my daughter","for kids","kids class","family"],
+     alt:["bring my kids","bring my family","with my kids","with my family","my children","my son","my daughter","for kids","kids class","kids classes","kids session","kids sessions","my kids","family","a family stay"],
      keys:"kids kid children child family families son sons daughter daughters",
-     a:"<p>The dorms are not set up for families to stay together. Book your own place nearby, and the kids can train at NinjaGym Kids while you are in the program.</p>",
+     a:"<p>Yes. Your kids get one free session a day at NinjaGym, Rick's ninja gym for kids: you train 8 to 10 in the morning, and they train from 10am. Everyone gets a break. NinjaGym is for kids aged 3 to 9, and older kids are welcome too.</p><p>If NerdHostel has room, book a whole dorm room for your family there; if it is full, stay at your own place nearby.</p>",
      next:ASK("Ask Kuno about it","About bringing my family: ")},
 
     {id:"refunds", q:"Can I get a refund, or move my dates?",
