@@ -161,7 +161,11 @@ places:
     each other. Variety is good".** In every rotating box (`.rot`) two photos from one place never follow each
     other, the last wrapping to the first. **No photo of Rick leading fitness** ("I don't lead the fitness
     anymore, as I do seminar style now"): the shadowboxing photo n04 is gone. The three themed boxes under Who
-    are all the 2013 Lamai hall, so they cannot meet the rule until photos from other places join them.
+    (`#photos`, heading "Real people, real training, at your level.", his phrase, restored the same evening) were
+    all the 2013 Lamai hall ("too much like the same place and people ... there are other photos too"): they now
+    hold six each, his keeps plus Mexico, California, Holland, the Samui camps and NinjaGym (`gallery/v01` to
+    `v13`, from the Extreme Pro archive's root Photos folder), ordered so no place repeats in a box or shows side by
+    side across the three. Look beyond one folder: the photo map's tags-A to D list keepers by place.
   - **`#system`**, between the belts and Mastery: Rick Tew's Martial Science, the two logos from his training
     shirt (round Mind Body Spirit on the back, the red patch on the chest), the free PDF
     `/hininja/rtms-philosophy-and-system.pdf` (his 2004 "Modern Ninjitsu ... Philosophy and System", 20 pages)
