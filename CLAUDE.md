@@ -70,8 +70,9 @@ places:
   10 1-2 students than 10-20 in and out students ... a solid mastery sales pitch ... those that MOVE to
   Thailand"; "mastery includes the same"): "Moving to Thailand? Earn all five belts.", four tiles (a
   routine, people, progress, WinJitsu coaching), Rick's own move (Holland, now Thailand), $15,988 and
-  "Write to me about Mastery". Not on it until he rules: a letter for a long-stay visa (the DTV's
-  soft-power route lists sports training; embassies want a long enrolment letter), paying over time.
+  "Write to me about Mastery". His clicks the same day: **visas stay off the page** (no enrolment letter
+  offered, though the DTV's soft-power route lists sports training), and **"Pay it all at once, or in five
+  parts, one before each belt."** (invoiced, not the checkout).
   **No specifics in videos, images or ads** (Rick, same day: "We do not use specific for our
   ads or images or videos as we might want to change them often so leave the specifics for
   the pages and text that we can list fast"): no place, length of stay, time, date, price or
