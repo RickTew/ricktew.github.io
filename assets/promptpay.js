@@ -65,7 +65,8 @@
     },
     "HIN-GNS-2W": {
       door: "hi", thb: 69999, kind: "weeks",
-      name: { en: "Gooffy Ninja ShhT!!, 2 weeks", th: "Gooffy Ninja ShhT!! 2 สัปดาห์" }, /* no place in a payment name (Rick, 19 Oct 2026) */
+      name: { en: "Martial Arts Ninja Course, 2 weeks", th: "Martial Arts Ninja Course 2 สัปดาห์" },
+      gnsName: { en: "Gooffy Ninja ShhT!!, 2 weeks", th: "Gooffy Ninja ShhT!! 2 สัปดาห์" }, /* a buyer from NerdHostel's GNS page (src=gns) keeps its name, as at the checkout */ /* no place in a payment name (Rick, 19 Oct 2026); the checkout's name since 29 Oct 2026 (his click), was Gooffy Ninja ShhT!! */
       field: { en: "Arrival date", th: "วันที่มาถึง" }, type: "date",
       back: "/hininja/#price"
     }
@@ -137,6 +138,7 @@
   var src = (q && q.get("src")) || "";
   if (!/^[A-Za-z0-9_-]{1,200}$/.test(src)) src = "";
   if (/^gns(-|$)/.test(src)) src = "gns";
+  if (item && src === "gns" && item.gnsName) item = Object.assign({}, item, { name: item.gnsName });
 
   var lang = "en";
   try { lang = localStorage.getItem("promptpay-lang") || ((navigator.language || "").slice(0, 2) === "th" ? "th" : "en"); } catch (e) {}
@@ -146,7 +148,7 @@
   function render() {
     var w = WORDS[lang];
     document.documentElement.lang = lang;
-    document.title = w.title + (door === "hi" ? " | HI Ninja | Rick Tew" : " | AI Ninja | Rick Tew");
+    document.title = w.title + (door === "hi" ? " | Martial Arts Ninja Course | Rick Tew" : " | AI Ninja | Rick Tew");
     $("t-title").textContent = w.title;
     $("lang").textContent = w.lang;
     if (!item) {
