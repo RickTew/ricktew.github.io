@@ -466,6 +466,55 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--muted);border-top:1px soli
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 footer a{color:var(--muted);text-decoration:none}
 footer a:hover{color:var(--sea)}
+
+/* Ask the Ninja, with Kuno (Rick, 28 Oct 2026). Engine and library: /hininja/ask.js. Light like the
+   page; red only on the buttons; the pill steps aside over the Ninja Menu's own buttons (.kuno-away). */
+.kuno-launch{position:fixed;right:16px;bottom:16px;z-index:140;display:inline-flex;align-items:center;gap:10px;background:var(--sea);color:#fff;border:2px solid var(--sea);border-radius:999px;padding:5px 18px 5px 5px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:.05em;text-transform:uppercase;line-height:1;cursor:pointer;box-shadow:0 12px 30px rgba(16,20,24,.28);transition:transform .15s ease,opacity .2s ease,background .12s ease}
+.kuno-launch img{width:40px;height:40px;border-radius:50%;border:2px solid var(--hi);background:#fff}
+.kuno-launch:hover{background:var(--sea-d);border-color:var(--sea-d);transform:translateY(-1px)}
+.kuno-launch:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.kuno-launch[hidden]{display:none}
+.kuno-launch.kuno-away{opacity:0;pointer-events:none;transform:translateY(12px)}
+@media (max-width:700px){ .kuno-launch{padding:4px;right:12px;bottom:12px} .kuno-launch span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap} .kuno-launch img{width:50px;height:50px} }
+.kuno-panel{position:fixed;right:16px;bottom:16px;z-index:160;width:min(400px,calc(100vw - 32px));max-height:min(660px,calc(100vh - 32px));display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px rgba(16,20,24,.28);overflow:hidden}
+.kuno-panel[hidden]{display:none}
+.kuno-head{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--sea-d);color:#fff}
+.kuno-head img{width:44px;height:44px;border-radius:50%;border:2px solid var(--hi);background:#fff;flex-shrink:0}
+.kuno-head b{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:18px;letter-spacing:.04em;text-transform:uppercase;line-height:1.1}
+.kuno-head span{display:block;font-size:12.5px;color:#f0f6fc;margin-top:2px;line-height:1.3}
+.kuno-x{margin-left:auto;background:none;border:0;color:#f0f6fc;font-size:28px;line-height:1;cursor:pointer;padding:2px 8px}
+.kuno-x:hover{color:#fff}
+.kuno-x:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+.kuno-log{flex:1;overflow-y:auto;padding:14px;background:var(--mist);display:flex;flex-direction:column;gap:12px;-webkit-overflow-scrolling:touch}
+.kuno-b{max-width:92%;border-radius:14px;padding:11px 13px;font-size:15px;line-height:1.5}
+.kuno-n{align-self:flex-start;background:#fff;border:1px solid var(--line);color:var(--ink2)}
+.kuno-u{align-self:flex-end;background:var(--sea);color:#fff;font-weight:600;overflow-wrap:anywhere}
+.kuno-q{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:15px;color:var(--sea-d);margin-bottom:4px}
+.kuno-a p+p{margin-top:8px}
+.kuno-act{margin-top:10px}
+.kuno-go{display:inline-flex;align-items:center;justify-content:center;background:var(--red);color:#fff;border:2px solid var(--red);border-radius:999px;padding:7px 16px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:14px;letter-spacing:.05em;text-transform:uppercase;line-height:1.2;text-decoration:none;cursor:pointer}
+.kuno-go:hover{background:var(--red-d);border-color:var(--red-d)}
+.kuno-go.kuno-quiet{background:#fff;color:var(--ink);border-color:var(--mist2)}
+.kuno-go:disabled{opacity:.6;cursor:default}
+.kuno-go:focus-visible,.kuno-chip:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.kuno-also{margin-top:10px;font-size:13px;font-weight:600;color:var(--muted)}
+.kuno-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.kuno-chip{background:#fff;color:var(--ink);border:1px solid var(--mist2);border-radius:999px;padding:6px 12px;font:inherit;font-size:13.5px;line-height:1.3;cursor:pointer;text-align:left}
+.kuno-chip:hover{border-color:var(--sea);color:var(--sea-d)}
+.kuno-fld{margin-top:8px}
+.kuno-fld label{display:block;font-size:13px;font-weight:600;color:var(--ink2)}
+.kuno-fld input,.kuno-fld textarea{display:block;width:100%;margin-top:3px;border:1px solid var(--mist2);border-radius:10px;padding:8px 10px;font:inherit;font-size:16px;color:var(--ink);background:#fff}
+.kuno-fld textarea{min-height:76px;resize:vertical}
+.kuno-fld input:focus,.kuno-fld textarea:focus{outline:2px solid var(--sea);outline-offset:0;border-color:var(--sea)}
+.kuno-mail form .kuno-go{margin-top:10px}
+.kuno-err{margin-top:6px;font-size:13.5px;font-weight:600;color:var(--red-d)}
+.kuno-err:empty{display:none}
+.kuno-form{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--line);background:#fff}
+.kuno-form input{flex:1;min-width:0;border:1px solid var(--mist2);border-radius:10px;padding:9px 12px;font:inherit;font-size:16px;color:var(--ink)}
+.kuno-form input:focus{outline:2px solid var(--sea);outline-offset:0;border-color:var(--sea)}
+.kuno-form button{flex-shrink:0}
+@media (max-width:700px){ .kuno-panel{right:0;bottom:0;left:0;width:100%;max-height:88vh;border-radius:18px 18px 0 0;border-left:0;border-right:0;border-bottom:0} }
+@media (prefers-reduced-motion:reduce){ .kuno-launch{transition:none} .kuno-launch:hover,.kuno-launch.kuno-away{transform:none} }
 </style>
 </head>
 <body data-usd-only>
@@ -965,6 +1014,23 @@ footer a:hover{color:var(--sea)}
   });
 })();
 </script>
+<!-- ============ ASK THE NINJA, with Kuno (Rick, 28 Oct 2026). Engine and library: /hininja/ask.js ============
+     Answers quoted from this page, matched by the words in the question; a miss offers "Ask Kuno",
+     which posts to the mailbox like the ask box above (subject hininja). No address on the page. -->
+<button class="kuno-launch" id="kunoLaunch" type="button" aria-haspopup="dialog" aria-controls="kunoPanel"><img src="/hininja/img/kuno.webp" srcset="/hininja/img/kuno.webp 1x, /hininja/img/kuno-2x.webp 2x" alt="" width="40" height="40"><span>Ask the Ninja</span></button>
+<div class="kuno-panel" id="kunoPanel" role="dialog" aria-labelledby="kunoTitle" hidden>
+  <div class="kuno-head">
+    <img src="/hininja/img/kuno.webp" srcset="/hininja/img/kuno.webp 1x, /hininja/img/kuno-2x.webp 2x" alt="Kuno, Rick's assistant" width="44" height="44">
+    <div><b id="kunoTitle">Ask the Ninja</b><span>Answers Rick wrote. No guessing.</span></div>
+    <button class="kuno-x" id="kunoX" type="button" aria-label="Close">&times;</button>
+  </div>
+  <div class="kuno-log" id="kunoLog" aria-live="polite"></div>
+  <form class="kuno-form" id="kunoForm" autocomplete="off">
+    <input id="kunoIn" type="text" maxlength="300" placeholder="Ask about the training or the stay" aria-label="Your question" autocomplete="off">
+    <button class="kuno-go" type="submit">Ask</button>
+  </form>
+</div>
+<script src="/hininja/ask.js?v=20261028" defer></script>
 <script src="/hininja/menu.js?v=20261028"></script>
 </body>
 </html>
