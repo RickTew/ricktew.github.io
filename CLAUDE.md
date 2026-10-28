@@ -173,8 +173,10 @@ places:
     training knife, his "it shows older people can join", from the old site's `assets/images/964c072350.png`). New
     files `gallery/p<number>.webp` keep his Canva gallery number. The originals were NOT on the Extreme Pro (only
     134 and 135 were): they now are, in `Rick Tew Archive/Photos/From Canva/`. His 320 (an old Level Two
-    certificate) is the base for a NEW Instructor certificate, still to make; never show the old one (a student's
-    name and a date).
+    certificate) became a NEW Instructor certificate, in the Instructor price card since 28 Oct 2026 (his click
+    "Under the Instructor price card"; `hininja/img/rtms/instructor-certificate.webp`, source in the Extreme Pro
+    takes `instructor-certificate/`): no name, date or signature on it. Never show the old one (a student's name and
+    a date).
   - **`#system`**, between the belts and Mastery: Rick Tew's Martial Science, the two logos from his training
     shirt (round Mind Body Spirit on the back, the red patch on the chest), the free PDF
     `/hininja/rtms-philosophy-and-system.pdf` (his 2004 "Modern Ninjitsu ... Philosophy and System", 20 pages)
