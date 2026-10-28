@@ -135,7 +135,8 @@ places:
   - **The headline is "Martial Arts / Ninja Course / by Rick Tew"**, three lines (his click "Martial Arts
     Course" after readers ranked Course first and read "Introduction" as a one-evening taster, then "martial
     arts in the top line and Ninja Course second line"). The lede is his, same day: "Pick your tactics and Rick
-    builds a private group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand."
+    builds a small-group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand."
+    ("small-group" since 29 Oct 2026, was "private group", his click.)
   - **Nobody is asked to write in** (Rick: "don't ask people to write to me. I don't want anyone to write to
     me, I want them to book and they can ask the ninja, the chat or fill in the contact form"). The nav and
     top Book now open **2 weeks in the Ninja Menu** (`data-stay="2"`, his click); Mastery and Instructor say
@@ -230,6 +231,21 @@ places:
     work.** Since the same night it IS back as his own file: `RTMS Book 2010.pdf` (184 pages, from ~/Dev/UGTMA; a copy back in
     the Extreme Pro's Rick Tew Archive/Documents) at `/hininja/modern-ninjitsu-philosophy-and-system.pdf`, opening in a new tab,
     the card showing the front of his `RTMS One Piece Book Cover 2013.pdf` (his click).
+  - **29 Oct 2026, the facts only Rick had, from the 11-reader round (his clicks, all LIVE, 7aba659 to dcfc0c9):**
+    **no "HI Ninja" on /hininja/ or the pages a buyer passes** (the logo and kicker read "Ninjitsu", titles "Martial
+    Arts Ninja Course"; his words: "no one will know what that means"; the front page doors, HI footers and llms.txt
+    keep HI Ninja / AI Ninja until he renames the door). The hero's own Book now is gone (the nav one follows the page).
+    In the FAQ and chat, in his words: groups "Usually around 6, up to 12", students "from 16 to their 60s", "Small
+    groups, usually around 6: near-private lessons at the price of a group class" (also by the prices; no teacher
+    named), "Prices in US dollars.", one trial class "booked ahead" (no price on the page), his 18 / 54 students story
+    in "Am I too old?", "Can I train Muay Thai too?", two simple meals a day, women ("Ask to pair with a woman, and you
+    can say stop at any time"), parent and teen, the bad knee, couples or families may book a whole NerdHostel dorm
+    room. **Families are welcome:** a full-width Who box, Families (ninjagym.com), and one free NinjaGym kids session a
+    day during the stay, kids from 10am while parents train 8 to 10 (NinjaGym told via TEWBEDO; NerdHostel by note).
+    The #rick lead is his: "Rick has taught thousands of students in multiple countries for more than 25 years, and run
+    some of the most intense outdoor adventure programs. Been there, done that. Now he is laid back and teaches for
+    fun: it is a lifelong passion. Now it is your turn." "tactics" is explained once in the menu box ("the techniques
+    you want to learn"). Lineage: the record is the answer, no teachers named.
 - **`/aininja/` AI Ninja** — the digital work. Building with AI for businesses.
 
 Both are live. The honest reason for the split, in Rick's words: the hardcore
