@@ -16,8 +16,9 @@ places:
   are final; your dates can move to another two weeks, within a year of buying"
   (the year is Rick's click of 10 Oct); thanks page
   `/hininja/thanks/`) and its own enrol form on the mailbox (subject `hininja`).
-  Rick and a NinjaGym Guide take turns teaching (Rick at least 2 classes a
-  week); shared dorms, a women's dorm on request. `/gns/` is the FUN version of
+  (The old "Rick and a Guide take turns, Rick at least 2 classes a week" is
+  RETIRED, 28 Oct 2026: never say who teaches or who doesn't, see below.)
+  Shared dorms, a women's dorm on request. `/gns/` is the FUN version of
   the same program and stays as he designed it: both pages run for real, and
   ~6 months of ads and data compare them. Never restyle one toward the other;
   in questions name them by address, never "test A/B". The old HI home is word
@@ -129,6 +130,32 @@ places:
   ads or images or videos as we might want to change them often so leave the specifics for
   the pages and text that we can list fast"): no place, length of stay, time, date, price or
   count in a picture or a clip, recorded screens included; the page text carries them.
+  **28 Oct 2026, afternoon (his notes on the live page, then a 4-reader round,
+  `playtest/reports/2026-10-28-hi-SUMMARY.md`, all four UNSURE):**
+  - **The headline is "Martial Arts Course by Rick Tew"** (his click; readers ranked Course first and read
+    "Introduction" as a one-evening taster). The lede keeps "a relaxed introduction".
+  - **Nobody is asked to write in** (Rick: "don't ask people to write to me. I don't want anyone to write to
+    me, I want them to book and they can ask the ninja, the chat or fill in the contact form"). The nav and
+    top Book now open **2 weeks in the Ninja Menu** (`data-stay="2"`, his click); Mastery and Instructor say
+    "Reserve a spot"; one week is "Book one week"; never "write to me", "Ask me anything" or "Ask first"
+    (the menu sweep fails on them). The ask box `#ask` is "A question about your stay?" with a **required
+    topic** (8, on the program); the mail's first line is "About: <topic>, from the HI Ninja page." (TEWBEDO
+    tagging the inbox by topic: his "Not now"). Same mailbox walls.
+  - **Never say who teaches or who doesn't** (Rick: "most of the time I teach if available"): the "at least
+    2 classes a week ... Guides" lines and the FAQ "Who teaches the classes?" are gone. Guides stay only as
+    training partners (Mastery, Instructor).
+  - **Photos:** `#photos`, right under the top, holds the real classes he kept (3, 8, 9, 10, 11, 12, 14, 15 of
+    the first hunt; "need others. So we should check more"); photo 22 sits under the headline (his "22 or a
+    combo"; the combo waits for better photos). The price fine print is one card (`.every`, ticks + terms).
+  - **`#system`**, between the belts and Mastery: Rick Tew's Martial Science, the two logos from his training
+    shirt (round Mind Body Spirit on the back, the red patch on the chest), the free PDF
+    `/hininja/rtms-philosophy-and-system.pdf` (his 2004 "Modern Ninjitsu ... Philosophy and System", 20 pages)
+    and seven dropdowns in his words (jutsu or jitsu with his "the U is YOU"; /camps/ is not linked, it still
+    sells a private room).
+  - **WinJitsu box:** the five books and two phones drawn from the WinJitsu app's own screens (never the
+    Tewtors phone picture, it says Tewtors); the Pai treehouse and desk photos small, side by side.
+  - /about/ is off the HI footer and tiles ("not finish (and its not using my colors)"). The chat stays "Ask
+    the Ninja" (his click; 0 of 4 readers took the cartoon for Rick).
 - **`/aininja/` AI Ninja** — the digital work. Building with AI for businesses.
 
 Both are live. The honest reason for the split, in Rick's words: the hardcore
