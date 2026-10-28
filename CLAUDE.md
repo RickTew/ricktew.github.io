@@ -157,6 +157,11 @@ places:
   - **Photos:** `#photos`, right under the top, holds the real classes he kept (3, 8, 9, 10, 11, 12, 14, 15 of
     the first hunt; "need others. So we should check more"); photo 22 sits under the headline (his "22 or a
     combo"; the combo waits for better photos). The price fine print is one card (`.every`, ticks + terms).
+  - **Photo variety (Rick, 28 Oct 2026, evening): "don't put photos from obvious same locations before or after
+    each other. Variety is good".** In every rotating box (`.rot`) two photos from one place never follow each
+    other, the last wrapping to the first. **No photo of Rick leading fitness** ("I don't lead the fitness
+    anymore, as I do seminar style now"): the shadowboxing photo n04 is gone. The three themed boxes under Who
+    are all the 2013 Lamai hall, so they cannot meet the rule until photos from other places join them.
   - **`#system`**, between the belts and Mastery: Rick Tew's Martial Science, the two logos from his training
     shirt (round Mind Body Spirit on the back, the red patch on the chest), the free PDF
     `/hininja/rtms-philosophy-and-system.pdf` (his 2004 "Modern Ninjitsu ... Philosophy and System", 20 pages)
