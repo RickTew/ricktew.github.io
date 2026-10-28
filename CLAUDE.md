@@ -66,6 +66,12 @@ places:
   Earn a belt $7,994, The month $3,997, 2 weeks $2,222, each about double the next. 3 weeks stays a
   line under the cards (four fixed stays). A card's button picks that stay in the Ninja Menu
   (`a[data-stay]` in menu.js); the Ninja Week is still built first unless it is the belt.
+  **The Mastery pitch, `#mastery`, a dark band after the belt program** (Rick, 28 Oct: "we would rather have
+  10 1-2 students than 10-20 in and out students ... a solid mastery sales pitch ... those that MOVE to
+  Thailand"; "mastery includes the same"): "Moving to Thailand? Earn all five belts.", four tiles (a
+  routine, people, progress, WinJitsu coaching), Rick's own move (Holland, now Thailand), $15,988 and
+  "Write to me about Mastery". Not on it until he rules: a letter for a long-stay visa (the DTV's
+  soft-power route lists sports training; embassies want a long enrolment letter), paying over time.
   **No specifics in videos, images or ads** (Rick, same day: "We do not use specific for our
   ads or images or videos as we might want to change them often so leave the specifics for
   the pages and text that we can list fast"): no place, length of stay, time, date, price or
