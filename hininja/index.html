@@ -189,7 +189,9 @@ figcaption a{font-weight:700;white-space:nowrap}
 .bonus figcaption a{color:var(--hi)}
 .wj-story{margin-top:22px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:22px;align-items:center}
 @media (max-width:760px){ .wj-story{grid-template-columns:1fr} }
-.wj-pai img{width:100%;height:auto}
+.wj-pai .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center}
+.wj-pai img{display:block;width:100%;height:auto}
+.wj-pai figcaption{margin-top:8px}
 .wj-words span{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--hi)}
 .wj-words p{margin-top:8px;font-size:15.5px;color:#f0f6fc}
 .wj-words blockquote{margin-top:12px;font-size:16.5px;font-style:italic;color:#fff}
@@ -198,6 +200,7 @@ figcaption a{font-weight:700;white-space:nowrap}
 @media (max-width:560px){ .wj-pics{grid-template-columns:1fr} }
 .wj-pics img{display:block;width:auto;max-width:100%;height:240px;object-fit:contain;margin:0 auto;border-radius:14px;background:#fff}
 .wj-pics figcaption{text-align:center}
+.wj-pics .wj-phones img{background:none}
 .mind-grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media (max-width:960px){ .mind-grid.four{grid-template-columns:1fr 1fr} }
 @media (max-width:560px){ .mind-grid.four{grid-template-columns:1fr} }
@@ -641,7 +644,8 @@ footer a:hover{color:var(--sea)}
            off, no dates) and "the app images ... to show on our hininja page". Built 28 Oct. Never "a year off"
            or a vacation: he moved to Pai to write. App screens say WinJitsu, never Tewtors. -->
       <div class="wj-story">
-        <figure class="wj-pai"><img src="/hininja/img/winjitsu/pai-desk.webp" alt="Rick Tew smiling at a wooden desk with a laptop, in a treehouse room in Pai" width="960" height="758" loading="lazy"><figcaption>The system Rick wrote here comes with every stay.</figcaption></figure>
+        <!-- both Pai photos, smaller (Rick, 28 Oct 2026: "try the other photo or both so it is smaller") -->
+        <figure class="wj-pai"><div class="two"><img src="/hininja/img/winjitsu/pai-treehouse.webp" alt="Rick Tew on the balcony of a carved wooden treehouse in Pai, in the mountains of northern Thailand" width="640" height="514" loading="lazy"><img src="/hininja/img/winjitsu/pai-desk.webp" alt="Rick Tew smiling at a wooden desk with a laptop, in a treehouse room in Pai" width="960" height="758" loading="lazy"></div><figcaption>The system Rick wrote here comes with every stay.</figcaption></figure>
         <div class="wj-words">
           <span>How WinJitsu came about</span>
           <p>Rick took the old-school approach and moved to the mountains of Thailand (Pai) to write from his experience as a martial arts instructor, motivational speaker and traveler, and to formulate the 5-system foundation of WinJitsu.</p>
@@ -649,10 +653,13 @@ footer a:hover{color:var(--sea)}
           <blockquote>"It is my passion to help others find their key strengths so that they too can combine them to achieve a greater level of fulfillment in life." <cite>Rick Tew</cite></blockquote>
         </div>
       </div>
+      <!-- Rick, 28 Oct 2026: "Winjitsu should show the 5 book image and the app image (the PHONES)". The phones are
+           drawn from the WinJitsu app's own screens (winjitsu-workbooks house/assets app-home.png, app-lesson.png),
+           which say WinJitsu: the Tewtors phone picture says Tewtors, so it is not used here. -->
       <div class="wj-pics">
+        <figure><img src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="The five WinJitsu books, Be a Black Belt in What You Do, by Rick Tew" width="956" height="1024" loading="lazy"><figcaption>Five books, one per finger: together they make a fist. <a href="#belts">The belt program</a></figcaption></figure>
         <figure><img src="/hininja/img/winjitsu/ace-book.webp" alt="A hand holding the WinJitsu book Achieving Combined Excellence by Rick Tew" width="329" height="457" loading="lazy"><figcaption>Earn your orange belt and the books come into your training.</figcaption></figure>
-        <figure><img src="/hininja/img/winjitsu/app-home.webp" alt="The WinJitsu app's home screen on a phone" width="560" height="607" loading="lazy"><figcaption>Take it home: a free month of the app with your stay.</figcaption></figure>
-        <figure><img src="/hininja/img/winjitsu/app-lesson.webp" alt="A WinJitsu app lesson, Achieving Combined Excellence" width="560" height="608" loading="lazy"><figcaption>A few minutes a day, wherever you go next. <a href="#price">Pick your stay</a></figcaption></figure>
+        <figure class="wj-phones"><img src="/hininja/img/winjitsu/phones.webp" alt="Two phones showing the WinJitsu app: its home screen and a lesson, Achieving Combined Excellence" width="861" height="900" loading="lazy"><figcaption>Take it home: a free month of the app with your stay. A few minutes a day, wherever you go next. <a href="#price">Pick your stay</a></figcaption></figure>
       </div>
     </div>
     <div class="teach-row">
