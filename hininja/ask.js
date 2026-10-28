@@ -167,13 +167,13 @@
     {id:"experience", q:"Do I need experience?",
      alt:["need experience","never trained","no experience","complete beginner","total beginner","first time","never done martial arts","im a beginner","i am a beginner","trained before"],
      keys:"experience experienced beginner beginners trained novice level levels advanced",
-     a:"<p>No. It is built for beginners. Trained before? Welcome too. Everyone trains at their level.</p>",
+     a:"<p>No. It is built for beginners. Trained before? Welcome too. Everyone trains at their level.</p><p>Unlike most martial arts that expect you to conform to them, our system is built around you.</p>",
      next:MENU},
 
     {id:"age", q:"Am I too old?",
      alt:["too old","am i too old","age limit","how old","over 40","over 50","over 60","older people","my age","what ages","ages of the other","how old are the other"],
      keys:"old older age ages aged limit senior seniors 40 50 60 70 retired",
-     a:"<p>No. There is no upper age limit: the relaxed plan is for everyone, and every drill has an easier version. Tell me about an old injury before you come.</p>",
+     a:"<p>No. There is no upper age limit: the relaxed plan is for everyone, and every drill has an easier version. Tell me about an old injury before you come.</p><p>The great thing about the martial science is that it is built around your own strengths and weaknesses.</p>",
      next:MENU},
 
     {id:"teens", q:"I am 16 or 17. Can I come on my own?",
@@ -185,7 +185,7 @@
     {id:"injury", q:"Got an injury, or not very fit?",
      alt:["bad knee","bad back","not fit","not very fit","out of shape","an injury","old injury","overweight","unfit","health problem","my knee","my back","my shoulder","knee injury","back injury","shoulder injury","injured"],
      keys:"injury injuries injured knee knees back shoulder fit fitness unfit shape health medical condition overweight weight hurt pain",
-     a:"<p>Tell me before you come. Every drill has an easier version.</p>",
+     a:"<p>Tell me before you come. Every drill has an easier version.</p><p>The great thing about the martial science is that it is built around your own strengths and weaknesses.</p>",
      next:ASK("Tell Kuno about it","About an injury or my fitness: ")},
 
     {id:"sparring", q:"Is it a fight camp? Is there sparring?",
