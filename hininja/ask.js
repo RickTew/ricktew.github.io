@@ -285,8 +285,14 @@
     {id:"winjitsu", q:"What is WinJitsu?",
      alt:["winjitsu","win jitsu","life coaching","the coaching","mental martial art","the books","winjitsu books","the app","winjitsu com"],
      keys:"winjitsu coaching coach coached mental mind mindset goals goal focus confidence app life",
-     a:"<p>Rick's mental martial art: coaching for focus, goals and life. It comes with every stay.</p><p>In the martial arts, we have learned that there is a mind-body connection. It is why Rick wrote the book series WinJitsu, The Mental Martial Art.</p><p>Also included: a month of the WinJitsu.com app and a Rick Tew ninja T-shirt.</p>",
+     a:"<p>Kicks train the body. WinJitsu trains the mind behind them: Rick's mental martial art for focus, goals and life. It comes with every stay.</p><p>In the martial arts, we have learned that there is a mind-body connection. It is why Rick wrote the book series WinJitsu, The Mental Martial Art.</p><p>Also included: a month of the WinJitsu.com app and a Rick Tew ninja T-shirt.</p>",
      next:STAYS},
+
+    {id:"pocket-dojo", q:"What is Pocket Dojo?",
+     alt:["pocket dojo","home study","home study program","the home study program","hsp","train at home","learn from home","train from home","online course","online training","train online","cant travel","can't travel","cannot travel","cant come"],
+     keys:"pocket dojo home study online remote travel distance",
+     a:"<p>Pocket Dojo is the Home Study Program on your phone: Rick Tew's Martial Science, belt by belt. Keep training what you learned in class, long after you fly home.</p><p>Want to train with Rick but can't travel? Join the Home Study Program and train at home, belt by belt.</p>",
+     next:{href:"/hsp/", label:"See the Home Study Program"}},
 
     {id:"kids", q:"Can I bring my family or kids?",
      alt:["bring my kids","bring my family","with my kids","with my family","my children","my son","my daughter","for kids","kids class","family"],

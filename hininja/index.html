@@ -188,6 +188,39 @@ figcaption a{font-weight:700;white-space:nowrap}
 .bonus .mind-grid{margin-top:16px}
 .bonus figcaption{color:#f0f6fc}
 .bonus figcaption a{color:var(--hi)}
+/* WinJitsu, livelier (Rick, 28 Oct 2026: "kind of boring. It should read and look more exciting for WinJitsu. It
+   is also MISSING the winjitsu logo"): the WinJitsu app's own WIN mark, the hero's yellow mark on the headline,
+   an icon on each card. Pocket Dojo has its own box under it ("Under this the bonus HSP Pocket Dojo in its own
+   content box too. Remember they get both"). */
+.wj-box{background:radial-gradient(120% 100% at 100% 0%,#2a83cc 0%,var(--sea-d) 50%,#0f3d66 100%);box-shadow:0 18px 40px rgba(15,61,102,.25)}
+.wj-head{display:flex;gap:24px;align-items:center}
+.wj-logo{flex:none;width:116px;height:116px;border-radius:24px;background:#fff;box-shadow:0 10px 24px rgba(0,0,0,.28);transform:rotate(-4deg)}
+.wj-kick{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--hi)}
+.bonus .wj-head h3{margin-top:4px;font-size:clamp(26px,3.4vw,36px);line-height:1.1}
+.wj-head h3 b{display:inline-block;font-weight:inherit;line-height:1;background:var(--hi);color:var(--ink);padding:.06em .12em .04em}
+.bonus .wj-head p{margin-top:10px;font-size:17px;color:#f0f6fc;max-width:60ch}
+@media (max-width:560px){ .wj-head{flex-direction:column;align-items:flex-start;gap:16px} .wj-logo{width:88px;height:88px;border-radius:18px} }
+.wj-box .mind-grid div{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.3)}
+.wj-ico{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;background:var(--hi);color:var(--ink);margin-bottom:12px}
+.wj-ico svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hsp-box{margin-top:18px;position:relative;background:#fff;border:2px solid var(--mist2);border-radius:20px;padding:30px 26px 26px;overflow:hidden}
+.hsp-box::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:linear-gradient(90deg,var(--yellow) 0 20%,var(--orange) 20% 40%,var(--green) 40% 60%,var(--blue) 60% 80%,var(--redbelt) 80% 100%)}
+@media (max-width:480px){ .hsp-box{padding:26px 16px 20px} }
+.hsp-box .wj-logo{background:none;box-shadow:none;transform:none;border-radius:50%}
+.hsp-box .wj-kick{color:var(--sea)}
+.hsp-box .wj-head h3{margin-top:4px;font-size:clamp(26px,3.4vw,36px);line-height:1.1}
+.hsp-box .wj-head p{margin-top:10px;font-size:17px;color:var(--ink2);max-width:60ch}
+.hsp-row{margin-top:20px;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:24px;align-items:center}
+@media (max-width:760px){ .hsp-row{grid-template-columns:1fr} }
+.hsp-row ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.hsp-row li{position:relative;padding-left:30px;font-size:16.5px;color:var(--ink)}
+.hsp-row li::before{content:"";position:absolute;left:2px;top:7px;width:16px;height:9px;border-left:3px solid var(--sea);border-bottom:3px solid var(--sea);transform:rotate(-45deg)}
+.hsp-phones{margin:0}
+.hsp-phones .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:380px;margin:0 auto}
+.hsp-phones img{display:block;width:100%;height:auto;border:7px solid var(--ink);border-radius:24px;box-shadow:0 12px 28px rgba(16,20,24,.16);background:#f3f6fa}
+.hsp-phones figcaption{margin-top:10px;text-align:center;font-size:15.5px;color:var(--ink2)}
+.hsp-cta{margin-top:22px;padding-top:20px;border-top:2px solid var(--mist2);display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;justify-content:space-between}
+.hsp-cta p{font-size:18px;color:var(--ink);max-width:46ch}
 .wj-story{margin-top:22px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:22px;align-items:center}
 @media (max-width:760px){ .wj-story{grid-template-columns:1fr} }
 .wj-pai .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center}
@@ -716,13 +749,19 @@ footer a:hover{color:var(--sea)}
       </div>
       </div>
     </div>
-    <div class="bonus">
-      <h3>Bonus: WinJitsu</h3>
-      <p>Rick's mental martial art: coaching for focus, goals and life. It comes with every stay.</p>
+    <div class="bonus wj-box">
+      <div class="wj-head">
+        <img class="wj-logo" src="/hininja/img/winjitsu/winjitsu-logo.webp" alt="WinJitsu" width="320" height="320" loading="lazy">
+        <div>
+          <span class="wj-kick">Bonus: WinJitsu, with every stay</span>
+          <h3>Be a <b>black belt</b> in what you do.</h3>
+          <p>Kicks train the body. WinJitsu trains the mind behind them: Rick's mental martial art for focus, goals and life. It comes with every stay.</p>
+        </div>
+      </div>
       <div class="mind-grid">
-        <div><span>Coaching</span><b>WinJitsu with Rick</b><p>Focus, goals and the self-doubt that holds you back, outside class.</p></div>
-        <div><span>The books</span><b>Five WinJitsu books</b><p>Rick's own series, part of the belts from orange on.</p></div>
-        <div><span>At home</span><b>A free month of WinJitsu.com</b><p>The WinJitsu app, so the training comes home with you.</p></div>
+        <div><i class="wj-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></i><span>Coaching</span><b>WinJitsu with Rick</b><p>Sharpen your focus, set your goals and beat the self-doubt that holds you back, outside class.</p></div>
+        <div><i class="wj-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg></i><span>The books</span><b>Five WinJitsu books</b><p>Be a Black Belt in What You Do, Rick's own series. They join your belts from orange on.</p></div>
+        <div><i class="wj-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10.5 18.5h3"/></svg></i><span>At home</span><b>A free month of WinJitsu.com</b><p>The WinJitsu app, so the training comes home with you.</p></div>
       </div>
       <!-- Rick, 27 Oct 2026: his ACE book photo "for Winjitsu writing", the blurb "on rick writing winjitsu the
            5 books" (his ruled words, from the WinJitsu chat: winjitsu-workbooks house/intro.py; "In 2010," left
@@ -745,6 +784,33 @@ footer a:hover{color:var(--sea)}
         <figure><img src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="The five WinJitsu books, Be a Black Belt in What You Do, by Rick Tew" width="956" height="1024" loading="lazy"><figcaption>Five books, one per finger: together they make a fist. <a href="#belts">The belt program</a></figcaption></figure>
         <figure><img src="/hininja/img/winjitsu/ace-book.webp" alt="A hand holding the WinJitsu book Achieving Combined Excellence by Rick Tew" width="329" height="457" loading="lazy"><figcaption>Earn your orange belt and the books come into your training.</figcaption></figure>
         <figure class="wj-phones"><img src="/hininja/img/winjitsu/phones.webp" alt="Two phones showing the WinJitsu app: its home screen and a lesson, Achieving Combined Excellence" width="861" height="900" loading="lazy"><figcaption>Take it home: a free month of the app with your stay. A few minutes a day, wherever you go next. <a href="#price">Pick your stay</a></figcaption></figure>
+      </div>
+    </div>
+    <!-- Pocket Dojo, the Home Study Program, in its own box under WinJitsu (Rick, 28 Oct 2026: "Under this the bonus
+         HSP Pocket Dojo in its own content box too. Remember they get both but in the HSP we can put then notes 'want
+         to train with Rick but can't travel, join the Home Study Program....'"). Facts from /hsp/ (the app's own
+         screens; no lesson video today, so none is promised). The screens shown carry no counts. -->
+    <div class="hsp-box" id="pocket-dojo">
+      <div class="wj-head">
+        <img class="wj-logo" src="/hininja/img/rtms/rtms-patch.webp" alt="The red Rick Tew's Martial Science patch" width="560" height="560" loading="lazy">
+        <div>
+          <span class="wj-kick">Bonus: Pocket Dojo, with every stay</span>
+          <h3>Your dojo goes home with you.</h3>
+          <p>Pocket Dojo is the Home Study Program on your phone: Rick Tew's Martial Science, belt by belt. Keep training what you learned in class, long after you fly home.</p>
+        </div>
+      </div>
+      <div class="hsp-row">
+        <ul>
+          <li>Five belts, Yellow to Red, and every lesson listed, so you see the whole path.</li>
+          <li>The method, step by step: the applications and the steps, with footprint diagrams for the stances.</li>
+          <li>Mark each lesson practiced and watch your count grow.</li>
+          <li>Stuck on a technique? Ask Sensei Tew right on the lesson.</li>
+        </ul>
+        <figure class="hsp-phones"><div class="two"><img src="/hsp/pocketdojo-stance.webp" alt="Pocket Dojo on a phone: the Horse Stance lesson, with foot placement drawn from above" width="540" height="900" loading="lazy"><img src="/hsp/pocketdojo-ask.webp" alt="Pocket Dojo on a phone: Mark as practiced, and Ask Sensei Tew a question about the technique" width="540" height="900" loading="lazy"></div><figcaption>Learn it in class. Train it at home. <a href="#price">Pick your stay</a></figcaption></figure>
+      </div>
+      <div class="hsp-cta">
+        <p>Want to train with Rick but can't travel? Join the Home Study Program and train at home, belt by belt.</p>
+        <a class="btn btn-red" href="/hsp/">See the Home Study Program</a>
       </div>
     </div>
   </div>

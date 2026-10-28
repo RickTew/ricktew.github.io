@@ -7,7 +7,8 @@
       text after a "Label:" is, or it is one of the ADAPT lines (a labelled rewording).
    4. Every dollar figure in an answer is on the page.
    5. No at-sign, no long dashes, no AI company or model names, anywhere in the file.
-   6. Every next step goes to #menu, #price or the Ask Kuno form, and the anchors exist. */
+   6. Every next step goes to #menu, #price or the Ask Kuno form, and the anchors exist; the one
+      exception is /hsp/, the page's own Home Study Program button (Rick, 28 Oct 2026). */
 "use strict";
 const fs = require("fs"), path = require("path");
 const ROOT = path.join(__dirname, "..");
@@ -63,6 +64,7 @@ const SAMPLES = {
   "rick-time": ["how many hours with rick in mastery", "do I get private lessons"],
   "instructor": ["what is the instructor program", "I want to become an instructor", "can I learn to teach"],
   "winjitsu": ["what is winjitsu", "is there life coaching"],
+  "pocket-dojo": ["what is pocket dojo", "is there a home study program", "I can't travel, can I train from home?"],
   "kids": ["can I bring my kids", "can my family come"],
   "refunds": ["can I get a refund", "can I change my dates", "What happens if my flights change and I can not come on my dates?"],
   "book": ["how do I book", "how do I sign up", "how do I pay"],
@@ -93,6 +95,7 @@ for (const e of ask.LIBRARY) {
   const n = e.next;
   if (!n) bad.push(e.id + ": no next step");
   else if (n.ask) { if (!n.label || typeof n.line !== "string") bad.push(e.id + ": ask step without label or line"); }
+  else if (n.href === "/hsp/") { if (!PAGE.includes('href="/hsp/"')) bad.push(e.id + ": /hsp/ is not linked on the page"); }
   else if (!["#menu", "#price"].includes(n.href)) bad.push(e.id + ": next step goes to " + n.href);
 }
 for (const id of ask.STARTERS) if (!ids.has(id)) bad.push("starter " + id + " is not an entry");

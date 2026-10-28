@@ -178,7 +178,19 @@ places:
     forever". This chat sells it, once live: "a purchase on ricktew.com but free to those coming to the program
     so that they can see the real value" ("still want to learn but from home"); no Stripe of its own for now.
     Until the WinJitsu chat says it is live, /hininja/ (bonus line "A free month of WinJitsu.com") and /hsp/
-    stay as they are.
+    stay as they are. When it is: /hsp/'s buttons go to winjitsu.com/hsp (Pocket Dojo moves there and keeps its
+    baht card checkout; pocketdojo.ricktew.com forwards), and the "from home" purchase is built here.
+  - **The WinJitsu box, livelier, and Pocket Dojo in its own box under it (Rick, 28 Oct 2026, evening: "kind of
+    boring. It should read and look more exciting for WinJitsu. It is also MISSING the winjitsu logo. Under this
+    the bonus HSP Pocket Dojo in its own content box too. Remember they get both"):** `.wj-box` opens with the
+    WinJitsu app's own WIN mark (`hininja/img/winjitsu/winjitsu-logo.webp`, from the app's
+    `public/marks/winjitsu-win-jitsu-512.png`), "Be a black belt in what you do." (his book title, the hero's
+    yellow mark on "black belt") and icon cards; the Pai story, quote and pictures below it are unchanged.
+    `#pocket-dojo` (white, the five belt colours across the top, the red RTMS patch) says Pocket Dojo comes with
+    every stay, lists only what /hsp/ says the app does (no lesson video is promised), shows two screens with no
+    counts on them, and ends on his note: "Want to train with Rick but can't travel? Join the Home Study
+    Program..." with a red button to `/hsp/`. So /hininja/ now links /hsp/ (the old "not linked" rule below is
+    retired). The chat has a `pocket-dojo` entry whose next step is `/hsp/` (the golden test allows that one).
   - /about/ is off the HI footer and tiles ("not finish (and its not using my colors)"). The chat stays "Ask
     the Ninja" (his click; 0 of 4 readers took the cartoon for Rick).
 - **`/aininja/` AI Ninja** — the digital work. Building with AI for businesses.
@@ -1541,7 +1553,7 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   exists (demo only). The $2,222 card says "Personal feedback from Rick on
   every technique: text, audio, and video." (Rick, the same evening: the
   Home Study Program includes all three; Direct Connect is the one with
-  audio and video priced on top). Not linked from `/hininja/`, so the six
+  audio and video priced on top). Linked from `/hininja/`'s Pocket Dojo box since 28 Oct 2026 (Rick's ask); before that it was not, so the six
   month comparison with `/gns/` stays clean. Still to build and test, in
   the app, before the full move: the $2,222's audio and video reply path,
   one end-to-end test purchase, the lesson videos, belt tests.
