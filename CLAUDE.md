@@ -66,6 +66,13 @@ places:
   Earn a belt $7,994, The month $3,997, 2 weeks $2,222, each about double the next. 3 weeks stays a
   line under the cards (four fixed stays). A card's button picks that stay in the Ninja Menu
   (`a[data-stay]` in menu.js); the Ninja Week is still built first unless it is the belt.
+  **Later on 28 Oct the four became** (Rick: "Mastery 2 year, Instructor 1 year 8,994, 2 months 3,997",
+  his click "Yes, these four"; a9b3809): **Mastery $15,988, now over 2 years; Instructor $8,994, 1 year**
+  ("Write to me", like Mastery); **2 months $3,997, the belt program** (was $7,994); 2 weeks $2,222. The
+  month is gone from the page and the Ninja Menu (three stays, `?weeks=2|3|8`). The checkout's `'8'`
+  changed the same hour on his click "Lift the hold for this one line" (Digital Dojo 720b7729, read live
+  at THB 125,999.00, nothing paid); its `'4'` stays only for links already out. TEWBEDO and NerdHostel
+  notes updated. What the Instructor year includes is not yet on the page.
   **The Mastery pitch, `#mastery`, a dark band after the belt program** (Rick, 28 Oct: "we would rather have
   10 1-2 students than 10-20 in and out students ... a solid mastery sales pitch ... those that MOVE to
   Thailand"; "mastery includes the same"): "Looking for your sensei? Move to Thailand and train with Rick." (was "Moving to Thailand? Earn all five belts.", his pick of 28 Oct, his Mr. Miyagi idea without the film name), four tiles (a
