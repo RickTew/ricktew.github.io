@@ -475,11 +475,13 @@
     return f;
   }
 
+  /* a stay button outside the menu (the belt program, and the price cards since 28 Oct 2026) picks the
+     stay; the belt needs no picks, any other stay still builds its Ninja Week first */
   [].forEach.call(document.querySelectorAll("a[data-stay]"),function(a){
     a.addEventListener("click",function(){
       var w=Number(a.getAttribute("data-stay"));
       if([2,3,4,8].indexOf(w)<0) return;
-      plan.weeks=w; keep(); step="book"; render(false);
+      plan.weeks=w; keep(); step=(w===8||ready())?"book":"menu"; render(false);
       setTimeout(function(){ var h=root.querySelector(".mc-h"); if(h) h.focus({preventScroll:true}); },400);
     });
   });

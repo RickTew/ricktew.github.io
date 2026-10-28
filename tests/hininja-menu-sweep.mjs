@@ -106,6 +106,25 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await page.waitForTimeout(1500);
   if (!posted || !/Stay: A belt, 2 months, \$7,994 \(the belt program, yellow belt first\)/.test(posted.message)) bad.push(label + ' belt posted ' + JSON.stringify(posted));
   if (!checkout || !/src=ricktew-plan&weeks=8&cur=thb$/.test(checkout)) bad.push(label + ' belt checkout ' + checkout);
+  // the price cards (28 Oct 2026): biggest first; a stay other than the belt opens the menu with that stay, Ninja Week first
+  await page.goto(BASE + '/hininja/');
+  await page.evaluate(() => localStorage.clear());
+  await page.reload();
+  const amts = await page.locator('#price .stay-cards .amt').allTextContents();
+  if (amts.join(' ') !== '$15,988 $7,994 $3,997 $2,222') bad.push(label + ' price cards ' + amts.join(' '));
+  await page.locator('#price .stay-cards a[href="#ask"]').click();
+  if (!/^I am interested in Mastery/.test(await page.locator('#askMsg').inputValue())) bad.push(label + ' Mastery did not fill the ask box');
+  await page.locator('#askMsg').fill('');
+  await page.locator('#price a[data-stay="4"]').click();
+  await page.waitForTimeout(700);
+  if (await menu.locator('.tile').count() !== 8) bad.push(label + ' month card did not open the menu');
+  await noBook('after the month card');
+  if (await page.evaluate(() => JSON.parse(localStorage.getItem('hininja-plan-v1')).weeks) !== 4) bad.push(label + ' month card stay');
+  await page.locator('#price a[data-stay="8"]').click();
+  await page.waitForTimeout(700);
+  if (!/A belt, 2 months, \$7,994/.test(await menu.locator('.stay-line').textContent())) bad.push(label + ' belt card stay');
+  await page.locator('#price').scrollIntoViewIfNeeded();
+  await page.screenshot({ path: OUT + label + '-7-price.png' });
   // the popular quick picks (27 Oct 2026): one fills a whole week, mixes with single picks, and closes when the weeks are full
   posted = null; checkout = null;
   await page.goto(BASE + '/hininja/');

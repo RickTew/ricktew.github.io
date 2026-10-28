@@ -211,18 +211,19 @@ figcaption{margin-top:8px;font-size:13.5px;color:var(--muted)}
 .perks.who{margin-top:26px}
 .pair img{width:100%;border-radius:18px;box-shadow:0 14px 34px rgba(16,20,24,.14)}
 
-/* price */
-.price-grid{margin-top:30px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:start}
+/* price: the stays side by side, biggest first (Rick, 28 Oct 2026); phones stack them, Mastery on top */
+.stay-cards{margin-top:30px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:1080px){ .stay-cards{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:600px){ .stay-cards{grid-template-columns:1fr} }
+.card{display:flex;flex-direction:column;background:#fff;border:2px solid var(--sea);border-radius:22px;padding:26px;box-shadow:0 20px 44px rgba(16,20,24,.10)}
+.card .per{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--sea)}
+.card .amt{margin-top:6px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:700;font-size:48px;line-height:1;color:var(--sea-d)}
+.card .all{margin:12px 0 20px;font-size:16px;color:var(--ink2)}
+.card .btn{margin-top:auto;width:100%}
+.price-grid{margin-top:26px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:start}
 @media (max-width:860px){ .price-grid{grid-template-columns:1fr} }
-.card{background:#fff;border:2px solid var(--sea);border-radius:22px;padding:28px;box-shadow:0 20px 44px rgba(16,20,24,.10)}
-.card .amt{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:700;font-size:66px;line-height:1;color:var(--sea-d)}
-.card .per{margin-top:6px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--sea)}
-.card .all{margin-top:12px;font-size:16px;color:var(--ink2)}
-.card .btn{margin-top:20px;width:100%}
-.more{list-style:none;margin-top:16px;display:grid;gap:8px}
-.more li{border:2px solid var(--mist2);border-radius:12px;padding:9px 13px;font-size:15px;color:var(--ink2)}
-.more b{display:block;font-size:16px;color:var(--ink)}
-.card .small{margin-top:14px;font-size:15px;color:var(--ink2)}
+.every .all{font-size:16px;color:var(--ink2)}
+.every .small{margin-top:10px;font-size:15px;color:var(--ink2)}
 .first{background:var(--mist);border:2px solid var(--mist2);border-radius:22px;padding:28px}
 .first h3{font-size:22px}
 .first p{margin-top:10px;font-size:16px;color:var(--ink2)}
@@ -635,22 +636,46 @@ footer a:hover{color:var(--sea)}
 <section class="band" id="price">
   <div class="wrap">
     <div class="k">How</div>
-    <h2>Two weeks, $2,222.</h2>
-    <div class="price-grid">
+    <h2>Pick your stay.</h2>
+    <!-- Rick, 28 Oct 2026: the stays as packages, biggest first, so the two weeks is not weighed
+         against nothing (his pasted Bronze / Silver / Gold note, then his click "3 cards, biggest
+         first"). Each button picks its stay in the Ninja Menu (menu.js, a[data-stay]). Mastery on top,
+         the note's $16K (Rick: "a pricey mastery program for 1-2 years", "what part of 16K did you not
+         understand?"), double the belt; the checkout sells up to 2 months, so it is "write to me first". -->
+    <div class="stay-cards">
       <div class="card">
-        <div class="amt">$2,222</div>
+        <div class="per">Mastery</div>
+        <div class="amt">$15,988</div>
+        <p class="all">All five belts, yellow to red, over 1 to 2 years.</p>
+        <a class="btn btn-red" href="#ask" data-ask="I am interested in Mastery: all five belts over 1 to 2 years ($15,988).">Write to me</a>
+      </div>
+      <div class="card">
+        <div class="per">Earn a belt</div>
+        <div class="amt">$7,994</div>
+        <p class="all">2 months. Yellow belt first, earned in a test with Rick at the end. <a href="#belts">The belt program</a></p>
+        <a class="btn btn-red" href="#menu" data-stay="8">Pick and book</a>
+      </div>
+      <div class="card">
+        <div class="per">The month</div>
+        <div class="amt">$3,997</div>
+        <p class="all">Four weeks.</p>
+        <a class="btn btn-red" href="#menu" data-stay="4">Pick and book</a>
+      </div>
+      <div class="card">
         <div class="per">2 weeks</div>
-        <p class="all">Training and WinJitsu coaching. A dorm bed if you need one. Arrive any day from 15 January 2027. Next group: 22 January 2027.</p>
-        <div class="promo-box" data-promo hidden>
-          <b>Attend with a friend for FREE if you book in November.</b>
-          <p>Your friend comes with you, on the same dates, for the same stay, and gets everything you get: the training, the WinJitsu bonus and a dorm bed if they need one. Add their name when you book.</p>
-        </div>
-        <ul class="more">
-          <li><b>3 weeks, $3,222</b>Add a week for $1,000.</li>
-          <li><b>The full month, $3,997</b>Four weeks.</li>
-          <li><b>A belt, $7,994</b><a href="#belts">The belt program</a>: 2 months per belt.</li>
-        </ul>
-        <a class="btn btn-red" href="#menu">Pick your training and book</a>
+        <div class="amt">$2,222</div>
+        <p class="all">The introduction.</p>
+        <a class="btn btn-red" href="#menu" data-stay="2">Pick and book</a>
+      </div>
+    </div>
+    <div class="promo-box" data-promo hidden>
+      <b>Attend with a friend for FREE if you book in November.</b>
+      <p>Your friend comes with you, on the same dates, for the same stay, and gets everything you get: the training, the WinJitsu bonus and a dorm bed if they need one. Add their name when you book.</p>
+    </div>
+    <div class="price-grid">
+      <div class="every">
+        <p class="all">Every stay: training and WinJitsu coaching, and a dorm bed if you need one. Arrive any day from 15 January 2027. Next group: 22 January 2027.</p>
+        <p class="small">3 weeks? Add a week to the two weeks for $1,000: $3,222.</p>
         <p class="small">One week? Half the price, $1,111: <a href="#ask">write to me</a> first.</p>
         <p class="small">Also included: a month of the WinJitsu.com app and a Rick Tew ninja T-shirt.</p>
         <p class="small">At checkout you add your arrival date. All sales are final; your dates can move, within a year of buying.</p>
@@ -826,6 +851,6 @@ footer a:hover{color:var(--sea)}
   });
 })();
 </script>
-<script src="/hininja/menu.js"></script>
+<script src="/hininja/menu.js?v=20261028"></script>
 </body>
 </html>
