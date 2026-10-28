@@ -1,5 +1,8 @@
-/* Run: python3 -m http.server 8765 (from the repo root), then: node tests/aininja-sweep.js
-   Needs Playwright; it is loaded from the newnei-app checkout on this Mac (path below).
+/* Run: serve the repo on 8765 (from the repo root), then: node tests/aininja-sweep.js
+   Serve it with a bigger request queue than python3 -m http.server's, which resets
+   connections under the page's many images.
+   Needs Playwright; it is loaded from the NinjaVillage checkout on this Mac (path below,
+   or PW=<path to a playwright package>).
    BASE=https://ricktew.com/aininja/ node tests/aininja-sweep.js runs it against the live page. */
 /* Sim playtest, Recipe B, for ricktew.com/aininja/.
    Walks the page headlessly on a desktop and a phone viewport and asserts on
@@ -12,7 +15,7 @@
 "use strict";
 const path = require("path");
 const fs = require("fs");
-const { chromium, devices } = require("/Users/ricktew/Dev/Roy Martina/newnei-app/node_modules/playwright");
+const { chromium, devices } = require(process.env.PW || "/Users/ricktew/Dev/NinjaVillage/node_modules/playwright");
 
 const BASE = process.env.BASE || "http://127.0.0.1:8765/aininja/";
 const ENDPOINT = "**/functions/v1/ricktew-contact";
@@ -30,7 +33,9 @@ async function checkExternal(urls) {
       clearTimeout(t);
       // tewtors.com (and winjitsu.com, which forwards there) answers 429 to anything
       // that is not a real browser since 8 Oct 2026 (its bot wall); people get the page.
-      const botWall = r && r.status === 429 && /(^|\.)(tewtors|winjitsu)\.com$/.test(new URL(r.url || u).hostname);
+      // Vercel's bot challenge (nerdhostel.com since Oct 2026) answers 429 with
+      // x-vercel-mitigated: challenge; a real browser passes it.
+      const botWall = r && r.status === 429 && (/(^|\.)(tewtors|winjitsu)\.com$/.test(new URL(r.url || u).hostname) || r.headers.get("x-vercel-mitigated") === "challenge");
       if (!r) out.push([u, "no response"]); else if (r.status >= 400 && !botWall) out.push([u, r.status]);
     } catch (e) { out.push([u, String(e.message || e)]); }
   }
@@ -57,6 +62,8 @@ async function walk(browser, label, ctxOpts) {
   });
   page.on("response", r => { if (r.status() >= 400 && r.url().startsWith("http://127.0.0.1")) badReq.push([r.url(), r.status()]); });
   let posted = null;
+  // ricktew-geo answers only ricktew.com's origin, so a local run gets "not Thailand" here
+  await page.route("**/functions/v1/ricktew-geo", route => route.fulfill({ status: 200, contentType: "application/json", body: '{"th":false}' }));
   await page.route(ENDPOINT, async route => { posted = route.request().postDataJSON(); await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' }); });
 
   await page.goto(BASE, { waitUntil: "load" });
