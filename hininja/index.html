@@ -273,8 +273,18 @@ figcaption a{font-weight:700;white-space:nowrap}
 .card .btn{margin-top:auto;width:100%;padding-left:12px;padding-right:12px;white-space:nowrap}
 .price-grid{margin-top:26px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:start}
 @media (max-width:860px){ .price-grid{grid-template-columns:1fr} }
-.every .all{font-size:16px;color:var(--ink2)}
-.every .small{margin-top:10px;font-size:15px;color:var(--ink2)}
+/* the fine print as one card, one type size (Rick, 28 Oct 2026: it "looks like pure html") */
+.every{background:#fff;border:2px solid var(--mist2);border-radius:22px;padding:28px}
+.every h3{font-size:22px}
+.ticks{list-style:none;margin:12px 0 0;padding:0}
+.ticks li{position:relative;padding-left:30px;margin-top:8px;font-size:16px;color:var(--ink)}
+.ticks li::before{content:"";position:absolute;left:2px;top:6px;width:16px;height:9px;border-left:3px solid var(--sea);border-bottom:3px solid var(--sea);transform:rotate(-45deg)}
+.terms{margin:18px 0 0;border-top:1px solid var(--mist2)}
+.terms div{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--mist2)}
+.terms dt{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:14px;color:var(--sea);padding-top:2px}
+.terms dd{margin:0;font-size:16px;color:var(--ink2)}
+@media (max-width:480px){ .terms div{grid-template-columns:1fr;gap:2px} }
+.first .small{margin-top:14px;font-size:16px}
 .first{background:var(--mist);border:2px solid var(--mist2);border-radius:22px;padding:28px}
 .first h3{font-size:22px}
 .first p{margin-top:10px;font-size:16px;color:var(--ink2)}
@@ -309,8 +319,8 @@ figcaption a{font-weight:700;white-space:nowrap}
 .old-grid{margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 @media (max-width:760px){ .old-grid{grid-template-columns:1fr} }
 .old-grid img{width:100%;border-radius:14px}
-.deeper{margin-top:30px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-@media (max-width:860px){ .deeper{grid-template-columns:1fr 1fr} }
+.deeper{margin-top:30px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:640px){ .deeper{grid-template-columns:1fr} }
 @media (max-width:420px){ .deeper{grid-template-columns:1fr} }
 .deeper a{display:block;background:#fff;border:2px solid var(--mist2);border-radius:16px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:border-color .12s ease,box-shadow .12s ease}
 .deeper a:hover{border-color:var(--sea);box-shadow:0 8px 22px rgba(16,20,24,.12)}
@@ -340,8 +350,8 @@ figcaption a{font-weight:700;white-space:nowrap}
 .form label{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
 .form .fld{margin-top:16px}
 .form .row2 .fld{margin-top:0}
-.form input,.form textarea{display:block;width:100%;font:inherit;font-size:16px;padding:12px 14px;border:2px solid var(--mist2);border-radius:10px;background:var(--mist);color:var(--ink)}
-.form input:focus-visible,.form textarea:focus-visible{outline:3px solid var(--sea);outline-offset:1px}
+.form input,.form textarea,.form select{display:block;width:100%;font:inherit;font-size:16px;padding:12px 14px;border:2px solid var(--mist2);border-radius:10px;background:var(--mist);color:var(--ink)}
+.form input:focus-visible,.form textarea:focus-visible,.form select:focus-visible{outline:3px solid var(--sea);outline-offset:1px}
 .form textarea{min-height:150px;resize:vertical}
 .form .btn{margin-top:20px;width:100%}
 .form .err{display:none;margin-top:12px;font-weight:700;color:var(--red-d)}
@@ -536,7 +546,7 @@ footer a:hover{color:var(--sea)}
       <a href="#price">How</a>
       <a href="#rick">Rick</a>
       <a href="#faq">FAQ</a>
-      <a class="btn btn-red" href="#ask">Ask first</a>
+      <a class="btn btn-red" href="#price">Book now</a>
     </div>
   </div>
 </nav>
@@ -553,7 +563,7 @@ footer a:hover{color:var(--sea)}
       <p class="promo" data-promo hidden>Attend with a friend for FREE if you book in November.</p>
     </div>
     <div class="menu-card" id="menu">
-      <noscript><p>The Ninja Menu needs JavaScript. <a href="#ask">Ask Rick</a> what you want to learn instead.</p></noscript>
+      <noscript><p>The Ninja Menu needs JavaScript. <a href="#price">Pick your stay</a> instead.</p></noscript>
     </div>
     <div class="hero-how">
       <h2 class="how-h">How it works</h2>
@@ -728,7 +738,7 @@ footer a:hover{color:var(--sea)}
       <p>All five belts over 2 years. Mastery includes the same as every stay: training, WinJitsu coaching, and a dorm bed if you need one. $2,222 down reserves your spot, and spots are held in the order the deposits arrive. Then pay the rest all at once, or in five parts, one before each belt.</p>
       <!-- Rick's picks, 28 Oct 2026: "Next group date by Reserve" and "First come, first served" -->
       <div class="m-act">
-        <a class="btn btn-red" href="#ask" data-ask="I want to reserve a Mastery spot for 2027 with $2,222 down (Mastery: all five belts over 2 years, $15,988).">Reserve my spot</a>
+        <a class="btn btn-red" href="#ask" data-topic="mastery" data-ask="I want to reserve a Mastery spot for 2027 with $2,222 down (Mastery: all five belts over 2 years, $15,988).">Reserve my spot</a>
         <div class="m-next">Next group starts 22 January 2027.</div>
       </div>
     </div>
@@ -755,7 +765,7 @@ footer a:hover{color:var(--sea)}
     <h2>Koh Samui, Thailand.</h2>
     <p class="lead">An island in the Gulf of Thailand, where Rick runs NinjaGym.</p>
     <ul class="alts">
-      <li>Interested in a California, U.S. Tew's Tour? <a href="#ask" data-ask="I am interested in a California U.S. Tew's Tour.">Click here</a></li>
+      <li>Interested in a California, U.S. Tew's Tour? <a href="#ask" data-topic="tour" data-ask="I am interested in a California U.S. Tew's Tour.">Click here</a></li>
       <li>Only need a simple place to stay for a few days? <a href="https://www.nerdhostel.com/?src=ricktew" target="_blank" rel="noopener">nerdhostel.com</a></li>
     </ul>
     <h3 class="perks-h">What if I don't have a place to stay?</h3>
@@ -816,7 +826,9 @@ footer a:hover{color:var(--sea)}
          against nothing (his pasted Bronze / Silver / Gold note, then his click "3 cards, biggest
          first"). Each button picks its stay in the Ninja Menu (menu.js, a[data-stay]). Mastery on top,
          the note's $16K (Rick: "a pricey mastery program for 1-2 years", "what part of 16K did you not
-         understand?"); the checkout sells up to 2 months, so it is "write to me first".
+         understand?"); the checkout sells up to 2 months, so Mastery and Instructor reserve a spot through the ask box
+         (Rick, 28 Oct 2026: "don't ask people to write to me ... I want them to book and they can ask the ninja,
+         the chat or fill in the contact form").
          Rick, 28 Oct 2026, later: "Mastery 2 year, Instructor 1 year 8,994, 2 months 3,997", his click
          "Yes, these four": the month and the $7,994 belt card left, the belt's 2 months is $3,997 (the
          checkout's '8' changed the same hour on his "Lift the hold for this one line"). -->
@@ -826,14 +838,14 @@ footer a:hover{color:var(--sea)}
         <div class="amt">$15,988</div>
         <p class="all">All five belts, yellow to red, over 2 years. Only 12 spots left for 2027. <a href="#mastery">Why Mastery</a></p>
         <div class="save" data-promo hidden>Book in November and save $2,000: $13,988</div>
-        <a class="btn btn-red" href="#ask" data-ask="I want to reserve a Mastery spot for 2027 with $2,222 down (Mastery: all five belts over 2 years, $15,988).">Reserve a spot</a>
+        <a class="btn btn-red" href="#ask" data-topic="mastery" data-ask="I want to reserve a Mastery spot for 2027 with $2,222 down (Mastery: all five belts over 2 years, $15,988).">Reserve a spot</a>
       </div>
       <div class="card">
         <div class="per">Instructor</div>
         <div class="amt">$8,994</div>
         <!-- Rick's click "all three" on the line, 28 Oct 2026 -->
         <p class="all">1 year. All five belts, yellow to red, the fast way. Train to teach: learn to lead practice as a Guide.</p>
-        <a class="btn btn-red" href="#ask" data-ask="I am interested in Instructor: all five belts in 1 year, and learning to teach ($8,994).">Write to me</a>
+        <a class="btn btn-red" href="#ask" data-topic="mastery" data-ask="I want to reserve an Instructor spot: all five belts in 1 year, and learning to teach ($8,994).">Reserve a spot</a>
       </div>
       <div class="card">
         <div class="per">2 months</div>
@@ -854,16 +866,23 @@ footer a:hover{color:var(--sea)}
     </div>
     <div class="price-grid">
       <div class="every">
-        <p class="all">Every stay: training and WinJitsu coaching, and a dorm bed if you need one. Arrive any day from 15 January 2027. Next group: 22 January 2027.</p>
-        <p class="small">3 weeks? Add a week to the two weeks for $1,000: $3,222.</p>
-        <p class="small">One week? Half the price, $1,111: <a href="#ask">write to me</a> first.</p>
-        <p class="small">Also included: a month of the WinJitsu.com app and a Rick Tew ninja T-shirt.</p>
-        <p class="small">At checkout you add your arrival date. All sales are final; your dates can move, within a year of buying.</p>
+        <h3>Every stay</h3>
+        <ul class="ticks">
+          <li>Training and WinJitsu coaching, and a dorm bed if you need one.</li>
+          <li>A month of the WinJitsu.com app and a Rick Tew ninja T-shirt.</li>
+        </ul>
+        <dl class="terms">
+          <div><dt>Dates</dt><dd>Arrive any day from 15 January 2027. Next group: 22 January 2027.</dd></div>
+          <div><dt>3 weeks</dt><dd>Add a week to the two weeks for $1,000: $3,222.</dd></div>
+          <div><dt>1 week</dt><dd>Half the price, $1,111. <a href="#ask" data-topic="booking" data-ask="I want to book one week ($1,111).">Book one week</a></dd></div>
+          <div><dt>Checkout</dt><dd>You add your arrival date. All sales are final; your dates can move, within a year of buying.</dd></div>
+        </dl>
       </div>
       <div class="first">
-        <h3>Questions first?</h3>
-        <p>Most people write before they book: the dates, the dorm, an old injury. Ask anything.</p>
-        <a class="btn btn-quiet" href="#ask">Ask Rick a question</a>
+        <h3>A question about your stay?</h3>
+        <p>Ask the Ninja: it answers from this page, right away.</p>
+        <button class="btn btn-quiet" type="button" data-open-ninja>Ask the Ninja</button>
+        <p class="small">Not answered there? <a href="#ask">Pick a topic and send it</a>.</p>
       </div>
     </div>
   </div>
@@ -882,7 +901,7 @@ footer a:hover{color:var(--sea)}
       <div>
       <figure class="tape">
         <video src="/aininja/assets/story/ninja/tapes/intro-full.mp4" poster="/aininja/assets/story/ninja/tapes/intro-poster.webp" controls playsinline preload="none"></video>
-        <figcaption>Hear it from Rick, then ask him anything. <a href="#ask">Ask Rick a question</a></figcaption>
+        <figcaption>Hear it from Rick, then build your week. <a href="#price">Pick your stay</a></figcaption>
       </figure>
       <figure class="teach teach-eu"><img src="/hininja/img/teaching-europe.webp" alt="Four photos of Rick Tew in a blue uniform teaching one student at a time" width="640" height="167" loading="lazy"><figcaption>Rick shows you, you practice. <a href="#mastery">See how Mastery works</a></figcaption></figure>
       </div>
@@ -906,7 +925,6 @@ footer a:hover{color:var(--sea)}
       </div>
     </div>
     <div class="deeper">
-      <a href="/about/"><span>Who he is</span><b>About Rick</b></a>
       <a href="/rtms/"><span>Train the body</span><b>RTMS</b></a>
       <a href="/winjitsu/"><span>Train the mind</span><b>WinJitsu</b></a>
       <a href="/hininja/history/"><span>The record</span><b>The history</b></a>
@@ -923,9 +941,9 @@ footer a:hover{color:var(--sea)}
       <details><summary>Who teaches the classes?</summary><p>Rick teaches at least 2 classes a week, mornings and evenings in turn. On the other days you practice with Guides: people who trained here before you and are a step or two ahead.</p></details>
       <details><summary>Am I too old?</summary><p>No. There is no upper age limit: the relaxed plan is for everyone, and every drill has an easier version. Tell me about an old injury before you come.</p></details>
       <details><summary>Got an injury, or not very fit?</summary><p>Tell me before you come. Every drill has an easier version.</p></details>
-      <details><summary>I am 16 or 17. Can I come on my own?</summary><p>Yes, with a parent's signature on the papers: the enrolment, a travel consent letter and a medical consent. Write to me before you book.</p></details>
+      <details><summary>I am 16 or 17. Can I come on my own?</summary><p>Yes, with a parent's signature on the papers: the enrolment, a travel consent letter and a medical consent. Ask about the papers in the question form before you book.</p></details>
       <details><summary>When can I start?</summary><p>Any day from 15 January 2027: classes run all year, Monday to Friday. The next group starts 22 January 2027. At checkout you add your arrival date.</p></details>
-      <details><summary>Can I come for one week, or stay longer?</summary><p>One week is half the price, $1,111: <a href="#ask">write to me</a> first. Longer: 3 weeks is $3,222, and a belt in <a href="#belts">the belt program</a> is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: <a href="#ask">write to me</a>. Moving here? <a href="#mastery">Mastery</a> is all five belts over 2 years, $15,988.</p></details>
+      <details><summary>Can I come for one week, or stay longer?</summary><p>One week is half the price, $1,111: <a href="#ask" data-topic="booking" data-ask="I want to book one week ($1,111).">book one week</a>. Longer: 3 weeks is $3,222, and a belt in <a href="#belts">the belt program</a> is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: <a href="#ask" data-topic="mastery" data-ask="I want to reserve an Instructor spot: all five belts in 1 year, and learning to teach ($8,994).">reserve a spot</a>. Moving here? <a href="#mastery">Mastery</a> is all five belts over 2 years, $15,988.</p></details>
       <details><summary>How much time with Rick do I get in Mastery?</summary><p>200 hours a year, guaranteed: private and small-group sessions, booked when his time is free. In between, you practice what he showed you, and you can join every group class.</p></details>
       <details><summary>Already have a place, or want your own room?</summary><p>That is fine. The price is the same: you pay for the training.</p></details>
       <details><summary>Is there a private room, or a room for two?</summary><p>No private rooms. The stay is a shared men's or women's dorm. Want your own room? Book one nearby; the price stays the same.</p></details>
@@ -936,17 +954,32 @@ footer a:hover{color:var(--sea)}
 
 <section class="band ask" id="ask">
   <div class="wrap">
-    <div class="k">Ask first</div>
-    <h2>Ask me anything first.</h2>
-    <p class="lead">The dates, the dorm, an old injury, whether it suits you. It goes to my mailbox; check your inbox for the reply.</p>
+    <div class="k">Questions about the program</div>
+    <h2>A question about your stay?</h2>
+    <p class="lead">The Ask the Ninja button answers from this page right away. Not there? Pick a topic and ask here; check your inbox for the reply.</p>
     <div class="form">
       <form id="askForm" novalidate>
         <div class="row2">
           <div class="fld"><label for="askName">Your name</label><input id="askName" name="name" type="text" autocomplete="name" maxlength="100" required></div>
           <div class="fld"><label for="askEmail">Your email</label><input id="askEmail" name="email" type="email" autocomplete="email" maxlength="200" required></div>
         </div>
+        <!-- the topic rides in the mail's first line, "About: <topic>, from the HI Ninja page.", so TEWBEDO can
+             sort it (Rick, 28 Oct 2026: "selectors for what type of question too so easy to segment or answer") -->
+        <div class="fld"><label for="askTopic">Your question is about</label>
+          <select id="askTopic" name="topic" required>
+            <option value="">Pick a topic</option>
+            <option value="dates">Dates and arrival</option>
+            <option value="booking">Booking and payment</option>
+            <option value="training">The training and the belts</option>
+            <option value="stay">The dorm, meals and the island</option>
+            <option value="health">An injury, health or fitness</option>
+            <option value="mastery">Mastery or Instructor</option>
+            <option value="teen">I am 16 or 17</option>
+            <option value="tour">A Tew's Tour in California</option>
+          </select>
+        </div>
         <div class="fld"><label for="askMsg">Your question</label><textarea id="askMsg" name="message" maxlength="4900" required></textarea></div>
-        <button class="btn btn-red" id="askSend" type="submit">Send it to Rick</button>
+        <button class="btn btn-red" id="askSend" type="submit">Send my question</button>
         <p class="err" id="askErr" role="alert"></p>
       </form>
       <div class="done" id="askDone" tabindex="-1">
@@ -964,7 +997,7 @@ footer a:hover{color:var(--sea)}
 <footer>
   <div class="wrap">
     <span>Copyright &copy; 2026 Rick Tew &middot; Run by Rick Tew Co., Ltd.</span>
-    <span><a href="/">Which ninja?</a> &middot; <a href="/about/">About</a> &middot; <a href="/hininja/history/">The history</a> &middot; <a href="/aininja/legal/terms.html">Terms</a></span>
+    <span><a href="/">Which ninja?</a> &middot; <a href="/hininja/history/">The history</a> &middot; <a href="/aininja/legal/terms.html">Terms</a></span>
   </div>
 </footer>
 
@@ -1011,8 +1044,15 @@ footer a:hover{color:var(--sea)}
   }
 
   /* a link about something else fills the question first (the Tew's Tour line in Where, until the tour has its own page) */
+  var topic=document.getElementById("askTopic");
   [].forEach.call(document.querySelectorAll("a[data-ask]"),function(a){
-    a.addEventListener("click",function(){ if(!msg.value.trim()) msg.value=a.getAttribute("data-ask")+"\n\n"; });
+    a.addEventListener("click",function(){
+      if(!msg.value.trim()) msg.value=a.getAttribute("data-ask")+"\n\n";
+      if(a.getAttribute("data-topic")) topic.value=a.getAttribute("data-topic");
+    });
+  });
+  [].forEach.call(document.querySelectorAll("[data-open-ninja]"),function(b){
+    b.addEventListener("click",function(){ if(window.rtHiAskOpen) window.rtHiAskOpen(); else location.hash="ask"; });
   });
   function fail(m){ err.textContent=m; err.classList.add("on"); }
   form.addEventListener("submit",function(e){
@@ -1020,15 +1060,16 @@ footer a:hover{color:var(--sea)}
     var f=form.elements;
     var name=f.namedItem("name").value.trim(), email=f.namedItem("email").value.trim(), text=msg.value.trim();
     if(!name||!email||!text){ fail("Name, an address to reply to, and your question. That is all of it."); return; }
+    if(!topic.value){ fail("Pick a topic, so your question reaches the right answer."); topic.focus(); return; }
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ fail("That email address does not look right. The reply goes there."); return; }
-    var data={name:name, email:email, subject:"hininja", message:"About: the 2-week program on Koh Samui, from the HI Ninja page.\n\n"+text,
+    var data={name:name, email:email, subject:"hininja", message:"About: "+topic.options[topic.selectedIndex].text+", from the HI Ninja page.\n\n"+text,
       website:document.getElementById("askWebsite").value, elapsedMs:Date.now()-shown, source:AD?"gads":askSrc};
     if(AD){ data.adCampaign=AD.campaign; if(AD.click) data.adClick=AD.kind+":"+AD.click; }
     send.disabled=true; send.textContent="Posting...";
     fetch("https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})
     .then(function(res){ if(!res.ok) throw new Error(String(res.status)); return res.json(); })
     .then(function(){ form.hidden=true; var d=document.getElementById("askDone"); d.classList.add("on"); d.focus(); })
-    .catch(function(){ send.disabled=false; send.textContent="Send it to Rick"; fail("That did not go through. Check your connection and press send again."); });
+    .catch(function(){ send.disabled=false; send.textContent="Send my question"; fail("That did not go through. Check your connection and press send again."); });
   });
 })();
 </script>

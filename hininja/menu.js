@@ -448,9 +448,10 @@
     f.appendChild(send);
     var err=el("p","err"); err.setAttribute("role","alert"); f.appendChild(err);
     f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed if you need one. Your plan goes to Rick, then the secure checkout, where you add your arrival date. All sales are final; your dates can move, within a year of buying."));
-    var askA=el("a","mc-ask","Questions first? Ask Rick, with your picks"); askA.href="#ask";
+    var askA=el("a","mc-ask","A question about your plan? Ask it with your picks"); askA.href="#ask";
     askA.addEventListener("click",function(){
-      var m=document.getElementById("askMsg");
+      var m=document.getElementById("askMsg"), t=document.getElementById("askTopic");
+      if(t && !t.value) t.value="training";
       if(m && !m.value.trim()) m.value="My picks so far: "+plan.picks.map(function(id){ return byId[id].name; }).join(", ")+"\n\n";
     });
     f.appendChild(askA);

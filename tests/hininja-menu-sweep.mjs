@@ -119,7 +119,10 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (!/^I want to reserve a Mastery spot for 2027 with \$2,222 down/.test(await page.locator('#askMsg').inputValue())) bad.push(label + ' Mastery did not fill the ask box');
   await page.locator('#askMsg').fill('');
   await page.locator('#price .stay-cards a[href="#ask"]').nth(1).click();
-  if (!/^I am interested in Instructor: all five belts in 1 year, and learning to teach \(\$8,994\)/.test(await page.locator('#askMsg').inputValue())) bad.push(label + ' Instructor did not fill the ask box');
+  if (!/^I want to reserve an Instructor spot: all five belts in 1 year, and learning to teach \(\$8,994\)/.test(await page.locator('#askMsg').inputValue())) bad.push(label + ' Instructor did not fill the ask box');
+  // the topic rides along (Rick, 28 Oct 2026: "selectors for what type of question"), and nothing asks anyone to write
+  if (await page.locator('#askTopic').inputValue() !== 'mastery') bad.push(label + ' Instructor did not set the topic');
+  if (/write to me|ask me anything|ask anything/i.test(await page.evaluate(() => document.body.innerText))) bad.push(label + ' a "write to me" line is back');
   await page.locator('#askMsg').fill('');
   await page.locator('#price a[data-stay="2"]').click();
   await page.waitForTimeout(700);

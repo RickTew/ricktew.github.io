@@ -117,19 +117,19 @@
     {id:"price", q:"How much does it cost?",
      alt:["how much","how much is it","what does it cost","what is the price","whats the price","the prices","prices","price","price list","how much money"],
      keys:"cost costs price prices pricing fee fees expensive cheap usd dollar dollars rate rates package packages afford budget",
-     a:"<p>2 weeks: $2,222. 3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>A belt in the belt program is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: write to me. Moving here? Mastery is all five belts over 2 years, $15,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p>",
+     a:"<p>2 weeks: $2,222. 3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>A belt in the belt program is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is all five belts over 2 years, $15,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p>",
      next:STAYS},
 
     {id:"one-week", q:"Can I come for just one week?",
      alt:["one week","1 week","for a week","a week only","just a week","only a week","single week","shorter stay","less than two weeks"],
      keys:"shorter 1111",
-     a:"<p>One week is half the price, $1,111: write to me first.</p>",
+     a:"<p>One week is half the price, $1,111: book one week.</p>",
      next:ASK("Ask Kuno about one week","I would like to come for one week.")},
 
     {id:"longer", q:"Can I stay longer than two weeks?",
      alt:["stay longer","longer stay","three weeks","3 weeks","extra week","add a week","more than two weeks","a month","one month","1 month"],
      keys:"longer extend extension extra month",
-     a:"<p>3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>A belt in the belt program is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: write to me. Moving here? Mastery is all five belts over 2 years, $15,988.</p>",
+     a:"<p>3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>A belt in the belt program is $3,997 for 2 months. Instructor is all five belts in 1 year, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is all five belts over 2 years, $15,988.</p>",
      next:STAYS},
 
     {id:"start", q:"When can I start?",
@@ -171,7 +171,7 @@
     {id:"teens", q:"I am 16 or 17. Can I come on my own?",
      alt:["16 or 17","i am 16","i am 17","im 16","im 17","under 18","teenager","teenagers","teens","minimum age","how young"],
      keys:"16 17 teen teens teenager teenagers minor minors parent parents consent young younger youth",
-     a:"<p>Yes, with a parent's signature on the papers: the enrolment, a travel consent letter and a medical consent. Write to me before you book.</p>",
+     a:"<p>Yes, with a parent's signature on the papers: the enrolment, a travel consent letter and a medical consent. Ask about the papers in the question form before you book.</p>",
      next:ASK("Ask Kuno first","I am 16 or 17 and would like to come.")},
 
     {id:"injury", q:"Got an injury, or not very fit?",
@@ -279,7 +279,7 @@
     {id:"instructor", q:"What is the Instructor year?",
      alt:["instructor","become an instructor","become a teacher","learn to teach","teach martial arts","instructor program","instructor course","be a guide","become a guide","certified instructor","teacher training"],
      keys:"instructor instructors certify certified certification lead leading",
-     a:"<p>1 year. All five belts, yellow to red, the fast way. Train to teach: learn to lead practice as a Guide.</p><p>Instructor is all five belts in 1 year, and learning to teach, $8,994: write to me.</p>",
+     a:"<p>1 year. All five belts, yellow to red, the fast way. Train to teach: learn to lead practice as a Guide.</p><p>Instructor is all five belts in 1 year, and learning to teach, $8,994: reserve a spot.</p>",
      next:ASK("Ask Kuno about Instructor","I am interested in Instructor: all five belts in 1 year, and learning to teach ($8,994).")},
 
     {id:"winjitsu", q:"What is WinJitsu?",
