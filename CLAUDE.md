@@ -68,7 +68,7 @@ places:
   (`a[data-stay]` in menu.js); the Ninja Week is still built first unless it is the belt.
   **The Mastery pitch, `#mastery`, a dark band after the belt program** (Rick, 28 Oct: "we would rather have
   10 1-2 students than 10-20 in and out students ... a solid mastery sales pitch ... those that MOVE to
-  Thailand"; "mastery includes the same"): "Moving to Thailand? Earn all five belts.", four tiles (a
+  Thailand"; "mastery includes the same"): "Looking for your sensei? Move to Thailand and train with Rick." (was "Moving to Thailand? Earn all five belts.", his pick of 28 Oct, his Mr. Miyagi idea without the film name), four tiles (a
   routine, people, progress, WinJitsu coaching), Rick's own move (Holland, now Thailand), $15,988 and
   "Write to me about Mastery". His clicks the same day: **visas stay off the page** (no enrolment letter
   offered, though the DTV's soft-power route lists sports training), and **"Pay it all at once, or in five
