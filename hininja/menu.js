@@ -439,7 +439,7 @@
        the plan mail, the checkout stays one item */
     var fr=null;
     if(document.documentElement.classList.contains("promo-on")){
-      fr=fld("planFriend","Bringing a friend for FREE? Their name","text","off",100);
+      fr=fld("planFriend","Bringing a friend for free? Their name","text","off",100);
       fr.d.className="fld fr"; fr.i.required=false; fr.i.value=draft.friend;
       fr.i.addEventListener("input",function(){ draft.friend=fr.i.value; });
       f.appendChild(fr.d);

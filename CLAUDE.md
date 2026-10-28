@@ -53,9 +53,9 @@ places:
   nerdhostel.com. The menu's eight areas are icons from the HSP yellow belt sheet (Extreme Pro,
   `Rick Tew Archive/Graphics & Art/Level_1complete.ai`; all 18 cut in `Studio/RickTew/takes/menu-icons/`),
   four across; under them his four **popular quick picks**, one fills a whole week (`q0` to `q3` in menu.js).
-  **The November friend promo** ("Attend with a friend for FREE if you book in November"; his picks: the friend
+  **The November friend promo** ("Attend with a friend for free if you book in November", lower case since 28 Oct 2026 on his click after 4 of 4 readers read the capital FREE as a flash sale; his picks: the friend
   gets the same as the booker, comes on the same dates for the same stay, any of the four stays; bookings 1 to 30
-  November 2026): a hero line, a box in the price card, and "Bringing a friend for FREE? Their name" on the
+  November 2026): a hero line, a box in the price card, and "Bringing a friend for free? Their name" on the
   menu's book form, which rides in the plan mail (the checkout stays one item). Every piece is `data-promo
   hidden`; the page's script shows them until 30 November 2026 ends in Thailand and then they are gone by
   themselves. The friend needs a second dorm bed: NerdHostel was told.
