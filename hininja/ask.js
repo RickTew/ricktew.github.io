@@ -267,8 +267,8 @@
     {id:"mastery", q:"What is Mastery?",
      alt:["mastery","the mastery program","move to thailand","moving to thailand","live in thailand","relocate","long term","two years","2 years","sensei"],
      keys:"mastery master relocate relocating longterm sensei",
-     a:"<p>Most people come for two weeks. Mastery is for the ones who stay: all five belts, yellow to red, over 2 years, with Rick.</p><p>Rick shows you a tactic or technique, in a private or small-group session. You practice on your own and in the group classes, until you master it. Each belt ends in a test with Rick.</p><p>$15,988. Pay it all at once, or in five parts, one before each belt.</p>",
-     next:ASK("Ask Kuno about Mastery","I am interested in Mastery: all five belts over 2 years ($15,988).")},
+     a:"<p>Most people come for two weeks. Mastery is for the ones who stay: all five belts, yellow to red, over 2 years, with Rick.</p><p>Rick shows you a tactic or technique, in a private or small-group session. You practice on your own and in the group classes, until you master it. Each belt ends in a test with Rick.</p><p>$15,988. Only 12 spots left for 2027. $2,222 down reserves your spot. Then pay the rest all at once, or in five parts, one before each belt.</p>",
+     next:ASK("Reserve my spot","I want to reserve a Mastery spot for 2027 with $2,222 down (Mastery: all five belts over 2 years, $15,988).")},
 
     {id:"rick-time", q:"How much time with Rick do I get in Mastery?",
      alt:["time with rick","hours with rick","200 hours","private lessons","one on one","1 on 1","privates","private sessions"],
@@ -490,6 +490,8 @@
       tx.value=line||"";
       var send=el("button","kuno-go","Send it to Kuno"); send.type="submit"; f.appendChild(send);
       var err=el("p","kuno-err"); err.setAttribute("role","alert"); f.appendChild(err);
+      /* a warning goes as soon as they type again, so a filled form never shows one */
+      f.addEventListener("input", function(){ if(err.textContent) err.textContent=""; });
       b.appendChild(f);
       f.addEventListener("submit", function(e){
         e.preventDefault(); err.textContent="";
