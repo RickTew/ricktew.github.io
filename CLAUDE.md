@@ -166,6 +166,15 @@ places:
     hold six each, his keeps plus Mexico, California, Holland, the Samui camps and NinjaGym (`gallery/v01` to
     `v13`, from the Extreme Pro archive's root Photos folder), ordered so no place repeats in a box or shows side by
     side across the three. Look beyond one folder: the photo map's tags-A to D list keepers by place.
+    Later the same evening Rick picked 41 numbers from the Canva uploads gallery ("for the images that are okay for
+    training course photos and people (so they can see what they can get) ... add these but don't remove the ones
+    you have"): the section is now SIX boxes (Self-defense with the PSC logo as a badge, Ninja tools, Blocks and
+    partner drills, Kicks, Rolls falls and stances, Every age and every level with the older student holding a
+    training knife, his "it shows older people can join", from the old site's `assets/images/964c072350.png`). New
+    files `gallery/p<number>.webp` keep his Canva gallery number. The originals were NOT on the Extreme Pro (only
+    134 and 135 were): they now are, in `Rick Tew Archive/Photos/From Canva/`. His 320 (an old Level Two
+    certificate) is the base for a NEW Instructor certificate, still to make; never show the old one (a student's
+    name and a date).
   - **`#system`**, between the belts and Mastery: Rick Tew's Martial Science, the two logos from his training
     shirt (round Mind Body Spirit on the back, the red patch on the chest), the free PDF
     `/hininja/rtms-philosophy-and-system.pdf` (his 2004 "Modern Ninjitsu ... Philosophy and System", 20 pages)

@@ -386,7 +386,9 @@ figcaption a{font-weight:700;white-space:nowrap}
 .real{margin-top:30px}
 .real-h{font-size:24px}
 .rot-row{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.rot-fig{margin:0}
+.rot-fig{margin:0;position:relative}
+.rot-badge{position:absolute;z-index:2;top:-14px;right:-10px;width:78px;height:auto;filter:drop-shadow(0 4px 8px rgba(0,0,0,.3))}
+@media (max-width:560px){ .rot-badge{width:64px;right:-4px} }
 .rot-fig figcaption{margin-top:8px;font-size:15.5px;color:var(--ink2)}
 /* the system: Rick Tew's Martial Science, the two shirt logos, the free book, the old site in dropdowns (28 Oct 2026) */
 .sys-top{margin-top:22px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:28px;align-items:center}
@@ -690,34 +692,86 @@ footer a:hover{color:var(--sea)}
          student does not show twice in a row. Later that day: "these images all look too much like the same place and
          people ... there are other photos too", so each box now keeps his keeps and mixes in other places from the
          archive (Mexico, California, Holland, the Samui camps, NinjaGym); six a box, ordered so no place shows twice
-         in a row in a box or side by side across the three boxes at any moment (they change 1.3 s apart). -->
+         in a row in a box or side by side across the three boxes at any moment (they change 1.3 s apart).
+         Same evening, his picks from his Canva uploads ("for the images that are okay for training course photos and
+         people (so they can see what they can get) ... add these but don't remove the ones you have. Mainly just for
+         the real people section"): added to the three boxes and three new ones (Kicks; Rolls, falls and stances; Every
+         age and every level, with the older student he asked for, "it shows older people can join"); the PSC logo
+         ("for the self defense psc course") sits on the Self-defense box. Originals: the Extreme Pro, Rick Tew
+         Archive/Photos/From Canva/ (numbered as in the Canva gallery). No place twice in a row in any box. -->
     <div class="real" id="photos">
       <h3 class="real-h">Real people, real training, at your level.</h3>
       <div class="rot-row">
-        <figure class="rot-fig"><div class="rot" role="group" aria-label="Self-defense in real classes">
+        <figure class="rot-fig"><img class="rot-badge" src="/hininja/img/psc-badge.webp" alt="Master Rick Tew's Personal Security Course logo: Mind, Body, PSC, Tactic" width="240" height="240" loading="lazy"><div class="rot" role="group" aria-label="Self-defense in real classes">
           <img class="on" src="/hininja/img/gallery/g12.webp" alt="A woman breaks a grab from her training partner on red mats" width="900" height="836" loading="lazy" style="object-position:50% 25%">
+          <img src="/hininja/img/gallery/p0528.webp" alt="Rick Tew in a blue uniform shows a takedown while a line of students watches" width="512" height="384" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0388.webp" alt="Rick Tew in a blue uniform shows a lock on a student" width="900" height="600" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/v01.webp" alt="Two students drill a high block and a strike on a hilltop among pine trees" width="900" height="675" loading="lazy" style="object-position:50% 30%">
+          <img src="/hininja/img/gallery/p0021.webp" alt="Two students drill an arm block on a palm-garden lawn while Rick Tew coaches" width="900" height="675" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/v04.webp" alt="Rick Tew in a blue uniform pins a student with an arm hold on red mats" width="900" height="506" loading="lazy" style="object-position:50% 40%">
           <img src="/hininja/img/gallery/v02.webp" alt="Rick Tew in a blue uniform breaks a hold from behind on a palm lawn" width="900" height="675" loading="lazy" style="object-position:55% 40%">
+          <img src="/hininja/img/gallery/p0469.webp" alt="Students drill an arm control in a mirrored dojo" width="590" height="442" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/g15.webp" alt="An instructor guides a student's wrist control while a woman waits her turn" width="900" height="812" loading="lazy" style="object-position:50% 20%">
           <img src="/hininja/img/gallery/v03.webp" alt="Rick Tew, smiling, takes a student's arm into a lock in a tropical garden" width="900" height="556" loading="lazy" style="object-position:40% 40%">
-          <img src="/hininja/img/gallery/v04.webp" alt="Rick Tew in a blue uniform pins a student with an arm hold on red mats" width="900" height="506" loading="lazy" style="object-position:50% 40%">
         </div><figcaption>Self-defense you can use. <a href="#menu">Pick Self-defense</a></figcaption></figure>
         <figure class="rot-fig"><div class="rot" role="group" aria-label="Ninja tools in real classes">
           <img class="on" src="/hininja/img/gallery/v05.webp" alt="Students in black swing sticks in a park while their partners block" width="900" height="580" loading="lazy" style="object-position:40% 40%">
-          <img src="/hininja/img/gallery/g09.webp" alt="A woman lunges with a staff toward a partner in an open-air hall" width="900" height="480" loading="lazy" style="object-position:50% 50%">
+          <img src="/hininja/img/gallery/p0193.webp" alt="A woman raises a stick to block on a red mat" width="479" height="436" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/v06.webp" alt="Rick Tew works the long staff with a student on a terrace above the sea" width="900" height="675" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0398.webp" alt="A student trains with nunchaku in an open-air hall" width="900" height="600" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/g08.webp" alt="A student in a low stance with a bamboo staff on a grass field" width="627" height="638" loading="lazy" style="object-position:50% 20%">
-          <img src="/hininja/img/gallery/g14.webp" alt="An instructor shows a student a staff move" width="900" height="635" loading="lazy" style="object-position:50% 30%">
+          <img src="/hininja/img/gallery/p1891.webp" alt="Students drill with padded sticks in a bright gym" width="900" height="675" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p1354.webp" alt="Two students drill a stick technique on a garden lawn" width="900" height="506" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/g09.webp" alt="A woman lunges with a staff toward a partner in an open-air hall" width="900" height="480" loading="lazy" style="object-position:50% 50%">
           <img src="/hininja/img/gallery/v07.webp" alt="A student blocks a stick strike with his own stick on a garden lawn" width="900" height="675" loading="lazy" style="object-position:50% 30%">
+          <img src="/hininja/img/gallery/g14.webp" alt="An instructor shows a student a staff move" width="900" height="635" loading="lazy" style="object-position:50% 30%">
+          <img src="/hininja/img/gallery/p0634.webp" alt="A student swings a long staff on an open field" width="671" height="479" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0134.webp" alt="A woman works a stick drill with her partner while the class watches" width="900" height="600" loading="lazy" style="object-position:50% 35%">
         </div><figcaption>The staff, the stick and more. <a href="#menu">Pick Ninja Tools</a></figcaption></figure>
         <figure class="rot-fig"><div class="rot" role="group" aria-label="Blocks and partner drills in real classes">
-          <img class="on" src="/hininja/img/gallery/v08.webp" alt="Two students work a clinch on a lawn while Rick Tew watches" width="900" height="675" loading="lazy" style="object-position:60% 35%">
-          <img src="/hininja/img/gallery/v09.webp" alt="Three students in guard stance in front of an old brick fortress wall" width="900" height="675" loading="lazy" style="object-position:50% 40%">
-          <img src="/hininja/img/gallery/v10.webp" alt="Rick Tew blocks a punch and checks the arm in a pine forest" width="720" height="480" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/v11.webp" alt="A woman throws a strike at her partner's head on red mats" width="900" height="506" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/v12.webp" alt="Pairs work a sweep drill on the grass in a park" width="900" height="580" loading="lazy" style="object-position:50% 45%">
+          <img class="on" src="/hininja/img/gallery/v09.webp" alt="Three students in guard stance in front of an old brick fortress wall" width="900" height="675" loading="lazy" style="object-position:50% 40%">
+          <img src="/hininja/img/gallery/v08.webp" alt="Two students work a clinch on a lawn while Rick Tew watches" width="900" height="675" loading="lazy" style="object-position:60% 35%">
           <img src="/hininja/img/gallery/v13.webp" alt="Rick Tew in a blue uniform and five students in fighting stance among eucalyptus trees" width="900" height="675" loading="lazy" style="object-position:50% 55%">
+          <img src="/hininja/img/gallery/p0150.webp" alt="Two students sit on the mat and drill hand blocks" width="690" height="748" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0310.webp" alt="Rick Tew squares up to a red standing bag, three photos on the wall behind him" width="454" height="434" loading="lazy" style="object-position:50% 0%">
+          <img src="/hininja/img/gallery/p0207.webp" alt="A woman drives a knee into a big exercise ball her partner holds" width="900" height="506" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/v12.webp" alt="Pairs work a sweep drill on the grass in a park" width="900" height="580" loading="lazy" style="object-position:50% 45%">
+          <img src="/hininja/img/gallery/v11.webp" alt="A woman throws a strike at her partner's head on red mats" width="900" height="506" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p1353.webp" alt="Rick Tew beside a student's words: It's eye opening how much you can learn in each class and how quickly that builds up" width="900" height="506" loading="lazy" style="object-position:50% 50%">
+          <img src="/hininja/img/gallery/v10.webp" alt="Rick Tew blocks a punch and checks the arm in a pine forest" width="720" height="480" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0165.webp" alt="A student in red boxing gloves throws a punch" width="714" height="735" loading="lazy" style="object-position:50% 35%">
         </div><figcaption>Blocks and partner drills, at your pace. <a href="#menu">Pick Strikes</a></figcaption></figure>
+        <figure class="rot-fig"><div class="rot" role="group" aria-label="Kicks in real classes">
+          <img class="on" src="/hininja/img/gallery/p0481.webp" alt="A student round-kicks a pad on an outdoor deck" width="768" height="576" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0276.webp" alt="A woman kicks a standing bag on red mats" width="900" height="507" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0309.webp" alt="Rick Tew kicks a red standing bag" width="325" height="436" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0128.webp" alt="A woman front-kicks a pad her partner holds on the red mats" width="567" height="743" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p1877.webp" alt="A student throws a round kick in a bright gym with red and blue mats" width="900" height="675" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0217.webp" alt="Two students drill a kick and a block on red mats by an open balcony" width="459" height="356" loading="lazy" style="object-position:50% 35%">
+        </div><figcaption>Kicks at your level, from your first class. <a href="#menu">Pick Kicks</a></figcaption></figure>
+        <figure class="rot-fig"><div class="rot" role="group" aria-label="Rolls, falls and stances in real classes">
+          <img class="on" src="/hininja/img/gallery/p1414.webp" alt="Rick Tew in a black uniform shows a hand position in a garden by a teak house" width="900" height="675" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0141.webp" alt="A woman rolls over a plastic chair onto the red mats" width="590" height="738" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0200.webp" alt="A student with a white belt holds a horse stance on a red mat" width="422" height="438" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0016.webp" alt="A student stretches low on a red mat with a rope, in an open-air hall" width="900" height="600" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p1294.webp" alt="Rick Tew in a blue uniform coaches a student at a climbing wall in a garden" width="900" height="675" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0133.webp" alt="A student rolls forward on a red mat" width="444" height="692" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p1378.webp" alt="Two students face off with training sticks on pink mats" width="900" height="506" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0018.webp" alt="A student practices a roll over a plastic chair on the red mats" width="900" height="600" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0376.webp" alt="A group practices stances on pink mats in an open-air sala" width="769" height="394" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0190.webp" alt="A woman stretches into a split on the red mats" width="595" height="392" loading="lazy" style="object-position:50% 60%">
+        </div><figcaption>Rolls, falls and stances, step by step. <a href="#menu">Pick Rolls</a></figcaption></figure>
+        <figure class="rot-fig"><div class="rot" role="group" aria-label="Every age and every level in real classes">
+          <img class="on" src="/hininja/img/gallery/p-older.webp" alt="An older student in a yellow shirt holds a training knife" width="545" height="511" loading="lazy" style="object-position:50% 30%">
+          <img src="/hininja/img/gallery/p0140.webp" alt="A student in a low stance with a staff" width="522" height="690" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p1941.webp" alt="Students raise padded sticks in a drill" width="900" height="675" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0135.webp" alt="Students practice on the wooden floor of an open-air hall" width="900" height="600" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0273.webp" alt="Two students in helmets ride scooters down an island road" width="600" height="360" loading="lazy" style="object-position:50% 50%">
+          <img src="/hininja/img/gallery/p0152.webp" alt="A student steps through a stance drill in an open-air hall" width="456" height="702" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0258.webp" alt="A student looks out over a tropical beach" width="900" height="675" loading="lazy" style="object-position:50% 50%">
+          <img src="/hininja/img/gallery/p1145.webp" alt="A student rides a scooter up to the gym" width="900" height="675" loading="lazy" style="object-position:50% 45%">
+          <img src="/hininja/img/gallery/p0130.webp" alt="Rick Tew in a blue uniform watches two students drill in an open-air hall" width="708" height="742" loading="lazy" style="object-position:50% 35%">
+        </div><figcaption>Every age, every level, and the island after class. <a href="#price">Pick your stay</a></figcaption></figure>
       </div>
     </div>
   </div>
