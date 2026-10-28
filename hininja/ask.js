@@ -251,7 +251,7 @@
     {id:"who-teaches", q:"Who teaches the classes?",
      alt:["who teaches","who is teaching","does rick teach","is rick there","taught by","morning or evening","rick teach the morning","rick teach the evening","morning sessions","evening sessions","which sessions"],
      keys:"teaches teacher teachers guide guides personally coaches",
-     a:"<p>Rick often rotates between the morning and evening sessions when he is available, to help students at both: some are morning people, some are night people, and not everyone does both sessions (though we recommend it).</p><p>Rick shows you, you practice.</p>",
+     a:"<p>Rick often rotates between the morning and evening sessions, to help students at both: some are morning people, some are night people, and not everyone does both sessions (though we recommend it).</p><p>Rick shows you, you practice.</p>",
      next:MENU},
 
     {id:"rick", q:"Who is Rick Tew?",
