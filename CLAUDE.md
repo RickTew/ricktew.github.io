@@ -164,9 +164,12 @@ places:
     sells a private room).
   - **WinJitsu box:** the five books and two phones drawn from the WinJitsu app's own screens (never the
     Tewtors phone picture, it says Tewtors); the Pai treehouse and desk photos small, side by side. Rick's
-    pick the same day in the WinJitsu chat: the ninja students' app (adult WinJitsu books plus Pocket Dojo)
-    will live at winjitsu.com on the Tewtors app, reversing his 6 Oct "308 forever". Until the WinJitsu chat
-    says it is live, the bonus line "A free month of WinJitsu.com" and its link stay as they are.
+    pick the same day in the WinJitsu chat: winjitsu.com becomes a SEPARATE WinJitsu app for adult ninja
+    students (the WinJitsu books plus Pocket Dojo), rebuilt from the old 6 Oct app, reversing his 6 Oct "308
+    forever". This chat sells it, once live: "a purchase on ricktew.com but free to those coming to the program
+    so that they can see the real value" ("still want to learn but from home"); no Stripe of its own for now.
+    Until the WinJitsu chat says it is live, /hininja/ (bonus line "A free month of WinJitsu.com") and /hsp/
+    stay as they are.
   - /about/ is off the HI footer and tiles ("not finish (and its not using my colors)"). The chat stays "Ask
     the Ninja" (his click; 0 of 4 readers took the cartoon for Rick).
 - **`/aininja/` AI Ninja** — the digital work. Building with AI for businesses.
