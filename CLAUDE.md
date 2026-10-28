@@ -72,7 +72,32 @@ places:
   month is gone from the page and the Ninja Menu (three stays, `?weeks=2|3|8`). The checkout's `'8'`
   changed the same hour on his click "Lift the hold for this one line" (Digital Dojo 720b7729, read live
   at THB 125,999.00, nothing paid); its `'4'` stays only for links already out. TEWBEDO and NerdHostel
-  notes updated. What the Instructor year includes is not yet on the page.
+  notes updated. The Instructor line is his click "all three": "1 year. All five belts, yellow to red, the
+  fast way. Train to teach: learn to lead practice as a Guide."
+  **Mastery urgency (Rick, 28 Oct: "a 2,222 down now to reserve your spot and a limited save now discount if
+  you book in November. Also, state only 12 spots left for 2027"):** a yellow "Only 12 spots left for 2027"
+  badge, "$2,222 down reserves your spot. Then pay the rest all at once, or in five parts", the buttons
+  "Reserve my spot" / "Reserve a spot" (they fill the ask box: the deposit is invoiced until "we nail down the
+  prices" and make the payment links), and "Book in November and save $2,000: $13,988" (his click), which is
+  `data-promo` and hides itself after 30 November with the friend promo.
+  **Captions sell, never describe (Rick, 28 Oct: "do not try to describe the images ... add sales copy or
+  inspire CTA ... Same for all images we show"):** every caption is a benefit line, usually with a link to the
+  menu, the stays, Mastery or the ask box; alt text still describes. Applies to every page from now on.
+  **Who is nine boxes** in the belt colours with an icon each (his "not 9 same same white boxes"); the new
+  three point at the belt program, Mastery and Instructor.
+  **The WinJitsu bonus box** (asked 27 Oct, built 28 Oct): the Pai treehouse desk photo, his ruled words from
+  the WinJitsu chat (no year), his quote, the ACE book in hand (`hininja/img/winjitsu/`), two WinJitsu app
+  screens (they say WinJitsu, not Tewtors; winjitsu.com forwards to tewtors.com).
+  **Ask the Ninja with Kuno** (Rick, 28 Oct: "a functional chat bot ... Ask the Ninja ... a cute Kuno image
+  from Canva (Kuno is short for Kunoichi a female Ninja and Rick's assistant)"): `hininja/ask.js`, the
+  /aininja/ word engine with its own 34-answer HI library built from the page's words; a miss offers "Ask
+  Kuno" (name, email, question) to the mailbox, subject `hininja`, first line "From the Ask the Ninja box on
+  /hininja/:"; TEWBEDO answers it as Kuno from kuno@ricktew.com (told 28 Oct; never print the address).
+  `askLive(q)` returns null today: the seam for the subscription and watcher later. Kuno's face is a Canva
+  take (`/Volumes/Extreme Pro/Studio/RickTew/takes/kuno-avatar/`). Tests: `node tests/ask-hininja-golden.js`
+  (holds every answer to the page's sentences: a page edit that breaks it means updating `hininja/ask.js`)
+  and `tests/ask-hininja-sweep.mjs`. Serve with a queue bigger than `python3 -m http.server`'s for the
+  sweeps (it resets connections under the page's many images).
   **The Mastery pitch, `#mastery`, a dark band after the belt program** (Rick, 28 Oct: "we would rather have
   10 1-2 students than 10-20 in and out students ... a solid mastery sales pitch ... those that MOVE to
   Thailand"; "mastery includes the same"): "Looking for your sensei? Move to Thailand and train with Rick." (was "Moving to Thailand? Earn all five belts.", his pick of 28 Oct, his Mr. Miyagi idea without the film name), four tiles (a
