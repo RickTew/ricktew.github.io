@@ -44,6 +44,25 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
       return '';
     });
     if (hit) { bad.push(label + ' pill covers the menu button "' + hit + '" at scroll ' + y); break; }
+    // on a phone it never sits on a line of text either (Rick's click, 28 Oct 2026)
+    if (label === 'phone') {
+      const word = await page.evaluate(() => {
+        const l = document.getElementById('kunoLaunch');
+        if (l.hidden || l.classList.contains('kuno-away')) return '';
+        // where it rests (its own right and bottom), not mid-slide
+        const cs = getComputedStyle(l), de = document.documentElement, rr = de.clientWidth - parseFloat(cs.right), rb = de.clientHeight - parseFloat(cs.bottom);
+        const r = { left: rr - l.offsetWidth, top: rb - l.offsetHeight, right: rr, bottom: rb }, w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        for (let t; (t = w.nextNode());) {
+          if (!t.textContent.trim() || l.contains(t) || !t.parentElement || t.parentElement.closest('#kunoPanel')) continue;
+          if (t.parentElement.closest('details:not([open])') && !t.parentElement.closest('summary')) continue;
+          const cs = getComputedStyle(t.parentElement); if (cs.visibility === 'hidden' || cs.display === 'none') continue;
+          const rg = document.createRange(); rg.selectNodeContents(t);
+          for (const b of rg.getClientRects()) if (b.width && b.right > r.left && b.left < r.right && b.bottom > r.top && b.top < r.bottom) return t.textContent.trim().slice(0, 40);
+        }
+        return '';
+      });
+      if (word) { bad.push(label + ' pill covers the words "' + word + '" at scroll ' + y); break; }
+    }
   }
   // the same with the menu's ready bar showing: five picks, then walk the menu again
   await page.evaluate(() => window.scrollTo(0, 0));
@@ -70,7 +89,12 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   // the pill steps aside over the menu, so open it from the FAQ, below the menu
   await page.locator('#faq').scrollIntoViewIfNeeded();
   await page.waitForTimeout(300);
-  if (await pill.evaluate(n => n.classList.contains('kuno-away'))) bad.push(label + ' pill away at the FAQ');
+  // on a phone it steps aside over the FAQ's words: scroll on until it is back (a picture or a gap)
+  for (let i = 0; i < 40 && await pill.evaluate(n => n.classList.contains('kuno-away')); i++) {
+    await page.evaluate(() => window.scrollBy(0, 60));
+    await page.waitForTimeout(80);
+  }
+  if (await pill.evaluate(n => n.classList.contains('kuno-away'))) bad.push(label + ' pill never came back below the FAQ');
 
   // open, three real questions
   await pill.click();

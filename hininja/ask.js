@@ -395,25 +395,59 @@
     /* The pill steps aside wherever it would sit on anything in the Ninja Menu you can press
        (the tiles, the picks, the sticky "ready" bar, the stays and Book), on a phone or a laptop,
        and since 28 Oct 2026 on any button or form field on the page (2 of 4 readers found it
-       over the 2 weeks "Pick and book"). */
+       over the 2 weeks "Pick and book"). On a phone it also steps aside over any line of text
+       (Rick's click, 28 Oct 2026, after 8 of 11 readers found it over the ends of lines): it comes
+       back over pictures and gaps. The laptop pill keeps to the buttons rule. */
     if(launch){
-      var tick=false;
+      var tick=false, PHONE=root.matchMedia?root.matchMedia("(max-width:700px)"):null;
+      var overText=function(r){
+        if(!PHONE||!PHONE.matches||!doc.elementsFromPoint||!doc.createRange) return false;
+        var xs=[r.left+3,(r.left+r.right)/2,r.right-3], ys=[r.top-4,r.top+3,(r.top+r.bottom)/2,r.bottom-3], rg=doc.createRange(), pad=2, seen=[];
+        for(var i=0;i<xs.length;i++) for(var j=0;j<ys.length;j++){
+          var st=doc.elementsFromPoint(xs[i],ys[j]), el=null;
+          for(var k=0;k<st.length;k++){ if(st[k]!==launch&&!launch.contains(st[k])){ el=st[k]; break; } }
+          /* the block the point is in, read whole (a section's padding sits right under its last
+             line), so a link or a line beside the point counts too; only a block as long as the
+             whole page is read for its own text alone */
+          while(el&&el.parentElement&&el.parentElement!==doc.body&&(el.textContent||"").length<40&&(el.parentElement.textContent||"").length<=4000) el=el.parentElement;
+          if(!el||seen.indexOf(el)>-1) continue;
+          seen.push(el);
+          var w=(el.textContent||"").length<=4000 ? doc.createTreeWalker(el,4) : null, c=w?w.nextNode():el.firstChild;
+          for(;c;c=w?w.nextNode():c.nextSibling){
+            if(c.nodeType!==3||!/\S/.test(c.nodeValue)) continue;
+            /* the answer inside a closed question is not on screen, though it still has a place */
+            var pe=c.parentElement, cd=pe&&pe.closest?pe.closest("details:not([open])"):null;
+            if(cd&&!pe.closest("summary")) continue;
+            rg.selectNodeContents(c);
+            var qs=rg.getClientRects();
+            for(var q=0;q<qs.length;q++){ var b=qs[q]; if(b.width&&b.right>r.left-pad&&b.left<r.right+pad&&b.bottom>r.top-pad&&b.top<r.bottom+pad) return true; }
+          }
+        }
+        return false;
+      };
       var clash=function(){
         tick=false;
         if(launch.hidden) return;
         launch.classList.remove("kuno-away");
-        var r=launch.getBoundingClientRect(), pad=8, hit=false;
+        /* where the pill rests, from its own right and bottom: getBoundingClientRect would catch it
+           mid-slide (the away state moves it 12px down), and miss the lines at its top edge */
+        var cs=root.getComputedStyle(launch), de=doc.documentElement;
+        var rr=de.clientWidth-parseFloat(cs.right), rb=de.clientHeight-parseFloat(cs.bottom);
+        var r={left:rr-launch.offsetWidth, top:rb-launch.offsetHeight, right:rr, bottom:rb}, pad=8, hit=false;
         [].forEach.call(doc.querySelectorAll("#menu .mc-bar, #menu button, #menu a, #menu input, main a.btn, main button, main input, main select, main textarea, .sys-book"), function(n){
           if(hit) return;
           var b=n.getBoundingClientRect();
           if(!b.width||!b.height) return;
           if(b.right>r.left-pad && b.left<r.right+pad && b.bottom>r.top-pad && b.top<r.bottom+pad) hit=true;
         });
+        if(!hit) hit=overText(r);
         if(hit) launch.classList.add("kuno-away");
       };
       var later=function(){ if(!tick){ tick=true; (root.requestAnimationFrame||setTimeout)(clash); } };
       root.addEventListener("scroll", later, {passive:true});
       root.addEventListener("resize", later);
+      /* a picture that finishes loading above moves the text under a pill that has not scrolled */
+      doc.addEventListener("load", later, true);
       doc.addEventListener("click", function(){ setTimeout(clash, 60); });
       clash();
     }
