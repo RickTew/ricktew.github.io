@@ -98,6 +98,16 @@ places:
   (holds every answer to the page's sentences: a page edit that breaks it means updating `hininja/ask.js`)
   and `tests/ask-hininja-sweep.mjs`. Serve with a queue bigger than `python3 -m http.server`'s for the
   sweeps (it resets connections under the page's many images).
+  **Kuno's side (TEWBEDO 5cedc88, Rick's pick "Quick receipt + draft"):** a message whose first line is exactly
+  "From the Ask the Ninja box on /hininja/:" gets one receipt at once from Kuno <kuno@ricktew.com>, and the real
+  answer waits as a draft Rick sends as Kuno. TEWBEDO keeps a committed copy of `hininja/ask.js`: **after any
+  edit to it, tell TEWBEDO** (it runs `scripts/ninja-library-sync.mjs`). Never change that first line or the
+  subject `hininja` without TEWBEDO.
+  **The November friend promo covers every stay, Mastery and Instructor included** (Rick's click "Every stay,
+  as it reads", 28 Oct), beside Mastery's own $2,000 off.
+  **The HI Ninja ads (V3, `.claude/hininja-ads-v3.md`, for TEWBEDO's 50/50 test of /hininja/ against
+  nerdhostel.com/gns from 1 Nov):** no place, price, length, date or count (his 27 Oct rule), with one exception
+  by his click of 28 Oct, "Allow \"Thailand\" only"; every line true on both pages.
   **The Mastery pitch, `#mastery`, a dark band after the belt program** (Rick, 28 Oct: "we would rather have
   10 1-2 students than 10-20 in and out students ... a solid mastery sales pitch ... those that MOVE to
   Thailand"; "mastery includes the same"): "Looking for your sensei? Move to Thailand and train with Rick." (was "Moving to Thailand? Earn all five belts.", his pick of 28 Oct, his Mr. Miyagi idea without the film name), four tiles (a
