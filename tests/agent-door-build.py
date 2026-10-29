@@ -10,6 +10,11 @@ answer, a solution row, a seat, or a price. A FAQPage that does not match
 the visible text is treated as spam by Google, so the block is never
 hand-edited. tests/ is excluded from the Pages build.
 """
+import sys
+# RETIRED on 29 Oct 2026: the AI Ninja pages moved to tewbedo.com (Rick's ruling; TEWBEDO keeps its own copy of this
+# script in RickTew/tewbedo-site). The pages here are forwards now, so this would read nothing. llms.txt is edited by
+# hand from now on.
+sys.exit("agent-door-build.py is retired here: the AI Ninja pages live at tewbedo.com (TEWBEDO's tewbedo-site).")
 import re, json, html, os, sys
 root=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 page=os.path.join(root,'aininja','index.html')

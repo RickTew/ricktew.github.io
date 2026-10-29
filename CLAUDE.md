@@ -17,6 +17,11 @@ Personal brand and portfolio site for Rick Tew. Everything he makes lives here: 
    in TEWBEDO, not bought yet) and copies `/aininja/` and everything it uses; this chat focuses on `/hininja/` and
    hands it to martialartcamp.com when it is finished (new times, the price settled, his shortening review). Once
    TEWBEDO says its copy is live, this chat edits `/aininja/` only to forward it there.
+   **DONE 29 Oct 2026:** tewbedo.com is live; the 13 AI Ninja pages here forward there (query and #part kept). Kept
+   on ricktew.com on purpose: `aininja/legal/` (Terms and Privacy cover the course too), the Shop's `buy/`, `thanks/`,
+   app `thanks/`, `download/` and `promptpay/` (the held checkout and the order mails point at them), the workbook
+   forwards, `ask.js`, and every asset (/hininja/ and NerdHostel load them). `tests/agent-door-build.py` is retired here;
+   llms.txt is edited by hand. The AI rules files in `claude/` are history: TEWBEDO keeps them in tewbedo-site/rules/.
 Until each step is live, everything below stands.
 
 **CURRENT STATE (2026-08-21): the site is TWO DOORS.** The front page asks one
