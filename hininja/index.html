@@ -326,7 +326,7 @@ figcaption a{font-weight:700;white-space:nowrap}
    the label is a square tag, not a pill: only things you press are round */
 .card.t-day{border-color:#c9d0d8} .card.t-week{border-color:var(--yellow)} .card.t-month{border-color:var(--orange)} .card.t-year{border-color:var(--green)} .card.t-vip{border-color:var(--blue)}
 .card .tag{align-self:flex-start;margin-bottom:10px;padding:3px 8px;border-radius:4px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
-.card.t-year .tag{background:var(--green)} .card.t-vip .tag{background:var(--blue);color:#fff}
+.card.t-day .tag{background:var(--mist2)} .card.t-week .tag{background:var(--yellow)} .card.t-month .tag{background:var(--orange)} .card.t-year .tag{background:var(--green)} .card.t-vip .tag{background:var(--blue);color:#fff}
 .card .btn{margin-top:auto;width:100%;padding-left:12px;padding-right:12px;white-space:nowrap}
 .price-grid{margin-top:26px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:start}
 @media (max-width:860px){ .price-grid{grid-template-columns:1fr} }
@@ -530,6 +530,8 @@ figcaption a{font-weight:700;white-space:nowrap}
 .tray-n{margin-top:6px;font-size:13px;color:var(--muted)}
 .stays{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid var(--mist2)}
 @media (max-width:520px){ .stays{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.stays.days{grid-template-columns:repeat(5,minmax(0,1fr))} /* the days rows: 1 to 4, or none to +4 (29 Oct 2026) */
+@media (max-width:520px){ .stays.days{grid-template-columns:repeat(3,minmax(0,1fr))} }
 .stay-l{grid-column:1/-1;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
 .stay-o{font:inherit;text-align:center;cursor:pointer;background:#fff;border:2px solid var(--mist2);border-radius:12px;padding:7px 6px;color:var(--ink);line-height:1.25}
 .stay-o b{display:block;font-size:14px}
@@ -1192,7 +1194,9 @@ footer a:hover{color:var(--sea)}
            "Day in full, Month like 2 weeks", "2 months = $4,444", "A bed while you're here"): Day, Week, Month, Year,
            Mastery, white to blue. The checkout sells ?days=1-4 and ?months=1-3 (Digital Dojo 42bf1b95); the 1 week, 2 and
            3 weeks are as before. Was: 1 week, 2 weeks, 2 months $3,997, Instructor, Mastery. -->
+      <!-- the labels, Rick's click "Try it / Popular / Gold", 29 Oct 2026 (Year "Premium", Mastery "VIP" before) -->
       <div class="card t-day">
+        <div class="tag">Try it</div>
         <div class="per">Day</div>
         <div class="amt">$222</div>
         <p class="all">A morning of the Sensei Seminar, and a dorm bed if you need one, while you are here. Up to 4 days, $222 a day.</p>
@@ -1200,13 +1204,15 @@ footer a:hover{color:var(--sea)}
         <a class="btn btn-red" href="#menu" data-stay="d1">Pick and book</a>
       </div>
       <div class="card t-week">
+        <div class="tag">Popular</div>
         <div class="per">Week</div>
         <div class="amt">$1,111</div>
-        <p class="all">5 mornings of the Sensei Seminar, and a dorm bed if you need one, while you are here. 2 weeks $2,222, with free airport pick-up. Each extra week $1,000.</p>
+        <p class="all">5 mornings of the Sensei Seminar, and a dorm bed if you need one, while you are here. 2 weeks $2,222, with free airport pick-up. Each extra week $1,000. Add days to a week or two: $222 a day.</p>
         <p class="dep">One week is paid in full. 2 weeks: $555 down holds your spot, or pay in full now: $2,000.</p>
         <a class="btn btn-red" href="#menu" data-stay="1">Pick and book</a>
       </div>
       <div class="card t-month">
+        <div class="tag">Gold</div>
         <div class="per">Month</div>
         <div class="amt">$3,333</div>
         <p class="all">A month of the Sensei Seminar, and a dorm bed if you need one, while you are here. Each extra month $1,111: 2 months in <a href="#belts">the belt program</a>, $4,444.</p>
@@ -1248,7 +1254,7 @@ footer a:hover{color:var(--sea)}
         </ul>
         <dl class="terms">
           <div><dt>Dates</dt><dd>Arrive any day from 15 January 2027. Next group: 22 January 2027.</dd></div>
-          <div><dt>Longer</dt><dd>Each extra week $1,000: 3 weeks $3,222. Each extra month $1,111: 2 months $4,444, 3 months $5,555.</dd></div>
+          <div><dt>Longer</dt><dd>Add days to a week or two: $222 a day. Each extra week $1,000: 3 weeks $3,222. Each extra month $1,111: 2 months $4,444, 3 months $5,555.</dd></div>
           <div><dt>Checkout</dt><dd>You add your arrival date. A day or one week is paid in full. $555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. Ill, or your flights change? Your dates can move, within a year of buying. All sales are final. Payments go to Rick Tew Co., Ltd., our company on Koh Samui, Thailand.</dd></div>
         </dl>
       </div>

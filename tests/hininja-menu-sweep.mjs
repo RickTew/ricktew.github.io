@@ -48,7 +48,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await noBook('after 4 picks');
   await menu.locator('.pick[aria-pressed="false"]').first().click(); // the 5th
   if (await menu.locator('h2').textContent() !== 'Your Ninja Week is ready') bad.push(label + ' 5th pick did not open the ready step');
-  if (await menu.locator('.stay-o').count() !== 7) bad.push(label + ' stays not shown when ready'); // Days, 1 week, 2 weeks, 3 weeks, 1 month, 2 months (the belt), 3 months (29 Oct 2026)
+  if (await menu.locator('.stays:not(.days) .stay-o').count() !== 7) bad.push(label + ' stays not shown when ready'); // Days, 1 week, 2 weeks, 3 weeks, 1 month, 2 months (the belt), 3 months (29 Oct 2026)
   if (await menu.locator('.wk').count() !== 1) bad.push(label + ' empty week rows under ready: ' + await menu.locator('.wk').count());
   await page.screenshot({ path: OUT + label + '-3-ready.png' });
   // fill the 2 weeks
@@ -151,6 +151,23 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await page.waitForTimeout(1500);
   if (!posted || !/Stay: 3 days, \$666\nPaying: in full, \$666/.test(posted.message)) bad.push(label + ' days posted ' + JSON.stringify(posted));
   if (!checkout || !/src=ricktew-plan&days=3&cur=thb$/.test(checkout)) bad.push(label + ' days checkout ' + checkout);
+  // a week plus days (Rick's click "A day added onto a week", 29 Oct 2026): the Add days row, paid in full, ?weeks=1&days=2
+  posted = null; checkout = null;
+  await page.goto(BASE + '/hininja/');
+  await page.evaluate(() => localStorage.clear());
+  await page.reload();
+  await page.locator('#price a[data-stay="1"]').click();
+  await page.waitForTimeout(700);
+  await menu.locator('.qp', { hasText: 'Strikes and Kicks form' }).click();
+  await menu.locator('.stays.days .stay-o', { hasText: '+2 days' }).click();
+  if (await stayBtn('1 week').first().getAttribute('aria-pressed') !== 'true') bad.push(label + ' 1 week not pressed with days');
+  await button('Book my stay');
+  if (await menu.locator('.mc-pay button').textContent() !== 'Book my stay: $1,555') bad.push(label + ' week+days button text');
+  await page.fill('#planName', 'Plus Days'); await page.fill('#planEmail', 'plus.days@gmail.com');
+  await menu.locator('.mc-pay button').click();
+  await page.waitForTimeout(1500);
+  if (!posted || !/Stay: 1 week and 2 days, \$1,555\nPaying: in full, \$1,555/.test(posted.message)) bad.push(label + ' week+days posted ' + JSON.stringify(posted));
+  if (!checkout || !/src=ricktew-plan&weeks=1&days=2&cur=thb$/.test(checkout)) bad.push(label + ' week+days checkout ' + checkout);
   // the price cards (28 Oct 2026, the four of Rick's later click; smallest first since his click that night); Mastery and Instructor fill the ask box;
   // a stay other than the belt opens the menu with that stay, Ninja Week first
   await page.goto(BASE + '/hininja/');

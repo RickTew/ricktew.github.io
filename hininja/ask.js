@@ -131,7 +131,7 @@
     {id:"one-week", q:"Can I come for a few days, or just one week?",
      alt:["one week","1 week","for a week","a week only","just a week","only a week","single week","shorter stay","less than two weeks","a few days","few days","3 days","three days","something shorter","anything shorter","one day","1 day","a day","for a day","day pass","one more day","extra day","add a day","2 days","two days","4 days","four days"],
      keys:"shorter 1111 day days 222",
-     a:"<p>A day is $222, up to 4 days: book days. A week is $1,111: book one week. A day or one week is paid in full.</p>",
+     a:"<p>A day is $222, up to 4 days: book days. A week is $1,111: book one week. Add days to a week or two: $222 a day. A day or one week is paid in full.</p>",
      next:STAYS},
 
     /* Rick's click "One class, booked ahead", 29 Oct 2026 */
@@ -144,7 +144,7 @@
     {id:"longer", q:"Can I stay longer than two weeks?",
      alt:["stay longer","longer stay","three weeks","3 weeks","extra week","add a week","more than two weeks","a month","one month","1 month","extra month","add a month","3 months","three months"],
      keys:"longer extend extension extra month months",
-     a:"<p>Each extra week $1,000: 3 weeks $3,222. Each extra month $1,111: 2 months $4,444, 3 months $5,555.</p><p>Longer: 2 weeks $2,222, 3 weeks $3,222, a month $3,333, and 2 months in the belt program $4,444.</p><p>Instructor is 1 year of training, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is 2 years of training with Rick, $15,988.</p>",
+     a:"<p>Add days to a week or two: $222 a day. Each extra week $1,000: 3 weeks $3,222. Each extra month $1,111: 2 months $4,444, 3 months $5,555.</p><p>Longer: 2 weeks $2,222, 3 weeks $3,222, a month $3,333, and 2 months in the belt program $4,444.</p><p>Instructor is 1 year of training, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is 2 years of training with Rick, $15,988.</p>",
      next:STAYS},
 
     {id:"start", q:"When can I start?",

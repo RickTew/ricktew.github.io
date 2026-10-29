@@ -138,6 +138,10 @@
     {key:"m1", cap:4, name:"1 month", price:3333, full:3111, book:"Book my month"},
     {key:"m2", cap:8, name:"2 months, the belt program", price:4444, full:4222, book:"Book my 2 months", belt:true},
     {key:"m3", cap:12, name:"3 months", price:5555, full:5333, book:"Book my 3 months"}];
+  /* a week or two plus 1 to 4 days, $222 a day, paying like its week (Rick's click "A day added onto a week",
+     29 Oct 2026; Digital Dojo 039639ea, ?weeks=1|2&days=1-4). Not on 3 weeks: 3 weeks and a day passes the month. */
+  [1,2].forEach(function(w){ for(var d=1; d<=4; d++) STAYS.push({key:"w"+w+"d"+d, cap:w, base:String(w), extra:d,
+    name:w+(w>1?" weeks":" week")+" and "+d+(d>1?" days":" day"), price:(w===1?1111:2222)+222*d, full:w===2?2000+222*d:undefined, book:"Book my stay"}); });
   /* two ways to pay (Rick's clicks, 28 Oct 2026 night): $555 down holds the spot, the rest 2 weeks before arrival;
      or the whole stay now, $222 off (full). The checkout takes ?pay=deposit|full (Digital Dojo 399716e9). */
   var DEPOSIT=555;
@@ -194,7 +198,7 @@
     });
     var s0=(q.get("src")||"").toLowerCase(); if(/^[a-z]{1,20}$/.test(s0)) SRC=s0;
   }catch(e){}
-  function stayParam(){ var k=stay().key; return k.charAt(0)==="d" ? "&days="+k.slice(1) : k.charAt(0)==="m" ? "&months="+k.slice(1) : "&weeks="+k; }
+  function stayParam(){ var o=stay(), k=o.key; if(o.extra) return "&weeks="+o.base+"&days="+o.extra; return k.charAt(0)==="d" ? "&days="+k.slice(1) : k.charAt(0)==="m" ? "&months="+k.slice(1) : "&weeks="+k; }
   function checkoutUrl(pay){
     /* a partner's or a post's ?src= rides on the order too (ricktew-plan-nerdhostel) */
     var src=AD&&AD.click ? "gns-gads-"+AD.campaign+"-"+AD.letter+AD.click : "ricktew-plan"+(SRC!=="direct"?"-"+SRC:"");
@@ -240,8 +244,8 @@
     /* the days are one choice ("Days", $222 a day) with its own row of 1 to 4 under it */
     var pick=function(k){ plan.stay=k; keep(); render(false); var f=root.querySelector('.stay-o[aria-pressed="true"]'); if(f) f.focus(); };
     STAYS.forEach(function(o){
-      if(o.day>1) return;
-      var on=o.day ? !!stay().day : o.key===plan.stay;
+      if(o.day>1 || o.extra) return;
+      var on=o.day ? !!stay().day : o.key===plan.stay || stay().base===o.key;
       var b=btn("stay-o",null,function(){ pick(o.day && stay().day ? plan.stay : o.key); });
       b.setAttribute("aria-pressed",on?"true":"false");
       b.disabled=used>o.cap;
@@ -260,6 +264,20 @@
         dr.appendChild(b);
       });
       t.appendChild(dr);
+    }
+    /* 1 week or 2 weeks: extra days on top, none to 4 */
+    var wk=stay().base || (plan.stay==="1"||plan.stay==="2" ? plan.stay : "");
+    if(wk){
+      var xr=el("div","stays days"); xr.setAttribute("role","group"); xr.setAttribute("aria-label","Add days");
+      xr.appendChild(el("span","stay-l","Add days? $222 a day"));
+      for(var x=0; x<=4; x++){
+        var o=x ? find("w"+wk+"d"+x) : find(wk);
+        var b=btn("stay-o",null,(function(k){ return function(){ pick(k); }; })(o.key));
+        b.setAttribute("aria-pressed",o.key===plan.stay?"true":"false");
+        b.appendChild(el("b",null,x ? "+"+x+(x>1?" days":" day") : "None")); b.appendChild(el("span",null,money(o.price)));
+        xr.appendChild(b);
+      }
+      t.appendChild(xr);
     }
     }
     if(stay().belt) t.appendChild(el("p","tray-n","The belt program: yellow belt first. Your picks join the morning seminar too."));
@@ -439,11 +457,16 @@
         "2":["Stay longer? Add a week for $1,000, or make it 2 months in the belt program for $4,444.","3","3 weeks in all, $3,222"],
         "3":["Stay longer? Make it a month for $3,333, or 2 months in the belt program for $4,444.","m1","1 month, $3,333"],
         m1:["Stay longer? Add a month for $1,111: 2 months in the belt program, $4,444."]}[k];
+      /* a week or two plus days: one more day while there is room, else the next week */
+      var o0=stay();
+      if(o0.extra) UP = o0.extra<4 ? ["Stay longer? Add a day for $222.","w"+o0.base+"d"+(o0.extra+1),find("w"+o0.base+"d"+(o0.extra+1)).name+", "+money(find("w"+o0.base+"d"+(o0.extra+1)).price)]
+        : [o0.base==="1" ? "Stay longer? Make it 2 weeks for $2,222." : "Stay longer? Make it 3 weeks for $3,222.", o0.base==="1"?"2":"3", o0.base==="1"?"2 weeks in all, $2,222":"3 weeks in all, $3,222"];
       if(UP){
         var up=el("div","upsell");
         up.appendChild(el("p",null,UP[0]));
         if(UP[1]) up.appendChild(btn("btn btn-quiet",UP[2],set(UP[1])));
         if(stay().day) up.appendChild(btn("btn btn-quiet","1 week, $1,111",set("1")));
+        if(k==="1"||k==="2") up.appendChild(btn("btn btn-quiet","Add a day, $222",set("w"+k+"d1")));
         up.appendChild(btn("btn btn-quiet","2 months, the belt program, $4,444",set("m2")));
         root.appendChild(up);
       }
