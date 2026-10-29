@@ -243,3 +243,15 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     some of the most intense outdoor adventure programs. Been there, done that. Now he is laid back and teaches for
     fun: it is a lifelong passion. Now it is your turn." "tactics" is explained once in the menu box ("the techniques
     you want to learn"). Lineage: the record is the answer, no teachers named.
+  - **29 Oct 2026, afternoon: meals, the ladder, the bed (his clicks, all LIVE).** Meals are **included as 2 vouchers per
+    stay for NinjaGym's Shake and Bake** (a water, an ice cream shake and a grilled cheese toastie; "not as Thai meals";
+    his NerdHostel click "Included as vouchers"; 26002b9, 55d05ce; NinjaGym counts them per person, PR #195). **The
+    stays are Day, Week, Month, Year, Mastery** ("a simple day, week, month, year strategy"; 8a68689 + Digital Dojo
+    42bf1b95): Day $222 / ฿6,999, up to 4 days, paid in full (a 5th day costs the week, 5 mornings for $1,111); Week
+    $1,111, 2 weeks $2,222, 3 weeks $3,222; Month $3,333 / ฿104,999, each extra month $1,111 / ฿34,999 ($555 down or
+    $3,111 in full); the belt program is 2 months at $4,444; Year (Instructor) $8,994, tag "Premium"; Mastery $15,988,
+    2 years, tag "VIP". Colours: Day white-belt grey, Week yellow, Month orange, Year green, Mastery blue; red only on
+    buttons. Checkout keys ?days=1-4, ?weeks=1-3, ?months=1-3 (old ?weeks=4 and 8 still sell $3,997 for links out).
+    **The bed: "a dorm bed if you need one, while you are here"**; beds are not held while a guest is away (FAQ "Is my
+    bed kept if I leave for a while?"). NerdHostel's bed is ฿555 a night (its book-now rate; the ฿1,110 is gone).
+    Research behind it: `.claude/research/2026-10-29-hininja-pricing-research.md` (Digger).
