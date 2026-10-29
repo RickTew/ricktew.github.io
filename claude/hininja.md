@@ -255,6 +255,12 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     **The bed: "a dorm bed if you need one, while you are here"**; beds are not held while a guest is away (FAQ "Is my
     bed kept if I leave for a while?"). NerdHostel's bed is ฿555 a night (its book-now rate; the ฿1,110 is gone).
     Research behind it: `.claude/research/2026-10-29-hininja-pricing-research.md` (Digger).
+  - **29 Oct 2026, night: a week is 7 days and 7 nights (his click "7 days, 7 nights").** His question: "what is a week? 7 or 5
+    days if they buy a week do they get 7 days to stay in the free housing?" A week = 7 days in a row from arrival: 5 class
+    mornings (any 7 days hold 5 weekdays), the weekend free, a dorm bed all 7 nights. The same rule for every stay: a Day = 1
+    night, 2 weeks = 14, a Month = 30 days and 30 nights; "Every stay" says "a dorm bed every night of your stay if you need
+    one". The belt program, Mastery and the friend line keep "while you are here". Beds are still not held while away. His
+    class times were confirmed unchanged the same night (8 to 10am, optional 8 to 10pm, Monday to Friday, weekends free).
   - **29 Oct 2026, late: the prices (his clicks, LIVE 4683ceb + Digital Dojo eedba7c5).** "Easy door" for the short
     stays, his testers and upgrade paths: Day $111 / ฿3,499 (up to 4; +$111 a day on a week or two), Week $555 /
     ฿17,499, 2 weeks $1,111 / ฿34,999, all paid in full; 3 weeks dropped; Month $1,999 / ฿62,999, each next month $999

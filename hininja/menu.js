@@ -451,7 +451,7 @@
       var UP={d1:["Stay longer? Add a day for $111, or make it a week for $555.","d2","2 days in all, $222"],
         d2:["Stay longer? Add a day for $111, or make it a week for $555.","d3","3 days in all, $333"],
         d3:["Stay longer? Add a day for $111, or make it a week for $555.","d4","4 days in all, $444"],
-        d4:["Stay longer? A week is 5 mornings for $555."],
+        d4:["Stay longer? A week is 7 days with 5 mornings, $555."],
         "1":["Stay longer? Make it 2 weeks for $1,111, or 2 months in the belt program for $2,998.","2","2 weeks in all, $1,111"],
         "2":["Stay longer? Make it a month for $1,999, or 2 months in the belt program for $2,998.","m1","1 month, $1,999"],
         m1:["Stay longer? Add a month for $999: 2 months in the belt program, $2,998."]}[k];
@@ -523,7 +523,7 @@
     whole.addEventListener("click",function(){ payWith="full"; });
     pays.appendChild(send); if(twoWays) pays.appendChild(whole); f.appendChild(pays);
     var err=el("p","err"); err.setAttribute("role","alert"); f.appendChild(err);
-    f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed if you need one, while you are here. Your plan goes to Rick, then the secure checkout, where you add your arrival date. "+(twoWays?"$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. ":"A day, a week or two weeks is paid in full. ")+"Ill, or your flights change? Your dates can move, within a year of buying. All sales are final."));
+    f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed every night of your stay if you need one. Your plan goes to Rick, then the secure checkout, where you add your arrival date. "+(twoWays?"$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. ":"A day, a week or two weeks is paid in full. ")+"Ill, or your flights change? Your dates can move, within a year of buying. All sales are final."));
     var askA=el("a","mc-ask","A question about your plan? Ask it with your picks"); askA.href="#ask";
     askA.addEventListener("click",function(){
       var m=document.getElementById("askMsg"), t=document.getElementById("askTopic");

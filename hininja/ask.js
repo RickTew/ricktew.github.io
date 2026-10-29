@@ -119,7 +119,7 @@
     {id:"price", q:"How much does it cost?",
      alt:["how much is","how much are","how much does","how much do","how much for","how much will","how much is it","what currency","which currency","us dollars","australian dollars","in usd","what does it cost","what is the price","whats the price","the prices","prices","price","price list","how much money"],
      keys:"cost costs price prices pricing fee fees expensive cheap usd dollar dollars rate rates package packages afford budget",
-     a:"<p>Prices in US dollars. Small groups, usually around 6: near-private lessons at the price of a group class.</p><p>A day is $111, up to 4 days. A week is $555. Longer: 2 weeks $1,111, a month $1,999, and 2 months in the belt program $2,998.</p><p>Instructor is 1 year of training, and learning to teach, $6,666: reserve a spot. Moving here? Mastery is 2 years of training with Rick, $11,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one, while you are here.</p><p>A day, a week or two weeks is paid in full. On a month or longer, $555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p>",
+     a:"<p>Prices in US dollars. Small groups, usually around 6: near-private lessons at the price of a group class.</p><p>A day is $111, up to 4 days. A week is $555: 7 days and 7 nights from your arrival, with 5 mornings of class. Longer: 2 weeks $1,111, a month $1,999, and 2 months in the belt program $2,998.</p><p>Instructor is 1 year of training, and learning to teach, $6,666: reserve a spot. Moving here? Mastery is 2 years of training with Rick, $11,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed every night of your stay if you need one.</p><p>A day, a week or two weeks is paid in full. On a month or longer, $555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p>",
      next:STAYS},
 
     {id:"deposit", q:"Can I pay a deposit?",
@@ -129,9 +129,9 @@
      next:STAYS},
 
     {id:"one-week", q:"Can I come for a few days, or just one week?",
-     alt:["one week","1 week","for a week","a week only","just a week","only a week","single week","shorter stay","less than two weeks","a few days","few days","3 days","three days","something shorter","anything shorter","one day","1 day","a day","for a day","day pass","one more day","extra day","add a day","2 days","two days","4 days","four days"],
+     alt:["one week","1 week","for a week","a week only","just a week","only a week","single week","shorter stay","less than two weeks","a few days","few days","3 days","three days","something shorter","anything shorter","one day","1 day","a day","for a day","day pass","one more day","extra day","add a day","2 days","two days","4 days","four days","how long is a week","7 days","seven days","5 days","five days","7 nights","seven nights","how many nights","nights in a week"],
      keys:"shorter 1111 day days 222",
-     a:"<p>A day is $111, up to 4 days: book days. A week is $555: book one week. Add days to a week or two: $111 a day. A day, a week or two weeks is paid in full.</p>",
+     a:"<p>A day is $111, up to 4 days: book days. A week is $555: 7 days and 7 nights from your arrival, with 5 mornings of class. Book one week. Add days to a week or two: $111 a day. A day, a week or two weeks is paid in full.</p>",
      next:STAYS},
 
     /* Rick's click "One class, booked ahead", 29 Oct 2026 */
@@ -249,7 +249,7 @@
     {id:"dorm", q:"Where do I sleep?",
      alt:["where do i sleep","where do i stay","place to stay","accommodation","is housing included","a bed","dorm bed","the dorm","the dorms","hostel"],
      keys:"sleep sleeping stay staying bed beds dorm dorms housing accommodation accommodations hostel lodging nerdhostel bunk bunks room rooms",
-     a:"<p>You pay for the training. If you need a bed, there is basic housing nearby at no added cost: a shared men's or women's dorm. Meals included: 2 vouchers per stay for NinjaGym's Shake and Bake: a water, an ice cream shake and a grilled cheese toastie.</p><p>The dorms are at NerdHostel, a gamer hostel and co-working space across the street from NinjaGym.</p>",
+     a:"<p>You pay for the training. If you need a bed, there is basic housing nearby at no added cost, every night of your stay (a week is 7 nights): a shared men's or women's dorm. Meals included: 2 vouchers per stay for NinjaGym's Shake and Bake: a water, an ice cream shake and a grilled cheese toastie.</p><p>The dorms are at NerdHostel, a gamer hostel and co-working space across the street from NinjaGym.</p>",
      next:STAYS},
 
     {id:"bed-kept", q:"Is my bed kept if I leave for a while?",
@@ -369,7 +369,7 @@
     {id:"included", q:"What is included?",
      alt:["what is included","whats included","what do i get","included in the price","all inclusive","t shirt","tshirt"],
      keys:"included include includes inclusive tshirt shirt extras",
-     a:"<p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p><p>Free pick-up from Samui Airport. Also included: a month of the WinJitsu.com app and a Rick Tew ninja T-shirt. Pocket Dojo, the Home Study Program app.</p>",
+     a:"<p>Every stay: training and WinJitsu coaching, and a dorm bed every night of your stay if you need one.</p><p>Free pick-up from Samui Airport. Also included: a month of the WinJitsu.com app and a Rick Tew ninja T-shirt. Pocket Dojo, the Home Study Program app.</p>",
      next:STAYS}
   ];
 
