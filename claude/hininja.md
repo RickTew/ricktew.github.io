@@ -265,3 +265,11 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     ("not a packed room"). The page and menu ask the checkout for the SECOND price list with p=2 (e-keys); without p
     the first list sells, so NerdHostel's GNS page ($2,222) and old links keep their prices. Readers never asked what a
     week is (5 mornings, Monday to Friday); weekends are said four times and 8 of 11 liked "weekends free".
+  - **29 Oct 2026, evening: his live-page notes (LIVE 9337391).** Under the headline, who it is for: "For travelers who
+    want to learn real martial arts on vacation, in a small group. Beginners welcome." (his click); "Pick your tactics..."
+    moved under the November box. The Month's tag is "Best value" ("no that is orange not gold"). Who is THREE boxes that
+    rotate through similar cards (your level, who comes, your goal; `.who-slot`, every 5 s, holds under the mouse) plus
+    the two wide boxes; Real people is THREE photo boxes (two merged in each, photos alternated so no neighbours share a
+    place). "What it is not" is gone ("No sparring unless you ask" lives on in the chat, his 12 Oct words), and the
+    nerdy ninja line ("better for nerdhostel"). Kuno is a ninja (hood + blue band, 12e1719); Kata keeps the headband
+    picture on martialartcamp.com. Kata answers across martialartcamp.com, Kuno only on the course page and in his mail.
