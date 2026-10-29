@@ -12,6 +12,11 @@ Personal brand and portfolio site for Rick Tew. Everything he makes lives here: 
    companies, each linking out. Terms, Privacy and the checkout hops stay underneath until each moves.
 3. **The AI Ninja work (Your Dojo and R2 Managed Hosting) moves together to one new domain** ("Both to one new
    domain"); the mailbox, chat, Intake and search pages go with it. The domain is not named yet.
+4. **Rick, later on 29 Oct: "when we finish it and tewbedo will get aininja and it can just copy it completely and
+   pick up working on it so you can focus on hininja".** So: TEWBEDO takes the AI Ninja work (Rick picked TewBeDo.com
+   in TEWBEDO, not bought yet) and copies `/aininja/` and everything it uses; this chat focuses on `/hininja/` and
+   hands it to martialartcamp.com when it is finished (new times, the price settled, his shortening review). Once
+   TEWBEDO says its copy is live, this chat edits `/aininja/` only to forward it there.
 Until each step is live, everything below stands.
 
 **CURRENT STATE (2026-08-21): the site is TWO DOORS.** The front page asks one
