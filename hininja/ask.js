@@ -446,14 +446,21 @@
         for(var i=0;i<xs.length;i++) for(var j=0;j<ys.length;j++){
           var st=doc.elementsFromPoint(xs[i],ys[j]), el=null;
           for(var k=0;k<st.length;k++){ if(st[k]!==launch&&!launch.contains(st[k])){ el=st[k]; break; } }
-          /* the block the point is in, read whole (a section's padding sits right under its last
-             line), so a link or a line beside the point counts too; only a block as long as the
-             whole page is read for its own text alone */
+          /* the block the point is in (a section's padding sits right under its last line), so a
+             link or a line beside the point counts too */
           while(el&&el.parentElement&&el.parentElement!==doc.body&&(el.textContent||"").length<40&&(el.parentElement.textContent||"").length<=4000) el=el.parentElement;
           if(!el||seen.indexOf(el)>-1) continue;
           seen.push(el);
-          var w=(el.textContent||"").length<=4000 ? doc.createTreeWalker(el,4) : null, c=w?w.nextNode():el.firstChild;
-          for(;c;c=w?w.nextNode():c.nextSibling){
+          /* only the parts of the block that sit under the pill are read (29 Oct 2026: a heading inside the
+             long student-voices block was missed when only the block's own top-level text was read) */
+          var w=doc.createTreeWalker(el,5,{acceptNode:function(n){
+            if(n.nodeType===3) return 1;
+            var b=n.getBoundingClientRect();
+            if(!b.width&&!b.height) return 3;
+            /* a line's letters can reach past its element's box (a tall font, a tight line-height), so 16px of slack here */
+            return (b.right>r.left-16&&b.left<r.right+16&&b.bottom>r.top-16&&b.top<r.bottom+16)?3:2;
+          }}), c=w.nextNode();
+          for(;c;c=w.nextNode()){
             if(c.nodeType!==3||!/\S/.test(c.nodeValue)) continue;
             /* the answer inside a closed question is not on screen, though it still has a place */
             var pe=c.parentElement, cd=pe&&pe.closest?pe.closest("details:not([open])"):null;
