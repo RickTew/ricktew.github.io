@@ -270,16 +270,24 @@ function adLine(f: { adCampaign: string; adClick: string }) {
     (f.adClick ? f.adClick.replace(':', ' ') : 'no click id');
 }
 
+// The AI Ninja pages moved to tewbedo.com (TEWBEDO, 29 Oct 2026, Rick's pick "new
+// address, old keeps working"): a letter from there goes to its own mailbox and
+// leaves from the same no-reply name on tewbedo.com. Every other origin is unchanged.
+const TEWBEDO_ORIGINS = ['https://tewbedo.com', 'https://www.tewbedo.com'];
+function mailRoute(origin: string | null, to?: string, from?: string) {
+  if (!origin || !TEWBEDO_ORIGINS.includes(origin) || !to || !from) return { to, from, tewbedo: false };
+  return { to: 'aininja@tewbedo.com', from: from.replace(/@ricktew\.com(>?)\s*$/i, '@tewbedo.com$1'), tewbedo: true };
+}
+
 async function sendMail(f: {
   name: string; email: string; subjectLabel: string; message: string; sourceLabel: string; sku: string;
-  adCampaign: string; adClick: string; site: boolean; plan: boolean; held: boolean;
+  adCampaign: string; adClick: string; site: boolean; plan: boolean; held: boolean; origin: string | null;
 }) {
   const key = Deno.env.get('RESEND_API_KEY');
-  const to = Deno.env.get('CONTACT_TO');
-  const from = Deno.env.get('CONTACT_FROM');
+  const { to, from, tewbedo } = mailRoute(f.origin, Deno.env.get('CONTACT_TO'), Deno.env.get('CONTACT_FROM'));
   if (!key || !to || !from) throw new Error('mail_not_configured');
 
-  const via = f.sku ? 'the PromptPay card on ricktew.com' : f.site ? SITE_VIA : f.plan ? PLAN_VIA : 'the mailbox on ricktew.com/aininja/';
+  const via = f.sku ? 'the PromptPay card on ricktew.com' : f.site ? SITE_VIA : f.plan ? PLAN_VIA : tewbedo ? 'the mailbox on tewbedo.com/aininja/' : 'the mailbox on ricktew.com/aininja/';
   const row = (label: string, value: string) =>
     `<tr><td style="padding:4px 12px 4px 0;color:#666;vertical-align:top">${label}</td>` +
     `<td style="padding:4px 0">${value}</td></tr>`;
@@ -463,7 +471,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    await sendMail({ name, email, subjectLabel, message, sourceLabel, sku: paidSku, adCampaign, adClick, site: subjectKey === 'site', plan: subjectKey === 'plan', held });
+    await sendMail({ name, email, subjectLabel, message, sourceLabel, sku: paidSku, adCampaign, adClick, site: subjectKey === 'site', plan: subjectKey === 'plan', held, origin });
   } catch (e) {
     // The mail pipe being down must never reach the visitor. They get the
     // same confirmation and the message survives in the log. Note the SDK

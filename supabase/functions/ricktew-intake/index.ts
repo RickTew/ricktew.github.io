@@ -367,7 +367,7 @@ function missedQuestions(a: Answers): Q[] {
 function buildMarkdown(p: {
   intake: string; when: Date; name: string; email: string; business: string; key: KeyCheck;
   answers: Answers; files: (FileRef & { url: string | null })[]; missed: Q[]; folder: string; source: string;
-  purchase: Purchase | null; quick: boolean;
+  purchase: Purchase | null; quick: boolean; origin?: string | null;
 }) {
   const L: string[] = [];
   const keyLine = p.key.status === 'valid' ? `valid, invite "${p.key.label}"` : p.key.status === 'invalid' ? 'INVALID key on the link' : 'none, came in from the open page';
@@ -378,7 +378,7 @@ function buildMarkdown(p: {
   L.push(`- Received: ${bangkok} Bangkok time (${p.when.toISOString()})`);
   L.push(`- Intake id: ${p.intake}`);
   L.push(`- Invite key: ${keyLine}`);
-  L.push(`- Source: ricktew.com/aininja/start/, ${p.key.status === 'valid' ? 'invite link ' + p.key.label : 'the open page'}${p.source === 'the page' ? '' : ', ' + p.source}`);
+  L.push(`- Source: ${onTewbedo(p.origin ?? null) ? 'tewbedo.com' : 'ricktew.com'}/aininja/start/, ${p.key.status === 'valid' ? 'invite link ' + p.key.label : 'the open page'}${p.source === 'the page' ? '' : ', ' + p.source}`);
   L.push(`- Reply to: ${p.email}`);
   if (p.purchase) L.push(`- Bought in the Shop: ${purchaseLine(p.purchase)}`);
   L.push('');
@@ -472,11 +472,19 @@ function receiptFirstName(name: string) {
   return w;
 }
 
+// The Intake moved to tewbedo.com with the AI Ninja pages (TEWBEDO, 29 Oct 2026):
+// a sheet sent from there goes to aininja@tewbedo.com and leaves from the same
+// no-reply name on tewbedo.com (DKIM-signed there, so TEWBEDO's guard still counts it).
+const TEWBEDO_ORIGINS = ['https://tewbedo.com', 'https://www.tewbedo.com'];
+const onTewbedo = (origin: string | null) => !!origin && TEWBEDO_ORIGINS.includes(origin);
+const tewbedoFrom = (from: string) => from.replace(/@ricktew\.com(>?)\s*$/i, '@tewbedo.com$1');
+
 async function mailToNinja(p: {
   intake: string; name: string; email: string; business: string; key: KeyCheck; md: string;
-  files: (FileRef & { url: string | null })[]; purchase: Purchase | null; held: boolean;
+  files: (FileRef & { url: string | null })[]; purchase: Purchase | null; held: boolean; origin: string | null;
 }) {
-  const to = Deno.env.get('CONTACT_TO'); const from = Deno.env.get('CONTACT_FROM');
+  let to = Deno.env.get('CONTACT_TO'); let from = Deno.env.get('CONTACT_FROM');
+  if (to && from && onTewbedo(p.origin)) { to = 'aininja@tewbedo.com'; from = tewbedoFrom(from); }
   if (!to || !from) throw new Error('mail_not_configured');
   const who = subjectName(p.name) || 'no name';
   const biz = subjectName(p.business);
@@ -484,7 +492,7 @@ async function mailToNinja(p: {
     `<li><a href="${esc(f.url!)}">${esc(CATALOG.MEDIA[f.kind].label)}: ${esc(f.name)}</a> (${fmtBytes(f.size)})</li>`).join('');
   const html =
     `<div style="font-family:system-ui,sans-serif;font-size:14px">` +
-    `<p>New client intake from ricktew.com/aininja/start/. The whole sheet is below as Markdown; the same text is stored as intake.md beside the recordings.</p>` +
+    `<p>New client intake from ${onTewbedo(p.origin) ? 'tewbedo.com' : 'ricktew.com'}/aininja/start/. The whole sheet is below as Markdown; the same text is stored as intake.md beside the recordings.</p>` +
     (p.held ? `<p><b>No receipt was sent to the client:</b> more than ${SUBMITS.receiptDay} sheets came in today. Write to them by hand if this one is real.</p>` : '') +
     (links ? `<p><b>Recordings and files</b> (links good for ${LINK_DAYS} days):</p><ul>${links}</ul>` : `<p><b>No recordings or files were sent.</b></p>`) +
     `<hr style="border:none;border-top:1px solid #ddd;margin:16px 0">` +
@@ -509,11 +517,13 @@ async function mailToNinja(p: {
 
 async function mailReceipt(p: {
   name: string; email: string; answered: number; files: FileRef[]; missed: Q[];
-  purchase: Purchase | null; quick: boolean;
+  purchase: Purchase | null; quick: boolean; origin: string | null;
 }) {
-  const from = Deno.env.get('CONTACT_FROM');
-  if (!from) throw new Error('mail_not_configured');
-  const replyTo = Deno.env.get('INTAKE_REPLY_TO') || '';
+  const envFrom = Deno.env.get('CONTACT_FROM');
+  if (!envFrom) throw new Error('mail_not_configured');
+  const from = onTewbedo(p.origin) ? tewbedoFrom(envFrom) : envFrom;
+  const envReplyTo = Deno.env.get('INTAKE_REPLY_TO') || '';
+  const replyTo = onTewbedo(p.origin) && envReplyTo ? envReplyTo.replace(/aininja@ricktew\.com/i, 'aininja@tewbedo.com') : envReplyTo;
   const first = receiptFirstName(p.name);
   const rec = p.files.filter(f => f.kind !== 'file').length, docs = p.files.length - rec;
   const landed = [
@@ -534,7 +544,7 @@ async function mailReceipt(p: {
     (p.purchase ? (receiptPurchaseLine(p.purchase) ? `It is filed with your order: ${receiptPurchaseLine(p.purchase)}.\n\n` : `It is filed with your order.\n\n`) : '') +
     (missedText + noRec ? missedText + noRec + `\n\n` : '') +
     `What happens next: Rick reads the sheet and the recordings, then writes back with the first plan and the questions he still has.\n\n` +
-    `AI Ninja\nricktew.com/aininja\n\n(This receipt was written from your own sheet, nothing more. Rick picks it up from there.)`;
+    `AI Ninja\n${onTewbedo(p.origin) ? 'tewbedo.com' : 'ricktew.com'}/aininja\n\n(This receipt was written from your own sheet, nothing more. Rick picks it up from there.)`;
   const html =
     `<div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.55;color:#101418">` +
     `<p>Hi ${esc(first || 'there')},</p>` +
@@ -545,7 +555,7 @@ async function mailReceipt(p: {
       : `<p>You answered every essential question. Thank you for the care.</p>`) +
     ((rec || p.quick) ? '' : `<p>One more thing that helps more than anything: a two-minute voice note walking me through a normal day. Reply to this mail with it attached, or go back to the page and record it there.</p>`) +
     `<p>What happens next: Rick reads the sheet and the recordings, then writes back with the first plan and the questions he still has.</p>` +
-    `<p>AI Ninja<br>ricktew.com/aininja</p>` +
+    `<p>AI Ninja<br>${onTewbedo(p.origin) ? 'tewbedo.com' : 'ricktew.com'}/aininja</p>` +
     `<p style="color:#69707a;font-size:13px">(This receipt was written from your own sheet, nothing more. Rick picks it up from there.)</p></div>`;
   await resend({
     from, to: [oneLine(p.email, MAX.email)],
@@ -664,7 +674,7 @@ Deno.serve(async (req) => {
     linked.push({ ...f, url });
   }
 
-  const md = buildMarkdown({ intake, when, name, email, business, key, answers, files: linked, missed, folder: dir, source, purchase, quick });
+  const md = buildMarkdown({ intake, when, name, email, business, key, answers, files: linked, missed, folder: dir, source, purchase, quick, origin });
   const record = {
     id: intake, created_at: when.toISOString(), name, email, business,
     key_status: key.status, key_label: key.label || null,
@@ -684,7 +694,7 @@ Deno.serve(async (req) => {
     logDrop('row_failed', { ...seen, error: e instanceof Error ? e.message : String(e) });
   }
   try {
-    await mailToNinja({ intake, name, email, business, key, md, files: linked, purchase, held });
+    await mailToNinja({ intake, name, email, business, key, md, files: linked, purchase, held, origin });
   } catch (e) {
     logDrop('unsent_ninja', { ...seen, error: e instanceof Error ? e.message : String(e), md });
   }
@@ -693,7 +703,7 @@ Deno.serve(async (req) => {
   } else {
     try {
       const answered = Object.keys(answers).filter(k => !k.endsWith('_more') && !['name', 'email'].includes(k)).length;
-      await mailReceipt({ name, email, answered, files, missed, purchase, quick });
+      await mailReceipt({ name, email, answered, files, missed, purchase, quick, origin });
     } catch (e) {
       logDrop('unsent_receipt', { ...seen, error: e instanceof Error ? e.message : String(e) });
     }
