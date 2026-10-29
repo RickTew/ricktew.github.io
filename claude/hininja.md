@@ -269,6 +269,15 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     should choose here if they need or do not need a bed"), and (5) "Your arrival date, or your best guess", required,
     from 15 January 2027 ("include desired arrival date or estimated arival date"). Both ride in the plan mail ("Arrival,
     desired or estimated:", "Bed:"); the checkout is unchanged and still asks its own arrival date.
+  - **29 Oct 2026, night: the $555 is a real deposit, from 2 weeks up (his click "2 weeks and up").** His words: "they will
+    want to only pay a deposit ... to hold their spot ... it is a real deposit to both secure their spot and only returned
+    after they depart if they do not break anything, then they must pay the full amount at least 2 weeks prior to arrival
+    or pay all now for a discount (waiving the deposit to make it easy). Then maybe a flat $555 deposit to book and
+    reserve?" So: a Day and a Week are paid in full; from 2 weeks up (2 weeks, 2 weeks plus days, every month) a $555 /
+    ฿17,499 deposit holds the spot, kept if they cancel, refunded after they leave if nothing is broken; the FULL price is
+    due 2 weeks before arrival; or pay in full now, $222 / ฿6,999 off, no deposit (2 weeks $889). Was: a non-refundable
+    $555 down payment counted toward the price, on a month or longer only. Checkout Digital Dojo 3e04c11f; TEWBEDO bills
+    the full price and refunds the deposit after departure. Mastery's "$2,222 down reserves your spot" is untouched.
   - **29 Oct 2026, late: the prices (his clicks, LIVE 4683ceb + Digital Dojo eedba7c5).** "Easy door" for the short
     stays, his testers and upgrade paths: Day $111 / ฿3,499 (up to 4; +$111 a day on a week or two), Week $555 /
     ฿17,499, 2 weeks $1,111 / ฿34,999, all paid in full; 3 weeks dropped; Month $1,999 / ฿62,999, each next month $999

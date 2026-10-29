@@ -84,12 +84,12 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (await page.inputValue('#planName') !== 'Test Person') bad.push(label + ' name lost');
   await page.fill('#planEmail', 'test.person@gmail.com'); await page.fill('#planArrive', '2027-02-01'); await page.click('[data-bed="yes"]');
   // two ways to pay (Rick's clicks, 28 Oct 2026 night): $555 down, or the whole stay now, $222 off
-  if (await menu.locator('button[data-pay="deposit"]').textContent() !== 'Hold my spot: $555 down') bad.push(label + ' deposit text');
+  if (await menu.locator('button[data-pay="deposit"]').textContent() !== 'Hold my spot: $555 deposit') bad.push(label + ' deposit text');
   if (await menu.locator('button[data-pay="full"]').textContent() !== 'Pay in full now: $2,776') bad.push(label + ' full text');
   await page.screenshot({ path: OUT + label + '-5-book.png' });
   await menu.locator('button[data-pay="deposit"]').click();
   await page.waitForTimeout(1500);
-  if (posted && !/\nPaying: \$555 down to hold the spot, the rest 2 weeks before arrival\n/.test(posted.message)) bad.push(label + ' deposit line ' + JSON.stringify(posted.message));
+  if (posted && !/\nPaying: \$555 deposit to hold the spot \(refunded after departure if nothing is broken\), the full \$[0-9,]+ 2 weeks before arrival\n/.test(posted.message)) bad.push(label + ' deposit line ' + JSON.stringify(posted.message));
   if (!posted || posted.subject !== 'plan' || !/Stay: 2 months, the belt program, \$2,998 \(yellow belt first\)/.test(posted.message) || !/Week 3: Front Kicks \(Kicks\)/.test(posted.message) || /WinJitsu coaching add-on/.test(posted.message) || posted.source !== 'gads')
     bad.push(label + ' posted ' + JSON.stringify(posted));
   if (!checkout || !/buy\?sku=HIN-GNS-2W&src=gns-gads-2233-gCj0KabcXYZ&months=2&p=2&pay=deposit&cur=thb$/.test(checkout)) bad.push(label + ' checkout ' + checkout);
@@ -127,7 +127,15 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (!/Make it 2 weeks for \$1,111/.test(await menu.locator('.upsell').textContent())) bad.push(label + ' upsell for 1 week');
   if (await menu.locator('button[data-pay="full"]').count()) bad.push(label + ' a pay-in-full button on the 1 week');
   if (await menu.locator('.mc-pay button').textContent() !== 'Book my week: $555') bad.push(label + ' 1 week button text');
-  if (/\$555 down/.test(await menu.locator('.mc-small').textContent())) bad.push(label + ' deposit line on the 1 week');
+  if (/\$555 deposit/.test(await menu.locator('.mc-small').textContent())) bad.push(label + ' deposit line on the 1 week');
+  // 2 weeks takes the $555 deposit or $889 in full (Rick's click "2 weeks and up", 29 Oct 2026 night)
+  await menu.locator('.upsell button', { hasText: '2 weeks in all, $1,111' }).click();
+  if (await menu.locator('button[data-pay="deposit"]').textContent() !== 'Hold my spot: $555 deposit') bad.push(label + ' 2 weeks deposit button');
+  if (await menu.locator('button[data-pay="full"]').textContent() !== 'Pay in full now: $889') bad.push(label + ' 2 weeks full button');
+  if (!/refunded after you leave if nothing is broken/.test(await menu.locator('.mc-small').textContent())) bad.push(label + ' 2 weeks deposit line');
+  await page.locator('#price a[data-stay="1"]').click();
+  await page.waitForTimeout(700);
+  if (await menu.locator('.mc-pay button').textContent() !== 'Book my week: $555') bad.push(label + ' back to 1 week');
   await page.fill('#planName', 'Week Person'); await page.fill('#planEmail', 'week.person@gmail.com'); await page.fill('#planArrive', '2027-02-01'); await page.click('[data-bed="yes"]');
   await menu.locator('.mc-pay button').click();
   await page.waitForTimeout(1500);
@@ -244,7 +252,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
       await pp.locator('#menu').screenshot({ path: OUT + label + '-8-promo-form.png' });
       await pp.locator('#menu button[data-pay="deposit"]').click();
       await pp.waitForTimeout(1500);
-      if (!pposted || !/Stay: 2 months, the belt program, \$2,998 \(yellow belt first\)\nPaying: \$555 down to hold the spot, the rest 2 weeks before arrival\nFriend, FREE \(booked in November\): Pat Friend, same dates, same stay\n/.test(pposted.message)) bad.push(label + ' promo posted ' + JSON.stringify(pposted && pposted.message));
+      if (!pposted || !/Stay: 2 months, the belt program, \$2,998 \(yellow belt first\)\nPaying: \$555 deposit to hold the spot \(refunded after departure if nothing is broken\), the full \$[0-9,]+ 2 weeks before arrival\nFriend, FREE \(booked in November\): Pat Friend, same dates, same stay\n/.test(pposted.message)) bad.push(label + ' promo posted ' + JSON.stringify(pposted && pposted.message));
     }
     await pctx.close();
   }

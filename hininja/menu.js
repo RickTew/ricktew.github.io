@@ -127,22 +127,24 @@
      The ladder is Day, Week, Month, Year, Mastery (Rick, 29 Oct 2026: "a simple day, week, month, year strategy").
      Its prices are the SECOND price list, his clicks of 29 Oct late ("Easy door", "Easy door + say why"; 3 weeks
      dropped): every Buy asks the checkout for it with p=2 (Digital Dojo stayKeyFor), so NerdHostel's GNS page and old
-     links keep theirs. A day $111 (up to 4; a 5th costs the week), a week $555, 2 weeks $1,111, all paid in full; a
-     month $1,999 and $999 each next one, $555 down or in full $222 off; a week or two plus 1 to 4 days, $111 a day. */
+     links keep theirs. A day $111 (up to 4; a 5th costs the week), a week $555 paid in full; 2 weeks $1,111 and a
+     month $1,999 and $999 each next one, a $555 deposit or in full $222 off; a week or two plus 1 to 4 days, $111 a day. */
   var STAYS=[
     {key:"d1", cap:1, name:"1 day", price:111, book:"Book my day", day:1},
     {key:"d2", cap:1, name:"2 days", price:222, book:"Book my 2 days", day:2},
     {key:"d3", cap:1, name:"3 days", price:333, book:"Book my 3 days", day:3},
     {key:"d4", cap:1, name:"4 days", price:444, book:"Book my 4 days", day:4},
     {key:"1", cap:1, name:"1 week", price:555, book:"Book my week"},
-    {key:"2", cap:2, name:"2 weeks", price:1111, book:"Book my two weeks"},
+    {key:"2", cap:2, name:"2 weeks", price:1111, full:889, book:"Book my two weeks"},
     {key:"m1", cap:4, name:"1 month", price:1999, full:1777, book:"Book my month"},
     {key:"m2", cap:8, name:"2 months, the belt program", price:2998, full:2776, book:"Book my 2 months", belt:true},
     {key:"m3", cap:12, name:"3 months", price:3997, full:3775, book:"Book my 3 months"}];
   [1,2].forEach(function(w){ for(var d=1; d<=4; d++) STAYS.push({key:"w"+w+"d"+d, cap:w, base:String(w), extra:d,
-    name:w+(w>1?" weeks":" week")+" and "+d+(d>1?" days":" day"), price:(w===1?555:1111)+111*d, book:"Book my stay"}); });
+    name:w+(w>1?" weeks":" week")+" and "+d+(d>1?" days":" day"), price:(w===1?555:1111)+111*d, full:w===2?889+111*d:undefined, book:"Book my stay"}); });
   /* two ways to pay (Rick's clicks, 28 Oct 2026 night): $555 down holds the spot, the rest 2 weeks before arrival;
-     or the whole stay now, $222 off (full). The checkout takes ?pay=deposit|full (Digital Dojo 399716e9). */
+     or the whole stay now, $222 off (full). The checkout takes ?pay=deposit|full (Digital Dojo 399716e9).
+     Since 29 Oct 2026 night (his click "2 weeks and up", Digital Dojo 3e04c11f): from 2 weeks up the $555 is a real deposit,
+     kept on a cancel, refunded after departure if nothing is broken, the FULL price due 2 weeks before arrival. */
   var DEPOSIT=555;
   function find(k){ for(var i=0;i<STAYS.length;i++) if(STAYS[i].key===k) return STAYS[i]; return null; }
   function stay(){ return find(plan.stay)||find("2"); } /* else the 2 weeks */
@@ -484,7 +486,7 @@
 
   function planText(friend,pay){
     var lines=["My plan, from the Ninja Menu on the HI Ninja page.","","Stay: "+stay().name+", "+money(stay().price)+(stay().belt?" (yellow belt first)":"")];
-    if(pay==="deposit") lines.push("Paying: "+money(DEPOSIT)+" down to hold the spot, the rest 2 weeks before arrival");
+    if(pay==="deposit") lines.push("Paying: "+money(DEPOSIT)+" deposit to hold the spot (refunded after departure if nothing is broken), the full "+money(stay().price)+" 2 weeks before arrival");
     if(pay==="full") lines.push("Paying: in full now, "+money(stay().full));
     if(!pay) lines.push("Paying: in full, "+money(stay().price));
     if(friend) lines.push("Friend, FREE (booked in November): "+friend+", same dates, same stay");
@@ -539,13 +541,13 @@
     /* a stay with no pay-now price (a day, the 1 week) has one button, paid in full: no ?pay rides to the checkout */
     var twoWays=!!stay().full, payWith=twoWays?"deposit":"";
     var pays=el("div","mc-pay");
-    var send=el("button","btn btn-red",twoWays?"Hold my spot: "+money(DEPOSIT)+" down":stay().book+": "+money(stay().price)); send.type="submit"; send.setAttribute("data-pay",twoWays?"deposit":"none");
+    var send=el("button","btn btn-red",twoWays?"Hold my spot: "+money(DEPOSIT)+" deposit":stay().book+": "+money(stay().price)); send.type="submit"; send.setAttribute("data-pay",twoWays?"deposit":"none");
     var whole=el("button","btn btn-quiet",twoWays?"Pay in full now: "+money(stay().full):""); whole.type="submit"; whole.setAttribute("data-pay","full");
     send.addEventListener("click",function(){ payWith=twoWays?"deposit":""; });
     whole.addEventListener("click",function(){ payWith="full"; });
     pays.appendChild(send); if(twoWays) pays.appendChild(whole); f.appendChild(pays);
     var err=el("p","err"); err.setAttribute("role","alert"); f.appendChild(err);
-    f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed every night of your stay if you need one. Your plan goes to Rick, then the secure checkout, where you add your arrival date. "+(twoWays?"$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. ":"A day, a week or two weeks is paid in full. ")+"Ill, or your flights change? Your dates can move, within a year of buying. All sales are final."));
+    f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed every night of your stay if you need one. Your plan goes to Rick, then the secure checkout, where you add your arrival date. "+(twoWays?"A $555 deposit holds your spot: it is kept if you cancel, and refunded after you leave if nothing is broken. The full price is due 2 weeks before you arrive. Or pay in full now: save $222, no deposit. ":"A day or a week is paid in full. ")+"Ill, or your flights change? Your dates can move, within a year of buying. All sales are final."));
     var askA=el("a","mc-ask","A question about your plan? Ask it with your picks"); askA.href="#ask";
     askA.addEventListener("click",function(){
       var m=document.getElementById("askMsg"), t=document.getElementById("askTopic");
