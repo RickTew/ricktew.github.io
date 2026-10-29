@@ -20,4 +20,7 @@ exclude:
   # The working brief for agents in this repo (16 Oct 2026, the Dojo's Poli
   # pass found both served, raw and as .html). Not pages.
   - CLAUDE.md
+  # CLAUDE.md's topic files (29 Oct 2026, when CLAUDE.md passed the 150k limit
+  # for instruction files). Not pages.
+  - claude
   - AGENTS.md
