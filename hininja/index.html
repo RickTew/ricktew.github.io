@@ -29,7 +29,7 @@
      right there already"); the menu is not called a quiz ("it is not a quiz"). No specifics (place, length, time, price) in videos, images or ads. -->
 
 <title>Martial Arts Ninja Course by Rick Tew | Ninjitsu</title>
-<meta name="description" content="A relaxed ninja martial arts course on Koh Samui with Rick Tew: a morning class, the island, nerdy ninja talk and WinJitsu coaching. Stay 2 weeks, 3 weeks, or 2 months in the belt program.">
+<meta name="description" content="A relaxed ninja martial arts course on Koh Samui with Rick Tew: a morning class, the island, nerdy ninja talk and WinJitsu coaching. Stay a day, a week, a month or a year.">
 <link rel="canonical" href="https://ricktew.com/hininja/">
 <meta property="og:title" content="Martial Arts Ninja Course by Rick Tew">
 <meta property="og:description" content="A relaxed ninja martial arts course on Koh Samui with Rick Tew: a morning class, the island, nerdy ninja talk and WinJitsu coaching.">
@@ -322,6 +322,11 @@ figcaption a{font-weight:700;white-space:nowrap}
 .card .cert{margin:0 0 18px}
 .card .cert img{display:block;width:100%;height:auto;border-radius:8px;box-shadow:0 8px 20px rgba(16,20,24,.14)}
 .card .cert figcaption{margin-top:8px;font-size:14.5px;font-weight:700;color:var(--ink2)}
+/* the ladder's colours, Day white to Mastery blue (Rick, 29 Oct 2026: "Day = white, like it is now, week yellow, etc");
+   the label is a square tag, not a pill: only things you press are round */
+.card.t-day{border-color:#c9d0d8} .card.t-week{border-color:var(--yellow)} .card.t-month{border-color:var(--orange)} .card.t-year{border-color:var(--green)} .card.t-vip{border-color:var(--blue)}
+.card .tag{align-self:flex-start;margin-bottom:10px;padding:3px 8px;border-radius:4px;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.card.t-year .tag{background:var(--green)} .card.t-vip .tag{background:var(--blue);color:#fff}
 .card .btn{margin-top:auto;width:100%;padding-left:12px;padding-right:12px;white-space:nowrap}
 .price-grid{margin-top:26px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:start}
 @media (max-width:860px){ .price-grid{grid-template-columns:1fr} }
@@ -952,8 +957,8 @@ footer a:hover{color:var(--sea)}
       <div><span>The mind</span><p>The RTMS book, stretching, and WinJitsu coaching</p></div>
     </div>
     <div class="belt-buy">
-      <p><b>$3,997 for 2 months.</b> Training and WinJitsu coaching. A dorm bed if you need one. Your Ninja Menu picks join the morning seminar too.</p>
-      <a class="btn btn-red" href="#menu" data-stay="8">Book 2 months</a>
+      <p><b>$4,444 for 2 months.</b> Training and WinJitsu coaching. A dorm bed if you need one, while you are here. Your Ninja Menu picks join the morning seminar too.</p>
+      <a class="btn btn-red" href="#menu" data-stay="m2">Book 2 months</a>
     </div>
   </div>
 </section>
@@ -1037,7 +1042,7 @@ footer a:hover{color:var(--sea)}
              hides itself after 30 November with the friend promo -->
         <div class="m-save" data-promo hidden>Book in November and save $2,000: $13,988</div>
       </div>
-      <p>2 years of training with Rick, yellow belt to red, at your own pace. Mastery includes the same as every stay: training, WinJitsu coaching, and a dorm bed if you need one. $2,222 down reserves your spot, and spots are held in the order the deposits arrive. Then pay the rest all at once, or in five parts, one before each belt.</p>
+      <p>2 years of training with Rick, yellow belt to red, at your own pace. Mastery includes the same as every stay: training, WinJitsu coaching, and a dorm bed if you need one, while you are here. $2,222 down reserves your spot, and spots are held in the order the deposits arrive. Then pay the rest all at once, or in five parts, one before each belt.</p>
       <!-- Rick's picks, 28 Oct 2026: "Next group date by Reserve" and "First come, first served" -->
       <div class="m-act">
         <a class="btn btn-red" href="#ask" data-topic="mastery" data-ask="I want to reserve a Mastery spot for 2027 with $2,222 down (Mastery: 2 years, $15,988).">Reserve my spot</a>
@@ -1183,41 +1188,45 @@ footer a:hover{color:var(--sea)}
          Rick's click "Smallest first everywhere", 28 Oct 2026 night: 7 of 11 readers stumbled at $15,988 first (the two
          who nearly quit read on phones, where the cards stack); the 2 weeks card got its line the same click. -->
     <div class="stay-cards">
-      <!-- the 1 week, sold at the checkout since 29 Oct 2026 (Rick's click "Sell it, pay in full only"; 3 of 11 readers
-           would book a week first; Digital Dojo 3315ce05, ?weeks=1, no deposit) -->
-      <div class="card">
-        <div class="per">1 week</div>
-        <div class="amt">$1,111</div>
-        <p class="all">Half the price. 5 mornings of the Sensei Seminar, and a dorm bed if you need one.</p>
+      <!-- The ladder since 29 Oct 2026 (Rick: "a simple day, week, month, year strategy"; his clicks "4 + Mastery as VIP",
+           "Day in full, Month like 2 weeks", "2 months = $4,444", "A bed while you're here"): Day, Week, Month, Year,
+           Mastery, white to blue. The checkout sells ?days=1-4 and ?months=1-3 (Digital Dojo 42bf1b95); the 1 week, 2 and
+           3 weeks are as before. Was: 1 week, 2 weeks, 2 months $3,997, Instructor, Mastery. -->
+      <div class="card t-day">
+        <div class="per">Day</div>
+        <div class="amt">$222</div>
+        <p class="all">A morning of the Sensei Seminar, and a dorm bed if you need one, while you are here. Up to 4 days, $222 a day.</p>
         <p class="dep">Paid in full at checkout.</p>
+        <a class="btn btn-red" href="#menu" data-stay="d1">Pick and book</a>
+      </div>
+      <div class="card t-week">
+        <div class="per">Week</div>
+        <div class="amt">$1,111</div>
+        <p class="all">5 mornings of the Sensei Seminar, and a dorm bed if you need one, while you are here. 2 weeks $2,222, with free airport pick-up. Each extra week $1,000.</p>
+        <p class="dep">One week is paid in full. 2 weeks: $555 down holds your spot, or pay in full now: $2,000.</p>
         <a class="btn btn-red" href="#menu" data-stay="1">Pick and book</a>
       </div>
-      <div class="card">
-        <div class="per">2 weeks</div>
-        <div class="amt">$2,222</div>
-        <p class="all">The introduction. 10 mornings of the Sensei Seminar, free airport pick-up, and a dorm bed if you need one.</p>
-        <p class="dep">$555 down holds your spot. Or pay in full now: $2,000.</p>
-        <a class="btn btn-red" href="#menu" data-stay="2">Pick and book</a>
+      <div class="card t-month">
+        <div class="per">Month</div>
+        <div class="amt">$3,333</div>
+        <p class="all">A month of the Sensei Seminar, and a dorm bed if you need one, while you are here. Each extra month $1,111: 2 months in <a href="#belts">the belt program</a>, $4,444.</p>
+        <p class="dep">$555 down holds your spot. Or pay in full now: $3,111.</p>
+        <a class="btn btn-red" href="#menu" data-stay="m1">Pick and book</a>
       </div>
-      <div class="card">
-        <div class="per">2 months</div>
-        <div class="amt">$3,997</div>
-        <p class="all">Yellow belt first, at your own pace. <a href="#belts">The belt program</a></p>
-        <p class="dep">$555 down holds your spot. Or pay in full now: $3,775.</p>
-        <a class="btn btn-red" href="#menu" data-stay="8">Pick and book</a>
-      </div>
-      <div class="card">
-        <div class="per">Instructor</div>
+      <div class="card t-year">
+        <div class="tag">Premium</div>
+        <div class="per">Year</div>
         <div class="amt">$8,994</div>
         <!-- Rick's click "all three" on the line, 28 Oct 2026 -->
-        <p class="all">1 year. Train toward your belts, yellow to red, and train to teach: learn to lead practice as a Guide.</p>
+        <p class="all">Instructor: train toward your belts, yellow to red, and train to teach: learn to lead practice as a Guide.</p>
         <!-- the new Instructor certificate, drawn from Rick's old Level Two one (his 320 in the Canva gallery: "we can
              make a new one for instructor training program"; his click "Under the Instructor price card", 28 Oct 2026).
              No name, date or signature on it. Source: Extreme Pro, Studio/RickTew/takes/instructor-certificate/. -->
         <figure class="cert"><img src="/hininja/img/rtms/instructor-certificate.webp" alt="The Rick Tew's Martial Science Instructor certificate: your name, all five belts, yellow to red, certified to teach, Sensei Rick Tew" width="640" height="476" loading="lazy"><figcaption>Earn your Instructor certificate.</figcaption></figure>
         <a class="btn btn-red" href="#ask" data-topic="mastery" data-ask="I want to reserve an Instructor spot: 1 year of training, and learning to teach ($8,994).">Reserve a spot</a>
       </div>
-      <div class="card">
+      <div class="card t-vip">
+        <div class="tag">VIP</div>
         <div class="per">Mastery</div>
         <div class="amt">$15,988</div>
         <p class="all">2 years of training with Rick, yellow belt to red, at your own pace. <a href="#mastery">Why Mastery</a></p>
@@ -1233,14 +1242,14 @@ footer a:hover{color:var(--sea)}
       <div class="every">
         <h3>Every stay</h3>
         <ul class="ticks">
-          <li>Training and WinJitsu coaching, and a dorm bed if you need one.</li>
+          <li>Training and WinJitsu coaching, and a dorm bed if you need one, while you are here.</li>
           <li>A month of the WinJitsu.com app and a Rick Tew ninja T-shirt.</li>
           <li>Pocket Dojo, the Home Study Program app.</li>
         </ul>
         <dl class="terms">
           <div><dt>Dates</dt><dd>Arrive any day from 15 January 2027. Next group: 22 January 2027.</dd></div>
-          <div><dt>3 weeks</dt><dd>Add a week to the two weeks for $1,000: $3,222.</dd></div>
-          <div><dt>Checkout</dt><dd>You add your arrival date. One week is paid in full. $555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. Ill, or your flights change? Your dates can move, within a year of buying. All sales are final. Payments go to Rick Tew Co., Ltd., our company on Koh Samui, Thailand.</dd></div>
+          <div><dt>Longer</dt><dd>Each extra week $1,000: 3 weeks $3,222. Each extra month $1,111: 2 months $4,444, 3 months $5,555.</dd></div>
+          <div><dt>Checkout</dt><dd>You add your arrival date. A day or one week is paid in full. $555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. Ill, or your flights change? Your dates can move, within a year of buying. All sales are final. Payments go to Rick Tew Co., Ltd., our company on Koh Samui, Thailand.</dd></div>
         </dl>
       </div>
       <div class="first">
@@ -1339,11 +1348,14 @@ footer a:hover{color:var(--sea)}
       <details><summary>Can a parent and a 16 or 17-year-old come together?</summary><p>Yes. Come together: train side by side, and book a family room at NerdHostel or your own place. Out of class, a teen is the parent's to look after.</p></details>
       <details><summary>Are there other women, and how much contact is there?</summary><p>Women train in most groups. Ask to pair with a woman, and you can say stop at any time.</p></details>
       <details><summary>When can I start?</summary><p>Any day from 15 January 2027: classes run all year, Monday to Friday. The next group starts 22 January 2027. At checkout you add your arrival date.</p></details>
-      <details><summary>Can I come for one week, or stay longer?</summary><p>One week is half the price, $1,111: <a href="#menu" data-stay="1">book one week</a>. Longer: 3 weeks is $3,222, and 2 months in <a href="#belts">the belt program</a> is $3,997. Instructor is 1 year of training, and learning to teach, $8,994: <a href="#ask" data-topic="mastery" data-ask="I want to reserve an Instructor spot: 1 year of training, and learning to teach ($8,994).">reserve a spot</a>. Moving here? <a href="#mastery">Mastery</a> is 2 years of training with Rick, $15,988.</p></details>
+      <details><summary>Can I come for a few days, or stay longer?</summary><p>A day is $222, up to 4 days: <a href="#menu" data-stay="d1">book days</a>. A week is $1,111: <a href="#menu" data-stay="1">book one week</a>. Longer: 2 weeks $2,222, 3 weeks $3,222, a month $3,333, and 2 months in <a href="#belts">the belt program</a> $4,444. Instructor is 1 year of training, and learning to teach, $8,994: <a href="#ask" data-topic="mastery" data-ask="I want to reserve an Instructor spot: 1 year of training, and learning to teach ($8,994).">reserve a spot</a>. Moving here? <a href="#mastery">Mastery</a> is 2 years of training with Rick, $15,988.</p></details>
       <!-- Rick's click "One class, booked ahead", 29 Oct 2026 (Jonas and Sofie, already on Samui). -->
       <details><summary>Already on Samui? Can I try one class first?</summary><p>Yes: one class, booked ahead. <a href="#ask" data-topic="booking" data-ask="I am already on Samui and want to try one class first.">Book one class</a> in the question form.</p></details>
       <details><summary>How much time with Rick do I get in Mastery?</summary><p>200 hours a year, guaranteed: private and small-group sessions, booked when his time is free. In between, you practice what he showed you, and you can join every group class.</p></details>
       <details><summary>Are meals included?</summary><p>Included: 2 vouchers per stay for NinjaGym's Shake and Bake: a water, an ice cream shake and a grilled cheese toastie.</p></details>
+      <!-- Rick's click "A bed while you're here", 29 Oct 2026: "once they leave (then that bed becomes open and they can not just
+           show up again for a bed ... we are not holding beds as it is a free offer to guests)" -->
+      <details><summary>Is my bed kept if I leave for a while?</summary><p>No. Beds are not held: when you leave, your bed goes to the next guest. Coming back? Ask first and we tell you what is free.</p></details>
       <details><summary>Already have a place, or want your own room?</summary><p>That is fine. The price is the same: you pay for the training.</p></details>
       <!-- the last line: Rick's click "Couples can too", 29 Oct 2026 -->
       <details><summary>Is there a private room, or a room for two?</summary><p>No private rooms. The stay is a shared men's or women's dorm. Want your own room? Book one nearby; the price stays the same. A couple or a family can book a whole dorm room at NerdHostel, when it has room.</p></details>

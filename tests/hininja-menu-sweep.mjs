@@ -1,5 +1,5 @@
 /* The Ninja Menu on /hininja/ (25 Oct 2026): desktop and phone, the eight areas, the belt dots,
-   filling the weeks and the cap, the three stays (28 Oct 2026: the month left, the belt is $3,997) and the upsell beside Book, the plan mail (stubbed:
+   filling the weeks and the cap, the three stays (28 Oct 2026: the month left, the belt is $4,444) and the upsell beside Book, the plan mail (stubbed:
    nothing is sent) and the checkout hand-off through the real /hininja/buy/ relay (the checkout
    function is stubbed: no Stripe session), the belt program's button, an ad click's src, the popular
    quick picks (one fills a week, 27 Oct 2026), the November friend promo on a set clock (shown with
@@ -48,7 +48,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await noBook('after 4 picks');
   await menu.locator('.pick[aria-pressed="false"]').first().click(); // the 5th
   if (await menu.locator('h2').textContent() !== 'Your Ninja Week is ready') bad.push(label + ' 5th pick did not open the ready step');
-  if (await menu.locator('.stay-o').count() !== 4) bad.push(label + ' stays not shown when ready'); // 1 week, 2 weeks, 3 weeks, the belt (1 week since 29 Oct 2026)
+  if (await menu.locator('.stay-o').count() !== 7) bad.push(label + ' stays not shown when ready'); // Days, 1 week, 2 weeks, 3 weeks, 1 month, 2 months (the belt), 3 months (29 Oct 2026)
   if (await menu.locator('.wk').count() !== 1) bad.push(label + ' empty week rows under ready: ' + await menu.locator('.wk').count());
   await page.screenshot({ path: OUT + label + '-3-ready.png' });
   // fill the 2 weeks
@@ -60,7 +60,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (!(await stayBtn('2 weeks').isEnabled())) bad.push(label + ' 2 weeks disabled at 10 picks');
   await menu.locator('.mc-back').click(); await tile('Kicks');
   if (await menu.locator('.pick:disabled').count() !== 10) bad.push(label + ' kicks not disabled when full');
-  if (await stayBtn('1 month').count()) bad.push(label + ' the month is back in the stays');
+  if (!(await stayBtn('1 month').count())) bad.push(label + ' the month is missing from the stays');
   await stayBtn('2 months, the belt program').click();
   if (await stayBtn('2 months, the belt program').getAttribute('aria-pressed') !== 'true') bad.push(label + ' belt not pressed');
   if (await menu.locator('.pick:disabled').count() !== 0) bad.push(label + ' kicks disabled in a belt');
@@ -74,42 +74,42 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await button('Book my 2 months');
   if (await menu.locator('.upsell').count()) bad.push(label + ' upsell shown for a belt');
   if (await menu.locator('.stay-o').count()) bad.push(label + ' a second stay picker on the book step');
-  if (!/2 months, the belt program, \$3,997/.test(await menu.locator('.stay-line').textContent())) bad.push(label + ' stay line');
+  if (!/2 months, the belt program, \$4,444/.test(await menu.locator('.stay-line').textContent())) bad.push(label + ' stay line');
   await menu.locator('.stay-line button', { hasText: 'Change' }).click();
   await stayBtn('3 weeks').click();
   await button('Book my 3 weeks');
-  if (!/2 months in the belt program for \$3,997/.test(await menu.locator('.upsell').textContent())) bad.push(label + ' upsell for 3 weeks');
+  if (!/2 months in the belt program for \$4,444/.test(await menu.locator('.upsell').textContent())) bad.push(label + ' upsell for 3 weeks');
   await page.fill('#planName', 'Test Person');
-  await button('2 months, the belt program, $3,997'); // keeps what was typed
+  await button('2 months, the belt program, $4,444'); // keeps what was typed
   if (await page.inputValue('#planName') !== 'Test Person') bad.push(label + ' name lost');
   await page.fill('#planEmail', 'test.person@gmail.com');
   // two ways to pay (Rick's clicks, 28 Oct 2026 night): $555 down, or the whole stay now, $222 off
   if (await menu.locator('button[data-pay="deposit"]').textContent() !== 'Hold my spot: $555 down') bad.push(label + ' deposit text');
-  if (await menu.locator('button[data-pay="full"]').textContent() !== 'Pay in full now: $3,775') bad.push(label + ' full text');
+  if (await menu.locator('button[data-pay="full"]').textContent() !== 'Pay in full now: $4,222') bad.push(label + ' full text');
   await page.screenshot({ path: OUT + label + '-5-book.png' });
   await menu.locator('button[data-pay="deposit"]').click();
   await page.waitForTimeout(1500);
   if (posted && !/\nPaying: \$555 down to hold the spot, the rest 2 weeks before arrival\n/.test(posted.message)) bad.push(label + ' deposit line ' + JSON.stringify(posted.message));
-  if (!posted || posted.subject !== 'plan' || !/Stay: 2 months, the belt program, \$3,997 \(yellow belt first\)/.test(posted.message) || !/Week 3: Front Kicks \(Kicks\)/.test(posted.message) || /WinJitsu coaching add-on/.test(posted.message) || posted.source !== 'gads')
+  if (!posted || posted.subject !== 'plan' || !/Stay: 2 months, the belt program, \$4,444 \(yellow belt first\)/.test(posted.message) || !/Week 3: Front Kicks \(Kicks\)/.test(posted.message) || /WinJitsu coaching add-on/.test(posted.message) || posted.source !== 'gads')
     bad.push(label + ' posted ' + JSON.stringify(posted));
-  if (!checkout || !/buy\?sku=HIN-GNS-2W&src=gns-gads-2233-gCj0KabcXYZ&weeks=8&pay=deposit&cur=thb$/.test(checkout)) bad.push(label + ' checkout ' + checkout);
+  if (!checkout || !/buy\?sku=HIN-GNS-2W&src=gns-gads-2233-gCj0KabcXYZ&months=2&pay=deposit&cur=thb$/.test(checkout)) bad.push(label + ' checkout ' + checkout);
   if (label === 'desktop') console.log(posted && posted.message);
   // the belt program's button: straight to the form with the belt, no picks needed
   posted = null; checkout = null;
   await page.goto(BASE + '/hininja/');
   await page.evaluate(() => localStorage.clear());
   await page.reload();
-  await page.locator('#belts a[data-stay="8"]').click();
+  await page.locator('#belts a[data-stay="m2"]').click();
   await page.waitForTimeout(700);
-  if (!/2 months, the belt program, \$3,997/.test(await menu.locator('.stay-line').textContent())) bad.push(label + ' belt not chosen');
+  if (!/2 months, the belt program, \$4,444/.test(await menu.locator('.stay-line').textContent())) bad.push(label + ' belt not chosen');
   if (!/No picks needed/.test(await menu.locator('.tray-n').last().textContent())) bad.push(label + ' belt picks line');
   await page.fill('#planName', 'Belt Person'); await page.fill('#planEmail', 'belt.person@gmail.com');
-  if (await menu.locator('button[data-pay="full"]').textContent() !== 'Pay in full now: $3,775') bad.push(label + ' belt full text');
+  if (await menu.locator('button[data-pay="full"]').textContent() !== 'Pay in full now: $4,222') bad.push(label + ' belt full text');
   await page.screenshot({ path: OUT + label + '-6-belt.png' });
   await menu.locator('button[data-pay="full"]').click();
   await page.waitForTimeout(1500);
-  if (!posted || !/Stay: 2 months, the belt program, \$3,997 \(yellow belt first\)\nPaying: in full now, \$3,775/.test(posted.message)) bad.push(label + ' belt posted ' + JSON.stringify(posted));
-  if (!checkout || !/src=ricktew-plan&weeks=8&pay=full&cur=thb$/.test(checkout)) bad.push(label + ' belt checkout ' + checkout);
+  if (!posted || !/Stay: 2 months, the belt program, \$4,444 \(yellow belt first\)\nPaying: in full now, \$4,222/.test(posted.message)) bad.push(label + ' belt posted ' + JSON.stringify(posted));
+  if (!checkout || !/src=ricktew-plan&months=2&pay=full&cur=thb$/.test(checkout)) bad.push(label + ' belt checkout ' + checkout);
   // the 1 week card (Rick's click "Sell it, pay in full only", 29 Oct 2026): Ninja Week first, one Book button, paid in
   // full, no ?pay to the checkout, and the upsell offers the 2 weeks
   posted = null; checkout = null;
@@ -132,13 +132,32 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await page.waitForTimeout(1500);
   if (!posted || !/Stay: 1 week, \$1,111\nPaying: in full, \$1,111/.test(posted.message)) bad.push(label + ' 1 week posted ' + JSON.stringify(posted));
   if (!checkout || !/src=ricktew-plan&weeks=1&cur=thb$/.test(checkout)) bad.push(label + ' 1 week checkout ' + checkout);
+  // the Day card (Rick, 29 Oct 2026: Day $222, up to 4 days, paid in full): Ninja Week first, the days row, ?days=
+  posted = null; checkout = null;
+  await page.goto(BASE + '/hininja/');
+  await page.evaluate(() => localStorage.clear());
+  await page.reload();
+  await page.locator('#price a[data-stay="d1"]').click();
+  await page.waitForTimeout(700);
+  await menu.locator('.qp', { hasText: 'PSC Self-Defense Program' }).click();
+  if (await stayBtn('Days').getAttribute('aria-pressed') !== 'true') bad.push(label + ' Days not pressed');
+  await menu.locator('.stays.days .stay-o', { hasText: '3' }).first().click();
+  await button('Book my 3 days');
+  if (!/Add a day for \$222/.test(await menu.locator('.upsell').textContent())) bad.push(label + ' upsell for days');
+  if (await menu.locator('button[data-pay="full"]').count()) bad.push(label + ' a pay-in-full button on a day');
+  if (await menu.locator('.mc-pay button').textContent() !== 'Book my 3 days: $666') bad.push(label + ' days button text');
+  await page.fill('#planName', 'Day Person'); await page.fill('#planEmail', 'day.person@gmail.com');
+  await menu.locator('.mc-pay button').click();
+  await page.waitForTimeout(1500);
+  if (!posted || !/Stay: 3 days, \$666\nPaying: in full, \$666/.test(posted.message)) bad.push(label + ' days posted ' + JSON.stringify(posted));
+  if (!checkout || !/src=ricktew-plan&days=3&cur=thb$/.test(checkout)) bad.push(label + ' days checkout ' + checkout);
   // the price cards (28 Oct 2026, the four of Rick's later click; smallest first since his click that night); Mastery and Instructor fill the ask box;
   // a stay other than the belt opens the menu with that stay, Ninja Week first
   await page.goto(BASE + '/hininja/');
   await page.evaluate(() => localStorage.clear());
   await page.reload();
   const amts = await page.locator('#price .stay-cards .amt').allTextContents();
-  if (amts.join(' ') !== '$1,111 $2,222 $3,997 $8,994 $15,988') bad.push(label + ' price cards ' + amts.join(' '));
+  if (amts.join(' ') !== '$222 $1,111 $3,333 $8,994 $15,988') bad.push(label + ' price cards ' + amts.join(' '));
   if (await page.locator('a[data-stay="4"]').count()) bad.push(label + ' a month button is back');
   await page.locator('#price .stay-cards a[data-ask^="I want to reserve a Mastery"]').click();
   if (!/^I want to reserve a Mastery spot for 2027 with \$2,222 down/.test(await page.locator('#askMsg').inputValue())) bad.push(label + ' Mastery did not fill the ask box');
@@ -149,14 +168,14 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (await page.locator('#askTopic').inputValue() !== 'mastery') bad.push(label + ' Instructor did not set the topic');
   if (/write to me|ask me anything|ask anything/i.test(await page.evaluate(() => document.body.innerText))) bad.push(label + ' a "write to me" line is back');
   await page.locator('#askMsg').fill('');
-  await page.locator('#price a[data-stay="2"]').click();
+  await page.locator('#price a[data-stay="m1"]').click();
   await page.waitForTimeout(700);
-  if (await menu.locator('.tile').count() !== 8) bad.push(label + ' 2 weeks card did not open the menu');
-  await noBook('after the 2 weeks card');
-  if (await page.evaluate(() => JSON.parse(localStorage.getItem('hininja-plan-v1')).weeks) !== 2) bad.push(label + ' 2 weeks card stay');
-  await page.locator('#price a[data-stay="8"]').click();
+  if (await menu.locator('.tile').count() !== 8) bad.push(label + ' month card did not open the menu');
+  await noBook('after the month card');
+  if (await page.evaluate(() => JSON.parse(localStorage.getItem('hininja-plan-v1')).stay) !== 'm1') bad.push(label + ' month card stay');
+  await page.locator('#belts a[data-stay="m2"]').click();
   await page.waitForTimeout(700);
-  if (!/2 months, the belt program, \$3,997/.test(await menu.locator('.stay-line').textContent())) bad.push(label + ' belt card stay');
+  if (!/2 months, the belt program, \$4,444/.test(await menu.locator('.stay-line').textContent())) bad.push(label + ' belt card stay');
   await page.locator('#price').scrollIntoViewIfNeeded();
   await page.screenshot({ path: OUT + label + '-7-price.png' });
   // the popular quick picks (27 Oct 2026): one fills a whole week, mixes with single picks, and closes when the weeks are full
@@ -198,7 +217,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
     await pp.reload();
     const shown = await pp.locator('.promo').isVisible() && await pp.locator('.promo-box').isVisible();
     if (shown !== on) bad.push(label + ' promo shown=' + shown + ' at ' + when);
-    await pp.locator('#belts a[data-stay="8"]').click();
+    await pp.locator('#belts a[data-stay="m2"]').click();
     await pp.waitForTimeout(700);
     if ((await pp.locator('#planFriend').count() === 1) !== on) bad.push(label + ' friend field at ' + when);
     if (on) {
@@ -207,7 +226,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
       await pp.locator('#menu').screenshot({ path: OUT + label + '-8-promo-form.png' });
       await pp.locator('#menu button[data-pay="deposit"]').click();
       await pp.waitForTimeout(1500);
-      if (!pposted || !/Stay: 2 months, the belt program, \$3,997 \(yellow belt first\)\nPaying: \$555 down to hold the spot, the rest 2 weeks before arrival\nFriend, FREE \(booked in November\): Pat Friend, same dates, same stay\n/.test(pposted.message)) bad.push(label + ' promo posted ' + JSON.stringify(pposted && pposted.message));
+      if (!pposted || !/Stay: 2 months, the belt program, \$4,444 \(yellow belt first\)\nPaying: \$555 down to hold the spot, the rest 2 weeks before arrival\nFriend, FREE \(booked in November\): Pat Friend, same dates, same stay\n/.test(pposted.message)) bad.push(label + ' promo posted ' + JSON.stringify(pposted && pposted.message));
     }
     await pctx.close();
   }

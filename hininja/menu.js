@@ -122,17 +122,27 @@
   var QUICK=["Mini-Martial Art System via Stances","PSC Self-Defense Program","Ninja Tools and tactics","Strikes and Kicks form"];
 
   var PER_WEEK=5, WEEK_MIN=5; /* single picks before the stays and Book show */
-  /* weeks: the checkout's key; book: the Book button's words */
-  /* the 1 week since 29 Oct 2026 (Rick's click "Sell it, pay in full only"): no `full`, so no deposit and one Book button */
+  /* key: the checkout's stay (d1-d4 go as ?days=, m1-m3 as ?months=, the rest as ?weeks=); cap: how many Ninja Weeks
+     of picks it holds; book: the Book button's words. No `full` (a day, the 1 week): no deposit and one Book button.
+     Since 29 Oct 2026 the ladder is Day, Week, Month, Year, Mastery (Rick: "a simple day, week, month, year strategy";
+     his clicks "4 + Mastery as VIP", "Day in full, Month like 2 weeks", "2 months = $4,444"; Digital Dojo 42bf1b95):
+     a day $222 (up to 4: a 5th day costs the week), a month $3,333 and $1,111 for each next one. */
   var STAYS=[
-    {weeks:1, name:"1 week", price:1111, book:"Book my week"},
-    {weeks:2, name:"2 weeks", price:2222, full:2000, book:"Book my two weeks"},
-    {weeks:3, name:"3 weeks", price:3222, full:3000, book:"Book my 3 weeks"},
-    {weeks:8, name:"2 months, the belt program", price:3997, full:3775, book:"Book my 2 months"}]; /* 28 Oct 2026: the month left, the belt is $3,997 (Rick) */
+    {key:"d1", cap:1, name:"1 day", price:222, book:"Book my day", day:1},
+    {key:"d2", cap:1, name:"2 days", price:444, book:"Book my 2 days", day:2},
+    {key:"d3", cap:1, name:"3 days", price:666, book:"Book my 3 days", day:3},
+    {key:"d4", cap:1, name:"4 days", price:888, book:"Book my 4 days", day:4},
+    {key:"1", cap:1, name:"1 week", price:1111, book:"Book my week"},
+    {key:"2", cap:2, name:"2 weeks", price:2222, full:2000, book:"Book my two weeks"},
+    {key:"3", cap:3, name:"3 weeks", price:3222, full:3000, book:"Book my 3 weeks"},
+    {key:"m1", cap:4, name:"1 month", price:3333, full:3111, book:"Book my month"},
+    {key:"m2", cap:8, name:"2 months, the belt program", price:4444, full:4222, book:"Book my 2 months", belt:true},
+    {key:"m3", cap:12, name:"3 months", price:5555, full:5333, book:"Book my 3 months"}];
   /* two ways to pay (Rick's clicks, 28 Oct 2026 night): $555 down holds the spot, the rest 2 weeks before arrival;
      or the whole stay now, $222 off (full). The checkout takes ?pay=deposit|full (Digital Dojo 399716e9). */
   var DEPOSIT=555;
-  function stay(){ for(var i=0;i<STAYS.length;i++) if(STAYS[i].weeks===plan.weeks) return STAYS[i]; return STAYS[1]; } /* else the 2 weeks */
+  function find(k){ for(var i=0;i<STAYS.length;i++) if(STAYS[i].key===k) return STAYS[i]; return null; }
+  function stay(){ return find(plan.stay)||find("2"); } /* else the 2 weeks */
   function money(n){ return "$"+String(n).replace(/\B(?=(\d{3})+(?!\d))/g,","); }
   var KEY="hininja-plan-v1";
   var FN="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact";
@@ -143,7 +153,7 @@
   QUICK.forEach(function(n,i){ byId["q"+i]={cat:null, quick:true, name:n, level:0, line:""}; });
   function isQuick(id){ return byId[id].quick===true; }
 
-  var plan={picks:[], weeks:2};
+  var plan={picks:[], stay:"2"};
   /* the plan as weeks: a quick pick is a week of its own, single picks fill weeks 5 at a time,
      and a week still filling up comes last */
   function weeksOf(){
@@ -159,11 +169,13 @@
   function room(quick){
     var w=weeksOf(), last=w[w.length-1];
     if(!quick && last && !isQuick(last[0]) && last.length<PER_WEEK) return true;
-    return w.length<plan.weeks;
+    return w.length<stay().cap;
   }
   try{
     var saved=JSON.parse(localStorage.getItem(KEY)||"null");
-    if(saved && [1,2,3,8].indexOf(saved.weeks)>=0) plan.weeks=saved.weeks;
+    /* a plan saved before 29 Oct 2026 kept the stay as weeks; its 8 was the belt, now the 2 months */
+    var sk=saved ? (typeof saved.stay==="string" ? saved.stay : saved.weeks===8 ? "m2" : String(saved.weeks)) : "";
+    if(find(sk)) plan.stay=sk;
     if(saved && Array.isArray(saved.picks)) saved.picks.forEach(function(id){ if(byId[id] && plan.picks.indexOf(id)<0 && room(isQuick(id))) plan.picks.push(id); });
   }catch(e){}
   function keep(){ try{ localStorage.setItem(KEY,JSON.stringify(plan)); }catch(e){} }
@@ -182,10 +194,11 @@
     });
     var s0=(q.get("src")||"").toLowerCase(); if(/^[a-z]{1,20}$/.test(s0)) SRC=s0;
   }catch(e){}
+  function stayParam(){ var k=stay().key; return k.charAt(0)==="d" ? "&days="+k.slice(1) : k.charAt(0)==="m" ? "&months="+k.slice(1) : "&weeks="+k; }
   function checkoutUrl(pay){
     /* a partner's or a post's ?src= rides on the order too (ricktew-plan-nerdhostel) */
     var src=AD&&AD.click ? "gns-gads-"+AD.campaign+"-"+AD.letter+AD.click : "ricktew-plan"+(SRC!=="direct"?"-"+SRC:"");
-    return "/hininja/buy/?sku=HIN-GNS-2W&src="+encodeURIComponent(src)+"&weeks="+plan.weeks+(pay==="deposit"||pay==="full"?"&pay="+pay:"");
+    return "/hininja/buy/?sku=HIN-GNS-2W&src="+encodeURIComponent(src)+stayParam()+(pay==="deposit"||pay==="full"?"&pay="+pay:"");
   }
 
   function el(tag,cls,text){ var n=document.createElement(tag); if(cls) n.className=cls; if(text!=null) n.textContent=text; return n; }
@@ -224,16 +237,32 @@
     var st=el("div","stays"); st.setAttribute("role","group"); st.setAttribute("aria-label","Your stay");
     st.appendChild(el("span","stay-l","Your stay"));
     var used=weeksOf().length;
+    /* the days are one choice ("Days", $222 a day) with its own row of 1 to 4 under it */
+    var pick=function(k){ plan.stay=k; keep(); render(false); var f=root.querySelector('.stay-o[aria-pressed="true"]'); if(f) f.focus(); };
     STAYS.forEach(function(o){
-      var b=btn("stay-o",null,function(){ plan.weeks=o.weeks; keep(); render(false); var f=root.querySelector('.stay-o[aria-pressed="true"]'); if(f) f.focus(); });
-      b.setAttribute("aria-pressed",o.weeks===plan.weeks?"true":"false");
-      b.disabled=used>o.weeks;
-      b.appendChild(el("b",null,o.name)); b.appendChild(el("span",null,money(o.price)));
+      if(o.day>1) return;
+      var on=o.day ? !!stay().day : o.key===plan.stay;
+      var b=btn("stay-o",null,function(){ pick(o.day && stay().day ? plan.stay : o.key); });
+      b.setAttribute("aria-pressed",on?"true":"false");
+      b.disabled=used>o.cap;
+      b.appendChild(el("b",null,o.day?"Days":o.name)); b.appendChild(el("span",null,o.day?money(o.price)+" a day":money(o.price)));
       st.appendChild(b);
     });
     t.appendChild(st);
+    if(stay().day){
+      var dr=el("div","stays days"); dr.setAttribute("role","group"); dr.setAttribute("aria-label","How many days");
+      dr.appendChild(el("span","stay-l","How many days?"));
+      STAYS.forEach(function(o){
+        if(!o.day) return;
+        var b=btn("stay-o",null,function(){ pick(o.key); });
+        b.setAttribute("aria-pressed",o.key===plan.stay?"true":"false");
+        b.appendChild(el("b",null,String(o.day))); b.appendChild(el("span",null,money(o.price)));
+        dr.appendChild(b);
+      });
+      t.appendChild(dr);
     }
-    if(plan.weeks===8) t.appendChild(el("p","tray-n","The belt program: yellow belt first. Your picks join the morning seminar too."));
+    }
+    if(stay().belt) t.appendChild(el("p","tray-n","The belt program: yellow belt first. Your picks join the morning seminar too."));
     /* only the weeks that hold picks: an empty Week 2 under "ready" read as unfinished (25 Oct round) */
     var weeks=weeksOf(); if(!weeks.length) weeks=[[]];
     weeks.forEach(function(wk,w){
@@ -364,7 +393,7 @@
         li.appendChild(b); ul.appendChild(li);
       });
       root.appendChild(ul);
-      if(full) root.appendChild(el("p","mc-p",plan.weeks<8?"Your weeks are full. Pick a longer stay in your plan, or tap a pick to swap it out.":"Your weeks are full. Tap a pick in your plan to swap it out."));
+      if(full) root.appendChild(el("p","mc-p",!stay().belt?"Your weeks are full. Pick a longer stay in your plan, or tap a pick to swap it out.":"Your weeks are full. Tap a pick in your plan to swap it out."));
       var bar=el("div","mc-bar");
       bar.appendChild(el("span",null,ready()?"Your Ninja Week is ready":plan.picks.length+" of "+WEEK_MIN+" picked"));
       bar.appendChild(ready()?btn("btn btn-red","See my week",function(){ go("ready"); }):btn("btn btn-quiet","Other areas",function(){ go("menu"); }));
@@ -400,12 +429,22 @@
       hd=head("Your plan","Save your plan and book");
       root.appendChild(hd.frag);
       root.appendChild(tray(true));
-      if(plan.weeks<8){
+      /* one step up from each stay, and the belt program; nothing past the belt or the 3 months */
+      var k=stay().key, set=function(n){ return function(){ plan.stay=n; keep(); render(false); }; };
+      var UP={d1:["Stay longer? Add a day for $222, or make it a week for $1,111.","d2","2 days in all, $444"],
+        d2:["Stay longer? Add a day for $222, or make it a week for $1,111.","d3","3 days in all, $666"],
+        d3:["Stay longer? Add a day for $222, or make it a week for $1,111.","d4","4 days in all, $888"],
+        d4:["Stay longer? A week is 5 mornings for $1,111."],
+        "1":["Stay longer? Make it 2 weeks for $2,222, or 2 months in the belt program for $4,444.","2","2 weeks in all, $2,222"],
+        "2":["Stay longer? Add a week for $1,000, or make it 2 months in the belt program for $4,444.","3","3 weeks in all, $3,222"],
+        "3":["Stay longer? Make it a month for $3,333, or 2 months in the belt program for $4,444.","m1","1 month, $3,333"],
+        m1:["Stay longer? Add a month for $1,111: 2 months in the belt program, $4,444."]}[k];
+      if(UP){
         var up=el("div","upsell");
-        up.appendChild(el("p",null,plan.weeks===1?"Stay longer? Make it 2 weeks for $2,222, or 2 months in the belt program for $3,997.":plan.weeks===2?"Stay longer? Add a week for $1,000, or make it 2 months in the belt program for $3,997.":"Make it 2 months in the belt program for $3,997?"));
-        if(plan.weeks===1) up.appendChild(btn("btn btn-quiet","2 weeks in all, $2,222",function(){ plan.weeks=2; keep(); render(false); }));
-        if(plan.weeks===2) up.appendChild(btn("btn btn-quiet","3 weeks in all, $3,222",function(){ plan.weeks=3; keep(); render(false); }));
-        up.appendChild(btn("btn btn-quiet","2 months, the belt program, $3,997",function(){ plan.weeks=8; keep(); render(false); }));
+        up.appendChild(el("p",null,UP[0]));
+        if(UP[1]) up.appendChild(btn("btn btn-quiet",UP[2],set(UP[1])));
+        if(stay().day) up.appendChild(btn("btn btn-quiet","1 week, $1,111",set("1")));
+        up.appendChild(btn("btn btn-quiet","2 months, the belt program, $4,444",set("m2")));
         root.appendChild(up);
       }
       root.appendChild(bookForm());
@@ -419,7 +458,7 @@
   }
 
   function planText(friend,pay){
-    var lines=["My plan, from the Ninja Menu on the HI Ninja page.","","Stay: "+stay().name+", "+money(stay().price)+(plan.weeks===8?" (yellow belt first)":"")];
+    var lines=["My plan, from the Ninja Menu on the HI Ninja page.","","Stay: "+stay().name+", "+money(stay().price)+(stay().belt?" (yellow belt first)":"")];
     if(pay==="deposit") lines.push("Paying: "+money(DEPOSIT)+" down to hold the spot, the rest 2 weeks before arrival");
     if(pay==="full") lines.push("Paying: in full now, "+money(stay().full));
     if(!pay) lines.push("Paying: in full, "+money(stay().price));
@@ -454,7 +493,7 @@
       fr.i.addEventListener("input",function(){ draft.friend=fr.i.value; });
       f.appendChild(fr.d);
     }
-    /* a stay with no pay-now price (the 1 week) has one button, paid in full: no ?pay rides to the checkout */
+    /* a stay with no pay-now price (a day, the 1 week) has one button, paid in full: no ?pay rides to the checkout */
     var twoWays=!!stay().full, payWith=twoWays?"deposit":"";
     var pays=el("div","mc-pay");
     var send=el("button","btn btn-red",twoWays?"Hold my spot: "+money(DEPOSIT)+" down":stay().book+": "+money(stay().price)); send.type="submit"; send.setAttribute("data-pay",twoWays?"deposit":"none");
@@ -463,7 +502,7 @@
     whole.addEventListener("click",function(){ payWith="full"; });
     pays.appendChild(send); if(twoWays) pays.appendChild(whole); f.appendChild(pays);
     var err=el("p","err"); err.setAttribute("role","alert"); f.appendChild(err);
-    f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed if you need one. Your plan goes to Rick, then the secure checkout, where you add your arrival date. "+(twoWays?"$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. ":"One week is paid in full. ")+"Ill, or your flights change? Your dates can move, within a year of buying. All sales are final."));
+    f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed if you need one, while you are here. Your plan goes to Rick, then the secure checkout, where you add your arrival date. "+(twoWays?"$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. ":"A day or one week is paid in full. ")+"Ill, or your flights change? Your dates can move, within a year of buying. All sales are final."));
     var askA=el("a","mc-ask","A question about your plan? Ask it with your picks"); askA.href="#ask";
     askA.addEventListener("click",function(){
       var m=document.getElementById("askMsg"), t=document.getElementById("askTopic");
@@ -477,7 +516,7 @@
       function fail(m){ err.textContent=m; err.classList.add("on"); }
       if(!name||!email){ fail("Your name and an email for Rick to send your plan to."); return; }
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ fail("That email address does not look right."); return; }
-      if(!ready() && plan.weeks!==8){ fail("Build your Ninja Week first: 5 picks from the menu."); return; }
+      if(!ready() && !stay().belt){ fail("Build your Ninja Week first: 5 picks from the menu."); return; }
       var trap=document.getElementById("askWebsite");
       var data={name:name, email:email, subject:"plan", message:planText(fr?fr.i.value.trim():"",payWith), website:trap?trap.value:"",
         elapsedMs:Date.now()-shown, source:AD?"gads":SRC};
@@ -496,9 +535,9 @@
      stay; the belt needs no picks, any other stay still builds its Ninja Week first */
   [].forEach.call(document.querySelectorAll("a[data-stay]"),function(a){
     a.addEventListener("click",function(){
-      var w=Number(a.getAttribute("data-stay"));
-      if([1,2,3,8].indexOf(w)<0) return;
-      plan.weeks=w; keep(); step=(w===8||ready())?"book":"menu"; render(false);
+      var k=a.getAttribute("data-stay"); if(k==="8") k="m2"; /* the belt's old key, in links already out */
+      if(!find(k)) return;
+      plan.stay=k; keep(); step=(stay().belt||ready())?"book":"menu"; render(false);
       setTimeout(function(){ var h=root.querySelector(".mc-h"); if(h) h.focus({preventScroll:true}); },400);
     });
   });

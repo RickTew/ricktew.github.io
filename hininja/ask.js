@@ -119,7 +119,7 @@
     {id:"price", q:"How much does it cost?",
      alt:["how much is","how much are","how much does","how much do","how much for","how much will","how much is it","what currency","which currency","us dollars","australian dollars","in usd","what does it cost","what is the price","whats the price","the prices","prices","price","price list","how much money"],
      keys:"cost costs price prices pricing fee fees expensive cheap usd dollar dollars rate rates package packages afford budget",
-     a:"<p>Prices in US dollars. Small groups, usually around 6: near-private lessons at the price of a group class.</p><p>One week is half the price, $1,111. 2 weeks: $2,222. 3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>2 months in the belt program is $3,997. Instructor is 1 year of training, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is 2 years of training with Rick, $15,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one.</p><p>$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p>",
+     a:"<p>Prices in US dollars. Small groups, usually around 6: near-private lessons at the price of a group class.</p><p>A day is $222, up to 4 days. A week is $1,111. Longer: 2 weeks $2,222, 3 weeks $3,222, a month $3,333, and 2 months in the belt program $4,444.</p><p>Instructor is 1 year of training, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is 2 years of training with Rick, $15,988.</p><p>Every stay: training and WinJitsu coaching, and a dorm bed if you need one, while you are here.</p><p>A day or one week is paid in full. $555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p>",
      next:STAYS},
 
     {id:"deposit", q:"Can I pay a deposit?",
@@ -128,10 +128,10 @@
      a:"<p>$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222.</p><p>Ill, or your flights change? Your dates can move, within a year of buying. All sales are final.</p>",
      next:STAYS},
 
-    {id:"one-week", q:"Can I come for just one week?",
-     alt:["one week","1 week","for a week","a week only","just a week","only a week","single week","shorter stay","less than two weeks","a few days","few days","3 days","three days","something shorter","anything shorter"],
-     keys:"shorter 1111",
-     a:"<p>One week is half the price, $1,111: book one week. One week is paid in full.</p>",
+    {id:"one-week", q:"Can I come for a few days, or just one week?",
+     alt:["one week","1 week","for a week","a week only","just a week","only a week","single week","shorter stay","less than two weeks","a few days","few days","3 days","three days","something shorter","anything shorter","one day","1 day","a day","for a day","day pass","one more day","extra day","add a day","2 days","two days","4 days","four days"],
+     keys:"shorter 1111 day days 222",
+     a:"<p>A day is $222, up to 4 days: book days. A week is $1,111: book one week. A day or one week is paid in full.</p>",
      next:STAYS},
 
     /* Rick's click "One class, booked ahead", 29 Oct 2026 */
@@ -142,9 +142,9 @@
      next:ASK("Book one class","I am already on Samui and want to try one class first.")},
 
     {id:"longer", q:"Can I stay longer than two weeks?",
-     alt:["stay longer","longer stay","three weeks","3 weeks","extra week","add a week","more than two weeks","a month","one month","1 month"],
-     keys:"longer extend extension extra month",
-     a:"<p>3 weeks? Add a week to the two weeks for $1,000: $3,222.</p><p>2 months in the belt program is $3,997. Instructor is 1 year of training, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is 2 years of training with Rick, $15,988.</p>",
+     alt:["stay longer","longer stay","three weeks","3 weeks","extra week","add a week","more than two weeks","a month","one month","1 month","extra month","add a month","3 months","three months"],
+     keys:"longer extend extension extra month months",
+     a:"<p>Each extra week $1,000: 3 weeks $3,222. Each extra month $1,111: 2 months $4,444, 3 months $5,555.</p><p>Longer: 2 weeks $2,222, 3 weeks $3,222, a month $3,333, and 2 months in the belt program $4,444.</p><p>Instructor is 1 year of training, and learning to teach, $8,994: reserve a spot. Moving here? Mastery is 2 years of training with Rick, $15,988.</p>",
      next:STAYS},
 
     {id:"start", q:"When can I start?",
@@ -252,6 +252,12 @@
      a:"<p>You pay for the training. If you need a bed, there is basic housing nearby at no added cost: a shared men's or women's dorm. Meals included: 2 vouchers per stay for NinjaGym's Shake and Bake: a water, an ice cream shake and a grilled cheese toastie.</p><p>The dorms are at NerdHostel, a gamer hostel and co-working space across the street from NinjaGym.</p>",
      next:STAYS},
 
+    {id:"bed-kept", q:"Is my bed kept if I leave for a while?",
+     alt:["bed kept","keep my bed","hold my bed","bed held","leave and come back","come back later","travel and come back","my bed while away","when i am away","while i travel"],
+     keys:"held hold kept keep away return returning",
+     a:"<p>No. Beds are not held: when you leave, your bed goes to the next guest. Coming back? Ask first and we tell you what is free.</p>",
+     next:STAYS},
+
     {id:"private-room", q:"Is there a private room, or a room for two?",
      alt:["private room","own room","room for two","single room","couple","couples","my partner","my girlfriend","my boyfriend","share a room"],
      keys:"private single couple couples partner girlfriend boyfriend together",
@@ -303,7 +309,7 @@
     {id:"belts", q:"How do the belts work?",
      alt:["the belts","belt program","earn a belt","get a belt","yellow belt","black belt","belt test","grading","2 months","two months"],
      keys:"belt belts rank ranks grade grading test tests exam yellow orange green blue red black certificate",
-     a:"<p>For the serious: 2 months of training, yellow belt first. Every person earns at a different speed: you test with Rick when you are ready. The art is Rick's own system, Modern American Ninjitsu (most people spell it ninjutsu).</p><p>$3,997 for 2 months. Training and WinJitsu coaching. A dorm bed if you need one. Your Ninja Menu picks join the morning seminar too.</p>",
+     a:"<p>For the serious: 2 months of training, yellow belt first. Every person earns at a different speed: you test with Rick when you are ready. The art is Rick's own system, Modern American Ninjitsu (most people spell it ninjutsu).</p><p>$4,444 for 2 months. Training and WinJitsu coaching. A dorm bed if you need one, while you are here. Your Ninja Menu picks join the morning seminar too.</p>",
      next:STAYS},
 
     {id:"mastery", q:"What is Mastery?",

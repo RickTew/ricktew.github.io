@@ -42,7 +42,10 @@ function flag(kind, msg) { (found[kind] = found[kind] || []).push(msg); }
 
 (async () => {
   for (const f of RETIRED_FILES) {
-    const t = fs.readFileSync(path.join(ROOT, f), "utf8");
+    let t = fs.readFileSync(path.join(ROOT, f), "utf8");
+    // llms.txt's HI Ninja line is the other door: its 2 months in the belt program is $4,444 since 29 Oct 2026 (Rick's
+    // ladder), which is not the AI door's retired Sensei price, so that one line is left out of this check
+    if (f === "llms.txt") t = t.split("\n").filter(l => !l.startsWith("- [HI Ninja]")).join("\n");
     for (const r of RETIRED) if (new RegExp("\\b" + r.replace(/[$.*+?()[\]{}|\\^]/g, "\\$&") + "\\b").test(t) || (r.startsWith("$") && t.includes(r)))
       flag("retired line back", f + ": " + JSON.stringify(r));
   }
