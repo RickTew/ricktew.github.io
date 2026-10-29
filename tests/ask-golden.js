@@ -12,6 +12,10 @@ function ok(cond, msg){ n++; if(!cond){ fails++; console.log("  FAIL  "+msg); } 
 
 /* ---- 1. questions that must land ---- */
 var GOLD=[
+  ["Do I own the app?", "ownership"],
+  ["so you own my app?", "ownership"],
+  ["what counts as a fix", "fixes"],
+  ["is a new page included in the 99?", "fixes"],
   ["what is SI?", "si-pi"],
   ["what does PI mean", "si-pi"],
   ["is SI the same as AI", "si-pi"],
