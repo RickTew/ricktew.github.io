@@ -548,6 +548,17 @@ The evidence-based ruling of 26 Aug (visible prices, no anchors, no paid
 first call, a free first contact) still stands; it just applies to two
 cards now.
 
+### R2 HOSTING IS "R2 MANAGED HOSTING" (29 Oct 2026, Rick: "adjust our R2 Hosting to say, R2 Managed Hosting and explain what that is")
+
+Every page, the chat box, the Terms, llms.txt and the JSON-LD, the mailbox label (ricktew-contact v41) and the
+Intake's option label (ricktew-intake v32), in a71cd0a. The word is explained in one sentence where the card
+contrasts a normal host: "Managed means you send me a message instead." The PromptPay payee "R2 Hosting Thailand"
+stays (it is the name on the client sites and bills). TEWBEDO synced ask.js (81d94d3), and the Stripe product on Rick
+Tew Co. is "R2 Managed Hosting, the month". Older lines in this file that say "R2 Hosting" mean the same offer.
+**His BAM idea the same day is NOT live:** a free first build (Booking, App, Messages), with R2 Managed Hosting, the
+agents and his oversight paid. Nothing about BAM or "free" goes on a page until the Digital Dojo's package exists
+(his click). Open steps are in `.claude/NEXT-SESSION.md`.
+
 ### THE LESS-IS-MORE PASS (2026-10-01, Rick's go): what left the page, where things are now
 
 Rick, 1 Oct: "dumb it down and simplify it and also remove redundancy ...
