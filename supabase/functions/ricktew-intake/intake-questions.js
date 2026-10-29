@@ -44,7 +44,7 @@
           { v: "consultant", label: "I advise this business from outside" } ] },
         { id: "reach", label: "How you like to be reached", type: "multi", options: [
           { v: "email", label: "Email" }, { v: "whatsapp", label: "WhatsApp" }, { v: "line", label: "LINE" } ] },
-        { id: "best_time", label: "Best days and hours to reach you", hint: "In your time zone. I work in writing; a call is a custom step for the builds that need one.", type: "text" }
+        { id: "best_time", label: "Best days and hours to reach you", hint: "In your time zone. We work in writing; a call is a custom step for the builds that need one.", type: "text" }
       ]
     },
     {
@@ -131,7 +131,7 @@
           SEATS.map(function (s) { return { v: s.replace(/^The Agentic /, "").toLowerCase().replace(/[^a-z]+/g, "-"), label: s }; }).concat([
           { v: "none", label: "None yet" },
           { v: "explain", label: "Not sure what these are. Explain them to me" } ]) },
-        { id: "auto_send", label: "What may go out WITHOUT a human pressing send?", hint: "My default is nothing. Every send, pay and post waits for your press. Tell me where you want it faster.", type: "multi", essential: true,
+        { id: "auto_send", label: "What may go out WITHOUT a human pressing send?", hint: "The default is nothing. Every send, pay and post waits for your press. Tell me where you want it faster.", type: "multi", essential: true,
           ask: "What, if anything, may go out without a human pressing send?", options: [
           { v: "nothing", label: "Nothing. A human presses every send" },
           { v: "faq", label: "Answers to common customer questions" },
@@ -170,9 +170,9 @@
           { v: "define", label: "I want to define this myself", more: true } ] },
         { id: "access", label: "Setting up touches a few things in your name. Which suits you?", type: "single", essential: true,
           explain: { title: "What each of these means", items: [
-            ["Where it lives", "Every plan on this site, R2 Managed Hosting and Your Dojo, is built on my stack and stays there: nothing for you to log into, renew or fix, and one hosting fee that includes the management. The only access I need is for what stays yours: your domain, and anything moving over."],
-            ["Give me access", "You share the logins for what stays in your name (the domain, the email, the tools I am moving things out of) for the setup, and change the passwords after. Fastest."],
-            ["Be in the room", "We set it up together, on a call or in person. You type the passwords, I never see them. Slower, and fine."],
+            ["Where it lives", "Every plan on this site, R2 Managed Hosting and Your Dojo, is built on our stack and stays there: nothing for you to log into, renew or fix, and one hosting fee that includes the management. The only access we need is for what stays yours: your domain, and anything moving over."],
+            ["Give me access", "You share the logins for what stays in your name (the domain, the email, the tools we are moving things out of) for the setup, and change the passwords after. Fastest."],
+            ["Be in the room", "We set it up together, on a call or in person. You type the passwords, we never see them. Slower, and fine."],
             ["My own accounts", "You want the build inside your own accounts, in your name, so you own the machinery outright. That is a custom job, quoted in writing first, because every login and setting on your side adds hours."]
           ] },
           ask: "How do you want to handle access to what stays in your name (domain, email, tools) during setup: hand it over, be in the room, or do you want the whole build inside your own accounts, which is a custom job?", options: [
@@ -200,7 +200,7 @@
         { id: "devices", label: "What do you work on?", type: "multi", options: [
           { v: "iphone", label: "iPhone" }, { v: "android", label: "Android phone" }, { v: "mac", label: "Mac" },
           { v: "windows", label: "Windows PC" }, { v: "tablet", label: "iPad or tablet" }, { v: "phone-mostly", label: "Mostly the phone, honestly" } ] },
-        { id: "comfort", label: "How do you feel about the technical side?", hint: "There is no wrong answer. It changes how I hand things over.", type: "single", essential: true,
+        { id: "comfort", label: "How do you feel about the technical side?", hint: "There is no wrong answer. It changes how we hand things over.", type: "single", essential: true,
           ask: "How comfortable are you with the technical side?", options: [
           { v: "avoid", label: "I avoid computers where I can" }, { v: "manage", label: "I manage" },
           { v: "fine", label: "Comfortable" }, { v: "techie", label: "I am the tech person here" } ] },
@@ -231,8 +231,8 @@
           { v: "after", label: "After a date or an event", more: true }, { v: "norush", label: "No rush. I am exploring" } ] },
         { id: "tier", label: "Which offer are you leaning towards?", type: "single", essential: true,
           ask: "Which offer are you leaning towards: Your Dojo, R2 Managed Hosting, a one-off build, or something custom?", options: [
-          { v: "dojo", label: "Your Dojo, $2,222 a month", note: "I build it, host it, and help you run it" },
-          { v: "r2s", label: "R2 Managed Hosting: $222 to build, then $99 a month or $999 a year", note: "I build it, host it and manage the hosting on my stack" },
+          { v: "dojo", label: "Your Dojo, $2,222 a month", note: "We build it, host it, and help you run it" },
+          { v: "r2s", label: "R2 Managed Hosting: $222 to build, then $99 a month or $999 a year", note: "We build it, host it and manage the hosting on our stack" },
           { v: "build", label: "A one-off build, scoped in writing first" },
           { v: "custom", label: "Custom: inside my own accounts, run for me, or bigger than one Dojo. Talk first" },
           { v: "unsure", label: "Not sure yet" } ] },
@@ -244,7 +244,7 @@
           { v: "money", label: "Moving money" }, { v: "regulated", label: "A regulated industry", more: true },
           { v: "contracts", label: "Contracts or tools I am locked into", more: true }, { v: "nothing", label: "Nothing special" } ] },
         { id: "tax_where", label: "Where the business is registered for tax, and what tax you charge", hint: "Country, and VAT or sales tax if any.", type: "text" },
-        { id: "never", label: "What must I never do or touch?", hint: "A tool that stays, a customer list that never leaves, a person who must approve things.", type: "long" }
+        { id: "never", label: "What must we never do or touch?", hint: "A tool that stays, a customer list that never leaves, a person who must approve things.", type: "long" }
       ]
     },
     {
@@ -281,7 +281,7 @@
       qs: [
         { id: "links", label: "Links to the tools and pages you use", hint: "One per line. Your booking page, your invoicing tool, the spreadsheet, the Facebook page.", type: "long" },
         { id: "people", label: "Who else should I talk to?", hint: "The person who really runs the front desk. The accountant. Names and how to reach them, if they agree.", type: "long" },
-        { id: "worries", label: "What worries you about handing this to AI?", hint: "Say it straight. It shapes what I build and what stays behind your press.", type: "long" },
+        { id: "worries", label: "What worries you about handing this to AI?", hint: "Say it straight. It shapes what we build and what stays behind your press.", type: "long" },
         { id: "samples", label: "Where can I see how you write to customers?", hint: "A page, a few emails you can forward, or upload them below.", type: "text" }
       ]
     }

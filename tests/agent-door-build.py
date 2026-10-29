@@ -141,7 +141,7 @@ if os.path.exists(dfy):
         h=re.sub(r'</?(p|div|li|h\d|summary|details|br|section|ul|ol|header|footer|nav|a class="want"[^>]*)\b[^>]*>',' ',h)
         return re.sub(r'\s+',' ',html.unescape(re.sub(r'<[^>]+>','',h))).strip()
     lt=vis(s)
-    ADAPT={"the mailbox on my AI Ninja page":"the mailbox on this page"}
+    ADAPT={"the mailbox on our AI Ninja page":"the mailbox on this page"}
     cost=vis(dict((txt(q),a) for q,a in faqs)["What does it cost?"])
     copied=[]
     for sec in ("jobs","plans"):
