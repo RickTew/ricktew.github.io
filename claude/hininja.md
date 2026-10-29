@@ -255,3 +255,13 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     **The bed: "a dorm bed if you need one, while you are here"**; beds are not held while a guest is away (FAQ "Is my
     bed kept if I leave for a while?"). NerdHostel's bed is ฿555 a night (its book-now rate; the ฿1,110 is gone).
     Research behind it: `.claude/research/2026-10-29-hininja-pricing-research.md` (Digger).
+  - **29 Oct 2026, late: the prices (his clicks, LIVE 4683ceb + Digital Dojo eedba7c5).** "Easy door" for the short
+    stays, his testers and upgrade paths: Day $111 / ฿3,499 (up to 4; +$111 a day on a week or two), Week $555 /
+    ฿17,499, 2 weeks $1,111 / ฿34,999, all paid in full; 3 weeks dropped; Month $1,999 / ฿62,999, each next month $999
+    / ฿31,499 (2 months, the belt program, $2,998; 3 months $3,997), $555 down or $1,777 in full. "Bring them closer":
+    Year (Instructor) $6,666, Mastery $11,988 (November: save $2,000, $9,988). "Easy door + say why", on his point that
+    other camps are big groups rarely run by their founder: the price section leads with "Small groups, usually around 6:
+    near-private lessons at the price of a group class." in larger type, and a full-width Who box "Want a small group"
+    ("not a packed room"). The page and menu ask the checkout for the SECOND price list with p=2 (e-keys); without p
+    the first list sells, so NerdHostel's GNS page ($2,222) and old links keep their prices. Readers never asked what a
+    week is (5 mornings, Monday to Friday); weekends are said four times and 8 of 11 liked "weekends free".
