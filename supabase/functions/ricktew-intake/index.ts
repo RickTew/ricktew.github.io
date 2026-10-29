@@ -91,6 +91,9 @@ const MAX = { name: 100, email: 200, key: 80, fileName: 120, files: CATALOG.LIMI
 const ALLOWED_ORIGINS = [
   'https://ricktew.com',
   'https://www.ricktew.com',
+  // the AI Ninja pages moved to tewbedo.com (Rick, 29 Oct 2026: TEWBEDO takes aininja)
+  'https://tewbedo.com',
+  'https://www.tewbedo.com',
   'http://localhost:8765',
   'http://127.0.0.1:8765',
   'http://localhost:8080',

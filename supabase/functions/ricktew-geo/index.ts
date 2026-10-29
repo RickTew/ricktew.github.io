@@ -19,6 +19,9 @@ import { isThai } from './th.ts';
 const ALLOWED_ORIGINS = [
   'https://ricktew.com',
   'https://www.ricktew.com',
+  // the AI Ninja pages moved to tewbedo.com (Rick, 29 Oct 2026: TEWBEDO takes aininja)
+  'https://tewbedo.com',
+  'https://www.tewbedo.com',
   // the GNS page moved to NerdHostel still shows its Thailand lines (Rick's click, 23 Oct 2026)
   'https://www.nerdhostel.com',
   'https://nerdhostel.com',
