@@ -249,7 +249,7 @@
     {id:"dorm", q:"Where do I sleep?",
      alt:["where do i sleep","where do i stay","place to stay","accommodation","is housing included","a bed","dorm bed","the dorm","the dorms","hostel"],
      keys:"sleep sleeping stay staying bed beds dorm dorms housing accommodation accommodations hostel lodging nerdhostel bunk bunks room rooms",
-     a:"<p>You pay for the training. If you need a bed, there is basic housing nearby at no added cost: a shared men's or women's dorm. Meals are not included: every stay comes with 2 vouchers for NinjaGym's Shake and Bake (a water, an ice cream shake and a grilled cheese toastie).</p><p>The dorms are at NerdHostel, a gamer hostel and co-working space across the street from NinjaGym.</p>",
+     a:"<p>You pay for the training. If you need a bed, there is basic housing nearby at no added cost: a shared men's or women's dorm. Meals included: 2 vouchers per stay for NinjaGym's Shake and Bake: a water, an ice cream shake and a grilled cheese toastie.</p><p>The dorms are at NerdHostel, a gamer hostel and co-working space across the street from NinjaGym.</p>",
      next:STAYS},
 
     {id:"private-room", q:"Is there a private room, or a room for two?",
@@ -267,7 +267,7 @@
     {id:"meals", q:"Are meals included?",
      alt:["meals included","is food included","what about food","breakfast","lunch","dinner","meals a day","how many meals","meal a day","shake and bake","voucher","vouchers"],
      keys:"meals meal food foods eat eating breakfast lunch dinner shake bake voucher vouchers",
-     a:"<p>No, you pay for the training. Every stay comes with 2 vouchers for NinjaGym's Shake and Bake: a water, an ice cream shake and a grilled cheese toastie.</p><p>The dorms are at NerdHostel, a gamer hostel and co-working space across the street from NinjaGym.</p>",
+     a:"<p>Included: 2 vouchers per stay for NinjaGym's Shake and Bake: a water, an ice cream shake and a grilled cheese toastie.</p><p>The dorms are at NerdHostel, a gamer hostel and co-working space across the street from NinjaGym.</p>",
      next:STAYS},
 
     {id:"airport", q:"Do you pick me up from the airport?",
