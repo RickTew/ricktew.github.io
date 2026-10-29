@@ -82,7 +82,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await page.fill('#planName', 'Test Person');
   await button('2 months, the belt program, $2,998'); // keeps what was typed
   if (await page.inputValue('#planName') !== 'Test Person') bad.push(label + ' name lost');
-  await page.fill('#planEmail', 'test.person@gmail.com');
+  await page.fill('#planEmail', 'test.person@gmail.com'); await page.fill('#planArrive', '2027-02-01'); await page.click('[data-bed="yes"]');
   // two ways to pay (Rick's clicks, 28 Oct 2026 night): $555 down, or the whole stay now, $222 off
   if (await menu.locator('button[data-pay="deposit"]').textContent() !== 'Hold my spot: $555 down') bad.push(label + ' deposit text');
   if (await menu.locator('button[data-pay="full"]').textContent() !== 'Pay in full now: $2,776') bad.push(label + ' full text');
@@ -93,6 +93,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (!posted || posted.subject !== 'plan' || !/Stay: 2 months, the belt program, \$2,998 \(yellow belt first\)/.test(posted.message) || !/Week 3: Front Kicks \(Kicks\)/.test(posted.message) || /WinJitsu coaching add-on/.test(posted.message) || posted.source !== 'gads')
     bad.push(label + ' posted ' + JSON.stringify(posted));
   if (!checkout || !/buy\?sku=HIN-GNS-2W&src=gns-gads-2233-gCj0KabcXYZ&months=2&p=2&pay=deposit&cur=thb$/.test(checkout)) bad.push(label + ' checkout ' + checkout);
+  if (!posted || !/\nArrival, desired or estimated: 1 February 2027\nBed: yes, a dorm bed every night of the stay\n/.test(posted.message)) bad.push(label + ' arrival/bed lines ' + JSON.stringify(posted && posted.message));
   if (label === 'desktop') console.log(posted && posted.message);
   // the belt program's button: straight to the form with the belt, no picks needed
   posted = null; checkout = null;
@@ -103,7 +104,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await page.waitForTimeout(700);
   if (!/2 months, the belt program, \$2,998/.test(await menu.locator('.stay-line').textContent())) bad.push(label + ' belt not chosen');
   if (!/No picks needed/.test(await menu.locator('.tray-n').last().textContent())) bad.push(label + ' belt picks line');
-  await page.fill('#planName', 'Belt Person'); await page.fill('#planEmail', 'belt.person@gmail.com');
+  await page.fill('#planName', 'Belt Person'); await page.fill('#planEmail', 'belt.person@gmail.com'); await page.fill('#planArrive', '2027-02-01'); await page.click('[data-bed="yes"]');
   if (await menu.locator('button[data-pay="full"]').textContent() !== 'Pay in full now: $2,776') bad.push(label + ' belt full text');
   await page.screenshot({ path: OUT + label + '-6-belt.png' });
   await menu.locator('button[data-pay="full"]').click();
@@ -127,7 +128,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (await menu.locator('button[data-pay="full"]').count()) bad.push(label + ' a pay-in-full button on the 1 week');
   if (await menu.locator('.mc-pay button').textContent() !== 'Book my week: $555') bad.push(label + ' 1 week button text');
   if (/\$555 down/.test(await menu.locator('.mc-small').textContent())) bad.push(label + ' deposit line on the 1 week');
-  await page.fill('#planName', 'Week Person'); await page.fill('#planEmail', 'week.person@gmail.com');
+  await page.fill('#planName', 'Week Person'); await page.fill('#planEmail', 'week.person@gmail.com'); await page.fill('#planArrive', '2027-02-01'); await page.click('[data-bed="yes"]');
   await menu.locator('.mc-pay button').click();
   await page.waitForTimeout(1500);
   if (!posted || !/Stay: 1 week, \$555\nPaying: in full, \$555/.test(posted.message)) bad.push(label + ' 1 week posted ' + JSON.stringify(posted));
@@ -146,7 +147,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (!/Add a day for \$111/.test(await menu.locator('.upsell').textContent())) bad.push(label + ' upsell for days');
   if (await menu.locator('button[data-pay="full"]').count()) bad.push(label + ' a pay-in-full button on a day');
   if (await menu.locator('.mc-pay button').textContent() !== 'Book my 3 days: $333') bad.push(label + ' days button text');
-  await page.fill('#planName', 'Day Person'); await page.fill('#planEmail', 'day.person@gmail.com');
+  await page.fill('#planName', 'Day Person'); await page.fill('#planEmail', 'day.person@gmail.com'); await page.fill('#planArrive', '2027-02-01'); await page.click('[data-bed="yes"]');
   await menu.locator('.mc-pay button').click();
   await page.waitForTimeout(1500);
   if (!posted || !/Stay: 3 days, \$333\nPaying: in full, \$333/.test(posted.message)) bad.push(label + ' days posted ' + JSON.stringify(posted));
@@ -163,7 +164,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   if (await stayBtn('1 week').first().getAttribute('aria-pressed') !== 'true') bad.push(label + ' 1 week not pressed with days');
   await button('Book my stay');
   if (await menu.locator('.mc-pay button').textContent() !== 'Book my stay: $777') bad.push(label + ' week+days button text');
-  await page.fill('#planName', 'Plus Days'); await page.fill('#planEmail', 'plus.days@gmail.com');
+  await page.fill('#planName', 'Plus Days'); await page.fill('#planEmail', 'plus.days@gmail.com'); await page.fill('#planArrive', '2027-02-01'); await page.click('[data-bed="yes"]');
   await menu.locator('.mc-pay button').click();
   await page.waitForTimeout(1500);
   if (!posted || !/Stay: 1 week and 2 days, \$777\nPaying: in full, \$777/.test(posted.message)) bad.push(label + ' week+days posted ' + JSON.stringify(posted));
@@ -215,7 +216,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   await menu.locator('.qp', { hasText: 'Strikes and Kicks form' }).click();
   if (await stayBtn('2 weeks').isEnabled()) bad.push(label + ' 2 weeks enabled with 3 weeks used');
   await button('Book my month');
-  await page.fill('#planName', 'Quick Person'); await page.fill('#planEmail', 'quick.person@gmail.com');
+  await page.fill('#planName', 'Quick Person'); await page.fill('#planEmail', 'quick.person@gmail.com'); await page.fill('#planArrive', '2027-02-01'); await page.click('[data-bed="yes"]');
   await menu.locator('button[data-pay="deposit"]').click();
   await page.waitForTimeout(1500);
   if (!posted || !/Week 1: Quick pick: PSC Self-Defense Program\nWeek 2: Quick pick: Strikes and Kicks form\nWeek 3: Fist Strikes \(Strikes\), Elbow \(Strikes\), Ridge Hand \(Strikes\)/.test(posted.message)) bad.push(label + ' quick posted ' + JSON.stringify(posted && posted.message));
@@ -239,7 +240,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
     if ((await pp.locator('#planFriend').count() === 1) !== on) bad.push(label + ' friend field at ' + when);
     if (on) {
       await pp.locator('.hero').screenshot({ path: OUT + label + '-8-promo-hero.png' });
-      await pp.fill('#planName', 'Promo Person'); await pp.fill('#planEmail', 'promo.person@gmail.com'); await pp.fill('#planFriend', 'Pat Friend');
+      await pp.fill('#planName', 'Promo Person'); await pp.fill('#planEmail', 'promo.person@gmail.com'); await pp.fill('#planArrive', '2027-02-01'); await pp.click('[data-bed="yes"]'); await pp.fill('#planFriend', 'Pat Friend');
       await pp.locator('#menu').screenshot({ path: OUT + label + '-8-promo-form.png' });
       await pp.locator('#menu button[data-pay="deposit"]').click();
       await pp.waitForTimeout(1500);

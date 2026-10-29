@@ -575,11 +575,18 @@ figcaption a{font-weight:700;white-space:nowrap}
 .mc-row .btn{flex:1 1 200px}
 .mc-form{margin-top:16px}
 .mc-form label{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
-.mc-form input[type=text],.mc-form input[type=email]{display:block;width:100%;font:inherit;font-size:16px;padding:11px 13px;border:2px solid var(--mist2);border-radius:10px;background:var(--mist);color:var(--ink)}
+.mc-form input[type=text],.mc-form input[type=email],.mc-form input[type=date]{display:block;width:100%;font:inherit;font-size:16px;padding:11px 13px;border:2px solid var(--mist2);border-radius:10px;background:var(--mist);color:var(--ink)}
 .mc-form input:focus-visible{outline:3px solid var(--sea);outline-offset:1px}
 .mc-form .btn{margin-top:16px;width:100%}
 .mc-pay .btn+.btn{margin-top:10px}
 .mc-form .fr{margin-top:12px}
+/* the bed pick (Rick, 29 Oct 2026: "they should choose here if they need or do not need a bed for their stay") */
+.mc-bed{margin:12px 0 0;padding:0;border:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.mc-bed legend{grid-column:1/-1;font-weight:700;font-size:15px;margin-bottom:6px;padding:0}
+.bed-o{font:inherit;font-size:14px;font-weight:700;text-align:center;cursor:pointer;background:#fff;border:2px solid var(--mist2);border-radius:12px;padding:10px 6px;color:var(--ink);line-height:1.25}
+.bed-o[aria-pressed="true"]{border-color:var(--ink);background:var(--hi)}
+.bed-o:hover{border-color:var(--ink)}
+.bed-o:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 .mc-form .err{display:none;margin-top:10px;font-weight:700;color:var(--red-d)}
 .mc-form .err.on{display:block}
 .mc-small{margin-top:12px;font-size:13.5px;color:var(--muted)}
@@ -698,7 +705,7 @@ footer a:hover{color:var(--sea)}
            should we just remove it? We already have one that follows the page" (beside the menu on a wide screen it
            moved the page a few pixels; the nav's Book now stays on screen at every width) -->
       <p class="promo" data-promo hidden>Attend with a friend for free if you book in November.</p>
-      <p class="lede lede-how">Pick your tactics and Rick builds a small-group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand.</p>
+      <p class="lede lede-how">Pick your tactics and Rick builds a workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand.</p>
     </div>
     <div class="menu-card" id="menu">
       <noscript><p>The Ninja Menu needs JavaScript. <a href="#price">Pick your stay</a> instead.</p></noscript>
@@ -706,7 +713,7 @@ footer a:hover{color:var(--sea)}
     <div class="hero-how">
       <h2 class="how-h">How it works</h2>
       <ol class="how">
-        <li><span class="how-i" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9.5 4V2.8h5V4M8.5 10.5l2 2 4.5-4.5M8.5 16.5h7"/></svg></span><span class="how-t"><b>Pick</b>Choose what you want to learn.</span></li>
+        <li><span class="how-i" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9.5 4V2.8h5V4M8.5 10.5l2 2 4.5-4.5M8.5 16.5h7"/></svg></span><span class="how-t"><b>Pick</b>Choose what you want in <a href="#menu">the Ninja Menu</a>.</span></li>
         <li><span class="how-i" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M7.5 14h3M7.5 17h3"/></svg></span><span class="how-t"><b>Book</b>Choose how long you stay, and book.</span></li>
         <li><span class="how-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15.5l-8-4.5V5a1.5 1.5 0 0 0-3 0v6l-8 4.5v2l8-2.5V19l-2.5 1.5V22l4-1 4 1v-1.5L13 19v-4l8 2.5z"/></svg></span><span class="how-t"><b>Arrive</b>Free airport pick-up, and a dorm bed if you need one.</span></li>
         <li><span class="how-i" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="7.5" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14.5 20a3.8 3.8 0 0 1 6.5-2.7"/></svg></span><span class="how-t"><b>Train</b>A small-group workshop, built from everyone's picks.</span></li>

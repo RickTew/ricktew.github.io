@@ -261,6 +261,14 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     night, 2 weeks = 14, a Month = 30 days and 30 nights; "Every stay" says "a dorm bed every night of your stay if you need
     one". The belt program, Mastery and the friend line keep "while you are here". Beds are still not held while away. His
     class times were confirmed unchanged the same night (8 to 10am, optional 8 to 10pm, Monday to Friday, weekends free).
+  - **29 Oct 2026, night: his live-page notes (all LIVE, see the commit).** (1) The lede under the headline lost its
+    "small-group" ("we already say small group in the text above it so can remove the double"; the Train step keeps
+    its own). (2) The menu box is labelled: kicker "The Ninja Menu: personalize your martial arts camp" ("Need to label
+    this NINJA MENU so that we can mention it in the text"). (3) How it works, Pick: "Choose what you want in the Ninja
+    Menu." (his words, linked to #menu). (4) The booking form asks "A dorm bed for your stay?" Yes / No, required ("they
+    should choose here if they need or do not need a bed"), and (5) "Your arrival date, or your best guess", required,
+    from 15 January 2027 ("include desired arrival date or estimated arival date"). Both ride in the plan mail ("Arrival,
+    desired or estimated:", "Bed:"); the checkout is unchanged and still asks its own arrival date.
   - **29 Oct 2026, late: the prices (his clicks, LIVE 4683ceb + Digital Dojo eedba7c5).** "Easy door" for the short
     stays, his testers and upgrade paths: Day $111 / ฿3,499 (up to 4; +$111 a day on a week or two), Week $555 /
     ฿17,499, 2 weeks $1,111 / ฿34,999, all paid in full; 3 weeks dropped; Month $1,999 / ฿62,999, each next month $999

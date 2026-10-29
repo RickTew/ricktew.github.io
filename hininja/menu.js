@@ -224,7 +224,7 @@
   function levelText(it){ return it.level ? BELTS[it.level] : ""; }
 
   var step="menu", openCat=null;
-  var draft={name:"", email:"", friend:""}; /* what was typed in the form survives a re-render (a week added on the form step) */
+  var draft={name:"", email:"", friend:"", bed:"", arrive:""}; /* what was typed in the form survives a re-render (a week added on the form step) */
   function go(s,focus){ step=s; render(focus!==false); }
 
   /* the plan, week by week: picks fill the weeks in order, 5 a week */
@@ -332,7 +332,7 @@
     root.textContent="";
     var hd;
     if(step==="menu"){
-      hd=head("Personalize your martial arts camp","What do you want to learn?");
+      hd=head("The Ninja Menu: personalize your martial arts camp","What do you want to learn?"); /* "Need to label this NINJA MENU so that we can mention it in the text" (Rick, 29 Oct 2026) */
       root.appendChild(hd.frag);
       /* two sentences at most in this box (Rick, 27 Oct 2026: "Max of two sentences on the right"); the
          workshop line is the hero's, beside it; "Pick 5 Tactics" and the kicker are his, 27 Oct ("it is not a quiz") */
@@ -478,12 +478,18 @@
     }
   }
 
+  var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  function longDate(v){ var p=v.split("-"); return (+p[2])+" "+MONTHS[+p[1]-1]+" "+p[0]; }
+  var FIRST_DAY="2027-01-15"; /* the page: "Start any day from 15 January 2027" */
+
   function planText(friend,pay){
     var lines=["My plan, from the Ninja Menu on the HI Ninja page.","","Stay: "+stay().name+", "+money(stay().price)+(stay().belt?" (yellow belt first)":"")];
     if(pay==="deposit") lines.push("Paying: "+money(DEPOSIT)+" down to hold the spot, the rest 2 weeks before arrival");
     if(pay==="full") lines.push("Paying: in full now, "+money(stay().full));
     if(!pay) lines.push("Paying: in full, "+money(stay().price));
     if(friend) lines.push("Friend, FREE (booked in November): "+friend+", same dates, same stay");
+    if(draft.arrive) lines.push("Arrival, desired or estimated: "+longDate(draft.arrive));
+    if(draft.bed) lines.push("Bed: "+(draft.bed==="yes"?"yes, a dorm bed every night of the stay":"no, I have my own place"));
     lines.push("");
     if(!plan.picks.length) lines.push("No picks yet.");
     weeksOf().forEach(function(wk,w){
@@ -505,6 +511,11 @@
     nm.i.addEventListener("input",function(){ draft.name=nm.i.value; });
     em.i.addEventListener("input",function(){ draft.email=em.i.value; });
     r2.appendChild(nm.d); r2.appendChild(em.d); f.appendChild(r2);
+    /* Rick, 29 Oct 2026: "include desired arrival date or estimated arival date" */
+    var ar=fld("planArrive","Your arrival date, or your best guess","date","off",10);
+    ar.d.className="fld fr"; ar.i.min=FIRST_DAY; ar.i.value=draft.arrive;
+    ar.i.addEventListener("input",function(){ draft.arrive=ar.i.value; });
+    f.appendChild(ar.d);
     /* the November friend promo (the page's script sets promo-on until 30 November 2026): the friend rides in
        the plan mail, the checkout stays one item */
     var fr=null;
@@ -514,6 +525,17 @@
       fr.i.addEventListener("input",function(){ draft.friend=fr.i.value; });
       f.appendChild(fr.d);
     }
+    /* the bed pick, asked of every stay (Rick, 29 Oct 2026: "they should choose here if they need or do not need a bed
+       for their stay"); it rides in the plan mail, the checkout is unchanged */
+    var bed=el("fieldset","mc-bed"); bed.appendChild(el("legend",null,"A dorm bed for your stay?"));
+    [["yes","Yes, a dorm bed"],["no","No, I have my own place"]].forEach(function(o){
+      var b=el("button","bed-o",o[1]); b.type="button"; b.setAttribute("data-bed",o[0]);
+      b.setAttribute("aria-pressed",draft.bed===o[0]?"true":"false");
+      b.addEventListener("click",function(){ draft.bed=o[0];
+        [].forEach.call(bed.querySelectorAll(".bed-o"),function(x){ x.setAttribute("aria-pressed",x===b?"true":"false"); }); });
+      bed.appendChild(b);
+    });
+    f.appendChild(bed);
     /* a stay with no pay-now price (a day, the 1 week) has one button, paid in full: no ?pay rides to the checkout */
     var twoWays=!!stay().full, payWith=twoWays?"deposit":"";
     var pays=el("div","mc-pay");
@@ -537,6 +559,10 @@
       function fail(m){ err.textContent=m; err.classList.add("on"); }
       if(!name||!email){ fail("Your name and an email for Rick to send your plan to."); return; }
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ fail("That email address does not look right."); return; }
+      draft.arrive=ar.i.value;
+      if(!draft.arrive){ fail("Your arrival date, or your best guess."); return; }
+      if(draft.arrive<FIRST_DAY){ fail("Classes start 15 January 2027: pick a date from then."); return; }
+      if(!draft.bed){ fail("Do you need a dorm bed? Pick yes or no."); return; }
       if(!ready() && !stay().belt){ fail("Build your Ninja Week first: 5 picks from the menu."); return; }
       var trap=document.getElementById("askWebsite");
       var data={name:name, email:email, subject:"plan", message:planText(fr?fr.i.value.trim():"",payWith), website:trap?trap.value:"",

@@ -113,7 +113,7 @@
     {id:"what-is", q:"What is this program?",
      alt:["what is this","what is it","what is hi ninja","what is the program","whats this","tell me about it","what do you offer","martial arts introduction","is this a retreat"],
      keys:"program introduction intro overview workshop retreat",
-     a:"<p>Pick your tactics and Rick builds a small-group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand.</p><p>Always wanted to know what ninja martial arts is like? This is a great introduction, with plenty of time for the island.</p>",
+     a:"<p>Pick your tactics and Rick builds a workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand.</p><p>Always wanted to know what ninja martial arts is like? This is a great introduction, with plenty of time for the island.</p>",
      next:MENU},
 
     {id:"price", q:"How much does it cost?",
@@ -162,7 +162,7 @@
     {id:"learn", q:"What will I learn?",
      alt:["what will i learn","what do i learn","is it muay thai","is this muay thai","is it kickboxing","is it boxing","what can i learn","what do you teach","what is taught","what kind of martial art","which martial art","what style","ninjutsu","ninjitsu","modern american ninjitsu"],
      keys:"learn learning taught style styles art system ninjutsu ninjitsu stances rolls falls strikes kicks techniques technique skills curriculum",
-     a:"<p>Pick your tactics and Rick builds a small-group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand. The Ninja Menu has eight areas: Stances, Rolls, Falls, Strikes, Kicks, Body Movement, Ninja Tools and Self-defense.</p><p>The art is Rick's own system, Modern American Ninjitsu (most people spell it ninjutsu).</p>",
+     a:"<p>Pick your tactics and Rick builds a workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand. The Ninja Menu has eight areas: Stances, Rolls, Falls, Strikes, Kicks, Body Movement, Ninja Tools and Self-defense.</p><p>The art is Rick's own system, Modern American Ninjitsu (most people spell it ninjutsu).</p>",
      next:{href:"#menu", label:"Pick your 5 tactics"}},
 
     {id:"menu", q:"How does the Ninja Menu work?",
