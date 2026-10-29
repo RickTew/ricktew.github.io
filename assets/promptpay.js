@@ -20,7 +20,7 @@
    17 Oct 2026, in this chat and in the Dojo: the $222 app build ฿6,999 with
    the first month; GNS ฿69,999. Hosting in baht was the year only, ฿19,997,
    from 17 Oct ("we DO NOT WANT to chase them monthlhy"); since 20 Oct it is
-   ฿1,997 a month or ฿19,997 for the year, as on the three R2 Hosting clients'
+   ฿1,997 a month or ฿19,997 for the year, as on the three R2 Managed Hosting clients'
    bills (Rick, 19 Oct, in the TEWBEDO chat: "they can pay month or year (and
    save) and the same with prompt pay or credit card"; his click here, 20 Oct,
    "Match: month or year"). By card in dollars it stays $99 a month. A new

@@ -170,7 +170,7 @@
           { v: "define", label: "I want to define this myself", more: true } ] },
         { id: "access", label: "Setting up touches a few things in your name. Which suits you?", type: "single", essential: true,
           explain: { title: "What each of these means", items: [
-            ["Where it lives", "Every plan on this site, R2 Hosting and Your Dojo, is built on my stack and stays there: nothing for you to log into, renew or fix, and one hosting fee that includes the management. The only access I need is for what stays yours: your domain, and anything moving over."],
+            ["Where it lives", "Every plan on this site, R2 Managed Hosting and Your Dojo, is built on my stack and stays there: nothing for you to log into, renew or fix, and one hosting fee that includes the management. The only access I need is for what stays yours: your domain, and anything moving over."],
             ["Give me access", "You share the logins for what stays in your name (the domain, the email, the tools I am moving things out of) for the setup, and change the passwords after. Fastest."],
             ["Be in the room", "We set it up together, on a call or in person. You type the passwords, I never see them. Slower, and fine."],
             ["My own accounts", "You want the build inside your own accounts, in your name, so you own the machinery outright. That is a custom job, quoted in writing first, because every login and setting on your side adds hours."]
@@ -230,9 +230,9 @@
           { v: "month", label: "This month" }, { v: "1-3", label: "In one to three months" },
           { v: "after", label: "After a date or an event", more: true }, { v: "norush", label: "No rush. I am exploring" } ] },
         { id: "tier", label: "Which offer are you leaning towards?", type: "single", essential: true,
-          ask: "Which offer are you leaning towards: Your Dojo, R2 Hosting, a one-off build, or something custom?", options: [
+          ask: "Which offer are you leaning towards: Your Dojo, R2 Managed Hosting, a one-off build, or something custom?", options: [
           { v: "dojo", label: "Your Dojo, $2,222 a month", note: "I build it, host it, and help you run it" },
-          { v: "r2s", label: "R2 Hosting: $222 to build, then $99 a month or $999 a year", note: "I build it, host it and manage the hosting on my stack" },
+          { v: "r2s", label: "R2 Managed Hosting: $222 to build, then $99 a month or $999 a year", note: "I build it, host it and manage the hosting on my stack" },
           { v: "build", label: "A one-off build, scoped in writing first" },
           { v: "custom", label: "Custom: inside my own accounts, run for me, or bigger than one Dojo. Talk first" },
           { v: "unsure", label: "Not sure yet" } ] },

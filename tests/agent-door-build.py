@@ -25,7 +25,7 @@ rows=re.findall(r'<details class="sol-row rv">\s*<summary><span class="nm">(.*?)
 seats=sorted(set(re.findall(r'data-want="(The Agentic [^"]+ seat)"',s)))
 prices=re.findall(r'data-want="(Your Dojo), \$([\d,]+) a month"',s)
 P=dict(prices)
-r2=re.search(r'data-want="R2 Hosting, \$(\d+) to build, then \$(\d+) a month"',s)
+r2=re.search(r'data-want="R2 Managed Hosting, \$(\d+) to build, then \$(\d+) a month"',s)
 # The six seat buttons left with the Masters band on 1 Oct 2026; seats may be 0.
 if not (len(faqs)>=7 and len(rows)==11 and len(seats) in (0,6) and set(P)=={'Your Dojo'} and r2):
     sys.exit("page shape changed: faqs %d rows %d seats %d prices %s"%(len(faqs),len(rows),len(seats),P))
@@ -40,7 +40,7 @@ ld={"@context":"https://schema.org","@graph":[
   "makesOffer":[
     {"@type":"Offer","name":"Your Dojo","description":"Rick builds it, hosts it, and helps you run it; your team presses every send.","price":P['Your Dojo'].replace(',',''),"priceCurrency":"USD","url":"https://ricktew.com/aininja/#offers",
      "priceSpecification":{"@type":"UnitPriceSpecification","price":P['Your Dojo'].replace(',',''),"priceCurrency":"USD","unitText":"month"}},
-    {"@type":"Offer","name":"R2 Hosting","description":"Rick builds a website or small app, hosts it and keeps it running on his stack. The entry offer: a one-off build fee, then hosting and upkeep monthly.","price":r2.group(2),"priceCurrency":"USD","url":"https://ricktew.com/aininja/r2/",
+    {"@type":"Offer","name":"R2 Managed Hosting","description":"Rick builds a website or small app, hosts it and keeps it running on his stack. The entry offer: a one-off build fee, then hosting and upkeep monthly.","price":r2.group(2),"priceCurrency":"USD","url":"https://ricktew.com/aininja/r2/",
      "priceSpecification":{"@type":"UnitPriceSpecification","price":r2.group(2),"priceCurrency":"USD","unitText":"month"}}],
   "hasOfferCatalog":{"@type":"OfferCatalog","name":"Solutions",
     "itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":txt(n),"description":txt(t)}} for n,t in rows]}},
@@ -60,12 +60,12 @@ L=["# Rick Tew","",
 "- Every offer lives on Rick's own stack: nothing for the client to log into, renew or fix. The client's domain, content and data are theirs and leave with them (Rick keeps no copy); the build and the hosting end with the subscription.",
 "- The AI is in the price: Rick runs the models on his own accounts; the client never opens an AI account or watches a meter. Not in the price: ad spend, and software the client already pays for on its own.",
 "- Running the daily work for a client, a build inside the client's own accounts, or anything bigger than one Dojo, is a custom price talked about first; it is not a listed offer.",
-"- R2 Hosting: $%s to build a site or small app, then $%s a month or $999 a year for managed hosting on Rick's stack: instead of doing the logins, settings and fixes yourself, you send Rick a message. The first month is included. The entry offer: https://ricktew.com/aininja/r2/"%(r2.group(1),r2.group(2)),
+"- R2 Managed Hosting: $%s to build a site or small app, then $%s a month or $999 a year for managed hosting on Rick's stack: instead of doing the logins, settings and fixes yourself, you send Rick a message. The first month is included. The entry offer: https://ricktew.com/aininja/r2/"%(r2.group(1),r2.group(2)),
 "- Done-for-you AI for small business owners, on one short page: how it works, the jobs it takes off an owner, the two plans and the common questions. https://ricktew.com/aininja/done-for-you/",
 "- AI customer service for a small business, by email: an AI drafts every reply from the owner's written answers and a person presses send. https://ricktew.com/aininja/ai-customer-service/",
 "- AI agents for small business owners: the system first, then AI ninjas where they help, with Rick at the helm. https://ricktew.com/aininja/ai-agents/",
 "- An online booking system for a small business, built and hosted on Rick's stack: no account to book, reminders by email. https://ricktew.com/aininja/booking-system/",
-"- The Shop: apps Rick Tew built that you can have too, each an R2 Hosting build, and ready-made helpers for a business (not open yet), from AI Ninja. https://ricktew.com/aininja/shop/",
+"- The Shop: apps Rick Tew built that you can have too, each an R2 Managed Hosting build, and ready-made helpers for a business (not open yet), from AI Ninja. https://ricktew.com/aininja/shop/",
 "- MamaMia: one little page for every little first, a baby's own page that Mama fills in on her phone and the family opens from one link. $222 to build, first month included, then $99 a month. https://ricktew.com/aininja/shop/ain-mamamia/",
 "- Spa booking site: a spa or massage studio's website with booking built in, the one Rick built for SabaiSen on Koh Samui. Customers pick a treatment, a day and an open time, a therapist, and pay at the desk or by PromptPay. $222 to build, first month included, then $99 a month. https://ricktew.com/aininja/shop/ain-spa-booking/",
 # The Tewtors workbooks line left on 19 Oct 2026 (Rick: "tewtors workbooks are not on ricktew").
@@ -163,7 +163,7 @@ if os.path.exists(dfy):
       "provider":{"@type":"Person","@id":"https://ricktew.com/#rick","name":"Rick Tew","url":"https://ricktew.com/"},"areaServed":"Worldwide",
       "offers":[{"@type":"Offer","name":"Your Dojo","price":P['Your Dojo'].replace(',',''),"priceCurrency":"USD","url":"https://ricktew.com/aininja/#offers",
                  "priceSpecification":{"@type":"UnitPriceSpecification","price":P['Your Dojo'].replace(',',''),"priceCurrency":"USD","unitText":"month"}},
-                {"@type":"Offer","name":"R2 Hosting","price":r2.group(2),"priceCurrency":"USD","url":"https://ricktew.com/aininja/r2/",
+                {"@type":"Offer","name":"R2 Managed Hosting","price":r2.group(2),"priceCurrency":"USD","url":"https://ricktew.com/aininja/r2/",
                  "priceSpecification":{"@type":"UnitPriceSpecification","price":r2.group(2),"priceCurrency":"USD","unitText":"month"}}]},
      {"@type":"FAQPage","@id":u+"#faq",
       "mainEntity":[{"@type":"Question","name":txt(q),"acceptedAnswer":{"@type":"Answer","text":txt(a)}} for q,a in df]}]}
