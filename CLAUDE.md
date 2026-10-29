@@ -2,6 +2,18 @@
 
 Personal brand and portfolio site for Rick Tew. Everything he makes lives here: apps, games, businesses, and tools.
 
+**DIRECTION, 29 Oct 2026 (Rick's clicks; NOT DONE YET, each step goes live in order):**
+1. **The course moves to martialartcamp.com** ("martialartcamp.com (Recommended)"): its own full course page there plus
+   the top listing, always labelled "run by the people behind this site"; future ads and marketing point there. The
+   martialartcamp.com chat builds it; this chat hands over the page, the Ninja Menu, the chat (`hininja/ask.js`, whose
+   Kuno mail line is TEWBEDO's) and the checkout hops. `/hininja/` stays live until that page is, then forwards there
+   with its query string.
+2. **ricktew.com becomes one authority page** ("One authority page"): who Rick is, his history, interests and
+   companies, each linking out. Terms, Privacy and the checkout hops stay underneath until each moves.
+3. **The AI Ninja work (Your Dojo and R2 Managed Hosting) moves together to one new domain** ("Both to one new
+   domain"); the mailbox, chat, Intake and search pages go with it. The domain is not named yet.
+Until each step is live, everything below stands.
+
 **CURRENT STATE (2026-08-21): the site is TWO DOORS.** The front page asks one
 question, "Which ninja do you want?", and sends the visitor to one of two
 places:
