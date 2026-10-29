@@ -193,7 +193,7 @@
     {id:"age", q:"Am I too old?",
      alt:["too old","am i too old","age limit","how old","over 40","over 50","over 60","older people","my age","what ages","ages of the other","how old are the other"],
      keys:"old older age ages aged limit senior seniors 40 50 60 70 retired",
-     a:"<p>No. There is no upper age limit: the relaxed plan is for everyone, and every drill has an easier version. Tell me about an old injury before you come. Students come from 16 to their 60s.</p><p>Age is not really a factor: the system is built around you. In one group, an 18-year-old from Germany stayed 3 months and a 54-year-old from Singapore came for a week. Both loved it.</p><p>The great thing about the martial science is that it is built around your own strengths and weaknesses.</p>",
+     a:"<p>No. There is no upper age limit: the relaxed plan is for everyone, and every drill has an easier version. Tell me about an old injury before you come. Students come from 16 to their 60s.</p><p>Age is not really a factor: the system is built around you. In one group, an 18-year-old from Germany stayed 3 months and a 54-year-old from Singapore came for a week. Both loved it.</p><p>The martial science is built around your own strengths and weaknesses.</p>",
      next:MENU},
 
     /* Rick, 29 Oct 2026: "usually around 6 up to 12", "16 to 60s" */
@@ -219,7 +219,7 @@
     {id:"injury", q:"Got an injury, or not very fit?",
      alt:["bad knee","bad back","not fit","not very fit","out of shape","an injury","old injury","overweight","unfit","health problem","my knee","my back","my shoulder","knee injury","back injury","shoulder injury","injured"],
      keys:"injury injuries injured knee knees back shoulder fit fitness unfit shape health medical condition overweight weight hurt pain",
-     a:"<p>Tell me before you come. Every drill has an easier version. Bad knee? Skip any roll, fall or jump that hurts it, and train another part of the same tactic instead.</p><p>The great thing about the martial science is that it is built around your own strengths and weaknesses.</p>",
+     a:"<p>Tell me before you come. Every drill has an easier version. Bad knee? Skip any roll, fall or jump that hurts it, and train another part of the same tactic instead.</p><p>The martial science is built around your own strengths and weaknesses.</p>",
      next:ASK("Tell Kuno about it","About an injury or my fitness: ")},
 
     {id:"sparring", q:"Is it a fight camp? Is there sparring?",

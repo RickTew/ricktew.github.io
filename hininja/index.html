@@ -124,6 +124,8 @@ figcaption a{font-weight:700;white-space:nowrap}
 .isnot .fit{border-radius:20px;padding:24px 26px;background:#fff;border:2px solid var(--line)}
 .isnot .fit p{margin-top:10px;font-size:16px;color:var(--ink2)}
 .isnot .fit h3+p{margin-top:14px}
+.isnot .fit mark{background:#fff8db;color:var(--ink);font-weight:700;padding:0 2px;border-radius:4px;box-shadow:inset 0 -2px 0 var(--yellow)}
+.isnot .get,.isnot .fit{align-self:start} /* the boxes as tall as their words, not stretched (Rick, 29 Oct 2026: "big on the web") */
 .isnot h3{font-size:20px}
 .isnot ul{margin-top:14px;list-style:none;display:grid;gap:10px;font-size:16px;color:var(--ink2)}
 .isnot li{position:relative;padding-left:32px}
@@ -234,9 +236,9 @@ figcaption a{font-weight:700;white-space:nowrap}
 .wj-words span{display:block;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--hi)}
 .wj-words p{margin-top:8px;font-size:15.5px;color:#f0f6fc}
 .wj-story blockquote{margin-top:12px;font-size:16.5px;font-style:italic;color:#fff}
-.wj-story cite{display:block;margin-top:4px;font-size:14px;font-style:normal;color:var(--hi)}
+.wj-story cite{margin-left:6px;font-size:14px;font-style:normal;color:var(--hi);white-space:nowrap} /* on the quote's last line (Rick, 29 Oct 2026) */
 .wj-pics{margin-top:22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
-.wj-pics .book-rot{width:auto;height:240px;aspect-ratio:329/457;margin:0 auto;border-radius:14px;background:#fff}
+.wj-pics .book-rot{width:auto;height:240px;aspect-ratio:329/457;margin:0 auto;border-radius:0;background:none} /* on the blue, no white box (Rick, 29 Oct 2026) */
 .wj-pics .book-rot img{height:100%;width:100%;max-width:none;object-fit:contain;border-radius:0;background:none}
 .wj-pics figcaption a{color:var(--hi);font-weight:700}
 @media (max-width:560px){ .wj-pics{grid-template-columns:1fr} }
@@ -304,8 +306,13 @@ figcaption a{font-weight:700;white-space:nowrap}
 .who .w-b{background:#e9f1fc;border-color:var(--blue)} .who .w-b i{background:var(--blue)}
 .who a{font-weight:700;white-space:nowrap;color:#1c6db4}
 .who .w-wide{grid-column:1/-1}
+/* the rotating Who boxes: cards stacked in one cell, one shown at a time (like the student quotes) */
+.perks .who-slot{display:grid;background:none;border:0;padding:0;border-radius:0}
+.who-slot>div{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .9s ease,visibility 0s linear .9s}
+.who-slot>div.on{opacity:1;visibility:visible;transition:opacity .9s ease,visibility 0s}
+@media (prefers-reduced-motion:reduce){ .who-slot{gap:14px} .who-slot>div{grid-area:auto;opacity:1;visibility:visible;transition:none} }
 @media (prefers-reduced-motion:reduce){ .who>div{transition:none} .who>div:hover{transform:none} }
-@media (max-width:760px){ .who>div{display:grid;grid-template-columns:42px minmax(0,1fr);column-gap:14px;align-items:start;padding:14px 16px} .who i{grid-row:span 2;margin:0} .who span{align-self:center} }
+@media (max-width:760px){ .who>div:not(.who-slot),.who-slot>div{display:grid;grid-template-columns:42px minmax(0,1fr);column-gap:14px;align-items:start;padding:14px 16px} .who i{grid-row:span 2;margin:0} .who span{align-self:center} }
 .pair img{width:100%;border-radius:18px;box-shadow:0 14px 34px rgba(16,20,24,.14)}
 
 /* price: the stays side by side, biggest first (Rick, 28 Oct 2026); phones stack them, Mastery on top */
@@ -683,11 +690,15 @@ footer a:hover{color:var(--sea)}
       </div>
       <!-- "small-group workshop", was "private group workshop" (Rick's click, 29 Oct 2026: 4 of 11 read private and group as a
            contradiction) -->
-      <p class="lede">Pick your tactics and Rick builds a small-group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand.</p>
+      <!-- who it is for, right under the headline (Rick, 29 Oct 2026 evening: "what needs to be here is exactly who our
+           target audience is"; his click "Travelers, beginners welcome"); the line that was here moved under the
+           November box, his click "Under the November box" -->
+      <p class="lede">For travelers who want to learn real martial arts on vacation, in a small group. Beginners welcome.</p>
       <!-- the hero's own Book now left on Rick's word, 29 Oct 2026: "that red BOOK NOW button doesn't do anything so
            should we just remove it? We already have one that follows the page" (beside the menu on a wide screen it
            moved the page a few pixels; the nav's Book now stays on screen at every width) -->
       <p class="promo" data-promo hidden>Attend with a friend for free if you book in November.</p>
+      <p class="lede lede-how">Pick your tactics and Rick builds a small-group workshop for everyone: a go-at-your-own-pace program on Koh Samui Island, Thailand.</p>
     </div>
     <div class="menu-card" id="menu">
       <noscript><p>The Ninja Menu needs JavaScript. <a href="#price">Pick your stay</a> instead.</p></noscript>
@@ -719,15 +730,23 @@ footer a:hover{color:var(--sea)}
          will help show we are a legit program because ninjagym.com blurb for those with kids"; his click "A Who
          box, Families", one free session a day). -->
     <div class="perks who">
-      <div class="w-y"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21v-8"/><path d="M12 13c0-4 3-7 7-7 0 4-3 7-7 7z"/><path d="M12 15.5c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg></i><span>New to martial arts</span><p>Built for beginners: every drill has an easier version.</p></div>
-      <div class="w-o"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 8 21l4-2 4 2-1-7.5"/></svg></i><span>Trained before</span><p>Welcome too. Everyone trains at their level.</p></div>
-      <div class="w-g"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></i><span>Travelers and nomads</span><p>Class, then the day is yours: game, train, read, or go see the island.</p></div>
-      <div class="w-b"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="15.5" cy="11.5" r=".9"/><circle cx="17.5" cy="13.8" r=".9"/></svg></i><span>Gamers and nerds</span><p>Nerdy ninja conversations and a game room.</p></div>
-      <div class="w-y"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/><path d="m9 12 2 2 4-4"/></svg></i><span>Women who want self-defense</span><p>Self-defense is on the Ninja Menu, and there is a women's dorm.</p></div>
-      <div class="w-o"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M18 8v6M15 11h6"/></svg></i><span>16 and up</span><p>No upper age limit. At 16 or 17, a parent signs the papers.</p></div>
-      <div class="w-g"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 10h19v4h-19z"/><rect x="10" y="8.5" width="4" height="7" rx="1"/><path d="m10.5 15.5-2 5M13.5 15.5l2 5"/></svg></i><span>Want a belt</span><p>2 months of training, yellow belt first. You test with Rick when you are ready. <a href="#belts">The belt program</a></p></div>
-      <div class="w-b"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/></svg></i><span>Moving to Thailand</span><p>Mastery: 2 years of training with Rick. <a href="#mastery">Why Mastery</a></p></div>
-      <div class="w-y"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="11" rx="1.5"/><path d="M7 8h6M7 11h9"/><path d="m8 20 4-5 4 5"/></svg></i><span>Want to teach</span><p>Instructor: 1 year of training, and learn to lead practice as a Guide. <a href="#price">See Instructor</a></p></div>
+      <!-- three boxes, the similar ones turning in each (Rick, 29 Oct 2026 evening: "put this into only three and the ones
+           similar can rotate"); the first card of each shows on load, the rest turn every 5 seconds, holding under the mouse -->
+      <div class="who-slot" role="group" aria-label="Your level">
+        <div class="on w-y"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21v-8"/><path d="M12 13c0-4 3-7 7-7 0 4-3 7-7 7z"/><path d="M12 15.5c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg></i><span>New to martial arts</span><p>Built for beginners: every drill has an easier version.</p></div>
+        <div class="w-o"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 8 21l4-2 4 2-1-7.5"/></svg></i><span>Trained before</span><p>Welcome too. Everyone trains at their level.</p></div>
+        <div class="w-o"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M18 8v6M15 11h6"/></svg></i><span>16 and up</span><p>No upper age limit. At 16 or 17, a parent signs the papers.</p></div>
+      </div>
+      <div class="who-slot" role="group" aria-label="Who comes">
+        <div class="on w-g"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></i><span>Travelers and nomads</span><p>Class, then the day is yours: game, train, read, or go see the island.</p></div>
+        <div class="w-b"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="15.5" cy="11.5" r=".9"/><circle cx="17.5" cy="13.8" r=".9"/></svg></i><span>Gamers and nerds</span><p>Nerdy ninja conversations and a game room.</p></div>
+        <div class="w-y"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/><path d="m9 12 2 2 4-4"/></svg></i><span>Women who want self-defense</span><p>Self-defense is on the Ninja Menu, and there is a women's dorm.</p></div>
+      </div>
+      <div class="who-slot" role="group" aria-label="Your goal">
+        <div class="on w-g"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 10h19v4h-19z"/><rect x="10" y="8.5" width="4" height="7" rx="1"/><path d="m10.5 15.5-2 5M13.5 15.5l2 5"/></svg></i><span>Want a belt</span><p>2 months of training, yellow belt first. You test with Rick when you are ready. <a href="#belts">The belt program</a></p></div>
+        <div class="w-b"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/></svg></i><span>Moving to Thailand</span><p>Mastery: 2 years of training with Rick. <a href="#mastery">Why Mastery</a></p></div>
+        <div class="w-y"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="11" rx="1.5"/><path d="M7 8h6M7 11h9"/><path d="m8 20 4-5 4 5"/></svg></i><span>Want to teach</span><p>Instructor: 1 year of training, and learn to lead practice as a Guide. <a href="#price">See Instructor</a></p></div>
+      </div>
       <!-- Rick, 29 Oct 2026 late: "add a line in the WHO. For those that want a smaller private group focus not a rat packed"
            (the words from the price lead; "small group", his click of 29 Oct over "private group"; no teacher named) -->
       <div class="w-b w-wide"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.3"/><circle cx="19" cy="9" r="2.3"/><path d="M6.5 20v-2.5a5.5 5.5 0 0 1 11 0V20"/><path d="M1.5 19v-1.5a3.5 3.5 0 0 1 4.6-3.3M22.5 19v-1.5a3.5 3.5 0 0 0-4.6-3.3"/></svg></i><span>Want a small group</span><p>Usually around 6: near-private lessons at the price of a group class, not a packed room. <a href="#price">Pick your stay</a></p></div>
@@ -751,24 +770,44 @@ footer a:hover{color:var(--sea)}
     <div class="real" id="photos">
       <h3 class="real-h">Real people, real training, at your level.</h3>
       <div class="rot-row">
-        <figure class="rot-fig"><img class="rot-badge" src="/hininja/img/psc-badge.webp" alt="Master Rick Tew's Personal Security Course logo: Mind, Body, PSC, Tactic" width="240" height="240" loading="lazy"><div class="rot" role="group" aria-label="Self-defense in real classes">
+      <!-- three boxes since Rick's note of 29 Oct 2026 evening ("The same with the REAL PEOPLE section can be 3 and just
+           more rotations"): each is two of the six earlier boxes, their photos alternating, one caption from their two lines -->
+        <figure class="rot-fig"><img class="rot-badge" src="/hininja/img/psc-badge.webp" alt="Master Rick Tew's Personal Security Course logo: Mind, Body, PSC, Tactic" width="240" height="240" loading="lazy"><div class="rot" role="group" aria-label="Self-defense, blocks and partner drills in real classes">
           <img class="on" src="/hininja/img/gallery/g12.webp" alt="A woman breaks a grab from her training partner on red mats" width="900" height="836" loading="lazy" style="object-position:50% 25%">
+          <img src="/hininja/img/gallery/v09.webp" alt="Three students in guard stance in front of an old brick fortress wall" width="900" height="675" loading="lazy" style="object-position:50% 40%">
           <img src="/hininja/img/gallery/p0528.webp" alt="Rick Tew in a blue uniform shows a takedown while a line of students watches" width="512" height="384" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/v08.webp" alt="Two students work a clinch on a lawn while Rick Tew watches" width="900" height="675" loading="lazy" style="object-position:60% 35%">
           <img src="/hininja/img/gallery/p0388.webp" alt="Rick Tew in a blue uniform shows a lock on a student" width="900" height="600" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/v13.webp" alt="Rick Tew in a blue uniform and five students in fighting stance among eucalyptus trees" width="900" height="675" loading="lazy" style="object-position:50% 55%">
           <img src="/hininja/img/gallery/v01.webp" alt="Two students drill a high block and a strike on a hilltop among pine trees" width="900" height="675" loading="lazy" style="object-position:50% 30%">
+          <img src="/hininja/img/gallery/p0150.webp" alt="Two students sit on the mat and drill hand blocks" width="690" height="748" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/v04.webp" alt="Rick Tew in a blue uniform pins a student with an arm hold on red mats" width="900" height="506" loading="lazy" style="object-position:50% 40%">
+          <img src="/hininja/img/gallery/c-review.webp" alt="On a garden lawn, a student helps two classmates through a wrist hold during review" width="614" height="461" loading="lazy" style="object-position:50% 40%">
+          <img src="/hininja/img/gallery/p0310.webp" alt="Rick Tew squares up to a red standing bag, three photos on the wall behind him" width="454" height="434" loading="lazy" style="object-position:50% 0%">
           <img src="/hininja/img/gallery/v02.webp" alt="Rick Tew in a blue uniform breaks a hold from behind on a palm lawn" width="900" height="675" loading="lazy" style="object-position:55% 40%">
           <img src="/hininja/img/gallery/p0469.webp" alt="Students drill an arm control in a mirrored dojo" width="590" height="442" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0207.webp" alt="A woman drives a knee into a big exercise ball her partner holds" width="900" height="506" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/g15.webp" alt="An instructor guides a student's wrist control while a woman waits her turn" width="900" height="812" loading="lazy" style="object-position:50% 20%">
+          <img src="/hininja/img/gallery/v12.webp" alt="Pairs work a sweep drill on the grass in a park" width="900" height="580" loading="lazy" style="object-position:50% 45%">
           <img src="/hininja/img/gallery/v03.webp" alt="Rick Tew, smiling, takes a student's arm into a lock in a tropical garden" width="900" height="556" loading="lazy" style="object-position:40% 40%">
-        </div><figcaption>Self-defense you can use. <a href="#menu">Pick Self-defense</a></figcaption></figure>
-        <figure class="rot-fig"><div class="rot" role="group" aria-label="Ninja tools in real classes">
+          <img src="/hininja/img/gallery/v11.webp" alt="A woman throws a strike at her partner's head on red mats" width="900" height="506" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p1353.webp" alt="Rick Tew beside a student's words: It's eye opening how much you can learn in each class and how quickly that builds up" width="900" height="506" loading="lazy" style="object-position:50% 50%">
+          <img src="/hininja/img/gallery/v10.webp" alt="Rick Tew blocks a punch and checks the arm in a pine forest" width="720" height="480" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0165.webp" alt="A student in red boxing gloves throws a punch" width="714" height="735" loading="lazy" style="object-position:50% 35%">
+        </div><figcaption>Self-defense you can use: blocks and partner drills, at your pace. <a href="#menu">Pick Self-defense</a></figcaption></figure>
+        <figure class="rot-fig"><div class="rot" role="group" aria-label="Ninja tools and kicks in real classes">
           <img class="on" src="/hininja/img/gallery/c-nunchaku.webp" alt="A smiling student holds his nunchaku on a jungle trail, scooters parked behind him" width="720" height="405" style="object-position:50% 40%">
+          <img src="/hininja/img/gallery/p0481.webp" alt="A student round-kicks a pad on an outdoor deck" width="768" height="576" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/v05.webp" alt="Students in black swing sticks in a park while their partners block" width="900" height="580" loading="lazy" style="object-position:40% 40%">
-          <img src="/hininja/img/gallery/p0193.webp" alt="A woman raises a stick to block on a red mat" width="479" height="436" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0276.webp" alt="A woman kicks a standing bag on red mats" width="900" height="507" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/v06.webp" alt="Rick Tew works the long staff with a student on a terrace above the sea" width="900" height="675" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0193.webp" alt="A woman raises a stick to block on a red mat" width="479" height="436" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0309.webp" alt="Rick Tew kicks a red standing bag" width="325" height="436" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0128.webp" alt="A woman front-kicks a pad her partner holds on the red mats" width="567" height="743" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p0398.webp" alt="A student trains with nunchaku in an open-air hall" width="900" height="600" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p1877.webp" alt="A student throws a round kick in a bright gym with red and blue mats" width="900" height="675" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/g08.webp" alt="A student in a low stance with a bamboo staff on a grass field" width="627" height="638" loading="lazy" style="object-position:50% 20%">
+          <img src="/hininja/img/gallery/p0217.webp" alt="Two students drill a kick and a block on red mats by an open balcony" width="459" height="356" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p1891.webp" alt="Students drill with padded sticks in a bright gym" width="900" height="675" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p1354.webp" alt="Two students drill a stick technique on a garden lawn" width="900" height="506" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/g09.webp" alt="A woman lunges with a staff toward a partner in an open-air hall" width="900" height="480" loading="lazy" style="object-position:50% 50%">
@@ -776,52 +815,28 @@ footer a:hover{color:var(--sea)}
           <img src="/hininja/img/gallery/g14.webp" alt="An instructor shows a student a staff move" width="900" height="635" loading="lazy" style="object-position:50% 30%">
           <img src="/hininja/img/gallery/p0634.webp" alt="A student swings a long staff on an open field" width="671" height="479" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p0134.webp" alt="A woman works a stick drill with her partner while the class watches" width="900" height="600" loading="lazy" style="object-position:50% 35%">
-        </div><figcaption>The staff, the stick and more. <a href="#menu">Pick Ninja Tools</a></figcaption></figure>
-        <figure class="rot-fig"><div class="rot" role="group" aria-label="Blocks and partner drills in real classes">
-          <img class="on" src="/hininja/img/gallery/v09.webp" alt="Three students in guard stance in front of an old brick fortress wall" width="900" height="675" loading="lazy" style="object-position:50% 40%">
-          <img src="/hininja/img/gallery/v08.webp" alt="Two students work a clinch on a lawn while Rick Tew watches" width="900" height="675" loading="lazy" style="object-position:60% 35%">
-          <img src="/hininja/img/gallery/v13.webp" alt="Rick Tew in a blue uniform and five students in fighting stance among eucalyptus trees" width="900" height="675" loading="lazy" style="object-position:50% 55%">
-          <img src="/hininja/img/gallery/p0150.webp" alt="Two students sit on the mat and drill hand blocks" width="690" height="748" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/c-review.webp" alt="On a garden lawn, a student helps two classmates through a wrist hold during review" width="614" height="461" loading="lazy" style="object-position:50% 40%">
-          <img src="/hininja/img/gallery/p0310.webp" alt="Rick Tew squares up to a red standing bag, three photos on the wall behind him" width="454" height="434" loading="lazy" style="object-position:50% 0%">
-          <img src="/hininja/img/gallery/p0207.webp" alt="A woman drives a knee into a big exercise ball her partner holds" width="900" height="506" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/v12.webp" alt="Pairs work a sweep drill on the grass in a park" width="900" height="580" loading="lazy" style="object-position:50% 45%">
-          <img src="/hininja/img/gallery/v11.webp" alt="A woman throws a strike at her partner's head on red mats" width="900" height="506" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p1353.webp" alt="Rick Tew beside a student's words: It's eye opening how much you can learn in each class and how quickly that builds up" width="900" height="506" loading="lazy" style="object-position:50% 50%">
-          <img src="/hininja/img/gallery/v10.webp" alt="Rick Tew blocks a punch and checks the arm in a pine forest" width="720" height="480" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p0165.webp" alt="A student in red boxing gloves throws a punch" width="714" height="735" loading="lazy" style="object-position:50% 35%">
-        </div><figcaption>Blocks and partner drills, at your pace. <a href="#menu">Pick Strikes</a></figcaption></figure>
-        <figure class="rot-fig"><div class="rot" role="group" aria-label="Kicks in real classes">
-          <img class="on" src="/hininja/img/gallery/p0481.webp" alt="A student round-kicks a pad on an outdoor deck" width="768" height="576" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p0276.webp" alt="A woman kicks a standing bag on red mats" width="900" height="507" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p0309.webp" alt="Rick Tew kicks a red standing bag" width="325" height="436" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p0128.webp" alt="A woman front-kicks a pad her partner holds on the red mats" width="567" height="743" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p1877.webp" alt="A student throws a round kick in a bright gym with red and blue mats" width="900" height="675" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p0217.webp" alt="Two students drill a kick and a block on red mats by an open balcony" width="459" height="356" loading="lazy" style="object-position:50% 35%">
-        </div><figcaption>Kicks at your level, from your first class. <a href="#menu">Pick Kicks</a></figcaption></figure>
-        <figure class="rot-fig"><div class="rot" role="group" aria-label="Rolls, falls and stances in real classes">
-          <img class="on" src="/hininja/img/gallery/p1414.webp" alt="Rick Tew in a black uniform shows a hand position in a garden by a teak house" width="900" height="675" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p0141.webp" alt="A woman rolls over a plastic chair onto the red mats" width="590" height="738" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p0200.webp" alt="A student with a white belt holds a horse stance on a red mat" width="422" height="438" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p0016.webp" alt="A student stretches low on a red mat with a rope, in an open-air hall" width="900" height="600" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p1294.webp" alt="Rick Tew in a blue uniform coaches a student at a climbing wall in a garden" width="900" height="675" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p0133.webp" alt="A student rolls forward on a red mat" width="444" height="692" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p1378.webp" alt="Two students face off with training sticks on pink mats" width="900" height="506" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p0018.webp" alt="A student practices a roll over a plastic chair on the red mats" width="900" height="600" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p0376.webp" alt="A group practices stances on pink mats in an open-air sala" width="769" height="394" loading="lazy" style="object-position:50% 35%">
-          <img src="/hininja/img/gallery/p0190.webp" alt="A woman stretches into a split on the red mats" width="595" height="392" loading="lazy" style="object-position:50% 60%">
-        </div><figcaption>Rolls, falls and stances, step by step. <a href="#menu">Pick Rolls</a></figcaption></figure>
-        <figure class="rot-fig"><div class="rot" role="group" aria-label="Every age and every level in real classes">
+        </div><figcaption>The staff, the stick, and kicks at your level from your first class. <a href="#menu">Pick Ninja Tools</a></figcaption></figure>
+        <figure class="rot-fig"><div class="rot" role="group" aria-label="Every age and every level: rolls, falls and stances in real classes">
           <img class="on" src="/hininja/img/gallery/p-older.webp" alt="An older student in a yellow shirt holds a training knife" width="545" height="511" loading="lazy" style="object-position:50% 30%">
+          <img src="/hininja/img/gallery/p1414.webp" alt="Rick Tew in a black uniform shows a hand position in a garden by a teak house" width="900" height="675" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p0140.webp" alt="A student in a low stance with a staff" width="522" height="690" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0141.webp" alt="A woman rolls over a plastic chair onto the red mats" width="590" height="738" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p1941.webp" alt="Students raise padded sticks in a drill" width="900" height="675" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0200.webp" alt="A student with a white belt holds a horse stance on a red mat" width="422" height="438" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p0135.webp" alt="Students practice on the wooden floor of an open-air hall" width="900" height="600" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p0273.webp" alt="Two students in helmets ride scooters down an island road" width="600" height="360" loading="lazy" style="object-position:50% 50%">
+          <img src="/hininja/img/gallery/p0016.webp" alt="A student stretches low on a red mat with a rope, in an open-air hall" width="900" height="600" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p1294.webp" alt="Rick Tew in a blue uniform coaches a student at a climbing wall in a garden" width="900" height="675" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p0152.webp" alt="A student steps through a stance drill in an open-air hall" width="456" height="702" loading="lazy" style="object-position:50% 35%">
+          <img src="/hininja/img/gallery/p0133.webp" alt="A student rolls forward on a red mat" width="444" height="692" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p0258.webp" alt="A student looks out over a tropical beach" width="900" height="675" loading="lazy" style="object-position:50% 50%">
+          <img src="/hininja/img/gallery/p1378.webp" alt="Two students face off with training sticks on pink mats" width="900" height="506" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p1145.webp" alt="A student rides a scooter up to the gym" width="900" height="675" loading="lazy" style="object-position:50% 45%">
+          <img src="/hininja/img/gallery/p0018.webp" alt="A student practices a roll over a plastic chair on the red mats" width="900" height="600" loading="lazy" style="object-position:50% 35%">
           <img src="/hininja/img/gallery/p0130.webp" alt="Rick Tew in a blue uniform watches two students drill in an open-air hall" width="708" height="742" loading="lazy" style="object-position:50% 35%">
-        </div><figcaption>Every age, every level, and the island after class. <a href="#price">Pick your stay</a></figcaption></figure>
+          <img src="/hininja/img/gallery/p0190.webp" alt="A woman stretches into a split on the red mats" width="595" height="392" loading="lazy" style="object-position:50% 60%">
+          <img src="/hininja/img/gallery/p0376.webp" alt="A group practices stances on pink mats in an open-air sala" width="769" height="394" loading="lazy" style="object-position:50% 35%">
+        </div><figcaption>Every age, every level: rolls, falls and stances, step by step. <a href="#price">Pick your stay</a></figcaption></figure>
       </div>
     </div>
   </div>
@@ -838,25 +853,18 @@ footer a:hover{color:var(--sea)}
         <ul>
           <li>The Sensei Seminar: a small-group workshop Rick builds from the group's picks, 8 to 10 in the morning, Monday to Friday.</li>
           <li>An optional review class, 8 to 10 in the evening, to practice the morning.</li>
-          <li>Nerdy ninja conversations, a game room, and the island in between.</li>
           <li>Free pick-up from Samui Airport.</li>
         </ul>
       </div>
       <div class="isnot-r">
-      <div class="not">
-        <h3>What it is not</h3>
-        <ul>
-          <li>Not a fight camp. No sparring unless you ask.</li>
-          <li>Not a boot camp. Every drill has an easier version.</li>
-          <li>No experience needed. Trained before? Welcome too.</li>
-        </ul>
-      </div>
       <!-- Rick's words, spell-checked (28 Oct 2026 night): the answer for injuries, age and skill level; his click "A box
-           under What it is not". The chat's injury, age and experience answers quote it. -->
+           under What it is not". The chat's injury, age and experience answers quote it. "What it is not" left on his
+           note of 29 Oct 2026 evening, with the nerdy ninja line ("better for nerdhostel"); the first sentence starts
+           "The martial science" and Jutsu and Jitsu are marked, his words. -->
       <div class="fit">
         <h3>Built around you</h3>
-        <p>The great thing about the martial science is that it is built around your own strengths and weaknesses.</p>
-        <p>Rick's method (his Jutsu) for your truth (your Jitsu).</p>
+        <p>The martial science is built around your own strengths and weaknesses.</p>
+        <p>Rick's method (his <mark>Jutsu</mark>) for your truth (your <mark>Jitsu</mark>).</p>
         <p>Unlike most martial arts that expect you to conform to them, our system is built around you. One suit of armor is not a one-size-fits-all strategy. This is why we tailor the training around you.</p>
       </div>
       </div>
@@ -872,7 +880,7 @@ footer a:hover{color:var(--sea)}
       </div>
       <div class="mind-grid">
         <div><span>Coaching</span><b>WinJitsu with Rick</b><p>Sharpen your focus, set your goals and beat the self-doubt that holds you back, outside class.</p></div>
-        <div><span>Free with your stay</span><b>A free month of WinJitsu.com</b><p>The WinJitsu app, so the training comes home with you. WinJitsu.com, Rick's since 2002.</p></div>
+        <div><span>Free with your stay</span><b>A free month of WinJitsu.com</b><p>The WinJitsu app, so the training comes home with you.</p></div>
       </div>
       <!-- Rick, 27 Oct 2026: his ACE book photo "for Winjitsu writing", the blurb "on rick writing winjitsu the
            5 books" (his ruled words, from the WinJitsu chat: winjitsu-workbooks house/intro.py; "In 2010," left
@@ -880,7 +888,7 @@ footer a:hover{color:var(--sea)}
            or a vacation: he moved to Pai to write. App screens say WinJitsu, never Tewtors. -->
       <div class="wj-story">
         <!-- both Pai photos, smaller (Rick, 28 Oct 2026: "try the other photo or both so it is smaller") -->
-        <figure class="wj-pai"><div class="two"><img src="/hininja/img/winjitsu/pai-treehouse.webp" alt="Rick Tew on the balcony of a carved wooden treehouse in Pai, in the mountains of northern Thailand" width="640" height="514" loading="lazy"><img src="/hininja/img/winjitsu/pai-desk.webp" alt="Rick Tew smiling at a wooden desk with a laptop, in a treehouse room in Pai" width="960" height="758" loading="lazy"></div><blockquote>"It is my passion to help others find their key strengths so that they too can combine them to achieve a greater level of fulfillment in life." <cite>Rick Tew</cite></blockquote></figure>
+        <figure class="wj-pai"><div class="two"><img src="/hininja/img/winjitsu/pai-treehouse.webp" alt="Rick Tew on the balcony of a carved wooden treehouse in Pai, in the mountains of northern Thailand" width="640" height="514" loading="lazy"><img src="/hininja/img/winjitsu/pai-desk.webp" alt="Rick Tew smiling at a wooden desk with a laptop, in a treehouse room in Pai" width="960" height="758" loading="lazy"></div><blockquote>"It is my passion to help others find their key strengths so that they too can combine them to achieve a greater level of fulfillment in life." <cite>-Rick Tew</cite></blockquote></figure>
         <div class="wj-words">
           <span>How WinJitsu came about</span>
           <p>Rick took the old-school approach and moved to the mountains of Thailand (Pai) to write from his experience as a martial arts instructor, motivational speaker and traveler, and to formulate the 5-system foundation of WinJitsu.</p>
@@ -1201,7 +1209,8 @@ footer a:hover{color:var(--sea)}
            "Day in full, Month like 2 weeks", "2 months = $4,444", "A bed while you're here"): Day, Week, Month, Year,
            Mastery, white to blue. The checkout sells ?days=1-4 and ?months=1-3 (Digital Dojo 42bf1b95); the 1 week, 2 and
            3 weeks are as before. Was: 1 week, 2 weeks, 2 months $3,997, Instructor, Mastery. -->
-      <!-- the labels, Rick's click "Try it / Popular / Gold", 29 Oct 2026 (Year "Premium", Mastery "VIP" before) -->
+      <!-- the labels, Rick's click "Try it / Popular / Gold", 29 Oct 2026 (Year "Premium", Mastery "VIP" before); the Month's
+           "Best value" since his note the same evening ("no that is orange not gold") -->
       <div class="card t-day">
         <div class="tag">Try it</div>
         <div class="per">Day</div>
@@ -1219,7 +1228,7 @@ footer a:hover{color:var(--sea)}
         <a class="btn btn-red" href="#menu" data-stay="1">Pick and book</a>
       </div>
       <div class="card t-month">
-        <div class="tag">Gold</div>
+        <div class="tag">Best value</div>
         <div class="per">Month</div>
         <div class="amt">$1,999</div>
         <p class="all">A month of the Sensei Seminar, and a dorm bed if you need one, while you are here. Each extra month $999: 2 months in <a href="#belts">the belt program</a>, $2,998.</p>
@@ -1487,17 +1496,17 @@ footer a:hover{color:var(--sea)}
     if(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     /* the student quotes turn the same way, slower, one slot at a time (every student quote, 28 Oct 2026 night) */
     function run(box,k){
-      var quotes=box.classList.contains("voice-slot");
-      var imgs=box.querySelectorAll(quotes?":scope > .voice":"img"), i=0;
+      var quotes=box.classList.contains("voice-slot"), who=box.classList.contains("who-slot");
+      var imgs=box.querySelectorAll(quotes?":scope > .voice":who?":scope > div":"img"), i=0;
       if(imgs.length<2) return;
       setTimeout(function(){
         setInterval(function(){
           if(document.hidden || box.matches(":hover")) return;
           imgs[i].classList.remove("on"); i=(i+1)%imgs.length; imgs[i].classList.add("on");
-        },quotes?10000:4000);
+        },quotes?10000:who?5000:4000);
       },quotes?(k%6)*1700:(k%3)*1300);
     }
-    var boxes=[].slice.call(document.querySelectorAll(".rot, .voice-slot"));
+    var boxes=[].slice.call(document.querySelectorAll(".rot, .voice-slot, .who-slot"));
     if(!("IntersectionObserver" in window)){ boxes.forEach(run); return; }
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ io.unobserve(e.target); run(e.target, boxes.indexOf(e.target)); } });

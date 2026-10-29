@@ -35,7 +35,9 @@ const ADAPT = [
 
 /* Rick's own words for the chat, not on the page (he wrote them for the box, 28 Oct 2026 night) */
 const RICK = [
-  "it depends on the students, so you can get more than one, or just more focus on your own choices"
+  "it depends on the students, so you can get more than one, or just more focus on your own choices",
+  // his clicks of 12 Oct 2026; off the page since "What it is not" left (29 Oct 2026 evening), kept in the chat
+  "not a fight camp", "no sparring unless you ask", "not a boot camp"
 ];
 
 const SAMPLES = {
