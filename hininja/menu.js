@@ -128,7 +128,7 @@
     {weeks:1, name:"1 week", price:1111, book:"Book my week"},
     {weeks:2, name:"2 weeks", price:2222, full:2000, book:"Book my two weeks"},
     {weeks:3, name:"3 weeks", price:3222, full:3000, book:"Book my 3 weeks"},
-    {weeks:8, name:"A belt, 2 months", price:3997, full:3775, book:"Book my belt"}]; /* 28 Oct 2026: the month left, the belt is $3,997 (Rick) */
+    {weeks:8, name:"2 months, the belt program", price:3997, full:3775, book:"Book my 2 months"}]; /* 28 Oct 2026: the month left, the belt is $3,997 (Rick) */
   /* two ways to pay (Rick's clicks, 28 Oct 2026 night): $555 down holds the spot, the rest 2 weeks before arrival;
      or the whole stay now, $222 off (full). The checkout takes ?pay=deposit|full (Digital Dojo 399716e9). */
   var DEPOSIT=555;
@@ -248,7 +248,7 @@
       row.appendChild(chips);
       t.appendChild(row);
     });
-    t.appendChild(el("p","tray-n",!plan.picks.length?"No picks needed for the belt. Add some if you like.":room(false)?plan.picks.length+" picked. Add more for your other weeks if you like, up to "+PER_WEEK+" a week.":plan.picks.length+" picked. Your weeks are full."));
+    t.appendChild(el("p","tray-n",!plan.picks.length?"No picks needed for the belt program. Add some if you like.":room(false)?plan.picks.length+" picked. Add more for your other weeks if you like, up to "+PER_WEEK+" a week.":plan.picks.length+" picked. Your weeks are full."));
     return t;
   }
 
@@ -402,10 +402,10 @@
       root.appendChild(tray(true));
       if(plan.weeks<8){
         var up=el("div","upsell");
-        up.appendChild(el("p",null,plan.weeks===1?"Stay longer? Make it 2 weeks for $2,222, or 2 months and earn a yellow belt for $3,997.":plan.weeks===2?"Stay longer? Add a week for $1,000, or make it 2 months and earn a yellow belt for $3,997.":"Make it 2 months and earn a yellow belt for $3,997?"));
+        up.appendChild(el("p",null,plan.weeks===1?"Stay longer? Make it 2 weeks for $2,222, or 2 months in the belt program for $3,997.":plan.weeks===2?"Stay longer? Add a week for $1,000, or make it 2 months in the belt program for $3,997.":"Make it 2 months in the belt program for $3,997?"));
         if(plan.weeks===1) up.appendChild(btn("btn btn-quiet","2 weeks in all, $2,222",function(){ plan.weeks=2; keep(); render(false); }));
         if(plan.weeks===2) up.appendChild(btn("btn btn-quiet","3 weeks in all, $3,222",function(){ plan.weeks=3; keep(); render(false); }));
-        up.appendChild(btn("btn btn-quiet","2 months and a belt, $3,997",function(){ plan.weeks=8; keep(); render(false); }));
+        up.appendChild(btn("btn btn-quiet","2 months, the belt program, $3,997",function(){ plan.weeks=8; keep(); render(false); }));
         root.appendChild(up);
       }
       root.appendChild(bookForm());
@@ -419,7 +419,7 @@
   }
 
   function planText(friend,pay){
-    var lines=["My plan, from the Ninja Menu on the HI Ninja page.","","Stay: "+stay().name+", "+money(stay().price)+(plan.weeks===8?" (the belt program, yellow belt first)":"")];
+    var lines=["My plan, from the Ninja Menu on the HI Ninja page.","","Stay: "+stay().name+", "+money(stay().price)+(plan.weeks===8?" (yellow belt first)":"")];
     if(pay==="deposit") lines.push("Paying: "+money(DEPOSIT)+" down to hold the spot, the rest 2 weeks before arrival");
     if(pay==="full") lines.push("Paying: in full now, "+money(stay().full));
     if(!pay) lines.push("Paying: in full, "+money(stay().price));
