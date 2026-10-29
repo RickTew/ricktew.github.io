@@ -559,6 +559,16 @@ Tew Co. is "R2 Managed Hosting, the month". Older lines in this file that say "R
 agents and his oversight paid. Nothing about BAM or "free" goes on a page until the Digital Dojo's package exists
 (his click). Open steps are in `.claude/NEXT-SESSION.md`.
 
+**Later the same day (Rick: "do NOT say, ME or anywhere say ME or Rick as the ME in promises ... do not trap me"):**
+every promise line on the AI Ninja door (the plan cards, How it works, the FAQ, the quiz results, the storyboard, the
+search pages, the chat and the Intake) is "we / us" or generic. The story, the cases and "Why I do this" stay in his
+voice (4b58ece, c48274d). The Terms (d9a6c70) say "we" means Rick Tew Co., Ltd., and add four things. Section 2: what
+the monthly fee covers (fixes and small changes to what is there; anything above the norm we decide is an added fee,
+quoted first). Section 3: the first month is a trial both ways, and we may stop at the end of a paid period. Section 4:
+the build and app are ours even when free; the data (customers, records, content) is theirs; a domain we register
+stays ours, one they own stays theirs. New FAQs: "Do I own the app?" and "What counts as a fix or a small change?". A
+new page, answer, ad or video follows the rule from the start.
+
 ### THE LESS-IS-MORE PASS (2026-10-01, Rick's go): what left the page, where things are now
 
 Rick, 1 Oct: "dumb it down and simplify it and also remove redundancy ...
