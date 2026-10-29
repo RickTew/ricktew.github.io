@@ -122,26 +122,25 @@
   var QUICK=["Mini-Martial Art System via Stances","PSC Self-Defense Program","Ninja Tools and tactics","Strikes and Kicks form"];
 
   var PER_WEEK=5, WEEK_MIN=5; /* single picks before the stays and Book show */
-  /* key: the checkout's stay (d1-d4 go as ?days=, m1-m3 as ?months=, the rest as ?weeks=); cap: how many Ninja Weeks
-     of picks it holds; book: the Book button's words. No `full` (a day, the 1 week): no deposit and one Book button.
-     Since 29 Oct 2026 the ladder is Day, Week, Month, Year, Mastery (Rick: "a simple day, week, month, year strategy";
-     his clicks "4 + Mastery as VIP", "Day in full, Month like 2 weeks", "2 months = $4,444"; Digital Dojo 42bf1b95):
-     a day $222 (up to 4: a 5th day costs the week), a month $3,333 and $1,111 for each next one. */
+  /* key: the checkout's stay (d1-d4 go as ?days=, m1-m3 as ?months=, w1d1-w2d4 as ?weeks=&days=, the rest as ?weeks=);
+     cap: how many Ninja Weeks of picks it holds; book: the Book button's words. No `full`: paid in full, one Book button.
+     The ladder is Day, Week, Month, Year, Mastery (Rick, 29 Oct 2026: "a simple day, week, month, year strategy").
+     Its prices are the SECOND price list, his clicks of 29 Oct late ("Easy door", "Easy door + say why"; 3 weeks
+     dropped): every Buy asks the checkout for it with p=2 (Digital Dojo stayKeyFor), so NerdHostel's GNS page and old
+     links keep theirs. A day $111 (up to 4; a 5th costs the week), a week $555, 2 weeks $1,111, all paid in full; a
+     month $1,999 and $999 each next one, $555 down or in full $222 off; a week or two plus 1 to 4 days, $111 a day. */
   var STAYS=[
-    {key:"d1", cap:1, name:"1 day", price:222, book:"Book my day", day:1},
-    {key:"d2", cap:1, name:"2 days", price:444, book:"Book my 2 days", day:2},
-    {key:"d3", cap:1, name:"3 days", price:666, book:"Book my 3 days", day:3},
-    {key:"d4", cap:1, name:"4 days", price:888, book:"Book my 4 days", day:4},
-    {key:"1", cap:1, name:"1 week", price:1111, book:"Book my week"},
-    {key:"2", cap:2, name:"2 weeks", price:2222, full:2000, book:"Book my two weeks"},
-    {key:"3", cap:3, name:"3 weeks", price:3222, full:3000, book:"Book my 3 weeks"},
-    {key:"m1", cap:4, name:"1 month", price:3333, full:3111, book:"Book my month"},
-    {key:"m2", cap:8, name:"2 months, the belt program", price:4444, full:4222, book:"Book my 2 months", belt:true},
-    {key:"m3", cap:12, name:"3 months", price:5555, full:5333, book:"Book my 3 months"}];
-  /* a week or two plus 1 to 4 days, $222 a day, paying like its week (Rick's click "A day added onto a week",
-     29 Oct 2026; Digital Dojo 039639ea, ?weeks=1|2&days=1-4). Not on 3 weeks: 3 weeks and a day passes the month. */
+    {key:"d1", cap:1, name:"1 day", price:111, book:"Book my day", day:1},
+    {key:"d2", cap:1, name:"2 days", price:222, book:"Book my 2 days", day:2},
+    {key:"d3", cap:1, name:"3 days", price:333, book:"Book my 3 days", day:3},
+    {key:"d4", cap:1, name:"4 days", price:444, book:"Book my 4 days", day:4},
+    {key:"1", cap:1, name:"1 week", price:555, book:"Book my week"},
+    {key:"2", cap:2, name:"2 weeks", price:1111, book:"Book my two weeks"},
+    {key:"m1", cap:4, name:"1 month", price:1999, full:1777, book:"Book my month"},
+    {key:"m2", cap:8, name:"2 months, the belt program", price:2998, full:2776, book:"Book my 2 months", belt:true},
+    {key:"m3", cap:12, name:"3 months", price:3997, full:3775, book:"Book my 3 months"}];
   [1,2].forEach(function(w){ for(var d=1; d<=4; d++) STAYS.push({key:"w"+w+"d"+d, cap:w, base:String(w), extra:d,
-    name:w+(w>1?" weeks":" week")+" and "+d+(d>1?" days":" day"), price:(w===1?1111:2222)+222*d, full:w===2?2000+222*d:undefined, book:"Book my stay"}); });
+    name:w+(w>1?" weeks":" week")+" and "+d+(d>1?" days":" day"), price:(w===1?555:1111)+111*d, book:"Book my stay"}); });
   /* two ways to pay (Rick's clicks, 28 Oct 2026 night): $555 down holds the spot, the rest 2 weeks before arrival;
      or the whole stay now, $222 off (full). The checkout takes ?pay=deposit|full (Digital Dojo 399716e9). */
   var DEPOSIT=555;
@@ -202,7 +201,7 @@
   function checkoutUrl(pay){
     /* a partner's or a post's ?src= rides on the order too (ricktew-plan-nerdhostel) */
     var src=AD&&AD.click ? "gns-gads-"+AD.campaign+"-"+AD.letter+AD.click : "ricktew-plan"+(SRC!=="direct"?"-"+SRC:"");
-    return "/hininja/buy/?sku=HIN-GNS-2W&src="+encodeURIComponent(src)+stayParam()+(pay==="deposit"||pay==="full"?"&pay="+pay:"");
+    return "/hininja/buy/?sku=HIN-GNS-2W&src="+encodeURIComponent(src)+stayParam()+"&p=2"+(pay==="deposit"||pay==="full"?"&pay="+pay:"");
   }
 
   function el(tag,cls,text){ var n=document.createElement(tag); if(cls) n.className=cls; if(text!=null) n.textContent=text; return n; }
@@ -269,7 +268,7 @@
     var wk=stay().base || (plan.stay==="1"||plan.stay==="2" ? plan.stay : "");
     if(wk){
       var xr=el("div","stays days"); xr.setAttribute("role","group"); xr.setAttribute("aria-label","Add days");
-      xr.appendChild(el("span","stay-l","Add days? $222 a day"));
+      xr.appendChild(el("span","stay-l","Add days? $111 a day"));
       for(var x=0; x<=4; x++){
         var o=x ? find("w"+wk+"d"+x) : find(wk);
         var b=btn("stay-o",null,(function(k){ return function(){ pick(k); }; })(o.key));
@@ -449,25 +448,24 @@
       root.appendChild(tray(true));
       /* one step up from each stay, and the belt program; nothing past the belt or the 3 months */
       var k=stay().key, set=function(n){ return function(){ plan.stay=n; keep(); render(false); }; };
-      var UP={d1:["Stay longer? Add a day for $222, or make it a week for $1,111.","d2","2 days in all, $444"],
-        d2:["Stay longer? Add a day for $222, or make it a week for $1,111.","d3","3 days in all, $666"],
-        d3:["Stay longer? Add a day for $222, or make it a week for $1,111.","d4","4 days in all, $888"],
-        d4:["Stay longer? A week is 5 mornings for $1,111."],
-        "1":["Stay longer? Make it 2 weeks for $2,222, or 2 months in the belt program for $4,444.","2","2 weeks in all, $2,222"],
-        "2":["Stay longer? Add a week for $1,000, or make it 2 months in the belt program for $4,444.","3","3 weeks in all, $3,222"],
-        "3":["Stay longer? Make it a month for $3,333, or 2 months in the belt program for $4,444.","m1","1 month, $3,333"],
-        m1:["Stay longer? Add a month for $1,111: 2 months in the belt program, $4,444."]}[k];
+      var UP={d1:["Stay longer? Add a day for $111, or make it a week for $555.","d2","2 days in all, $222"],
+        d2:["Stay longer? Add a day for $111, or make it a week for $555.","d3","3 days in all, $333"],
+        d3:["Stay longer? Add a day for $111, or make it a week for $555.","d4","4 days in all, $444"],
+        d4:["Stay longer? A week is 5 mornings for $555."],
+        "1":["Stay longer? Make it 2 weeks for $1,111, or 2 months in the belt program for $2,998.","2","2 weeks in all, $1,111"],
+        "2":["Stay longer? Make it a month for $1,999, or 2 months in the belt program for $2,998.","m1","1 month, $1,999"],
+        m1:["Stay longer? Add a month for $999: 2 months in the belt program, $2,998."]}[k];
       /* a week or two plus days: one more day while there is room, else the next week */
       var o0=stay();
-      if(o0.extra) UP = o0.extra<4 ? ["Stay longer? Add a day for $222.","w"+o0.base+"d"+(o0.extra+1),find("w"+o0.base+"d"+(o0.extra+1)).name+", "+money(find("w"+o0.base+"d"+(o0.extra+1)).price)]
-        : [o0.base==="1" ? "Stay longer? Make it 2 weeks for $2,222." : "Stay longer? Make it 3 weeks for $3,222.", o0.base==="1"?"2":"3", o0.base==="1"?"2 weeks in all, $2,222":"3 weeks in all, $3,222"];
+      if(o0.extra) UP = o0.extra<4 ? ["Stay longer? Add a day for $111.","w"+o0.base+"d"+(o0.extra+1),find("w"+o0.base+"d"+(o0.extra+1)).name+", "+money(find("w"+o0.base+"d"+(o0.extra+1)).price)]
+        : [o0.base==="1" ? "Stay longer? Make it 2 weeks for $1,111." : "Stay longer? Make it a month for $1,999.", o0.base==="1"?"2":"m1", o0.base==="1"?"2 weeks in all, $1,111":"1 month, $1,999"];
       if(UP){
         var up=el("div","upsell");
         up.appendChild(el("p",null,UP[0]));
         if(UP[1]) up.appendChild(btn("btn btn-quiet",UP[2],set(UP[1])));
-        if(stay().day) up.appendChild(btn("btn btn-quiet","1 week, $1,111",set("1")));
-        if(k==="1"||k==="2") up.appendChild(btn("btn btn-quiet","Add a day, $222",set("w"+k+"d1")));
-        up.appendChild(btn("btn btn-quiet","2 months, the belt program, $4,444",set("m2")));
+        if(stay().day) up.appendChild(btn("btn btn-quiet","1 week, $555",set("1")));
+        if(k==="1"||k==="2") up.appendChild(btn("btn btn-quiet","Add a day, $111",set("w"+k+"d1")));
+        up.appendChild(btn("btn btn-quiet","2 months, the belt program, $2,998",set("m2")));
         root.appendChild(up);
       }
       root.appendChild(bookForm());
@@ -525,7 +523,7 @@
     whole.addEventListener("click",function(){ payWith="full"; });
     pays.appendChild(send); if(twoWays) pays.appendChild(whole); f.appendChild(pays);
     var err=el("p","err"); err.setAttribute("role","alert"); f.appendChild(err);
-    f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed if you need one, while you are here. Your plan goes to Rick, then the secure checkout, where you add your arrival date. "+(twoWays?"$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. ":"A day or one week is paid in full. ")+"Ill, or your flights change? Your dates can move, within a year of buying. All sales are final."));
+    f.appendChild(el("p","mc-small","Training and WinJitsu coaching; a dorm bed if you need one, while you are here. Your plan goes to Rick, then the secure checkout, where you add your arrival date. "+(twoWays?"$555 down holds your spot and is non-refundable; the rest is due 2 weeks before you arrive. Pay in full now and save $222. ":"A day, a week or two weeks is paid in full. ")+"Ill, or your flights change? Your dates can move, within a year of buying. All sales are final."));
     var askA=el("a","mc-ask","A question about your plan? Ask it with your picks"); askA.href="#ask";
     askA.addEventListener("click",function(){
       var m=document.getElementById("askMsg"), t=document.getElementById("askTopic");

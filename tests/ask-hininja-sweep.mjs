@@ -109,7 +109,7 @@ for (const [label, vp] of [['desktop', { width: 1280, height: 900 }], ['phone', 
   }
   const lastNext = await page.locator('#kunoLog .kuno-act .kuno-go').last().textContent();
   if (lastNext !== 'Ask Kuno about it') bad.push(label + ' kids next step: ' + lastNext);
-  if (/\$2,222/.test(await page.locator('#kunoLog .kuno-n').nth(1).textContent()) === false) bad.push(label + ' price answer lacks $2,222');
+  if (/\$555/.test(await page.locator('#kunoLog .kuno-n').nth(1).textContent()) === false) bad.push(label + ' price answer lacks $555 (the week, since 29 Oct 2026)');
   await page.screenshot({ path: OUT + label + '-1-answers.png' });
 
   // a miss, then Ask Kuno against the stubbed mailbox
