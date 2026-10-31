@@ -305,3 +305,6 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     you keeps its two lines); the book caption "The books: on Amazon, in print and on Kindle."; the phone caption "Take
     it home: a few minutes a day, wherever you go next." (the free month is on the card above). Pai story, pictures and
     Pocket Dojo untouched. ask.js keeps its own longer answers.
+    Belts + System (his click "Fold both"): the belt lede drops "The art is Rick's own system, Modern American Ninjitsu
+    (most people spell it ninjutsu)." (said again under #system and its dropdown); the book's small print is now "Now
+    being remade into the Pocket Dojo app." (the editions line gone).
