@@ -296,3 +296,8 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     place). "What it is not" is gone ("No sparring unless you ask" lives on in the chat, his 12 Oct words), and the
     nerdy ninja line ("better for nerdhostel"). Kuno is a ninja (hood + blue band, 12e1719); Kata keeps the headband
     picture on martialartcamp.com. Kata answers across martialartcamp.com, Kuno only on the course page and in his mail.
+  - **31 Oct 2026: his shortening review on the live page** ("I will review it for what to shorten too after we have the
+    new times and we are set on a good PRICE"). Section by section, one click each; words fold, pictures stay.
+    Who (his click "Fold both"): Travelers "Class, then the island is yours." (it repeated How it works' Explore step);
+    Families "Bringing kids? Rick's NinjaGym on Koh Samui: one free kids session a day during your stay, ages 3 to 9,
+    older kids welcome." The top (headline, menu, How it works) left as it is: every line there is his.
