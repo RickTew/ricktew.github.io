@@ -18,6 +18,9 @@ Personal brand and portfolio site for Rick Tew. Everything he makes lives here: 
    this chat; they travel with the page in claude/hininja.md.
 2. **ricktew.com becomes one authority page** ("One authority page"): who Rick is, his history, interests and
    companies, each linking out. Terms, Privacy and the checkout hops stay underneath until each moves.
+   **Until it is built (Rick, 31 Oct 2026: "until we have the new ricktew page just put up the old one"):** the front
+   page `index.html` is the old home word for word (it was /hininja/history/; Home and the logo on every old page
+   point to `/`, the footers' "Which ninja?" link reads "Rick Tew"). The two-doors front page is in history (a92be97).
 3. **The AI Ninja work (Your Dojo and R2 Managed Hosting) moves together to one new domain** ("Both to one new
    domain"); the mailbox, chat, Intake and search pages go with it. The domain is not named yet.
 4. **Rick, later on 29 Oct: "when we finish it and tewbedo will get aininja and it can just copy it completely and

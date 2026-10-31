@@ -2,7 +2,7 @@
 
 > Rick Tew builds and runs AI systems for small businesses through the Digital Dojo, and has taught martial arts for thirty years. American, from California; owner of NinjaGym in Koh Samui, Thailand. This file is for assistants and agents that fetch rather than browse.
 
-The site is two doors. HI Ninja is the in-person work (martial arts, camps, coaching). AI Ninja is the digital work: AI built for a business, with a human pressing every send.
+The front page is Rick's record of thirty years of martial arts: camps, tours, coaching and WinJitsu. The martial arts course moved to https://martialartcamp.com/camps/ninja and the AI Ninja work to https://tewbedo.com/aininja/ (October 2026).
 
 ## The AI Ninja door
 
