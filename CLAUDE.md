@@ -8,6 +8,14 @@ Personal brand and portfolio site for Rick Tew. Everything he makes lives here: 
    martialartcamp.com chat builds it; this chat hands over the page, the Ninja Menu, the chat (`hininja/ask.js`, whose
    Kuno mail line is TEWBEDO's) and the checkout hops. `/hininja/` stays live until that page is, then forwards there
    with its query string.
+   **DONE 31 Oct 2026:** Rick's shortening review done here, the hand-over sent (his click "Hand over now"), and the
+   page is LIVE at https://martialartcamp.com/camps/ninja (+ /history), his GO in that chat. /hininja/, /hininja/history/,
+   /hininja/next/ and /hininja/preview/ forward there (query and #part kept; same section ids). The martialartcamp.com
+   chat owns the page, its menu.js, ask.js and the tests (its tests/course/); this repo's tests/hininja-menu-sweep.mjs,
+   ask-hininja-golden.js and ask-hininja-sweep.mjs are retired here. Kept on ricktew.com on purpose: /hininja/buy/,
+   thanks/, promptpay/, about/, img/, the PDFs, the video, the tapes and every asset (the page and NerdHostel load
+   them), and the mailbox (ricktew-contact allows martialartcamp.com since 1393177). The walls below are history for
+   this chat; they travel with the page in claude/hininja.md.
 2. **ricktew.com becomes one authority page** ("One authority page"): who Rick is, his history, interests and
    companies, each linking out. Terms, Privacy and the checkout hops stay underneath until each moves.
 3. **The AI Ninja work (Your Dojo and R2 Managed Hosting) moves together to one new domain** ("Both to one new
