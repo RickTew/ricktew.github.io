@@ -311,3 +311,6 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     Mastery (his click "Cut it from the price box"): the price box no longer opens with "2 years of training with Rick,
     yellow belt to red, at your own pace." (the band's lede says it word for word); the rest of the band is his 28 Oct
     words and stays.
+    When + Where (his click "Fold both"): the schedule note "Rick often rotates between the morning and evening
+    sessions, for the morning people and the night people. We recommend both."; the dorm caption "Need a bed? It comes
+    with your stay." (no added cost is in the paragraph beside it).
