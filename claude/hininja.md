@@ -314,3 +314,6 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     When + Where (his click "Fold both"): the schedule note "Rick often rotates between the morning and evening
     sessions, for the morning people and the night people. We recommend both."; the dorm caption "Need a bed? It comes
     with your stay." (no added cost is in the paragraph beside it).
+    Pick your stay (his click "Cut it from the Week card"): the Week card ends "2 weeks $1,111, with free airport
+    pick-up."; "Add days to a week or two: $111 a day." stays in the Longer row. Why people come and the cards'
+    deposit lines and Checkout fine print left as they are.
