@@ -317,3 +317,6 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     Pick your stay (his click "Cut it from the Week card"): the Week card ends "2 weeks $1,111, with free airport
     pick-up."; "Add days to a week or two: $111 a day." stays in the Longer row. Why people come and the cards'
     deposit lines and Checkout fine print left as they are.
+    Rick (his click "Fold the caption"): the first picture's caption is "Your turn. Build your Ninja Week" (his lede
+    above it says the 25 years). The timeline, facts grid, FAQ and ask box untouched. Review DONE 31 Oct: 8 commits,
+    30d7fb3 to this one; the top, Why people come, FAQ and Ask left as they are.
