@@ -308,3 +308,6 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     Belts + System (his click "Fold both"): the belt lede drops "The art is Rick's own system, Modern American Ninjitsu
     (most people spell it ninjutsu)." (said again under #system and its dropdown); the book's small print is now "Now
     being remade into the Pocket Dojo app." (the editions line gone).
+    Mastery (his click "Cut it from the price box"): the price box no longer opens with "2 years of training with Rick,
+    yellow belt to red, at your own pace." (the band's lede says it word for word); the rest of the band is his 28 Oct
+    words and stays.
