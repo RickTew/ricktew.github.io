@@ -301,3 +301,7 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     Who (his click "Fold both"): Travelers "Class, then the island is yours." (it repeated How it works' Explore step);
     Families "Bringing kids? Rick's NinjaGym on Koh Samui: one free kids session a day during your stay, ages 3 to 9,
     older kids welcome." The top (headline, menu, How it works) left as it is: every line there is his.
+    What (his click "Fold all three"): "Unlike most martial arts... tailor the training around you." cut (Built around
+    you keeps its two lines); the book caption "The books: on Amazon, in print and on Kindle."; the phone caption "Take
+    it home: a few minutes a day, wherever you go next." (the free month is on the card above). Pai story, pictures and
+    Pocket Dojo untouched. ask.js keeps its own longer answers.
