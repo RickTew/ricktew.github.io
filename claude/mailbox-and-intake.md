@@ -461,3 +461,13 @@ source is not served at ricktew.com. It was, briefly, until 2026-08-23.
 
 **Kata:** `~/Dev/digitaldojo/packs/mailbox.md`. Receipts and the two
 findings this install sent back: `~/Dev/digitaldojo/private/proof-ledger.md`.
+
+## The Contact page form (31 Oct 2026, Rick's pick "Mailbox form")
+
+`/contact/` posts to the mailbox (it replaced the Google Sites era Google Form): subject `hininja`, and the message's
+first line is "About: <topic>, from the Contact page on ricktew.com." TEWBEDO (895f0d2) matches
+", from the Contact page on ricktew.com." to SKIP the Ninja Agent's auto-reply (these are speaking, coaching and
+registration questions; Rick answers them by hand). **Never change that line's wording without telling TEWBEDO first.**
+The topics: A program or my registration, Booking Rick for an event, Coaching, The website, Something else.
+About's "Ask Rick about coaching" and /hsp/'s "Write to me" link `/contact/`, not `/aininja/#opt-8c` (which forwards
+to tewbedo.com since 29 Oct).
