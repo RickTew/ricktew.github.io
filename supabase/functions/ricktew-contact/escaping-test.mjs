@@ -344,7 +344,7 @@ console.log('-- a training plan from the Ninja Menu, through the real handler');
   say(m && m.subject === 'HI Ninja plan: Jamie Lee' && m.reply_to === 'jamie.lee@gmail.com', 'a plan: subject "HI Ninja plan: <name>", Reply-To the visitor', m && { subject: m.subject, reply_to: m.reply_to });
   say(m && m.headers && m.headers['Auto-Submitted'] === 'auto-generated' && m.headers['X-HI-Plan'] === 'hininja',
     'a plan is marked Auto-Submitted with X-HI-Plan, so the Ninja Agent does not answer it', m && m.headers);
-  say(m && m.text.includes('Via: the Ninja Menu on ricktew.com/hininja/') && m.text.includes('Horse Stance (Stances)'),
+  say(m && m.text.includes('Via: the Ninja Menu on the course page') && m.text.includes('Horse Stance (Stances)'),
     'the plan says where it came from and carries the picks', m && m.text);
   const hostile = await plan({ name: 'Jamie <img src=x onerror=alert(1)>', message: 'Week 1: <script>alert(1)</script> Horse Stance' });
   say(hostile && !/<script|<img/i.test(hostile.html) && !/[<>]/.test(hostile.subject), 'a hostile plan: escaped in the html, nothing markup-shaped in the subject', hostile && { subject: hostile.subject });

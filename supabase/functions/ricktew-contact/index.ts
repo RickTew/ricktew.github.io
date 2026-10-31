@@ -65,10 +65,15 @@ const ALLOWED_ORIGINS = [
   // the GNS page moved to NerdHostel keeps its "Send it to Rick" box (Rick's click, 23 Oct 2026)
   'https://www.nerdhostel.com',
   'https://nerdhostel.com',
+  // the course page moves to martialartcamp.com/camps/ninja with its three mails unchanged (Rick's picks in the
+  // martialartcamp.com chat, 31 Oct 2026, after the /hininja/ hand-over)
+  'https://martialartcamp.com',
+  'https://www.martialartcamp.com',
   'http://localhost:8080',
   'http://127.0.0.1:8080',
   'http://localhost:5500',
   'http://127.0.0.1:5500',
+  'http://localhost:3000',
 ];
 
 /** The subject list the form offers. Anything else is coerced to Other, so
@@ -92,7 +97,7 @@ const SUBJECTS: Record<string, string> = {
  *  checkout. The mail reads "HI Ninja plan: <name>" and is marked Auto-Submitted with
  *  X-HI-Plan, so the Ninja Agent does not answer it while they are paying; Rick builds
  *  the Sensei Seminar from it and replies by hand. */
-const PLAN_VIA = 'the Ninja Menu on ricktew.com/hininja/';
+const PLAN_VIA = 'the Ninja Menu on the course page'; // was ricktew.com/hininja/; the menu lives on martialartcamp.com/camps/ninja too until the forward (31 Oct 2026)
 
 /** A place found for NinjaGym Bangkok (24 Oct 2026, Rick: "if we find information
  *  about a place can we have a section to put it in"; his pick "A box to type a find
