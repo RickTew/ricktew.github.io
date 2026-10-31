@@ -108,6 +108,18 @@ nav.main-nav a {
   font-size: 15.5px;
 }
 nav.main-nav a:hover { text-decoration: underline; }
+/* Ninja Course and Tewtors joined the menu (Rick, 31 Oct 2026): eleven items, so the links never wrap
+   and they tighten between the phone menu and a wide screen */
+nav.main-nav > ul > li > a { white-space: nowrap; }
+@media (min-width: 921px) and (max-width: 1340px) {
+  nav.main-nav > ul > li > a { padding: 7px 7px; font-size: 14.5px; }
+}
+@media (min-width: 921px) and (max-width: 1100px) {
+  .brand .brand-sub { display: none; }
+}
+@media (min-width: 921px) and (max-width: 1024px) {
+  nav.main-nav > ul > li > a { padding: 7px 5px; font-size: 14px; }
+}
 nav.main-nav a.active {
   background: #000;
   color: #fff;
