@@ -320,3 +320,19 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     Rick (his click "Fold the caption"): the first picture's caption is "Your turn. Build your Ninja Week" (his lede
     above it says the 25 years). The timeline, facts grid, FAQ and ask box untouched. Review DONE 31 Oct: 8 commits,
     30d7fb3 to this one; the top, Why people come, FAQ and Ask left as they are.
+  - **1 Nov 2026: Giovanni's mail** (4 questions on the training, belts and Instructor; TEWBEDO sent him Kuno's reply
+    the same day). The page now lives at martialartcamp.com/ninja; edited there (martialartcamp 29db4b6), Rick's clicks
+    in that chat. Belts (his clicks "Red is the top, by design" and "Yes, one per belt"): under the five belts, "Red
+    belt, Level 5, is instructor status: the top of the system. Every belt you earn comes with a certificate from
+    Rick."; there is no black belt on purpose ("the goal is to be a black belt in what you DO"). Prior rank, his own
+    words: it does not count, "you need to pass our requirements, which are likely very different than what you assume
+    to be true ... even one stance can lead to 10 tactics." Hours: 2 a day, Monday to Friday, the evening review class
+    optional, "Come to both and it is up to 4 hours a day: we recommend both." (his click "Keep it as is"). Class mix
+    (his click "It follows the picks"): kicks, rolls and stances more solo, self-defense and weapons more partner work,
+    live training only if you ask. The old camps (his click "Same art, new pace"): the same five belts and techniques,
+    the pace changed (outdoors, full time, full speed then; built around you now). Instructor (his clicks "Lead the
+    evening review" and "Teach RTMS anywhere"): all five belts, yellow to red, help lead the evening review class with
+    Rick coaching; after, teach Rick Tew's Martial Science, yellow to red, anywhere as a certified RTMS instructor; the
+    certificate caption is "Earn your Instructor certificate, and teach RTMS anywhere." 7 FAQ entries; Kuno's ask.js
+    has 6 new answers (prior-rank, hours, class-mix, old-camps, black-belt, certificate) and a new instructor answer.
+    Emails are never signed "Rick" (Kuno's and the course's mails sign "Rick Tew's Martial Science").
