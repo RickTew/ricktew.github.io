@@ -363,11 +363,11 @@ footer a{color:var(--muted)}
         <li><a href="#p-therapy" data-sec="#p-therapy" data-line="Be a Ninja in what you DO."><img src="/assets/images/w/652387db39.webp" alt=""><span>Martial Arts Therapy</span></a></li>
         <li><a href="#p-rtms" data-sec="#p-rtms" data-line="Rick Tew's Martial Science, beginner to instructor."><img src="/aininja/assets/story/ninja/world/us-press-blackbelt.webp" alt=""><span>RTMS</span></a></li>
         <li><a href="#p-tours" data-sec="#p-tours" data-line="Travel and training, from Yosemite to the Grand Canyon."><img data-src="/hininja/img/rick/canyon-splits.webp" alt=""><span>Tew's Tours</span></a></li>
-        <li><a href="#p-camps" data-sec="#p-camps" data-line="CMS, my live-in ninja camps, in California and Thailand." data-clip="/timeline/clips/cms.mp4"><img data-src="/timeline/clips/cms.webp" alt=""><span>Camps</span></a></li>
+        <li><a href="#p-camps" data-sec="#p-camps" data-line="CMS, my live-in ninja camps, in California and Thailand." data-anim="/timeline/clips/cms-anim.webp"><img data-src="/timeline/clips/cms.webp" alt=""><span>Camps</span></a></li>
         <li><a href="https://winjitsu.com/" target="_blank" rel="noopener" data-sec="#p-winjitsu" data-go="Go to the WinJitsu app" data-line="The mental martial art: five books, now one app with Pocket Dojo inside."><img data-src="/aininja/assets/story/winjitsu/winjitsu-app.webp" alt="" class="fit-top"><span>WinJitsu</span></a></li>
         <li><a href="https://winjitsu.com/hsp" target="_blank" rel="noopener" data-sec="#p-pocket-dojo" data-line="My home study program: Rick Tew's Martial Science, belt by belt, on your phone."><img data-src="/hsp/pocketdojo-apps.webp" alt="" class="fit-contain"><span>Pocket Dojo</span></a></li>
-        <li><a href="#p-speaking" data-sec="#p-speaking" data-line="HP, TU Delft, the University of Rotterdam, Black Belt magazine." data-clip="/timeline/clips/speaking.mp4"><img data-src="/timeline/clips/speaking.webp" alt=""><span>Speaking and press</span></a></li>
-        <li><a href="https://ninjagym.com/" target="_blank" rel="noopener" data-sec="#p-ninjagym" data-line="The indoor ninja playground for kids on Koh Samui." data-clip="/timeline/clips/ninjagym.mp4"><img data-src="/timeline/clips/ninjagym.webp" alt=""><span>NinjaGym</span></a></li>
+        <li><a href="#p-speaking" data-sec="#p-speaking" data-line="HP, TU Delft, the University of Rotterdam, Black Belt magazine." data-anim="/timeline/clips/speaking-anim.webp"><img data-src="/timeline/clips/speaking.webp" alt=""><span>Speaking and press</span></a></li>
+        <li><a href="https://ninjagym.com/" target="_blank" rel="noopener" data-sec="#p-ninjagym" data-line="The indoor ninja playground for kids on Koh Samui." data-anim="/timeline/clips/ninjagym-anim.webp"><img data-src="/timeline/clips/ninjagym.webp" alt=""><span>NinjaGym</span></a></li>
         <li><a href="https://www.nerdhostel.com/" target="_blank" rel="noopener" data-sec="#p-nerdhostel" data-line="A hostel on Koh Samui, across the street from NinjaGym."><img data-src="/aininja/assets/story/apps/nerdhostel.webp" alt=""><span>NerdHostel</span></a></li>
         <li><a href="https://martialartcamp.com/ninja" target="_blank" rel="noopener" data-sec="#p-ninja-course" data-go="Go to the Ninja Course" data-line="Real martial arts on vacation, in a small group, on Koh Samui."><img data-src="/hininja/img/gallery/g11.webp" alt=""><span>Ninja Course</span></a></li>
         <li><a href="https://tewtors.com/" target="_blank" rel="noopener" data-sec="#p-tewtors" data-line="My five methods for grown-ups, teens, parents and teachers."><img data-src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="" class="fit-contain"><span>Tewtors</span></a></li>
@@ -2979,39 +2979,43 @@ footer a{color:var(--muted)}
 
   window.addEventListener("resize", measure);
   window.addEventListener("load", function(){ setTimeout(function(){ for (var i = 0; i < N; i++) show(i); }, 800); });
-  /* Mini-clips: a card with data-clip gets its muted, looping video once it comes within two of the front (so it has
-     loaded by the time it turns round); only the front card plays, and nothing plays while the ring is off screen or
-     for a visitor who asked for less motion (the still stays). */
-  var onScreen = true, playBtn = document.getElementById("clipPlay");
-  playBtn.addEventListener("click", function(){
-    var fv = links[front].querySelector("video"); if (!fv) return;
-    fv.preload = "auto"; playBtn.hidden = true;
-    var pr = fv.play(); if (pr && pr.catch) pr.catch(function(){ playBtn.hidden = false; });
-  });
-  function clipOf(i){
-    var a = links[i], url = a.getAttribute("data-clip"), v = a.querySelector("video");
-    if (!url || v) return v;
-    v = document.createElement("video");
-    v.muted = true; v.loop = true; v.playsInline = true;
-    v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.setAttribute("aria-hidden", "true");
-    v.preload = still ? "none" : "auto"; v.src = url;
-    v.addEventListener("playing", function(){ if (links[front] === a) a.classList.add("playing"); });
-    a.insertBefore(v, a.querySelector("span"));
-    return v;
+  /* Mini-clips (Rick, 2 Nov 2026: "can they auto play and not have to hit the play button?"). The front card shows
+     its clip as a moving picture (animated WebP), which a phone plays by itself where it may refuse to start a video
+     (Low Power Mode, some browsers). A side card shows its still; the moving picture loads when its card comes within
+     one of the front. Nothing moves while the ring is off screen. A visitor whose phone asks for less motion gets the
+     still and a play button over it. */
+  var onScreen = true, playBtn = document.getElementById("clipPlay"), animReady = {}, tapped = {};
+  function animOf(i){ return links[i].getAttribute("data-anim"); }
+  function preload(i){
+    var u = animOf(i); if (!u || animReady[u]) return;
+    animReady[u] = "loading";
+    var im = new Image(); im.onload = function(){ animReady[u] = true; clips(); }; im.src = u;
   }
+  function setPic(i, moving){
+    var a = links[i], im = a.querySelector("img"), u = animOf(i);
+    if (!u || !im) return;
+    if (moving){
+      if (!im.hasAttribute("data-still")) im.setAttribute("data-still", im.getAttribute("src") || im.getAttribute("data-src") || "");
+      im.removeAttribute("data-src");
+      if (im.getAttribute("src") !== u) im.setAttribute("src", u);
+    } else if (im.hasAttribute("data-still") && im.getAttribute("src") === u){
+      im.setAttribute("src", im.getAttribute("data-still"));
+    }
+    a.classList.toggle("playing", moving);
+  }
+  playBtn.addEventListener("click", function(){ tapped[front] = true; preload(front); clips(); });
   function clips(){
     links.forEach(function(a, i){
       var d = Math.min(mod(i - front, N), mod(front - i, N));
-      if (d <= 2) clipOf(i);
-      var v = a.querySelector("video");
-      if (v && (i !== front || !onScreen)){ v.pause(); a.classList.remove("playing"); }
+      if (d <= 1 && !still) preload(i);
+      if (i !== front) setPic(i, false);
     });
-    var fv = links[front].querySelector("video");
+    var u = animOf(front);
     playBtn.hidden = true;
-    if (!fv || !onScreen) return;
-    if (still){ playBtn.hidden = false; return; }
-    var pr = fv.play();
-    if (pr && pr.catch) pr.catch(function(){ if (links[front].querySelector("video") === fv) playBtn.hidden = false; });
+    if (!u) return;
+    if (!onScreen){ setPic(front, false); return; }
+    if (still && !tapped[front]){ setPic(front, false); playBtn.hidden = false; return; }
+    if (animReady[u] === true) setPic(front, true); else preload(front);
   }
   if ("IntersectionObserver" in window){
     new IntersectionObserver(function(es){ onScreen = es[0].isIntersecting; clips(); }, { threshold: 0.2 }).observe(stage);
@@ -3069,12 +3073,20 @@ footer a{color:var(--muted)}
     vids.forEach(function(v){ v.controls = true; });
     return;
   }
+  /* a phone that will not start the video gets the same clip as a moving picture, which it plays by itself */
+  function toPicture(v){
+    var u = (v.getAttribute("poster") || "").replace(/\.webp$/, "-anim.webp");
+    if (!u || u === v.getAttribute("poster")){ v.controls = true; return; }
+    seen.unobserve(v); near.unobserve(v);
+    var im = document.createElement("img"); im.src = u; im.alt = v.getAttribute("aria-label") || ""; im.decoding = "async";
+    v.parentNode.replaceChild(im, v);
+  }
   var near = new IntersectionObserver(function(es){
     es.forEach(function(e){ if (e.isIntersecting){ e.target.preload = "auto"; near.unobserve(e.target); } });
   }, { rootMargin: "300px 0px" });
   var seen = new IntersectionObserver(function(es){
     es.forEach(function(e){
-      if (e.isIntersecting){ var v = e.target, p = v.play(); if (p && p.catch) p.catch(function(){ v.controls = true; }); }
+      if (e.isIntersecting){ var v = e.target, p = v.play(); if (p && p.catch) p.catch(function(){ toPicture(v); }); }
       else e.target.pause();
     });
   }, { threshold: 0.4 });
