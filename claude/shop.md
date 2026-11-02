@@ -162,3 +162,24 @@ the Dojo.
   bucket are never swapped for small changes. PAM's page keeps its map
   below the card, under "The map sheet inside" (Rick's click).
 - **Test:** `node tests/aidoor-sweep.js` covers every shop page.
+
+## The WinJitsu month for learning from home (2 Nov 2026, LIVE 6a170d1, ricktew-shop digitaldojo 3b8aaa0e)
+
+- Rick's clicks (question tool, this chat): a home learner gets the whole WinJitsu app ("the pocket dojo is the winjitsu
+  app just one in the same ... mind (winjitsu books ...), body (pocket dojo) ..., spirit (... member strategies and daily
+  updates or news)"); "$22 a month"; "฿699 a month" (month only, over "month + ฿6,999 a year"); "$2,222 = feedback from
+  Rick" (/hsp/ shows both). Same day in the WinJitsu chat (winjitsu-app 74770b0): the month is "everything but the
+  feedback sections ... for direct messages from me keep the old pricing": Ask Sensei Tew and personal feedback = the
+  Home Study Program; Direct Connect paid per answer; the video review as before. His "$222 annual" there was a "maybe".
+- Sold at https://ricktew.com/winjitsu/#from-home and the third card on /hsp/ ("Three ways in"). The Buy is
+  /winjitsu/buy/ (fixed SKU WJA-HOME-1M, ?src= passed, cur=thb). The checkout: "WinJitsu app, 1 month", ฿699 on Rick
+  Tew Co., paid once, nothing renews, no field, no mail of ours; a $22 one-time dollar fallback; Cancel back to
+  /winjitsu/#from-home (or /hsp/#ways for src=hsp). The page shows $22 to everyone, like /hsp/'s $2,222 (Stripe showed
+  $21.52 beside THB 699.00 on 2 Nov; re-read before any marketing push).
+- Getting in is by hand: the sale notice (SKU WJA-HOME-1M, Plan "1 month") reaches Rick with the email paid with, and he
+  adds it in the WinJitsu app as a from-home member for one month. /winjitsu/thanks/ says to sign up at winjitsu.com
+  with the same email.
+- The shop is still frozen: this was one item on his clicks. The deploy is blocked in this chat's permission mode, so
+  Rick runs it: `cd ~/Dev/digitaldojo && supabase functions deploy ricktew-shop --project-ref qegfhbseccinnxnzfhxw
+  --no-verify-jwt --workdir shop`, then the three read-backs. TEWBEDO keeps a copy of ricktew-shop (site-shop): tell it
+  after any change.
