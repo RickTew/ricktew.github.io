@@ -18,13 +18,12 @@ Personal brand and portfolio site for Rick Tew. Everything he makes lives here: 
    this chat; they travel with the page in claude/hininja.md.
 2. **ricktew.com becomes one authority page** ("One authority page"): who Rick is, his history, interests and
    companies, each linking out. Terms, Privacy and the checkout hops stay underneath until each moves.
-   **Until it is built (Rick, 31 Oct 2026: "until we have the new ricktew page just put up the old one"):** the front
-   page `index.html` is the old home word for word (it was /hininja/history/; Home and the logo on every old page
-   point to `/`, the footers' "Which ninja?" link reads "Rick Tew"). The two-doors front page is in history (a92be97).
-   **Switch (Rick, 2 Nov 2026): "we have not finished it yet so it should not replace anything yet but the goal is it
-   will just be one landing page on ricktew.com of everything".** No date: the draft at /timeline/ (unlinked, noindex)
-   gets its chapters one at a time and replaces the front page only when it is finished and he says so. Plan:
-   `.claude/authority-page-plan.md`.
+   **SWITCHED 2 Nov 2026 (Rick: "the new home page means ricktew.com not ricktew.com/timeline"):** `index.html` IS the
+   one-page home: a ring of his 12 areas (the front card and the button go straight to that app or site, off-site in a
+   new tab; "More on X" goes to its section), then one section per card. /timeline/ forwards to `/` (query and #part
+   kept); its pictures and clips stay in timeline/img/ and timeline/clips/. The old home it replaced (the old site's
+   home, word for word, up 31 Oct to 2 Nov) is in history (209aecd), as is the two-doors page (a92be97). Rick changes
+   it on the live page; plan and next steps: `.claude/authority-page-plan.md`.
 3. **The AI Ninja work (Your Dojo and R2 Managed Hosting) moves together to one new domain** ("Both to one new
    domain"); the mailbox, chat, Intake and search pages go with it. The domain is not named yet.
 4. **Rick, later on 29 Oct: "when we finish it and tewbedo will get aininja and it can just copy it completely and
