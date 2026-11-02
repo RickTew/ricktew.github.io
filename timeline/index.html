@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-<!-- TEST PAGE (23 Oct 2026, Rick's pick "Unlinked test page"): the scroll timeline effect.
-     Unlinked, noindex, not in the sitemap. Each chapter pins a canvas and the scroll picks
-     the frame, the way Nate Herk's blender page does, in plain JS with no libraries.
-     Frames: timeline/frames/<chapter>/frame_0001.webp ... ; every take is kept on the
-     Extreme Pro at Studio/RickTew/takes/timeline-scroll/ (ring.html + render.js redraw
-     the ring). Captions are lines already on the resume and the About page, no new claims. -->
+<!-- THE AUTHORITY PAGE DRAFT, v2 (2 Nov 2026, Rick's read of v1: "everything in the top rotator and then details of
+     each one as they scroll"). Unlinked, noindex, not in the sitemap; it replaces nothing until he says it is finished.
+     The ring holds every card oldest to newest, so the ring is the timeline too. A tap on the front card goes to its
+     section below; the section carries the link out. The three scroll-scrub chapters are off the page (his words:
+     "just look thrown up"); their frames stay in timeline/frames/ until his look at v2, and every take stays on the
+     Extreme Pro at Studio/RickTew/takes/timeline-scroll/. Words come from the old About (git 74bb80d), /about/'s map
+     and the lines already on this ring; no new claims. Mini-clips come next, a few cards first, for his look. -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rick Tew: timeline test</title>
@@ -19,17 +20,15 @@
   --blue:#1e73bd; --red:#d61f26; --line:#e8e6e2; --panel:#f7f6f4;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
 body{background:var(--bg);color:var(--ink);font-family:"Nunito","Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.55}
 h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;letter-spacing:-.02em}
 
 .testbar{position:fixed;left:0;right:0;top:0;z-index:20;background:var(--ink);color:#fff;font-size:13px;
   text-align:center;padding:7px 16px}
+section[id]{scroll-margin-top:30px}
 
-.intro{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
-  padding:90px 16px 40px}
-.intro h1{font-size:clamp(44px,9vw,96px);font-weight:900}
-.intro p{margin-top:14px;color:var(--muted);font-size:18px;max-width:30em}
 .cue{margin-top:38px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .cue::after{content:"";display:block;width:1px;height:46px;margin:12px auto 0;background:var(--muted);
   animation:cue 1.8s ease-in-out infinite}
@@ -55,7 +54,7 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 .ring a img.fit-top{object-position:50% 0}
 .ring a img.fit-contain{object-fit:contain;background:linear-gradient(160deg,#e9f2fb,#f7f6f4)}
 .ring a span{display:flex;align-items:center;justify-content:center;height:22%;padding:0 8px;text-align:center;
-  font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:clamp(15px,2.2vw,19px)}
+  font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:clamp(15px,2.2vw,19px);line-height:1.1}
 .ring a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .menu-foot{display:flex;align-items:center;gap:14px;margin-top:6px;padding:0 16px;width:100%;max-width:560px}
 .now{flex:1;text-align:center;min-height:3.2em}
@@ -69,12 +68,13 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 .menu-go a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .menu .cue{margin-top:20px}
 
-/* Story chapters: words on one side, a pinned picture that changes on the other */
-.story{padding:84px 0 40px}
-.story .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
 .eyebrow{font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
 .eyebrow.red{color:var(--red)}
 .eyebrow.blue{color:var(--blue)}
+
+/* Story chapters (the opener, Roots, First dojo): words on one side, a pinned picture that changes on the other */
+.story{padding:84px 0 40px}
+.story .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
 .story h2{margin-top:10px;font-size:clamp(32px,5.6vw,58px);font-weight:900;max-width:16em}
 .story-grid{margin-top:26px;display:grid;grid-template-columns:1fr;gap:0}
 .step{padding:22px 0;opacity:.25;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
@@ -99,56 +99,36 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 }
 @media (prefers-reduced-motion:reduce){ .step,.media figure{transition:none;transform:none} }
 
-/* One chapter: a tall track, a pinned stage inside it. The track's height is how long the scrub lasts. */
-.chapter{position:relative;height:420vh}
-.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--panel)}
-.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.chapter[data-tone="dark"] .stage{background:#101418}
-
-.label{position:absolute;left:16px;top:52px;z-index:3;font-family:"Archivo",Arial,sans-serif;font-weight:900;
-  font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;padding:6px 10px;border-radius:6px}
-.label.red{background:var(--red)}
-.label.blue{background:var(--blue)}
-
-.cap{position:absolute;left:16px;right:16px;bottom:7vh;z-index:3;max-width:560px;margin:0 auto;
-  background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:14px;padding:16px 18px;
-  box-shadow:0 14px 40px rgba(16,20,24,.16);opacity:0;transform:translateY(18px);
-  transition:opacity .45s ease,transform .45s ease}
-.cap.on{opacity:1;transform:none}
-.cap h2{font-size:clamp(22px,4.4vw,32px);font-weight:900}
-.cap p{margin-top:6px;color:var(--body)}
-
-.bar{position:absolute;left:0;bottom:0;height:3px;z-index:4;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--ink)}
-.chapter .bar.red{background:var(--red)}
-.chapter .bar.blue{background:var(--blue)}
-
-.outro{padding:90px 16px 70px;text-align:center}
-.outro h2{font-size:clamp(30px,6vw,52px);font-weight:900}
-.outro p{margin:12px auto 0;max-width:32em;color:var(--body)}
-.doors{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.doors a{display:inline-block;padding:13px 22px;border-radius:999px;color:#fff;font-weight:800;text-decoration:none}
-.doors a.hi{background:var(--red)}
-.doors a.ai{background:var(--blue)}
-.doors a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
-footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;color:var(--muted);font-size:13px}
-
+/* One section per ring card: a picture (a mini-clip later), a heading, a few lines, the link out */
+.part{padding:56px 0;border-top:1px solid var(--line)}
+.part .wrap{max-width:1120px;margin:0 auto;padding:0 16px;display:grid;gap:22px;align-items:center}
+.part figure{margin:0;border-radius:16px;overflow:hidden;background:var(--panel);aspect-ratio:4/3}
+.part figure img{width:100%;height:100%;object-fit:cover;display:block}
+.part figure.contain img{object-fit:contain}
+.part figure.top img{object-position:50% 0}
+.part h2{margin-top:10px;font-size:clamp(30px,5vw,50px);font-weight:900}
+.part-text > p:not(.eyebrow){margin-top:14px;font-size:clamp(18px,2.1vw,21px);line-height:1.6;color:var(--body);max-width:34em}
+.part-text > p.part-go{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin-top:22px}
+.part-go a.go{display:inline-block;padding:12px 26px;border-radius:999px;background:var(--ink);color:#fff;font-weight:800;
+  font-size:17px;text-decoration:none}
+.part-go a.up{color:var(--muted);font-size:15px}
+.part-go a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 @media (min-width:900px){
-  .label{left:32px;top:60px}
-  .cap{left:auto;right:6vw;bottom:auto;top:50%;margin:0;width:400px;transform:translateY(calc(-50% + 18px))}
-  .cap.on{transform:translateY(-50%)}
-  /* the ring fills the middle, so its captions sit under it */
-  .chapter[data-fit="contain"] .cap{top:auto;bottom:5vh;left:0;right:0;margin:0 auto;width:520px;transform:translateY(18px)}
-  .chapter[data-fit="contain"] .cap.on{transform:none}
+  .part{padding:80px 0}
+  .part .wrap{grid-template-columns:1fr 1fr;gap:56px}
+  .part.flip figure{order:2}
 }
+footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;color:var(--muted);font-size:13px}
 </style>
 </head>
 <body>
 <p class="testbar">Test page. Not linked anywhere, not in search.</p>
 
 <main id="main">
-  <!-- The menu ring (Rick, 23 Oct: "the links to all that we do so then they would pick one
-       form that (like a menu) and go"). Real links in a real list; the script lays them on a
-       3D ring and turns it by swipe, drag, arrows or keys. It never turns by itself. -->
+  <!-- The menu ring (Rick, 23 Oct: "the links to all that we do so then they would pick one form that (like a menu)
+       and go"; 2 Nov: everything in it, details below). Real links in a real list; the script lays them on a 3D ring
+       and turns it by swipe, drag, arrows or keys. It never turns by itself. Oldest first; no two pictures from the
+       same place side by side, counting the wrap from the last card back to the first. -->
   <section class="menu" id="menu" aria-label="Pick one">
     <div class="menu-head">
       <h1>Rick Tew</h1>
@@ -156,88 +136,94 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
     </div>
     <div class="ring-stage" id="ringStage">
       <ul class="ring" id="ring">
-        <li><a href="https://tewbedo.com/" data-kind="Digital" data-line="Done-for-you AI for small business, run by a person."><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="" class="fit-contain"><span>AI Ninja</span></a></li>
-        <li><a href="https://martialartcamp.com/ninja" data-kind="In person" data-line="On Koh Samui: stay a day, a week, a month, or 2 months in the belt program."><img src="/aininja/assets/story/ninja/world/asia-ninjagym.webp" alt=""><span>Ninja Course</span></a></li>
-        <li><a href="https://ninjagym.com/" data-kind="In person" data-line="The ninja gym for kids on Koh Samui."><img src="/aininja/assets/story/ninjagym/gym-flying-jump.webp" alt=""><span>NinjaGym</span></a></li>
-        <li><a href="/hsp/" data-kind="Digital" data-line="Pocket Dojo, the Home Study Program: train at home."><img src="/hsp/pocketdojo-apps.webp" alt=""><span>Pocket Dojo</span></a></li>
-        <li><a href="/rtms/" data-kind="In person" data-line="Rick Tew's Martial Science, beginner to instructor."><img src="/aininja/assets/story/ninja/world/us-press-blackbelt.webp" alt=""><span>RTMS</span></a></li>
-        <li><a href="https://winjitsu.com/" data-kind="Mind" data-line="WinJitsu, the mental martial art."><img src="/aininja/assets/story/winjitsu/winjitsu-app.webp" alt="" class="fit-top"><span>WinJitsu</span></a></li>
-        <li><a href="https://tewtors.com/" data-kind="Mind" data-line="My five methods for grown-ups, teens, parents and teachers."><img src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="" class="fit-contain"><span>Tewtors</span></a></li>
-        <li><a href="/camps/" data-kind="In person" data-line="Long-term martial art camps in Thailand."><img src="/aininja/assets/story/ninja/world/us-camp-crew.webp" alt=""><span>Camps</span></a></li>
-        <li><a href="/tours/" data-kind="In person" data-line="Travel and training in Thailand."><img src="/aininja/assets/story/ninja/world/asia-island.webp" alt=""><span>Tours</span></a></li>
-        <li><a href="https://www.nerdhostel.com/" data-kind="In person" data-line="A hostel on Koh Samui, across the street from NinjaGym."><img src="/aininja/assets/story/apps/nerdhostel.webp" alt=""><span>NerdHostel</span></a></li>
-        <li><a href="https://dungeonhole.com/" data-kind="Digital" data-line="Dungeon Hole, a 1v1 dungeon strategy game."><img src="/aininja/assets/story/games/dh-party.webp" alt=""><span>Dungeon Hole</span></a></li>
-        <li><a href="https://apps.apple.com/us/app/tewgo/id6763025917" data-kind="Digital" data-line="TEWGO, a strategy board game on the App Store."><img src="/aininja/assets/story/apps/tewgo.webp" alt=""><span>TEWGO</span></a></li>
+        <li><a href="#p-roots" data-line="Indiana to California, and a backyard dojo."><img src="/timeline/img/ch2-rock-climb.webp" alt=""><span>Roots</span></a></li>
+        <li><a href="#p-first-dojo" data-line="Teaching by 16, my own dojo at 19."><img src="/assets/images/rick-teen-flying-side-kick.webp" alt="" class="fit-top"><span>First dojo</span></a></li>
+        <li><a href="#p-holland" data-line="More than six years in and out of the Netherlands."><img src="/timeline/img/holland-karate-cover.webp" alt="" class="fit-top"><span>Holland</span></a></li>
+        <li><a href="#p-rtms" data-line="Rick Tew's Martial Science, beginner to instructor."><img data-src="/aininja/assets/story/ninja/world/us-press-blackbelt.webp" alt=""><span>RTMS</span></a></li>
+        <li><a href="#p-cms" data-line="The College of Martial Science, near Yosemite."><img data-src="/aininja/assets/story/ninja/world/us-camp-crew.webp" alt=""><span>CMS</span></a></li>
+        <li><a href="#p-tours" data-line="Travel and training, from Yosemite to the Grand Canyon."><img data-src="/hininja/img/rick/canyon-splits.webp" alt=""><span>Tours</span></a></li>
+        <li><a href="#p-martialartsupply" data-line="The martial arts store I built from the ground up."><img data-src="/timeline/img/martialartsupply-banner.webp" alt="" class="fit-contain"><span>MartialArt<wbr>Supply.com</span></a></li>
+        <li><a href="#p-winjitsu" data-line="WinJitsu, the mental martial art, and its five books."><img data-src="/aininja/assets/story/winjitsu/winjitsu-book.jpg" alt="" class="fit-top"><span>WinJitsu</span></a></li>
+        <li><a href="#p-speaking" data-line="HP, TU Delft, the University of Rotterdam, Black Belt magazine."><img data-src="/aininja/assets/story/ninja/world/eu-speaking.webp" alt=""><span>Speaking and press</span></a></li>
+        <li><a href="#p-camps" data-line="Long-term martial art camps in Thailand."><img data-src="/aininja/assets/story/ninja/world/asia-island.webp" alt=""><span>Camps</span></a></li>
+        <li><a href="#p-ninjagym" data-line="The ninja gym for kids on Koh Samui."><img data-src="/aininja/assets/story/ninjagym/gym-flying-jump.webp" alt=""><span>NinjaGym</span></a></li>
+        <li><a href="#p-pocket-dojo" data-line="Pocket Dojo, the Home Study Program: train at home."><img data-src="/hsp/pocketdojo-apps.webp" alt=""><span>Pocket Dojo</span></a></li>
+        <li><a href="#p-ninja-course" data-line="On Koh Samui: stay a day, a week, a month, or 2 months in the belt program."><img data-src="/hininja/img/gallery/g11.webp" alt=""><span>Ninja Course</span></a></li>
+        <li><a href="#p-tewtors" data-line="My five methods for grown-ups, teens, parents and teachers."><img data-src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="" class="fit-contain"><span>Tewtors</span></a></li>
+        <li><a href="#p-winjitsu-app" data-line="The five books as an app, at winjitsu.com."><img data-src="/aininja/assets/story/winjitsu/winjitsu-app.webp" alt="" class="fit-top"><span>WinJitsu app</span></a></li>
+        <li><a href="#p-nerdhostel" data-line="A hostel on Koh Samui, across the street from NinjaGym."><img data-src="/aininja/assets/story/apps/nerdhostel.webp" alt=""><span>NerdHostel</span></a></li>
+        <li><a href="#p-ai-ninja" data-line="Done-for-you AI for small business, run by a person."><img data-src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="" class="fit-contain"><span>AI Ninja</span></a></li>
+        <li><a href="#p-dungeon-hole" data-line="Dungeon Hole, a 1v1 dungeon strategy game."><img data-src="/aininja/assets/story/games/dh-party.webp" alt=""><span>Dungeon Hole</span></a></li>
+        <li><a href="#p-tewgo" data-line="TEWGO, a strategy board game on the App Store."><img data-src="/aininja/assets/story/apps/tewgo.webp" alt=""><span>TEWGO</span></a></li>
+        <li><a href="#p-astrohold" data-line="Turn-based space strategy in your browser."><img src="/aininja/assets/story/apps/astrohold.webp" alt="" class="fit-top"><span>AstroHold</span></a></li>
+        <li><a href="#p-arena-rpg" data-line="The board game I drew as a kid, built for real."><img src="/aininja/assets/story/rick/arena-rpg.webp" alt="" class="fit-top"><span>Arena RPG</span></a></li>
       </ul>
     </div>
     <div class="menu-foot">
       <button type="button" class="turn" id="ringPrev" aria-label="Turn left">&#8592;</button>
-      <div class="now" aria-live="polite"><b id="nowName">AI Ninja</b><span id="nowLine"></span></div>
+      <div class="now" aria-live="polite"><b id="nowName">Roots</b><span id="nowLine"></span></div>
       <button type="button" class="turn" id="ringNext" aria-label="Turn right">&#8594;</button>
     </div>
-    <p class="menu-go"><a id="nowGo" href="https://tewbedo.com/">Go</a></p>
+    <p class="menu-go"><a id="nowGo" href="#p-roots">More on Roots</a></p>
     <span class="cue" aria-hidden="true">Or scroll for the story</span>
   </section>
 
-  <!-- THE AUTHORITY PAGE, chapter by chapter (Rick's picks, 23 Oct 2026: the 13 chapters of
-       .claude/research/2026-10-23-old-site-inventory.md; no ages, no Dux Ryu, no dropout line).
-       Words are the old About page's (git 74bb80d) in first person; photos are the ones it used.
-       Each .step carries its own figure: on a phone it shows in line, on a wide screen the script
-       copies the figures into one pinned frame that changes as the steps pass. -->
+  <!-- The opener (was chapter 1; words unchanged). The ring's sections follow it, in the ring's order. Each .step
+       carries its own figure: on a phone it shows in line, on a wide screen the script copies the figures into one
+       pinned frame that changes as the steps pass. Pictures are light WebP copies in timeline/img/ of the old About's
+       PNGs (same pictures; the originals stay where the other pages use them). -->
   <section class="story" aria-labelledby="ch1">
     <div class="wrap">
-      <p class="eyebrow red">1 &middot; The mission</p>
+      <p class="eyebrow red">The mission</p>
       <h2 id="ch1">Get a Black Belt in what you do.</h2>
       <div class="story-grid">
         <div class="steps">
-          <div class="step"><figure><img src="/assets/images/ee6d47c766.png" alt="Rick Tew in the splits on a red mat"></figure>
+          <div class="step"><figure><img src="/timeline/img/ch1-splits.webp" alt="Rick Tew in the splits on a red mat" loading="lazy"></figure>
             <p>Hi, I'm Rick Tew. Even though my last name says otherwise, there is only one of me. But I do have a split personality. I believe we all do, and the mix of those traits is what makes us who we are.</p></div>
-          <div class="step"><figure><img src="/assets/images/0c7887b6ac.png" alt="Rick Tew speaking to groups and teaching classes"></figure>
+          <div class="step"><figure><img src="/timeline/img/ch1-speaking.webp" alt="Rick Tew speaking to groups and teaching classes" loading="lazy"></figure>
             <p>My passion is helping people find their key strengths and put them together, so they get more out of life. It started on the mat. Today it also means building the systems a business runs on, and training the people who run it.</p></div>
-          <div class="step"><figure class="contain"><img src="/assets/images/947e3fd437.png" alt="BLAST, WinJitsu and Rick Tew on stage"></figure>
+          <div class="step"><figure class="contain"><img src="/timeline/img/ch1-stage.webp" alt="BLAST, WinJitsu and Rick Tew on stage" loading="lazy"></figure>
             <p>I only teach from experience, and I learn by doing. The martial arts, the camps, the books, the gyms and the apps: this page is all of it, in the order it happened.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="story" aria-labelledby="ch2">
+  <section class="story" id="p-roots" aria-labelledby="ch2">
     <div class="wrap">
-      <p class="eyebrow red">2 &middot; Roots</p>
+      <p class="eyebrow red">1 &middot; Roots</p>
       <h2 id="ch2">It is in the doing.</h2>
       <div class="story-grid">
         <div class="steps">
-          <div class="step"><figure class="contain"><img src="/assets/images/1a57dd212f.png" alt="Rick Tew's early years of training, outdoors and in the backyard"></figure>
+          <div class="step"><figure class="contain"><img src="/timeline/img/ch2-early-years.webp" alt="Rick Tew's early years of training, outdoors and in the backyard" loading="lazy"></figure>
             <p>While others talk, I try to walk. That walk began when I was a boy and ran away from home in Indiana to be in California. It worked, and a new journey began.</p></div>
-          <div class="step"><figure><img src="/assets/images/af52d2deab.png" alt="Rick Tew climbing a rock face"></figure>
+          <div class="step"><figure><img src="/timeline/img/ch2-rock-climb.webp" alt="Rick Tew climbing a rock face" loading="lazy"></figure>
             <p>As a young teen I joined the Boy Scouts. I still remember working with my Dad to finish the sit-ups for another award on my belt. Scouting gave me trips into the outdoors and a system for setting goals, and it is why I have taken students to places like Yosemite.</p></div>
-          <div class="step"><figure class="contain"><img src="/assets/images/848643405f.png" alt="Rick Tew in a black gi, mid jump kick"></figure>
+          <div class="step"><figure class="contain"><img src="/timeline/img/ch2-jump-kick.webp" alt="Rick Tew in a black gi, mid jump kick" loading="lazy"></figure>
             <p>I connected with shows like Godzilla, where the one everybody saw as the bad guy was often the good guy. The underdog is misunderstood, but endures and wins. That is how I saw the ninja, and it pulled me into the martial arts.</p></div>
-          <div class="step"><figure class="contain"><img src="/aininja/assets/story/ninja/world/us-early-years.webp" alt="Rick Tew training as a teen"></figure>
+          <div class="step"><figure class="contain"><img src="/aininja/assets/story/ninja/world/us-early-years.webp" alt="Rick Tew training as a teen" loading="lazy"></figure>
             <p>In my teens I fell in love with the ninja art of ninjitsu. My first training center was the backyard, with carpet wrapped around a plum tree for a striking dummy. A TV crew filmed me there throwing stars, climbing ropes and running my obstacle course.</p>
             <p>My goals were simple: get the splits, earn a black belt, open my own dojo. Done, done and done.</p></div>
-          <div class="step"><figure><img src="/aininja/assets/story/rick/childhood-game.webp" alt="The arena game Rick built on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles"></figure>
+          <div class="step"><figure><img src="/aininja/assets/story/rick/childhood-game.webp" alt="The arena game Rick built on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles" loading="lazy"></figure>
             <p>I also drew a game by hand: the boards, the character sheets, the cut-out tiles. Today it is Arena RPG, and I am building it for real with AI.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Chapter 3 (2 Nov 2026). Words: the old About (git 74bb80d, "I Was a Teenage Ninja"), /hininja/about/ ("teach
-       officially when he was 16", "his own dojo ... at 19") and Rick's own order for the teaching timeline (26 Oct:
-       "opens first dojo, learns tony robbins tactics, moves to europe"). Ages only as his teen notes (16, 19).
-       The kick is one of the teen photos the teaching timeline video used (Extreme Pro, Rick Tew Archive/Photos/
-       red flying side 17.jpg); its twin "tew 17 double swords" is the same yard, so it is left out (no two places in
-       a row). The collage is the old About's own picture for the stunt school line ("Early Years 16-19"). -->
-  <section class="story" aria-labelledby="ch3">
+  <!-- First dojo (was chapter 3, 2 Nov 2026; words unchanged). Words: the old About (git 74bb80d, "I Was a Teenage
+       Ninja"), /hininja/about/ ("teach officially when he was 16", "his own dojo ... at 19") and Rick's own order for
+       the teaching timeline (26 Oct). Ages only as his teen notes (16, 19). The kick's twin "tew 17 double swords" is
+       the same yard, so it is left out (no two places in a row). -->
+  <section class="story" id="p-first-dojo" aria-labelledby="ch3">
     <div class="wrap">
-      <p class="eyebrow red">3 &middot; First dojo</p>
+      <p class="eyebrow red">2 &middot; First dojo</p>
       <h2 id="ch3">I was a teenage ninja.</h2>
       <div class="story-grid">
         <div class="steps">
-          <div class="step"><figure class="contain"><img src="/assets/images/rick-teen-flying-side-kick.webp" alt="Rick Tew as a teenager in a red and black uniform, mid flying side kick"></figure>
+          <div class="step"><figure class="contain"><img src="/assets/images/rick-teen-flying-side-kick.webp" alt="Rick Tew as a teenager in a red and black uniform, mid flying side kick" loading="lazy"></figure>
             <p>By 16 I was already teaching. From that point on I have been teaching, sharing and living the martial arts.</p></div>
-          <div class="step"><figure class="contain"><img src="/assets/images/7dcdc6b3c7.png" alt="Rick Tew in his late teens: holding a certificate, rafting, at the Cacaxtla ruins in Mexico, a stage show, stunt practice on a rooftop, and training in ninja gear"></figure>
+          <div class="step"><figure class="contain"><img src="/timeline/img/ch3-early-years.webp" alt="Rick Tew in his late teens: holding a certificate, rafting, at the Cacaxtla ruins in Mexico, a stage show, stunt practice on a rooftop, and training in ninja gear" loading="lazy"></figure>
             <p>At 19 I opened my own dojo, a martial arts training school.</p>
             <p>Then I took a break to study more martial arts and join stunt school. I learned Tony Robbins' tactics too, and my goals grew into a new dream: to move and live in Europe.</p></div>
         </div>
@@ -245,45 +231,243 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
     </div>
   </section>
 
-  <section class="chapter" data-seq="frames/mat/frame_" data-count="96" data-fit="cover" data-tone="dark" aria-label="Martial arts">
-    <div class="stage">
-      <canvas aria-hidden="true"></canvas>
-      <span class="label red">Martial arts</span>
-      <div class="cap" data-at="0.04-0.36"><h2>It started on the mat.</h2><p>A backyard dojo first, then a dojo of my own.</p></div>
-      <div class="cap" data-at="0.38-0.68"><h2>RTMS</h2><p>Rick Tew's Martial Science: a ranked path from beginner to instructor.</p></div>
-      <div class="cap" data-at="0.70-0.98"><h2>Schools on three continents</h2><p>Martial arts schools, dojos and gyms in the US, Europe and Asia.</p></div>
-      <span class="bar red"></span>
+  <!-- Sections 3 to 21: what exists today, a few lines each. Sources: the old About (git 74bb80d: "A Ninja in the
+       Netherlands", "CMS - College of Martial Science", "Business Isn't Usual", the summary), /about/'s map lines
+       (RTMS, Pocket Dojo, NinjaGym, the app, WinJitsu, the books, coaching, NerdHostel, the games), /record/ (Black
+       Belt, US and Dutch TV; the store "in the same years" as CMS) and this ring's own lines. Each grows into a full
+       chapter later, one at a time, with his look. -->
+  <section class="part" id="p-holland" aria-labelledby="h-holland">
+    <div class="wrap">
+      <figure class="contain"><img src="/timeline/img/holland-karate-cover.webp" alt="Rick Tew on the cover of a Dutch karate magazine" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow red">3 &middot; Holland</p>
+        <h2 id="h-holland">A ninja in the Netherlands.</h2>
+        <p>I spent more than six years in and out of the Netherlands, mostly in the Naarden Bussum area. I was in magazines and on TV, taught seminars across the country, and trained students outdoors at Naarden Vesting, an old war fortress with a lot of grass and places to jump around.</p>
+        <p>I was even offered a part in a popular Dutch film. I turned it down to spend time with students in Spain. My tour idea was born in Holland too: the first group on my California tour was Dutch.</p>
+        <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
     </div>
   </section>
 
-  <section class="chapter" data-seq="frames/ring/frame_" data-count="96" data-fit="contain" aria-label="Around the world">
-    <div class="stage">
-      <canvas aria-hidden="true"></canvas>
-      <span class="label red">Around the world</span>
-      <div class="cap" data-at="0.04-0.36"><h2>Live-in ninja camps</h2><p>First in the martial arts industry to run live-in Ninja Training Camps.</p></div>
-      <div class="cap" data-at="0.38-0.68"><h2>Four continents</h2><p>Camps and tours on four continents. Yosemite and Joshua Tree among them.</p></div>
-      <div class="cap" data-at="0.70-0.98"><h2>On stage</h2><p>Spoke at HP, TU Delft and the University of Rotterdam, and wrote the five-book series "Be a Black Belt in What You Do".</p></div>
-      <span class="bar red"></span>
+  <section class="part flip" id="p-rtms" aria-labelledby="h-rtms">
+    <div class="wrap">
+      <figure><img src="/aininja/assets/story/ninja/world/us-press-blackbelt.webp" alt="Black Belt magazine pages with photos of Rick Tew's techniques" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow red">4 &middot; RTMS</p>
+        <h2 id="h-rtms">Rick Tew's Martial Science.</h2>
+        <p>A martial science, not a style: Modern American Ninjitsu crossed with MMA, built to teach movement, not moves. Five ranking levels, beginner to instructor.</p>
+        <p>The mental training is its own system, not a by-product of the physical skills. And we do most of our training outside.</p>
+        <p class="part-go"><a class="go" href="/rtms/">Go to RTMS</a><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
     </div>
   </section>
 
-  <section class="chapter" data-seq="frames/arena/frame_" data-count="96" data-fit="cover" data-tone="dark" aria-label="Tech and AI">
-    <div class="stage">
-      <canvas aria-hidden="true"></canvas>
-      <span class="label blue">Tech and AI</span>
-      <div class="cap" data-at="0.04-0.36"><h2>Arena RPG</h2><p>A board game I am now building for real with AI.</p></div>
-      <div class="cap" data-at="0.38-0.68"><h2>The systems behind the work</h2><p>The app my gym runs on, and the booking, inboxes and payments for small businesses.</p></div>
-      <div class="cap" data-at="0.70-0.98"><h2>A person at the helm</h2><p>By default nothing goes out to a customer without a press.</p></div>
-      <span class="bar blue"></span>
+  <section class="part" id="p-cms" aria-labelledby="h-cms">
+    <div class="wrap">
+      <figure><img src="/aininja/assets/story/ninja/world/us-camp-crew.webp" alt="A group of students sitting together on a rock face outdoors" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow red">5 &middot; CMS</p>
+        <h2 id="h-cms">CMS, College of Martial Science.</h2>
+        <p>From Europe I kept thinking about my dream: a live-in, multi martial arts ninja training camp. So I created CMS, the College of Martial Science, to teach students what I had learned, and started it near Yosemite National Park.</p>
+        <p>I was the first in the martial arts industry to run live-in Ninja Training Camps.</p>
+        <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
     </div>
   </section>
 
-  <section class="outro">
-    <h2>Which ninja do you want?</h2>
-    <p>The in-person work, or the digital work.</p>
-    <div class="doors">
-      <a class="hi" href="https://martialartcamp.com/ninja">Ninja Course</a>
-      <a class="ai" href="https://tewbedo.com/">AI Ninja</a>
+  <section class="part flip" id="p-tours" aria-labelledby="h-tours">
+    <div class="wrap">
+      <figure><img src="/hininja/img/rick/canyon-splits.webp" alt="Rick Tew in the splits on a rock ledge at the Grand Canyon" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow red">6 &middot; Tours</p>
+        <h2 id="h-tours">Travel and training.</h2>
+        <p>Camps and tours on four continents, with Yosemite, Joshua Tree and the Grand Canyon among them.</p>
+        <p class="part-go"><a class="go" href="/tours/">Go to Tours</a><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="p-martialartsupply" aria-labelledby="h-martialartsupply">
+    <div class="wrap">
+      <figure class="contain"><img src="/timeline/img/martialartsupply-banner.webp" alt="The old Martial Art Supply.com banner" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow blue">7 &middot; Business</p>
+        <h2 id="h-martialartsupply">MartialArtSupply.com</h2>
+        <p>Business isn't usual. I built martialartsupply.com from the ground up, into a business many people copied, in the same years as CMS.</p>
+        <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part flip" id="p-winjitsu" aria-labelledby="h-winjitsu">
+    <div class="wrap">
+      <figure class="contain"><img src="/aininja/assets/story/winjitsu/winjitsu-book.jpg" alt="The old WinJitsu website: Rick Tew's mental martial art" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow red">8 &middot; WinJitsu</p>
+        <h2 id="h-winjitsu">WinJitsu, the mental martial art.</h2>
+        <p>"Win" plus "Jitsu": the True Art of Winning. What I learned on the way became a system, and five books: Be a Black Belt in What You Do. One book per finger of the hand: ACE, MAK, MBS, NRG and CMT.</p>
+        <p class="part-go"><a class="go" href="/winjitsu/">Go to WinJitsu</a><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="p-speaking" aria-labelledby="h-speaking">
+    <div class="wrap">
+      <figure><img src="/aininja/assets/story/ninja/world/eu-speaking.webp" alt="Rick Tew on stage and teaching groups, with the BLAST and WinJitsu logos" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow red">9 &middot; Speaking and press</p>
+        <h2 id="h-speaking">On stage and in print.</h2>
+        <p>I have spoken at HP, TU Delft and the University of Rotterdam, and I am a Tony Robbins Certified Strategic Intervention Coach.</p>
+        <p>My work has been in Black Belt magazine, and on TV in the US and Holland.</p>
+        <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part flip" id="p-camps" aria-labelledby="h-camps">
+    <div class="wrap">
+      <figure><img src="/aininja/assets/story/ninja/world/asia-island.webp" alt="Students training on beaches and islands in Thailand" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow red">10 &middot; Camps</p>
+        <h2 id="h-camps">Camps in Thailand.</h2>
+        <p>After my dream came true in the States, I set a new goal: a program in Asia. I picked Thailand.</p>
+        <p>Long-term martial art camps in Thailand.</p>
+        <p class="part-go"><a class="go" href="/camps/">Go to Camps</a><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="p-ninjagym" aria-labelledby="h-ninjagym">
+    <div class="wrap">
+      <figure><img src="/aininja/assets/story/ninjagym/gym-flying-jump.webp" alt="A flying jump at NinjaGym" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow red">11 &middot; NinjaGym</p>
+        <h2 id="h-ninjagym">NinjaGym.</h2>
+        <p>I founded NinjaGym on Koh Samui: ninja training, obstacle courses, climbing and parkour, with kids and adult programs.</p>
+        <p>It runs on an app I built: check-ins, memberships, bookings and the shop.</p>
+        <p class="part-go"><a class="go" href="https://ninjagym.com/">Go to NinjaGym</a><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part flip" id="p-pocket-dojo" aria-labelledby="h-pocket-dojo">
+    <div class="wrap">
+      <figure class="contain"><img src="/hsp/pocketdojo-apps.webp" alt="Pocket Dojo on a phone" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow blue">12 &middot; Pocket Dojo</p>
+        <h2 id="h-pocket-dojo">Pocket Dojo.</h2>
+        <p>The Home Study Program: Rick Tew's Martial Science, belt by belt, on your phone. Five belts, Yellow to Red, and 90 lessons.</p>
+        <p class="part-go"><a class="go" href="/hsp/">Go to Pocket Dojo</a><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="p-ninja-course" aria-labelledby="h-ninja-course">
+    <div class="wrap">
+      <figure><img src="/hininja/img/gallery/g11.webp" alt="A woman works a wrist lock with two training partners" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow red">13 &middot; Ninja Course</p>
+        <h2 id="h-ninja-course">The Ninja Course.</h2>
+        <p>On Koh Samui: stay a day, a week, a month, or 2 months in the belt program.</p>
+        <p class="part-go"><a class="go" href="https://martialartcamp.com/ninja">Go to the Ninja Course</a><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part flip" id="p-tewtors" aria-labelledby="h-tewtors">
+    <div class="wrap">
+      <figure class="contain"><img src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="The five Be a Black Belt in What You Do books" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow red">14 &middot; Tewtors</p>
+        <h2 id="h-tewtors">Tewtors.</h2>
+        <p>My five methods for grown-ups, teens, parents and teachers.</p>
+        <p class="part-go"><a class="go" href="https://tewtors.com/">Go to Tewtors</a><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="p-winjitsu-app" aria-labelledby="h-winjitsu-app">
+    <div class="wrap">
+      <figure class="contain"><img src="/aininja/assets/story/winjitsu/winjitsu-app.webp" alt="The WinJitsu app on a phone" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow blue">15 &middot; WinJitsu app</p>
+        <h2 id="h-winjitsu-app">The WinJitsu app.</h2>
+        <p>The five books became an app: one idea a day, practice it, prove it, build a streak.</p>
+        <p class="part-go"><a class="go" href="https://winjitsu.com/">Go to the WinJitsu app</a><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part flip" id="p-nerdhostel" aria-labelledby="h-nerdhostel">
+    <div class="wrap">
+      <figure class="contain"><img src="/aininja/assets/story/apps/nerdhostel.webp" alt="NerdHostel on a phone" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow red">16 &middot; NerdHostel</p>
+        <h2 id="h-nerdhostel">NerdHostel.</h2>
+        <p>A gamer hostel with Guild Hall co-working for digital nomads on Koh Samui, across the street from NinjaGym.</p>
+        <p class="part-go"><a class="go" href="https://www.nerdhostel.com/">Go to NerdHostel</a><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="p-ai-ninja" aria-labelledby="h-ai-ninja">
+    <div class="wrap">
+      <figure class="contain"><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="Rick Tew" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow blue">17 &middot; AI Ninja</p>
+        <h2 id="h-ai-ninja">AI Ninja.</h2>
+        <p>Done-for-you AI for small business, run by a person.</p>
+        <p class="part-go"><a class="go" href="https://tewbedo.com/">Go to AI Ninja</a><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part flip" id="p-dungeon-hole" aria-labelledby="h-dungeon-hole">
+    <div class="wrap">
+      <figure><img src="/aininja/assets/story/games/dh-party.webp" alt="A party of heroes in Dungeon Hole" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow blue">18 &middot; Dungeon Hole</p>
+        <h2 id="h-dungeon-hole">Dungeon Hole.</h2>
+        <p>Games are my hobby, under my TewBit Games brand.</p>
+        <p>Dungeon Hole is 1v1 dungeon strategy: one side builds the dungeon and defends the treasure, the other raids it.</p>
+        <p class="part-go"><a class="go" href="https://dungeonhole.com/">Go to Dungeon Hole</a><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="p-tewgo" aria-labelledby="h-tewgo">
+    <div class="wrap">
+      <figure class="contain"><img src="/aininja/assets/story/apps/tewgo.webp" alt="TEWGO on a phone" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow blue">19 &middot; TEWGO</p>
+        <h2 id="h-tewgo">TEWGO.</h2>
+        <p>A strategy board game for iPhone and iPad: five in a row, or two to capture.</p>
+        <p class="part-go"><a class="go" href="https://apps.apple.com/us/app/tewgo/id6763025917">Get TEWGO on the App Store</a><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part flip" id="p-astrohold" aria-labelledby="h-astrohold">
+    <div class="wrap">
+      <figure class="contain"><img src="/aininja/assets/story/apps/astrohold.webp" alt="AstroHold on a phone: choose your side, Defender or Attacker" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow blue">20 &middot; AstroHold</p>
+        <h2 id="h-astrohold">AstroHold.</h2>
+        <p>Turn-based space strategy on a grid: defend the Power Core or lead the cyborg attack.</p>
+        <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="p-arena-rpg" aria-labelledby="h-arena-rpg">
+    <div class="wrap">
+      <figure class="contain"><img src="/aininja/assets/story/rick/arena-rpg.webp" alt="The Arena RPG by Rick Tew cover: heroes, a dragon and a twenty-sided die" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow blue">21 &middot; Arena RPG</p>
+        <h2 id="h-arena-rpg">Arena RPG by Rick Tew.</h2>
+        <p>The board game I drew on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles. I am building it for real now.</p>
+        <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
     </div>
   </section>
 </main>
@@ -293,17 +477,24 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
 <script>
 /* The menu ring. Card i faces front when the ring's angle is -i * step. A drag turns it
    with the finger and keeps a little momentum, then it settles on the nearest card.
-   A tap on a side card turns it to the front; a tap on the front card follows its link. */
+   A tap on a side card turns it to the front; a tap on the front card goes to its section.
+   Pictures far round the back load as their card comes near the front, and all of them
+   once the page has loaded. */
 (function(){
   "use strict";
   var stage = document.getElementById("ringStage"), list = document.getElementById("ring");
   var links = [].slice.call(list.querySelectorAll("a")), N = links.length, STEP = 360 / N;
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var angle = 0, vel = 0, target = 0, R = 500, front = 0, raf = 0;
+  var angle = 0, vel = 0, target = 0, R = 500, front = -1, raf = 0;
   var drag = null, moved = false;
   var nowName = document.getElementById("nowName"), nowLine = document.getElementById("nowLine"), nowGo = document.getElementById("nowGo");
 
   function mod(a, n){ return ((a % n) + n) % n; }
+
+  function show(i){
+    var im = links[i].querySelector("img[data-src]");
+    if (im){ im.src = im.getAttribute("data-src"); im.removeAttribute("data-src"); }
+  }
 
   function measure(){
     var w = stage.clientWidth;
@@ -322,13 +513,14 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
     });
     list.style.transform = "translateZ(" + (-R) + "px)";
     var f = mod(Math.round(-angle / STEP), N);
-    if (f !== front || !nowLine.textContent){
+    if (f !== front){
       front = f;
+      for (var k = -3; k <= 3; k++) show(mod(f + k, N));
       var a = links[f];
       nowName.textContent = a.querySelector("span").textContent;
       nowLine.textContent = a.getAttribute("data-line");
-      nowGo.href = a.href;
-      nowGo.textContent = "Go to " + nowName.textContent;
+      nowGo.setAttribute("href", a.getAttribute("href"));
+      nowGo.textContent = "More on " + nowName.textContent;
     }
   }
 
@@ -403,6 +595,7 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
   }, { passive: false });
 
   window.addEventListener("resize", measure);
+  window.addEventListener("load", function(){ setTimeout(function(){ for (var i = 0; i < N; i++) show(i); }, 800); });
   window.__ring = { get angle(){ return angle; }, get front(){ return front; }, N: N };
   measure();
 })();
@@ -428,117 +621,6 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
     }, { rootMargin: "-45% 0px -45% 0px" });
     steps.forEach(function(s){ io.observe(s); });
   });
-})();
-</script>
-<script>
-/* The scrub: each chapter's scroll progress (0 at the top of its track, 1 at the bottom)
-   picks the frame directly, no easing, so the picture is always where the thumb is.
-   Work happens only when the scroll moves. Frames load coarse first (every 16th, then
-   8th, 4th, 2nd, all) and are decoded before use, so a chapter moves from the first second
-   on a slow phone and fills in its in-between frames as they land. */
-(function(){
-  "use strict";
-  var chapters = [].slice.call(document.querySelectorAll(".chapter")).map(function(el){
-    var c = el.querySelector("canvas");
-    return {
-      el: el, canvas: c, ctx: c.getContext("2d", { alpha: false }),
-      seq: el.getAttribute("data-seq"), count: +el.getAttribute("data-count"),
-      fit: el.getAttribute("data-fit"),
-      bg: getComputedStyle(el.querySelector(".stage")).backgroundColor,
-      imgs: [], loading: false, drawnImg: null, w: 0, h: 0, top: 0, height: 0,
-      caps: [].slice.call(el.querySelectorAll(".cap")).map(function(k){
-        var r = k.getAttribute("data-at").split("-"); return { el: k, a: +r[0], b: +r[1], on: false };
-      }),
-      bar: el.querySelector(".bar")
-    };
-  });
-  var vh = 0, queued = false;
-  window.__timeline = chapters;   /* read by the test scripts */
-
-  function src(ch, i){ return ch.seq + String(i + 1).padStart(4, "0") + ".webp"; }
-
-  function load(ch){
-    if (ch.loading) return; ch.loading = true;
-    var order = [], seen = {};
-    [16, 8, 4, 2, 1].forEach(function(step){
-      for (var i = 0; i < ch.count; i += step) if (!seen[i]) { seen[i] = 1; order.push(i); }
-    });
-    if (!seen[ch.count - 1]) order.splice(1, 0, ch.count - 1);
-    var next = 0, busy = 0;
-    function pump(){
-      while (busy < 6 && next < order.length){
-        (function(i){
-          busy++;
-          var im = new Image(); im.decoding = "async"; im.src = src(ch, i);
-          var done = function(){ busy--; ch.imgs[i] = im; request(); pump(); };
-          (im.decode ? im.decode() : Promise.reject()).then(done, function(){
-            if (im.complete && im.naturalWidth) done(); else im.onload = done;
-          });
-        })(order[next++]);
-      }
-    }
-    pump();
-  }
-
-  function measure(){
-    vh = document.documentElement.clientHeight;
-    var d = Math.min(window.devicePixelRatio || 1, 2);
-    chapters.forEach(function(ch){
-      ch.top = ch.el.offsetTop; ch.height = ch.el.offsetHeight;
-      var w = Math.round(ch.canvas.clientWidth * d), h = Math.round(ch.canvas.clientHeight * d);
-      if (w !== ch.w || h !== ch.h){ ch.canvas.width = ch.w = w; ch.canvas.height = ch.h = h; ch.drawnImg = null; }
-    });
-  }
-
-  function nearest(ch, i){
-    for (var k = 0; k < ch.count; k++){
-      if (ch.imgs[i - k]) return ch.imgs[i - k];
-      if (ch.imgs[i + k]) return ch.imgs[i + k];
-    }
-    return null;
-  }
-
-  function draw(ch, im){
-    var cw = ch.w, chh = ch.h, iw = im.naturalWidth, ih = im.naturalHeight;
-    /* cover on a wide screen; on a tall phone a full cover crops a 4:3 tape to one arm,
-       so the frame fills about 60% of the height and sits a little above the caption */
-    var tall = cw < chh, s, oy;
-    if (ch.fit === "contain") s = Math.min(cw / iw, chh / ih);
-    else if (tall) s = Math.max(cw / iw, (chh * 0.6) / ih);
-    else s = Math.max(cw / iw, chh / ih);
-    var dw = iw * s, dh = ih * s;
-    oy = tall && ch.fit !== "contain" ? Math.max(0, (chh * 0.42) - dh / 2) : (chh - dh) / 2;
-    if (dw < cw || dh < chh || oy > 0){ ch.ctx.fillStyle = ch.bg; ch.ctx.fillRect(0, 0, cw, chh); }
-    ch.ctx.drawImage(im, (cw - dw) / 2, oy, dw, dh);
-    ch.drawnImg = im;
-  }
-
-  function frame(){
-    queued = false;
-    var y = window.scrollY;
-    chapters.forEach(function(ch, n){
-      var top = ch.top - y, bottom = top + ch.height;
-      if (top < vh * 3 && bottom > -vh) load(ch);
-      if (bottom < 0 || top > vh) return;
-      if (chapters[n + 1] && top < vh) load(chapters[n + 1]);   /* the next chapter starts early */
-      var p = Math.min(1, Math.max(0, -top / (ch.height - vh)));
-      var im = nearest(ch, Math.round(p * (ch.count - 1)));
-      if (im && im !== ch.drawnImg) draw(ch, im);
-      ch.caps.forEach(function(k){
-        var on = p >= k.a && p <= k.b;
-        if (on !== k.on){ k.on = on; k.el.classList.toggle("on", on); }
-      });
-      if (ch.bar) ch.bar.style.transform = "scaleX(" + p.toFixed(4) + ")";
-    });
-  }
-
-  function request(){ if (!queued){ queued = true; requestAnimationFrame(frame); } }
-
-  measure();
-  window.addEventListener("scroll", request, { passive: true });
-  window.addEventListener("resize", function(){ measure(); request(); });
-  window.addEventListener("load", function(){ measure(); request(); });
-  request();
 })();
 </script>
 </body>
