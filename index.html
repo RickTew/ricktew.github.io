@@ -68,6 +68,8 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 .ring a video{position:absolute;left:0;top:0;width:100%;height:78%;object-fit:cover;pointer-events:none;opacity:0;
   transition:opacity .25s ease;background:transparent}
 .ring a.playing video{opacity:1}
+/* decks: the second picture layer that fades in over the first */
+.ring a img.deck-b{position:absolute;left:0;top:0;opacity:0;transition:opacity .6s ease}
 .menu-foot{display:flex;align-items:center;gap:14px;margin-top:6px;padding:0 16px;width:100%;max-width:560px}
 .now{flex:1;min-width:0;text-align:center}
 .now b{display:block;font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:22px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -141,6 +143,7 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 .part-go a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 /* two pictures or clips side by side in one section */
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.duo figure.wide{grid-column:1 / -1}
 /* Games: one section, a tile per game, each with its own link */
 .part.games .wrap{display:block}
 .game-list{list-style:none;margin-top:30px;display:grid;gap:28px;grid-template-columns:1fr}
@@ -161,6 +164,13 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
    tailor them down as we go"). Their own building blocks, in this page's type and colors. */
 .oldpage{padding:40px 0 34px;border-top:1px solid var(--line)}
 .part + .oldpage{border-top:0;padding-top:0}
+/* the Tewtors shelf: every workbook, cover first */
+.part .wrap.shelf-wrap{display:block;margin-top:34px}
+.shelf{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 14px}
+@media (min-width:700px){ .shelf{grid-template-columns:repeat(6,minmax(0,1fr))} }
+.shelf a{display:block;text-decoration:none;color:var(--ink);font-family:"Archivo",Arial,sans-serif;font-weight:800;font-size:14px;line-height:1.25;text-align:center}
+.shelf img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:contain;margin-bottom:8px}
+.shelf a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .oldpage .lead-mini{max-width:1120px;margin:0 auto;padding:18px 16px 0}
 .oldpage .lead-mini .part-go{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
 .oldpage .lead-mini a.go{display:inline-block;padding:12px 26px;border-radius:999px;background:var(--ink);color:#fff;font-weight:800;text-decoration:none}
@@ -364,18 +374,18 @@ footer a{color:var(--muted)}
         <li><a href="#p-story" data-sec="#p-story" data-line="A backyard dojo to Holland."><img src="/timeline/img/ch2-rock-climb.webp" alt=""><span>My story</span></a></li>
         <li><a href="#p-about" data-sec="#p-about" data-line="Creator of WinJitsu."><img src="/assets/images/w/0c7887b6ac.webp" alt=""><span>About</span></a></li>
         <li><a href="#p-therapy" data-sec="#p-therapy" data-line="Be a Ninja in what you DO."><img src="/assets/images/w/652387db39.webp" alt=""><span>Martial Arts Therapy</span></a></li>
-        <li><a href="#p-rtms" data-sec="#p-rtms" data-line="Rick Tew's Martial Science."><img src="/aininja/assets/story/ninja/world/us-press-blackbelt.webp" alt=""><span>RTMS</span></a></li>
-        <li><a href="#p-tours" data-sec="#p-tours" data-line="Make life a BLAST."><img data-src="/hininja/img/rick/canyon-splits.webp" alt=""><span>BLAST Tours</span></a></li>
+        <li><a href="#p-rtms" data-sec="#p-rtms" data-line="Rick Tew's Martial Science." data-deck="/assets/images/w/b06e8968d5.webp|c|1800;/hininja/img/gallery/g08.webp;/timeline/clips/ninjagym-anim.webp||5000;/hininja/img/gallery/g11.webp;/hininja/img/gallery/v13.webp;/hininja/img/gallery/g12.webp"><img src="/assets/images/w/b06e8968d5.webp" alt="" class="fit-contain"><span>RTMS</span></a></li>
+        <li><a href="#p-tours" data-sec="#p-tours" data-line="Make life a BLAST." data-deck="/assets/images/w/f1bc48d3f3.webp|c|1800;/hininja/img/rick/canyon-splits.webp;/assets/images/w/05729e10e2.webp;/hininja/img/rick/castle-splits.webp;/hininja/img/rick/canyon-jump.webp;/hininja/img/rick/river-splits.webp"><img data-src="/assets/images/w/f1bc48d3f3.webp" alt="" class="fit-contain"><span>BLAST Tours</span></a></li>
         <li><a href="#p-camps" data-sec="#p-camps" data-line="Live-in ninja camps." data-anim="/timeline/clips/cms-anim.webp"><img data-src="/timeline/clips/cms.webp" alt=""><span>Camps</span></a></li>
         <li><a href="https://winjitsu.com/" target="_blank" rel="noopener" data-sec="#p-winjitsu" data-go="Go to the WinJitsu app" data-line="The mental martial art."><img data-src="/aininja/assets/story/winjitsu/winjitsu-app.webp" alt="" class="fit-top"><span>WinJitsu</span></a></li>
         <li><a href="https://winjitsu.com/hsp" target="_blank" rel="noopener" data-sec="#p-pocket-dojo" data-line="My home study program."><img data-src="/hsp/pocketdojo-apps.webp" alt="" class="fit-contain"><span>Pocket Dojo</span></a></li>
         <li><a href="#p-speaking" data-sec="#p-speaking" data-line="On stage and in print." data-anim="/timeline/clips/speaking-anim.webp"><img data-src="/timeline/clips/speaking.webp" alt=""><span>Speaking and press</span></a></li>
-        <li><a href="https://ninjagym.com/" target="_blank" rel="noopener" data-sec="#p-ninjagym" data-line="Ninja playground for kids." data-anim="/timeline/clips/ninjagym-anim.webp"><img data-src="/timeline/clips/ninjagym.webp" alt=""><span>NinjaGym</span></a></li>
+        <li><a href="https://ninjagym.com/" target="_blank" rel="noopener" data-sec="#p-ninjagym" data-line="Ninja playground for kids." data-deck="/assets/images/w/9337fa4ddc.webp|c|1800;/assets/images/wheel/n-climbing.webp;/assets/images/wheel/n-chess.webp;/assets/images/wheel/n-swords.webp;/assets/images/wheel/n-rings.webp"><img data-src="/assets/images/w/9337fa4ddc.webp" alt="" class="fit-contain"><span>NinjaGym</span></a></li>
         <li><a href="https://www.nerdhostel.com/" target="_blank" rel="noopener" data-sec="#p-nerdhostel" data-line="A hostel for nerds."><img data-src="/aininja/assets/story/apps/nerdhostel.webp" alt=""><span>NerdHostel</span></a></li>
         <li><a href="https://martialartcamp.com/ninja" target="_blank" rel="noopener" data-sec="#p-ninja-course" data-go="Go to the Ninja Course" data-line="Martial arts on vacation."><img data-src="/hininja/img/gallery/g11.webp" alt=""><span>Ninja Course</span></a></li>
-        <li><a href="https://tewtors.com/" target="_blank" rel="noopener" data-sec="#p-tewtors" data-line="Kids' workbooks and an app."><img data-src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="" class="fit-contain"><span>Tewtors</span></a></li>
+        <li><a href="https://tewtors.com/" target="_blank" rel="noopener" data-sec="#p-tewtors" data-line="Kids' workbooks and an app." data-deck="/assets/images/wheel/t-logo.webp|c|1800;/assets/images/wheel/t-stay-charged.webp|c;/assets/images/wheel/t-app-lesson.webp|c;/assets/images/wheel/t-fly-your-own-jet.webp|c;/assets/images/wheel/t-program-your-brain.webp|c;/assets/images/wheel/t-mind-university.webp|c"><img data-src="/assets/images/wheel/t-logo.webp" alt="" class="fit-contain"><span>Tewtors</span></a></li>
         <li><a href="https://tewbedo.com/" target="_blank" rel="noopener" data-sec="#p-ai-ninja" data-line="Done-for-you AI for business."><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="" class="fit-contain"><span>AI Ninja</span></a></li>
-        <li><a href="#p-games" data-sec="#p-games" data-go="See the games" data-line="My hobby: TewBit Games."><img src="/aininja/assets/story/games/dh-party.webp" alt=""><span>Games</span></a></li>
+        <li><a href="#p-games" data-sec="#p-games" data-go="See the games" data-line="My hobby: TewBit Games." data-deck="/assets/images/wheel/g-dungeonhole-title.webp||1800;/assets/images/wheel/g-astrohold-cyborg.webp;/assets/images/wheel/g-arena-shield.webp;/assets/images/wheel/g-dungeonhole-ninja.webp;/assets/images/wheel/g-tewgo-icon.webp;/assets/images/wheel/g-astrohold-core.webp;/assets/images/wheel/g-arena-board.webp"><img src="/assets/images/wheel/g-dungeonhole-title.webp" alt=""><span>Games</span></a></li>
         <li><a href="#contact" data-sec="#contact" data-go="Get in touch" data-line="Ask, or book Rick Tew."><img src="/assets/images/logo.png" alt="" class="fit-contain"><span>Contact</span></a></li>
       </ul>
       <button type="button" class="clip-play" id="clipPlay" aria-label="Play the clip" hidden><span aria-hidden="true">&#9654;</span></button>
@@ -982,7 +992,7 @@ footer a{color:var(--muted)}
        tewbedo.com) and this page's v2 lines; no new claims. Each repeats the card's direct link. -->
   <section class="part" id="p-rtms" data-card="p-rtms" aria-labelledby="h-rtms">
     <div class="wrap">
-      <figure><img src="/aininja/assets/story/ninja/world/us-press-blackbelt.webp" alt="Black Belt magazine pages with photos of Rick Tew's techniques" loading="lazy"></figure>
+      <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/ninjagym.webp" aria-label="Rick Tew showing a stance and a strike on the red mats at NinjaGym"><source src="/timeline/clips/ninjagym.mp4" type="video/mp4"></video></figure>
       <div class="part-text">
         <p class="eyebrow red">RTMS</p>
         <h2 id="h-rtms">Rick Tew's Martial Science.</h2>
@@ -1901,6 +1911,7 @@ footer a{color:var(--muted)}
   <section class="part flip" id="p-winjitsu" data-card="p-winjitsu" aria-labelledby="h-winjitsu">
     <div class="wrap">
       <div class="duo">
+        <figure class="contain wide"><img src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="The five Be a Black Belt in What You Do books" loading="lazy"></figure>
         <figure class="contain"><img src="/aininja/assets/story/winjitsu/winjitsu-book.jpg" alt="The old WinJitsu website: Rick Tew's mental martial art" loading="lazy"></figure>
         <figure class="contain"><img src="/aininja/assets/story/winjitsu/winjitsu-app.webp" alt="The WinJitsu app on a phone" loading="lazy"></figure>
       </div>
@@ -2462,7 +2473,10 @@ footer a{color:var(--muted)}
 
   <section class="part" id="p-speaking" data-card="p-speaking" aria-labelledby="h-speaking">
     <div class="wrap">
-      <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/speaking.webp" aria-label="Rick Tew speaking with a microphone at a seminar"><source src="/timeline/clips/speaking.mp4" type="video/mp4"></video></figure>
+      <div class="duo">
+        <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/speaking.webp" aria-label="Rick Tew speaking with a microphone at a seminar"><source src="/timeline/clips/speaking.mp4" type="video/mp4"></video></figure>
+        <figure class="contain"><img src="/aininja/assets/story/ninja/world/us-press-blackbelt.webp" alt="Black Belt magazine pages with photos of Rick Tew's techniques" loading="lazy"></figure>
+      </div>
       <div class="part-text">
         <p class="eyebrow red">Speaking and press</p>
         <h2 id="h-speaking">On stage and in print.</h2>
@@ -2475,7 +2489,7 @@ footer a{color:var(--muted)}
 
   <section class="part flip" id="p-ninjagym" data-card="p-ninjagym" aria-labelledby="h-ninjagym">
     <div class="wrap">
-      <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/ninjagym.webp" aria-label="Rick Tew showing a stance and a strike on the red mats at NinjaGym"><source src="/timeline/clips/ninjagym.mp4" type="video/mp4"></video></figure>
+      <figure><img src="/assets/images/w/9b135efcf7.webp" alt="A NinjaGym Guide with a young ninja on the climbing wall" loading="lazy"></figure>
       <div class="part-text">
         <p class="eyebrow red">NinjaGym</p>
         <h2 id="h-ninjagym">NinjaGym.</h2>
@@ -2497,6 +2511,7 @@ footer a{color:var(--muted)}
   </div>
   <div class="wrap">
     <figure class="fig medium"><img src="/assets/images/w/9337fa4ddc.webp" alt="NinjaGym logo" width="991" height="882" loading="lazy" decoding="async"></figure>
+    <figure class="fig medium"><img src="/assets/images/w/9b135efcf7.webp" alt="A NinjaGym Guide with a young ninja on the climbing wall" width="1200" height="779" loading="lazy" decoding="async"></figure>
     <div class="prose center">
       <p class="lead-bold">Rick Tew's NinjaGym Samui Thailand is on the Ring road (near Starbucks) inside the Big C mall on the ground floor right next to the entrance.</p>
       <p class="lead-bold">Open every day, 10am to 7pm, weekends too. Book ahead and we can open from 9am and stay open until 9pm. Kids aged 3 to 9 drop in any time we are open, and a session is 55 minutes. Older and bigger kids are welcome too. The Half Day camp runs 10am to 2pm, and the Full Day is any 6 hours, usually 10am to 4pm; both are drop-off only. Adult programs are 8am or 8pm, by advance booking only.</p>
@@ -2540,6 +2555,7 @@ footer a{color:var(--muted)}
     <h3>Rick Tew's ninjagym&reg; is based on his ninjitsu martial science system that includes ninja training, obstacle courses, climbing, jumping, rolling, falling, martial arts and more.</h3>
   </div>
   <div class="wrap">
+    <figure class="fig large"><img src="/assets/images/w/5a82d4e421.webp" alt="NinjaGym kids climbing" width="1200" height="800" loading="lazy" decoding="async"></figure>
     <figure class="fig"><img src="/assets/images/w/f15c781cdb.webp" alt="Ninja symbol" width="277" height="358" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
@@ -2547,6 +2563,7 @@ footer a{color:var(--muted)}
   </div>
   <div class="wrap">
     <h3 class="plain-head">This requires habitual training and daily focus</h3>
+    <figure class="fig medium"><img src="/assets/images/w/09abe9c7ba.webp" alt="Kids martial arts training" width="1200" height="771" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>Martial Art Fitness, Climb / Jump / Kick</h2>
@@ -2565,6 +2582,9 @@ footer a{color:var(--muted)}
         <li>Our guides participate and don't just WATCH</li>
       </ul>
     </div>
+    <figure class="fig large"><img src="/assets/images/w/ef4c4e6c04.webp" alt="NinjaGym guides" width="1200" height="800" loading="lazy" decoding="async"></figure>
+    <figure class="fig large"><img src="/assets/images/w/93b99ca35d.webp" alt="NinjaGym training" width="1200" height="800" loading="lazy" decoding="async"></figure>
+    <figure class="fig large"><img src="/assets/images/w/1aaf3f99d7.webp" alt="NinjaGym obstacle course" width="1200" height="800" loading="lazy" decoding="async"></figure>
     <div class="prose">
       <p class="lead-bold">A note from Rick Tew</p>
       <p class="italic">I have been involved with sharing the Martial Arts and running Ninja Training Camps the majority of my life.</p>
@@ -2606,6 +2626,8 @@ footer a{color:var(--muted)}
       <p>We have successfully trained and guided many kids that do not speak English, and many kids learn very fast. We often notice kids speaking basic English within a few months. This is because they are interacting without being forced to learn.</p>
     </div>
     <div class="imgrow">
+      <img src="/assets/images/w/224b804833.webp" alt="Kids training with a pad at NinjaGym" width="1200" height="779" loading="lazy" decoding="async">
+      <img src="/assets/images/w/9b135efcf7.webp" alt="A NinjaGym Guide with a young ninja on the climbing wall" width="1200" height="779" loading="lazy" decoding="async">
     </div>
     <h3 class="plain-head">Questions?</h3>
     <div class="prose center">
@@ -2723,13 +2745,30 @@ footer a{color:var(--muted)}
 
   <section class="part" id="p-tewtors" data-card="p-tewtors" aria-labelledby="h-tewtors">
     <div class="wrap">
-      <figure class="contain"><img src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="The five Be a Black Belt in What You Do books" loading="lazy"></figure>
+      <figure class="contain"><img src="/assets/images/tewtors/app-lesson.webp" alt="A Tewtors app lesson: a kid tries a wheelie, crashes, and links a good feeling to try again" loading="lazy"></figure>
       <div class="part-text">
         <p class="eyebrow red">Tewtors</p>
         <h2 id="h-tewtors">Tewtors.</h2>
         <p>My five methods for grown-ups, teens, parents and teachers.</p>
-        <p class="part-go"><a class="go" href="https://tewtors.com/" target="_blank" rel="noopener">Go to Tewtors</a><a class="up" href="#menu">Back to the ring</a></p>
+        <p>The Tewtors app and the workbooks: learn it for yourself, then share it with the kids in your life.</p>
+        <p class="part-go"><a class="go" href="https://tewtors.com/" target="_blank" rel="noopener">Go to the Tewtors app</a><a class="also" href="https://tewtors.com/workbooks" target="_blank" rel="noopener">All the workbooks</a><a class="up" href="#menu">Back to the ring</a></p>
       </div>
+    </div>
+    <div class="wrap shelf-wrap">
+      <ul class="shelf" aria-label="The Tewtors workbooks">
+        <li><a href="https://tewtors.com/night-before-your-speech" target="_blank" rel="noopener"><img src="/assets/images/tewtors/night-before-your-speech.webp" alt="" width="300" height="450" loading="lazy" decoding="async">The Night Before Your Speech</a></li>
+        <li><a href="https://tewtors.com/mind-university" target="_blank" rel="noopener"><img src="/assets/images/tewtors/mind-university.webp" alt="" width="300" height="450" loading="lazy" decoding="async">M.I.N.D. University</a></li>
+        <li><a href="https://tewtors.com/program-your-brain" target="_blank" rel="noopener"><img src="/assets/images/tewtors/program-your-brain.webp" alt="" width="300" height="450" loading="lazy" decoding="async">Program Your Brain</a></li>
+        <li><a href="https://tewtors.com/stay-charged" target="_blank" rel="noopener"><img src="/assets/images/tewtors/stay-charged.webp" alt="" width="300" height="450" loading="lazy" decoding="async">Stay Charged</a></li>
+        <li><a href="https://tewtors.com/fly-your-own-jet" target="_blank" rel="noopener"><img src="/assets/images/tewtors/fly-your-own-jet.webp" alt="" width="300" height="450" loading="lazy" decoding="async">Fly Your Own Jet</a></li>
+        <li><a href="https://tewtors.com/mind-body-spirit-triangle" target="_blank" rel="noopener"><img src="/assets/images/tewtors/mind-body-spirit-triangle.webp" alt="" width="300" height="450" loading="lazy" decoding="async">The Mind, Body, Spirit Triangle</a></li>
+        <li><a href="https://tewtors.com/pam" target="_blank" rel="noopener"><img src="/assets/images/tewtors/pam.webp" alt="" width="300" height="450" loading="lazy" decoding="async">PAM, the Personal Achievement Map</a></li>
+        <li><a href="https://tewtors.com/brain-storms" target="_blank" rel="noopener"><img src="/assets/images/tewtors/brain-storms.webp" alt="" width="300" height="450" loading="lazy" decoding="async">Brain Storms</a></li>
+        <li><a href="https://tewtors.com/creative-mental-training" target="_blank" rel="noopener"><img src="/assets/images/tewtors/creative-mental-training.webp" alt="" width="300" height="450" loading="lazy" decoding="async">Creative Mental Training</a></li>
+        <li><a href="https://tewtors.com/positive-creativity" target="_blank" rel="noopener"><img src="/assets/images/tewtors/positive-creativity.webp" alt="" width="300" height="450" loading="lazy" decoding="async">Positive Creativity</a></li>
+        <li><a href="https://tewtors.com/achieving-combined-excellence" target="_blank" rel="noopener"><img src="/assets/images/tewtors/achieving-combined-excellence.webp" alt="" width="300" height="450" loading="lazy" decoding="async">Achieving Combined Excellence</a></li>
+        <li><a href="https://tewtors.com/motivation-action-knowledge" target="_blank" rel="noopener"><img src="/assets/images/tewtors/motivation-action-knowledge.webp" alt="" width="300" height="450" loading="lazy" decoding="async">Motivation, Action &amp; Knowledge</a></li>
+      </ul>
     </div>
   </section>
 
@@ -3013,15 +3052,60 @@ footer a{color:var(--muted)}
       if (d <= 1 && !still) preload(i);
       if (i !== front) setPic(i, false);
     });
+    deck();
     var u = animOf(front);
     playBtn.hidden = true;
-    if (!u) return;
+    if (!u){ if (still && deckOf(front) && !tapped[front]) playBtn.hidden = false; return; }
     if (!onScreen){ setPic(front, false); return; }
     if (still && !tapped[front]){ setPic(front, false); playBtn.hidden = false; return; }
     if (animReady[u] === true) setPic(front, true); else preload(front);
   }
   if ("IntersectionObserver" in window){
     new IntersectionObserver(function(es){ onScreen = es[0].isIntersecting; clips(); }, { threshold: 0.2 }).observe(stage);
+  }
+  /* Decks (Rick, 2 Nov 2026: "Games should have rotating images in the wheel (this is our only WOW factor, the
+     wheel)"; "probably better to show the logo then pictures rotating"). A card with data-deck ("picture|c|ms;...",
+     c = show it whole, ms = how long it stays) shows its first picture, the logo, whenever it is not in front. In
+     front it fades through the rest and round again, only while the ring is on screen; it starts again from the logo
+     each time the card comes to the front. A phone that asks for less motion gets the logo and the play button. */
+  var deckCard = -1, deckK = 0, deckB = false, deckT = 0, deckCache = {};
+  function deckOf(i){
+    if (!(i in deckCache)){
+      var d = links[i].getAttribute("data-deck");
+      deckCache[i] = d ? d.split(";").map(function(f){ var p = f.split("|"); return { u: p[0], c: p[1] === "c", ms: +p[2] || 2600 }; }) : null;
+    }
+    return deckCache[i];
+  }
+  function deckStop(){
+    clearTimeout(deckT); deckT = 0;
+    if (deckCard < 0) return;
+    var a = links[deckCard], im = a.querySelector("img"), b = a.querySelector("img.deck-b"), f = deckOf(deckCard)[0];
+    if (!im.hasAttribute("data-src")) im.setAttribute("src", f.u);
+    im.classList.toggle("fit-contain", f.c);
+    if (b){ b.style.transition = "none"; b.style.opacity = 0; void b.offsetWidth; b.style.transition = ""; }
+    deckCard = -1; deckK = 0; deckB = false;
+  }
+  function deckNext(){
+    var i = deckCard, d = deckOf(i), k = (deckK + 1) % d.length, f = d[k], pre = new Image();
+    deckT = 0;
+    pre.src = f.u;
+    (pre.decode ? pre.decode() : Promise.resolve()).catch(function(){}).then(function(){
+      if (deckCard !== i) return;
+      var a = links[i], im = a.querySelector("img"), b = a.querySelector("img.deck-b");
+      if (!b){ b = document.createElement("img"); b.className = "deck-b"; b.alt = ""; im.insertAdjacentElement("afterend", b); }
+      if (deckB){ im.setAttribute("src", f.u); im.classList.toggle("fit-contain", f.c); b.style.opacity = 0; }
+      else { b.setAttribute("src", f.u); b.classList.toggle("fit-contain", f.c); b.style.opacity = 1; }
+      deckB = !deckB; deckK = k;
+      deckT = setTimeout(deckNext, f.ms);
+    });
+  }
+  function deck(){
+    var d = deckOf(front), go = !!d && onScreen && (!still || tapped[front]);
+    if (deckCard === front && go) return;
+    deckStop();
+    if (!go) return;
+    deckCard = front;
+    deckT = setTimeout(deckNext, d[0].ms);
   }
 
   /* The details below the ring: only the front card's section(s) show. While the ring spins the swap waits until
