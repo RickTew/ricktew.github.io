@@ -24,6 +24,7 @@
 <meta name="apple-mobile-web-app-title" content="Rick Tew">
 <link rel="icon" href="/assets/images/favicon.png">
 <link href="/assets/fonts/archivo-nunito-4dd723.css" rel="stylesheet">
+<script>document.documentElement.className += " one-card";</script>
 <style>
 :root{
   --bg:#ffffff; --ink:#101418; --muted:#69707a; --body:#3a4148;
@@ -113,6 +114,13 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 @media (prefers-reduced-motion:reduce){ .step,.media figure{transition:none;transform:none} }
 
 /* One section per ring card: a picture (a mini-clip later), a heading, a few lines, the link out */
+/* One card's details at a time (Rick, 2 Nov 2026: "when the move to Camps then the bottom section ... changes to that
+   sections details ... like moving around a website but actually on one page"). Hidden sections load nothing. */
+.one-card main > section[data-card]{display:none}
+.one-card main > section[data-card].shown{display:block;animation:detailIn .4s ease}
+@keyframes detailIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){ .one-card main > section[data-card].shown{animation:none} }
+.one-card main.instant > section[data-card].shown{animation:none}
 .part{padding:56px 0;border-top:1px solid var(--line)}
 .part .wrap{max-width:1120px;margin:0 auto;padding:0 16px;display:grid;gap:22px;align-items:center}
 .part figure{margin:0;border-radius:16px;overflow:hidden;background:var(--panel);aspect-ratio:4/3}
@@ -184,14 +192,14 @@ footer a{color:var(--muted)}
       <button type="button" class="turn" id="ringNext" aria-label="Turn right">&#8594;</button>
     </div>
     <p class="menu-go"><a id="nowGo" href="#p-story">More on My story</a><a id="nowMore" class="more" href="#p-story" hidden>More on My story</a></p>
-    <span class="cue" aria-hidden="true">Or scroll for the story</span>
+    <span class="cue" id="nowCue" aria-hidden="true">Or scroll for My story</span>
   </section>
 
   <!-- The opener (was chapter 1; words unchanged). It opens My story (card 1); Roots, First dojo, Holland and the store follow it, then one section per card in the ring's order. Each .step
        carries its own figure: on a phone it shows in line, on a wide screen the script copies the figures into one
        pinned frame that changes as the steps pass. Pictures are light WebP copies in timeline/img/ of the old About's
        PNGs (same pictures; the originals stay where the other pages use them). -->
-  <section class="story" id="p-story" aria-labelledby="ch1">
+  <section class="story shown" id="p-story" data-card="p-story" aria-labelledby="ch1">
     <div class="wrap">
       <p class="eyebrow red">1 &middot; My story</p>
       <h2 id="ch1">Get a Black Belt in what you do.</h2>
@@ -208,7 +216,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="story" id="p-roots" aria-labelledby="ch2">
+  <section class="story shown" id="p-roots" data-card="p-story" aria-labelledby="ch2">
     <div class="wrap">
       <p class="eyebrow red">Roots</p>
       <h2 id="ch2">It is in the doing.</h2>
@@ -234,7 +242,7 @@ footer a{color:var(--muted)}
        Ninja"), /hininja/about/ ("teach officially when he was 16", "his own dojo ... at 19") and Rick's own order for
        the teaching timeline (26 Oct). Ages only as his teen notes (16, 19). The kick's twin "tew 17 double swords" is
        the same yard, so it is left out (no two places in a row). -->
-  <section class="story" id="p-first-dojo" aria-labelledby="ch3">
+  <section class="story shown" id="p-first-dojo" data-card="p-story" aria-labelledby="ch3">
     <div class="wrap">
       <p class="eyebrow red">First dojo</p>
       <h2 id="ch3">I was a teenage ninja.</h2>
@@ -250,7 +258,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="part" id="p-holland" aria-labelledby="h-holland">
+  <section class="part shown" id="p-holland" data-card="p-story" aria-labelledby="h-holland">
     <div class="wrap">
       <figure class="contain"><img src="/timeline/img/holland-karate-cover.webp" alt="Rick Tew on the cover of a Dutch karate magazine" loading="lazy"></figure>
       <div class="part-text">
@@ -263,7 +271,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="part flip" id="p-martialartsupply" aria-labelledby="h-martialartsupply">
+  <section class="part flip shown" id="p-martialartsupply" data-card="p-story" aria-labelledby="h-martialartsupply">
     <div class="wrap">
       <figure class="contain"><img src="/timeline/img/martialartsupply-banner.webp" alt="The old Martial Art Supply.com banner" loading="lazy"></figure>
       <div class="part-text">
@@ -278,7 +286,7 @@ footer a{color:var(--muted)}
   <!-- Cards 2 to 12: one section each, same order as the ring. Words from the current pages (/rtms/, /tours/, /camps/,
        /winjitsu/, /hsp/, /ninjagym/), /about/'s map, each site's own lines (ninjagym.com, martialartcamp.com/ninja,
        tewbedo.com) and this page's v2 lines; no new claims. Each repeats the card's direct link. -->
-  <section class="part" id="p-rtms" aria-labelledby="h-rtms">
+  <section class="part" id="p-rtms" data-card="p-rtms" aria-labelledby="h-rtms">
     <div class="wrap">
       <figure><img src="/aininja/assets/story/ninja/world/us-press-blackbelt.webp" alt="Black Belt magazine pages with photos of Rick Tew's techniques" loading="lazy"></figure>
       <div class="part-text">
@@ -292,7 +300,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="part flip" id="p-tours" aria-labelledby="h-tours">
+  <section class="part flip" id="p-tours" data-card="p-tours" aria-labelledby="h-tours">
     <div class="wrap">
       <figure><img src="/hininja/img/rick/canyon-splits.webp" alt="Rick Tew in the splits on a rock ledge at the Grand Canyon" loading="lazy"></figure>
       <div class="part-text">
@@ -305,7 +313,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="part" id="p-camps" aria-labelledby="h-camps">
+  <section class="part" id="p-camps" data-card="p-camps" aria-labelledby="h-camps">
     <div class="wrap">
       <div class="duo">
         <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/cms.webp" aria-label="Climbing a stone wall and rolling over the top, at CMS"><source src="/timeline/clips/cms.mp4" type="video/mp4"></video></figure>
@@ -323,7 +331,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="part flip" id="p-winjitsu" aria-labelledby="h-winjitsu">
+  <section class="part flip" id="p-winjitsu" data-card="p-winjitsu" aria-labelledby="h-winjitsu">
     <div class="wrap">
       <div class="duo">
         <figure class="contain"><img src="/aininja/assets/story/winjitsu/winjitsu-book.jpg" alt="The old WinJitsu website: Rick Tew's mental martial art" loading="lazy"></figure>
@@ -340,7 +348,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="part" id="p-speaking" aria-labelledby="h-speaking">
+  <section class="part" id="p-speaking" data-card="p-speaking" aria-labelledby="h-speaking">
     <div class="wrap">
       <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/speaking.webp" aria-label="Rick Tew speaking with a microphone at a seminar"><source src="/timeline/clips/speaking.mp4" type="video/mp4"></video></figure>
       <div class="part-text">
@@ -353,7 +361,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="part flip" id="p-ninjagym" aria-labelledby="h-ninjagym">
+  <section class="part flip" id="p-ninjagym" data-card="p-ninjagym" aria-labelledby="h-ninjagym">
     <div class="wrap">
       <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/ninjagym.webp" aria-label="Rick Tew showing a stance and a strike on the red mats at NinjaGym"><source src="/timeline/clips/ninjagym.mp4" type="video/mp4"></video></figure>
       <div class="part-text">
@@ -366,7 +374,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="part" id="p-nerdhostel" aria-labelledby="h-nerdhostel">
+  <section class="part" id="p-nerdhostel" data-card="p-nerdhostel" aria-labelledby="h-nerdhostel">
     <div class="wrap">
       <figure class="contain"><img src="/aininja/assets/story/apps/nerdhostel.webp" alt="NerdHostel on a phone" loading="lazy"></figure>
       <div class="part-text">
@@ -378,7 +386,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="part flip" id="p-ninja-course" aria-labelledby="h-ninja-course">
+  <section class="part flip" id="p-ninja-course" data-card="p-ninja-course" aria-labelledby="h-ninja-course">
     <div class="wrap">
       <figure><img src="/hininja/img/gallery/g11.webp" alt="A woman works a wrist lock with two training partners" loading="lazy"></figure>
       <div class="part-text">
@@ -391,7 +399,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="part" id="p-tewtors" aria-labelledby="h-tewtors">
+  <section class="part" id="p-tewtors" data-card="p-tewtors" aria-labelledby="h-tewtors">
     <div class="wrap">
       <figure class="contain"><img src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="The five Be a Black Belt in What You Do books" loading="lazy"></figure>
       <div class="part-text">
@@ -403,7 +411,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="part flip" id="p-ai-ninja" aria-labelledby="h-ai-ninja">
+  <section class="part flip" id="p-ai-ninja" data-card="p-ai-ninja" aria-labelledby="h-ai-ninja">
     <div class="wrap">
       <figure class="contain"><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="Rick Tew" loading="lazy"></figure>
       <div class="part-text">
@@ -418,7 +426,7 @@ footer a{color:var(--muted)}
 
   <!-- Games (Rick: "Games (can be one)"): one card, a tile per game. Lines from /about/'s map; links only where /about/
        gives one (Ninja Ninja Defense is a private build; Ninja Village has no link on his word, "not yet"). -->
-  <section class="part games" id="p-games" aria-labelledby="h-games">
+  <section class="part games" id="p-games" data-card="p-games" aria-labelledby="h-games">
     <div class="wrap">
       <div class="part-text">
         <p class="eyebrow blue">12 &middot; Games</p>
@@ -523,6 +531,8 @@ footer a{color:var(--muted)}
       nowMore.setAttribute("href", a.getAttribute("data-sec"));
       nowMore.textContent = "More on " + name;
       nowMore.hidden = own;
+      cue.textContent = "Or scroll for " + name;
+      details();
     }
   }
 
@@ -627,8 +637,44 @@ footer a{color:var(--muted)}
     new IntersectionObserver(function(es){ onScreen = es[0].isIntersecting; clips(); }, { threshold: 0.2 }).observe(stage);
   }
 
-  window.__ring = { get angle(){ return angle; }, get front(){ return front; }, N: N };
+  /* The details below the ring: only the front card's section(s) show. While the ring spins the swap waits until
+     it rests on a card, so the page below does not flicker card by card. */
+  var cue = document.getElementById("nowCue"), main = document.getElementById("main");
+  var secs = [].slice.call(main.querySelectorAll("section[data-card]")), shownCard = "p-story", swapT = 0;
+  function showCard(id){
+    if (id === shownCard) return;
+    shownCard = id;
+    secs.forEach(function(sc){ sc.classList.toggle("shown", sc.getAttribute("data-card") === id); });
+  }
+  function frontId(){ return links[front].getAttribute("data-sec").slice(1); }
+  function details(){
+    clearTimeout(swapT);
+    if (still){ showCard(frontId()); return; }
+    var a0 = angle;
+    swapT = setTimeout(function check(){
+      if (!drag && Math.abs(angle - a0) < 0.01) showCard(frontId());
+      else { a0 = angle; swapT = setTimeout(check, 160); }
+    }, 160);
+  }
+  function cardOfHash(){
+    var el = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    var id = el && el.getAttribute("data-card"); if (!id) return -1;
+    for (var i = 0; i < N; i++) if (links[i].getAttribute("data-sec") === "#" + id) return i;
+    return -1;
+  }
+  function goHash(){
+    var i = cardOfHash(); if (i < 0) return;
+    angle = target = frontOf(i); vel = 0; layout();
+    clearTimeout(swapT); main.classList.add("instant"); showCard(frontId());
+    setTimeout(function(){ main.classList.remove("instant"); }, 600);
+    var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    requestAnimationFrame(function(){ el.scrollIntoView(); });
+  }
+  window.addEventListener("hashchange", goHash);
+
+  window.__ring = { get angle(){ return angle; }, get front(){ return front; }, get shown(){ return shownCard; }, N: N };
   measure();
+  goHash();
 })();
 </script>
 <script>
