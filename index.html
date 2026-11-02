@@ -15,7 +15,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rick Tew: everything I build and teach</title>
-<meta name="description" content="Rick Tew: his story, RTMS, Tew's Tours, camps, WinJitsu, speaking, NinjaGym, NerdHostel, the Ninja Course, Tewtors, AI Ninja and his games. Turn the ring, pick one, go.">
+<meta name="description" content="Rick Tew: his story, RTMS, BLAST Tours, camps, WinJitsu, speaking, NinjaGym, NerdHostel, the Ninja Course, Tewtors, AI Ninja and his games. Turn the ring, pick one, go.">
 <link rel="canonical" href="https://ricktew.com/">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#1e73bd">
@@ -69,18 +69,21 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
   transition:opacity .25s ease;background:transparent}
 .ring a.playing video{opacity:1}
 .menu-foot{display:flex;align-items:center;gap:14px;margin-top:6px;padding:0 16px;width:100%;max-width:560px}
-.now{flex:1;text-align:center;min-height:3.2em}
-.now b{display:block;font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:22px}
-.now span{display:block;color:var(--body);font-size:15px}
+.now{flex:1;min-width:0;text-align:center}
+.now b{display:block;font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:22px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* one line, always (Rick, 2 Nov 2026: "when this section has more than two lines the page jumps. So let's just keep it one line") */
+.now span{display:block;color:var(--body);font-size:15px;line-height:1.5;height:1.5em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .turn{flex:none;width:46px;height:46px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);
   font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(16,20,24,.08)}
 .turn:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .menu-go{margin-top:12px;display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 16px}
 .menu-go a#nowGo{display:inline-block;padding:12px 30px;border-radius:999px;background:var(--ink);color:#fff;font-weight:800;text-decoration:none}
 .menu-go a.more{color:var(--muted);font-size:15px}
-.menu-go a[hidden]{display:none}
+/* the "More on" line keeps its room when a card has none, so the page below never moves card to card */
+.menu-go a[hidden]{display:inline-block;visibility:hidden}
 .menu-go a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .menu .cue{margin-top:20px}
+@media (max-width:420px){ .menu-foot{gap:8px;padding:0 10px} .turn{width:40px;height:40px;font-size:18px} .now b{font-size:clamp(18px,5.6vw,22px)} }
 
 .eyebrow{font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
 .eyebrow.red{color:var(--red)}
@@ -358,22 +361,22 @@ footer a{color:var(--muted)}
     </div>
     <div class="ring-stage" id="ringStage">
       <ul class="ring" id="ring">
-        <li><a href="#p-story" data-sec="#p-story" data-line="A backyard dojo, my own dojo at 19, then Holland."><img src="/timeline/img/ch2-rock-climb.webp" alt=""><span>My story</span></a></li>
-        <li><a href="#p-about" data-sec="#p-about" data-line="Master Instructor and creator of WinJitsu."><img src="/assets/images/w/0c7887b6ac.webp" alt=""><span>About</span></a></li>
+        <li><a href="#p-story" data-sec="#p-story" data-line="A backyard dojo to Holland."><img src="/timeline/img/ch2-rock-climb.webp" alt=""><span>My story</span></a></li>
+        <li><a href="#p-about" data-sec="#p-about" data-line="Creator of WinJitsu."><img src="/assets/images/w/0c7887b6ac.webp" alt=""><span>About</span></a></li>
         <li><a href="#p-therapy" data-sec="#p-therapy" data-line="Be a Ninja in what you DO."><img src="/assets/images/w/652387db39.webp" alt=""><span>Martial Arts Therapy</span></a></li>
-        <li><a href="#p-rtms" data-sec="#p-rtms" data-line="Rick Tew's Martial Science, beginner to instructor."><img src="/aininja/assets/story/ninja/world/us-press-blackbelt.webp" alt=""><span>RTMS</span></a></li>
-        <li><a href="#p-tours" data-sec="#p-tours" data-line="Travel and training, from Yosemite to the Grand Canyon."><img data-src="/hininja/img/rick/canyon-splits.webp" alt=""><span>Tew's Tours</span></a></li>
-        <li><a href="#p-camps" data-sec="#p-camps" data-line="CMS, my live-in ninja camps, in California and Thailand." data-anim="/timeline/clips/cms-anim.webp"><img data-src="/timeline/clips/cms.webp" alt=""><span>Camps</span></a></li>
-        <li><a href="https://winjitsu.com/" target="_blank" rel="noopener" data-sec="#p-winjitsu" data-go="Go to the WinJitsu app" data-line="The mental martial art: five books, now one app with Pocket Dojo inside."><img data-src="/aininja/assets/story/winjitsu/winjitsu-app.webp" alt="" class="fit-top"><span>WinJitsu</span></a></li>
-        <li><a href="https://winjitsu.com/hsp" target="_blank" rel="noopener" data-sec="#p-pocket-dojo" data-line="My home study program: Rick Tew's Martial Science, belt by belt, on your phone."><img data-src="/hsp/pocketdojo-apps.webp" alt="" class="fit-contain"><span>Pocket Dojo</span></a></li>
-        <li><a href="#p-speaking" data-sec="#p-speaking" data-line="HP, TU Delft, the University of Rotterdam, Black Belt magazine." data-anim="/timeline/clips/speaking-anim.webp"><img data-src="/timeline/clips/speaking.webp" alt=""><span>Speaking and press</span></a></li>
-        <li><a href="https://ninjagym.com/" target="_blank" rel="noopener" data-sec="#p-ninjagym" data-line="The indoor ninja playground for kids on Koh Samui." data-anim="/timeline/clips/ninjagym-anim.webp"><img data-src="/timeline/clips/ninjagym.webp" alt=""><span>NinjaGym</span></a></li>
-        <li><a href="https://www.nerdhostel.com/" target="_blank" rel="noopener" data-sec="#p-nerdhostel" data-line="A hostel on Koh Samui, across the street from NinjaGym."><img data-src="/aininja/assets/story/apps/nerdhostel.webp" alt=""><span>NerdHostel</span></a></li>
-        <li><a href="https://martialartcamp.com/ninja" target="_blank" rel="noopener" data-sec="#p-ninja-course" data-go="Go to the Ninja Course" data-line="Real martial arts on vacation, in a small group, on Koh Samui."><img data-src="/hininja/img/gallery/g11.webp" alt=""><span>Ninja Course</span></a></li>
-        <li><a href="https://tewtors.com/" target="_blank" rel="noopener" data-sec="#p-tewtors" data-line="My five methods for grown-ups, teens, parents and teachers."><img data-src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="" class="fit-contain"><span>Tewtors</span></a></li>
-        <li><a href="https://tewbedo.com/" target="_blank" rel="noopener" data-sec="#p-ai-ninja" data-line="Done-for-you AI for small business, managed by a real person."><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="" class="fit-contain"><span>AI Ninja</span></a></li>
-        <li><a href="#p-games" data-sec="#p-games" data-go="See the games" data-line="Dungeon Hole, TEWGO, AstroHold and more, under TewBit Games."><img src="/aininja/assets/story/games/dh-party.webp" alt=""><span>Games</span></a></li>
-        <li><a href="#contact" data-sec="#contact" data-go="Get in touch" data-line="General questions, or book Rick Tew for your next event."><img src="/assets/images/logo.png" alt="" class="fit-contain"><span>Contact</span></a></li>
+        <li><a href="#p-rtms" data-sec="#p-rtms" data-line="Rick Tew's Martial Science."><img src="/aininja/assets/story/ninja/world/us-press-blackbelt.webp" alt=""><span>RTMS</span></a></li>
+        <li><a href="#p-tours" data-sec="#p-tours" data-line="Make life a BLAST."><img data-src="/hininja/img/rick/canyon-splits.webp" alt=""><span>BLAST Tours</span></a></li>
+        <li><a href="#p-camps" data-sec="#p-camps" data-line="Live-in ninja camps." data-anim="/timeline/clips/cms-anim.webp"><img data-src="/timeline/clips/cms.webp" alt=""><span>Camps</span></a></li>
+        <li><a href="https://winjitsu.com/" target="_blank" rel="noopener" data-sec="#p-winjitsu" data-go="Go to the WinJitsu app" data-line="The mental martial art."><img data-src="/aininja/assets/story/winjitsu/winjitsu-app.webp" alt="" class="fit-top"><span>WinJitsu</span></a></li>
+        <li><a href="https://winjitsu.com/hsp" target="_blank" rel="noopener" data-sec="#p-pocket-dojo" data-line="My home study program."><img data-src="/hsp/pocketdojo-apps.webp" alt="" class="fit-contain"><span>Pocket Dojo</span></a></li>
+        <li><a href="#p-speaking" data-sec="#p-speaking" data-line="On stage and in print." data-anim="/timeline/clips/speaking-anim.webp"><img data-src="/timeline/clips/speaking.webp" alt=""><span>Speaking and press</span></a></li>
+        <li><a href="https://ninjagym.com/" target="_blank" rel="noopener" data-sec="#p-ninjagym" data-line="Ninja playground for kids." data-anim="/timeline/clips/ninjagym-anim.webp"><img data-src="/timeline/clips/ninjagym.webp" alt=""><span>NinjaGym</span></a></li>
+        <li><a href="https://www.nerdhostel.com/" target="_blank" rel="noopener" data-sec="#p-nerdhostel" data-line="A hostel for nerds."><img data-src="/aininja/assets/story/apps/nerdhostel.webp" alt=""><span>NerdHostel</span></a></li>
+        <li><a href="https://martialartcamp.com/ninja" target="_blank" rel="noopener" data-sec="#p-ninja-course" data-go="Go to the Ninja Course" data-line="Martial arts on vacation."><img data-src="/hininja/img/gallery/g11.webp" alt=""><span>Ninja Course</span></a></li>
+        <li><a href="https://tewtors.com/" target="_blank" rel="noopener" data-sec="#p-tewtors" data-line="Kids' workbooks and an app."><img data-src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="" class="fit-contain"><span>Tewtors</span></a></li>
+        <li><a href="https://tewbedo.com/" target="_blank" rel="noopener" data-sec="#p-ai-ninja" data-line="Done-for-you AI for business."><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="" class="fit-contain"><span>AI Ninja</span></a></li>
+        <li><a href="#p-games" data-sec="#p-games" data-go="See the games" data-line="My hobby: TewBit Games."><img src="/aininja/assets/story/games/dh-party.webp" alt=""><span>Games</span></a></li>
+        <li><a href="#contact" data-sec="#contact" data-go="Get in touch" data-line="Ask, or book Rick Tew."><img src="/assets/images/logo.png" alt="" class="fit-contain"><span>Contact</span></a></li>
       </ul>
       <button type="button" class="clip-play" id="clipPlay" aria-label="Play the clip" hidden><span aria-hidden="true">&#9654;</span></button>
     </div>
@@ -1483,7 +1486,7 @@ footer a{color:var(--muted)}
     <div class="wrap">
       <figure><img src="/hininja/img/rick/canyon-splits.webp" alt="Rick Tew in the splits on a rock ledge at the Grand Canyon" loading="lazy"></figure>
       <div class="part-text">
-        <p class="eyebrow red">Tew's Tours</p>
+        <p class="eyebrow red">BLAST Tours</p>
         <h2 id="h-tours">Travel and training.</h2>
         <p>Camps and tours on four continents, with Yosemite, Joshua Tree and the Grand Canyon among them.</p>
         <p>I have brought students from the US to Europe, and from Europe to the US. We call it BLAST: Breathing, Laughing, Adventuring, Stretching and Thinking.</p>
@@ -1492,7 +1495,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="oldpage" id="p-tours-page" data-card="p-tours" aria-label="Tew's Tours, the whole page">
+  <section class="oldpage" id="p-tours-page" data-card="p-tours" aria-label="BLAST Tours, the whole page">
     <div class="old">
 <div class="pagehead">
     <h2>BLAST Travel &amp; Training</h2>
