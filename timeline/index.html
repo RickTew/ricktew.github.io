@@ -56,6 +56,10 @@ section[id]{scroll-margin-top:30px}
 .ring a span{display:flex;align-items:center;justify-content:center;height:22%;padding:0 8px;text-align:center;
   font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:clamp(15px,2.2vw,19px);line-height:1.1}
 .ring a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+/* mini-clips (2 Nov 2026, PLAN v2 step 2): the front card plays its clip over its still; side cards show the still */
+.ring a video{position:absolute;left:0;top:0;width:100%;height:78%;object-fit:cover;pointer-events:none;opacity:0;
+  transition:opacity .25s ease;background:transparent}
+.ring a.playing video{opacity:1}
 .menu-foot{display:flex;align-items:center;gap:14px;margin-top:6px;padding:0 16px;width:100%;max-width:560px}
 .now{flex:1;text-align:center;min-height:3.2em}
 .now b{display:block;font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:22px}
@@ -106,6 +110,7 @@ section[id]{scroll-margin-top:30px}
 .part figure img{width:100%;height:100%;object-fit:cover;display:block}
 .part figure.contain img{object-fit:contain}
 .part figure.top img{object-position:50% 0}
+.part figure video{width:100%;height:100%;object-fit:cover;display:block;background:var(--panel)}
 .part h2{margin-top:10px;font-size:clamp(30px,5vw,50px);font-weight:900}
 .part-text > p:not(.eyebrow){margin-top:14px;font-size:clamp(18px,2.1vw,21px);line-height:1.6;color:var(--body);max-width:34em}
 .part-text > p.part-go{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin-top:22px}
@@ -140,13 +145,13 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
         <li><a href="#p-first-dojo" data-line="Teaching by 16, my own dojo at 19."><img src="/assets/images/rick-teen-flying-side-kick.webp" alt="" class="fit-top"><span>First dojo</span></a></li>
         <li><a href="#p-holland" data-line="More than six years in and out of the Netherlands."><img src="/timeline/img/holland-karate-cover.webp" alt="" class="fit-top"><span>Holland</span></a></li>
         <li><a href="#p-rtms" data-line="Rick Tew's Martial Science, beginner to instructor."><img data-src="/aininja/assets/story/ninja/world/us-press-blackbelt.webp" alt=""><span>RTMS</span></a></li>
-        <li><a href="#p-cms" data-line="The College of Martial Science, near Yosemite."><img data-src="/aininja/assets/story/ninja/world/us-camp-crew.webp" alt=""><span>CMS</span></a></li>
+        <li><a href="#p-cms" data-line="The College of Martial Science, near Yosemite." data-clip="/timeline/clips/cms.mp4"><img data-src="/timeline/clips/cms.webp" alt=""><span>CMS</span></a></li>
         <li><a href="#p-tours" data-line="Travel and training, from Yosemite to the Grand Canyon."><img data-src="/hininja/img/rick/canyon-splits.webp" alt=""><span>Tours</span></a></li>
         <li><a href="#p-martialartsupply" data-line="The martial arts store I built from the ground up."><img data-src="/timeline/img/martialartsupply-banner.webp" alt="" class="fit-contain"><span>MartialArt<wbr>Supply.com</span></a></li>
         <li><a href="#p-winjitsu" data-line="WinJitsu, the mental martial art, and its five books."><img data-src="/aininja/assets/story/winjitsu/winjitsu-book.jpg" alt="" class="fit-top"><span>WinJitsu</span></a></li>
-        <li><a href="#p-speaking" data-line="HP, TU Delft, the University of Rotterdam, Black Belt magazine."><img data-src="/aininja/assets/story/ninja/world/eu-speaking.webp" alt=""><span>Speaking and press</span></a></li>
-        <li><a href="#p-camps" data-line="Long-term martial art camps in Thailand."><img data-src="/aininja/assets/story/ninja/world/asia-island.webp" alt=""><span>Camps</span></a></li>
-        <li><a href="#p-ninjagym" data-line="The ninja gym for kids on Koh Samui."><img data-src="/aininja/assets/story/ninjagym/gym-flying-jump.webp" alt=""><span>NinjaGym</span></a></li>
+        <li><a href="#p-speaking" data-line="HP, TU Delft, the University of Rotterdam, Black Belt magazine." data-clip="/timeline/clips/speaking.mp4"><img data-src="/timeline/clips/speaking.webp" alt=""><span>Speaking and press</span></a></li>
+        <li><a href="#p-camps" data-line="Long-term martial art camps in Thailand." data-clip="/timeline/clips/camps.mp4"><img data-src="/timeline/clips/camps.webp" alt=""><span>Camps</span></a></li>
+        <li><a href="#p-ninjagym" data-line="The ninja gym for kids on Koh Samui." data-clip="/timeline/clips/ninjagym.mp4"><img data-src="/timeline/clips/ninjagym.webp" alt=""><span>NinjaGym</span></a></li>
         <li><a href="#p-pocket-dojo" data-line="Pocket Dojo, the Home Study Program: train at home."><img data-src="/hsp/pocketdojo-apps.webp" alt=""><span>Pocket Dojo</span></a></li>
         <li><a href="#p-ninja-course" data-line="On Koh Samui: stay a day, a week, a month, or 2 months in the belt program."><img data-src="/hininja/img/gallery/g11.webp" alt=""><span>Ninja Course</span></a></li>
         <li><a href="#p-tewtors" data-line="My five methods for grown-ups, teens, parents and teachers."><img data-src="/aininja/assets/story/winjitsu/winjitsu-books.webp" alt="" class="fit-contain"><span>Tewtors</span></a></li>
@@ -264,7 +269,7 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
 
   <section class="part" id="p-cms" aria-labelledby="h-cms">
     <div class="wrap">
-      <figure><img src="/aininja/assets/story/ninja/world/us-camp-crew.webp" alt="A group of students sitting together on a rock face outdoors" loading="lazy"></figure>
+      <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/cms.webp" aria-label="Climbing a stone wall and rolling over the top, at CMS"><source src="/timeline/clips/cms.mp4" type="video/mp4"></video></figure>
       <div class="part-text">
         <p class="eyebrow red">5 &middot; CMS</p>
         <h2 id="h-cms">CMS, College of Martial Science.</h2>
@@ -313,7 +318,7 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
 
   <section class="part" id="p-speaking" aria-labelledby="h-speaking">
     <div class="wrap">
-      <figure><img src="/aininja/assets/story/ninja/world/eu-speaking.webp" alt="Rick Tew on stage and teaching groups, with the BLAST and WinJitsu logos" loading="lazy"></figure>
+      <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/speaking.webp" aria-label="Rick Tew speaking with a microphone at a seminar"><source src="/timeline/clips/speaking.mp4" type="video/mp4"></video></figure>
       <div class="part-text">
         <p class="eyebrow red">9 &middot; Speaking and press</p>
         <h2 id="h-speaking">On stage and in print.</h2>
@@ -326,7 +331,7 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
 
   <section class="part flip" id="p-camps" aria-labelledby="h-camps">
     <div class="wrap">
-      <figure><img src="/aininja/assets/story/ninja/world/asia-island.webp" alt="Students training on beaches and islands in Thailand" loading="lazy"></figure>
+      <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/camps.webp" aria-label="Students in black raise their swords into stance on a beach in Thailand"><source src="/timeline/clips/camps.mp4" type="video/mp4"></video></figure>
       <div class="part-text">
         <p class="eyebrow red">10 &middot; Camps</p>
         <h2 id="h-camps">Camps in Thailand.</h2>
@@ -339,7 +344,7 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
 
   <section class="part" id="p-ninjagym" aria-labelledby="h-ninjagym">
     <div class="wrap">
-      <figure><img src="/aininja/assets/story/ninjagym/gym-flying-jump.webp" alt="A flying jump at NinjaGym" loading="lazy"></figure>
+      <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/ninjagym.webp" aria-label="Rick Tew showing a stance and a strike on the red mats at NinjaGym"><source src="/timeline/clips/ninjagym.mp4" type="video/mp4"></video></figure>
       <div class="part-text">
         <p class="eyebrow red">11 &middot; NinjaGym</p>
         <h2 id="h-ninjagym">NinjaGym.</h2>
@@ -516,6 +521,7 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
     if (f !== front){
       front = f;
       for (var k = -3; k <= 3; k++) show(mod(f + k, N));
+      clips();
       var a = links[f];
       nowName.textContent = a.querySelector("span").textContent;
       nowLine.textContent = a.getAttribute("data-line");
@@ -596,8 +602,61 @@ footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;colo
 
   window.addEventListener("resize", measure);
   window.addEventListener("load", function(){ setTimeout(function(){ for (var i = 0; i < N; i++) show(i); }, 800); });
+  /* Mini-clips: a card with data-clip gets its muted, looping video once it comes within two of the front (so it has
+     loaded by the time it turns round); only the front card plays, and nothing plays while the ring is off screen or
+     for a visitor who asked for less motion (the still stays). */
+  var onScreen = true;
+  function clipOf(i){
+    var a = links[i], url = a.getAttribute("data-clip"), v = a.querySelector("video");
+    if (!url || v) return v;
+    v = document.createElement("video");
+    v.muted = true; v.loop = true; v.playsInline = true;
+    v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.setAttribute("aria-hidden", "true");
+    v.preload = "auto"; v.src = url;
+    v.addEventListener("playing", function(){ if (links[front] === a) a.classList.add("playing"); });
+    a.insertBefore(v, a.querySelector("span"));
+    return v;
+  }
+  function clips(){
+    links.forEach(function(a, i){
+      var d = Math.min(mod(i - front, N), mod(front - i, N));
+      if (d <= 2 && !still) clipOf(i);
+      var v = a.querySelector("video");
+      if (v && (i !== front || !onScreen)){ v.pause(); a.classList.remove("playing"); }
+    });
+    var fv = links[front].querySelector("video");
+    if (fv && onScreen && !still){ var pr = fv.play(); if (pr && pr.catch) pr.catch(function(){}); }
+  }
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(es){ onScreen = es[0].isIntersecting; clips(); }, { threshold: 0.2 }).observe(stage);
+  }
+
   window.__ring = { get angle(){ return angle; }, get front(){ return front; }, N: N };
   measure();
+})();
+</script>
+<script>
+/* The same clips, bigger, in their sections: each plays while at least 40% of it is on screen and pauses when it
+   leaves; it starts loading a little before it arrives. A visitor who asked for less motion gets the still and a
+   play button instead. */
+(function(){
+  "use strict";
+  var vids = [].slice.call(document.querySelectorAll(".part figure.clip video"));
+  if (!vids.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)){
+    vids.forEach(function(v){ v.controls = true; });
+    return;
+  }
+  var near = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting){ e.target.preload = "auto"; near.unobserve(e.target); } });
+  }, { rootMargin: "300px 0px" });
+  var seen = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (e.isIntersecting){ var p = e.target.play(); if (p && p.catch) p.catch(function(){}); }
+      else e.target.pause();
+    });
+  }, { threshold: 0.4 });
+  vids.forEach(function(v){ near.observe(v); seen.observe(v); });
 })();
 </script>
 <script>
