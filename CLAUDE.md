@@ -402,7 +402,7 @@ Verify a status with a real request before repeating it on the site.**
 |------|----------------|--------|-------|
 | Tew's Total Recall | Vercel + App Stores | Very Soon | Memory/recall curriculum app |
 | The Adroit Swordsman | adroit-swordsman.vercel.app | Very Soon | Vocabulary app, 4 age groups, comedic voice |
-| Home Study Program (HSP) | Pocket Dojo, pocketdojo.ricktew.com; its door is ricktew.com/hsp/ | Free start live; the $2,222 one-off is on the page, never yet bought, test or real (19 Oct 2026) | "Rick Tew's Martial Science: The Ultimate Visual Guide." 200-page illustrated book (5 belt levels, 18 lessons each) + companion web app. Repo: `/Users/ricktew/Dev/HSP/`. Not sold on this site: the books are not sold separately (Rick's ruling 2026-09-09). |
+| Home Study Program (HSP) | Pocket Dojo, winjitsu.com/hsp since 2 Nov 2026 (pocketdojo.ricktew.com forwards there); its door is ricktew.com/hsp/ | Free start live; the $2,222 one-off is on the page, never yet bought, test or real (19 Oct 2026) | "Rick Tew's Martial Science: The Ultimate Visual Guide." 200-page illustrated book (5 belt levels, 18 lessons each) + companion web app. Repo: `/Users/ricktew/Dev/HSP/`. Not sold on this site: the books are not sold separately (Rick's ruling 2026-09-09). |
 
 ### Games
 | Name | Platform | Status | Notes |
