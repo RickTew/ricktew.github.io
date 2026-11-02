@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>To the checkout | WinJitsu | Rick Tew</title>
+<link rel="icon" href="/assets/images/favicon.png">
+<!-- The step in front of the "from home" Buy (2 Nov 2026, Rick's clicks "$22 a month", "฿699 a month"): one month of
+     the WinJitsu app, SKU WJA-HOME-1M, paid once on Rick Tew Co.'s card in baht, nothing renews. Like the other two
+     relays it keeps the checkout's address off the button, passes ?src= when it is well shaped, and adds cur=thb so the
+     card is Rick Tew Co.'s. Nothing is stored. -->
+<style>
+body{margin:0;background:#fff;color:#101418;font:600 17px/1.6 "Open Sans","Helvetica Neue",Arial,sans-serif}
+main{max-width:560px;margin:18vh auto 0;padding:0 24px;text-align:center}
+a{color:#175a94;font-weight:800}
+</style>
+</head>
+<body>
+<main>
+  <p id="msg">Taking you to the secure checkout...</p>
+  <noscript><p>The checkout needs JavaScript. Turn it on and press Buy again, or <a href="/winjitsu/#from-home">go back</a>.</p></noscript>
+</main>
+<script>
+(function(){
+  var FN="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy";
+  var q; try{ q=new URLSearchParams(location.search); }catch(e){ q=null; }
+  var src=(q&&q.get("src"))||"";
+  location.replace(FN+"?sku=WJA-HOME-1M"+(/^[A-Za-z0-9_-]{1,200}$/.test(src)?"&src="+encodeURIComponent(src):"")+"&cur=thb");
+})();
+</script>
+</body>
+</html>

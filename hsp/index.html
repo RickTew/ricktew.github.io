@@ -131,8 +131,8 @@ a{color:var(--ink)}
 .tag{display:inline-block;font-size:12.5px;font-weight:700;color:#14532d;background:#dcfce7;border-radius:6px;padding:1px 7px;margin-left:6px;vertical-align:1px}
 @media (max-width:600px){ .areas{grid-template-columns:1fr} .beltcard{padding:18px 16px 20px} }
 
-/* two ways in */
-.ways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:860px;margin:0 auto}
+/* three ways in (the $22 month added 2 Nov 2026, Rick's clicks "$22 a month" and "$2,222 = feedback from Rick") */
+.ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1100px;margin:0 auto}
 .way{background:#fff;border:2px solid var(--line);border-radius:18px;padding:24px 24px 26px;display:flex;flex-direction:column}
 .way h3{font-family:"Oswald",sans-serif;font-weight:600;font-size:26px;margin:4px 0 0}
 .way .amt{font-family:"Oswald",sans-serif;font-weight:700;font-size:36px;margin-top:4px}
@@ -140,7 +140,7 @@ a{color:var(--ink)}
 .way p{margin:10px 0 0;font-size:16px;line-height:1.55}
 .way .btn{margin-top:auto;align-self:flex-start}
 .way .gap{height:18px;flex:none}
-@media (max-width:760px){ .ways{grid-template-columns:1fr} }
+@media (max-width:960px){ .ways{grid-template-columns:1fr;max-width:560px} }
 
 /* questions */
 .faq{max-width:760px;margin:0 auto}
@@ -309,7 +309,7 @@ footer a{color:var(--muted)}
 
   <section class="sec sec-alt" id="ways" aria-labelledby="ways-h"><div class="shell">
     <div class="sec-head">
-      <h2 id="ways-h">Two ways in</h2>
+      <h2 id="ways-h">Three ways in</h2>
     </div>
     <div class="ways">
       <div class="way">
@@ -320,6 +320,15 @@ footer a{color:var(--muted)}
         <p>On the free lessons you can mark them practiced.</p>
         <div class="gap"></div>
         <a class="btn" href="https://winjitsu.com/signup?next=%2Fhsp">Start free</a>
+      </div>
+      <div class="way">
+        <p class="eyebrow">The WinJitsu app</p>
+        <h3>Every lesson</h3>
+        <div class="amt">$22 <small>a month</small></div>
+        <p>Every lesson in all five belts, in the WinJitsu app with the WinJitsu books.</p>
+        <p>One month, paid once. It does not renew.</p>
+        <div class="gap"></div>
+        <a class="btn" href="/winjitsu/buy/?src=hsp">Buy a month</a>
       </div>
       <div class="way">
         <p class="eyebrow">The Home Study Program</p>
