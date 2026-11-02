@@ -24,6 +24,12 @@ Personal brand and portfolio site for Rick Tew. Everything he makes lives here: 
    kept); its pictures and clips stay in timeline/img/ and timeline/clips/. The old home it replaced (the old site's
    home, word for word, up 31 Oct to 2 Nov) is in history (209aecd), as is the two-doors page (a92be97). Rick changes
    it on the live page; plan and next steps: `.claude/authority-page-plan.md`.
+   **Same evening (9b223b0, 6d1b3a0):** below the ring only the front card's details show (his "like moving around a
+   website but actually on one page"); EVERY old page is on the wheel IN WHOLE ("so we can tailor them down as we go"):
+   16 cards, About, Martial Arts Therapy (the old home), Pocket Dojo and Contact as cards of their own, the other old
+   pages under their card's new section. The old pages stay live and untouched until he says to forward them. Never
+   summarize an old page away; he trims. Pictures there are WebP copies in assets/images/w/; the wheel's clips are
+   animated WebP (timeline/clips/*-anim.webp) so phones play them without a tap.
 3. **The AI Ninja work (Your Dojo and R2 Managed Hosting) moves together to one new domain** ("Both to one new
    domain"); the mailbox, chat, Intake and search pages go with it. The domain is not named yet.
 4. **Rick, later on 29 Oct: "when we finish it and tewbedo will get aininja and it can just copy it completely and
