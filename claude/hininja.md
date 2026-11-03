@@ -336,3 +336,15 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     certificate caption is "Earn your Instructor certificate, and teach RTMS anywhere." 7 FAQ entries; Kuno's ask.js
     has 6 new answers (prior-rank, hours, class-mix, old-camps, black-belt, certificate) and a new instructor answer.
     Emails are never signed "Rick" (Kuno's and the course's mails sign "Rick Tew's Martial Science").
+  - **3 Nov 2026: the WinJitsu month from home, beside the Home Study Program** (the ricktew.com chat's note of 2 Nov:
+    ricktew.com/winjitsu/#from-home is live, one month of the whole WinJitsu app, $22, paid once, it does not renew;
+    not in the month: Rick's personal feedback, which is the Home Study Program, and Direct Connect). This waited on
+    the WinJitsu box ruling above ("Until the WinJitsu chat says it is live ... /hsp/ stay as they are"). Edited on
+    martialartcamp.com/ninja (martialartcamp 04b7b78), Rick's clicks in that chat: "Add the month beside HSP" and
+    "Kuno's button opens the box". The Pocket Dojo box keeps its line and red button to /hsp/ first, then a second
+    row: "Or start with one month of the WinJitsu app: $22, paid once, and it does not renew. Rick's personal
+    feedback on your training is in the Home Study Program." with a white (btn-quiet) "See the WinJitsu month"
+    button to /winjitsu/#from-home. Kuno's pocket-dojo answer adds the same two sentences, and its one button is
+    now "See both ways to train from home" to #pocket-dojo (it was "See the Home Study Program" to /hsp/); the golden
+    test allows #pocket-dojo and checks it exists. The bonus line "A free month of WinJitsu.com" and "Ninja Course
+    students get the app included" are unchanged.
