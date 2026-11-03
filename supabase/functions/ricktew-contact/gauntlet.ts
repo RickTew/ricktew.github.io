@@ -24,9 +24,18 @@
 //                     characters that is not a link or an address:
 //                     "APSCFUwhpzfBzWkcBbig". Short messages only.
 //
-// plus the four older, weaker tells on short messages: a very long word,
-// case-scrambling across name and message together, links, and a message
-// that is mostly digits.
+// plus the older, weaker tells: links, on every message, and three on short
+// messages only: a very long word, case-scrambling across name and message
+// together, and a message that is mostly digits.
+//
+// Links were short messages only until 3 Nov 2026 (Poli's pass on
+// martialartcamp, M4): a message of 120 characters or more was never scored
+// for them, so up to 2,000 characters of link-bearing, phishing-shaped text
+// passed with no tell at all. Links alone still never drop a long message
+// (two points at most); with a scrambled name or a dotted mailbox they do.
+// An endpoint that carries a stranger's words on to someone else (a camp
+// owner, a desk that answers by itself) reads the `link` tell and holds that
+// message for a person: INSTALL.md, step 6.
 //
 // Pure. No I/O, no dependency, no Deno or Node API, so the same file runs in
 // a Supabase edge function, a Next.js route, a Vercel function and the test.
@@ -56,9 +65,11 @@ export interface Verdict {
  *  also earns), which is the proven behaviour of the two oldest installs; on
  *  a LONG message the name alone is two and passes, because a long message
  *  is somebody's actual problem and eating one real customer's message is a
- *  worse failure than passing one probe. The false positive this can still
- *  produce is a person who types their name as one CamelCased word; the drop
- *  log exists to give that one back. */
+ *  worse failure than passing one probe. A long message with links is two at
+ *  most and passes too; links plus a scrambled name or a dotted mailbox is
+ *  three. The false positive this can still produce is a person who types
+ *  their name as one CamelCased word (and, on a long message, also pastes a
+ *  link); the drop log exists to give that one back. */
 export const DROP_AT = 3;
 
 /** A message this long is somebody's actual problem; only the name and the
@@ -105,11 +116,16 @@ export function gauntletScore(sub: Submission): Verdict {
     tells.push('dotted_mailbox');
   }
 
+  // Links, whatever the message length (3 Nov 2026, M4 above).
+  const links = (m.match(/https?:\/\/|\[url|<a\s/gi) || []).length;
+  if (links >= 1) { score += 1; tells.push('link'); }
+  if (links >= 3) { score += 1; tells.push('links'); }
+
   if (m.length >= SHORT_MESSAGE) {
     return { score, tells, drop: score >= DROP_AT };
   }
 
-  // The message, short ones only.
+  // The rest of the message, short ones only.
   const words = m.split(/\s+/).filter(Boolean);
   const longestWord = words.reduce((max, w) => Math.max(max, wordLength(w)), 0);
   if (longestWord >= 25) { score += 1; tells.push('long_word'); }
@@ -125,10 +141,6 @@ export function gauntletScore(sub: Submission): Verdict {
     score += 1;
     tells.push('one_word_message');
   }
-
-  const links = (m.match(/https?:\/\/|\[url|<a\s/gi) || []).length;
-  if (links >= 1) { score += 1; tells.push('link'); }
-  if (links >= 3) { score += 1; tells.push('links'); }
 
   const digits = (m.match(/\d/g) || []).length;
   if (m.length > 0 && digits / m.length > 0.4) { score += 1; tells.push('mostly_digits'); }

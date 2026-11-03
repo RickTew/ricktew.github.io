@@ -171,6 +171,27 @@ for (const [name, email, message] of people) {
   console.log((ok ? '  PASS  ' : '  FAIL  ') + 'person mailed, nothing dropped: ' + JSON.stringify(name));
   if (!ok) { bad++; console.log('          got', JSON.stringify(r)); }
 }
+// A link anywhere in a question holds it for Rick (3 Nov 2026): the kit's gauntlet
+// counts links on every message now, and the endpoint marks a message whose tells
+// include `link` Auto-Submitted and Held, so the Ninja Agent does not answer it.
+// Before, a message of 120 characters or more was never scored for links at all.
+{
+  const say = (ok, label, got) => { console.log((ok ? '  PASS  ' : '  FAIL  ') + label); if (!ok) { bad++; console.log('          got', JSON.stringify(got)); } };
+  const longLink = 'Hello Rick, I run a small studio and would love to talk about training together next month. ' +
+    'Here is our page so you can see what we do: https://example.com/studio and thanks for reading this.';
+  const a = await post('Somchai', 'somchai.p@gmail.com', longLink);
+  say(longLink.length >= 120 && a.mailed && a.drops.length === 0 && sent.headers && sent.headers['Auto-Submitted'] === 'auto-generated' &&
+      sent.headers['X-Mailbox-Held'] === 'link' && /Held: It has a link in it/.test(sent.text) && sent.text.includes('https://example.com/studio'),
+    'a long question with a link reaches Rick whole, marked Auto-Submitted and Held "link", so the Ninja Agent does not answer it', { a, headers: sent && sent.headers });
+  const b = await post('McDonald', 'r.mcdonald@gmail.com', 'See https://example.com');
+  say(b.mailed && sent.headers && sent.headers['X-Mailbox-Held'] === 'link', 'a short question with a link is held the same way', sent && sent.headers);
+  const c = await post('Somchai', 'somchai.p@gmail.com', 'Interested in a private class, what times are open this week?');
+  say(c.mailed && !(sent.headers && sent.headers['Auto-Submitted']) && !/Held:/.test(sent.text), 'a question with no link is not held: the Ninja Agent answers it as before', sent && sent.headers);
+  const many = longLink + ' https://example.net/a https://example.org/b';
+  const d = await post('Somchai', 's.o.m.c.h.a.i.p@gmail.com', many);
+  say(!d.mailed && d.drops.length === 1 && d.drops[0].includes('"reason":"nonsense"') && d.drops[0].includes('links'),
+    'a long message with three links from a many-dotted mailbox is dropped like an acceptance (the kit: three points)', d);
+}
 {
   // A perfect submission with no Origin header: not a browser, so a drop,
   // answered like an acceptance.

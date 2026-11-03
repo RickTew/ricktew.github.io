@@ -239,6 +239,15 @@ const CAPS = {
 };
 const NOTICES = ['paid', 'plan', 'site'];
 const HELD_LINE = 'More than 100 messages came in today, so the Ninja Agent did not answer this one. Answer it by hand if it is real.';
+// A question with a link in it is held for a person too (3 Nov 2026, the Digital Dojo's
+// note carried by TEWBEDO: the kit's gauntlet now counts links on every message, and its
+// INSTALL step 6 holds a message whose tells include `link` wherever a stranger's words go
+// on to a desk that answers by itself, as this mailbox's do). Before that, a message of 120
+// characters or more was never scored for links, so a long, link-filled, phishing-shaped
+// message reached the Ninja Agent like any other. It still reaches Rick, whole; only the
+// automatic answer waits for him.
+const HELD_LINK_LINE = 'It has a link in it, so the Ninja Agent did not answer it. Answer it by hand if it is real.';
+const heldLine = (why: 'day' | 'link') => (why === 'link' ? HELD_LINK_LINE : HELD_LINE);
 
 function sb() {
   const url = Deno.env.get('SUPABASE_URL');
@@ -286,7 +295,7 @@ function mailRoute(origin: string | null, to?: string, from?: string) {
 
 async function sendMail(f: {
   name: string; email: string; subjectLabel: string; message: string; sourceLabel: string; sku: string;
-  adCampaign: string; adClick: string; site: boolean; plan: boolean; held: boolean; origin: string | null;
+  adCampaign: string; adClick: string; site: boolean; plan: boolean; held: '' | 'day' | 'link'; origin: string | null;
 }) {
   const key = Deno.env.get('RESEND_API_KEY');
   const { to, from, tewbedo } = mailRoute(f.origin, Deno.env.get('CONTACT_TO'), Deno.env.get('CONTACT_FROM'));
@@ -312,7 +321,7 @@ async function sendMail(f: {
     row('Via', via) +
     row('Source', esc(f.sourceLabel)) +
     (f.adCampaign ? row('Ad', esc(adLine(f))) : '') +
-    (f.held ? row('Held', HELD_LINE) : '') +
+    (f.held ? row('Held', heldLine(f.held)) : '') +
     `</table>` +
     `<hr style="border:none;border-top:1px solid #ddd;margin:16px 0">` +
     `<div style="font-family:system-ui,sans-serif;font-size:15px;white-space:pre-wrap">` +
@@ -322,18 +331,18 @@ async function sendMail(f: {
   const text =
     `${f.site ? 'Place' : 'From'}: ${f.name}\n${f.email ? `Email: ${f.email}\n` : ''}About: ${f.subjectLabel}\n` +
     `Via: ${via}\nSource: ${f.sourceLabel}\n` +
-    (f.adCampaign ? `Ad: ${adLine(f)}\n` : '') + (f.held ? `Held: ${HELD_LINE}\n` : '') + `\n${f.message}\n`;
+    (f.adCampaign ? `Ad: ${adLine(f)}\n` : '') + (f.held ? `Held: ${heldLine(f.held)}\n` : '') + `\n${f.message}\n`;
 
   // An ad lead is a real question, so it is NOT marked Auto-Submitted: the
   // Ninja Agent answers it like any other. The X-Ad headers only label it.
-  // A held question (past the day's hundred) IS marked, so the Ninja Agent
+  // A held question (past the day's hundred, or with a link in it) IS marked, so the Ninja Agent
   // sends nothing to the typed address; TEWBEDO's guard skips any mail
   // carrying Auto-Submitted, and the thread waits for Rick.
   const headers: Record<string, string> = {
     ...(f.sku ? { 'Auto-Submitted': 'auto-generated', 'X-PromptPay-Sku': f.sku } : {}),
     ...(f.site ? { 'Auto-Submitted': 'auto-generated', 'X-Site-Find': 'bangkok' } : {}),
     ...(f.plan ? { 'Auto-Submitted': 'auto-generated', 'X-HI-Plan': 'hininja' } : {}),
-    ...(f.held ? { 'Auto-Submitted': 'auto-generated', 'X-Mailbox-Held': 'day' } : {}),
+    ...(f.held ? { 'Auto-Submitted': 'auto-generated', 'X-Mailbox-Held': f.held } : {}),
     ...(f.adCampaign ? { 'X-Ad-Campaign': f.adCampaign } : {}),
     ...(f.adClick ? { 'X-Ad-Click': f.adClick } : {}),
   };
@@ -462,14 +471,16 @@ Deno.serve(async (req) => {
   // before the send goes. If the gate cannot be read, the message is dropped
   // like an acceptance with the whole of it in the log: a broken count must
   // not open the door to mailing any address a stranger types.
-  let held = false;
+  // A question with a link waits for Rick (see HELD_LINK_LINE); paid, plan and site
+  // notices are marked Auto-Submitted already and never draw an answer.
+  let held: '' | 'day' | 'link' = !NOTICES.includes(subjectKey) && verdict.tells.includes('link') ? 'link' : '';
   try {
     const cap = await passCap(NOTICES.includes(subjectKey) ? 'notice' : 'mailbox', await visitorHash(req));
     if (cap === 'visitor' || cap === 'day') {
       logDrop(cap === 'visitor' ? 'rate_visitor' : 'rate_day', seen);
       return json({ ok: true }, 200, origin);
     }
-    held = cap === 'held';
+    if (cap === 'held') held = 'day';
   } catch (e) {
     logDrop('gate_unavailable', { ...seen, error: e instanceof Error ? e.message : String(e) });
     return json({ ok: true }, 200, origin);
