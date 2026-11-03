@@ -348,3 +348,22 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     now "See both ways to train from home" to #pocket-dojo (it was "See the Home Study Program" to /hsp/); the golden
     test allows #pocket-dojo and checks it exists. The bonus line "A free month of WinJitsu.com" and "Ninja Course
     students get the app included" are unchanged.
+  - **3 Nov 2026, later: ONE WinJitsu box, "WinJitsu, your pocket dojo"** (the day the WinJitsu app's update went
+    live; martialartcamp 6f2074d). Rick, in the martialartcamp chat, word for word: "Winjitsu is your pocket dojo.
+    Everything you would learn at my dojo in your pocket = winjitsu. It combines what you would learn mentally,
+    physically and spiritually. Not sure why martial science got over it as no one on the planet will know what that
+    means but anyone hearing something like pocket dojo can try to work out what that might mean. The home study
+    program (HSP) is now WinJitsu.com All of this should be super clear and easy to understand." His clicks: "One
+    WinJitsu box", "The full Home Study Program" (what a stay includes), "Put it live". So the WinJitsu box and the
+    Pocket Dojo box are ONE box: kick "Bonus with every stay: WinJitsu, your pocket dojo", the headline "Be a black
+    belt in what you do." as before, his words as the lede, then three cards, Mind (the five WinJitsu books as
+    training, and WinJitsu coaching with Rick), Body (the belts, Yellow to Red, every lesson, footprint diagrams) and
+    Spirit (friends in the dojo, Ask Sensei Tew on the lesson); the Pai story, books and phones unchanged; both ways to
+    train from home at its foot, still `#pocket-dojo` (the /hsp/ button first, the $22 month second). The "Every
+    stay" list: "WinJitsu, your pocket dojo: the full Home Study Program, and you keep it after you fly home." and
+    "A Rick Tew ninja T-shirt." (this retires "A free month of WinJitsu.com" and the separate Pocket Dojo line).
+    **"Pocket Dojo" and "Martial Science" are never names on the page** ("Rick Tew's Martial Science" stays the
+    name of his art); the RTMS book's small print says "the WinJitsu app". The two Pocket Dojo phone screens are
+    off (their header says POCKET DOJO); the files stay in public/course/img/more/. Kuno: "What is WinJitsu?",
+    "Can I train from home?" (id still pocket-dojo, "pocket dojo" still finds it) and "What is included?" say the
+    same, every sentence from the page. ricktew.com made the same change the same day (173f430).
