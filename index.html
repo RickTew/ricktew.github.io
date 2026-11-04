@@ -154,7 +154,15 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 .game .part-go a.go{padding:10px 22px;font-size:16px}
 .game .soon{background:var(--panel);display:flex;align-items:center;justify-content:center;padding:20px;text-align:center;
   font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:26px;color:var(--muted)}
-@media (min-width:640px){ .game-list{grid-template-columns:1fr 1fr} }
+/* AI Ninja: apps on phones, each with one short line */
+.app-list figure{aspect-ratio:440/954;width:min(100%,220px);margin:0 auto;border:7px solid var(--ink);border-radius:26px;background:var(--ink)}
+.app-list figure img{object-position:50% 0}
+@media (max-width:639px){
+  .app-list .game{display:grid;grid-template-columns:118px 1fr;grid-template-rows:auto 1fr;column-gap:16px;align-items:start}
+  .app-list figure{grid-row:1 / span 2;width:100%;border-width:5px;border-radius:18px}
+  .app-list .game h3{margin-top:0}
+}
+@media (min-width:640px){ .game-list{grid-template-columns:1fr 1fr} .app-list h3,.app-list p{text-align:center} }
 @media (min-width:900px){
   .part{padding:80px 0}
   .part .wrap{grid-template-columns:1fr 1fr;gap:56px}
@@ -375,19 +383,18 @@ footer a{color:var(--muted)}
     </div>
     <div class="ring-stage" id="ringStage">
       <ul class="ring" id="ring">
-        <li><a href="#p-story" data-sec="#p-story" data-line="A backyard dojo to Holland." data-deck="/assets/images/wheel/s-logo.webp|c|1800;/assets/images/wheel/sq-ch2-rock-climb.webp;/assets/images/wheel/sq-rick-teen-flying-side-kick.webp;/assets/images/wheel/sq-ch1-splits.webp"><img src="/assets/images/wheel/s-logo.webp" alt="" class="fit-contain"><span>My story</span></a></li>
-        <li><a href="#p-about" data-sec="#p-about" data-line="Creator of WinJitsu." data-deck="/assets/images/logo.png|c|1800;/assets/images/wheel/sq-0c7887b6ac.webp;/assets/images/wheel/sq-b0ababfa15.webp;/assets/images/wheel/sq-8e2b44eb09.webp;/assets/images/wheel/sq-f5a1733a58.webp;/assets/images/wheel/sq-97a5aab5ab.webp"><img src="/assets/images/logo.png" alt="" class="fit-contain"><span>About</span></a></li>
+        <li><a href="#p-about" data-sec="#p-about" data-line="Creator of WinJitsu." data-deck="/aininja/assets/story/rick/rick-cutout-2x.webp|c;/assets/images/wheel/s-logo.webp|c|1800;/assets/images/wheel/sq-ch2-rock-climb.webp;/assets/images/wheel/sq-rick-teen-flying-side-kick.webp;/assets/images/wheel/sq-0c7887b6ac.webp;/assets/images/wheel/sq-b0ababfa15.webp;/assets/images/wheel/sq-8e2b44eb09.webp;/assets/images/wheel/sq-f5a1733a58.webp;/assets/images/wheel/sq-97a5aab5ab.webp"><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="" class="fit-contain"><span>About</span></a></li>
         <li><a href="#p-therapy" data-sec="#p-therapy" data-line="Be a Ninja in what you DO." data-deck="/assets/images/wheel/sq-p1414.webp;/assets/images/wheel/sq-g22.webp;/assets/images/wheel/sq-652387db39.webp;/assets/images/wheel/sq-p0021.webp;/assets/images/wheel/sq-n02.webp;/assets/images/wheel/sq-d2ba906768.webp"><img src="/assets/images/wheel/sq-p1414.webp" alt=""><span>Martial Arts Therapy</span></a></li>
         <li><a href="#p-rtms" data-sec="#p-rtms" data-line="Rick Tew's Martial Science." data-deck="/assets/images/w/b06e8968d5.webp|c|1800;/assets/images/wheel/sq-g08.webp;/timeline/clips/ninjagym-anim.webp||5000;/assets/images/wheel/sq-g11.webp;/assets/images/wheel/sq-v13.webp;/assets/images/wheel/sq-g12.webp"><img src="/assets/images/w/b06e8968d5.webp" alt="" class="fit-contain"><span>RTMS</span></a></li>
         <li><a href="#p-tours" data-sec="#p-tours" data-line="Make life a BLAST." data-deck="/assets/images/w/f1bc48d3f3.webp|c|1800;/assets/images/wheel/sq-canyon-splits.webp;/assets/images/wheel/sq-05729e10e2.webp;/assets/images/wheel/sq-castle-splits.webp;/assets/images/wheel/sq-canyon-jump.webp;/assets/images/wheel/sq-river-splits.webp"><img data-src="/assets/images/w/f1bc48d3f3.webp" alt="" class="fit-contain"><span>BLAST Tours</span></a></li>
         <li><a href="#p-camps" data-sec="#p-camps" data-line="Live-in ninja camps." data-deck="/assets/images/w/0ecd5bf160.webp|c|1800;/timeline/clips/cms-anim.webp||5000;/assets/images/wheel/sq-1fd280bd07.webp;/assets/images/wheel/sq-90484ace6d.webp;/assets/images/wheel/sq-1c2d772381.webp"><img data-src="/assets/images/w/0ecd5bf160.webp" alt="" class="fit-contain"><span>Camps</span></a></li>
         <li><a href="https://winjitsu.com/" target="_blank" rel="noopener" data-sec="#p-winjitsu" data-go="Go to the WinJitsu app" data-line="Your pocket dojo." data-deck="/assets/images/wheel/wj-app-logo.webp|c|1800;/aininja/assets/story/winjitsu/winjitsu-app.webp|t;/aininja/assets/story/winjitsu/winjitsu-books.webp|c;/hsp/pocketdojo-belts.webp|c;/assets/images/wheel/sq-1775fe1ffa.webp"><img data-src="/assets/images/wheel/wj-app-logo.webp" alt="" class="fit-contain"><span>WinJitsu</span></a></li>
         <li><a href="#p-speaking" data-sec="#p-speaking" data-line="On stage and in print." data-deck="/assets/images/wheel/x-holland-karate-cover.webp|c|1800;/timeline/clips/speaking-anim.webp||5000;/assets/images/wheel/sq-us-press-blackbelt.webp;/assets/images/wheel/sq-812d56ed46.webp;/assets/images/wheel/sq-ch1-speaking.webp"><img data-src="/assets/images/wheel/x-holland-karate-cover.webp" alt="" class="fit-contain"><span>Speaking and press</span></a></li>
-        <li><a href="https://ninjagym.com/" target="_blank" rel="noopener" data-sec="#p-ninjagym" data-line="Ninja playground for kids." data-deck="/assets/images/w/9337fa4ddc.webp|c|1800;/assets/images/wheel/sq-n-climbing.webp;/assets/images/wheel/sq-n-chess.webp;/assets/images/wheel/sq-n-swords.webp;/assets/images/wheel/sq-n-rings.webp"><img data-src="/assets/images/w/9337fa4ddc.webp" alt="" class="fit-contain"><span>NinjaGym</span></a></li>
+        <li><a href="https://ninjagym.com/" target="_blank" rel="noopener" data-sec="#p-ninjagym" data-line="Ninja playground for kids." data-deck="/assets/images/w/9337fa4ddc.webp|c|1800;/assets/images/wheel/sq-n-climbing.webp;/assets/images/wheel/sq-n-chess.webp;/assets/images/wheel/sq-n-swords.webp;/assets/images/wheel/sq-n-rings.webp;/assets/images/wheel/sq-ch1-splits.webp"><img data-src="/assets/images/w/9337fa4ddc.webp" alt="" class="fit-contain"><span>NinjaGym</span></a></li>
         <li><a href="https://www.nerdhostel.com/" target="_blank" rel="noopener" data-sec="#p-nerdhostel" data-line="A hostel for nerds." data-deck="/assets/images/wheel/nh-logo.webp|c|1800;/assets/images/wheel/sq-nh-shared.webp;/assets/images/wheel/sq-nh-guild.webp;/aininja/assets/story/apps/nerdhostel.webp|c;/assets/images/wheel/sq-nh-bunks.webp;/assets/images/wheel/sq-nh-private.webp"><img data-src="/assets/images/wheel/nh-logo.webp" alt="" class="fit-contain"><span>NerdHostel</span></a></li>
         <li><a href="https://martialartcamp.com/ninja" target="_blank" rel="noopener" data-sec="#p-ninja-course" data-go="Go to the Ninja Course" data-line="Martial arts on vacation." data-deck="/assets/images/wheel/nc-icon.webp|c|1800;/assets/images/wheel/sq-g11.webp;/assets/images/wheel/sq-v03.webp;/assets/images/wheel/sq-p0165.webp;/assets/images/wheel/sq-g09.webp"><img data-src="/assets/images/wheel/nc-icon.webp" alt="" class="fit-contain"><span>Ninja Course</span></a></li>
         <li><a href="https://tewtors.com/" target="_blank" rel="noopener" data-sec="#p-tewtors" data-line="Workbooks to share with kids." data-deck="/assets/images/wheel/t-logo.webp|c|1800;/assets/images/wheel/t-stay-charged.webp|c;/assets/images/wheel/t-app-lesson.webp|c;/assets/images/wheel/t-fly-your-own-jet.webp|c;/assets/images/wheel/t-program-your-brain.webp|c;/assets/images/wheel/t-mind-university.webp|c"><img data-src="/assets/images/wheel/t-logo.webp" alt="" class="fit-contain"><span>Tewtors</span></a></li>
-        <li><a href="https://tewbedo.com/" target="_blank" rel="noopener" data-sec="#p-ai-ninja" data-line="Done-for-you AI for business." data-deck="/assets/images/wheel/ai-icon.webp|c|1800;/assets/images/wheel/x-rick-cutout-2x.webp|c;/assets/images/wheel/x-tewbedo.webp|c;/aininja/assets/story/apps/sabaisen.webp|c;/aininja/assets/story/apps/evercool.webp|c;/aininja/assets/story/apps/samuikids.webp|c"><img src="/assets/images/wheel/ai-icon.webp" alt="" class="fit-contain"><span>AI Ninja</span></a></li>
+        <li><a href="https://tewbedo.com/" target="_blank" rel="noopener" data-sec="#p-ai-ninja" data-line="Apps built for your business." data-deck="/assets/images/wheel/ai-icon.webp|c|1800;/assets/images/wheel/x-tewbedo.webp|c;/aininja/assets/story/apps/sabaisen.webp|c;/aininja/assets/story/apps/evercool.webp|c;/aininja/assets/story/apps/samuikids.webp|c"><img src="/assets/images/wheel/ai-icon.webp" alt="" class="fit-contain"><span>AI Ninja</span></a></li>
         <li><a href="#p-games" data-sec="#p-games" data-go="See the games" data-line="My hobby: TewBit Games." data-deck="/assets/images/wheel/tb-logo.webp|c|1800;/assets/images/wheel/sq-g-arena-shield.webp;/assets/images/wheel/g-dungeonhole-title.webp;/assets/images/wheel/g-astrohold-cyborg.webp;/assets/images/wheel/sq-g-arena-board.webp;/assets/images/wheel/g-dungeonhole-ninja.webp;/assets/images/wheel/g-tewgo-icon.webp;/assets/images/wheel/g-astrohold-core.webp"><img src="/assets/images/wheel/tb-logo.webp" alt="" class="fit-contain"><span>Games</span></a></li>
         <li><a href="#contact" data-sec="#contact" data-go="Get in touch" data-line="Ask, or book Rick Tew." data-deck="/assets/images/logo.png|c|1800;/assets/images/wheel/sq-c-portrait.webp;/assets/images/wheel/sq-ch1-speaking.webp"><img src="/assets/images/logo.png" alt="" class="fit-contain"><span>Contact</span></a></li>
       </ul>
@@ -395,102 +402,14 @@ footer a{color:var(--muted)}
     </div>
     <div class="menu-foot">
       <button type="button" class="turn" id="ringPrev" aria-label="Turn left">&#8592;</button>
-      <div class="now" aria-live="polite"><b id="nowName">My story</b><span id="nowLine"></span></div>
+      <div class="now" aria-live="polite"><b id="nowName">About</b><span id="nowLine"></span></div>
       <button type="button" class="turn" id="ringNext" aria-label="Turn right">&#8594;</button>
     </div>
-    <p class="menu-go"><a id="nowGo" href="#p-story">More on My story</a><a id="nowMore" class="more" href="#p-story" hidden>More on My story</a></p>
-    <span class="cue" id="nowCue" aria-hidden="true">Or scroll for My story</span>
+    <p class="menu-go"><a id="nowGo" href="#p-about">More on About</a><a id="nowMore" class="more" href="#p-about" hidden>More on About</a></p>
+    <span class="cue" id="nowCue" aria-hidden="true">Or scroll for About</span>
   </section>
 
-  <!-- The opener (was chapter 1; words unchanged). It opens My story (card 1); Roots, First dojo, Holland and the store follow it, then one section per card in the ring's order. Each .step
-       carries its own figure: on a phone it shows in line, on a wide screen the script copies the figures into one
-       pinned frame that changes as the steps pass. Pictures are light WebP copies in timeline/img/ of the old About's
-       PNGs (same pictures; the originals stay where the other pages use them). -->
-  <section class="story shown" id="p-story" data-card="p-story" aria-labelledby="ch1">
-    <div class="wrap">
-      <p class="eyebrow red">My story</p>
-      <h2 id="ch1">Get a Black Belt in what you do.</h2>
-      <div class="story-grid">
-        <div class="steps">
-          <div class="step"><figure><img src="/timeline/img/ch1-splits.webp" alt="Rick Tew in the splits on a red mat" loading="lazy"></figure>
-            <p>Hi, I'm Rick Tew. Even though my last name says otherwise, there is only one of me. But I do have a split personality. I believe we all do, and the mix of those traits is what makes us who we are.</p></div>
-          <div class="step"><figure><img src="/timeline/img/ch1-speaking.webp" alt="Rick Tew speaking to groups and teaching classes" loading="lazy"></figure>
-            <p>My passion is helping people find their key strengths and put them together, so they get more out of life. It started on the mat. Today it also means building the systems a business runs on, and training the people who run it.</p></div>
-          <div class="step"><figure class="contain"><img src="/timeline/img/ch1-stage.webp" alt="BLAST, WinJitsu and Rick Tew on stage" loading="lazy"></figure>
-            <p>I only teach from experience, and I learn by doing. The martial arts, the camps, the books, the gyms and the apps: this page is all of it, in the order it happened.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="story shown" id="p-roots" data-card="p-story" aria-labelledby="ch2">
-    <div class="wrap">
-      <p class="eyebrow red">Roots</p>
-      <h2 id="ch2">It is in the doing.</h2>
-      <div class="story-grid">
-        <div class="steps">
-          <div class="step"><figure class="contain"><img src="/timeline/img/ch2-early-years.webp" alt="Rick Tew's early years of training, outdoors and in the backyard" loading="lazy"></figure>
-            <p>While others talk, I try to walk. That walk began when I was a boy and ran away from home in Indiana to be in California. It worked, and a new journey began.</p></div>
-          <div class="step"><figure><img src="/timeline/img/ch2-rock-climb.webp" alt="Rick Tew climbing a rock face" loading="lazy"></figure>
-            <p>As a young teen I joined the Boy Scouts. I still remember working with my Dad to finish the sit-ups for another award on my belt. Scouting gave me trips into the outdoors and a system for setting goals, and it is why I have taken students to places like Yosemite.</p></div>
-          <div class="step"><figure class="contain"><img src="/timeline/img/ch2-jump-kick.webp" alt="Rick Tew in a black gi, mid jump kick" loading="lazy"></figure>
-            <p>I connected with shows like Godzilla, where the one everybody saw as the bad guy was often the good guy. The underdog is misunderstood, but endures and wins. That is how I saw the ninja, and it pulled me into the martial arts.</p></div>
-          <div class="step"><figure class="contain"><img src="/aininja/assets/story/ninja/world/us-early-years.webp" alt="Rick Tew training as a teen" loading="lazy"></figure>
-            <p>In my teens I fell in love with the ninja art of ninjitsu. My first training center was the backyard, with carpet wrapped around a plum tree for a striking dummy. A TV crew filmed me there throwing stars, climbing ropes and running my obstacle course.</p>
-            <p>My goals were simple: get the splits, earn a black belt, open my own dojo. Done, done and done.</p></div>
-          <div class="step"><figure><img src="/aininja/assets/story/rick/childhood-game.webp" alt="The arena game Rick built on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles" loading="lazy"></figure>
-            <p>I also drew a game by hand: the boards, the character sheets, the cut-out tiles. Today it is Arena RPG, and I am building it for real with AI.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- First dojo (was chapter 3, 2 Nov 2026; words unchanged). Words: the old About (git 74bb80d, "I Was a Teenage
-       Ninja"), /hininja/about/ ("teach officially when he was 16", "his own dojo ... at 19") and Rick's own order for
-       the teaching timeline (26 Oct). Ages only as his teen notes (16, 19). The kick's twin "tew 17 double swords" is
-       the same yard, so it is left out (no two places in a row). -->
-  <section class="story shown" id="p-first-dojo" data-card="p-story" aria-labelledby="ch3">
-    <div class="wrap">
-      <p class="eyebrow red">First dojo</p>
-      <h2 id="ch3">I was a teenage ninja.</h2>
-      <div class="story-grid">
-        <div class="steps">
-          <div class="step"><figure class="contain"><img src="/assets/images/rick-teen-flying-side-kick.webp" alt="Rick Tew as a teenager in a red and black uniform, mid flying side kick" loading="lazy"></figure>
-            <p>By 16 I was already teaching. From that point on I have been teaching, sharing and living the martial arts.</p></div>
-          <div class="step"><figure class="contain"><img src="/timeline/img/ch3-early-years.webp" alt="Rick Tew in his late teens: holding a certificate, rafting, at the Cacaxtla ruins in Mexico, a stage show, stunt practice on a rooftop, and training in ninja gear" loading="lazy"></figure>
-            <p>At 19 I opened my own dojo, a martial arts training school.</p>
-            <p>Then I took a break to study more martial arts and join stunt school. I learned Tony Robbins' tactics too, and my goals grew into a new dream: to move and live in Europe.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="part shown" id="p-holland" data-card="p-story" aria-labelledby="h-holland">
-    <div class="wrap">
-      <figure class="contain"><img src="/timeline/img/holland-karate-cover.webp" alt="Rick Tew on the cover of a Dutch karate magazine" loading="lazy"></figure>
-      <div class="part-text">
-        <p class="eyebrow red">Holland</p>
-        <h2 id="h-holland">A ninja in the Netherlands.</h2>
-        <p>I spent more than six years in and out of the Netherlands, mostly in the Naarden Bussum area. I was in magazines and on TV, taught seminars across the country, and trained students outdoors at Naarden Vesting, an old war fortress with a lot of grass and places to jump around.</p>
-        <p>I was even offered a part in a popular Dutch film. I turned it down to spend time with students in Spain. My tour idea was born in Holland too: the first group on my California tour was Dutch.</p>
-        <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="part flip shown" id="p-martialartsupply" data-card="p-story" aria-labelledby="h-martialartsupply">
-    <div class="wrap">
-      <figure class="contain"><img src="/timeline/img/martialartsupply-banner.webp" alt="The old Martial Art Supply.com banner" loading="lazy"></figure>
-      <div class="part-text">
-        <p class="eyebrow blue">Business</p>
-        <h2 id="h-martialartsupply">MartialArtSupply.com</h2>
-        <p>Business isn't usual. I built martialartsupply.com from the ground up, into a business many people copied, in the same years as CMS.</p>
-        <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="oldpage" id="p-about" data-card="p-about" aria-label="About Rick Tew">
+  <section class="oldpage shown" id="p-about" data-card="p-about" aria-label="About Rick Tew">
     <div class="lead-mini"><p class="eyebrow red">About</p></div>
     <div class="old">
 <div class="pagehead">
@@ -868,6 +787,94 @@ footer a{color:var(--muted)}
   </div>
     </div>
     <p class="back"><a class="up" href="#menu">Back to the ring</a></p>
+  </section>
+
+  <!-- The opener (was chapter 1; words unchanged). My story sits at the bottom of About since 4 Nov 2026 (Rick: "put the my story in the bottom section of the about"); Roots, First dojo, Holland and the store follow it. Each .step
+       carries its own figure: on a phone it shows in line, on a wide screen the script copies the figures into one
+       pinned frame that changes as the steps pass. Pictures are light WebP copies in timeline/img/ of the old About's
+       PNGs (same pictures; the originals stay where the other pages use them). -->
+  <section class="story shown" id="p-story" data-card="p-about" aria-labelledby="ch1">
+    <div class="wrap">
+      <p class="eyebrow red">My story</p>
+      <h2 id="ch1">Get a Black Belt in what you do.</h2>
+      <div class="story-grid">
+        <div class="steps">
+          <div class="step"><figure><img src="/timeline/img/ch1-splits.webp" alt="Rick Tew in the splits on a red mat" loading="lazy"></figure>
+            <p>Hi, I'm Rick Tew. Even though my last name says otherwise, there is only one of me. But I do have a split personality. I believe we all do, and the mix of those traits is what makes us who we are.</p></div>
+          <div class="step"><figure><img src="/timeline/img/ch1-speaking.webp" alt="Rick Tew speaking to groups and teaching classes" loading="lazy"></figure>
+            <p>My passion is helping people find their key strengths and put them together, so they get more out of life. It started on the mat. Today it also means building the systems a business runs on, and training the people who run it.</p></div>
+          <div class="step"><figure class="contain"><img src="/timeline/img/ch1-stage.webp" alt="BLAST, WinJitsu and Rick Tew on stage" loading="lazy"></figure>
+            <p>I only teach from experience, and I learn by doing. The martial arts, the camps, the books, the gyms and the apps: this page is all of it, in the order it happened.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story shown" id="p-roots" data-card="p-about" aria-labelledby="ch2">
+    <div class="wrap">
+      <p class="eyebrow red">Roots</p>
+      <h2 id="ch2">It is in the doing.</h2>
+      <div class="story-grid">
+        <div class="steps">
+          <div class="step"><figure class="contain"><img src="/timeline/img/ch2-early-years.webp" alt="Rick Tew's early years of training, outdoors and in the backyard" loading="lazy"></figure>
+            <p>While others talk, I try to walk. That walk began when I was a boy and ran away from home in Indiana to be in California. It worked, and a new journey began.</p></div>
+          <div class="step"><figure><img src="/timeline/img/ch2-rock-climb.webp" alt="Rick Tew climbing a rock face" loading="lazy"></figure>
+            <p>As a young teen I joined the Boy Scouts. I still remember working with my Dad to finish the sit-ups for another award on my belt. Scouting gave me trips into the outdoors and a system for setting goals, and it is why I have taken students to places like Yosemite.</p></div>
+          <div class="step"><figure class="contain"><img src="/timeline/img/ch2-jump-kick.webp" alt="Rick Tew in a black gi, mid jump kick" loading="lazy"></figure>
+            <p>I connected with shows like Godzilla, where the one everybody saw as the bad guy was often the good guy. The underdog is misunderstood, but endures and wins. That is how I saw the ninja, and it pulled me into the martial arts.</p></div>
+          <div class="step"><figure class="contain"><img src="/aininja/assets/story/ninja/world/us-early-years.webp" alt="Rick Tew training as a teen" loading="lazy"></figure>
+            <p>In my teens I fell in love with the ninja art of ninjitsu. My first training center was the backyard, with carpet wrapped around a plum tree for a striking dummy. A TV crew filmed me there throwing stars, climbing ropes and running my obstacle course.</p>
+            <p>My goals were simple: get the splits, earn a black belt, open my own dojo. Done, done and done.</p></div>
+          <div class="step"><figure><img src="/aininja/assets/story/rick/childhood-game.webp" alt="The arena game Rick built on paper as a kid: hand-drawn boards, character sheets, hand-cut tiles" loading="lazy"></figure>
+            <p>I also drew a game by hand: the boards, the character sheets, the cut-out tiles. Today it is Arena RPG, and I am building it for real with AI.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- First dojo (was chapter 3, 2 Nov 2026; words unchanged). Words: the old About (git 74bb80d, "I Was a Teenage
+       Ninja"), /hininja/about/ ("teach officially when he was 16", "his own dojo ... at 19") and Rick's own order for
+       the teaching timeline (26 Oct). Ages only as his teen notes (16, 19). The kick's twin "tew 17 double swords" is
+       the same yard, so it is left out (no two places in a row). -->
+  <section class="story shown" id="p-first-dojo" data-card="p-about" aria-labelledby="ch3">
+    <div class="wrap">
+      <p class="eyebrow red">First dojo</p>
+      <h2 id="ch3">I was a teenage ninja.</h2>
+      <div class="story-grid">
+        <div class="steps">
+          <div class="step"><figure class="contain"><img src="/assets/images/rick-teen-flying-side-kick.webp" alt="Rick Tew as a teenager in a red and black uniform, mid flying side kick" loading="lazy"></figure>
+            <p>By 16 I was already teaching. From that point on I have been teaching, sharing and living the martial arts.</p></div>
+          <div class="step"><figure class="contain"><img src="/timeline/img/ch3-early-years.webp" alt="Rick Tew in his late teens: holding a certificate, rafting, at the Cacaxtla ruins in Mexico, a stage show, stunt practice on a rooftop, and training in ninja gear" loading="lazy"></figure>
+            <p>At 19 I opened my own dojo, a martial arts training school.</p>
+            <p>Then I took a break to study more martial arts and join stunt school. I learned Tony Robbins' tactics too, and my goals grew into a new dream: to move and live in Europe.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="part shown" id="p-holland" data-card="p-about" aria-labelledby="h-holland">
+    <div class="wrap">
+      <figure class="contain"><img src="/timeline/img/holland-karate-cover.webp" alt="Rick Tew on the cover of a Dutch karate magazine" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow red">Holland</p>
+        <h2 id="h-holland">A ninja in the Netherlands.</h2>
+        <p>I spent more than six years in and out of the Netherlands, mostly in the Naarden Bussum area. I was in magazines and on TV, taught seminars across the country, and trained students outdoors at Naarden Vesting, an old war fortress with a lot of grass and places to jump around.</p>
+        <p>I was even offered a part in a popular Dutch film. I turned it down to spend time with students in Spain. My tour idea was born in Holland too: the first group on my California tour was Dutch.</p>
+        <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part flip shown" id="p-martialartsupply" data-card="p-about" aria-labelledby="h-martialartsupply">
+    <div class="wrap">
+      <figure class="contain"><img src="/timeline/img/martialartsupply-banner.webp" alt="The old Martial Art Supply.com banner" loading="lazy"></figure>
+      <div class="part-text">
+        <p class="eyebrow blue">Business</p>
+        <h2 id="h-martialartsupply">MartialArtSupply.com</h2>
+        <p>Business isn't usual. I built martialartsupply.com from the ground up, into a business many people copied, in the same years as CMS.</p>
+        <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
   </section>
 
   <section class="oldpage" id="p-therapy" data-card="p-therapy" aria-label="Martial Arts Therapy">
@@ -2782,16 +2789,33 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section class="part flip" id="p-ai-ninja" data-card="p-ai-ninja" aria-labelledby="h-ai-ninja">
+  <section class="part games" id="p-ai-ninja" data-card="p-ai-ninja" aria-labelledby="h-ai-ninja">
     <div class="wrap">
-      <figure class="contain"><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="Rick Tew" loading="lazy"></figure>
       <div class="part-text">
         <p class="eyebrow blue">AI Ninja</p>
         <h2 id="h-ai-ninja">AI Ninja.</h2>
         <p>Done-for-you AI for small business, managed by a real person.</p>
         <p>For owners who hate tech or have no time for it: we build it, host it and run the AI behind it.</p>
+        <p>Apps and sites built for real businesses. Three of them:</p>
         <p class="part-go"><a class="go" href="https://tewbedo.com/" target="_blank" rel="noopener">Go to AI Ninja</a><a class="up" href="#menu">Back to the ring</a></p>
       </div>
+      <ul class="game-list app-list">
+        <li class="game">
+          <figure><img src="/aininja/assets/story/apps/sabaisen.webp" alt="The SabaiSen app on a phone: book a treatment" width="440" height="954" loading="lazy"></figure>
+          <h3>SabaiSen</h3>
+          <p>A spa on Koh Samui: online booking, the till, member cards, and a desk agent that answers guests in English and Thai.</p>
+        </li>
+        <li class="game">
+          <figure><img src="/aininja/assets/story/apps/evercool.webp" alt="The EverCool site on a phone" width="440" height="954" loading="lazy"></figure>
+          <h3>EverCool</h3>
+          <p>An air conditioning firm's site and back office: a shared inbox, staff accounts, equipment tracking.</p>
+        </li>
+        <li class="game">
+          <figure><img src="/aininja/assets/story/apps/samuikids.webp" alt="The SamuiKids guide on a phone" width="440" height="954" loading="lazy"></figure>
+          <h3>SamuiKids</h3>
+          <p>The drop-off guide for supervised kid activities on Koh Samui.</p>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -3123,7 +3147,7 @@ footer a{color:var(--muted)}
   /* The details below the ring: only the front card's section(s) show. While the ring spins the swap waits until
      it rests on a card, so the page below does not flicker card by card. */
   var cue = document.getElementById("nowCue"), main = document.getElementById("main");
-  var secs = [].slice.call(main.querySelectorAll("section[data-card]")), shownCard = "p-story", swapT = 0;
+  var secs = [].slice.call(main.querySelectorAll("section[data-card]")), shownCard = "p-about", swapT = 0;
   function showCard(id){
     if (id === shownCard) return;
     shownCard = id;
