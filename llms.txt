@@ -2,7 +2,7 @@
 
 > Rick Tew builds and runs AI systems for small businesses through the Digital Dojo, and has taught martial arts for thirty years. American, from California; owner of NinjaGym in Koh Samui, Thailand. This file is for assistants and agents that fetch rather than browse.
 
-The front page is Rick's one-page home: a ring of everything he builds and teaches (his story, RTMS, BLAST Tours, camps, WinJitsu, speaking, NinjaGym, NerdHostel, the Ninja Course, Tewtors, AI Ninja and his games), each card linking straight to its own site, with the details of each below. The martial arts course moved to https://martialartcamp.com/ninja and the AI Ninja work to https://tewbedo.com/ (October 2026).
+The front page is Rick's one-page home: a ring of everything he builds and teaches (his story, RTMS, BLAST Camp Tours, WinJitsu, speaking, NinjaGym, NerdHostel, the Ninja Course, Tewtors, AI Ninja and his games), each card linking straight to its own site, with the details of each below. The martial arts course moved to https://martialartcamp.com/ninja and the AI Ninja work to https://tewbedo.com/ (October 2026).
 
 ## The AI Ninja door
 
