@@ -88,8 +88,6 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 @media (max-width:420px){ .menu-foot{gap:8px;padding:0 10px} .turn{width:40px;height:40px;font-size:18px} .now b{font-size:clamp(18px,5.6vw,22px)} }
 
 .eyebrow{font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
-.eyebrow.red{color:var(--red)}
-.eyebrow.blue{color:var(--blue)}
 
 /* Story chapters (the opener, Roots, First dojo): words on one side, a pinned picture that changes on the other */
 .story{padding:84px 0 40px}
@@ -186,7 +184,7 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 .landed{max-width:1120px;margin:0 auto clamp(26px,4vw,44px);padding:0 16px;display:grid;grid-template-columns:auto minmax(0,1fr);
   column-gap:clamp(18px,3.6vw,44px);align-items:center}
 .landed h2{grid-column:2;align-self:end;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:900;
-  font-size:clamp(29px,5.2vw,54px);line-height:1.04;letter-spacing:-.02em;color:var(--ink);text-align:left}
+  font-size:clamp(29px,5.2vw,54px);line-height:1.04;letter-spacing:-.02em;color:var(--ink);text-align:left;overflow-wrap:break-word}
 .landed > p{grid-column:2;align-self:start;margin-top:12px;font-size:clamp(18px,2.2vw,22px);line-height:1.4;color:var(--body);max-width:36em}
 .lcard{grid-column:1;grid-row:1 / span 2;width:clamp(92px,15vw,156px);aspect-ratio:1/1.3;border-radius:12px;overflow:hidden;background:#fff;
   border:3px solid var(--blue);box-shadow:0 12px 26px rgba(16,20,24,.16);transform:rotate(-4deg)}
@@ -198,6 +196,9 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 @keyframes cardLand{from{opacity:0;transform:translateY(-46px) rotate(9deg) scale(1.22)}to{opacity:1;transform:rotate(-4deg)}}
 .one-card main.instant > section.shown .lcard{animation:none}
 @media (prefers-reduced-motion:reduce){ .one-card main > section.shown .lcard{animation:none} }
+/* Sub-sections inside a card (Rick, 5 Nov 2026, his click "Same title, no card"): same title and line, no card. */
+.landed.sub{display:block}
+.landed.sub + .lead-mini{padding-top:0}
 @media (max-width:560px){ .landed > p{grid-column:1 / -1;margin-top:18px} .lcard{grid-row:1} .landed h2{align-self:center;font-size:clamp(24px,7.6vw,32px)} }
 .oldpage .lead-mini{max-width:1120px;margin:0 auto;padding:18px 16px 0}
 .oldpage .lead-mini .part-go{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
@@ -215,8 +216,9 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 .old .center{text-align:center}
 .old img{max-width:100%;height:auto;display:block}
 .old .pagehead{max-width:1120px;margin:0 auto;padding:30px 16px 6px}
-.old .pagehead h2{font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:clamp(32px,5.6vw,56px);line-height:1.04;letter-spacing:-.02em;color:var(--ink)}
-.old .pagehead .subtitle{margin-top:14px;font-size:clamp(19px,2.4vw,24px);line-height:1.35;color:var(--muted);font-weight:700;max-width:40em}
+.old .pagehead h2{font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:clamp(29px,5.2vw,54px);line-height:1.04;letter-spacing:-.02em;color:var(--ink)}
+.old .pagehead .subtitle{margin-top:12px;font-size:clamp(18px,2.2vw,22px);line-height:1.4;color:var(--body);font-weight:400;max-width:36em}
+@media (max-width:560px){ .old .pagehead h2{font-size:clamp(24px,7.6vw,32px)} }
 .old .pagehead .btn{margin-top:18px}
 .old .pagehead .pagelogo{width:min(240px,62%);margin:0 0 16px}
 .old .pagehead,.old .pagehead .center{text-align:left}
@@ -404,12 +406,12 @@ footer a{color:var(--muted)}
         <li><a href="#p-about" data-sec="#p-about" data-line="Creator of WinJitsu." data-deck="/aininja/assets/story/rick/rick-cutout-2x.webp|c;/assets/images/wheel/s-logo.webp|c|1800;/assets/images/wheel/sq-ch2-rock-climb.webp;/assets/images/wheel/sq-canyon-jump.webp;/assets/images/wheel/sq-water-kick.webp;/assets/images/wheel/sq-d2ba906768.webp;/assets/images/wheel/sq-652387db39.webp;/assets/images/wheel/sq-g22.webp;/assets/images/wheel/sq-8e2b44eb09.webp;/assets/images/wheel/sq-f5a1733a58.webp;/assets/images/wheel/sq-0c7887b6ac.webp"><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="" class="fit-contain"><span>About</span></a></li>
         <li><a href="#p-therapy" data-sec="#p-therapy" data-line="Be a Ninja in what you DO." data-deck="/assets/images/wheel/sq-p1414.webp;/assets/images/wheel/sq-p0190.webp;/assets/images/wheel/sq-p0021.webp;/assets/images/wheel/sq-p0258.webp;/assets/images/wheel/sq-p0200.webp"><img src="/assets/images/wheel/sq-p1414.webp" alt=""><span>Martial Arts as Therapy</span></a></li>
         <li><a href="#p-rtms" data-sec="#p-rtms" data-line="Rick Tew's Martial Science." data-deck="/assets/images/w/b06e8968d5.webp|c|1800;/assets/images/wheel/sq-g08.webp;/assets/images/wheel/sq-n02.webp;/timeline/clips/ninjagym-anim.webp||5000;/assets/images/wheel/sq-v13.webp"><img src="/assets/images/w/b06e8968d5.webp" alt="" class="fit-contain"><span>RTMS</span></a></li>
-        <li><a href="#p-tours" data-sec="#p-tours" data-line="Make life a BLAST." data-deck="/assets/images/w/f1bc48d3f3.webp|c|1800;/assets/images/wheel/sq-canyon-splits.webp;/timeline/clips/cms-anim.webp||5000;/assets/images/wheel/sq-05729e10e2.webp;/assets/images/wheel/sq-1fd280bd07.webp;/assets/images/wheel/sq-castle-splits.webp;/assets/images/wheel/sq-90484ace6d.webp;/assets/images/wheel/sq-river-splits.webp;/assets/images/wheel/sq-1c2d772381.webp"><img data-src="/assets/images/w/f1bc48d3f3.webp" alt="" class="fit-contain"><span>BLAST Camp Tours</span></a></li>
+        <li><a href="#p-tours" data-sec="#p-tours" data-line="Make life a BLAST." data-deck="/assets/images/w/f1bc48d3f3.webp|c|1800;/assets/images/wheel/sq-canyon-splits.webp;/assets/images/wheel/sq-05729e10e2.webp;/assets/images/wheel/sq-castle-splits.webp;/assets/images/wheel/sq-river-splits.webp"><img data-src="/assets/images/w/f1bc48d3f3.webp" alt="" class="fit-contain"><span>BLAST Camp Tours</span></a></li>
         <li><a href="https://winjitsu.com/" target="_blank" rel="noopener" data-sec="#p-winjitsu" data-go="Go to the WinJitsu app" data-line="Your pocket dojo." data-deck="/assets/images/wheel/wj-app-logo.webp|c|1800;/aininja/assets/story/winjitsu/winjitsu-app.webp|t;/aininja/assets/story/winjitsu/winjitsu-books.webp|c;/hsp/pocketdojo-belts.webp|c;/assets/images/wheel/sq-1775fe1ffa.webp"><img data-src="/assets/images/wheel/wj-app-logo.webp" alt="" class="fit-contain"><span>WinJitsu</span></a></li>
         <li><a href="#p-speaking" data-sec="#p-speaking" data-line="On stage and in print." data-deck="/assets/images/wheel/x-holland-karate-cover.webp|c|1800;/timeline/clips/speaking-anim.webp||5000;/assets/images/wheel/sq-us-press-blackbelt.webp;/assets/images/wheel/sq-812d56ed46.webp;/assets/images/wheel/sq-ch1-speaking.webp"><img data-src="/assets/images/wheel/x-holland-karate-cover.webp" alt="" class="fit-contain"><span>Speaking and press</span></a></li>
         <li><a href="https://ninjagym.com/" target="_blank" rel="noopener" data-sec="#p-ninjagym" data-line="Ninja playground for kids." data-deck="/assets/images/w/9337fa4ddc.webp|c|1800;/assets/images/wheel/sq-n-climbing.webp;/assets/images/wheel/sq-n-chess.webp;/assets/images/wheel/sq-n-swords.webp;/assets/images/wheel/sq-n-rings.webp;/assets/images/wheel/sq-ch1-splits.webp"><img data-src="/assets/images/w/9337fa4ddc.webp" alt="" class="fit-contain"><span>NinjaGym</span></a></li>
         <li><a href="https://www.nerdhostel.com/" target="_blank" rel="noopener" data-sec="#p-nerdhostel" data-line="A hostel for nerds." data-deck="/assets/images/wheel/nh-logo.webp|c|1800;/assets/images/wheel/sq-nh-shared.webp;/assets/images/wheel/sq-nh-guild.webp;/aininja/assets/story/apps/nerdhostel.webp|c;/assets/images/wheel/sq-nh-bunks.webp;/assets/images/wheel/sq-nh-private.webp"><img data-src="/assets/images/wheel/nh-logo.webp" alt="" class="fit-contain"><span>NerdHostel</span></a></li>
-        <li><a href="https://martialartcamp.com/ninja" target="_blank" rel="noopener" data-sec="#p-ninja-course" data-go="Go to the Ninja Course" data-line="Martial arts on vacation." data-deck="/assets/images/wheel/nc-icon.webp|c|1800;/assets/images/wheel/sq-g11.webp;/assets/images/wheel/sq-v03.webp;/assets/images/wheel/sq-g12.webp;/assets/images/wheel/sq-v08.webp;/assets/images/wheel/sq-p0165.webp;/assets/images/wheel/sq-g09.webp"><img data-src="/assets/images/wheel/nc-icon.webp" alt="" class="fit-contain"><span>Ninja Course</span></a></li>
+        <li><a href="https://martialartcamp.com/ninja" target="_blank" rel="noopener" data-sec="#p-ninja-course" data-go="Go to the Ninja Course" data-line="Martial arts on vacation." data-deck="/assets/images/wheel/nc-icon.webp|c|1800;/assets/images/wheel/sq-g11.webp;/assets/images/wheel/sq-v03.webp;/assets/images/wheel/sq-g12.webp;/assets/images/wheel/sq-v08.webp;/assets/images/wheel/sq-p0165.webp;/assets/images/wheel/sq-g09.webp;/timeline/clips/cms-anim.webp||5000;/assets/images/wheel/sq-1fd280bd07.webp;/assets/images/wheel/sq-90484ace6d.webp;/assets/images/wheel/sq-1c2d772381.webp"><img data-src="/assets/images/wheel/nc-icon.webp" alt="" class="fit-contain"><span>Ninja Course</span></a></li>
         <li><a href="https://tewtors.com/" target="_blank" rel="noopener" data-sec="#p-tewtors" data-line="Workbooks to share with kids." data-deck="/assets/images/wheel/t-logo.webp|c|1800;/assets/images/wheel/t-stay-charged.webp|c;/assets/images/wheel/t-app-lesson.webp|c;/assets/images/wheel/t-fly-your-own-jet.webp|c;/assets/images/wheel/t-program-your-brain.webp|c;/assets/images/wheel/t-mind-university.webp|c"><img data-src="/assets/images/wheel/t-logo.webp" alt="" class="fit-contain"><span>Tewtors</span></a></li>
         <li><a href="https://tewbedo.com/" target="_blank" rel="noopener" data-sec="#p-ai-ninja" data-line="Apps built for your business." data-deck="/assets/images/wheel/ai-icon.webp|c|1800;/assets/images/wheel/x-tewbedo.webp|c;/aininja/assets/story/apps/sabaisen.webp|c;/aininja/assets/story/apps/evercool.webp|c;/aininja/assets/story/apps/samuikids.webp|c"><img src="/assets/images/wheel/ai-icon.webp" alt="" class="fit-contain"><span>AI Ninja</span></a></li>
         <li><a href="#p-games" data-sec="#p-games" data-go="See the games" data-line="My hobby: TewBit Games." data-deck="/assets/images/wheel/tb-logo.webp|c|1800;/assets/images/wheel/sq-g-arena-shield.webp;/assets/images/wheel/g-dungeonhole-title.webp;/assets/images/wheel/g-astrohold-cyborg.webp;/assets/images/wheel/sq-g-arena-board.webp;/assets/images/wheel/g-dungeonhole-ninja.webp;/assets/images/wheel/g-tewgo-icon.webp;/assets/images/wheel/g-astrohold-core.webp"><img src="/assets/images/wheel/tb-logo.webp" alt="" class="fit-contain"><span>Games</span></a></li>
@@ -825,13 +827,15 @@ footer a{color:var(--muted)}
        pinned frame that changes as the steps pass. Pictures are light WebP copies in timeline/img/ of the old About's
        PNGs (same pictures; the originals stay where the other pages use them). -->
   <section class="story shown" id="p-story" data-card="p-about" aria-labelledby="ch1">
-    <div class="wrap">
-      <p class="eyebrow red">My story</p>
+    <header class="landed sub">
       <h2 id="ch1">Get a Black Belt in what you do.</h2>
+      <p>Hi, I'm Rick Tew.</p>
+    </header>
+    <div class="wrap">
       <div class="story-grid">
         <div class="steps">
           <div class="step"><figure><img src="/timeline/img/ch1-splits.webp" alt="Rick Tew in the splits on a red mat" loading="lazy"></figure>
-            <p>Hi, I'm Rick Tew. Even though my last name says otherwise, there is only one of me. But I do have a split personality. I believe we all do, and the mix of those traits is what makes us who we are.</p></div>
+            <p>Even though my last name says otherwise, there is only one of me. But I do have a split personality. I believe we all do, and the mix of those traits is what makes us who we are.</p></div>
           <div class="step"><figure><img src="/timeline/img/ch1-speaking.webp" alt="Rick Tew speaking to groups and teaching classes" loading="lazy"></figure>
             <p>My passion is helping people find their key strengths and put them together, so they get more out of life. It started on the mat. Today it also means building the systems a business runs on, and training the people who run it.</p></div>
           <div class="step"><figure class="contain"><img src="/timeline/img/ch1-stage.webp" alt="BLAST, WinJitsu and Rick Tew on stage" loading="lazy"></figure>
@@ -842,13 +846,15 @@ footer a{color:var(--muted)}
   </section>
 
   <section class="story shown" id="p-roots" data-card="p-about" aria-labelledby="ch2">
-    <div class="wrap">
-      <p class="eyebrow red">Roots</p>
+    <header class="landed sub">
       <h2 id="ch2">It is in the doing.</h2>
+      <p>While others talk, I try to walk.</p>
+    </header>
+    <div class="wrap">
       <div class="story-grid">
         <div class="steps">
           <div class="step"><figure class="contain"><img src="/timeline/img/ch2-early-years.webp" alt="Rick Tew's early years of training, outdoors and in the backyard" loading="lazy"></figure>
-            <p>While others talk, I try to walk. That walk began when I was a boy and ran away from home in Indiana to be in California. It worked, and a new journey began.</p></div>
+            <p>That walk began when I was a boy and ran away from home in Indiana to be in California. It worked, and a new journey began.</p></div>
           <div class="step"><figure><img src="/timeline/img/ch2-rock-climb.webp" alt="Rick Tew climbing a rock face" loading="lazy"></figure>
             <p>As a young teen I joined the Boy Scouts. I still remember working with my Dad to finish the sit-ups for another award on my belt. Scouting gave me trips into the outdoors and a system for setting goals, and it is why I have taken students to places like Yosemite.</p></div>
           <div class="step"><figure class="contain"><img src="/timeline/img/ch2-jump-kick.webp" alt="Rick Tew in a black gi, mid jump kick" loading="lazy"></figure>
@@ -868,13 +874,15 @@ footer a{color:var(--muted)}
        the teaching timeline (26 Oct). Ages only as his teen notes (16, 19). The kick's twin "tew 17 double swords" is
        the same yard, so it is left out (no two places in a row). -->
   <section class="story shown" id="p-first-dojo" data-card="p-about" aria-labelledby="ch3">
-    <div class="wrap">
-      <p class="eyebrow red">First dojo</p>
+    <header class="landed sub">
       <h2 id="ch3">I was a teenage ninja.</h2>
+      <p>By 16 I was already teaching.</p>
+    </header>
+    <div class="wrap">
       <div class="story-grid">
         <div class="steps">
           <div class="step"><figure class="contain"><img src="/assets/images/rick-teen-flying-side-kick.webp" alt="Rick Tew as a teenager in a red and black uniform, mid flying side kick" loading="lazy"></figure>
-            <p>By 16 I was already teaching. From that point on I have been teaching, sharing and living the martial arts.</p></div>
+            <p>From that point on I have been teaching, sharing and living the martial arts.</p></div>
           <div class="step"><figure class="contain"><img src="/timeline/img/ch3-early-years.webp" alt="Rick Tew in his late teens: holding a certificate, rafting, at the Cacaxtla ruins in Mexico, a stage show, stunt practice on a rooftop, and training in ninja gear" loading="lazy"></figure>
             <p>At 19 I opened my own dojo, a martial arts training school.</p>
             <p>Then I took a break to study more martial arts and join stunt school. I learned Tony Robbins' tactics too, and my goals grew into a new dream: to move and live in Europe.</p></div>
@@ -884,12 +892,14 @@ footer a{color:var(--muted)}
   </section>
 
   <section class="part shown" id="p-holland" data-card="p-about" aria-labelledby="h-holland">
+    <header class="landed sub">
+      <h2 id="h-holland">A ninja in the Netherlands.</h2>
+      <p>I spent more than six years in and out of the Netherlands, mostly in the Naarden Bussum area.</p>
+    </header>
     <div class="wrap">
       <figure class="contain"><img src="/timeline/img/holland-karate-cover.webp" alt="Rick Tew on the cover of a Dutch karate magazine" loading="lazy"></figure>
       <div class="part-text">
-        <p class="eyebrow red">Holland</p>
-        <h2 id="h-holland">A ninja in the Netherlands.</h2>
-        <p>I spent more than six years in and out of the Netherlands, mostly in the Naarden Bussum area. I was in magazines and on TV, taught seminars across the country, and trained students outdoors at Naarden Vesting, an old war fortress with a lot of grass and places to jump around.</p>
+        <p>I was in magazines and on TV, taught seminars across the country, and trained students outdoors at Naarden Vesting, an old war fortress with a lot of grass and places to jump around.</p>
         <p>I was even offered a part in a popular Dutch film. I turned it down to spend time with students in Spain. My tour idea was born in Holland too: the first group on my California tour was Dutch.</p>
         <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
       </div>
@@ -897,12 +907,14 @@ footer a{color:var(--muted)}
   </section>
 
   <section class="part flip shown" id="p-martialartsupply" data-card="p-about" aria-labelledby="h-martialartsupply">
+    <header class="landed sub">
+      <h2 id="h-martialartsupply">MartialArtSupply.com</h2>
+      <p>Business isn't usual.</p>
+    </header>
     <div class="wrap">
       <figure class="contain"><img src="/timeline/img/martialartsupply-banner.webp" alt="The old Martial Art Supply.com banner" loading="lazy"></figure>
       <div class="part-text">
-        <p class="eyebrow blue">Business</p>
-        <h2 id="h-martialartsupply">MartialArtSupply.com</h2>
-        <p>Business isn't usual. I built martialartsupply.com from the ground up, into a business many people copied, in the same years as CMS.</p>
+        <p>I built martialartsupply.com from the ground up, into a business many people copied, in the same years as CMS.</p>
         <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
       </div>
     </div>
@@ -1578,27 +1590,6 @@ footer a{color:var(--muted)}
     <figure class="fig full"><img src="/assets/images/w/23049e41d3.webp" alt="Travel collage: training on a beach, rock climbing, a Thai boxing ring, wading in the sea and snorkeling" width="1024" height="536" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
-    <h2>Tew's Travel &amp; Training Thailand</h2>
-  </div>
-  <div class="wrap">
-    <div class="prose">
-      <p>Travel with other like minded students as you train daily with the Master Instructor Rick Tew</p>
-      <p>You will dive into a complete Multi-Martial Art system and train daily in any one of the key 5 Levels of the Martial Arts designed by Rick Tew.</p>
-      <p>We currently offer <a href="https://martialartcamp.com/ninja" target="_blank" rel="noopener">long-term training on the island of Samui in Thailand</a> and <a href="#contact">tours in California</a>.</p>
-      <p>Mr. Tew has been running martial arts camps and tours for more than 20 years. The students have the most fun and memorable experiences when they travel and train together under the guidance and teaching of Rick Tew. Rick has brought students from the US to Europe and students from Europe to the US for amazing adventures, stories and friendships. Many students who attended a program many years ago will still remember how awesome the travel adventures were. Now Mr. Tew is bringing students from the US and Europe to Thailand. But all new students from around the world are welcome to join in on the adventure and get the experience.</p>
-      <p class="lead-bold">Training</p>
-      <p>Each VIP student will be able to submit request for specific training and focus that they would like to receive. We then create a unique and intensive seminar taught by Rick Tew that includes each of the student's request. This will ensure that no two classes are ever the same. In addition to the requests, we will also be sure to include the base training and introduction to beginners along with the seminar program training. Usually this will be about 2-6 hours each day in the following format:</p>
-      <p><strong>Class 1:</strong></p>
-      <p>BASE training session: Stances, Strikes, Kicks, Rolls, Falls, and Self-Defense.</p>
-      <p><strong>Class 2:</strong></p>
-      <p>Student submitted requests for what they would like to learn on their visit.</p>
-      <p class="lead-bold">WinJitsu</p>
-      <p>In addition to the above physical classes, VIP members will have ample time for conversation and training in other areas of interest. They will be conducted at dinners, organized sessions or during travel when Mr. Tew is available and under a non-strict format. In other words, it is in our leisure time and managed via conversations out and about.</p>
-      <p class="lead-bold">Camps and Long-term training</p>
-      <p>Students interested in continuing their training can discuss with Mr. Tew during the program about returning or continuing to learn the system. Often a discount will be available for students who take advantage of an additional program.</p>
-    </div>
-  </div>
-  <div class="band">
     <h2>Students share some B.L.A.S.T. experiences with Rick Tew</h2>
   </div>
   <div class="wrap">
@@ -1709,231 +1700,6 @@ footer a{color:var(--muted)}
       </div>
     </div>
   </div>
-  <div class="band">
-    <h2>Students share their travels on Rick Tew's CMS program</h2>
-  </div>
-  <div class="wrap">
-    <figure class="fig full"><img src="/assets/images/w/b7acecf8a4.webp" alt="Travel photos collage" width="1024" height="536" loading="lazy" decoding="async"></figure>
-    <div class="gray-card">
-      <div class="wrap">
-        <div class="title">From Australia to all over the Southwest United States</div>
-        <div class="quote">Yosemite NP, Malibu Creek, Disneyland, &ldquo;The Beach&rdquo;, Los Angeles, rock climbing at Yosemite NP, Fresno, Oakhurst (yay!), Disneyland, Las Vegas, London Bridge, DragonFest (martial arts show), bear-watching at Yosemite, Universal Studios and did I mention Disneyland? &#128521;</div>
-        <div class="name">Craig H., Australia</div>
-      </div>
-    </div>
-    <div class="gray-card">
-      <div class="wrap">
-        <div class="title">Travel is a big part of CMS</div>
-        <div class="quote">Travel is also a big part of the CMS experience (see photos of many locations where we have been and had fun). During my time in the CMS program I have traveled to Europe, Mexico, and various locations over the west of America. Places such as California, Arizona and Nevada. Within these locations I have been fortunate enough to visit sites and have adventures in many of the major cities and natural wonders. Some places in America such as L.A., Las Vegas, San Francisco, Yosemite, Joshua Tree, and the Grand Canyon. We chased Mickey, tested our nerves on some of the most daring rides, and enjoyed some of nature&rsquo;s best offered playgrounds.</div>
-        <div class="name">Kris B., Canada</div>
-      </div>
-    </div>
-    <div class="gray-card">
-      <div class="wrap">
-        <div class="title">Learned to climb then became a climber</div>
-        <div class="quote">First: To California, I am from The Netherlands. Secondary: Through my first experiences in rock climbing with Rick Tew I became a climber myself and climbed in numerous locations in countries like Germany, Belgium, France, Spain, Switzerland, Austria, and South Africa.</div>
-        <div class="name">Joost V., Holland / Netherlands</div>
-      </div>
-    </div>
-    <div class="gray-card">
-      <div class="wrap">
-        <div class="title">Free flights to Mexico</div>
-        <div class="quote">I&rsquo;ve seen a lot of California, Los Angeles, Fresno, Yosemite National park, Ahwahnee and Oakhurst, YEAH! Joshua Tree National park, Malibu creek etc. We went on a road trip to Colorado, so I saw Death Valley, Nevada, Utah, Colorado and a bit of Wyoming. Also did and El Paso trip where we drove through Arizona to get to Texas and even went to Juarez Mexico for the nightlife.</div>
-        <div class="name">Cedric C., Sherbrooke, Quebec, Canada</div>
-      </div>
-    </div>
-    <div class="gray-card">
-      <div class="wrap">
-        <div class="title">Many places in a short time</div>
-        <div class="quote">I&rsquo;ve been to so many places in the short time I&rsquo;ve spent here, it&rsquo;s staggering. I&rsquo;ve hiked to the top of Yosemite, sweat in Death Valley, climbed at Malibu Creek and Tollhouse, flew in a helicopter into the Grand Canyon, walked up and down the Las Vegas Strip, toured Universal Studios in LA., slept on the beach on the California coast, visited the piers and Golden Gate Bridge in San Francisco, got into trouble in Mexico, climbed giant trees in Sequoia National Park, and I&rsquo;ve only been attended two phases!</div>
-        <div class="name">Nate P., Palm Harbor, Florida, USA</div>
-      </div>
-    </div>
-    <div class="gray-card">
-      <div class="wrap">
-        <div class="title">Was part of the first Travel and Training</div>
-        <div class="quote">As one of the pioneering RTMS team members, I was fortunate enough to be part of the first Travel and Training program. Could not imagine a better way to discover California and the surrounding states on my first visit to America. I was fortunate enough to be part of the First CMS program. I was able to participate in several demonstrations and seminars in different European Countries. I was able to run my own RTMS group in Holland for several years and share this great system with many students. I&rsquo;ve had the opportunity to lead a great one week RTMS seminar in the Caribbean Island of Aruba together with RTMS team member Michel Kristians.</div>
-        <div class="name">Ortwin C., Holland / Netherlands</div>
-      </div>
-    </div>
-    <div class="gray-card">
-      <div class="wrap">
-        <div class="title">Unleashed into Mexico</div>
-        <div class="quote">One, I traveled most of the continental US in just arriving each phase to CMS from where I&rsquo;m usually at in both Texas or Michigan. I might not have done that on my own accord without CMS. Two, with CMS, I have been all around California: Down around LA, San Diego, Yosemite National Park, and many other places. I&rsquo;ve also been to Las Vegas, and got to experience all of that. Lastly there was our trip to Mexico which I&rsquo;m sure none of us who went will ever forget. There is something to be said when you unleash 11 Ninja&rsquo;s into Mexico during Spring Break.</div>
-        <div class="name">Richard N., Galveston, Texas, USA</div>
-      </div>
-    </div>
-    <div class="gray-card">
-      <div class="wrap">
-        <div class="title">Was on TV with Rick Tew</div>
-        <div class="quote">I am from Holland and I have been to the States (Yosemite, LA, Las Vegas, Grand Canyon, Joshua Tree, to name just a few), Spain, Paris, and Belgium. Also, I have been on stages when we did seminars for companies, on TV and radio, at martial arts demo&rsquo;s and so many other things.</div>
-        <div class="name">Marco V., Holland / Netherlands</div>
-      </div>
-    </div>
-    <div class="gray-card">
-      <div class="wrap">
-        <div class="title">More than many travel in a lifetime</div>
-        <div class="quote">The pictures on the web site are from places like Yosemite National Park, Malibu Creek, Tollhouse rock, Death Valley, The Grand Canyon, Venice Beach, Las Vegas, Los Angeles, San Francisco, Mexico, Holland, and many, many more places; all of which I have been to with Rick Tew&rsquo;s Camp of Martial Science. I have already been to more places in a few months then most people have their entire lives.</div>
-        <div class="name">Jeff T., Canada</div>
-      </div>
-    </div>
-    <div class="gray-card">
-      <div class="wrap">
-        <div class="title">Adventure travel and laid back trips</div>
-        <div class="quote">During my short time there, we took two different Yosemite hikes, went to Malibu Creek and a nearby beach, into the LA area for Venice beach and the Universal City walk, to an excellent rock climbing spot east of Fresno, balanced out with a laid-back trip to Edison Lake.</div>
-        <div class="name">Ross K., Virginia, USA</div>
-      </div>
-    </div>
-  </div>
-    </div>
-    <p class="back"><a class="up" href="#menu">Back to the ring</a></p>
-  </section>
-
-  <section class="part" id="p-camps" data-card="p-tours" aria-labelledby="h-camps">
-    <div class="wrap">
-      <div class="duo">
-        <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/cms.webp" aria-label="Climbing a stone wall and rolling over the top, at CMS"><source src="/timeline/clips/cms.mp4" type="video/mp4"></video></figure>
-        <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/camps.webp" aria-label="Students in black raise their swords into stance on a beach in Thailand"><source src="/timeline/clips/camps.mp4" type="video/mp4"></video></figure>
-      </div>
-      <div class="part-text">
-        <p class="eyebrow red">Camps</p>
-        <h2 id="h-camps">CMS, College of Martial Science.</h2>
-        <p>From Europe I kept thinking about my dream: a live-in, multi martial arts ninja training camp. So I created CMS, the College of Martial Science, to teach students what I had learned, and started it near Yosemite National Park.</p>
-        <p>I was the first in the martial arts industry to run live-in Ninja Training Camps.</p>
-        <p>Mind, body and spirit: WinJitsu for the mind, martial arts and fitness for the body, and the outdoors, travel and real human interaction for the spirit.</p>
-        <p>After my dream came true in the States, I set a new goal: a program in Asia. I picked Thailand.</p>
-        <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="oldpage" id="p-camps-page" data-card="p-tours" aria-label="Camps, the whole page">
-    <div class="old">
-<div class="pagehead">
-    <h2>Thailand Long-term Martial Art Camps</h2>
-    <div class="subtitle">Live-in camps in and retreats in Ko Samui Thailand, and Adventure tours In California</div>
-  </div>
-  <div class="wrap">
-    <figure class="fig"><img src="/assets/images/w/90484ace6d.webp" alt="Camp adventures collage" width="1024" height="536" loading="lazy" decoding="async"></figure>
-  </div>
-  <div class="band">
-    <h2>Private Group Self-defense, Mind Coaching, RTMS Ninja-MMA, and Outdoor Adventure</h2>
-  </div>
-  <div class="wrap">
-    <div class="row">
-      <div class="col-img">
-        <div class="carousel">
-          <div class="slides">
-            <div class="slide"><img src="/assets/images/w/f1275c2101.webp" alt="Two students in an arm drill outdoors, watched by an instructor" width="792" height="447" loading="lazy" decoding="async"></div>
-            <div class="slide"><img src="/assets/images/w/964c072350.webp" alt="A student in a yellow shirt and gloves holding a training knife" width="545" height="511" loading="lazy" decoding="async"></div>
-            <div class="slide"><img src="/assets/images/w/29d3244fdc.webp" alt="Training photos" width="572" height="428" loading="lazy" decoding="async"></div>
-            <div class="slide"><img src="/assets/images/w/2e0d505e85.webp" alt="Partner training on grass in black uniforms" width="614" height="461" loading="lazy" decoding="async"></div>
-            <div class="slide"><img src="/assets/images/w/cce604e35b.webp" alt="A smiling student holding a training weapon outdoors" width="720" height="405" loading="lazy" decoding="async"></div>
-            <div class="slide"><img src="/assets/images/w/7756eadfc6.webp" alt="Two men training a kick and a block on a mountain top" width="310" height="233" loading="lazy" decoding="async"></div>
-            <div class="slide"><img src="/assets/images/w/1fd280bd07.webp" alt="Canyon rappel" width="1024" height="766" loading="lazy" decoding="async"></div>
-            <div class="slide"><img src="/assets/images/w/1c2d772381.webp" alt="Group training" width="755" height="490" loading="lazy" decoding="async"></div>
-            <div class="slide"><img src="/assets/images/w/69f996ed51.webp" alt="Outdoor training under palm trees: a hanging bag, a rope crossing and students in black and blue uniforms" width="980" height="735" loading="lazy" decoding="async"></div>
-          </div>
-          <button class="c-btn c-prev" aria-label="Previous">&#8249;</button>
-          <button class="c-btn c-next" aria-label="Next">&#8250;</button>
-          <div class="dots"></div>
-        </div>
-      </div>
-      <div>
-        <h3>CMS, Camp of Martial Science</h3>
-        <p>Choose an Intensive Martial Arts training Camp for the Mind, Body and Spirit.</p>
-        <ul>
-          <li>Private Group Martial Arts Training</li>
-          <li>Easy to learn Self-Defense</li>
-          <li>5X Programs with over 200 Mini-Workshops</li>
-        </ul>
-      </div>
-    </div>
-    <figure class="fig medium"><img src="/assets/images/w/2b2eba5928.webp" alt="Student quote from Jeff T.: Although the students may join here starting at ground zero, if they simply choose not to quit, not to give up on themselves, they will eventually get there." width="612" height="446" loading="lazy" decoding="async"></figure>
-    <div class="prose">
-      <p class="lead-bold">Ask How You Can Kick-Start Now</p>
-      <p>Sensei Rick Tew is accepting a limited few that would like to train side-by-side with the Master Instructor and help others get the best martial art camp adventure and experience of their lives.</p>
-      <p><mark>Today the camp is the Ninja Course on Koh Samui: stay a day, a week, a month, or 2 months in the belt program, a dorm bed included if you need one.</mark></p>
-      <p><a class="btn" href="https://martialartcamp.com/ninja" target="_blank" rel="noopener">See the Ninja Course</a></p>
-    </div>
-  </div>
-  <div class="band">
-    <h2>All Camps Include rick tew's 5 programs as Explained in more detail on The training page</h2>
-  </div>
-  <div class="wrap">
-    <div class="prose">
-      <p class="lead-bold">What is CMS, Camp of Martial Science?</p>
-      <p>Also known as the <strong>College of Martial Science</strong> for long term students, <em>Rick Tew&rsquo;s Camp of Martial Science</em> is a one-size-fits-all program that offers private group Mixed Martial Arts / Ninja Training, realistic self-defense that also includes Travel Adventure.</p>
-      <p>We bring balance to your <strong>Mind</strong> (with the mental martial arts therapy of WinJitsu), strength to the <strong>Body</strong> (by doing Martial Arts &amp; Fitness) and fulfillment to the <strong>Spirit</strong> (through outdoor adventure, human interaction and travel adventure tours).</p>
-      <ul>
-        <li>Learn how to defend yourself</li>
-        <li>Be a Ninja warrior</li>
-        <li>Lose pounds fast</li>
-        <li>Climb, hike, and camp in the great outdoors</li>
-      </ul>
-    </div>
-    <figure class="fig"><img src="/assets/images/w/648b209efc.webp" alt="Student quote from Ortwin C.: One of the best periods in my life, in which I learned a lot, lived through a lot of great experiences, met a lot of people, made many new friends and was privileged to be able to share my knowledge and skills with my fellow RTMS team members and students." width="613" height="615" loading="lazy" decoding="async"></figure>
-  </div>
-  <div class="band">
-    <h2>We offer a new way of life (even if it is temporary) and a chance to meet other people. Rick Tew educates and trains motivated individuals. Martial arts experience is NOT required</h2>
-  </div>
-  <div class="wrap">
-    <div class="prose">
-      <p class="lead-bold">Can we help with your goals?</p>
-      <p>At the foundation of every camp is a martial art system created by Rick Tew. However, we realize that people have different needs. So we have a unique program that specifically targets these needs while still providing the right level of martial arts and fitness.</p>
-      <p>Some participants want to learn the hardcore system and push their limits in the martial arts, some people are beginners and only want a few hours a day of self-defense training while getting the chance to focus on improving or changing their lives. Some students want to practice full-contact sparring and jiu-jitsu grappling while others have no interest in getting hit in the face.</p>
-      <p>While one person might want to lose 30 pounds, another may only want a vacation that also includes learning a new routine for a healthy diet and lifestyle. Although we offer one complete program, we also target the challenges and specific needs of the individual too. You can benefit from each program regardless of your background.</p>
-    </div>
-    <figure class="fig"><img src="/assets/images/w/0ec935588b.webp" alt="A group with climbing ropes beside a jeep in the desert" width="657" height="490" loading="lazy" decoding="async"></figure>
-    <div class="prose">
-      <p class="lead-bold">Disconnect to Reconnect</p>
-      <p>It&rsquo;s what the D.R, ordered. To <em>Disconnect</em> to <em>Reconnect</em> is our way of saying, phones out of reach for a while. Let&rsquo;s be honest, we all love our tech and we use a lot of it at CMS, but there comes a time when checking your phone every second or having to take a selfie for every activity becomes mentally tiresome and unhealthy. Even though others may engage in checking their emails while glamping in the Grand Canyon, you can choose to leave these devices in a box and get out of the box untethered.</p>
-      <p class="lead-bold">Just say, "HI"</p>
-      <p>And by the request above, we mean to say, &ldquo;Hi.&rdquo; in person. HI or H.I. stands for <strong>Human Interaction</strong>. A thumbs up on Facebook does not qualify. We are talking about real, in-person experiences with other human beings and adopting the philosophy of HI. This requires making choices.</p>
-      <p>More and more AI is taking over the daily interactions where we might normally engage with others. Progress comes with some sacrifices and so we have to focus on maintaining other ways to interact.</p>
-      <p>When you stop for gas, the option to go inside and pay will soon be gone. The ability to speak with a human when you order food could become a part of the past and in the near future.</p>
-      <p>We put people together because we partly agree in quotes like this:</p>
-    </div>
-    <figure class="fig medium"><img src="/assets/images/w/6bede8d084.webp" alt="Happiness is only real when shared - Christopher McCandless" width="1103" height="220" loading="lazy" decoding="async"></figure>
-  </div>
-  <div class="band">
-    <h2>5 Reasons to Join this Once in a Lifetime Program:</h2>
-  </div>
-  <div class="wrap">
-    <div class="prose">
-      <p class="lead-bold">1 Training</p>
-      <p>You get awesome training in 5 actual organized programs for personal growth. Come for the martial arts camp and get the benefits of the other programs too. The same goes for someone looking to kick start their life or reboot their energy level. We have an organized set of strategies to help you be your best.</p>
-      <p class="lead-bold">2 Fitness</p>
-      <p>Want to lose a few pounds fast and have fun getting in better shape? Maybe you want to do the splits or have always been curious about gymnastics. For most, they will just want to lose added fat and gain some strength in a way that works. Whatever your goals, we are focused on helping you reach them too.</p>
-      <p class="lead-bold">3 Security</p>
-      <p>Would you like walk the streets with more confidence in self-defense? Maybe you&rsquo;d like to feel more capable in an emergency. Do you want to learn simple psychological strategies to keep you from becoming a &ldquo;deer caught in headlights&rdquo;? Feeling secure is a mental martial art skill that everyone should have in their personal toolbox.</p>
-      <p class="lead-bold">4 Ninja</p>
-      <p>Okay, who doesn&rsquo;t want to be a Ninja? It&rsquo;s not too late to learn to move like Jackie Chan or spin a Nunchaku like Bruce Lee. Even if you are too old to count your toes, you can learn something new and exciting with our modern Ninjitsu system. Roll, punch, kick, stand, fall and wield a weapon like a true Ninja.</p>
-      <p class="lead-bold">5 Outdoors</p>
-      <p>Students of CMS often comment how they have been to more places and done more things on our martial art camp than they have their entire lives. Whatever your excuse, it ends with us because we love being outside. But don&rsquo;t worry, if you don&rsquo;t want to Disconnect to Reconnect, we offer Ninja Glamping to make it super cozy too.</p>
-      <p class="lead-bold">One Program Many Benefits:</p>
-      <p>There is a lot of variety and various teachings that we include in our Martial Arts Camps. Each of our 5 parts of our martial arts training camp is also a complete program in its entirety.</p>
-      <p>No two classes are the same and we conduct each class like a mini-workshop or seminar so that you can gain new insights every day of training.</p>
-      <p>For those that want to master the basics of Martial Arts, Mind Power and Diet. There are some basic (optional) periods that are available for repetition each day. The concepts that focus on daily repeated training for continuous growth are:</p>
-      <p><strong>Martial Arts</strong>, Stances, Rolls &amp; Falls, Strikes &amp; Kicks, Weapons, and Body Movement.</p>
-      <p><strong>Fitness</strong>, Strength, Agility, Flexibility, Endurance and Cardio.</p>
-      <p><strong>Mind</strong>, Fulfillment, Taking Action, Goal setting, Confidence building, and overcoming fears or past experiences.</p>
-      <p><strong>Diet &amp; Health</strong>, Intermittent Fasting, Ketogenic, Low Carb, Detox, and Supplementation.</p>
-      <p>Please note that in order to develop healthy habits and routines, it&rsquo;s best to get a minimum of 2 weeks of repeated strategies. The longer you can focus, the more likely positive changes will stick.</p>
-      <p>You can let us know what you would like to focus on and we will keep a mental note of your desired goals and focus.</p>
-    </div>
-  </div>
-  <div class="band">
-    <h2>BLAST trips are often integrated into R.T.M.S.</h2>
-  </div>
-  <div class="wrap">
-    <div class="prose">
-      <p>Being part of <strong>R</strong>ick <strong>T</strong>ew&rsquo;s <strong>M</strong>artial <strong>S</strong>cience Program is a lot more than just a camp or <a href="#p-tours">tour</a> to learn the martial arts. We also encourage participants get together for outdoor adventures that include hiking, camping, rock climbing, road trips, multiple terrain training and other mini-adventures. This is one of the reasons we run our martial arts camps near places like Yosemite National Park, California or on tropical islands in Asia.</p>
-      <p>As young children, we invested much of our time adventuring, exploring and discovering. We provide an option to recapture and maintain the healthy attitude we had when we were young.</p>
-      <p>Life should be fun, include regular adventures, and offer new experiences. It should be a BLAST!!</p>
-    </div>
-    <figure class="fig"><img src="/assets/images/w/71bb1ec2d5.webp" alt="BLAST adventure" width="1024" height="536" loading="lazy" decoding="async"></figure>
-  </div>
     </div>
     <p class="back"><a class="up" href="#menu">Back to the ring</a></p>
   </section>
@@ -1986,7 +1752,10 @@ footer a{color:var(--muted)}
   </section>
 
   <section class="oldpage" id="p-pocket-dojo" data-card="p-winjitsu" aria-label="The Home Study Program">
-    <div class="lead-mini"><p class="eyebrow blue">The Home Study Program</p><p class="part-go"><a class="go" href="https://winjitsu.com/hsp" target="_blank" rel="noopener">Go to WinJitsu</a></p></div>
+    <header class="landed sub">
+      <h2>The Home Study Program</h2>
+    </header>
+    <div class="lead-mini"><p class="part-go"><a class="go" href="https://winjitsu.com/hsp" target="_blank" rel="noopener">Go to WinJitsu</a></p></div>
     <div class="old" id="pd-page">
 <section class="pd-hero"><div class="shell">
     <div>
@@ -2784,6 +2553,260 @@ footer a{color:var(--muted)}
         <p class="part-go"><a class="go" href="https://martialartcamp.com/ninja" target="_blank" rel="noopener">Go to the Ninja Course</a><a class="up" href="#menu">Back to the ring</a></p>
       </div>
     </div>
+  </section>
+
+  <section class="part" id="p-camps" data-card="p-ninja-course" aria-labelledby="h-camps">
+    <header class="landed sub">
+      <h2 id="h-camps">Ninja Camps</h2>
+      <p>CMS, College of Martial Science.</p>
+    </header>
+    <div class="wrap">
+      <div class="duo">
+        <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/cms.webp" aria-label="Climbing a stone wall and rolling over the top, at CMS"><source src="/timeline/clips/cms.mp4" type="video/mp4"></video></figure>
+        <figure class="clip"><video muted loop playsinline preload="none" poster="/timeline/clips/camps.webp" aria-label="Students in black raise their swords into stance on a beach in Thailand"><source src="/timeline/clips/camps.mp4" type="video/mp4"></video></figure>
+      </div>
+      <div class="part-text">
+        <p>From Europe I kept thinking about my dream: a live-in, multi martial arts ninja training camp. So I created CMS, the College of Martial Science, to teach students what I had learned, and started it near Yosemite National Park.</p>
+        <p>I was the first in the martial arts industry to run live-in Ninja Training Camps.</p>
+        <p>Mind, body and spirit: WinJitsu for the mind, martial arts and fitness for the body, and the outdoors, travel and real human interaction for the spirit.</p>
+        <p>After my dream came true in the States, I set a new goal: a program in Asia. I picked Thailand.</p>
+        <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="oldpage" id="p-camps-page" data-card="p-ninja-course" aria-label="Camps, the whole page">
+    <div class="old">
+<div class="pagehead">
+    <h2>Thailand Long-term Martial Art Camps</h2>
+    <div class="subtitle">Live-in camps in and retreats in Ko Samui Thailand, and Adventure tours In California</div>
+  </div>
+  <div class="wrap">
+    <figure class="fig"><img src="/assets/images/w/90484ace6d.webp" alt="Camp adventures collage" width="1024" height="536" loading="lazy" decoding="async"></figure>
+  </div>
+  <div class="band">
+    <h2>Private Group Self-defense, Mind Coaching, RTMS Ninja-MMA, and Outdoor Adventure</h2>
+  </div>
+  <div class="wrap">
+    <div class="row">
+      <div class="col-img">
+        <div class="carousel">
+          <div class="slides">
+            <div class="slide"><img src="/assets/images/w/f1275c2101.webp" alt="Two students in an arm drill outdoors, watched by an instructor" width="792" height="447" loading="lazy" decoding="async"></div>
+            <div class="slide"><img src="/assets/images/w/964c072350.webp" alt="A student in a yellow shirt and gloves holding a training knife" width="545" height="511" loading="lazy" decoding="async"></div>
+            <div class="slide"><img src="/assets/images/w/29d3244fdc.webp" alt="Training photos" width="572" height="428" loading="lazy" decoding="async"></div>
+            <div class="slide"><img src="/assets/images/w/2e0d505e85.webp" alt="Partner training on grass in black uniforms" width="614" height="461" loading="lazy" decoding="async"></div>
+            <div class="slide"><img src="/assets/images/w/cce604e35b.webp" alt="A smiling student holding a training weapon outdoors" width="720" height="405" loading="lazy" decoding="async"></div>
+            <div class="slide"><img src="/assets/images/w/7756eadfc6.webp" alt="Two men training a kick and a block on a mountain top" width="310" height="233" loading="lazy" decoding="async"></div>
+            <div class="slide"><img src="/assets/images/w/1fd280bd07.webp" alt="Canyon rappel" width="1024" height="766" loading="lazy" decoding="async"></div>
+            <div class="slide"><img src="/assets/images/w/1c2d772381.webp" alt="Group training" width="755" height="490" loading="lazy" decoding="async"></div>
+            <div class="slide"><img src="/assets/images/w/69f996ed51.webp" alt="Outdoor training under palm trees: a hanging bag, a rope crossing and students in black and blue uniforms" width="980" height="735" loading="lazy" decoding="async"></div>
+          </div>
+          <button class="c-btn c-prev" aria-label="Previous">&#8249;</button>
+          <button class="c-btn c-next" aria-label="Next">&#8250;</button>
+          <div class="dots"></div>
+        </div>
+      </div>
+      <div>
+        <h3>CMS, Camp of Martial Science</h3>
+        <p>Choose an Intensive Martial Arts training Camp for the Mind, Body and Spirit.</p>
+        <ul>
+          <li>Private Group Martial Arts Training</li>
+          <li>Easy to learn Self-Defense</li>
+          <li>5X Programs with over 200 Mini-Workshops</li>
+        </ul>
+      </div>
+    </div>
+    <figure class="fig medium"><img src="/assets/images/w/2b2eba5928.webp" alt="Student quote from Jeff T.: Although the students may join here starting at ground zero, if they simply choose not to quit, not to give up on themselves, they will eventually get there." width="612" height="446" loading="lazy" decoding="async"></figure>
+    <div class="prose">
+      <p class="lead-bold">Ask How You Can Kick-Start Now</p>
+      <p>Sensei Rick Tew is accepting a limited few that would like to train side-by-side with the Master Instructor and help others get the best martial art camp adventure and experience of their lives.</p>
+      <p><mark>Today the camp is the Ninja Course on Koh Samui: stay a day, a week, a month, or 2 months in the belt program, a dorm bed included if you need one.</mark></p>
+      <p><a class="btn" href="https://martialartcamp.com/ninja" target="_blank" rel="noopener">See the Ninja Course</a></p>
+    </div>
+  </div>
+  <div class="band">
+    <h2>All Camps Include rick tew's 5 programs as Explained in more detail on The training page</h2>
+  </div>
+  <div class="wrap">
+    <div class="prose">
+      <p class="lead-bold">What is CMS, Camp of Martial Science?</p>
+      <p>Also known as the <strong>College of Martial Science</strong> for long term students, <em>Rick Tew&rsquo;s Camp of Martial Science</em> is a one-size-fits-all program that offers private group Mixed Martial Arts / Ninja Training, realistic self-defense that also includes Travel Adventure.</p>
+      <p>We bring balance to your <strong>Mind</strong> (with the mental martial arts therapy of WinJitsu), strength to the <strong>Body</strong> (by doing Martial Arts &amp; Fitness) and fulfillment to the <strong>Spirit</strong> (through outdoor adventure, human interaction and travel adventure tours).</p>
+      <ul>
+        <li>Learn how to defend yourself</li>
+        <li>Be a Ninja warrior</li>
+        <li>Lose pounds fast</li>
+        <li>Climb, hike, and camp in the great outdoors</li>
+      </ul>
+    </div>
+    <figure class="fig"><img src="/assets/images/w/648b209efc.webp" alt="Student quote from Ortwin C.: One of the best periods in my life, in which I learned a lot, lived through a lot of great experiences, met a lot of people, made many new friends and was privileged to be able to share my knowledge and skills with my fellow RTMS team members and students." width="613" height="615" loading="lazy" decoding="async"></figure>
+  </div>
+  <div class="band">
+    <h2>We offer a new way of life (even if it is temporary) and a chance to meet other people. Rick Tew educates and trains motivated individuals. Martial arts experience is NOT required</h2>
+  </div>
+  <div class="wrap">
+    <div class="prose">
+      <p class="lead-bold">Can we help with your goals?</p>
+      <p>At the foundation of every camp is a martial art system created by Rick Tew. However, we realize that people have different needs. So we have a unique program that specifically targets these needs while still providing the right level of martial arts and fitness.</p>
+      <p>Some participants want to learn the hardcore system and push their limits in the martial arts, some people are beginners and only want a few hours a day of self-defense training while getting the chance to focus on improving or changing their lives. Some students want to practice full-contact sparring and jiu-jitsu grappling while others have no interest in getting hit in the face.</p>
+      <p>While one person might want to lose 30 pounds, another may only want a vacation that also includes learning a new routine for a healthy diet and lifestyle. Although we offer one complete program, we also target the challenges and specific needs of the individual too. You can benefit from each program regardless of your background.</p>
+    </div>
+    <figure class="fig"><img src="/assets/images/w/0ec935588b.webp" alt="A group with climbing ropes beside a jeep in the desert" width="657" height="490" loading="lazy" decoding="async"></figure>
+    <div class="prose">
+      <p class="lead-bold">Disconnect to Reconnect</p>
+      <p>It&rsquo;s what the D.R, ordered. To <em>Disconnect</em> to <em>Reconnect</em> is our way of saying, phones out of reach for a while. Let&rsquo;s be honest, we all love our tech and we use a lot of it at CMS, but there comes a time when checking your phone every second or having to take a selfie for every activity becomes mentally tiresome and unhealthy. Even though others may engage in checking their emails while glamping in the Grand Canyon, you can choose to leave these devices in a box and get out of the box untethered.</p>
+      <p class="lead-bold">Just say, "HI"</p>
+      <p>And by the request above, we mean to say, &ldquo;Hi.&rdquo; in person. HI or H.I. stands for <strong>Human Interaction</strong>. A thumbs up on Facebook does not qualify. We are talking about real, in-person experiences with other human beings and adopting the philosophy of HI. This requires making choices.</p>
+      <p>More and more AI is taking over the daily interactions where we might normally engage with others. Progress comes with some sacrifices and so we have to focus on maintaining other ways to interact.</p>
+      <p>When you stop for gas, the option to go inside and pay will soon be gone. The ability to speak with a human when you order food could become a part of the past and in the near future.</p>
+      <p>We put people together because we partly agree in quotes like this:</p>
+    </div>
+    <figure class="fig medium"><img src="/assets/images/w/6bede8d084.webp" alt="Happiness is only real when shared - Christopher McCandless" width="1103" height="220" loading="lazy" decoding="async"></figure>
+  </div>
+  <div class="band">
+    <h2>5 Reasons to Join this Once in a Lifetime Program:</h2>
+  </div>
+  <div class="wrap">
+    <div class="prose">
+      <p class="lead-bold">1 Training</p>
+      <p>You get awesome training in 5 actual organized programs for personal growth. Come for the martial arts camp and get the benefits of the other programs too. The same goes for someone looking to kick start their life or reboot their energy level. We have an organized set of strategies to help you be your best.</p>
+      <p class="lead-bold">2 Fitness</p>
+      <p>Want to lose a few pounds fast and have fun getting in better shape? Maybe you want to do the splits or have always been curious about gymnastics. For most, they will just want to lose added fat and gain some strength in a way that works. Whatever your goals, we are focused on helping you reach them too.</p>
+      <p class="lead-bold">3 Security</p>
+      <p>Would you like walk the streets with more confidence in self-defense? Maybe you&rsquo;d like to feel more capable in an emergency. Do you want to learn simple psychological strategies to keep you from becoming a &ldquo;deer caught in headlights&rdquo;? Feeling secure is a mental martial art skill that everyone should have in their personal toolbox.</p>
+      <p class="lead-bold">4 Ninja</p>
+      <p>Okay, who doesn&rsquo;t want to be a Ninja? It&rsquo;s not too late to learn to move like Jackie Chan or spin a Nunchaku like Bruce Lee. Even if you are too old to count your toes, you can learn something new and exciting with our modern Ninjitsu system. Roll, punch, kick, stand, fall and wield a weapon like a true Ninja.</p>
+      <p class="lead-bold">5 Outdoors</p>
+      <p>Students of CMS often comment how they have been to more places and done more things on our martial art camp than they have their entire lives. Whatever your excuse, it ends with us because we love being outside. But don&rsquo;t worry, if you don&rsquo;t want to Disconnect to Reconnect, we offer Ninja Glamping to make it super cozy too.</p>
+      <p class="lead-bold">One Program Many Benefits:</p>
+      <p>There is a lot of variety and various teachings that we include in our Martial Arts Camps. Each of our 5 parts of our martial arts training camp is also a complete program in its entirety.</p>
+      <p>No two classes are the same and we conduct each class like a mini-workshop or seminar so that you can gain new insights every day of training.</p>
+      <p>For those that want to master the basics of Martial Arts, Mind Power and Diet. There are some basic (optional) periods that are available for repetition each day. The concepts that focus on daily repeated training for continuous growth are:</p>
+      <p><strong>Martial Arts</strong>, Stances, Rolls &amp; Falls, Strikes &amp; Kicks, Weapons, and Body Movement.</p>
+      <p><strong>Fitness</strong>, Strength, Agility, Flexibility, Endurance and Cardio.</p>
+      <p><strong>Mind</strong>, Fulfillment, Taking Action, Goal setting, Confidence building, and overcoming fears or past experiences.</p>
+      <p><strong>Diet &amp; Health</strong>, Intermittent Fasting, Ketogenic, Low Carb, Detox, and Supplementation.</p>
+      <p>Please note that in order to develop healthy habits and routines, it&rsquo;s best to get a minimum of 2 weeks of repeated strategies. The longer you can focus, the more likely positive changes will stick.</p>
+      <p>You can let us know what you would like to focus on and we will keep a mental note of your desired goals and focus.</p>
+    </div>
+  </div>
+  <div class="band">
+    <h2>BLAST trips are often integrated into R.T.M.S.</h2>
+  </div>
+  <div class="wrap">
+    <div class="prose">
+      <p>Being part of <strong>R</strong>ick <strong>T</strong>ew&rsquo;s <strong>M</strong>artial <strong>S</strong>cience Program is a lot more than just a camp or <a href="#p-tours">tour</a> to learn the martial arts. We also encourage participants get together for outdoor adventures that include hiking, camping, rock climbing, road trips, multiple terrain training and other mini-adventures. This is one of the reasons we run our martial arts camps near places like Yosemite National Park, California or on tropical islands in Asia.</p>
+      <p>As young children, we invested much of our time adventuring, exploring and discovering. We provide an option to recapture and maintain the healthy attitude we had when we were young.</p>
+      <p>Life should be fun, include regular adventures, and offer new experiences. It should be a BLAST!!</p>
+    </div>
+    <figure class="fig"><img src="/assets/images/w/71bb1ec2d5.webp" alt="BLAST adventure" width="1024" height="536" loading="lazy" decoding="async"></figure>
+  </div>
+    </div>
+    <p class="back"><a class="up" href="#menu">Back to the ring</a></p>
+  </section>
+
+  <section class="oldpage" id="p-camp-training" data-card="p-ninja-course" aria-label="Training in Thailand and student stories">
+    <header class="landed sub">
+      <h2>Tew's Travel &amp; Training Thailand</h2>
+      <p>Travel with other like minded students as you train daily with the Master Instructor Rick Tew</p>
+    </header>
+    <div class="old">
+  <div class="wrap">
+    <div class="prose">
+      <p>You will dive into a complete Multi-Martial Art system and train daily in any one of the key 5 Levels of the Martial Arts designed by Rick Tew.</p>
+      <p>We currently offer <a href="https://martialartcamp.com/ninja" target="_blank" rel="noopener">long-term training on the island of Samui in Thailand</a> and <a href="#contact">tours in California</a>.</p>
+      <p>Mr. Tew has been running martial arts camps and tours for more than 20 years. The students have the most fun and memorable experiences when they travel and train together under the guidance and teaching of Rick Tew. Rick has brought students from the US to Europe and students from Europe to the US for amazing adventures, stories and friendships. Many students who attended a program many years ago will still remember how awesome the travel adventures were. Now Mr. Tew is bringing students from the US and Europe to Thailand. But all new students from around the world are welcome to join in on the adventure and get the experience.</p>
+      <p class="lead-bold">Training</p>
+      <p>Each VIP student will be able to submit request for specific training and focus that they would like to receive. We then create a unique and intensive seminar taught by Rick Tew that includes each of the student's request. This will ensure that no two classes are ever the same. In addition to the requests, we will also be sure to include the base training and introduction to beginners along with the seminar program training. Usually this will be about 2-6 hours each day in the following format:</p>
+      <p><strong>Class 1:</strong></p>
+      <p>BASE training session: Stances, Strikes, Kicks, Rolls, Falls, and Self-Defense.</p>
+      <p><strong>Class 2:</strong></p>
+      <p>Student submitted requests for what they would like to learn on their visit.</p>
+      <p class="lead-bold">WinJitsu</p>
+      <p>In addition to the above physical classes, VIP members will have ample time for conversation and training in other areas of interest. They will be conducted at dinners, organized sessions or during travel when Mr. Tew is available and under a non-strict format. In other words, it is in our leisure time and managed via conversations out and about.</p>
+      <p class="lead-bold">Camps and Long-term training</p>
+      <p>Students interested in continuing their training can discuss with Mr. Tew during the program about returning or continuing to learn the system. Often a discount will be available for students who take advantage of an additional program.</p>
+    </div>
+  </div>
+  <div class="band">
+    <h2>Students share their travels on Rick Tew's CMS program</h2>
+  </div>
+  <div class="wrap">
+    <figure class="fig full"><img src="/assets/images/w/b7acecf8a4.webp" alt="Travel photos collage" width="1024" height="536" loading="lazy" decoding="async"></figure>
+    <div class="gray-card">
+      <div class="wrap">
+        <div class="title">From Australia to all over the Southwest United States</div>
+        <div class="quote">Yosemite NP, Malibu Creek, Disneyland, &ldquo;The Beach&rdquo;, Los Angeles, rock climbing at Yosemite NP, Fresno, Oakhurst (yay!), Disneyland, Las Vegas, London Bridge, DragonFest (martial arts show), bear-watching at Yosemite, Universal Studios and did I mention Disneyland? &#128521;</div>
+        <div class="name">Craig H., Australia</div>
+      </div>
+    </div>
+    <div class="gray-card">
+      <div class="wrap">
+        <div class="title">Travel is a big part of CMS</div>
+        <div class="quote">Travel is also a big part of the CMS experience (see photos of many locations where we have been and had fun). During my time in the CMS program I have traveled to Europe, Mexico, and various locations over the west of America. Places such as California, Arizona and Nevada. Within these locations I have been fortunate enough to visit sites and have adventures in many of the major cities and natural wonders. Some places in America such as L.A., Las Vegas, San Francisco, Yosemite, Joshua Tree, and the Grand Canyon. We chased Mickey, tested our nerves on some of the most daring rides, and enjoyed some of nature&rsquo;s best offered playgrounds.</div>
+        <div class="name">Kris B., Canada</div>
+      </div>
+    </div>
+    <div class="gray-card">
+      <div class="wrap">
+        <div class="title">Learned to climb then became a climber</div>
+        <div class="quote">First: To California, I am from The Netherlands. Secondary: Through my first experiences in rock climbing with Rick Tew I became a climber myself and climbed in numerous locations in countries like Germany, Belgium, France, Spain, Switzerland, Austria, and South Africa.</div>
+        <div class="name">Joost V., Holland / Netherlands</div>
+      </div>
+    </div>
+    <div class="gray-card">
+      <div class="wrap">
+        <div class="title">Free flights to Mexico</div>
+        <div class="quote">I&rsquo;ve seen a lot of California, Los Angeles, Fresno, Yosemite National park, Ahwahnee and Oakhurst, YEAH! Joshua Tree National park, Malibu creek etc. We went on a road trip to Colorado, so I saw Death Valley, Nevada, Utah, Colorado and a bit of Wyoming. Also did and El Paso trip where we drove through Arizona to get to Texas and even went to Juarez Mexico for the nightlife.</div>
+        <div class="name">Cedric C., Sherbrooke, Quebec, Canada</div>
+      </div>
+    </div>
+    <div class="gray-card">
+      <div class="wrap">
+        <div class="title">Many places in a short time</div>
+        <div class="quote">I&rsquo;ve been to so many places in the short time I&rsquo;ve spent here, it&rsquo;s staggering. I&rsquo;ve hiked to the top of Yosemite, sweat in Death Valley, climbed at Malibu Creek and Tollhouse, flew in a helicopter into the Grand Canyon, walked up and down the Las Vegas Strip, toured Universal Studios in LA., slept on the beach on the California coast, visited the piers and Golden Gate Bridge in San Francisco, got into trouble in Mexico, climbed giant trees in Sequoia National Park, and I&rsquo;ve only been attended two phases!</div>
+        <div class="name">Nate P., Palm Harbor, Florida, USA</div>
+      </div>
+    </div>
+    <div class="gray-card">
+      <div class="wrap">
+        <div class="title">Was part of the first Travel and Training</div>
+        <div class="quote">As one of the pioneering RTMS team members, I was fortunate enough to be part of the first Travel and Training program. Could not imagine a better way to discover California and the surrounding states on my first visit to America. I was fortunate enough to be part of the First CMS program. I was able to participate in several demonstrations and seminars in different European Countries. I was able to run my own RTMS group in Holland for several years and share this great system with many students. I&rsquo;ve had the opportunity to lead a great one week RTMS seminar in the Caribbean Island of Aruba together with RTMS team member Michel Kristians.</div>
+        <div class="name">Ortwin C., Holland / Netherlands</div>
+      </div>
+    </div>
+    <div class="gray-card">
+      <div class="wrap">
+        <div class="title">Unleashed into Mexico</div>
+        <div class="quote">One, I traveled most of the continental US in just arriving each phase to CMS from where I&rsquo;m usually at in both Texas or Michigan. I might not have done that on my own accord without CMS. Two, with CMS, I have been all around California: Down around LA, San Diego, Yosemite National Park, and many other places. I&rsquo;ve also been to Las Vegas, and got to experience all of that. Lastly there was our trip to Mexico which I&rsquo;m sure none of us who went will ever forget. There is something to be said when you unleash 11 Ninja&rsquo;s into Mexico during Spring Break.</div>
+        <div class="name">Richard N., Galveston, Texas, USA</div>
+      </div>
+    </div>
+    <div class="gray-card">
+      <div class="wrap">
+        <div class="title">Was on TV with Rick Tew</div>
+        <div class="quote">I am from Holland and I have been to the States (Yosemite, LA, Las Vegas, Grand Canyon, Joshua Tree, to name just a few), Spain, Paris, and Belgium. Also, I have been on stages when we did seminars for companies, on TV and radio, at martial arts demo&rsquo;s and so many other things.</div>
+        <div class="name">Marco V., Holland / Netherlands</div>
+      </div>
+    </div>
+    <div class="gray-card">
+      <div class="wrap">
+        <div class="title">More than many travel in a lifetime</div>
+        <div class="quote">The pictures on the web site are from places like Yosemite National Park, Malibu Creek, Tollhouse rock, Death Valley, The Grand Canyon, Venice Beach, Las Vegas, Los Angeles, San Francisco, Mexico, Holland, and many, many more places; all of which I have been to with Rick Tew&rsquo;s Camp of Martial Science. I have already been to more places in a few months then most people have their entire lives.</div>
+        <div class="name">Jeff T., Canada</div>
+      </div>
+    </div>
+    <div class="gray-card">
+      <div class="wrap">
+        <div class="title">Adventure travel and laid back trips</div>
+        <div class="quote">During my short time there, we took two different Yosemite hikes, went to Malibu Creek and a nearby beach, into the LA area for Venice beach and the Universal City walk, to an excellent rock climbing spot east of Fresno, balanced out with a laid-back trip to Edison Lake.</div>
+        <div class="name">Ross K., Virginia, USA</div>
+      </div>
+    </div>
+  </div>
+    </div>
+    <p class="back"><a class="up" href="#menu">Back to the ring</a></p>
   </section>
 
   <section class="part lands" id="p-tewtors" data-card="p-tewtors" aria-labelledby="h-tewtors">
