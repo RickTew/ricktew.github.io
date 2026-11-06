@@ -81,3 +81,9 @@ and when that changes we can simply adjust".
   /hininja/ sells GNS). /gns/ is left as designed.
 - The ETDA filing itself is the Digital Dojo's; this chat tells it when a
   change here is live.
+- **ETDA read of the pages, 6 Nov 2026 (TEWBEDO flagged three lines: ETDA approved Rick Tew Co.'s right to file on
+  5 Nov and ricktew.com may go on a form signed as true).** NinjaGym's payment lines now follow ninjagym.com (306d784).
+  Terms, Rick's clicks "Match tewbedo.com" and "Add it, all sales final": "R2" is off the Terms (Managed Hosting, as on
+  tewbedo.com), the PromptPay card payee is "Managed Hosting · Rick Tew Co., Ltd.", and section 3 names the WinJitsu
+  month, final sale, no price in the Terms. Terms dated 6 November 2026. "R2 Managed Hosting" still stands on /about/,
+  llms.txt, `aininja/ask.js` and the Intake's questions: not part of his click.

@@ -176,6 +176,8 @@ the Dojo.
   Tew Co., paid once, nothing renews, no field, no mail of ours; a $22 one-time dollar fallback; Cancel back to
   /winjitsu/#from-home (or /hsp/#ways for src=hsp). The page shows $22 to everyone, like /hsp/'s $2,222 (Stripe showed
   $21.52 beside THB 699.00 on 2 Nov; re-read before any marketing push).
+- Terms section 3 names the month since 6 Nov 2026 (his click "Add it, all sales final"): paid once, does not renew, access
+  opens when the email is added, all sales final. No price there; a change to any of those means a change to the Terms.
 - Getting in is by hand: the sale notice (SKU WJA-HOME-1M, Plan "1 month") reaches Rick with the email paid with, and he
   adds it in the WinJitsu app as a from-home member for one month. /winjitsu/thanks/ says to sign up at winjitsu.com
   with the same email.

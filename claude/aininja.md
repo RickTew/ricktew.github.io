@@ -189,7 +189,7 @@ cards now.
 Every page, the chat box, the Terms, llms.txt and the JSON-LD, the mailbox label (ricktew-contact v41) and the
 Intake's option label (ricktew-intake v32), in a71cd0a. The word is explained in one sentence where the card
 contrasts a normal host: "Managed means you send me a message instead." The PromptPay payee "R2 Hosting Thailand"
-stays (it is the name on the client sites and bills). TEWBEDO synced ask.js (81d94d3), and the Stripe product on Rick
+stays (it is the name on the client sites and bills). (Superseded 6 Nov 2026, his click "Match tewbedo.com": the card's payee and the Terms now say Managed Hosting.) TEWBEDO synced ask.js (81d94d3), and the Stripe product on Rick
 Tew Co. is "R2 Managed Hosting, the month". Older lines in this file that say "R2 Hosting" mean the same offer.
 **His BAM idea the same day is NOT live:** a free first build (Booking, App, Messages), with R2 Managed Hosting, the
 agents and his oversight paid. Nothing about BAM or "free" goes on a page until the Digital Dojo's package exists

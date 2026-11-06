@@ -47,8 +47,8 @@
   var RECIPIENT = "RICK TEW NINJA GYM";
   var MOBILE = "086-294-4374";
   /* Who is being paid, by door (the Dojo, 17 Oct, Rick's picks): the AI side
-     is "R2 Hosting Thailand" as on the client sites, the HI side the company. */
-  var PAYEE = { ai: "R2 Hosting Thailand · Rick Tew Co., Ltd.", hi: "Rick Tew Co., Ltd." };
+     is "Managed Hosting" (Rick, 6 Nov 2026, matching tewbedo.com; was "R2 Hosting Thailand"), the HI side the company. */
+  var PAYEE = { ai: "Managed Hosting · Rick Tew Co., Ltd.", hi: "Rick Tew Co., Ltd." };
 
   var ITEMS = {
     "AIN-MAMAMIA": {

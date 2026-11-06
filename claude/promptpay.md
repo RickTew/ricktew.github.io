@@ -89,8 +89,9 @@ PromptPay 086-294-4374). Card stays Stripe, Tew's Inc, USD, unchanged.
   customers." His currency rules are about not confusing a buyer, never
   about limiting one. Do not raise it again. PromptPay is Thailand's own
   payment system, so Thailand-only is a given, not a question.
-- **The cards:** `/aininja/shop/promptpay/?sku=` (payee "R2 Hosting Thailand ·
-  Rick Tew Co., Ltd.", blue) and `/hininja/promptpay/?sku=` (payee "Rick Tew
+- **The cards:** `/aininja/shop/promptpay/?sku=` (payee "Managed Hosting ·
+  Rick Tew Co., Ltd." since 6 Nov 2026, Rick's click "Match tewbedo.com"; was "R2
+  Hosting Thailand"; blue) and `/hininja/promptpay/?sku=` (payee "Rick Tew
   Co., Ltd.", red press only), both noindex, both run by `assets/promptpay.js`,
   SKU held to its fixed list per door. Drawn from the kit, not copied verbatim,
   because a stranger has no bill: the Paid press carries name, email and the
