@@ -85,5 +85,6 @@ and when that changes we can simply adjust".
   5 Nov and ricktew.com may go on a form signed as true).** NinjaGym's payment lines now follow ninjagym.com (306d784).
   Terms, Rick's clicks "Match tewbedo.com" and "Add it, all sales final": "R2" is off the Terms (Managed Hosting, as on
   tewbedo.com), the PromptPay card payee is "Managed Hosting · Rick Tew Co., Ltd.", and section 3 names the WinJitsu
-  month, final sale, no price in the Terms. Terms dated 6 November 2026. "R2 Managed Hosting" still stands on /about/,
-  llms.txt, `aininja/ask.js` and the Intake's questions: not part of his click.
+  month, final sale, no price in the Terms. Terms dated 6 November 2026. /about/ and llms.txt followed, his click
+  "/about/ and llms.txt". "R2 Managed Hosting" stays in `aininja/ask.js` and the Intake's questions, which no ricktew.com
+  page was found loading (leaving them needs no TEWBEDO "ask.js changed").

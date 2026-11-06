@@ -6,7 +6,7 @@ The front page is Rick's one-page home: a ring of everything he builds and teach
 
 ## The AI Ninja door
 
-- The AI Ninja work (Your Dojo and R2 Managed Hosting) moved to https://tewbedo.com/ on 29 October 2026: the offers, the prices, the FAQ, the Shop and the Intake. Its own llms.txt: https://tewbedo.com/llms.txt . The old ricktew.com/aininja/ addresses forward there.
+- The AI Ninja work (Your Dojo and Managed Hosting) moved to https://tewbedo.com/ on 29 October 2026: the offers, the prices, the FAQ, the Shop and the Intake. Its own llms.txt: https://tewbedo.com/llms.txt . The old ricktew.com/aininja/ addresses forward there.
 
 ## How to get in touch
 
