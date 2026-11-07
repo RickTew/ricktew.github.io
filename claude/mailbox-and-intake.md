@@ -480,3 +480,9 @@ with the same ", from the Contact page on ricktew.com." TEWBEDO matches, so the 
 told 7 Nov). Its own trap `#quickWebsite` sits outside the form. Rick may want it two lines high after his phone check.
 Same day: the home page's Contact form had been failing silently since 9b223b0 (2 Nov): its `#askWebsite` trap was not
 copied over, so Send threw before posting. Trap added; both forms tested with the post caught (no mail sent).
+Later the same day, Rick: "What do you want from Rick? was not to be taken literaly lol ... it sounds rude. Maybe How can
+I help you?"; "I was hoping the field could offer answers there and not only email"; "I want it to alwasy be there". So:
+placeholder "How can I help you?"; Send shows up to two answers from a word list in the page (LIB in the box's script,
+built only from what the home page says, each with its link; not an AI, no outside service); "Send it to Rick" (or no
+match, or a speaking, coaching, tours or reaching-me answer) opens name and email. The mail adds a last line "(The box
+showed them: ...)". After a post the box clears and stays. A persona round on it is for later, on his word.

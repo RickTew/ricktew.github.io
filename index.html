@@ -109,9 +109,17 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 .quick .qwho input{min-width:0;font:inherit;font-size:16px;padding:9px 12px;border:1px solid #c9ccd1;border-radius:10px;background:#fff;color:var(--ink)}
 .quick .qwho input:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,115,189,.18)}
 .quick .qwho button{font:inherit;font-weight:800;padding:9px 20px;border:0;border-radius:999px;background:var(--ink);color:#fff;cursor:pointer}
+.quick .qans{margin-top:10px;display:grid;gap:8px}
+.quick .qans[hidden]{display:none}
+.quick .qa{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.5;color:var(--body)}
+.quick .qa b{display:block;color:var(--ink);font-size:16px;margin-bottom:2px}
+.quick .qa .qlinks{margin-top:8px;display:flex;flex-wrap:wrap;gap:8px 16px}
+.quick .qa a{color:var(--blue);font-weight:700}
+.quick .qmore{font-size:15px;color:var(--body)}
+.quick .qmore button{font:inherit;font-weight:800;color:var(--blue);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
 .quick .qerr{display:none;margin-top:8px;font-size:15px;color:var(--red)}
 .quick .qerr.on{display:block}
-.quick-done{max-width:560px;margin:22px auto 0;padding:0 16px;text-align:center;font-size:16px;color:var(--body)}
+.quick-done{margin-top:10px;text-align:center;font-size:16px;color:var(--body)}
 .quick-done[hidden]{display:none}
 .quick-done b{color:var(--ink)}
 .vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
@@ -435,7 +443,7 @@ footer a{color:var(--muted)}
     </div>
     <div class="ring-stage" id="ringStage">
       <ul class="ring" id="ring">
-        <li><a href="#p-about" data-sec="#p-about" data-go="Read my story" data-line="Creator of WinJitsu." data-deck="/aininja/assets/story/rick/rick-cutout-2x.webp|c;/assets/images/wheel/s-logo.webp|c|1800;/assets/images/wheel/sq-ch2-rock-climb.webp;/assets/images/wheel/sq-canyon-jump.webp;/assets/images/wheel/sq-water-kick.webp;/assets/images/wheel/sq-d2ba906768.webp;/assets/images/wheel/sq-652387db39.webp;/assets/images/wheel/sq-g22.webp;/assets/images/wheel/sq-8e2b44eb09.webp;/assets/images/wheel/sq-f5a1733a58.webp;/assets/images/wheel/sq-0c7887b6ac.webp"><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="" class="fit-contain"><span>About</span></a></li>
+        <li><a href="#p-about" data-sec="#p-about" data-go="Read my story" data-line="Instructor, coach, speaker." data-deck="/aininja/assets/story/rick/rick-cutout-2x.webp|c;/assets/images/wheel/s-logo.webp|c|1800;/assets/images/wheel/sq-ch2-rock-climb.webp;/assets/images/wheel/sq-canyon-jump.webp;/assets/images/wheel/sq-water-kick.webp;/assets/images/wheel/sq-d2ba906768.webp;/assets/images/wheel/sq-652387db39.webp;/assets/images/wheel/sq-g22.webp;/assets/images/wheel/sq-8e2b44eb09.webp;/assets/images/wheel/sq-f5a1733a58.webp;/assets/images/wheel/sq-0c7887b6ac.webp"><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="" class="fit-contain"><span>About</span></a></li>
         <li><a href="#p-therapy" data-sec="#p-therapy" data-go="See how it helps" data-line="Be a Ninja in what you DO." data-deck="/assets/images/wheel/sq-p1414.webp;/assets/images/wheel/sq-p0190.webp;/assets/images/wheel/sq-p0021.webp;/assets/images/wheel/sq-p0258.webp;/assets/images/wheel/sq-p0200.webp"><img src="/assets/images/wheel/sq-p1414.webp" alt=""><span>Martial Arts as Therapy</span></a></li>
         <li><a href="#p-rtms" data-sec="#p-rtms" data-go="See the system" data-line="Rick Tew's Martial Science." data-deck="/assets/images/w/b06e8968d5.webp|c|1800;/assets/images/wheel/sq-g08.webp;/assets/images/wheel/sq-n02.webp;/timeline/clips/ninjagym-anim.webp||5000;/assets/images/wheel/sq-v13.webp"><img src="/assets/images/w/b06e8968d5.webp" alt="" class="fit-contain"><span>RTMS</span></a></li>
         <li><a href="#p-tours" data-sec="#p-tours" data-go="See the tours" data-line="Make life a BLAST." data-deck="/assets/images/w/f1bc48d3f3.webp|c|1800;/assets/images/wheel/sq-canyon-splits.webp;/assets/images/wheel/sq-05729e10e2.webp;/assets/images/wheel/sq-castle-splits.webp;/assets/images/wheel/sq-river-splits.webp"><img data-src="/assets/images/w/f1bc48d3f3.webp" alt="" class="fit-contain"><span>BLAST Tours</span></a></li>
@@ -452,27 +460,28 @@ footer a{color:var(--muted)}
       <button type="button" class="clip-play" id="clipPlay" aria-label="Play the clip" hidden><span aria-hidden="true">&#9654;</span></button>
     </div>
     <div class="menu-foot">
-      <div class="now" aria-live="polite"><span class="vh" id="nowLabel">About: </span><b id="nowName">Creator of WinJitsu.</b></div>
+      <div class="now" aria-live="polite"><span class="vh" id="nowLabel">About: </span><b id="nowName">Instructor, coach, speaker.</b></div>
       <button type="button" class="turn prev" id="ringPrev" aria-label="Turn left">&#8592;</button>
       <p class="menu-go"><a id="nowGo" href="#p-about">Read my story</a><a id="nowMore" class="more" href="#p-about" hidden>Read more here</a></p>
       <button type="button" class="turn next" id="ringNext" aria-label="Turn right">&#8594;</button>
     </div>
     <form class="quick" id="quickAsk" novalidate>
-      <label class="vh" for="quickMsg">What you want from Rick Tew, or your question</label>
+      <label class="vh" for="quickMsg">Your question for Rick Tew</label>
       <div class="qrow">
-        <textarea id="quickMsg" name="message" rows="1" maxlength="4800" placeholder="What do you want from Rick?" enterkeyhint="send"></textarea>
+        <textarea id="quickMsg" name="message" rows="1" maxlength="4800" placeholder="How can I help you?" enterkeyhint="send"></textarea>
         <button type="submit" class="qsend" id="quickSend" aria-label="Send">&#8594;</button>
       </div>
+      <div class="qans" id="quickAns" aria-live="polite" hidden></div>
       <div class="qwho" id="quickWho" hidden>
-        <p>Where should the reply go?</p>
+        <p id="quickWhoLine">Where should the reply go?</p>
         <label class="vh" for="quickName">Your name</label><input id="quickName" name="name" type="text" autocomplete="name" maxlength="100" placeholder="Your name">
         <label class="vh" for="quickEmail">Your email</label><input id="quickEmail" name="email" type="email" autocomplete="email" maxlength="200" placeholder="Your email">
         <button type="submit" id="quickPost">Send</button>
       </div>
       <p class="qerr" id="quickErr" role="alert"></p>
+      <p class="quick-done" id="quickDone" tabindex="-1" hidden><b>Posted.</b> Check your inbox for the reply.</p>
     </form>
     <div class="trap" aria-hidden="true"><label for="quickWebsite">Leave this empty</label><input id="quickWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-    <p class="quick-done" id="quickDone" tabindex="-1" hidden><b>Posted.</b> Check your inbox for the reply.</p>
     <span class="cue" id="nowCue" aria-hidden="true">Or scroll down</span>
   </section>
 
@@ -3406,35 +3415,121 @@ if("serviceWorker" in navigator){ window.addEventListener("load",function(){ nav
   });
 })();
 
-/* The ask box under the ring. First Send with words in it opens name and email (the mailbox needs both to reply);
-   the next Send posts. Same mailbox and subject as the Contact form, and its first line ends with the same
-   ", from the Contact page on ricktew.com." that TEWBEDO matches to leave these for Rick to answer by hand. */
+/* The ask box under the ring (Rick, 7 Nov 2026: a field "that someone can type exactly what they want from Rick or just
+   simple ask"; then "I was hoping the field could offer answers there and not only email"; "I want it to always be there").
+   Send shows answers from the little library below, built only from what this page already says, each with its link.
+   No match, or "Send it to Rick": name and email open and it posts to the mailbox like the Contact form. Its first line
+   ends with the same ", from the Contact page on ricktew.com." that TEWBEDO matches to leave these for Rick to answer by
+   hand. The box never goes away: after a post it clears and stays. Not an AI: a word list, no outside service. */
 (function(){
-  var form=document.getElementById("quickAsk"), msg=document.getElementById("quickMsg"), who=document.getElementById("quickWho"),
-      err=document.getElementById("quickErr"), arrow=document.getElementById("quickSend"), post=document.getElementById("quickPost"),
-      name=document.getElementById("quickName"), email=document.getElementById("quickEmail"), shown=Date.now(), src="direct";
+  var EXT = true;
+  var LIB = [
+    { k:"kids", t:"NinjaGym", w:/\b(kids?|child|children|son|daughter|toddlers?|playground|birthday|part(y|ies)|parkour|drop[- ]?off|day camps?|ninjagym|ninja gym)\b/,
+      a:"An indoor ninja playground for kids on Koh Samui, with climbing, parkour and ninja games with our Guides. Drop-off sessions, day camps and birthday parties.",
+      l:[["Go to NinjaGym","https://ninjagym.com/",EXT]] },
+    { k:"course", t:"The Ninja Course", w:/\b(course|courses|train|training|learn|lessons?|class(es)?|ninja|ninjitsu|ninjutsu|martial arts?|self[- ]?defen[cs]e|vacation|holiday|beginners?|camps?)\b/,
+      a:"On Koh Samui, for travelers who want to learn real martial arts on vacation, in a small group. Beginners welcome. Pick your tactics on the Ninja Menu and choose how long you stay.",
+      l:[["Go to the Ninja Course","https://martialartcamp.com/ninja",EXT]] },
+    { k:"hostel", t:"NerdHostel", w:/\b(hostel|stay|staying|room|rooms|bed|beds|accommodation|sleep|co-?working|cowork|nomads?|guild hall|nerdhostel|gamers?)\b/,
+      a:"A gamer hostel with Guild Hall co-working for digital nomads on Koh Samui, across the street from NinjaGym.",
+      l:[["Go to NerdHostel","https://www.nerdhostel.com/",EXT]] },
+    { k:"winjitsu", t:"WinJitsu", w:/\b(winjitsu|win jitsu|pocket dojo|app|online|from home|at home|home study|hsp|mental|mindset|mind|books?|ace|mak|mbs|nrg|cmt)\b/,
+      a:"My mental martial art, The Mental Martial Art: Be a Black Belt in What You Do. Today it is one app, your pocket dojo for Mind, Body and Spirit.",
+      l:[["Go to the WinJitsu app","https://winjitsu.com/",EXT],["Train from home for a month","/winjitsu/#from-home"]] },
+    { k:"speaking", t:"Speaking", w:/\b(speak|speaker|speaking|keynote|talks?|events?|conference|seminars?|workshops?|company|corporate|university|stage|book you|book rick|hire)\b/,
+      a:"I have spoken at HP, TU Delft and the University of Rotterdam, and I am a Tony Robbins Certified Strategic Intervention coach. For your event, send it to me below with your name and email.",
+      l:[["Speaking and press","#p-speaking"]], send:true },
+    { k:"coaching", t:"Coaching and Martial Arts as Therapy", w:/\b(coach|coaching|mentor|therapy|fear|fears|confidence|anxiety|stress|pain|aggression|motivation|goals?|help me)\b/,
+      a:"Martial arts as therapy means using the training to work on what is going on inside you: fear, pain, confidence, aggression. For coaching, send it to me below with your name and email.",
+      l:[["Martial Arts as Therapy","#p-therapy"]], send:true },
+    { k:"rtms", t:"RTMS, Rick Tew's Martial Science", w:/\b(rtms|martial science|system|belts?|ranks?|levels?|weapons?|kicks?|strikes?|rolls?|falls?|mma|style)\b/,
+      a:"A martial science, not a style: five ranking levels, beginner to instructor, and nine areas in every level, from stances and rolls to combat and weapons. Most of the training is outside.",
+      l:[["Read about RTMS","#p-rtms"],["Train at home: WinJitsu","https://winjitsu.com/",EXT]] },
+    { k:"tours", t:"BLAST Tours", w:/\b(tours?|travel|travelling|traveling|trip|trips|yosemite|joshua tree|grand canyon|europe|blast|adventure)\b/,
+      a:"Travel and training: camps and tours on four continents, with Yosemite, Joshua Tree and the Grand Canyon among them. BLAST is Breathing, Laughing, Adventuring, Stretching and Thinking.",
+      l:[["Read about BLAST Tours","#p-tours"]], send:true },
+    { k:"tewtors", t:"Tewtors", w:/\b(tewtors|workbooks?|teachers?|parents?|teens?|self[- ]?help|worksheets?)\b/,
+      a:"My five methods for grown-ups, teens, parents and teachers: the Tewtors app and the workbooks. Learn it for yourself, then share it with the kids in your life.",
+      l:[["Go to Tewtors","https://tewtors.com/",EXT]] },
+    { k:"ai", t:"AI Ninja", w:/\b(ai|a\.i\.|website|web site|software|automat\w*|business|booking system|chatbot|bot|agents?|build me|developer|tech)\b/,
+      a:"Done-for-you AI for small business, managed by a real person: we build it, host it and run the AI behind it.",
+      l:[["Go to AI Ninja","https://tewbedo.com/",EXT]] },
+    { k:"games", t:"TewBit Games", w:/\b(games?|gaming|dungeon hole|tewgo|astrohold|astro hold|arena rpg|board game|play)\b/,
+      a:"Games are my hobby: Dungeon Hole, TEWGO, AstroHold and Arena RPG.",
+      l:[["See the games","#p-games"]] },
+    { k:"about", t:"About Rick Tew", w:/\b(who are you|who is rick|about you|about rick|background|history|bio|story|experience|where are you from)\b/,
+      a:"A lifetime of teaching my martial arts and the WinJitsu mindset around the world.",
+      l:[["Read my story","#p-about"]] },
+    { k:"contact", t:"Reaching me", w:/\b(contact|email|e-mail|phone|call|whatsapp|line|reach|talk to (you|rick))\b/,
+      a:"Everything goes in writing, so it is on the record. Type it here, add your name and email, and the reply comes to your inbox.",
+      l:[], send:true },
+    { k:"price", t:"Prices", w:/\b(price|prices|cost|costs|how much|fee|fees|rates?|baht|dollars?)\b/,
+      a:"Each place keeps its own prices on its own page.",
+      l:[["Ninja Course","https://martialartcamp.com/ninja",EXT],["NinjaGym","https://ninjagym.com/",EXT],["WinJitsu","/winjitsu/#from-home"]] }
+  ];
+  var form=document.getElementById("quickAsk"), msg=document.getElementById("quickMsg"), ans=document.getElementById("quickAns"),
+      who=document.getElementById("quickWho"), whoLine=document.getElementById("quickWhoLine"), err=document.getElementById("quickErr"),
+      arrow=document.getElementById("quickSend"), post=document.getElementById("quickPost"), done=document.getElementById("quickDone"),
+      name=document.getElementById("quickName"), email=document.getElementById("quickEmail"), shown=Date.now(), src="direct", asked="", showed=[];
   try{ var s0=(new URLSearchParams(location.search).get("src")||"").toLowerCase(); if(/^[a-z]{1,20}$/.test(s0)) src=s0; }catch(e){}
   function fail(m){ err.textContent=m; err.classList.add("on"); }
   function grow(){ msg.style.height=""; msg.style.height=Math.min(msg.scrollHeight, msg.offsetHeight*4)+"px"; }
-  msg.addEventListener("input", function(){ grow(); err.classList.remove("on"); });
+  function el(tag, cls, text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text) e.textContent=text; return e; }
+
+  /* best two topics: the one with the earliest and most word hits first; "price" and "contact" only ride along */
+  function match(text){
+    var t=" "+text.toLowerCase().replace(/[’']/g,"'")+" ", hits=[];
+    LIB.forEach(function(x, i){ var m=t.match(new RegExp(x.w.source,"g")); if(m) hits.push({x:x, n:m.length, i:i}); });
+    hits.sort(function(a,b){ return (b.n-a.n) || (a.i-b.i); });
+    var main=hits.filter(function(h){ return h.x.k!=="price" && h.x.k!=="contact"; }), side=hits.filter(function(h){ return h.x.k==="price" || h.x.k==="contact"; });
+    return main.concat(side).slice(0,2).map(function(h){ return h.x; });
+  }
+  function openWho(line){ whoLine.textContent=line; who.hidden=false; arrow.hidden=true; name.focus(); }
+  function showAnswers(list){
+    ans.textContent=""; showed=list.map(function(x){ return x.t; });
+    list.forEach(function(x){
+      var box=el("div","qa"); box.appendChild(el("b","",x.t)); box.appendChild(document.createTextNode(x.a));
+      if(x.l.length){ var row=el("div","qlinks"); x.l.forEach(function(l){ var a=el("a","",l[0]); a.href=l[1]; if(l[2]){ a.target="_blank"; a.rel="noopener"; } row.appendChild(a); }); box.appendChild(row); }
+      ans.appendChild(box);
+    });
+    var more=el("p","qmore"), b=el("button","","Send it to Rick"); b.type="button";
+    b.addEventListener("click", function(){ openWho("Where should the reply go?"); });
+    more.appendChild(document.createTextNode("Not what you needed? ")); more.appendChild(b);
+    if(list.some(function(x){ return x.send; })) openWho("Where should the reply go?");
+    else ans.appendChild(more);
+    ans.hidden=false;
+  }
+  function reset(){ msg.value=""; grow(); ans.hidden=true; ans.textContent=""; who.hidden=true; arrow.hidden=false; asked=""; showed=[]; }
+
+  msg.addEventListener("input", function(){
+    grow(); err.classList.remove("on"); done.hidden=true;
+    if(asked && msg.value.trim()!==asked){ ans.hidden=true; who.hidden=true; arrow.hidden=false; asked=""; }
+  });
   msg.addEventListener("keydown", function(e){
     if(e.key==="Enter" && !e.shiftKey && !e.isComposing){ e.preventDefault(); form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event("submit",{cancelable:true})); }
   });
   form.addEventListener("submit", function(e){
-    e.preventDefault(); err.classList.remove("on");
+    e.preventDefault(); err.classList.remove("on"); done.hidden=true;
     var text=msg.value.trim();
-    if(!text){ fail("Type what you want first."); msg.focus(); return; }
-    if(who.hidden){ who.hidden=false; arrow.hidden=true; name.focus(); return; }
+    if(!text){ fail("Type your question first."); msg.focus(); return; }
+    if(who.hidden){
+      if(text===asked){ openWho("Where should the reply go?"); return; }
+      asked=text; var list=match(text);
+      if(list.length) showAnswers(list);
+      else { ans.hidden=true; ans.textContent=""; showed=[]; openWho("Send it to Rick. Where should the reply go?"); }
+      return;
+    }
     var n=name.value.trim(), m=email.value.trim();
     if(!n||!m){ fail("Your name, and an email for the reply."); (n?email:name).focus(); return; }
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)){ fail("That email address does not look right. The reply goes there."); email.focus(); return; }
-    var data={name:n, email:m, subject:"hininja", message:"About: The ask box under the wheel, from the Contact page on ricktew.com.\n\n"+text,
+    var data={name:n, email:m, subject:"hininja",
+      message:"About: The ask box under the wheel, from the Contact page on ricktew.com.\n\n"+text+(showed.length ? "\n\n(The box showed them: "+showed.join("; ")+".)" : ""),
       website:document.getElementById("quickWebsite").value, elapsedMs:Date.now()-shown, source:src};
-    arrow.disabled=post.disabled=true; post.textContent="Sending...";
+    post.disabled=true; post.textContent="Sending...";
     fetch("https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})
     .then(function(res){ if(!res.ok) throw new Error(String(res.status)); return res.json(); })
-    .then(function(){ form.hidden=true; var d=document.getElementById("quickDone"); d.hidden=false; d.focus(); })
-    .catch(function(){ arrow.disabled=post.disabled=false; post.textContent="Send"; fail("That did not go through. Check your connection and press Send again."); });
+    .then(function(){ post.disabled=false; post.textContent="Send"; reset(); done.hidden=false; done.focus(); })
+    .catch(function(){ post.disabled=false; post.textContent="Send"; fail("That did not go through. Check your connection and press Send again."); });
   });
 })();
 
