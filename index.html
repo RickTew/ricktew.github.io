@@ -3427,7 +3427,7 @@ if("serviceWorker" in navigator){ window.addEventListener("load",function(){ nav
     { k:"kids", t:"NinjaGym", w:/\b(kids?|child|children|son|daughter|toddlers?|playground|birthday|part(y|ies)|parkour|drop[- ]?off|day camps?|ninjagym|ninja gym)\b/,
       a:"An indoor ninja playground for kids on Koh Samui, with climbing, parkour and ninja games with our Guides. Drop-off sessions, day camps and birthday parties.",
       l:[["Go to NinjaGym","https://ninjagym.com/",EXT]] },
-    { k:"course", t:"The Ninja Course", w:/\b(course|courses|train|training|learn|lessons?|class(es)?|ninja|ninjitsu|ninjutsu|martial arts?|self[- ]?defen[cs]e|vacation|holiday|beginners?|camps?)\b/,
+    { k:"course", t:"The Ninja Course", w:/\b(course|courses|train|training|learn|lessons?|class(es)?|ninja|ninjitsu|ninjutsu|martial arts?|self[- ]?defen[cs]e|vacation|holiday|beginners?|camps?|in person|visit)\b/,
       a:"On Koh Samui, for travelers who want to learn real martial arts on vacation, in a small group. Beginners welcome. Pick your tactics on the Ninja Menu and choose how long you stay.",
       l:[["Go to the Ninja Course","https://martialartcamp.com/ninja",EXT]] },
     { k:"hostel", t:"NerdHostel", w:/\b(hostel|stay|staying|room|rooms|bed|beds|accommodation|sleep|co-?working|cowork|nomads?|guild hall|nerdhostel|gamers?)\b/,
@@ -3439,13 +3439,16 @@ if("serviceWorker" in navigator){ window.addEventListener("load",function(){ nav
     { k:"speaking", t:"Speaking", w:/\b(speak|speaker|speaking|keynote|talks?|events?|conference|seminars?|workshops?|company|corporate|university|stage|book you|book rick|hire)\b/,
       a:"I have spoken at HP, TU Delft and the University of Rotterdam, and I am a Tony Robbins Certified Strategic Intervention coach. For your event, send it to me below with your name and email.",
       l:[["Speaking and press","#p-speaking"]], send:true },
+    { k:"press", t:"In print and on TV", w:/\b(tv|television|magazines?|press|interviews?|media|newspapers?|famous)\b/,
+      a:"My work has been in Black Belt magazine, and on TV in the US and Holland. At 15 a TV crew filmed me training in my backyard.",
+      l:[["Speaking and press","#p-speaking"]] },
     { k:"coaching", t:"Coaching and Martial Arts as Therapy", w:/\b(coach|coaching|mentor|therapy|fear|fears|confidence|anxiety|stress|pain|aggression|motivation|goals?|help me)\b/,
       a:"Martial arts as therapy means using the training to work on what is going on inside you: fear, pain, confidence, aggression. For coaching, send it to me below with your name and email.",
       l:[["Martial Arts as Therapy","#p-therapy"]], send:true },
     { k:"rtms", t:"RTMS, Rick Tew's Martial Science", w:/\b(rtms|martial science|system|belts?|ranks?|levels?|weapons?|kicks?|strikes?|rolls?|falls?|mma|style)\b/,
       a:"A martial science, not a style: five ranking levels, beginner to instructor, and nine areas in every level, from stances and rolls to combat and weapons. Most of the training is outside.",
       l:[["Read about RTMS","#p-rtms"],["Train at home: WinJitsu","https://winjitsu.com/",EXT]] },
-    { k:"tours", t:"BLAST Tours", w:/\b(tours?|travel|travelling|traveling|trip|trips|yosemite|joshua tree|grand canyon|europe|blast|adventure)\b/,
+    { k:"tours", t:"BLAST Tours", w:/\b(tours?|travel|travelling|traveling|trip|trips|yosemite|joshua tree|grand canyon|blast|adventure)\b/,
       a:"Travel and training: camps and tours on four continents, with Yosemite, Joshua Tree and the Grand Canyon among them. BLAST is Breathing, Laughing, Adventuring, Stretching and Thinking.",
       l:[["Read about BLAST Tours","#p-tours"]], send:true },
     { k:"tewtors", t:"Tewtors", w:/\b(tewtors|workbooks?|teachers?|parents?|teens?|self[- ]?help|worksheets?)\b/,
@@ -3457,16 +3460,27 @@ if("serviceWorker" in navigator){ window.addEventListener("load",function(){ nav
     { k:"games", t:"TewBit Games", w:/\b(games?|gaming|dungeon hole|tewgo|astrohold|astro hold|arena rpg|board game|play)\b/,
       a:"Games are my hobby: Dungeon Hole, TEWGO, AstroHold and Arena RPG.",
       l:[["See the games","#p-games"]] },
+    { k:"holland", t:"A ninja in the Netherlands", w:/\b(holland|netherlands|dutch|europe|european|amsterdam|rotterdam|delft|naarden|bussum|spain|film|films|movie|movies)\b/,
+      a:"Yes. I moved to Holland at 21 and spent more than six years in and out of the Netherlands: magazines and TV, seminars across the country, and students trained outdoors. I was even offered a part in a popular Dutch film. I spoke at TU Delft and the University of Rotterdam, and my first California tour group was Dutch.",
+      l:[["A ninja in the Netherlands","#p-holland"]] },
+    { k:"teaching", t:"How I teach and how it started", w:/\b(teach|teaches|teaching|taught|instructor|students?|dojo|sensei|history|where do you live|where are you based|where are you now)\b/,
+      a:"I started teaching at 16, opened my own dojo at 19 and moved to Europe at 21. Since then I have taught all over the world: martial art schools, seminars, and live-in ninja camps, from California to Holland, the Philippines and now Thailand.",
+      l:[["Read my story","#p-story"]] },
     { k:"about", t:"About Rick Tew", w:/\b(who are you|who is rick|about you|about rick|background|history|bio|story|experience|where are you from)\b/,
       a:"A lifetime of teaching my martial arts and the WinJitsu mindset around the world.",
       l:[["Read my story","#p-about"]] },
     { k:"contact", t:"Reaching me", w:/\b(contact|email|e-mail|phone|call|whatsapp|line|reach|talk to (you|rick))\b/,
       a:"Everything goes in writing, so it is on the record. Type it here, add your name and email, and the reply comes to your inbox.",
       l:[], send:true },
+    { k:"hello", t:"Hi", w:/^\s*(hi|hello|hey|hola|sawasdee|good (morning|afternoon|evening))\b/,
+      a:"Ask about the Ninja Course, WinJitsu, NinjaGym, speaking, coaching or anything on the wheel above.",
+      l:[["Read my story","#p-story"]] },
     { k:"price", t:"Prices", w:/\b(price|prices|cost|costs|how much|fee|fees|rates?|baht|dollars?)\b/,
       a:"Each place keeps its own prices on its own page.",
       l:[["Ninja Course","https://martialartcamp.com/ninja",EXT],["NinjaGym","https://ninjagym.com/",EXT],["WinJitsu","/winjitsu/#from-home"]] }
   ];
+  var MISS = { k:"miss", t:"Not found on this page", a:"Start with my story or turn the wheel above. Or send it to me below with your name and email.",
+      l:[["Read my story","#p-story"],["About Rick Tew","#p-about"]], send:true };
   var form=document.getElementById("quickAsk"), msg=document.getElementById("quickMsg"), ans=document.getElementById("quickAns"),
       who=document.getElementById("quickWho"), whoLine=document.getElementById("quickWhoLine"), err=document.getElementById("quickErr"),
       arrow=document.getElementById("quickSend"), post=document.getElementById("quickPost"), done=document.getElementById("quickDone"),
@@ -3481,7 +3495,7 @@ if("serviceWorker" in navigator){ window.addEventListener("load",function(){ nav
     var t=" "+text.toLowerCase().replace(/[’']/g,"'")+" ", hits=[];
     LIB.forEach(function(x, i){ var m=t.match(new RegExp(x.w.source,"g")); if(m) hits.push({x:x, n:m.length, i:i}); });
     hits.sort(function(a,b){ return (b.n-a.n) || (a.i-b.i); });
-    var main=hits.filter(function(h){ return h.x.k!=="price" && h.x.k!=="contact"; }), side=hits.filter(function(h){ return h.x.k==="price" || h.x.k==="contact"; });
+    var main=hits.filter(function(h){ return h.x.k!=="price" && h.x.k!=="contact" && h.x.k!=="hello"; }), side=hits.filter(function(h){ return h.x.k==="price" || h.x.k==="contact" || (h.x.k==="hello" && !main.length); });
     return main.concat(side).slice(0,2).map(function(h){ return h.x; });
   }
   function openWho(line){ whoLine.textContent=line; who.hidden=false; arrow.hidden=true; name.focus(); }
@@ -3516,7 +3530,7 @@ if("serviceWorker" in navigator){ window.addEventListener("load",function(){ nav
       if(text===asked){ openWho("Where should the reply go?"); return; }
       asked=text; var list=match(text);
       if(list.length) showAnswers(list);
-      else { ans.hidden=true; ans.textContent=""; showed=[]; openWho("Send it to Rick. Where should the reply go?"); }
+      else { showAnswers([MISS]); showed=[]; openWho("Send it to Rick. Where should the reply go?"); }
       return;
     }
     var n=name.value.trim(), m=email.value.trim();
