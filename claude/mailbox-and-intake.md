@@ -471,3 +471,12 @@ registration questions; Rick answers them by hand). **Never change that line's w
 The topics: A program or my registration, Booking Rick for an event, Coaching, The website, Something else.
 About's "Ask Rick about coaching" and /hsp/'s "Write to me" link `/contact/`, not `/aininja/#opt-8c` (which forwards
 to tewbedo.com since 29 Oct).
+
+## The ask box under the wheel (7 Nov 2026, Rick: "a field to type into ... that someone can type exactly what they want from Rick or just simple ask. May like a chat bot but only one sentence height")
+On the home page, under the wheel's button: one line ("What do you want from Rick?"), it grows a little as they type.
+The first Send opens name and email (the mailbox needs both to reply); the next Send posts to ricktew-contact with
+subject `hininja` and the first line "About: The ask box under the wheel, from the Contact page on ricktew.com." It ends
+with the same ", from the Contact page on ricktew.com." TEWBEDO matches, so the Ninja Agent leaves it for Rick (TEWBEDO
+told 7 Nov). Its own trap `#quickWebsite` sits outside the form. Rick may want it two lines high after his phone check.
+Same day: the home page's Contact form had been failing silently since 9b223b0 (2 Nov): its `#askWebsite` trap was not
+copied over, so Send threw before posting. Trap added; both forms tested with the post caught (no mail sent).
