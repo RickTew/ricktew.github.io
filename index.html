@@ -70,9 +70,15 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 .ring a.playing video{opacity:1}
 /* decks: the second picture layer that fades in over the first */
 .ring a img.deck-b{position:absolute;left:0;top:0;opacity:0;transition:opacity .6s ease}
-.menu-foot{display:flex;align-items:center;gap:14px;margin-top:6px;padding:0 16px;width:100%;max-width:560px}
+/* the title (the card's line) has the whole row so it stays one line; the arrows sit beside the button (7 Nov 2026) */
+.menu-foot{display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"now now now" "prev go next";align-items:start;column-gap:14px;margin-top:6px;padding:0 16px;width:100%;max-width:560px}
+.menu-foot .now{grid-area:now}
+.menu-foot .prev{grid-area:prev}
+.menu-foot .next{grid-area:next}
+.menu-foot .menu-go{grid-area:go;padding:0}
 .now{flex:1;min-width:0;text-align:center}
 .now b{display:block;font-family:"Archivo",Arial,sans-serif;font-weight:900;font-size:22px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.menu-foot .turn{margin-top:13px}
 /* one line, always (Rick, 2 Nov 2026: "when this section has more than two lines the page jumps. So let's just keep it one line") */
 .now span{display:block;color:var(--body);font-size:15px;line-height:1.5;height:1.5em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .turn{flex:none;width:46px;height:46px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);
@@ -429,28 +435,28 @@ footer a{color:var(--muted)}
     </div>
     <div class="ring-stage" id="ringStage">
       <ul class="ring" id="ring">
-        <li><a href="#p-about" data-sec="#p-about" data-line="Creator of WinJitsu." data-deck="/aininja/assets/story/rick/rick-cutout-2x.webp|c;/assets/images/wheel/s-logo.webp|c|1800;/assets/images/wheel/sq-ch2-rock-climb.webp;/assets/images/wheel/sq-canyon-jump.webp;/assets/images/wheel/sq-water-kick.webp;/assets/images/wheel/sq-d2ba906768.webp;/assets/images/wheel/sq-652387db39.webp;/assets/images/wheel/sq-g22.webp;/assets/images/wheel/sq-8e2b44eb09.webp;/assets/images/wheel/sq-f5a1733a58.webp;/assets/images/wheel/sq-0c7887b6ac.webp"><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="" class="fit-contain"><span>About</span></a></li>
-        <li><a href="#p-therapy" data-sec="#p-therapy" data-line="Be a Ninja in what you DO." data-deck="/assets/images/wheel/sq-p1414.webp;/assets/images/wheel/sq-p0190.webp;/assets/images/wheel/sq-p0021.webp;/assets/images/wheel/sq-p0258.webp;/assets/images/wheel/sq-p0200.webp"><img src="/assets/images/wheel/sq-p1414.webp" alt=""><span>Martial Arts as Therapy</span></a></li>
-        <li><a href="#p-rtms" data-sec="#p-rtms" data-line="Rick Tew's Martial Science." data-deck="/assets/images/w/b06e8968d5.webp|c|1800;/assets/images/wheel/sq-g08.webp;/assets/images/wheel/sq-n02.webp;/timeline/clips/ninjagym-anim.webp||5000;/assets/images/wheel/sq-v13.webp"><img src="/assets/images/w/b06e8968d5.webp" alt="" class="fit-contain"><span>RTMS</span></a></li>
-        <li><a href="#p-tours" data-sec="#p-tours" data-line="Make life a BLAST." data-deck="/assets/images/w/f1bc48d3f3.webp|c|1800;/assets/images/wheel/sq-canyon-splits.webp;/assets/images/wheel/sq-05729e10e2.webp;/assets/images/wheel/sq-castle-splits.webp;/assets/images/wheel/sq-river-splits.webp"><img data-src="/assets/images/w/f1bc48d3f3.webp" alt="" class="fit-contain"><span>BLAST Tours</span></a></li>
+        <li><a href="#p-about" data-sec="#p-about" data-go="Read my story" data-line="Creator of WinJitsu." data-deck="/aininja/assets/story/rick/rick-cutout-2x.webp|c;/assets/images/wheel/s-logo.webp|c|1800;/assets/images/wheel/sq-ch2-rock-climb.webp;/assets/images/wheel/sq-canyon-jump.webp;/assets/images/wheel/sq-water-kick.webp;/assets/images/wheel/sq-d2ba906768.webp;/assets/images/wheel/sq-652387db39.webp;/assets/images/wheel/sq-g22.webp;/assets/images/wheel/sq-8e2b44eb09.webp;/assets/images/wheel/sq-f5a1733a58.webp;/assets/images/wheel/sq-0c7887b6ac.webp"><img src="/aininja/assets/story/rick/rick-cutout-2x.webp" alt="" class="fit-contain"><span>About</span></a></li>
+        <li><a href="#p-therapy" data-sec="#p-therapy" data-go="See how it helps" data-line="Be a Ninja in what you DO." data-deck="/assets/images/wheel/sq-p1414.webp;/assets/images/wheel/sq-p0190.webp;/assets/images/wheel/sq-p0021.webp;/assets/images/wheel/sq-p0258.webp;/assets/images/wheel/sq-p0200.webp"><img src="/assets/images/wheel/sq-p1414.webp" alt=""><span>Martial Arts as Therapy</span></a></li>
+        <li><a href="#p-rtms" data-sec="#p-rtms" data-go="See the system" data-line="Rick Tew's Martial Science." data-deck="/assets/images/w/b06e8968d5.webp|c|1800;/assets/images/wheel/sq-g08.webp;/assets/images/wheel/sq-n02.webp;/timeline/clips/ninjagym-anim.webp||5000;/assets/images/wheel/sq-v13.webp"><img src="/assets/images/w/b06e8968d5.webp" alt="" class="fit-contain"><span>RTMS</span></a></li>
+        <li><a href="#p-tours" data-sec="#p-tours" data-go="See the tours" data-line="Make life a BLAST." data-deck="/assets/images/w/f1bc48d3f3.webp|c|1800;/assets/images/wheel/sq-canyon-splits.webp;/assets/images/wheel/sq-05729e10e2.webp;/assets/images/wheel/sq-castle-splits.webp;/assets/images/wheel/sq-river-splits.webp"><img data-src="/assets/images/w/f1bc48d3f3.webp" alt="" class="fit-contain"><span>BLAST Tours</span></a></li>
         <li><a href="https://winjitsu.com/" target="_blank" rel="noopener" data-sec="#p-winjitsu" data-go="Go to the WinJitsu app" data-line="Your pocket dojo." data-deck="/assets/images/wheel/wj-app-logo.webp|c|1800;/aininja/assets/story/winjitsu/winjitsu-app.webp|t;/aininja/assets/story/winjitsu/winjitsu-books.webp|c;/hsp/pocketdojo-belts.webp|c;/assets/images/wheel/sq-1775fe1ffa.webp"><img data-src="/assets/images/wheel/wj-app-logo.webp" alt="" class="fit-contain"><span>WinJitsu</span></a></li>
-        <li><a href="#p-speaking" data-sec="#p-speaking" data-line="On stage and in print." data-deck="/assets/images/wheel/x-holland-karate-cover.webp|c|1800;/timeline/clips/speaking-anim.webp||5000;/assets/images/wheel/sq-us-press-blackbelt.webp;/assets/images/wheel/sq-812d56ed46.webp;/assets/images/wheel/sq-ch1-speaking.webp"><img data-src="/assets/images/wheel/x-holland-karate-cover.webp" alt="" class="fit-contain"><span>Speaking and press</span></a></li>
-        <li><a href="https://ninjagym.com/" target="_blank" rel="noopener" data-sec="#p-ninjagym" data-line="Ninja playground for kids." data-deck="/assets/images/w/9337fa4ddc.webp|c|1800;/assets/images/wheel/sq-n-climbing.webp;/assets/images/wheel/sq-n-chess.webp;/assets/images/wheel/sq-n-swords.webp;/assets/images/wheel/sq-n-rings.webp;/assets/images/wheel/sq-ch1-splits.webp"><img data-src="/assets/images/w/9337fa4ddc.webp" alt="" class="fit-contain"><span>NinjaGym</span></a></li>
-        <li><a href="https://www.nerdhostel.com/" target="_blank" rel="noopener" data-sec="#p-nerdhostel" data-line="A hostel for nerds." data-deck="/assets/images/wheel/nh-logo.webp|c|1800;/assets/images/wheel/sq-nh-shared.webp;/assets/images/wheel/sq-nh-guild.webp;/aininja/assets/story/apps/nerdhostel.webp|c;/assets/images/wheel/sq-nh-bunks.webp;/assets/images/wheel/sq-nh-private.webp"><img data-src="/assets/images/wheel/nh-logo.webp" alt="" class="fit-contain"><span>NerdHostel</span></a></li>
+        <li><a href="#p-speaking" data-sec="#p-speaking" data-go="See the talks" data-line="On stage and in print." data-deck="/assets/images/wheel/x-holland-karate-cover.webp|c|1800;/timeline/clips/speaking-anim.webp||5000;/assets/images/wheel/sq-us-press-blackbelt.webp;/assets/images/wheel/sq-812d56ed46.webp;/assets/images/wheel/sq-ch1-speaking.webp"><img data-src="/assets/images/wheel/x-holland-karate-cover.webp" alt="" class="fit-contain"><span>Speaking and press</span></a></li>
+        <li><a href="https://ninjagym.com/" target="_blank" rel="noopener" data-sec="#p-ninjagym" data-go="Visit NinjaGym" data-line="Ninja playground for kids." data-deck="/assets/images/w/9337fa4ddc.webp|c|1800;/assets/images/wheel/sq-n-climbing.webp;/assets/images/wheel/sq-n-chess.webp;/assets/images/wheel/sq-n-swords.webp;/assets/images/wheel/sq-n-rings.webp;/assets/images/wheel/sq-ch1-splits.webp"><img data-src="/assets/images/w/9337fa4ddc.webp" alt="" class="fit-contain"><span>NinjaGym</span></a></li>
+        <li><a href="https://www.nerdhostel.com/" target="_blank" rel="noopener" data-sec="#p-nerdhostel" data-go="Visit NerdHostel" data-line="A hostel for nerds." data-deck="/assets/images/wheel/nh-logo.webp|c|1800;/assets/images/wheel/sq-nh-shared.webp;/assets/images/wheel/sq-nh-guild.webp;/aininja/assets/story/apps/nerdhostel.webp|c;/assets/images/wheel/sq-nh-bunks.webp;/assets/images/wheel/sq-nh-private.webp"><img data-src="/assets/images/wheel/nh-logo.webp" alt="" class="fit-contain"><span>NerdHostel</span></a></li>
         <li><a href="https://martialartcamp.com/ninja" target="_blank" rel="noopener" data-sec="#p-ninja-course" data-go="Go to the Ninja Course" data-line="Martial arts on vacation." data-deck="/assets/images/wheel/nc-icon.webp|c|1800;/assets/images/wheel/sq-g11.webp;/assets/images/wheel/sq-v03.webp;/assets/images/wheel/sq-g12.webp;/assets/images/wheel/sq-v08.webp;/assets/images/wheel/sq-p0165.webp;/assets/images/wheel/sq-g09.webp;/timeline/clips/cms-anim.webp||5000;/assets/images/wheel/sq-1fd280bd07.webp;/assets/images/wheel/sq-90484ace6d.webp;/assets/images/wheel/sq-1c2d772381.webp"><img data-src="/assets/images/wheel/nc-icon.webp" alt="" class="fit-contain"><span>Ninja Course</span></a></li>
-        <li><a href="https://tewtors.com/" target="_blank" rel="noopener" data-sec="#p-tewtors" data-line="Workbooks to share with kids." data-deck="/assets/images/wheel/t-logo.webp|c|1800;/assets/images/wheel/t-stay-charged.webp|c;/assets/images/wheel/t-app-lesson.webp|c;/assets/images/wheel/t-fly-your-own-jet.webp|c;/assets/images/wheel/t-program-your-brain.webp|c;/assets/images/wheel/t-mind-university.webp|c"><img data-src="/assets/images/wheel/t-logo.webp" alt="" class="fit-contain"><span>Tewtors</span></a></li>
-        <li><a href="https://tewbedo.com/" target="_blank" rel="noopener" data-sec="#p-ai-ninja" data-line="Apps built for your business." data-deck="/assets/images/wheel/ai-icon.webp|c|1800;/assets/images/wheel/x-tewbedo.webp|c;/aininja/assets/story/apps/sabaisen.webp|c;/aininja/assets/story/apps/evercool.webp|c;/aininja/assets/story/apps/samuikids.webp|c"><img src="/assets/images/wheel/ai-icon.webp" alt="" class="fit-contain"><span>AI Ninja</span></a></li>
+        <li><a href="https://tewtors.com/" target="_blank" rel="noopener" data-sec="#p-tewtors" data-go="Visit Tewtors" data-line="Workbooks to share with kids." data-deck="/assets/images/wheel/t-logo.webp|c|1800;/assets/images/wheel/t-stay-charged.webp|c;/assets/images/wheel/t-app-lesson.webp|c;/assets/images/wheel/t-fly-your-own-jet.webp|c;/assets/images/wheel/t-program-your-brain.webp|c;/assets/images/wheel/t-mind-university.webp|c"><img data-src="/assets/images/wheel/t-logo.webp" alt="" class="fit-contain"><span>Tewtors</span></a></li>
+        <li><a href="https://tewbedo.com/" target="_blank" rel="noopener" data-sec="#p-ai-ninja" data-go="Go to AI Ninja" data-line="Apps built for your business." data-deck="/assets/images/wheel/ai-icon.webp|c|1800;/assets/images/wheel/x-tewbedo.webp|c;/aininja/assets/story/apps/sabaisen.webp|c;/aininja/assets/story/apps/evercool.webp|c;/aininja/assets/story/apps/samuikids.webp|c"><img src="/assets/images/wheel/ai-icon.webp" alt="" class="fit-contain"><span>AI Ninja</span></a></li>
         <li><a href="#p-games" data-sec="#p-games" data-go="See the games" data-line="My hobby: TewBit Games." data-deck="/assets/images/wheel/tb-logo.webp|c|1800;/assets/images/wheel/sq-g-arena-shield.webp;/assets/images/wheel/g-dungeonhole-title.webp;/assets/images/wheel/g-astrohold-cyborg.webp;/assets/images/wheel/sq-g-arena-board.webp;/assets/images/wheel/g-dungeonhole-ninja.webp;/assets/images/wheel/g-tewgo-icon.webp;/assets/images/wheel/g-astrohold-core.webp"><img src="/assets/images/wheel/tb-logo.webp" alt="" class="fit-contain"><span>Games</span></a></li>
         <li><a href="#contact" data-sec="#contact" data-go="Get in touch" data-line="Ask, or book Rick Tew."><img src="/assets/images/logo.png" alt="" class="fit-contain"><span>Contact</span></a></li>
       </ul>
       <button type="button" class="clip-play" id="clipPlay" aria-label="Play the clip" hidden><span aria-hidden="true">&#9654;</span></button>
     </div>
     <div class="menu-foot">
-      <button type="button" class="turn" id="ringPrev" aria-label="Turn left">&#8592;</button>
-      <div class="now" aria-live="polite"><b id="nowName">About</b><span id="nowLine"></span></div>
-      <button type="button" class="turn" id="ringNext" aria-label="Turn right">&#8594;</button>
+      <div class="now" aria-live="polite"><span class="vh" id="nowLabel">About: </span><b id="nowName">Creator of WinJitsu.</b></div>
+      <button type="button" class="turn prev" id="ringPrev" aria-label="Turn left">&#8592;</button>
+      <p class="menu-go"><a id="nowGo" href="#p-about">Read my story</a><a id="nowMore" class="more" href="#p-about" hidden>Read more here</a></p>
+      <button type="button" class="turn next" id="ringNext" aria-label="Turn right">&#8594;</button>
     </div>
-    <p class="menu-go"><a id="nowGo" href="#p-about">More on About</a><a id="nowMore" class="more" href="#p-about" hidden>More on About</a></p>
     <form class="quick" id="quickAsk" novalidate>
       <label class="vh" for="quickMsg">What you want from Rick Tew, or your question</label>
       <div class="qrow">
@@ -467,7 +473,7 @@ footer a{color:var(--muted)}
     </form>
     <div class="trap" aria-hidden="true"><label for="quickWebsite">Leave this empty</label><input id="quickWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></div>
     <p class="quick-done" id="quickDone" tabindex="-1" hidden><b>Posted.</b> Check your inbox for the reply.</p>
-    <span class="cue" id="nowCue" aria-hidden="true">Or scroll for About</span>
+    <span class="cue" id="nowCue" aria-hidden="true">Or scroll down</span>
   </section>
 
   <section class="oldpage shown lands" id="p-about" data-card="p-about" aria-label="About Rick Tew">
@@ -3034,9 +3040,15 @@ footer a{color:var(--muted)}
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var angle = 0, vel = 0, target = 0, R = 500, front = -1, raf = 0;
   var drag = null, moved = false;
-  var nowName = document.getElementById("nowName"), nowLine = document.getElementById("nowLine"), nowGo = document.getElementById("nowGo"), nowMore = document.getElementById("nowMore");
+  var nowName = document.getElementById("nowName"), nowLabel = document.getElementById("nowLabel"), nowGo = document.getElementById("nowGo"), nowMore = document.getElementById("nowMore");
 
   function mod(a, n){ return ((a % n) + n) % n; }
+  /* one line, always: shrink the title a half pixel at a time only if it would spill, never below 15px */
+  function fitTitle(){
+    nowName.style.fontSize = "";
+    var f = parseFloat(getComputedStyle(nowName).fontSize);
+    while (nowName.scrollWidth > nowName.clientWidth && f > 15){ f -= 0.5; nowName.style.fontSize = f + "px"; }
+  }
 
   function show(i){
     var im = links[i].querySelector("img[data-src]");
@@ -3049,6 +3061,7 @@ footer a{color:var(--muted)}
     stage.style.setProperty("--cw", cw + "px");
     R = Math.round(N * (cw + 26) / (2 * Math.PI));
     layout();
+    fitTitle();
   }
 
   function layout(){
@@ -3065,16 +3078,20 @@ footer a{color:var(--muted)}
       for (var k = -3; k <= 3; k++) show(mod(f + k, N));
       clips();
       var a = links[f];
-      nowName.textContent = a.querySelector("span").textContent;
-      nowLine.textContent = a.getAttribute("data-line");
-      var href = a.getAttribute("href"), own = href.charAt(0) === "#", name = nowName.textContent;
+      /* the card carries its name; under it the card's line is the title (Rick, 7 Nov 2026: "About, About, About and
+         hey, why not one more About"; his click "Name once, line as title"). The name stays for screen readers. */
+      var name = a.querySelector("span").textContent;
+      nowLabel.textContent = name + ": ";
+      nowName.textContent = a.getAttribute("data-line");
+      fitTitle();
+      var href = a.getAttribute("href"), own = href.charAt(0) === "#";
       nowGo.setAttribute("href", href);
       if (a.target){ nowGo.target = a.target; nowGo.rel = "noopener"; } else { nowGo.removeAttribute("target"); nowGo.removeAttribute("rel"); }
       nowGo.textContent = a.getAttribute("data-go") || (own ? "More on " + name : "Go to " + name);
       nowMore.setAttribute("href", a.getAttribute("data-sec"));
-      nowMore.textContent = "More on " + name;
+      nowMore.textContent = "Read more here";
       nowMore.hidden = own;
-      cue.textContent = "Or scroll for " + name;
+      cue.textContent = "Or scroll down";
       details();
     }
   }
