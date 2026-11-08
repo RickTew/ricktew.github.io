@@ -422,6 +422,114 @@ h1,h2{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;line-height:1.04;l
 .trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;color:var(--muted);font-size:13px}
 footer a{color:var(--muted)}
+/* ONE CLEAN COLUMN (Rick, 7 Nov 2026: "let's pick a structure for the text, style, layout and use it for all of the
+   sections so we have some consistency and not a mesh of messy looking text and or paragraphs"; his click "One clean
+   column"). Every section under the wheel: one column of ~720px, all text left. Three text sizes: title, small heading,
+   body. One picture style, one quote card, one button. Only the look changes here, never a word. Section starts
+   (.landed, and the old page tops in .pagehead that match them since 5 Nov) keep their size. */
+:root{--col:720px;--colw:calc(var(--col) + 32px);
+  --t-font:"Archivo","Helvetica Neue",Arial,sans-serif;--b-font:"Nunito","Helvetica Neue",Arial,sans-serif}
+/* the column */
+main .landed,main .part .wrap,main .story .wrap,main .old .wrap,main .old .pagehead,main .old .band,
+main .oldpage .lead-mini,main .oldpage .back,main .part .wrap.shelf-wrap{max-width:var(--colw)}
+#pd-page .shell{max-width:var(--colw);padding:0 16px}
+main .old .prose,main .part-text > p:not(.eyebrow),main .step p,main .landed > p,main .old .pagehead .subtitle{max-width:none}
+main .part .wrap{display:block}
+main .part .wrap > * + *{margin-top:24px}
+main .part .wrap.shelf-wrap{margin-top:34px}
+@media (min-width:900px){
+  main .story-grid{grid-template-columns:1fr;gap:0}
+  main .story .media{display:none}
+  main .story .step{min-height:0;display:block;padding:22px 0}
+  main .story .steps .step:last-child{min-height:0}
+  main .story .step figure{display:block}
+  main .game-list{grid-template-columns:1fr 1fr}
+}
+@media (min-width:700px){ main .shelf{grid-template-columns:repeat(4,minmax(0,1fr))} }
+main .shelf a{font-family:var(--b-font);font-weight:800;font-size:16px}
+/* BODY: Nunito 400, 17px; no bold, no italic paragraphs */
+main .old p,main .old p.lead-bold,main .old p.italic,main .old li,main .old .prose,main .old .gray-card .quote,
+main .part-text > p:not(.part-go),main .step p,main .game p,
+#pd-page p,#pd-page li,#pd-page .pd-hero p.lede,#pd-page .pd-hero .sub,#pd-page .eyebrow,#pd-page .steps p,#pd-page .way p,
+#pd-page .areas li,#pd-page .sec-head p,#pd-page .final p,#pd-page .pd-hero .free-note,#pd-page .pd-nums span,#pd-page footer,
+main .old .from-home .fine,main .old .from-home .amt small,#pd-page .way .amt small{
+  font-family:var(--b-font);font-size:17px;line-height:1.65;font-weight:400;font-style:normal;color:var(--body);
+  letter-spacing:0;text-transform:none}
+main .old p{margin:0 0 16px}
+#pd-page .eyebrow{color:var(--muted);margin:0 0 4px}
+main b.flat,main strong.flat{font-weight:inherit;color:inherit}
+/* SMALL HEADING: Nunito 800, 18px */
+main .old h3,main .old h4,main .old .minor-head,main .old p.lead-bold.lbl,main .old .gray-card .title,main .game h3,
+#pd-page h4,#pd-page .steps h4,#pd-page .beltcard-head h4,#pd-page .way h4,#pd-page .faq summary,#pd-page .areas b,
+#pd-page .shots span,main .old .from-home .mbs b{
+  font-family:var(--b-font);font-weight:800;font-size:18px;line-height:1.35;color:var(--ink);font-style:normal;
+  letter-spacing:0;text-transform:none}
+main .old h3,main .old h4,main .old .minor-head,main .old p.lead-bold.lbl{margin:28px 0 8px}
+main .old .gray-card .title{margin:0 0 8px}
+main .game h3{margin-top:14px}
+#pd-page .steps h4,#pd-page .way h4{margin:4px 0}
+#pd-page .beltcard-head h4{margin:0}
+main .old .from-home .mbs b{margin-right:6px}
+/* TITLE: Archivo 800, 26px (22px on a phone) */
+main .old h2,main .old h3.plain-head,main .old .band h2,main .old .band h3,main .old .band.sub h3,main .old .row h3,
+#pd-page .pd-hero h2,#pd-page .sec-head h3,#pd-page .final h3,main .old .from-home h3.plain-head,
+#pd-page .pd-nums b,#pd-page .way .amt,main .old .from-home .amt{
+  font-family:var(--t-font);font-weight:800;font-size:clamp(22px,4.2vw,26px);line-height:1.2;letter-spacing:-.01em;
+  color:var(--ink);font-style:normal;text-transform:none;max-width:none}
+main .old h2,main .old h3.plain-head,main .old .row h3{margin:40px 0 12px}
+main .old .band{margin:44px auto 12px}
+main .old .band h2,main .old .band h3{margin:0}
+#pd-page .pd-hero h2{margin:0 0 6px}
+#pd-page .sec-head h3,#pd-page .final h3{margin:0 0 10px}
+main .old .from-home h3.plain-head{margin:0 0 10px}
+#pd-page .way .amt,main .old .from-home .amt{margin-top:10px}
+/* section starts keep their own size */
+main .old .pagehead h2{margin:0}
+/* everything left */
+main .old .center,main .old .prose.center,main .app-list h3,main .app-list p,#pd-page .sec-head,#pd-page .steps-note,
+#pd-page .final,#pd-page footer,#pd-page .pd-nums ul,#pd-page .shots span,main .old .from-home,main .old .mbox .done{text-align:left}
+main .old .prose.center,#pd-page .sec-head,#pd-page .steps-note,main .old .from-home .mbs,main .old .from-home .fine{margin-left:0;margin-right:0;max-width:none}
+main .old .social-row,#pd-page .belts{justify-content:flex-start}
+/* pictures: the column's width, one corner, one gap; small ones and logos at their own size */
+main .old figure.fig{margin:28px 0}
+main .old figure.fig img,main .old figure.fig.medium img,main .old figure.fig.large img,main .old figure.fig.small img,
+main .old .row img,main .old .imgrow img{width:100%;max-width:100%;margin:0;border-radius:12px}
+main .old figure.fig img.nat,main .old .row img.nat,main .old .imgrow img.nat{width:auto}
+main .old figure.fig img.logo,main .old .row img.logo,main .old .imgrow img.logo{width:auto;max-width:min(100%,320px);border-radius:0}
+main .old .imgrow{display:grid;gap:16px;margin:28px 0;justify-items:start}
+main .old .imgrow > *{width:100%}
+main .old .imgrow > img.nat,main .old .imgrow > img.logo{width:auto}
+main .old .row{display:block;margin:28px 0}
+main .old .row .col-img{margin-bottom:20px}
+main .part figure,main .step figure,main .old .embed-video,main .old .carousel .slide img{border-radius:12px}
+main .old .embed-video{margin:28px 0}
+main .old hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+/* one quote card: the panel colour, no bar */
+main .old .gray-card{max-width:var(--col);margin:28px auto;padding:22px 24px;border-radius:12px;background:var(--panel)}
+main .old .gray-card .wrap{max-width:none;padding:0}
+main .old .gray-card .quote{margin:0 0 10px}
+main .old .gray-card .name{font-family:var(--b-font);font-size:15px;font-weight:700;color:var(--muted);font-style:normal}
+main .old .from-home{max-width:var(--col);margin:34px auto 0;border-radius:12px}
+@media (max-width:752px){ main .old .gray-card,main .old .from-home{margin-left:16px;margin-right:16px} }
+/* one button: the ink pill */
+main .old .btn,main .old .from-home .btn,#pd-page .btn,#pd-page .btn-ghost,#pd-page .btn-sm{display:inline-block;
+  padding:12px 26px;border:0;border-radius:999px;background:var(--ink);color:#fff;font-family:var(--b-font);font-weight:800;
+  font-size:17px;line-height:1.3;letter-spacing:0;text-transform:none;text-decoration:none}
+#pd-page .btn:hover,#pd-page .btn-ghost:hover{background:#2a3038;border:0}
+main .old .btn{margin:6px 10px 6px 0}
+/* the Home Study Program copy: the same column */
+#pd-page .pd-hero{padding:24px 0}
+#pd-page .pd-hero .shell{grid-template-columns:1fr;gap:24px}
+#pd-page .pd-hero .phone{max-width:240px;margin:0}
+#pd-page .pd-hero p.lede{max-width:none}
+#pd-page .sec,#pd-page .sec-alt{padding:32px 0;background:transparent}
+#pd-page .sec-head{margin-bottom:20px}
+#pd-page .pd-nums{background:transparent}
+#pd-page .steps{grid-template-columns:1fr}
+#pd-page .ways{grid-template-columns:1fr;max-width:none;margin:0}
+#pd-page .beltcard,#pd-page .faq{max-width:none;margin:0}
+#pd-page .final{padding:32px 0}
+@media (min-width:761px){ #pd-page .shots{grid-template-columns:repeat(2,minmax(0,1fr))} }
 </style>
 </head>
 <body>
@@ -500,7 +608,7 @@ footer a{color:var(--muted)}
   </div>
   <div class="wrap">
     <div class="row">
-      <div class="col-img"><img src="/assets/images/w/f5a1733a58.webp" alt="Rick Tew portrait and high kick" width="415" height="406" loading="lazy" decoding="async"></div>
+      <div class="col-img"><img class="nat" src="/assets/images/w/f5a1733a58.webp" alt="Rick Tew portrait and high kick" width="415" height="406" loading="lazy" decoding="async"></div>
       <div>
         <h3>Hi, I'm Rick Tew</h3>
         <p class="italic">&ldquo;I can coach you on how to maximize your strengths so you can BE the best you possible, and get a Black Belt in what you DO!!</p>
@@ -515,7 +623,7 @@ footer a{color:var(--muted)}
   </div>
   <div class="wrap">
     <div class="row">
-      <div class="col-img"><img src="/assets/images/w/af52d2deab.webp" alt="Rick Tew climbing" width="580" height="326" loading="lazy" decoding="async"></div>
+      <div class="col-img"><img class="nat" src="/assets/images/w/af52d2deab.webp" alt="Rick Tew climbing" width="580" height="326" loading="lazy" decoding="async"></div>
       <div>
         <p class="italic">&ldquo;Hi, I&rsquo;m Rick Tew and even though my last name says otherwise, there is only one of me. But&hellip;I do have a split personality.</p>
         <p class="italic">In fact, it is my belief that we all have split personalities, and the combination of these traits is what makes us who we are as a whole.</p>
@@ -528,7 +636,7 @@ footer a{color:var(--muted)}
   </div>
   <div class="wrap">
     <h3 class="plain-head">Rick Tew is an educator on martial arts, BEing your best, finding fulfillment and how to DO the most with your life</h3>
-    <figure class="fig small"><img src="/assets/images/w/848643405f.webp" alt="Rick Tew high kick" width="184" height="407" loading="lazy" decoding="async"></figure>
+    <figure class="fig small"><img class="nat" src="/assets/images/w/848643405f.webp" alt="Rick Tew high kick" width="184" height="407" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>A Summary of Rick Tew</h2>
@@ -552,9 +660,9 @@ footer a{color:var(--muted)}
     </div>
   </div>
   <div class="wrap">
-    <figure class="fig"><img src="/assets/images/w/43a6f283e6.webp" alt="Student quote from Chris H.: I think the quality of the training at the price I paid is exceptional value. I think Sensei Rick Tew's knowledge, experience, passion and dedication to share it is admirable and inspiring." width="612" height="484" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/43a6f283e6.webp" alt="Student quote from Chris H.: I think the quality of the training at the price I paid is exceptional value. I think Sensei Rick Tew's knowledge, experience, passion and dedication to share it is admirable and inspiring." width="612" height="484" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">Who is Rick Tew?</p>
+      <p class="lead-bold lbl">Who is Rick Tew?</p>
       <p>As the creator of NinjaGym&reg; and author of WINJITSU, the Mental Martial Art, Rick Tew is the best person to help you kick-start your martial arts adventure. Rick has been teaching martial arts and speaking on personal growth globally for more than 2 decades.</p>
     </div>
   </div>
@@ -566,9 +674,9 @@ footer a{color:var(--muted)}
     </div>
   </div>
   <div class="wrap">
-    <figure class="fig"><img src="/assets/images/w/daebbbaa85.webp" alt="Student quote from Ronnie L.: I can vouch that Rick really does what he preaches, he walks the talk rather than talks the talk. He is very congruent in what he says and passionate as a result because he has actually lived it. He has a genuine energy about him, and that energy definitely comes from a place of contribution and creating value for others." width="608" height="608" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/daebbbaa85.webp" alt="Student quote from Ronnie L.: I can vouch that Rick really does what he preaches, he walks the talk rather than talks the talk. He is very congruent in what he says and passionate as a result because he has actually lived it. He has a genuine energy about him, and that energy definitely comes from a place of contribution and creating value for others." width="608" height="608" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">Martial Arts as a way of life</p>
+      <p class="lead-bold lbl">Martial Arts as a way of life</p>
       <p>He has created an entire martial art system to help students to follow a step-by-step course that also still allows the flexibility to be creative.</p>
       <p>Rick used the martial arts as a gateway for personal excellence and you will quickly discover that he has far more to teach than punches and kicks. His courses are for everyone who wants to integrate mind, body, and spirit to access his or her true potential.</p>
       <p>Rick Tew constantly updates his principles to stay on the sharper edge of personal growth helping students in these two core areas:</p>
@@ -588,9 +696,9 @@ footer a{color:var(--muted)}
     </div>
   </div>
   <div class="wrap">
-    <figure class="fig"><img src="/assets/images/w/0c06ca00b4.webp" alt="Student quote from Nate P.: Rick is totally dedicated to his students. He's all about giving them all the opportunities he can so they can live the lifestyle that he has. What you want, When you want, Where you want, Why you want, and with Whom you want." width="610" height="525" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/0c06ca00b4.webp" alt="Student quote from Nate P.: Rick is totally dedicated to his students. He's all about giving them all the opportunities he can so they can live the lifestyle that he has. What you want, When you want, Where you want, Why you want, and with Whom you want." width="610" height="525" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">A brief background and history</p>
+      <p class="lead-bold lbl">A brief background and history</p>
       <p>Rick Tew has been teaching and running Multi-Martial Art programs and Martial Art Training Camps for more than 25 years. Rick started officially teaching martial arts school at 16, started his first dojo at 19 and moved to Europe at 21 to develop his own system of martial arts, Rick Tew&rsquo;s Martial Science. But not only that&hellip;</p>
       <p>Rick Tew is a leader in this industry and other similar programs and camps you find on the Internet in his market, have simply copied and continue to copy his programs and teachings.</p>
       <p>Rick Tew teaches people from all walks of life to take advantage of his proven strategies for enhancing one&rsquo;s mind, body and spirit. In fact, these strategies were so effective, Rick wrote 5 books on the subject and created an entirely new system for life-enhancement called WinJitsu, the mental martial arts.</p>
@@ -609,9 +717,9 @@ footer a{color:var(--muted)}
     </div>
   </div>
   <div class="wrap">
-    <figure class="fig"><img src="/assets/images/w/ad17ec3774.webp" alt="Student quote from Sibel K.: The training is very professional, complex, creative and you always learn something new. Rick Tew is kind and helping. He knows exactly how far he can push his students. The atmosphere during training is nice, positive and always with a sense of humor." width="611" height="523" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/ad17ec3774.webp" alt="Student quote from Sibel K.: The training is very professional, complex, creative and you always learn something new. Rick Tew is kind and helping. He knows exactly how far he can push his students. The atmosphere during training is nice, positive and always with a sense of humor." width="611" height="523" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">What you should know</p>
+      <p class="lead-bold lbl">What you should know</p>
       <p>Here&rsquo;s something else you should know from Rick Tew&hellip;</p>
       <p>I&rsquo;m interested in working with people who are committed to success! So if you&rsquo;re serious about living a life that you are in charge of, then I want to work with you.</p>
       <p>And that&rsquo;s why I&rsquo;ve decided to put a very reasonable price on this program for those interested in martial arts, fitness or just a major life change.&rdquo;</p>
@@ -625,9 +733,9 @@ footer a{color:var(--muted)}
     </div>
   </div>
   <div class="wrap">
-    <figure class="fig"><img src="/assets/images/w/c8691d5f44.webp" alt="Student quote from Kevin K.: I've personally witnessed how he has used his talents in the Martial Arts to not just define his life, but to enrich it and those around him. Mr. Tew has created personal development courses based off his unique experiences and most importantly, these courses are able to be modified to the individual." width="611" height="563" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/c8691d5f44.webp" alt="Student quote from Kevin K.: I've personally witnessed how he has used his talents in the Martial Arts to not just define his life, but to enrich it and those around him. Mr. Tew has created personal development courses based off his unique experiences and most importantly, these courses are able to be modified to the individual." width="611" height="563" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">Rick's commitment to you</p>
+      <p class="lead-bold lbl">Rick's commitment to you</p>
       <p>Through the College of Martial Science and all of my programs, I am motivated to help students improve their level of happiness, freedom, and adventure.</p>
       <p>I look forward to sharing with you the adventures and joys of a lifetime and welcome you to the organization dedicated to giving you the best!</p>
     </div>
@@ -640,7 +748,7 @@ footer a{color:var(--muted)}
     </div>
   </div>
   <div class="wrap">
-    <figure class="fig"><img src="/assets/images/w/7861663c30.webp" alt="Student quote from Jamien O.: He is very intelligent, very funny, very cool, and very disciplined. This rare combination of attributes makes Rick a dynamo of a person and teacher." width="612" height="443" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/7861663c30.webp" alt="Student quote from Jamien O.: He is very intelligent, very funny, very cool, and very disciplined. This rare combination of attributes makes Rick a dynamo of a person and teacher." width="612" height="443" loading="lazy" decoding="async"></figure>
   </div>
   <div class="gray-card">
     <div class="wrap">
@@ -657,7 +765,7 @@ footer a{color:var(--muted)}
   </div>
   <div class="wrap">
     <h3 class="plain-head">&ldquo;By sharing my unique style of Martial Arts and giving motivational edutainment lectures, I have been able to travel the world, meet amazing people, and do what I love, each and every day. I want to teach you how to do the same.&rdquo;</h3>
-    <figure class="fig"><img src="/assets/images/w/58e661ba3b.webp" alt="Student quote from Seth T.: Rick Tew is the most dynamic teacher and person that I have had the pleasure to train with and learn from. Years later and I am still amazed how his lessons still enrich my life." width="609" height="442" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/58e661ba3b.webp" alt="Student quote from Seth T.: Rick Tew is the most dynamic teacher and person that I have had the pleasure to train with and learn from. Years later and I am still amazed how his lessons still enrich my life." width="609" height="442" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>Public Speaker, Personal Coach, Master Instructor</h2>
@@ -758,7 +866,7 @@ footer a{color:var(--muted)}
     <h3 class="plain-head">It Is In The Doing</h3>
     <div class="prose">
       <p>Rick Tew has been following the above Motto his whole life. While others talk, he tries to walk. This walk began when he was a boy and ran away from home in Indiana to be in California. It worked and a new journey began. As an early teen, he was introduced to the Boy Scouts and this is what started his love for organized trips to the outdoors and a systematized approach for goal setting. For anyone that has been on the path of a Scout, they might remember the scout handbook, the skill awards and the merit badges.</p>
-      <p class="lead-bold">IT STARTED WHEN I WAS A BOY SCOUT</p>
+      <p class="lead-bold lbl">IT STARTED WHEN I WAS A BOY SCOUT</p>
       <p class="italic">&ldquo;I still remember working with my Dad to complete the required number of sit-ups to earn another award for my belt. This is also what inspired me to be a good swimmer, hiker, camper and led me into learning about group activities and leadership skills. All of which I continue to implement to this day.&rdquo;</p>
       <p>-Rick Tew</p>
     </div>
@@ -816,7 +924,7 @@ footer a{color:var(--muted)}
       <p>Along the way, Rick has started various business ventures and explored a plethora of life-hacking strategies. All of which are taught to Students and shared for an improved life. He created martialartsupply.com from the ground up to a lucrative business which many people copied. After accomplishing his dream in the States, he set new goals for running a program in Asia and decided on Thailand.</p>
       <p>One of the quotes he feels is important to learn is:</p>
     </div>
-    <h3 class="plain-head" style="font-style:italic">&ldquo;Just because you have a job doesn&rsquo;t mean you have a life!&rdquo;</h3>
+    <h3 class="plain-head">&ldquo;Just because you have a job doesn&rsquo;t mean you have a life!&rdquo;</h3>
     <figure class="fig"><img src="/assets/images/w/bf64c63eda.webp" alt="Rick Tew adventure" width="1200" height="849" loading="lazy" decoding="async"></figure>
     <div class="imgrow">
       <img src="/assets/images/w/6a62bb7c89.webp" alt="Books and magazine features" width="1200" height="849" loading="lazy" decoding="async">
@@ -855,7 +963,7 @@ footer a{color:var(--muted)}
       <img src="/assets/images/w/2038262013.webp" alt="Magazine spread" width="1200" height="674" loading="lazy" decoding="async">
     </div>
     <div class="prose">
-      <p class="lead-bold">A NOTE FROM RICK</p>
+      <p class="lead-bold lbl">A NOTE FROM RICK</p>
       <p class="italic">&ldquo;When I was a teenager I developed an interest in the martial arts. I was also interested in traveling, the outdoors and adventure (new experiences). Although being a &ldquo;typical&rdquo; martial arts instructor, running a dojo was exciting, it was only part of my dream.</p>
       <p class="italic">As I grew older and started to take students training at the beach, in the mountains and on every type of terrain from the grass to the mud. I also took students with me to rock climb, camp and to unique locations out of the city. I began to realize I wasn&rsquo;t the only one who enjoyed a complete mind, body and spirit training concept. I have since been doing this for more than 25 years and have created a system that is not just a martial art, it truly is a way of life.</p>
       <p class="italic">This is what led me to take my experience as a martial artist and combine them into a system that included what makes life exciting and how to live a dream. I decided not to just have a martial arts style, but instead, to have a lifestyle. And now I teach others how to do the same.</p>
@@ -989,12 +1097,12 @@ footer a{color:var(--muted)}
   </div>
   <div class="wrap">
     <div class="prose">
-      <p class="lead-bold">Martial Arts as Therapy</p>
+      <p class="lead-bold lbl">Martial Arts as Therapy</p>
       <p>Martial arts as therapy means using the training to work on what is going on inside you: fear, pain, confidence, aggression.</p>
       <p>There is a lot more to the martial arts than wanting to punch someone in the face or roll around in a cage.  The traditional values and tenets that the martial arts offers is still available for those that want to get beyond the ego based competition.</p>
       <p>When making choices on where you want to invest your time or money, you can consider the real benefits offered by either buying more stuff or joining a group of like-minded individuals focused on improving one's self worth.</p>
       <p>Social psychologists agree that buying more stuff just doesn&rsquo;t make you happier. Time Magazine stated, <em>&ldquo;Buying more stuff actually makes you miserable.&rdquo;</em> So let&rsquo;s kick-2-start that happiness meter by engaging in worthwhile activities that challenge you.</p>
-      <p>Rick is focused on Tew core areas of focus that every person should work hard to obtain.  They are <strong>fulfillment</strong> in their life and how to take action and <strong>execute</strong> towards their dreams. These are not easy to achieve.  Most people loathe their jobs and few understand the power that lies within being in an industry that you love.</p>
+      <p>Rick is focused on Tew core areas of focus that every person should work hard to obtain.  They are <strong class="flat">fulfillment</strong> in their life and how to take action and <strong class="flat">execute</strong> towards their dreams. These are not easy to achieve.  Most people loathe their jobs and few understand the power that lies within being in an industry that you love.</p>
       <p>There is much more to life than money and just because you have a job or a career, it does not mean that you have a life.</p>
       <p>The Multi-Martial Art system and training that we offer includes focus on Mind, Body and Spirit equally.  We cover all areas of the martial arts so the participant is never bored and they have many options to choose from the plethora of offerings available through a good martial arts program.</p>
       <p><a class="btn" href="https://martialartcamp.com/ninja" target="_blank" rel="noopener">Join Now</a></p>
@@ -1028,7 +1136,7 @@ footer a{color:var(--muted)}
   </div>
   <div class="wrap">
     <div class="row">
-      <div class="col-img"><img src="/assets/images/w/281dd403f1.webp" alt="Rick Tew Martial Arts Therapy logo" width="956" height="912" loading="lazy" decoding="async"></div>
+      <div class="col-img"><img class="logo" src="/assets/images/w/281dd403f1.webp" alt="Rick Tew Martial Arts Therapy logo" width="956" height="912" loading="lazy" decoding="async"></div>
       <div>
         <p>Martial Arts practice goes way beyond the obvious physical aspects and include self-defense, health and fitness, character training, mind expansion and spiritual development. Traditional martial arts promote mental as well as physical health and also embody a system of moral values (e.g. respect property, be faithful and sincere, exert oneself in the perfection of character), which together can inculcate physical and mental relaxation, control of mind and body, and increases in self-confidence.</p>
         <p>Evidence of the effectiveness of martial arts in producing effective, cognitive and behavioral benefits has come from a number of studies. Improvements in self-esteem (Fuller, 1988), a more positive response to physical challenge (Richard and Rehberg, 1986; Trulson, 1986), greater autonomy (Duthie, 1978), emotional stability and assertiveness (Konzak and Boudreau, 1984) and reductions in anxiety and depression (Cai, 2000), have all been associated with martial arts training. Konzak and Boudreau (1984) have also drawn attention to the social benefits of such behavioral change, in particular the relationship between martial arts practice and aggression.</p>
@@ -1061,7 +1169,7 @@ footer a{color:var(--muted)}
     <div class="row">
       <div class="col-img"><img src="/assets/images/w/2b6674532c.webp" alt="WinJitsu book series by Rick Tew" width="956" height="1024" loading="lazy" decoding="async"></div>
       <div>
-        <p class="lead-bold">BE A BLACK BELT IN WHAT YOU DO BOOKS</p>
+        <p class="lead-bold lbl">BE A BLACK BELT IN WHAT YOU DO BOOKS</p>
         <p>Through this book series, WinJitsu Books 1-5, I am going to teach you how to maximize the power within yourself, and with practical, proven, success principles, how to reach your full potential and get a Black Belt in what you do.</p>
         <p class="italic">I call this mental martial art and system for success, &ldquo;WinJitsu.&rdquo; What is WinJitsu?</p>
         <p class="italic">In the physical martial arts, you learn self-defense to help prepare you for a situation that might be required for survival. It is a basic human need to feel protected. But in today&rsquo;s world, our challenges are more mental than physical, and you are indeed often your own worst enemy. Today, your mental skills will take you a lot further than your physical skills. And this is the philosophy that I am going to share in this books. -Rick Tew</p>
@@ -1120,7 +1228,7 @@ footer a{color:var(--muted)}
     <h2>About Rick Tew's Martial Arts</h2>
   </div>
   <div class="wrap">
-    <figure class="fig small"><img src="/assets/images/w/b06e8968d5.webp" alt="Rick Tew's Martial Science logo: mind, body and spirit" width="436" height="436" loading="lazy" decoding="async"></figure>
+    <figure class="fig small"><img class="logo" src="/assets/images/w/b06e8968d5.webp" alt="Rick Tew's Martial Science logo: mind, body and spirit" width="436" height="436" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>RTMS the System</h2>
@@ -1129,7 +1237,7 @@ footer a{color:var(--muted)}
     <div class="prose">
       <p>Rick Tew&rsquo;s Martial Art System is not simply a sport or style of martial arts. It is a Martial Science and a way of life. Its strength is based on the student having an open mind. Students, train in many different areas, techniques, and fields under the guidance of mind, body, and spirit.</p>
       <p>The training you will endure is a vehicle to achieving an improved life. The RTMS way of life will always be with you in training or in spirit. We look forward to sharing with you the adventures and joys of a lifetime and welcome you to the organization dedicated to giving you the best. self-worth. Our motives are drawn from our desires for happiness, freedom, and adventure.</p>
-      <p class="lead-bold">Ask How You Can Kick-Start Now</p>
+      <p class="lead-bold lbl">Ask How You Can Kick-Start Now</p>
       <p>Sensei Rick Tew is accepting a limited few that would like to train side-by-side with the Master Instructor and help others get the best martial art camp adventure and experience of their lives.</p>
       <p><a class="btn" href="https://martialartcamp.com/ninja" target="_blank" rel="noopener">See the Ninja Course</a></p>
       <p>At the foundation of every program is a martial art system created by Rick Tew. The martial arts is still the core part of all our programs, however, we realize that people have different goals, needs and wants. So we have a unique program that specifically targets these certain individuals while providing the right level of martial arts and fitness.</p>
@@ -1138,7 +1246,7 @@ footer a{color:var(--muted)}
       <p>Rick Tew&rsquo;s Martial Science (RTMS) is not just another Martial Art. RTMS is geared towards the enhancement of Mind, Body and Spirit and it is a Lifestyle. We focus on developing a strong character, self-esteem, life enhancing goals, self-confidence, self-discipline, physical conditioning and building knowledge through the martial arts experience.</p>
       <p>The Martial Science is an open-minded multi-martial art system that encompasses almost every aspect of the martial arts, with fun entertaining techniques and realistic self-defense tactics to make it a well-rounded program for beginners and advanced Students alike.</p>
     </div>
-    <figure class="fig"><img src="/assets/images/w/2f1261c285.webp" alt="Student quote from Chris H.: What I respect is the way that the system taught builds and expands as I explored new techniques and refined the fundamentals I'd already learned. From fitness to self defense to strength, conditioning, mobility as well as personal development." width="611" height="525" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/2f1261c285.webp" alt="Student quote from Chris H.: What I respect is the way that the system taught builds and expands as I explored new techniques and refined the fundamentals I'd already learned. From fitness to self defense to strength, conditioning, mobility as well as personal development." width="611" height="525" loading="lazy" decoding="async"></figure>
     <h3 class="plain-head">Rick Tew&rsquo;s Martial Science (RTMS) combines Modern Ninjitsu and Mixed Martial Arts for a complete martial art system</h3>
   </div>
   <div class="band">
@@ -1148,22 +1256,22 @@ footer a{color:var(--muted)}
     <div class="prose">
       <p>One of Rick&rsquo;s signature statements that he likes to use as a follow up to any action is, &ldquo;Like a Ninja.&rdquo; If you are going to stand, then stand like a Ninja. Want to fight? Then, fight like a Ninja. One of the ways we do this best is through the following three part process to our program that includes; awesome martial arts training, outdoor adventure, and amazing people. If you are going to train, adventure or spend time with others, then do it Like a Ninja. Below are the 5 key areas of training that CMS offers so you can train Like a Ninja.</p>
     </div>
-    <figure class="fig"><img src="/assets/images/w/3686dc4b13.webp" alt="Student quote from Nate P.: I can dive over chairs, flip in the air, climb high, dodge a knife, punch, kick and even do the splits. I've learned to relax, be happy, enjoy nature, and not worry about being afraid." width="610" height="439" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/3686dc4b13.webp" alt="Student quote from Nate P.: I can dive over chairs, flip in the air, climb high, dodge a knife, punch, kick and even do the splits. I've learned to relax, be happy, enjoy nature, and not worry about being afraid." width="610" height="439" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>What you get with our 5X Training</h2>
   </div>
   <div class="wrap">
     <div class="prose">
-      <p class="lead-bold">1 Success Skills</p>
+      <p class="lead-bold lbl">1 Success Skills</p>
       <p>We teach Martial Arts as Therapy and lifelong &ldquo;strategies for success&rdquo; through a unique coaching system called WINJITSU. It combines the mind and the martial arts from more than 20 years of experience to help you BE a Ninja in what you DO. Rick Tew wrote 5 books to help students with this education.</p>
-      <p class="lead-bold">2 Physical Skills</p>
+      <p class="lead-bold lbl">2 Physical Skills</p>
       <p>We use the latest concepts in fitness to provide fun yet effective exercise routines that develop the 5 key areas of physical health. They are, Strength, Agility, Flexibility, Endurance and Cardio. Mainly, we do shorter workouts like HIIT for ultimate results and Rick Tew teaches a Ninja Yoga class for longer sessions.</p>
-      <p class="lead-bold">3 Adventure Skills</p>
+      <p class="lead-bold lbl">3 Adventure Skills</p>
       <p>Most of our training is outside in beautiful parks. We also take road trips for optional adventures like hiking, climbing and camping. We organize our travel and training tours with the focus of making life a BLAST, which is an actual training system for feeling great in the now.</p>
-      <p class="lead-bold">4 Self-Defense Skills</p>
+      <p class="lead-bold lbl">4 Self-Defense Skills</p>
       <p>Our self-defense system is for women and men equally. It is called PSC or the Personal Security Course. You will learn realistic strategies designed around your own skills and abilities. Regardless of who you are, where you work, or where you live, the possibility of needing self-defense skills are equal for everyone.</p>
-      <p class="lead-bold">5 Martial Arts Skills</p>
+      <p class="lead-bold lbl">5 Martial Arts Skills</p>
       <p>Our focus is on teaching a very well-rounded martial art system. We call it Ninja-MMA, but it is Rick Tew&rsquo;s Martial Science system. It is a complete program with 5 levels and ranks. The book with the entire training list for each ranking level and what is required for those that want certification is <a href="https://martialartcamp.com/ninja#system" target="_blank" rel="noopener">free to read on the course page</a>, and is being remade into the Pocket Dojo app.</p>
     </div>
   </div>
@@ -1183,13 +1291,13 @@ footer a{color:var(--muted)}
         <div class="name">Josiah L., Chattanooga, Tennessee, USA</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/e671bd48db.webp" alt="Student quote from Kevin O.: What I like the most is the variety of the system, which involves everyday life training with how to be healthy in mind, body, spirit and nutrition." width="608" height="443" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/e671bd48db.webp" alt="Student quote from Kevin O.: What I like the most is the variety of the system, which involves everyday life training with how to be healthy in mind, body, spirit and nutrition." width="608" height="443" loading="lazy" decoding="async"></figure>
     <h3 class="plain-head">Training in Rick Tew&rsquo;s Martial Science provides every Student the opportunity to learn almost everything the martial arts has to offer.</h3>
-    <figure class="fig"><img src="/assets/images/w/baf3d4d9e0.webp" alt="Rick Tew's Martial Science logo" width="1024" height="769" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="logo" src="/assets/images/w/baf3d4d9e0.webp" alt="Rick Tew's Martial Science logo" width="1024" height="769" loading="lazy" decoding="async"></figure>
     <h3 class="plain-head">What is RTMS?</h3>
     <div class="prose">
       <p><strong>Rick Tew&rsquo;s Martial Science</strong> (RTMS) is not just another Martial Art. RTMS is geared towards the enhancement of Mind, Body and Spirit and it is a Life-Style. We focus on developing a strong character, self-esteem, life enhancing goals, self-confidence, self-discipline, physical conditioning and building knowledge through the martial arts experience.</p>
-      <p class="lead-bold">A Multi-Martial Arts</p>
+      <p class="lead-bold lbl">A Multi-Martial Arts</p>
       <p>Rick Tew&rsquo;s Martial Science is a combination of effective, usable, realistic martial arts principles that make it into its elite system. It is a Modern Ninjitsu system. Because students are not expected to conform to an art, they can use a scientific approach to being their best. A typical martial art can be limited to its tradition, yet RTMS is focused more on the student rather than its master. It is ever changing and it is not limited to the approach of having any labels, set kata&rsquo;s or &ldquo;do as I do&rdquo; training. The student is in charge of his/her training and Self-Powered.</p>
     </div>
     <div class="gray-card">
@@ -1199,9 +1307,9 @@ footer a{color:var(--muted)}
         <div class="name">Mark W. Portsmouth, England</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/7b850ca874.webp" alt="Student quote from Rick N.: In my eyes, RTMS is probably one of the only fully rounded systems in the entire world. It doesn't focus on just one area of things. We'll train in grappling, kicks, strikes, weapons, etc. And then blend them together to have us ready for whatever might happen in real world scenarios." width="613" height="565" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/7b850ca874.webp" alt="Student quote from Rick N.: In my eyes, RTMS is probably one of the only fully rounded systems in the entire world. It doesn't focus on just one area of things. We'll train in grappling, kicks, strikes, weapons, etc. And then blend them together to have us ready for whatever might happen in real world scenarios." width="613" height="565" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">Why should I join?</p>
+      <p class="lead-bold lbl">Why should I join?</p>
       <p>9 out of 10 participants want to join our program for training in the Martial Arts or Modern American Ninjitsu. Since this is a priority for our Students, it is important that we work hard to meet these expectations. We do this by teaching all areas of the martial arts. This includes a multi-martial arts training and concepts that are:</p>
       <ul>
         <li>Realistic for use</li>
@@ -1217,9 +1325,9 @@ footer a{color:var(--muted)}
         <div class="name">Kris B., Newfoundland, Canada</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/edb40df4da.webp" alt="Student quote from Nate P.: Rick Tew's Martial Science covers all aspects about what being a warrior is about. The stuff you only dream about and never think possible for one person to do. Climb mountains, kick butt, use weapons, run a business, and be the best at whatever you do." width="609" height="527" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/edb40df4da.webp" alt="Student quote from Nate P.: Rick Tew's Martial Science covers all aspects about what being a warrior is about. The stuff you only dream about and never think possible for one person to do. Climb mountains, kick butt, use weapons, run a business, and be the best at whatever you do." width="609" height="527" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">What do I learn?</p>
+      <p class="lead-bold lbl">What do I learn?</p>
       <p>The foundation of Rick Tew&rsquo;s Martial Science includes a wide range of techniques that is both practical and effective. There are 5 Ranking Levels to Instructor status. Each level includes two skills from the following 9 areas of focus:</p>
       <ul>
         <li>Stances</li>
@@ -1242,7 +1350,7 @@ footer a{color:var(--muted)}
         <div class="name">Craig H., Australia</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/f576ab6ce4.webp" alt="Student quote from Carlos P.: Other MA schools only teach a fighting system like a competition and non-realistic self-defense techniques; in RTMS you learn real combat training applied like full contact sparring and situations for real self-defense. Not to mention weaponry, outdoor training, rock climbing and more." width="613" height="566" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/f576ab6ce4.webp" alt="Student quote from Carlos P.: Other MA schools only teach a fighting system like a competition and non-realistic self-defense techniques; in RTMS you learn real combat training applied like full contact sparring and situations for real self-defense. Not to mention weaponry, outdoor training, rock climbing and more." width="613" height="566" loading="lazy" decoding="async"></figure>
     <div class="prose">
       <p>Rick Tew&rsquo;s Martial Science is a combination of effective, usable, realistic martial arts principles that make it into its elite system. It is a Modern Ninjitsu system.</p>
       <p>Because students are not expected to conform to an art, they can use a scientific approach to being their best. A typical martial art can be limited to its tradition, yet RTMS is focused more on the student rather than its master. It is ever changing and it is not limited to the approach of having any labels, set kata&rsquo;s or &ldquo;do as I do&rdquo; training.</p>
@@ -1276,9 +1384,9 @@ footer a{color:var(--muted)}
         <div class="name">-Jeff Thom</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/29a68cd4ef.webp" alt="Student quote from Cedric C.: Well it's kind of like MMA only more, since you do not focus only on One on One ring fighting. You will have multiple attacker situations, weapons, involved in the outdoors (dirt, concrete, improvised weapons, etc). The system has a huge amount of variety, rolls and falls, stand up fighting, ground fighting, stealth, weapons, survival, and all the mental aspects." width="579" height="646" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/29a68cd4ef.webp" alt="Student quote from Cedric C.: Well it's kind of like MMA only more, since you do not focus only on One on One ring fighting. You will have multiple attacker situations, weapons, involved in the outdoors (dirt, concrete, improvised weapons, etc). The system has a huge amount of variety, rolls and falls, stand up fighting, ground fighting, stealth, weapons, survival, and all the mental aspects." width="579" height="646" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">Why do we say, "Ninja-MMA"?</p>
+      <p class="lead-bold lbl">Why do we say, "Ninja-MMA"?</p>
       <p>It represents our hardcore martial arts training program for students that want to learn everything there is in Rick Tew&rsquo;s Modern American Ninjitsu while having the option to also train in full-contact sparring and grappling.</p>
       <p>This is for people that like to get dirty, play rough and can handle rolling around in the grass or throwing each other in the ocean.</p>
       <p>This Ninja-MMA concept is for students that want to invest time each day into learning multiple martial art skills (strikes, kicks, weapons, self-defense, stances, rolls, falls, etc), and have the option to practice and train in grappling and full-contact sparring (commonly known as MMA, mixed martial arts).</p>
@@ -1292,7 +1400,7 @@ footer a{color:var(--muted)}
         <div class="name">Richard N., Galveston, Texas, USA</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/af41ba7f16.webp" alt="Student quote from Craig H.: Rick's system changes every day. This is because it teaches movement, i.e. how to move, rather than a small set of moves. Teaching how to move keeps your mind open thus allowing you to take up new ideas. It is not at all boring as drills are constantly changing and training locations change." width="612" height="564" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/af41ba7f16.webp" alt="Student quote from Craig H.: Rick's system changes every day. This is because it teaches movement, i.e. how to move, rather than a small set of moves. Teaching how to move keeps your mind open thus allowing you to take up new ideas. It is not at all boring as drills are constantly changing and training locations change." width="612" height="564" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>Rick Tew's PSC, Personal Security Course</h2>
@@ -1301,7 +1409,7 @@ footer a{color:var(--muted)}
     <h3 class="plain-head">Self-Defense Tailored to You</h3>
     <div class="imgrow">
       <img src="/assets/images/w/84bb7ba588.webp" alt="Training photos: students in blue and black uniforms drilling indoors and outdoors, and a group photo" width="1024" height="536" loading="lazy" decoding="async">
-      <img src="/assets/images/w/0a93ad2b32.webp" alt="PSC training" width="310" height="233" loading="lazy" decoding="async">
+      <img class="nat" src="/assets/images/w/0a93ad2b32.webp" alt="PSC training" width="310" height="233" loading="lazy" decoding="async">
     </div>
     <h3 class="plain-head">Realistic training</h3>
     <div class="prose">
@@ -1310,11 +1418,11 @@ footer a{color:var(--muted)}
     </div>
     <h3 class="plain-head">Personal Security Course Details</h3>
     <div class="imgrow">
-      <img src="/assets/images/w/848d86fb4e.webp" alt="Master Rick Tew's PSC Tactic logo, Personal Security Course: mind and body" width="310" height="310" loading="lazy" decoding="async">
+      <img class="logo" src="/assets/images/w/848d86fb4e.webp" alt="Master Rick Tew's PSC Tactic logo, Personal Security Course: mind and body" width="310" height="310" loading="lazy" decoding="async">
     </div>
     <h3 class="plain-head">What makes up PSC?</h3>
     <div class="prose">
-      <p>PSC is focused on <strong>mind</strong>, <strong>body</strong>, <strong>technique</strong> and in that order.</p>
+      <p>PSC is focused on <strong class="flat">mind</strong>, <strong class="flat">body</strong>, <strong class="flat">technique</strong> and in that order.</p>
       <p>It is important to first learn theory and basic principles of psychology first.</p>
       <p>After an understanding of self-defense, you will learn physical skills that can make the difference between life or death.</p>
       <p>Finally, we focus on self-defense techniques and scenarios so you can develop reactions and learn to control your fear.</p>
@@ -1326,14 +1434,14 @@ footer a{color:var(--muted)}
         <div class="name">Joost V., Holland</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/5a2aa2e1a9.webp" alt="Student quote from Chris H.: There is a well thought out system that focuses on basic and foundational movements, stances, strikes and such that allows for an increasing level of skill and complexity to be explored." width="611" height="479" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/5a2aa2e1a9.webp" alt="Student quote from Chris H.: There is a well thought out system that focuses on basic and foundational movements, stances, strikes and such that allows for an increasing level of skill and complexity to be explored." width="611" height="479" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">How can I train in PSC?</p>
+      <p class="lead-bold lbl">How can I train in PSC?</p>
       <p>This training is integrated into all our in-depth martial art training programs and martial science training. So students on any of our courses will be getting training is PSC.</p>
       <p>This program teaches realistic routines to follow for practicing true self-defense. If you are interested ONLY in the PSC program and do not want to follow the other programs and routines, you will need to contact us for a custom program.</p>
       <p>Please note that if you list this as one of your goals for any of our programs, we will do our best to ensure that you learn PSC while attending one of our specialized programs.</p>
     </div>
-    <figure class="fig"><img src="/assets/images/w/7c882cbef5.webp" alt="Student quote from Danian T.: I have been taught knife techniques from martial artists all over the world and none seem more real than what Rick Tew has shared with me. Be careful who teaches you self-defense." width="612" height="486" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/7c882cbef5.webp" alt="Student quote from Danian T.: I have been taught knife techniques from martial artists all over the world and none seem more real than what Rick Tew has shared with me. Be careful who teaches you self-defense." width="612" height="486" loading="lazy" decoding="async"></figure>
     <div class="gray-card">
       <div class="wrap">
         <div class="title">The Martial Science is effective</div>
@@ -1341,7 +1449,7 @@ footer a{color:var(--muted)}
         <div class="name">Jabez P., Acton, Maine, USA</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/90e73c06c5.webp" alt="Student quote from Gabriela Z.: Variety of the training: several self-defense techniques for real situations, sparring, grappling, weapons, stretching, etc. Specially appreciated, we could also choose areas we wanted to learn and practice." width="614" height="484" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/90e73c06c5.webp" alt="Student quote from Gabriela Z.: Variety of the training: several self-defense techniques for real situations, sparring, grappling, weapons, stretching, etc. Specially appreciated, we could also choose areas we wanted to learn and practice." width="614" height="484" loading="lazy" decoding="async"></figure>
     <div class="gray-card">
       <div class="wrap">
         <div class="title">Learn real combat skills</div>
@@ -1350,9 +1458,9 @@ footer a{color:var(--muted)}
       </div>
     </div>
     <div class="imgrow">
-      <img src="/assets/images/w/d1a5f84f29.webp" alt="Student quote from Kris B.: The uniqueness stands in its diversity and application to go outside of boxes and boundaries. It’s a martial art system with a “custom feature” wherein you may create your own sense of what it is for you." width="613" height="484" loading="lazy" decoding="async">
-      <img src="/assets/images/w/e625fbd76d.webp" alt="Student quote from Joost V.: It's emphasis on a realistic self defense. If it works use it. No useless forms, just how do I defend myself or others. No competition with other Martial arts or styles, if this technique from that art works for you then encompasses it in your style." width="607" height="524" loading="lazy" decoding="async">
-      <img src="/assets/images/w/92c0496b2e.webp" alt="Student quote from Jabez P.: I never experienced martial arts prior to CMS, but being a member of CMS has exposed me to several styles which I don't believe measure up to martial science as far as effectiveness goes. Martial science is very realistic and can turn anybody into a survivalist of every day life." width="610" height="566" loading="lazy" decoding="async">
+      <img class="nat" src="/assets/images/w/d1a5f84f29.webp" alt="Student quote from Kris B.: The uniqueness stands in its diversity and application to go outside of boxes and boundaries. It’s a martial art system with a “custom feature” wherein you may create your own sense of what it is for you." width="613" height="484" loading="lazy" decoding="async">
+      <img class="nat" src="/assets/images/w/e625fbd76d.webp" alt="Student quote from Joost V.: It's emphasis on a realistic self defense. If it works use it. No useless forms, just how do I defend myself or others. No competition with other Martial arts or styles, if this technique from that art works for you then encompasses it in your style." width="607" height="524" loading="lazy" decoding="async">
+      <img class="nat" src="/assets/images/w/92c0496b2e.webp" alt="Student quote from Jabez P.: I never experienced martial arts prior to CMS, but being a member of CMS has exposed me to several styles which I don't believe measure up to martial science as far as effectiveness goes. Martial science is very realistic and can turn anybody into a survivalist of every day life." width="610" height="566" loading="lazy" decoding="async">
     </div>
   </div>
   <div class="band">
@@ -1382,7 +1490,7 @@ footer a{color:var(--muted)}
       <p>Typically, we would do pure bodyweight exercises like Ninja Burpees, crunches, lunges, squats, and push-ups or incorporate tools like a punching bag, kettlebells, exercise balls and gymnastic rings.</p>
       <p>Recent studies have proven that you do not need hours in the gym to achieve the same benefits. Science shows that you can reach your fitness goals with only a few key minutes a few times a day if you perform that training at a high intensity. Believe it or not, you can even achieve impressive results with only a 10-minute workout every couple of days. This is possible with interval and intermittent training.</p>
     </div>
-    <figure class="fig medium"><img src="/assets/images/w/0ecd5bf160.webp" alt="Ninja symbol" width="277" height="358" loading="lazy" decoding="async"></figure>
+    <figure class="fig medium"><img class="nat" src="/assets/images/w/0ecd5bf160.webp" alt="Ninja symbol" width="277" height="358" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>We follow the symbol of the Ninja to represent being patient and to endure.</h2>
@@ -1396,14 +1504,14 @@ footer a{color:var(--muted)}
         <div class="name">Mark W., Portsmouth, England</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/312ad832cd.webp" alt="Student quote from Joost V.: If you work hard you can make your body do amazing things. E.g. I never jumped higher, kicked higher, did a full flip, before I joined in the martial science training." width="613" height="444" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/312ad832cd.webp" alt="Student quote from Joost V.: If you work hard you can make your body do amazing things. E.g. I never jumped higher, kicked higher, did a full flip, before I joined in the martial science training." width="613" height="444" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>Why Bodyweight Training?</h2>
   </div>
   <div class="wrap">
     <div class="prose">
-      <p class="lead-bold">What we do with Martial Art Fitness</p>
+      <p class="lead-bold lbl">What we do with Martial Art Fitness</p>
       <p>Most people want to get in shape fast, learn a new skill or improve their overall health and at the same time, many people feel like they don&rsquo;t have the time to exercise or work on self-improvement.</p>
       <p>Our programs allow people with real challenges a chance to escape the 9-5 environment and get away in order to eliminate some weaknesses and improve on some strengths. We also can help you with developing a routine so when you do go back home, you can still reap the rewards of consistent and never-ending improvement.</p>
     </div>
@@ -1414,9 +1522,9 @@ footer a{color:var(--muted)}
         <div class="name">Ortwin C., Holland / Netherlands</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/0402abc26c.webp" alt="Student quote from Chris H.: This experience has changed my life in a way that I now train three times a week, am more comfortable in crowds and look better naked, oh yeah! I will be back for more... oh yes..." width="613" height="442" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/0402abc26c.webp" alt="Student quote from Chris H.: This experience has changed my life in a way that I now train three times a week, am more comfortable in crowds and look better naked, oh yeah! I will be back for more... oh yes..." width="613" height="442" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">What do we do?</p>
+      <p class="lead-bold lbl">What do we do?</p>
       <p>The Bodyweight and Fitness Training concepts focus on 5 key areas of development:</p>
       <ul>
         <li>Strength</li>
@@ -1440,7 +1548,7 @@ footer a{color:var(--muted)}
       </div>
     </div>
     <div class="prose">
-      <p class="lead-bold">Benefits of Martial Arts fitness</p>
+      <p class="lead-bold lbl">Benefits of Martial Arts fitness</p>
       <p>A few of the benefits from daily martial arts:</p>
       <ul>
         <li>Feel better each day overall</li>
@@ -1452,7 +1560,7 @@ footer a{color:var(--muted)}
         <li>Drop the fat fast</li>
       </ul>
     </div>
-    <figure class="fig"><img src="/assets/images/w/95e8f81b83.webp" alt="NinjaGym logo" width="320" height="180" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="logo" src="/assets/images/w/95e8f81b83.webp" alt="NinjaGym logo" width="320" height="180" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>We love obstacle courses</h2>
@@ -1493,9 +1601,9 @@ footer a{color:var(--muted)}
         <div class="name">Richard N., Galveston, Texas, USA</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/06534e40a1.webp" alt="Student quote from Kris B.: Physically, I have learned more than I can put into this response. I suppose to sum it up. I can do things with my body that I never knew I could do. I have surprised and surpassed my own expectations many times over. The best part is that the learning never stops and there is always a new level reach and to kick your butt and make you want more." width="611" height="607" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/06534e40a1.webp" alt="Student quote from Kris B.: Physically, I have learned more than I can put into this response. I suppose to sum it up. I can do things with my body that I never knew I could do. I have surprised and surpassed my own expectations many times over. The best part is that the learning never stops and there is always a new level reach and to kick your butt and make you want more." width="611" height="607" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">Bodyweight training through martial arts</p>
+      <p class="lead-bold lbl">Bodyweight training through martial arts</p>
       <p>We use bodyweight training for all of our programs as the foundation for fitness and health.</p>
       <p>Our martial arts uses the body weight and combined with our multi-martial art system, you have a lot of variety. You have a great way to stay limber, quick, and in shape while improving overall conditioning.</p>
       <p>It is our belief that a good martial arts program is the absolute best way to be fit and stay healthy.</p>
@@ -1508,7 +1616,7 @@ footer a{color:var(--muted)}
       </div>
     </div>
     <div class="prose">
-      <p class="lead-bold">We need muscle confusion and variety</p>
+      <p class="lead-bold lbl">We need muscle confusion and variety</p>
       <p>The martial arts also provides natural muscle confusion. Now when you first hear that term you might be a bit confused too.</p>
       <p>Why would we want to confuse our muscles?</p>
       <p>If you are doing the same exercise every day (riding a bike or jogging), then you are not pushing the body into new territory. The body needs and wants variety in its exercise routine in order to grow stronger. If you keep doing only the same exercise, the body does not develop.</p>
@@ -1522,12 +1630,12 @@ footer a{color:var(--muted)}
       </div>
     </div>
     <div class="prose">
-      <p class="lead-bold">What are calisthenics?</p>
+      <p class="lead-bold lbl">What are calisthenics?</p>
       <p>If you want to go old school, call it Calisthenics (bodyweight workouts), we&rsquo;ve been doing it for centuries (think back to physical education in grade school).</p>
       <p>Bodyweight training is great for men and women. In fact, it provides equal benefits for both.</p>
       <p>Consider that the word Calisthenics is made up of the greek words kalos (Beauty) and sthenos (Strength). Perhaps with that in mind, you can see it as the perfect workout for couples too.</p>
     </div>
-    <div class="prose"><p class="lead-bold">NinjaGym Challenge</p><ul><li>Student: 20 minutes, 1 to 2 rounds, 25 reps</li><li>Warrior: 40 minutes, 2 rounds, 50 reps</li><li>Ninja: 60 minutes, 3 rounds, 100 reps</li></ul><p>Kicks, push ups, squats, pull ups, abs, knees, planks, burpees, crawls, lunges.</p></div>
+    <div class="prose"><p class="lead-bold lbl">NinjaGym Challenge</p><ul><li>Student: 20 minutes, 1 to 2 rounds, 25 reps</li><li>Warrior: 40 minutes, 2 rounds, 50 reps</li><li>Ninja: 60 minutes, 3 rounds, 100 reps</li></ul><p>Kicks, push ups, squats, pull ups, abs, knees, planks, burpees, crawls, lunges.</p></div>
   </div>
   <div class="band">
     <h2>Natural Fitness</h2>
@@ -1566,14 +1674,14 @@ footer a{color:var(--muted)}
       </div>
     </div>
     <figure class="fig"><img src="/assets/images/w/c8ac82dfc6.webp" alt="The five Be a Black Belt in What You Do books" width="1200" height="383" loading="lazy" decoding="async"></figure>
-    <figure class="fig medium"><img src="/assets/images/w/0bdeeb8cd3.webp" alt="Modern Ninjitsu, Philosophy and System, by Sensei Rick Tew: a cover with a high kick and the Rick Tew's Martial Science logo" width="313" height="500" loading="lazy" decoding="async"></figure>
+    <figure class="fig medium"><img class="logo" src="/assets/images/w/0bdeeb8cd3.webp" alt="Modern Ninjitsu, Philosophy and System, by Sensei Rick Tew: a cover with a high kick and the Rick Tew's Martial Science logo" width="313" height="500" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>Rick Tew's Mini-Martial Art and Ninja Yoga?</h2>
   </div>
   <div class="wrap">
     <div class="prose">
-      <p class="lead-bold">What is Rick Tew's Mini-Martial Art and Ninja Yoga?</p>
+      <p class="lead-bold lbl">What is Rick Tew's Mini-Martial Art and Ninja Yoga?</p>
       <p>This is also taught at corporate management programs and in classes for beginners. This is a simple program for beginners and professionals to learn that only requires them to learn 10 simple stances. However, Rick Tew has gone the extra mile in creating a plethora of connective skills with each stance. It is fun, easy to learn and adjustable to any skill level.</p>
       <p>The concept is that less is more and 1 is many. By learning these simple 10 Stances, you will be learning and entire multi-martial art system too. It is a simple step-by-step training program that anyone can follow and use as they so desire. With only these 10 Steps, you will have access to over 100 actual techniques that create a complete system that you can continue at home or on your free time. Take 2 minutes or 2 hours.</p>
       <p>Here are a few of the areas of focus that this 10 Stance Mini-Martial Art offers:</p>
@@ -1626,9 +1734,9 @@ footer a{color:var(--muted)}
   </div>
   <div class="wrap">
     <div class="row">
-      <div class="col-img"><img src="/assets/images/w/f1bc48d3f3.webp" alt="BLAST logo" width="412" height="415" loading="lazy" decoding="async"></div>
+      <div class="col-img"><img class="logo" src="/assets/images/w/f1bc48d3f3.webp" alt="BLAST logo" width="412" height="415" loading="lazy" decoding="async"></div>
       <div>
-        <p class="lead-bold">Spirit and the BLAST experience means living</p>
+        <p class="lead-bold lbl">Spirit and the BLAST experience means living</p>
         <p>Rick Tew put in a lot of effort to bring a Mind-Body-Spirit balance to the martial art camps. Our courses provide an equal balance of all three areas. But few understand what we mean when we say, &ldquo;Spirit.&rdquo;</p>
         <p>For us, it represents Life-Spirit and our definition of this Life Spirit is:</p>
         <ul>
@@ -1643,14 +1751,14 @@ footer a{color:var(--muted)}
       <p>The money spent on activities and experiences can also bring you more joy than investing those same funds into just more things.</p>
       <p>Psychology professor Dr. Thomas Gilovich proved this with a in-depth study spanning over two decades. He compared the feelings associated with buying stuff vs the feelings associated with buying an experience. The results showed that spending money on travel, active adventures, and other events, helps one to not only achieve a higher level of satisfaction and happiness, it also helps one to shape their personality. In addition to feeling more fulfilled and the molding of ones character, the joy from this strategy also lasts longer.</p>
     </div>
-    <h4 class="minor-head center" style="color:#1e73bd;font-style:italic">&ldquo;Travel is the only thing you buy that makes you richer.&rdquo;</h4>
+    <h4 class="minor-head">&ldquo;Travel is the only thing you buy that makes you richer.&rdquo;</h4>
     <figure class="fig full"><img src="/assets/images/w/23049e41d3.webp" alt="Travel collage: training on a beach, rock climbing, a Thai boxing ring, wading in the sea and snorkeling" width="1024" height="536" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>Students share some B.L.A.S.T. experiences with Rick Tew</h2>
   </div>
   <div class="wrap">
-    <figure class="fig full"><img src="/assets/images/w/05729e10e2.webp" alt="Group at Joshua Tree" width="572" height="428" loading="lazy" decoding="async"></figure>
+    <figure class="fig full"><img class="nat" src="/assets/images/w/05729e10e2.webp" alt="Group at Joshua Tree" width="572" height="428" loading="lazy" decoding="async"></figure>
     <div class="gray-card">
       <div class="wrap">
         <div class="title">From concrete to lush landscapes</div>
@@ -1789,7 +1897,7 @@ footer a{color:var(--muted)}
     <h2>WinJitsu</h2>
     <div class="subtitle">The Mental Martial Art System for success, memory, overcoming fear, confidence, personal growth, visualizing, and a healthy mindset</div>
     <a class="btn" href="https://winjitsu.com/?from=winjitsu" target="_blank" rel="noopener">Go to the WinJitsu app at winjitsu.com</a>
-    <p style="margin:16px 0 0">The same five methods for grown-ups, teens, parents and teachers: <a href="https://tewtors.com/" target="_blank" rel="noopener">Tewtors, by Rick Tew</a>.</p>
+    <p>The same five methods for grown-ups, teens, parents and teachers: <a href="https://tewtors.com/" target="_blank" rel="noopener">Tewtors, by Rick Tew</a>.</p>
   </div>
   <section class="from-home" id="from-home" aria-labelledby="from-home-h">
     <h3 class="plain-head" id="from-home-h">Still want to learn, but from home?</h3>
@@ -2059,13 +2167,13 @@ footer a{color:var(--muted)}
     <h2>WinJitsu the mental martial art</h2>
   </div>
   <div class="wrap">
-    <figure class="fig medium"><img src="/assets/images/w/f52018c944.webp" alt="WinJitsu W graphic" width="600" height="471" loading="lazy" decoding="async"></figure>
+    <figure class="fig medium"><img class="nat" src="/assets/images/w/f52018c944.webp" alt="WinJitsu W graphic" width="600" height="471" loading="lazy" decoding="async"></figure>
     <h3 class="plain-head">Life is an obstacle course</h3>
     <div class="prose">
-      <p>The WinJitsu graphic shows how life is laden with obstacles and the points of the WinJitsu <strong>W</strong> represent each of 5 key areas we focus on.</p>
+      <p>The WinJitsu graphic shows how life is laden with obstacles and the points of the WinJitsu <strong class="flat">W</strong> represent each of 5 key areas we focus on.</p>
       <p>They represent the skills needed to not only navigate through these obstacles but to also have the mental toughness to endure.</p>
       <p>With WinJitsu&rsquo;s winning method, strategies and training, you can learn to navigate and overcome any obstacle in life.</p>
-      <p class="lead-bold">The Mind-Body Connection</p>
+      <p class="lead-bold lbl">The Mind-Body Connection</p>
       <p>In the martial arts, we have learned that there is a mind-body connection. It is why Rick wrote the book series WinJitsu, The Mental Martial Art.</p>
     </div>
     <div class="gray-card">
@@ -2075,9 +2183,9 @@ footer a{color:var(--muted)}
         <div class="name">-Ilona S.</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/5e25629816.webp" alt="Student quote from Billy S.: I've found I can push myself much harder and farther than I previously thought, and my resolve has increased as well." width="611" height="402" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/5e25629816.webp" alt="Student quote from Billy S.: I've found I can push myself much harder and farther than I previously thought, and my resolve has increased as well." width="611" height="402" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">Why we do WinJitsu</p>
+      <p class="lead-bold lbl">Why we do WinJitsu</p>
       <p>NinjaGym&reg; programs are not only about building a stronger body, a flexible body, a stable body or a body that can endure. The focus behind NinjaGym&reg; is to provide you a place where we come together to also build a Stronger Mind, a more Flexible Mind, a more Stable Mind and a Mentality to Endure. Improving both your body and mind while connecting with great people from around the world.</p>
       <p>At NinjaGym&reg;, we follow the Mind and Body approach for overall student success. Although physical training in the Martial Science already offers feelings of joy and adventure, we also need routine and focused mental development. At NinjaGym&reg;, we provide this growth through a mental system Rick Tew has developed a mental martial art called, WINJITSU.</p>
     </div>
@@ -2088,9 +2196,9 @@ footer a{color:var(--muted)}
         <div class="name">Marco V., Holland / Netherlands</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/6e520971fe.webp" alt="Student quote from Roy M.: Rick Tew is also a gifted and impressive speaker and can mesmerize any crowd with his speeches. Words are not good enough to describe this man. Experience him..." width="611" height="440" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/6e520971fe.webp" alt="Student quote from Roy M.: Rick Tew is also a gifted and impressive speaker and can mesmerize any crowd with his speeches. Words are not good enough to describe this man. Experience him..." width="611" height="440" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">Modern Self-Defense is Mental</p>
+      <p class="lead-bold lbl">Modern Self-Defense is Mental</p>
       <p>With martial arts training, you might learn self-defense and how to be prepared for a physical situation required for survival. But in modern times, with our challenges being more mental than physical, your mind is most likely what needs to be managed and trained.</p>
     </div>
     <div class="gray-card">
@@ -2107,16 +2215,16 @@ footer a{color:var(--muted)}
   <div class="wrap">
     <h3 class="plain-head">Level 1 ACE</h3>
     <div class="prose">
-      <p class="lead-bold">This book is level 1 of WinJitsu</p>
+      <p class="lead-bold lbl">This book is level 1 of WinJitsu</p>
       <p class="italic">Achieving Combined Excellence</p>
       <p>Taking Control of your Attitude</p>
       <p>I believe we all have split personalities and the combination of these personalities is what makes us who we are as a whole. I am going to teach you how to maximize the power within, the power you already have, and how to combine these unique character traits with practical, proven success principles to reach your full potential, get a Black Belt in what you do and Achieve Combined Excellence.</p>
     </div>
-    <figure class="fig medium"><img src="/assets/images/w/fbee8ffc5e.webp" alt="Rick Tew Grand Canyon jump" width="623" height="350" loading="lazy" decoding="async"></figure>
+    <figure class="fig medium"><img class="nat" src="/assets/images/w/fbee8ffc5e.webp" alt="Rick Tew Grand Canyon jump" width="623" height="350" loading="lazy" decoding="async"></figure>
     <h3 class="plain-head">Grand Canyon Jump</h3>
     <div class="prose">
       <p>Yes, that is a photo of me jumping at the Grand Canyon. This particular jump I did during one of our Travel &amp; Training Tours. See the excerpt below to read what was the most frightening part of this jump.</p>
-      <p class="lead-bold">Calculated Risk, Book Excerpt from ACE</p>
+      <p class="lead-bold lbl">Calculated Risk, Book Excerpt from ACE</p>
       <p>Hello, I am Rick Tew and yes, that is a photo of me jumping at the Grand Canyon.</p>
       <p>Looking at the photo of me jumping at the Grand Canyon you might think that I have to be suffering from false confidence or be completely insane.</p>
       <p>Perhaps you are thinking that if I can do jumps like this, there is no way I would have very much to fear or need to apply a system of WinJitsu on a regular basis. I still have to muster up the courage to speak to an audience as much as the next guy. But much of my performance is based on all the hours I spent preparing.</p>
@@ -2128,28 +2236,28 @@ footer a{color:var(--muted)}
     </div>
     <h3 class="plain-head">Level 2 MAK</h3>
     <div class="prose">
-      <p class="lead-bold">This book is level 2 of WinJitsu</p>
+      <p class="lead-bold lbl">This book is level 2 of WinJitsu</p>
       <p class="italic">Motivation, Action, Knowledge</p>
       <p>Make it Happen</p>
       <p>Making it happen. Most of us understand that the key to achieving success is through motivation, action and/or knowledge. But where do we begin, which is the first step? Is action the first step, or is it knowledge or motivation? Knowledge could easily be the most important part of any action. Would you jump out of an airplane without knowing how to operate a parachute? Could you defend yourself realistically against a knife if you didn&rsquo;t know its strengths or weaknesses?</p>
     </div>
     <h3 class="plain-head">Level 3 MBS</h3>
     <div class="prose">
-      <p class="lead-bold">This book is level 3 of WinJitsu</p>
+      <p class="lead-bold lbl">This book is level 3 of WinJitsu</p>
       <p class="italic">Mind, Body, Spirit</p>
       <p>The Synergy for Success</p>
       <p>I believe we all have split personalities and the combination of these personalities is what makes us who we are as a whole. I am going to teach you how to maximize the power within, the power you already have, and how to combine these unique character traits with practical, proven success principles to reach your full potential, get a Black Belt in what you do.</p>
     </div>
     <h3 class="plain-head">Level 4</h3>
     <div class="prose">
-      <p class="lead-bold">This book is level 4 of WinJitsu</p>
+      <p class="lead-bold lbl">This book is level 4 of WinJitsu</p>
       <p class="italic">Neuro Reasons for Growth</p>
       <p>Internal Power for Achievement</p>
       <p>Although there are many ways to gain energy, the type of energy or NRG needed for a continuous never-ending plan to succeed is quite unique. NRG is a combination of specific beliefs to create a specific strategy. Neuro-Reasons for Growth are necessary for us to face our fears repeatedly, to train us to see striving for success as a pleasurable experience as opposed to a frightful one. What separates it from traditional motivation is that you don&rsquo;t have to think about it once it (specific actions taken for success) becomes linked as a positive, pleasurable feeling.</p>
     </div>
     <h3 class="plain-head">Level 5 CMT</h3>
     <div class="prose">
-      <p class="lead-bold">This book is level 5 of WinJitsu</p>
+      <p class="lead-bold lbl">This book is level 5 of WinJitsu</p>
       <p class="italic">Creative Mental Training</p>
       <p>The Magic of Visualization</p>
       <p>This book is designed to bring awareness to the concept of training mentally. It is equally as important (if not more important) than your physical efforts. Being aware is just not enough. You need to develop these skills, and CMT is the training gym for the mind. CMT will not only be the tool for sculpting a positive self-image, but also improving any area of life you decide to focus on. To do so, you need to make use of the most powerful part of your brain, your creativity.</p>
@@ -2163,9 +2271,9 @@ footer a{color:var(--muted)}
         <div class="name">Mark W., Portsmouth, England</div>
       </div>
     </div>
-    <figure class="fig medium"><img src="/assets/images/w/aa0e6eddeb.webp" alt="Student quote from Jeff T.: I've learned so much, upon recollection it’s unbelievable. I’ve learned to maximize my memory potential, set and follow through with goals, make the most out of my time, and take calculated risks." width="611" height="482" loading="lazy" decoding="async"></figure>
+    <figure class="fig medium"><img class="nat" src="/assets/images/w/aa0e6eddeb.webp" alt="Student quote from Jeff T.: I've learned so much, upon recollection it’s unbelievable. I’ve learned to maximize my memory potential, set and follow through with goals, make the most out of my time, and take calculated risks." width="611" height="482" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">Benefits of WinJitsu</p>
+      <p class="lead-bold lbl">Benefits of WinJitsu</p>
       <p>This complete program for mental training uses modern strategies available today that will help you become the best you can be.</p>
       <p>Everyone has challenges from time to time and many have these mental shadows sneaking up on them on a daily basis. You need a system for defeating these negative Ninja and master your mental domain.</p>
       <p>Mr. Tew suggests you learn to control your mind through life-balance, use of your physiology, and the understanding basic neuroscience. All of which can help you to learn:</p>
@@ -2193,9 +2301,9 @@ footer a{color:var(--muted)}
         <div class="name">Ortwin C., Holland / Netherlands</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/9528148128.webp" alt="Student quote from Jamien O.: He is very intelligent, very funny, very cool, and very disciplined. This rare combination of attributes makes Rick a dynamo of a person and teacher." width="612" height="443" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/9528148128.webp" alt="Student quote from Jamien O.: He is very intelligent, very funny, very cool, and very disciplined. This rare combination of attributes makes Rick a dynamo of a person and teacher." width="612" height="443" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">Motivational Entertainment</p>
+      <p class="lead-bold lbl">Motivational Entertainment</p>
       <p>Rick Tew is focused on providing edutainment (a form of entertainment designed to educate as well as to amuse) by combining comedy and his martial arts with his mental arts (WinJitsu). His performances are fun and memorable.</p>
       <p>If you would like to contact Rick Tew for details on having him as a speaker or trainer for your organization, please <a href="#contact">fill in the form</a> now for details.</p>
       <p>Mr. Tew delivers dynamic principles based on his 5 Level System for Life Balance. They include real life experience and stories to share practical concepts on:</p>
@@ -2223,17 +2331,17 @@ footer a{color:var(--muted)}
         <div class="name">Josiah L., Chattanooga, Tennessee, USA</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/b62a5f6f07.webp" alt="Student quote from Sibel K.: The training is very professional, complex, creative and you always learn something new. Rick Tew is kind and helping. He knows exactly how far he can push his students. The atmosphere during training is nice, positive and always with a sense of humor." width="580" height="523" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/b62a5f6f07.webp" alt="Student quote from Sibel K.: The training is very professional, complex, creative and you always learn something new. Rick Tew is kind and helping. He knows exactly how far he can push his students. The atmosphere during training is nice, positive and always with a sense of humor." width="580" height="523" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">What is WinJitsu?</p>
+      <p class="lead-bold lbl">What is WinJitsu?</p>
       <p>It is not a sport. It is a way of life. It isn&rsquo;t about just mastering a Martial Art Style, but instead, how to develop a Lifestyle.</p>
       <p>As a professional &ldquo;Martial Science&rdquo; instructor, I make my living teaching and sharing the Way of the Warrior. And because it is so unique, I often run across people who seek a verbal definition of exactly what it is I do and teach. Words alone, however, seem to be inadequate, even for someone who is an experienced speaker and lecturer. I still have difficulty doing justice to the real meaning of my Martial Science with words alone.</p>
       <p>It is a very clear picture for me, but trying to explain my life to those who don&lsquo;t yet have this picture is like speaking in my own dialect. We each have our own view, our own mental image (it&lsquo;s called a paradigm) of the world. Those mental pictures are similar to different languages. So although my words are used for that initial spark, it is the picture that you see, based on your own life experiences, that will lead to an interest in my art and perhaps an eventual development of a new way of life. In any case, we all have pictures of how our life is represented. This book is about improving that picture, bringing it into sharper focus.</p>
-      <p class="lead-bold">What does survival mean to you?</p>
+      <p class="lead-bold lbl">What does survival mean to you?</p>
       <p>Let&rsquo;s think about survival for a moment. How do you picture survival? If there were two pictures in your mental museum of life, one of a caveman and one of modern man, what would your picture of SURVIVAL look like for each?</p>
       <p>The caveman&rsquo;s day might have been spent hunting wild animals and defending against neighboring tribes. Physical skills determined survival as a cave dweller. Is this the image you have of the world today? Do you picture people with knotted hair, dirty skin, and bad teeth wearing animal skins, sharpening long sticks, and preparing for combat? Not likely. Today&rsquo;s real world challenges have changed. The knife has been replaced by the mobile phone. Knowledge of spear throwing is not as important as how well you use a computer. And the courage the caveman needed to face a wildebeest has evolved into modern man&rsquo;s fear of facing a live audience.</p>
       <p>In the physical martial arts, you learn self-defense to help prepare you for a situation that might be required for survival. It is a basic human need to feel protected. But in today&rsquo;s world, our challenges are more mental than physical, and you are indeed often your own worst enemy. Today, your mental skills will take you a lot further than your physical skills. Unless, of course, you are among the tiny percentage of the population making millions by playing a professional sport. But even top-ranked athletes will tell you that their ability to perform is largely based on their mental skills; their &ldquo;Mental Martial Arts.&rdquo;</p>
-      <p class="lead-bold">What&rsquo;s more important, physical or mental power?</p>
+      <p class="lead-bold lbl">What&rsquo;s more important, physical or mental power?</p>
       <p>Consider this: In 2007, Slovenian marathon swimmer, Martin Strel, set a new world record by swimming the entire length of the Amazon River (3,274 miles). It took him more than two months and a support crew of about 20 people following him in a boat for protection. He was asked that very question.</p>
       <p>His reply:</p>
       <p class="italic">&ldquo;I&rsquo;d say mental power. I could not do such a great swim 20 years ago when I was much younger, now I can do it. And the reason is I am now mentally matured.&rdquo;</p>
@@ -2268,15 +2376,15 @@ footer a{color:var(--muted)}
       <p>I teach the skills of freedom, balance, and facing your fears with initialisms associated with each finger. Yes, it&rsquo;s unorthodox, but I consider the thumb to be a finger. I like the concept of using five toes and five fingers, even if we call one of them a thumb.</p>
       <p>The five fingers correlate perfectly to the five areas of focus that help us create the power to break through (fist) and the strength to hang on (grip).</p>
       <p>Picture the following two characteristics for survival:</p>
-      <p class="lead-bold">A WARRIOR:</p>
+      <p class="lead-bold lbl">A WARRIOR:</p>
       <p>An individual that combines the power of the fingers to form a fist and is able to break through barriers, overcome challenges, conquer enemies, and courageously fight to survive.</p>
       <p>The survival strategy of the Warrior is to take the spear in hand and head out for the hunt, an immediate and forceful solution to an existing problem, which might be safety (a threatening animal/foe), or hunger (literally, or a strong desire).</p>
-      <p class="lead-bold">A CULTIVATOR:</p>
+      <p class="lead-bold lbl">A CULTIVATOR:</p>
       <p>An individual that combines power and strength with the fist and fingers for maximum effect. The cultivator cannot just fight or hunt, he/she can hang on, stick to the task, condition the mind, and provide loyal team effort.</p>
       <p>The survival strategy of the Cultivator is to plant seeds, grow a garden, and over time, provide a lasting solution.</p>
       <p>WinJitsu is all about improving the skills it takes to be both a good Warrior (a person able to defeat immediate challenges) and a Cultivator (a person able to survive the test of time).</p>
-      <p class="lead-bold">Breaking it Down to Build it up</p>
-      <p class="lead-bold">In The Palm of Your Hands</p>
+      <p class="lead-bold lbl">Breaking it Down to Build it up</p>
+      <p class="lead-bold lbl">In The Palm of Your Hands</p>
       <p>Each finger of the hand represents an initialism/acronym (ACE, MAK, MBS, NRG, and CMT) that refers to a set of strategies or lessons that will help you to practice your Mental Martial Arts. Don&rsquo;t worry, we will learn about each of these strategies as we move forward.</p>
       <p>Self-Power will enable you to master and use these strategies until they are not just external (visual) teaching aids, but also internal personalities that will become a part of your thought process.</p>
       <p>Once you memorize the three-letters for each finger (and the meaning behind each of them), it will be easier to recall the tools for each section. You will then be able to take time using the principles of Creative Mental Training (Book 5 of WinJitsu) and enter the Dojo (training hall) of your mind in order to develop your skills.</p>
@@ -2290,7 +2398,7 @@ footer a{color:var(--muted)}
         <div class="name">Kris B., Canada</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/e86feb17a4.webp" alt="Student quote from Chris H.: I think the quality of the training at the price I paid is exceptional value. I think Sensei Rick Tew's knowledge, experience, passion and dedication to share it is admirable and inspiring." width="612" height="484" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/e86feb17a4.webp" alt="Student quote from Chris H.: I think the quality of the training at the price I paid is exceptional value. I think Sensei Rick Tew's knowledge, experience, passion and dedication to share it is admirable and inspiring." width="612" height="484" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>Rick Tew's Speaking / Workshops</h2>
@@ -2307,7 +2415,7 @@ footer a{color:var(--muted)}
         <li>Achieve your goals</li>
       </ul>
     </div>
-    <figure class="fig"><img src="/assets/images/w/a46d827650.webp" alt="Rick Tew climbing a rock wall in the splits" width="444" height="300" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/a46d827650.webp" alt="Rick Tew climbing a rock wall in the splits" width="444" height="300" loading="lazy" decoding="async"></figure>
     <div class="prose">
       <p class="italic">Hi, my name is Rick Tew and even though my last name (pronounced like the number) says otherwise, there is only one of me. But, I do have a split personality:</p>
       <p class="italic">In fact, I believe we all have split personalities. And the combination of these personalities is what makes us who we are as a whole. It is what makes you unique. Through WinJitsu, I am going to teach you how to maximize the power you already have, and teach you how to combine these character traits with practical principles so you can reach your full potential and get a Black Belt in what you do.</p>
@@ -2320,8 +2428,8 @@ footer a{color:var(--muted)}
       </div>
     </div>
     <div class="imgrow">
-      <img src="/assets/images/w/2714d206ee.webp" alt="Student quote from Nate P.: Rick is totally dedicated to his students. He's all about giving them all the opportunities he can so they can live the lifestyle that he has. What you want, When you want, Where you want, Why you want, and with Whom you want." width="610" height="525" loading="lazy" decoding="async">
-      <div class="prose"><p class="lead-bold">Rick Tew's WinJitsu Workshops</p><p>Private group events for learning the mindset system for feeling fulfillment and taking action on your own ideas. A complete mental martial art course, from more than 25 years of experience.</p></div>
+      <img class="nat" src="/assets/images/w/2714d206ee.webp" alt="Student quote from Nate P.: Rick is totally dedicated to his students. He's all about giving them all the opportunities he can so they can live the lifestyle that he has. What you want, When you want, Where you want, Why you want, and with Whom you want." width="610" height="525" loading="lazy" decoding="async">
+      <div class="prose"><p class="lead-bold lbl">Rick Tew's WinJitsu Workshops</p><p>Private group events for learning the mindset system for feeling fulfillment and taking action on your own ideas. A complete mental martial art course, from more than 25 years of experience.</p></div>
     </div>
     <div class="gray-card">
       <div class="wrap">
@@ -2330,7 +2438,7 @@ footer a{color:var(--muted)}
         <div class="name">Richard N., Galveston, Texas, USA</div>
       </div>
     </div>
-    <figure class="fig"><img src="/assets/images/w/d46302260a.webp" alt="Student quote from Bas B.: Rick seems to do things that most people would never even consider doing and seems to make them work." width="613" height="404" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/d46302260a.webp" alt="Student quote from Bas B.: Rick seems to do things that most people would never even consider doing and seems to make them work." width="613" height="404" loading="lazy" decoding="async"></figure>
   </div>
     </div>
     <p class="back"><a class="up" href="#menu">Back to the ring</a></p>
@@ -2378,7 +2486,7 @@ footer a{color:var(--muted)}
     <a class="btn" href="https://ninjagym.com/faq" target="_blank" rel="noopener">Hours, prices and questions</a>
   </div>
   <div class="wrap">
-    <figure class="fig medium"><img src="/assets/images/wheel/ng-logo.webp" alt="NinjaGym logo" width="991" height="882" loading="lazy" decoding="async"></figure>
+    <figure class="fig medium"><img class="logo" src="/assets/images/wheel/ng-logo.webp" alt="NinjaGym logo" width="991" height="882" loading="lazy" decoding="async"></figure>
     <figure class="fig medium"><img src="/assets/images/w/9b135efcf7.webp" alt="A NinjaGym Guide with a young ninja on the climbing wall" width="1200" height="779" loading="lazy" decoding="async"></figure>
     <div class="prose center">
       <p class="lead-bold">Rick Tew's NinjaGym Samui Thailand is on the Ring road (near Starbucks) inside the Big C mall on the ground floor right next to the entrance.</p>
@@ -2412,7 +2520,7 @@ footer a{color:var(--muted)}
     <div class="prose center">
       <p>Book a birthday at <a href="https://ninjagym.com/birthdays" target="_blank" rel="noopener">ninjagym.com/birthdays</a> or a group event at <a href="https://ninjagym.com/private" target="_blank" rel="noopener">ninjagym.com/private</a>. Both pages show today's hourly rates and the refundable deposit.</p>
     </div>
-    <div class="prose"><p class="lead-bold">Ninja themed Happy Birthday at Rick Tew's NinjaGym</p><p>1 guided session, plus: staff to aid in play, our climbing walls, matted play area, ninja zone training, gymnastics mats, ropes, rings and more.</p></div>
+    <div class="prose"><p class="lead-bold lbl">Ninja themed Happy Birthday at Rick Tew's NinjaGym</p><p>1 guided session, plus: staff to aid in play, our climbing walls, matted play area, ninja zone training, gymnastics mats, ropes, rings and more.</p></div>
   </div>
   <div class="band sub">
     <h3>Need more time or activities? Get 2 hours with the Game &amp; Train combo or book 1-to-1 with a Guide</h3>
@@ -2424,7 +2532,7 @@ footer a{color:var(--muted)}
   </div>
   <div class="wrap">
     <figure class="fig large"><img src="/assets/images/w/5a82d4e421.webp" alt="NinjaGym kids climbing" width="1200" height="800" loading="lazy" decoding="async"></figure>
-    <figure class="fig"><img src="/assets/images/w/f15c781cdb.webp" alt="Ninja symbol" width="277" height="358" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/f15c781cdb.webp" alt="Ninja symbol" width="277" height="358" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>We follow the symbol of the Ninja to represent being patient and to endure.</h2>
@@ -2454,7 +2562,7 @@ footer a{color:var(--muted)}
     <figure class="fig large"><img src="/assets/images/w/93b99ca35d.webp" alt="NinjaGym training" width="1200" height="800" loading="lazy" decoding="async"></figure>
     <figure class="fig large"><img src="/assets/images/w/1aaf3f99d7.webp" alt="NinjaGym obstacle course" width="1200" height="800" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">A note from Rick Tew</p>
+      <p class="lead-bold lbl">A note from Rick Tew</p>
       <p class="italic">I have been involved with sharing the Martial Arts and running Ninja Training Camps the majority of my life.</p>
       <p class="italic">For more than 30 years I have been teaching Students the benefits of training the Mind and Body with Spirit.</p>
       <p class="italic">Our programs are focused on teaching my personal growth concepts of WINJITSU (the Mental Martial Art) disguised as Martial Art Camps and Ninja courses.</p>
@@ -2465,9 +2573,9 @@ footer a{color:var(--muted)}
     <h2>Ninja Kids Day Camp Samui Thailand</h2>
   </div>
   <div class="wrap">
-    <h3 class="plain-head">The best in edutainment: <span style="color:#ff0000">Game &amp; Train</span> Ninja Day Camp at Rick Tew's NinjaGym!</h3>
+    <h3 class="plain-head">The best in edutainment: Game &amp; Train Ninja Day Camp at Rick Tew's NinjaGym!</h3>
     <div class="prose">
-      <p>Are you ready for an action-packed day of gaming and martial arts? Look no further! Rick Tew's NinjaGym is excited to present our <strong>Game &amp; Train Day Camp</strong>, where fun meets fitness in the most exhilarating way possible.</p>
+      <p>Are you ready for an action-packed day of gaming and martial arts? Look no further! Rick Tew's NinjaGym is excited to present our <strong class="flat">Game &amp; Train Day Camp</strong>, where fun meets fitness in the most exhilarating way possible.</p>
     </div>
     <h3 class="plain-head">The Half Day: 10am to 2pm</h3>
     <div class="prose">
@@ -2504,7 +2612,7 @@ footer a{color:var(--muted)}
     <h3 class="plain-head">Minecraft C4+ - It's explosive!! Creativity, crafting, critical thinking, collaboration and more</h3>
     <div class="prose">
       <p>Unlock the Power of Learning with Minecraft at Rick Tew's NinjaGym Day Camp!</p>
-      <p>At Rick Tew's NinjaGym, we believe in the magic of <strong>Edutainment</strong>, where education meets entertainment. Minecraft is one of the games kids can choose in game time, offering them an unparalleled opportunity to learn while having a blast!</p>
+      <p>At Rick Tew's NinjaGym, we believe in the magic of <strong class="flat">Edutainment</strong>, where education meets entertainment. Minecraft is one of the games kids can choose in game time, offering them an unparalleled opportunity to learn while having a blast!</p>
       <h4 class="minor-head">Why Minecraft?</h4>
       <p>Minecraft isn't just a game; it's a dynamic educational tool that fosters creativity, critical thinking, and collaboration. Here's how Minecraft can transform learning for your child:</p>
       <h4 class="minor-head">Mathematics Mastery:</h4>
@@ -2537,10 +2645,10 @@ footer a{color:var(--muted)}
     <h2>Event Schedule</h2>
   </div>
   <div class="wrap">
-    <div class="prose center" style="margin-top:60px">
+    <div class="prose">
       <p class="lead-bold">Open every day, 10am to 7pm, weekends too. Book ahead and we can open from 9am and stay open until 9pm.</p>
     </div>
-    <hr style="border:none;border-top:1px solid #7e9fd0;margin:50px 0">
+    <hr>
     <h3 class="plain-head">Birthdays and group events</h3>
     <div class="prose">
       <p>Parties and group events start at 2pm or later, any day, and run 1 to 4 hours, for up to 20 guests. Book a birthday at <a href="https://ninjagym.com/birthdays" target="_blank" rel="noopener">ninjagym.com/birthdays</a> or a group event at <a href="https://ninjagym.com/private" target="_blank" rel="noopener">ninjagym.com/private</a>. Both pages show today's hourly rates and the refundable deposit.</p>
@@ -2549,7 +2657,7 @@ footer a{color:var(--muted)}
     <div class="prose">
       <p>For registered schools, on weekdays: arrive from 9am and finish by 2pm. Book at <a href="https://ninjagym.com/schools" target="_blank" rel="noopener">ninjagym.com/schools</a>.</p>
     </div>
-    <div class="prose"><p class="lead-bold">Ninja themed Happy Birthday at Rick Tew's NinjaGym</p><p>1 guided session, plus: staff to aid in play, our climbing walls, matted play area, ninja zone training, gymnastics mats, ropes, rings and more.</p></div>
+    <div class="prose"><p class="lead-bold lbl">Ninja themed Happy Birthday at Rick Tew's NinjaGym</p><p>1 guided session, plus: staff to aid in play, our climbing walls, matted play area, ninja zone training, gymnastics mats, ropes, rings and more.</p></div>
   </div>
 </div>
 <div id="ng-rules">
@@ -2557,10 +2665,10 @@ footer a{color:var(--muted)}
     <h2>Rules &amp; Agreements</h2>
   </div>
   <div class="wrap">
-    <div class="prose center" style="margin-top:60px">
+    <div class="prose">
       <p>You accept NinjaGym's code of conduct (waiver) and house rules when you create your family account in the app. The full Terms and House Rules are at <a href="https://ninjagym.com/terms" target="_blank" rel="noopener">ninjagym.com/terms</a>.</p>
     </div>
-    <hr style="border:none;border-top:1px solid #7e9fd0;margin:50px 0">
+    <hr>
     <h3 class="plain-head">The house rules, in short</h3>
     <div class="prose">
       <ul>
@@ -2674,9 +2782,9 @@ footer a{color:var(--muted)}
         </ul>
       </div>
     </div>
-    <figure class="fig medium"><img src="/assets/images/w/2b2eba5928.webp" alt="Student quote from Jeff T.: Although the students may join here starting at ground zero, if they simply choose not to quit, not to give up on themselves, they will eventually get there." width="612" height="446" loading="lazy" decoding="async"></figure>
+    <figure class="fig medium"><img class="nat" src="/assets/images/w/2b2eba5928.webp" alt="Student quote from Jeff T.: Although the students may join here starting at ground zero, if they simply choose not to quit, not to give up on themselves, they will eventually get there." width="612" height="446" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">Ask How You Can Kick-Start Now</p>
+      <p class="lead-bold lbl">Ask How You Can Kick-Start Now</p>
       <p>Sensei Rick Tew is accepting a limited few that would like to train side-by-side with the Master Instructor and help others get the best martial art camp adventure and experience of their lives.</p>
       <p><mark>Today the camp is the Ninja Course on Koh Samui: stay a day, a week, a month, or 2 months in the belt program, a dorm bed included if you need one.</mark></p>
       <p><a class="btn" href="https://martialartcamp.com/ninja" target="_blank" rel="noopener">See the Ninja Course</a></p>
@@ -2687,9 +2795,9 @@ footer a{color:var(--muted)}
   </div>
   <div class="wrap">
     <div class="prose">
-      <p class="lead-bold">What is CMS, Camp of Martial Science?</p>
-      <p>Also known as the <strong>College of Martial Science</strong> for long term students, <em>Rick Tew&rsquo;s Camp of Martial Science</em> is a one-size-fits-all program that offers private group Mixed Martial Arts / Ninja Training, realistic self-defense that also includes Travel Adventure.</p>
-      <p>We bring balance to your <strong>Mind</strong> (with the mental martial arts therapy of WinJitsu), strength to the <strong>Body</strong> (by doing Martial Arts &amp; Fitness) and fulfillment to the <strong>Spirit</strong> (through outdoor adventure, human interaction and travel adventure tours).</p>
+      <p class="lead-bold lbl">What is CMS, Camp of Martial Science?</p>
+      <p>Also known as the <strong class="flat">College of Martial Science</strong> for long term students, <em>Rick Tew&rsquo;s Camp of Martial Science</em> is a one-size-fits-all program that offers private group Mixed Martial Arts / Ninja Training, realistic self-defense that also includes Travel Adventure.</p>
+      <p>We bring balance to your <strong class="flat">Mind</strong> (with the mental martial arts therapy of WinJitsu), strength to the <strong class="flat">Body</strong> (by doing Martial Arts &amp; Fitness) and fulfillment to the <strong class="flat">Spirit</strong> (through outdoor adventure, human interaction and travel adventure tours).</p>
       <ul>
         <li>Learn how to defend yourself</li>
         <li>Be a Ninja warrior</li>
@@ -2697,24 +2805,24 @@ footer a{color:var(--muted)}
         <li>Climb, hike, and camp in the great outdoors</li>
       </ul>
     </div>
-    <figure class="fig"><img src="/assets/images/w/648b209efc.webp" alt="Student quote from Ortwin C.: One of the best periods in my life, in which I learned a lot, lived through a lot of great experiences, met a lot of people, made many new friends and was privileged to be able to share my knowledge and skills with my fellow RTMS team members and students." width="613" height="615" loading="lazy" decoding="async"></figure>
+    <figure class="fig"><img class="nat" src="/assets/images/w/648b209efc.webp" alt="Student quote from Ortwin C.: One of the best periods in my life, in which I learned a lot, lived through a lot of great experiences, met a lot of people, made many new friends and was privileged to be able to share my knowledge and skills with my fellow RTMS team members and students." width="613" height="615" loading="lazy" decoding="async"></figure>
   </div>
   <div class="band">
     <h2>We offer a new way of life (even if it is temporary) and a chance to meet other people. Rick Tew educates and trains motivated individuals. Martial arts experience is NOT required</h2>
   </div>
   <div class="wrap">
     <div class="prose">
-      <p class="lead-bold">Can we help with your goals?</p>
+      <p class="lead-bold lbl">Can we help with your goals?</p>
       <p>At the foundation of every camp is a martial art system created by Rick Tew. However, we realize that people have different needs. So we have a unique program that specifically targets these needs while still providing the right level of martial arts and fitness.</p>
       <p>Some participants want to learn the hardcore system and push their limits in the martial arts, some people are beginners and only want a few hours a day of self-defense training while getting the chance to focus on improving or changing their lives. Some students want to practice full-contact sparring and jiu-jitsu grappling while others have no interest in getting hit in the face.</p>
       <p>While one person might want to lose 30 pounds, another may only want a vacation that also includes learning a new routine for a healthy diet and lifestyle. Although we offer one complete program, we also target the challenges and specific needs of the individual too. You can benefit from each program regardless of your background.</p>
     </div>
     <figure class="fig"><img src="/assets/images/w/0ec935588b.webp" alt="A group with climbing ropes beside a jeep in the desert" width="657" height="490" loading="lazy" decoding="async"></figure>
     <div class="prose">
-      <p class="lead-bold">Disconnect to Reconnect</p>
+      <p class="lead-bold lbl">Disconnect to Reconnect</p>
       <p>It&rsquo;s what the D.R, ordered. To <em>Disconnect</em> to <em>Reconnect</em> is our way of saying, phones out of reach for a while. Let&rsquo;s be honest, we all love our tech and we use a lot of it at CMS, but there comes a time when checking your phone every second or having to take a selfie for every activity becomes mentally tiresome and unhealthy. Even though others may engage in checking their emails while glamping in the Grand Canyon, you can choose to leave these devices in a box and get out of the box untethered.</p>
-      <p class="lead-bold">Just say, "HI"</p>
-      <p>And by the request above, we mean to say, &ldquo;Hi.&rdquo; in person. HI or H.I. stands for <strong>Human Interaction</strong>. A thumbs up on Facebook does not qualify. We are talking about real, in-person experiences with other human beings and adopting the philosophy of HI. This requires making choices.</p>
+      <p class="lead-bold lbl">Just say, "HI"</p>
+      <p>And by the request above, we mean to say, &ldquo;Hi.&rdquo; in person. HI or H.I. stands for <strong class="flat">Human Interaction</strong>. A thumbs up on Facebook does not qualify. We are talking about real, in-person experiences with other human beings and adopting the philosophy of HI. This requires making choices.</p>
       <p>More and more AI is taking over the daily interactions where we might normally engage with others. Progress comes with some sacrifices and so we have to focus on maintaining other ways to interact.</p>
       <p>When you stop for gas, the option to go inside and pay will soon be gone. The ability to speak with a human when you order food could become a part of the past and in the near future.</p>
       <p>We put people together because we partly agree in quotes like this:</p>
@@ -2726,17 +2834,17 @@ footer a{color:var(--muted)}
   </div>
   <div class="wrap">
     <div class="prose">
-      <p class="lead-bold">1 Training</p>
+      <p class="lead-bold lbl">1 Training</p>
       <p>You get awesome training in 5 actual organized programs for personal growth. Come for the martial arts camp and get the benefits of the other programs too. The same goes for someone looking to kick start their life or reboot their energy level. We have an organized set of strategies to help you be your best.</p>
-      <p class="lead-bold">2 Fitness</p>
+      <p class="lead-bold lbl">2 Fitness</p>
       <p>Want to lose a few pounds fast and have fun getting in better shape? Maybe you want to do the splits or have always been curious about gymnastics. For most, they will just want to lose added fat and gain some strength in a way that works. Whatever your goals, we are focused on helping you reach them too.</p>
-      <p class="lead-bold">3 Security</p>
+      <p class="lead-bold lbl">3 Security</p>
       <p>Would you like walk the streets with more confidence in self-defense? Maybe you&rsquo;d like to feel more capable in an emergency. Do you want to learn simple psychological strategies to keep you from becoming a &ldquo;deer caught in headlights&rdquo;? Feeling secure is a mental martial art skill that everyone should have in their personal toolbox.</p>
-      <p class="lead-bold">4 Ninja</p>
+      <p class="lead-bold lbl">4 Ninja</p>
       <p>Okay, who doesn&rsquo;t want to be a Ninja? It&rsquo;s not too late to learn to move like Jackie Chan or spin a Nunchaku like Bruce Lee. Even if you are too old to count your toes, you can learn something new and exciting with our modern Ninjitsu system. Roll, punch, kick, stand, fall and wield a weapon like a true Ninja.</p>
-      <p class="lead-bold">5 Outdoors</p>
+      <p class="lead-bold lbl">5 Outdoors</p>
       <p>Students of CMS often comment how they have been to more places and done more things on our martial art camp than they have their entire lives. Whatever your excuse, it ends with us because we love being outside. But don&rsquo;t worry, if you don&rsquo;t want to Disconnect to Reconnect, we offer Ninja Glamping to make it super cozy too.</p>
-      <p class="lead-bold">One Program Many Benefits:</p>
+      <p class="lead-bold lbl">One Program Many Benefits:</p>
       <p>There is a lot of variety and various teachings that we include in our Martial Arts Camps. Each of our 5 parts of our martial arts training camp is also a complete program in its entirety.</p>
       <p>No two classes are the same and we conduct each class like a mini-workshop or seminar so that you can gain new insights every day of training.</p>
       <p>For those that want to master the basics of Martial Arts, Mind Power and Diet. There are some basic (optional) periods that are available for repetition each day. The concepts that focus on daily repeated training for continuous growth are:</p>
@@ -2753,7 +2861,7 @@ footer a{color:var(--muted)}
   </div>
   <div class="wrap">
     <div class="prose">
-      <p>Being part of <strong>R</strong>ick <strong>T</strong>ew&rsquo;s <strong>M</strong>artial <strong>S</strong>cience Program is a lot more than just a camp or <a href="#p-tours">tour</a> to learn the martial arts. We also encourage participants get together for outdoor adventures that include hiking, camping, rock climbing, road trips, multiple terrain training and other mini-adventures. This is one of the reasons we run our martial arts camps near places like Yosemite National Park, California or on tropical islands in Asia.</p>
+      <p>Being part of <strong class="flat">R</strong>ick <strong class="flat">T</strong>ew&rsquo;s <strong class="flat">M</strong>artial <strong class="flat">S</strong>cience Program is a lot more than just a camp or <a href="#p-tours">tour</a> to learn the martial arts. We also encourage participants get together for outdoor adventures that include hiking, camping, rock climbing, road trips, multiple terrain training and other mini-adventures. This is one of the reasons we run our martial arts camps near places like Yosemite National Park, California or on tropical islands in Asia.</p>
       <p>As young children, we invested much of our time adventuring, exploring and discovering. We provide an option to recapture and maintain the healthy attitude we had when we were young.</p>
       <p>Life should be fun, include regular adventures, and offer new experiences. It should be a BLAST!!</p>
     </div>
@@ -2774,15 +2882,15 @@ footer a{color:var(--muted)}
       <p>You will dive into a complete Multi-Martial Art system and train daily in any one of the key 5 Levels of the Martial Arts designed by Rick Tew.</p>
       <p>We currently offer <a href="https://martialartcamp.com/ninja" target="_blank" rel="noopener">long-term training on the island of Samui in Thailand</a> and <a href="#contact">tours in California</a>.</p>
       <p>Mr. Tew has been running martial arts camps and tours for more than 20 years. The students have the most fun and memorable experiences when they travel and train together under the guidance and teaching of Rick Tew. Rick has brought students from the US to Europe and students from Europe to the US for amazing adventures, stories and friendships. Many students who attended a program many years ago will still remember how awesome the travel adventures were. Now Mr. Tew is bringing students from the US and Europe to Thailand. But all new students from around the world are welcome to join in on the adventure and get the experience.</p>
-      <p class="lead-bold">Training</p>
+      <p class="lead-bold lbl">Training</p>
       <p>Each VIP student will be able to submit request for specific training and focus that they would like to receive. We then create a unique and intensive seminar taught by Rick Tew that includes each of the student's request. This will ensure that no two classes are ever the same. In addition to the requests, we will also be sure to include the base training and introduction to beginners along with the seminar program training. Usually this will be about 2-6 hours each day in the following format:</p>
       <p><strong>Class 1:</strong></p>
       <p>BASE training session: Stances, Strikes, Kicks, Rolls, Falls, and Self-Defense.</p>
       <p><strong>Class 2:</strong></p>
       <p>Student submitted requests for what they would like to learn on their visit.</p>
-      <p class="lead-bold">WinJitsu</p>
+      <p class="lead-bold lbl">WinJitsu</p>
       <p>In addition to the above physical classes, VIP members will have ample time for conversation and training in other areas of interest. They will be conducted at dinners, organized sessions or during travel when Mr. Tew is available and under a non-strict format. In other words, it is in our leisure time and managed via conversations out and about.</p>
-      <p class="lead-bold">Camps and Long-term training</p>
+      <p class="lead-bold lbl">Camps and Long-term training</p>
       <p>Students interested in continuing their training can discuss with Mr. Tew during the program about returning or continuing to learn the system. Often a discount will be available for students who take advantage of an additional program.</p>
     </div>
   </div>
@@ -2974,7 +3082,7 @@ footer a{color:var(--muted)}
           <p>A story-driven tower defense game. A private build for now.</p>
         </li>
       </ul>
-      <p class="part-go" style="margin-top:26px"><a class="up" href="#menu">Back to the ring</a></p>
+      <p class="part-go"><a class="up" href="#menu">Back to the ring</a></p>
     </div>
   </section>
 
@@ -2986,10 +3094,10 @@ footer a{color:var(--muted)}
     </header>
     <div class="old">
   <div class="wrap">
-    <div class="prose center" style="margin-top:40px">
-      <p class="lead-bold">CONTACT US FOR GENERAL INQUIRIES</p>
+    <div class="prose">
+      <p class="lead-bold lbl">CONTACT US FOR GENERAL INQUIRIES</p>
       <p>If you have any questions or comments about any of our programs, your registration or our website.</p>
-      <p class="lead-bold" style="margin-top:34px">BOOK RICK TEW FOR YOUR NEXT EVENT</p>
+      <p class="lead-bold lbl">BOOK RICK TEW FOR YOUR NEXT EVENT</p>
       <p>Want Rick Tew as Speaker for your next event at your company, university or organization?</p>
     </div>
     <div class="social-row">
@@ -3022,7 +3130,7 @@ footer a{color:var(--muted)}
       </form>
       <div class="trap" aria-hidden="true"><label for="askWebsite">Leave this empty</label><input id="askWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></div>
       <div class="done" id="askDone" tabindex="-1">
-        <p class="lead-bold">Posted.</p>
+        <p class="lead-bold lbl">Posted.</p>
         <p>Check your inbox for the reply.</p>
       </div>
     </div>
