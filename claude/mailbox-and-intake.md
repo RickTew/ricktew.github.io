@@ -486,3 +486,11 @@ placeholder "How can I help you?"; Send shows up to two answers from a word list
 built only from what the home page says, each with its link; not an AI, no outside service); "Send it to Rick" (or no
 match, or a speaking, coaching, tours or reaching-me answer) opens name and email. The mail adds a last line "(The box
 showed them: ...)". After a post the box clears and stays. A persona round on it is for later, on his word.
+**9 Nov 2026 (083fb07), Rick: "when someone types here it is going to email and not answering. I want this to actually
+answer the question. Similar to how we have it on tewbedo ... like a chat option that hovers".** So: Ask the ninja, a
+floating button and chat panel (tewbedo.com's pattern), engine and 45 answers in `js/ask-home.js` (tewbedo's word engine,
+answers only from the home page's words, not an AI), golden set `tests/ask-home-golden.js` (run it after any edit). The box
+under the wheel opens the chat with its question; the button hides while that box is on screen. Name and email only on
+"Send it to Rick" (an honest miss, or a speaking, coaching, tours, refund or reaching-me answer). The post keeps subject
+`hininja` and the SAME first line; its last lines are now "(Also asked in the chat: ...)" and "(The chat showed them:
+...)" (TEWBEDO told). The chat's ids are chat* (the Contact form owns ask*). New misses: window.rtAskMisses in the page.
