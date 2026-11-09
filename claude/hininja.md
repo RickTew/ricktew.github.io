@@ -367,3 +367,12 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     off (their header says POCKET DOJO); the files stay in public/course/img/more/. Kuno: "What is WinJitsu?",
     "Can I train from home?" (id still pocket-dojo, "pocket dojo" still finds it) and "What is included?" say the
     same, every sentence from the page. ricktew.com made the same change the same day (173f430).
+  - **9 Nov 2026: what a stay includes matches the WinJitsu app** (the WinJitsu chat's note of 8 Nov: the app's Terms
+    give course students full WinJitsu access free, with Ask Sensei Tew, for the time Rick sets, and the Home Study
+    Program is the separate upgrade with his own feedback). Rick's click in the martialartcamp chat, question tool:
+    "Page matches the app". So the box's lede ends "Every stay comes with full WinJitsu access, with Ask Sensei Tew."
+    and the "Every stay" list says "WinJitsu, your pocket dojo: full access, with Ask Sensei Tew."; "the full Home Study
+    Program, and you keep it after you fly home" is gone (no time is promised). Kuno's winjitsu, pocket-dojo and
+    included answers say the same (martialartcamp cd634cc; TEWBEDO told for its ask.js copy). The box's foot is
+    unchanged: "Join the Home Study Program" from home, then the $22 month. The app's Mind Martial Arts and Ninja
+    (was Ninjitsu) section names were not taken onto the box: its cards say Mind, Body, Spirit and never named them.
