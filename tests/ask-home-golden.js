@@ -2,7 +2,7 @@
    Run: node tests/ask-home-golden.js */
 const ask = require("../js/ask-home.js");
 const G = {
-  about: ["who is rick tew?", "who are you", "tell me about yourself", "what does rick do"],
+  about: ["who is rick tew?", "tell me about yourself", "what does rick do"],
   roots: ["where are you from?", "where did you grow up"],
   started: ["how did you get into martial arts?", "why the ninja?"],
   "black-belt": ["are you a black belt?", "what rank are you"],
@@ -33,21 +33,56 @@ const G = {
   course: ["can i train with rick in person?", "do you have classes in thailand", "tell me about the ninja course", "i want a martial arts vacation"],
   camps: ["do you run live in ninja camps?", "what is cms"],
   tours: ["what are blast tours?", "do you do trips to yosemite"],
-  ninjagym: ["what is ninjagym?", "do you have classes for kids", "can i book a birthday party", "hi, do you teach kids?"],
+  ninjagym: ["what is ninjagym?", "do you have classes for kids", "hi, do you teach kids?"],
   nerdhostel: ["is there a hostel?", "where can i stay on koh samui"],
   ai: ["can you build an app for my business?", "can you make me a website", "what is ai ninja"],
   games: ["what games have you made?", "what is dungeon hole"],
   price: ["how much does it cost?", "what are your prices"],
   contact: ["how do i contact rick?", "what is your email", "can i call you"],
   hello: ["hi", "hello there", "good morning"],
-  miss: ["what is the capital of france", "tell me a joke", "how old are you"]
+  miss: ["what is the capital of france", "tell me a joke"],
+  /* the persona round, 9 Nov 2026 (635 questions from six visitor types); Rick's own three first */
+  speaking_p: ["does Rick still speak?", "speaking and press", "can he do a zoom talk for our team", "corporate clients", "is he available in march"],
+  now: ["he does so much, what is he doing now?", "what does rick do now", "is he retired", "what is rick doing these days", "whats rick working on right now"],
+  quote: ["I am an old student can I give a quote?", "can i write a testimonial", "does rick remember me", "i trained with rick in holland in the 90s"],
+  "still-teach": ["does rick still teach", "is rick still giving trainings", "does rick still teach kids"],
+  topics: ["keynote topics", "what does he speak about", "goal setting", "team bonding", "what is BLAST workshop"],
+  "speak-fee": ["speaking fee?", "speaker rates", "cost of corporate workshop", "travel costs who pays"],
+  social: ["does he have a youtube channel", "is rick on facebook", "how do i follow him on social media", "any youtube of his talks"],
+  reviews: ["any reviews?", "what do past students say", "is this legit"],
+  age: ["how old is rick", "how old are you"],
+  split: ["i read something about a split personality, what is that about"],
+  "send-what": ["after i send it to rick what happens", "how fast does he reply"],
+  teacher: ["who is the teacher", "is rick going to be teaching me"],
+  bot: ["who are you", "are you a bot", "is this AI", "are you rick", "talk to a human"],
+  thanks: ["ok thanks", "thank you", "bye"],
+  "ng-hours": ["ok but what are the opening hours", "ninja gym hours?", "open on sunday?", "is it open every day"],
+  "ng-where": ["where is the gym exactly", "is it in chaweng or lamai", "ninjagym google maps"],
+  "ng-ages": ["how old my son need be", "how long is a kids class", "what do kids learn there"],
+  "ng-camps": ["summer camp?", "can i stay and wait", "what is a drop off session"],
+  "ng-price": ["price for kids class", "how much per month for kids", "first class free?"],
+  "ng-pay": ["can i pay by promptpay", "cash ok?", "can i pay with visa"],
+  "ng-adults": ["can parents train too", "can adult play ninjagym"],
+  "ng-birthday": ["can i book a birthday party", "birthday party price"],
+  "ng-signup": ["do i need to book or just walk in", "how do i book a kids class"],
+  "course-stay": ["how long can i stay", "can i stay for 3 weeks", "can i come for just one day", "is accommodation included", "accomodation?", "how long is the ninja course"],
+  "course-beginner": ["beginner friendly?", "do i need experience", "im 27 and pretty unfit lol is that ok", "how hard is the training"],
+  "course-kids": ["can my 9 year old do the ninja course", "is the ninja course for adults only", "can teens do the ninja course", "whats the difference between ninjagym and the course"],
+  "book-what": ["how do i book", "book now"],
+  roots_p: ["where is rick from", "is rick from thailand", "where is he from originally", "is rick american"],
+  winjitsu_p: ["winjitzu what is", "what does win stand for"],
+  "from-home_p": ["how much is the winjitsu app", "how much does winjitsu cost", "how much per month"],
+  about_p: ["rik tew who is he", "rick tew"],
+  thai: ["\u0e40\u0e23\u0e35\u0e22\u0e19\u0e28\u0e34\u0e25\u0e1b\u0e30\u0e44\u0e14\u0e49\u0e44\u0e2b\u0e21"],
+  miss_p: ["do i need a visa", "best pad thai", "is rick married"],
 };
 let bad = 0, n = 0;
 for (const [want, qs] of Object.entries(G)) for (const q of qs) {
   n++;
   const r = ask.answer(q);
   const got = r.kind === "answer" ? r.entry.id : r.kind === "choose" ? "choose:" + r.entries.map(e => e.id).join("/") : r.kind;
-  if (got !== want) { bad++; console.log("FAIL", JSON.stringify(q), "want", want, "got", got, r.kind === "miss" ? "near " + r.near.map(e => e.id).join(",") : ""); }
+  const goal = want.replace(/_p$/, "");
+  if (got !== goal) { bad++; console.log("FAIL", JSON.stringify(q), "want", want, "got", got, r.kind === "miss" ? "near " + r.near.map(e => e.id).join(",") : ""); }
 }
 console.log(`${n - bad} of ${n} pass`);
 process.exit(bad ? 1 : 0);
