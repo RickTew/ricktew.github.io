@@ -88,3 +88,9 @@ and when that changes we can simply adjust".
   month, final sale, no price in the Terms. Terms dated 6 November 2026. /about/ and llms.txt followed, his click
   "/about/ and llms.txt". "R2 Managed Hosting" stays in `aininja/ask.js` and the Intake's questions, which no ricktew.com
   page was found loading (leaving them needs no TEWBEDO "ask.js changed").
+- **The WinJitsu month's charge-error exception, 9 Nov 2026 (210d98b), Rick's click "Add the exception".** The WinJitsu
+  chat's persona tester saw ricktew.com's "No refunds" disagree with winjitsu.com/terms. Section 3's month line keeps
+  "All sales are final" and adds: a charge that went wrong (e.g. a double charge) or a paid month whose access never
+  opened is put right if written through the mailbox (/contact/) within 14 days, including a refund where fair. Terms
+  dated 9 November 2026. The checkout line dropped "No refunds." (shop d1cb8e27, Rick deploys). His other click the same
+  day, "Leave it, no time": the month's pages promise no time for the access to open.

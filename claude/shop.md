@@ -178,6 +178,10 @@ the Dojo.
   $21.52 beside THB 699.00 on 2 Nov; re-read before any marketing push).
 - Terms section 3 names the month since 6 Nov 2026 (his click "Add it, all sales final"): paid once, does not renew, access
   opens when the email is added, all sales final. No price there; a change to any of those means a change to the Terms.
+- 9 Nov 2026, Rick's click "Add the exception" (the hold lifted for this one change): the month's checkout line is
+  "One month of the WinJitsu app, paid once. It does not renew. All sales are final." ("No refunds." dropped; digitaldojo
+  d1cb8e27, lib.ts + shop_test.ts, 99 tests pass), and the Terms add the charge-error exception (210d98b, claude/company.md).
+  Not live on Stripe's page until Rick runs the deploy below. His click "Leave it, no time": no time promised for access.
 - Getting in is by hand: the sale notice (SKU WJA-HOME-1M, Plan "1 month") reaches Rick with the email paid with, and he
   adds it in the WinJitsu app as a from-home member for one month. /winjitsu/thanks/ says to sign up at winjitsu.com
   with the same email.
