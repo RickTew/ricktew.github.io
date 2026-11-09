@@ -485,7 +485,12 @@ Format: `ricktew` on every platform (or however each platform renders it).
 - **One small backend, and only one:** the contact endpoint (see Contact
   below). The pages themselves are still static files with no server logic,
   and nothing else here talks to a server.
-- No analytics without an explicit decision
+- No analytics without an explicit decision. **The one decision so far (Rick, 9 Nov 2026, his pick "Our counter on
+  every site" in TEWBEDO, confirmed here "Yes, public pages"):** TEWBEDO's free visit counter, our own copy in
+  `js/seen.js` (no cookie, no outside script; it sends the path, the sending site, utm tags, ad click yes/no), on the
+  19 public pages. Never on a buy, thanks, download, PromptPay or preview page, or /record/. A new public page gets the
+  tag before `</body>`; the Privacy page's "Visit count" line says what is counted. Script changes come from
+  TEWBEDO's ~/Dev/tewbedo-site/docs/COUNTER-FOR-OTHER-SITES.md.
 - No cookies / tracking
 - **No mailto: links, anywhere, ever.** This entry has been wrong twice. It
   first said "no contact form, use mailto: or social links", which was

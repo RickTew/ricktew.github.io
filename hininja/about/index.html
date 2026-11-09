@@ -496,5 +496,6 @@
    and the page works exactly the same without it. */
 if("serviceWorker" in navigator){ window.addEventListener("load",function(){ navigator.serviceWorker.register("/sw.js").catch(function(){}); }); }
 </script>
+<script src="/js/seen.js" defer></script>
 </body>
 </html>
