@@ -494,3 +494,7 @@ under the wheel opens the chat with its question; the button hides while that bo
 "Send it to Rick" (an honest miss, or a speaking, coaching, tours, refund or reaching-me answer). The post keeps subject
 `hininja` and the SAME first line; its last lines are now "(Also asked in the chat: ...)" and "(The chat showed them:
 ...)" (TEWBEDO told). The chat's ids are chat* (the Contact form owns ask*). New misses: window.rtAskMisses in the page.
+Same day, persona round (7298f42; his click "6 personas, questions"): 635 questions from six visitor types, 514 now
+answered from the page's words; golden set 196. The chat never says who teaches the course or how often, never repeats
+a NinjaGym price, and never promises a reply time. Alt syntax in js/ask-home.js: "=x" whole question only, "~x" a phrase
+whose words are not keys.
