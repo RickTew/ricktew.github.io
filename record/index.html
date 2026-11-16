@@ -4,14 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rick Tew, the record</title>
-<meta name="description" content="Rick Tew: founder, builder and coach. What I build now, how I build it, and the record behind the resume.">
+<meta name="description" content="Rick Tew: founder, builder and coach. My history, from the backyard dojo to today, and what I build now.">
 <!-- The hiring page (Rick, 15 Oct 2026, after a five-reader hiring round): the
      link that goes in a job application's website field. Not for customers, so
      no prices, no buy buttons, no quiz. Hidden from search and from every menu;
      nothing links here yet: Rick, 15 Oct, "don't share it anywhere yet until we get
      it up to speed" (it leans too hard on the gym app). No email address in this
      file, ever; contact is the mailbox, never LinkedIn messaging. The record list at the bottom is meant to grow ("we can add fun
-     things as we go"). -->
+     things as we go").
+     16 Nov 2026, Rick: "we need to make a new one that really can focus on my HISTORY and visable only for
+     company owners that value such work"; his clicks "Rebuild /record/" and "Part-time or contract". So the history
+     leads, then what I build. Still unlinked and noindex: it goes only to the owners and roles he picks.
+     No city, no birth state, no dates; only the teen ages he allows (13, 15, 16, 19, 21). Contact: /contact/?src=record. -->
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://ricktew.com/record/">
 <link rel="icon" href="/assets/images/favicon.png">
@@ -21,7 +25,7 @@
 <meta property="og:site_name" content="Rick Tew">
 <meta property="og:url" content="https://ricktew.com/record/">
 <meta property="og:title" content="Rick Tew, the record">
-<meta property="og:description" content="Founder, builder and coach. What I build now, how I build it, and the record behind the resume.">
+<meta property="og:description" content="Founder, builder and coach. My history, from the backyard dojo to today, and what I build now.">
 <meta property="og:image" content="https://ricktew.com/assets/images/og-ricktew.jpg">
 <link href="/assets/fonts/nunito-archivo-613a0d.css" rel="stylesheet">
 <style>
@@ -75,6 +79,10 @@ figcaption{font-size:14px;color:var(--muted);padding:8px 2px 0}
 .record li::before{content:"";position:absolute;left:-8px;top:.5em;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
 .record .when{display:block;font-family:"Archivo",sans-serif;font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--blue)}
 
+.pics{display:flex;gap:10px;margin:0 0 24px}
+.pics figure{min-width:0}
+.pics img{display:block;width:100%;height:auto;border-radius:10px;border:1.5px solid var(--line)}
+
 .hire{margin:34px 0 10px;background:var(--pale);border-radius:12px;padding:22px 24px}
 .hire h2{font-size:22px}
 footer{padding:30px 0 40px;color:var(--muted);font-size:14px}
@@ -86,6 +94,15 @@ footer{padding:30px 0 40px;color:var(--muted);font-size:14px}
   .steps,.proof,.builds{grid-template-columns:1fr}
   .nums{grid-template-columns:1fr 1fr}
   .phone{max-width:200px}
+  .pics{flex-wrap:wrap}
+  .pics figure{flex:1 1 40%!important}
+}
+@media print{
+  body{font-size:12pt}
+  .li{display:none}
+  a{color:inherit;text-decoration:none}
+  section{padding-top:18px}
+  .record li,.steps li,.num,figure{break-inside:avoid}
 }
 </style>
 </head>
@@ -104,20 +121,45 @@ footer{padding:30px 0 40px;color:var(--muted);font-size:14px}
       <p>From California, working across Asia, the U.S. and Europe</p>
     </div>
   </div>
-  <p class="lead">My work has one aim: <b>help people get a Black Belt in what they do.</b> It started on the mat. Today it also means AI (some now say SI) and computer work: building the systems a business runs on, and training the people who run it. This page is the record behind my resume.</p>
+  <p class="lead">My work has one aim: <b>help people get a Black Belt in what they do.</b> It started on the mat. Today it also means AI (some now say SI) and computer work: building the systems a business runs on, and training the people who run it. Here is the history, then what I build now.</p>
 </header>
 
+<section aria-labelledby="h-record">
+  <h2 id="h-record">My history</h2>
+  <p class="sub">Teaching, building and running things, from the backyard dojo to today.</p>
+  <div class="pics">
+    <figure style="flex:1.185"><img src="/assets/images/rick-teen-flying-side-kick.webp" width="1000" height="844" alt="Rick Tew as a teenager in a red and black uniform, mid flying side kick" loading="lazy"></figure>
+    <figure style="flex:.705"><img src="/timeline/img/holland-karate-cover.webp" width="900" height="1277" alt="Rick Tew on the cover of a Dutch karate magazine" loading="lazy"></figure>
+    <figure style="flex:1.912"><img src="/timeline/img/ch1-speaking.webp" width="1000" height="523" alt="Rick Tew speaking to groups and teaching classes" loading="lazy"></figure>
+  </div>
+  <ul class="record">
+    <li><span class="when">From 13</span>I fell in love with the ninja art of ninjitsu. My first training center was the backyard, with carpet wrapped around a plum tree for a striking dummy. Scouting gave me trips into the outdoors and a system for setting goals.</li>
+    <li><span class="when">At 15</span>On TV for my ninja skills. Around then I drew Arena RPG on paper: hand-drawn boards, character sheets and hand-cut tiles.</li>
+    <li><span class="when">At 16</span>Teaching. From that point on I have been teaching, sharing and living the martial arts.</li>
+    <li><span class="when">At 19</span>Opened my own dojo. Then I took a break to study more martial arts, joined stunt school and learned Tony Robbins' tactics.</li>
+    <li><span class="when">At 21</span>Moved to Europe alone. The only person I knew there moved to another country within weeks, and I stayed: more than six years in and out of the Netherlands, in magazines and on TV, teaching seminars across the country. I was offered a part in a popular Dutch film and turned it down to spend time with students in Spain.</li>
+    <li><span class="when">My own system</span>RTMS, Rick Tew's Martial Science: Modern American Ninjitsu crossed with MMA, built to teach movement, not moves. Five ranking levels from beginner to instructor, with a mental training system of its own.</li>
+    <li><span class="when">Camps and tours</span>First in the martial arts industry to run live-in Ninja Training Camps. Ran the CMS ninja camp near Yosemite, then BLAST Tours: travel and training on four continents. I have brought students from the US to Europe and from Europe to the US, and the first group on my California tour was Dutch.</li>
+    <li><span class="when">Business and the web</span>Built MartialArtSupply.com from the ground up, in the same years as the camps, into a business many people copied. Built my own websites, video and online tools from the start, and built and sold websites and domain names. Stunt choreography for film.</li>
+    <li><span class="when">Schools and gyms</span>Founded and ran martial arts schools, dojos and gyms in the US, Europe and Asia. Classes for groups of 10 to 30, year after year, where speaking, coaching and teaching happen at once.</li>
+    <li><span class="when">Speaking and coaching</span>Spoke at HP, TU Delft and the University of Rotterdam, and ran workshops for teams, including the BLAST workshop. Tony Robbins Certified Strategic Intervention Coach. In Black Belt magazine and on TV in the US and Holland. Martial arts as therapy: using the training to work on fear, pain, confidence and aggression.</li>
+    <li><span class="when">Writing</span>The five books of The Mental Martial Art: Be a Black Belt in What You Do (ACE, MAK, MBS, NRG and CMT). Today they live on as WinJitsu, my pocket dojo app with five belts and 90 lessons, and as the Tewtors workbooks for grown-ups, teens, parents and teachers.</li>
+    <li><span class="when">Thailand</span>Founded NinjaGym on Koh Samui, an indoor ninja playground for kids, and built the app it runs on. NerdHostel, a gamer hostel with co-working, sits across the street.</li>
+    <li><span class="when">Now</span>AI and computer work for small businesses, all of it remote, and games under my TewBit Games brand: TEWGO is live on the App Store, and I am building Arena RPG for real.</li>
+  </ul>
+</section>
+
 <section aria-labelledby="h-built">
-  <h2 id="h-built">Built and running</h2>
+  <h2 id="h-built">What I build</h2>
   <p class="sub">Every build here is live.</p>
   <div class="proof">
     <figure>
       <div class="shot"><img src="/aininja/assets/story/dashboards/tewbedo-be-console.jpg" width="1288" height="938" alt="The console I built to run my working day: projects in progress, to build and done, with notes on each" loading="lazy"></div>
-      <figcaption>Mail in, drafts out, and a person decides what goes out. Want this on your team? <a href="/aininja/#opt-8c">Drop it in my mailbox</a></figcaption>
+      <figcaption>Mail in, drafts out, and a person decides what goes out. Want this on your team? <a href="/contact/?src=record">Drop it in my mailbox</a></figcaption>
     </figure>
     <figure class="phone">
       <div class="shot"><img src="/aininja/assets/story/ninjagym/app-home.webp" width="540" height="1170" alt="The NinjaGym app home screen: join, my membership, events and shop" loading="lazy"></div>
-      <figcaption>One app runs the front desk: members, bookings, the shop and the till. Need one built? <a href="/aininja/#opt-8c">Drop it in my mailbox</a></figcaption>
+      <figcaption>One app runs the front desk: members, bookings, the shop and the till. Need one built? <a href="/contact/?src=record">Drop it in my mailbox</a></figcaption>
     </figure>
   </div>
   <div class="nums">
@@ -147,27 +189,10 @@ footer{padding:30px 0 40px;color:var(--muted);font-size:14px}
   </ol>
 </section>
 
-<section aria-labelledby="h-record">
-  <h2 id="h-record">The record</h2>
-  <p class="sub">Teaching, building and running things, from the backyard dojo to today.</p>
-  <ul class="record">
-    <li><span class="when">In my teens</span>Built my first backyard dojo, and was on TV for my ninja skills at 15. Designed Arena RPG, a board game drawn by hand, at 15 or 16.</li>
-    <li><span class="when">Late teens</span>Opened my first dojo.</li>
-    <li><span class="when">Early 20s</span>Moved to Europe to build my own system, RTMS, Rick Tew's Martial Science: five ranking levels from beginner to instructor.</li>
-    <li><span class="when">Schools and gyms</span>Founded and ran martial arts schools, dojos and gyms in the US, Europe and Asia.</li>
-    <li><span class="when">Camps and the store</span>Ran the CMS ninja camp in Yosemite and founded MartialArtSupply.com, an online store, in the same years. First in the martial arts industry to run live-in Ninja Training Camps, then camps and training tours across the US, Latin America, Europe and Asia.</li>
-    <li><span class="when">Teaching</span>Years of classes for groups of 10 to 30, where speaking, coaching and teaching happen at once. Workshops for teams, including the BLAST workshop; worked with HP, TU Delft, the University of Rotterdam and others.</li>
-    <li><span class="when">Coaching</span>Tony Robbins Certified Strategic Intervention Coach. Featured in Black Belt Magazine and on US and Dutch television.</li>
-    <li><span class="when">Web and video</span>Built my own websites, video and online tools from the start, and built and sold websites and domain names. Stunt choreography for film.</li>
-    <li><span class="when">Writing</span>Wrote the five-book series "Be a Black Belt in What You Do" for my students; finished in 2026 and now the WinJitsu app.</li>
-    <li><span class="when">2026</span>Started AI Ninja: AI and computer work for small businesses, all of it remote. Now building Arena RPG for real, with AI.</li>
-  </ul>
-</section>
-
 <section class="hire" aria-labelledby="h-hire">
-  <h2 id="h-hire">If you hire me</h2>
-  <p>My businesses run day to day under their own teams. If hired, they keep running that way, and my working week goes to the job: a company where building, running and coaching all count. Tell me what your team needs first.</p>
-  <a class="li" href="/aininja/#opt-8c">Drop it in my mailbox</a>
+  <h2 id="h-hire">Working with me</h2>
+  <p>My businesses run day to day under their own teams, so I take on remote work, part-time or by the project, with owners who value this kind of history: a company where building, running and coaching all count. Tell me what your team needs first.</p>
+  <a class="li" href="/contact/?src=record">Drop it in my mailbox</a>
 </section>
 
 </div>
