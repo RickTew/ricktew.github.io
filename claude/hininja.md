@@ -389,6 +389,9 @@ for a private group training program that is 2 hours per day physical and up to 
   a day plus all costs when they travel), "Middle of the market": **Koh Samui $1,555 a day for 2 people, +$222 a day for
   each extra person, up to 6. Where they are: $3,333 a day for the group, up to 6, plus his flights, lodging, meals and
   local travel. At least 3 days; half holds the dates.** Prices in US dollars. Their own travel and stay are theirs to book.
+  Same day, his click "Yes, name NerdHostel" (asked in the NerdHostel chat, relayed): the offer names NerdHostel as a
+  place to stay, linking https://www.nerdhostel.com/book (shared bunk rooms; a group can book all 6 bunks of a dorm).
+  No baht price repeated here; never make a room sound big, never "whole dorm".
 - Each day: 2 hours of martial arts training, plus up to 2 hours of coaching if the group wants it.
 - The CTA is "Reserve a spot" (the Contact form, topic "A program or my registration"). No online checkout for it yet:
   /hininja/buy/ now stops every HIN- item with a line pointing to the offer (the old stays no longer sell).
