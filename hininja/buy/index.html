@@ -37,6 +37,13 @@ a{color:#175a94;font-weight:800}
   var FN="https://qegfhbseccinnxnzfhxw.supabase.co/functions/v1/ricktew-shop/buy";
   var q; try{ q=new URLSearchParams(location.search); }catch(e){ q=null; }
   var sku=(q&&q.get("sku"))||"", src=(q&&q.get("src"))||"", weeks=(q&&q.get("weeks"))||"", pay=(q&&q.get("pay"))||"", days=(q&&q.get("days"))||"", months=(q&&q.get("months"))||"", pl=(q&&q.get("p"))||"";
+  /* 16 Nov 2026, Rick: "I will not be offering the Rick Tew training as before ... I will only be doing PRIVATE group
+     training of two or more people." The old stays (a day to Mastery) no longer sell here: the course's HIN- items stop
+     at this page and point to the new offer. Other items pass through as before. */
+  if(/^HIN-/.test(sku)){
+    document.getElementById("msg").innerHTML='The Ninja Course is private group training now, for 2 or more people. <a href="/#p-ninja-course">See the prices and reserve a spot</a>.';
+    return;
+  }
   if(!/^[A-Z]{2,5}-[A-Z0-9-]{2,40}$/.test(sku)){
     document.getElementById("msg").innerHTML='That link is missing its product. <a href="/hininja/">Back to the Martial Arts Ninja Course</a>.';
     return;

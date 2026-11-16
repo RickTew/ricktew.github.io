@@ -376,3 +376,24 @@ instruction files). CLAUDE.md keeps the short rules and points here. Add new rul
     included answers say the same (martialartcamp cd634cc; TEWBEDO told for its ask.js copy). The box's foot is
     unchanged: "Join the Home Study Program" from home, then the $22 month. The app's Mind Martial Arts and Ninja
     (was Ninjitsu) section names were not taken onto the box: its cards say Mind, Body, Spirit and never named them.
+
+## 16 Nov 2026: PRIVATE GROUP TRAINING ONLY (supersedes the stays, the ladder and the small group above)
+
+Rick, word for word: "Since I am changing gears to focus on being a creator for 2027 and 20X it I will not be offering
+the Rick Tew training as before. It is now hosted on martialartcamp.com which is fine but I want it also on the
+ricktew.com page SO update both: The changes are that I will only be doing PRIVATE group training of two or more
+people. They fly to me or I fly to them (all costs covered etc.) Prices need to go UP to match what would be standard
+for a private group training program that is 2 hours per day physical and up to 2 hours a day (optional coaching)."
+
+- His price click after a market check (master instructors $400 to $600 an hour at their own school; $3,000 to $5,000
+  a day plus all costs when they travel), "Middle of the market": **Koh Samui $1,555 a day for 2 people, +$222 a day for
+  each extra person, up to 6. Where they are: $3,333 a day for the group, up to 6, plus his flights, lodging, meals and
+  local travel. At least 3 days; half holds the dates.** Prices in US dollars. Their own travel and stay are theirs to book.
+- Each day: 2 hours of martial arts training, plus up to 2 hours of coaching if the group wants it.
+- The CTA is "Reserve a spot" (the Contact form, topic "A program or my registration"). No online checkout for it yet:
+  /hininja/buy/ now stops every HIN- item with a line pointing to the offer (the old stays no longer sell).
+- The old wall "never say who teaches or how often" does not fit this offer: it is private training with Rick himself,
+  2 hours a day, by his own words. Belts in a set time are still never promised.
+- On ricktew.com: the home page's Ninja Course section (#p-ninja-course) carries the full offer; the wheel card opens it
+  ("Private training for your group.", "See private training"); the chat and llms.txt say the same. martialartcamp.com/ninja
+  is the martialartcamp.com chat's to change (told 16 Nov).
