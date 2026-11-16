@@ -400,3 +400,13 @@ for a private group training program that is 2 hours per day physical and up to 
 - On ricktew.com: the home page's Ninja Course section (#p-ninja-course) carries the full offer; the wheel card opens it
   ("Private training for your group.", "See private training"); the chat and llms.txt say the same. martialartcamp.com/ninja
   is the martialartcamp.com chat's to change (told 16 Nov).
+
+- **16 Nov 2026, martialartcamp.com/ninja (martialartcamp 9a6e2e3).** Rick's picks in the martialartcamp chat (question tool):
+  - "Our own Request a spot": the form at /ninja#reserve. ONE mail to hi@martialartcamp.com, subject "Ninja Course Request: <N> people, <Koh Samui | where they are>, from <name>", first line "From Request a spot on martialartcamp.com/ninja", Reply-To the traveler. TEWBEDO keeps it in New for Rick.
+  - "hi@martialartcamp.com only".
+  - "Training and coaching only": no dorm bed, airport pick-up, Shake and Bake vouchers, T-shirt or WinJitsu bonus. NerdHostel stays as a place to book yourself: "Your travel and your stay are yours to book."
+  - "Set with each group, no start date": no timetable, no 15 January 2027.
+  - "Put it live".
+  The offer's words are ricktew.com's #p-ninja-course (f9ea313), in the third person. Mastery, Instructor, the belt program's 2 months and price, the stays, the deposit, the checkout links, the small-group lines and the November friend promo are off the page. The belts (yellow to red, a certificate per belt, never in a set time), the system, Rick's record, the WinJitsu box (as the app and the two ways to train from home) and the student quotes stay. The Ninja Menu keeps the Ninja Week and ends on "Reserve a spot", which carries the picks into the request. Its "plan" mail to ricktew-contact stopped. Kuno's ask.js has 44 answers from the page's own sentences; TEWBEDO was told "ask.js changed". The listing's Traveler Facts: shortest stay 3 days; no rooms, no help with rooms, no pick-up, no meals; no single classes.
+- Same day on ricktew.com, to match "Training and coaching only": the WinJitsu fine print on the home page and /winjitsu/ no longer says the app or Ask Sensei Tew comes with the Ninja Course, and the old /camps/ page's note says private group training (the old stays and dorm bed are gone from it).
+- Open, Rick's call (both sites say nothing yet): refunds or moving dates once half is paid, when the other half is due, groups bigger than 6.
