@@ -495,6 +495,9 @@ under the wheel opens the chat with its question; the button hides while that bo
 `hininja` and the SAME first line; its last lines are now "(Also asked in the chat: ...)" and "(The chat showed them:
 ...)" (TEWBEDO told). The chat's ids are chat* (the Contact form owns ask*). New misses: window.rtAskMisses in the page.
 Same day, persona round (7298f42; his click "6 personas, questions"): 635 questions from six visitor types, 514 now
-answered from the page's words; golden set 196. The chat never says who teaches the course or how often, never repeats
+answered from the page's words; golden set 196. The chat never repeats
 a NinjaGym price, and never promises a reply time. Alt syntax in js/ask-home.js: "=x" whole question only, "~x" a phrase
 whose words are not keys.
+16 Nov 2026 (f9ea313): the course is private group training with Rick now (2 or more people; Koh Samui $1,555 a day for 2,
++$222 per extra person, up to 6; where they are $3,333 a day plus costs); the chat's course answers give the offer and the
+prices and link #p-ninja-course and "Reserve a spot" (#contact). The old "never who teaches or how often" no longer applies.
